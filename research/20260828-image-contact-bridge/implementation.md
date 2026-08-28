@@ -46,4 +46,4 @@ Node上の単体検証は、ブラウザevent adapter、描画同期、音響制
 
 ## 次のゲート
 
-次はこの参照実装へPointer Event／Touch Event adapterを接続し、取得不能pressureが `unavailable + null` になること、`pointercancel` と画面向き変更が `cancel` になることをブラウザで検証する。Skulpturの具体mappingはその後も別判断とする。
+Pointer Event adapterの純粋層とlistener接続は `pointer-adapter.md` まで実装した。次は実ブラウザでPointer Eventsを発火させ、取得不能pressureが `unavailable + null` になること、`pointercancel`、capture喪失、画面向き変更が `cancel` になることを確認する。Skulpturの具体mappingはその後も別判断とする。
