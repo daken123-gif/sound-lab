@@ -1129,3 +1129,158 @@ ADTでは第二機の速度を変えたが、ヴァリスピード自体はテ�
   https://www.abbeyroad.com/news/abbey-road-meets-ken-townsend-2058
 - Abbey Road — RS124 Compressor #GearThatMadeUs  
   https://www.abbeyroad.com/news/rs124-compressor-gearthatmadeus-3174
+
+
+---
+
+## 37. Studio TwoのAltec 605A監視
+
+### 確認事実
+
+1960年代のStudio Twoコントロールルームには、2台のAltec 605Aが置かれていた。
+
+- 左が個体#8、右が個体#3。
+- 当時はステレオ録音が副次的だったため、エンジニアは主に右側一台でモニターし、右個体の使用時間が長かった。
+- Geoff Emerickの回想では、一日の最後に二台でモノ再生することが「贅沢」だった。
+- 1960年代にStudio Twoから出た録音とミックスは、この監視系を通して判断された。
+- Ken Scottは、このスピーカーで良く聴かせるために努力が必要で、それが他の再生系での強さにつながったという趣旨を述べている。
+- 1970年代にTannoy Lockwoodへ交換され、Altecのうち2台はライブ・ルームの再生用へ移された。
+- 1980年のAbbey Road売却イベントで手放された。
+
+### 判断
+
+Altec 605Aを「Abbey Roadの色を出すエフェクト」として録音へ足すのは誤り。
+
+ここで再現すべきなのは、スピーカー固有の周波数特性そのものより、
+
+- モノで崩れないか
+- 中央に集めても主役が残るか
+- 限られた再生条件でバランスが成立するか
+- 派手な高域・低域へ頼らず曲が読めるか
+
+を別の監視条件で確認する工程である。
+
+実測周波数応答、キャビネット放射、当時のアンプ、設置条件を取得していないため、単純なEQを`Altec 605A simulation`とは呼ばない。
+
+---
+
+## 38. Bowers & Wilkinsへの移行と現代監視
+
+### 確認事実
+
+Abbey RoadとBowers & Wilkinsの関係は1980年代から続く。公開記事には年の表現差がある。
+
+- 2025年のAbbey Road記事: John Bowersが1980年に801を実演し、Abbey Roadが採用したと説明。
+- Abbey RoadのB&W紹介ページ: Matrix 801を1988年に採用したと説明。
+
+これは初回実演・初期導入・Matrix世代の正式導入を別々に指している可能性があるが、今回の公開資料だけでは差を完全には解消できない。年を一つへ丸めない。
+
+確認できる流れ:
+
+- 1960年代: Studio TwoのAltec 605A。
+- 1970年代: Tannoy Lockwoodへ交換。
+- 1980年代以降: B&W 800 Series系を各コントロールルームで継続使用。
+- 2018年: B&WがAbbey Roadの公式スピーカー／ヘッドホン・パートナーとなり、Studios One–Three、Gatehouse、Front Roomへ800 D3系を展開。
+- 2019年: Studios OneとThreeが最新800 D3 Seriesへ更新されたとAbbey Roadが説明。
+- Mastering Suite 13: B&W N802、DB1 subwoofer、Chord amplifierを5.1で使用。
+- Room 22 Transfer & Archive: B&W 802を、テープ上のclickや異音を露出させる監視に使用。
+
+現代側で重視されているのは、音を魅力的に誇張することではなく、detail、clarity、transparency、異常検出である。
+
+---
+
+## 39. 低音量・A/B・ヘッドホン確認
+
+### 低音量
+
+Mastering Suite 13の技術者は、EQなどの差を判断しやすいため、常にかなり小さい音でモニターすると説明している。
+
+これは音量を下げると良い音になるという意味ではない。大音量による「良く聴こえる」方向の錯覚を減らし、主役、声、低域、処理差を確認する工程として扱う。
+
+### A/B
+
+Dolby Atmos Mastering Suite 35ではDAD MOMを使い、次を即座に切り替える。
+
+- analogue処理の前／後
+- Atmos re-render／stereo
+- 異なるbinaural render
+- previous master／current master
+- LFE、center、surroundなど個別スピーカー
+
+重要なのは高機能なルーター名ではなく、切替時に音量差や経路変更で判断を誤魔化さないこと。
+
+### ヘッドホン
+
+Room 22のテープ転送ではB&W 802を主監視にし、ヘッドホンは最終確認で使うと説明される。ヘッドホンだけを唯一の真実とせず、スピーカーと異なる検査面として使う。
+
+録音時のヘッドホンは別目的であり、closed-backまたはin-earによってマイクへのbacking track spillを減らす。
+
+---
+
+## 40. iPhone版の監視専用経路
+
+監視処理はRAW、バウンス、書き出しへ一切入れない。
+
+```text
+mix / selected generation
+├── PRINT path ─────────────────────────→ bounce / export
+└── MONITOR path
+    ├── NORMAL
+    ├── MONO
+    ├── QUIET
+    ├── PHONE
+    ├── DETAIL
+    └── A/B
+```
+
+### 各モード
+
+| 表示 | 役割 | 音声ファイルへの影響 |
+|---|---|---|
+| `NORMAL` | 現在の実出力経路 | なし |
+| `MONO` | L/R合成、位相・中央バランス確認 | なし |
+| `QUIET` | monitor gainだけを下げ、主役と低域を確認 | なし |
+| `PHONE` | 実際のiPhoneスピーカーへrouteし、小型再生を確認 | なし |
+| `DETAIL` | 有線／高品質ヘッドホンでclick、歪み、編集点を確認 | なし |
+| `A/B` | bypass、前世代、処理前後を音量一致で比較 | なし |
+
+`MONO`はheadroom確保のため内部で`0.5 × (L + R)`から開始し、切替時の聴感音量差を別途校正する。これはAltecの物理再現値ではなく、アプリの監視設計値。
+
+`QUIET`の減衰量もAbbey Road実機仕様ではない。暫定的にmonitorだけを-18～-24 dB下げる範囲で検証する。
+
+### 操作制約
+
+- モニター切替で録音を開始しない。
+- 入力routeを変更しない。
+- `PHONE`選択時にBluetoothへ勝手に切り替えない。
+- monitor modeをプロジェクトの音作り設定へ保存しない。
+- bounce前には`NORMAL`へ戻す必要はない。PRINT pathは常に独立。
+- A/Bで処理後だけ大きくならないよう、短期LUFSまたは知覚音量で合わせる。
+- click / dropout / clippingは音色評価と分けて検出する。
+
+### 一画面への置き方
+
+常設ノブは増やさない。マスター・メーターをタップすると一列だけ現れる。
+
+`NORMAL | MONO | QUIET | PHONE | DETAIL | A/B`
+
+選択中の監視状態は色だけに頼らず文字で残す。録音・再生位置、4トラック波形、主操作を押し下げる大型パネルは作らない。
+
+---
+
+## 41. モニター研究の追加一次資料
+
+- Abbey Road — Altec 605As #GearThatMadeUs  
+  https://www.abbeyroad.com/news/altec-605as-gearthatmadeus-3221
+- Abbey Road — Bowers & Wilkins x Abbey Road: The Sound Experience  
+  https://www.abbeyroad.com/news/bowers-wilkins-x-abbey-road-studios-the-sound-experience-2541
+- Abbey Road — Celebrating a Unique 45-Year Relationship  
+  https://www.abbeyroad.com/news/celebrating-a-unique-45-year-relationship-3515
+- Abbey Road — Mastering Suite 13  
+  https://www.abbeyroad.com/news/abbey-road-rooms-mastering-suite-13-with-simon-gibson-and-andy-walter-3294
+- Abbey Road — Dolby Atmos Music Mastering Suite 35  
+  https://www.abbeyroad.com/news/abbey-road-rooms-dolby-atmos-music-mastering-suite-35-with-oli-morgan-3349
+- Abbey Road — Room 22 Transfer & Archive  
+  https://www.abbeyroad.com/news/abbey-road-rooms-room-22-transfer-archive-with-matthew-cocker-3475
+- Abbey Road — Beginner Studio Set-Up Guide  
+  https://www.abbeyroad.com/news/abbey-roads-beginner-studio-set-up-guide-2566
