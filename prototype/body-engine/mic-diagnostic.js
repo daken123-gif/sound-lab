@@ -1,4 +1,5 @@
 import { createBodyBrowserSession } from "./body-browser-session.js";
+import { BodyLevelWatchdog } from "./body-level-watchdog.js";
 
 const startButton = document.querySelector("#start");
 const stopButton = document.querySelector("#stop");
@@ -16,6 +17,8 @@ let session = null;
 let audioContext = null;
 let starting = false;
 let gateOpen = false;
+let levelWatchTimer = null;
+const levelWatchdog = new BodyLevelWatchdog(2000);
 
 function toDbfs(value) {
   if (!Number.isFinite(value) || value <= 0) return "−∞";
@@ -23,7 +26,23 @@ function toDbfs(value) {
 }
 
 function showLevels(report) {
+  levelWatchdog.mark(performance.now());
   levels.textContent = `INPUT ${toDbfs(report.inputRms)} dBFS / BODY ${toDbfs(report.outputRms)} dBFS`;
+}
+
+function startLevelWatch() {
+  levelWatchdog.start(performance.now());
+  clearInterval(levelWatchTimer);
+  levelWatchTimer = setInterval(() => {
+    const state = levelWatchdog.state(performance.now());
+    if (state === "stalled") levels.textContent = "INPUT／BODY レベル報告なし";
+  }, 500);
+}
+
+function stopLevelWatch() {
+  clearInterval(levelWatchTimer);
+  levelWatchTimer = null;
+  levelWatchdog.reset();
 }
 
 function setControlsReady(ready) {
@@ -69,6 +88,7 @@ function openGate(event) {
 }
 
 async function stopSession() {
+  stopLevelWatch();
   closeGate();
   monitor.checked = false;
   session?.stop();
@@ -105,8 +125,10 @@ startButton.addEventListener("click", async () => {
     const diagnostics = await session.start();
     for (const macro of macros) session.setMacro(macro.name, Number(macro.input.value));
     setControlsReady(true);
+    startLevelWatch();
     showDiagnostics(diagnostics);
   } catch (error) {
+    stopLevelWatch();
     session?.stop();
     session = null;
     if (audioContext && audioContext.state !== "closed") await audioContext.close();
