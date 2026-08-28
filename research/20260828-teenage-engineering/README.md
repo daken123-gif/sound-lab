@@ -171,6 +171,20 @@ Teenage Engineering製品に共通する「録る・時間を掴む・一時的�
 6. マイクロクロスフェードとUNDO
 7. TAPE／FX入力モードの排他制御
 
+### 実装接続記録 — 2026-08-28
+
+最初の独立実装として、音声へ焼き込まない`PERFORMANCE TAKE`記録器を追加する。
+
+- 実装: `field-processor/performance-take.mjs`
+- テスト: `tests/performance-take.test.mjs`
+- 明示的な`start()`／`stop()`中だけ操作イベントを受理
+- GRAB、ループ位置・長さ、正逆転、KAOSS座標、FXプリセットを記録
+- 連続操作は一定間隔で間引き、最終座標を保持
+- イベント単位のMute／Deleteに対応
+- 元の4トラック音声を参照・変更しない純粋な記録層
+
+`field-processor/index.html`への接続は未実施。同ファイルを変更する未統合PR #13と#14が存在するため、両PR統合後に最新`main`へ追従して接続する。
+
 ## 依存
 
 - iOSオーディオ入力／出力経路の確認
