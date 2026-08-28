@@ -49,14 +49,16 @@
   -> 出力／Performance Take／非破壊バウンス
 ```
 
-THE PIPE型音源は録音前の入力楽器候補。Chroma Console型の可変直列経路、Things Motor型4入力Rotor、Microcosm型時間変換、Strymon／OTO空間は、主演奏面を置き換えない候補部品として扱う。Abbey Road研究からは配置・RAW・校正・コンソール色分離だけを入力構造へ採用し、COLOR・SPACE・BOUNCE各DSPは個別候補として扱う。
+THE PIPE型音源は録音前の入力楽器候補。Chroma Console型の可変直列経路、Things Motor型4入力Rotor、Microcosm型時間変換、Strymon／OTO空間は、主演奏面を置き換えない候補部品として扱う。Dedalus型時間メモリとBattleFX型rhythmic-tailは、4トラックを増やさず明示sendで接続する後段候補であり、採用・信号順・UIはまだ固定しない。Abbey Road研究からは配置・RAW・校正・コンソール色分離だけを入力構造へ採用し、COLOR・SPACE・BOUNCE各DSPは個別候補として扱う。
 
 ## 統合していない候補
 
 - THE PIPE / BODY: 研究と独立DSP試作。人声、iPhone、Safariは未検証。
 - Chroma Console: 可変直列経路、Gesture、固有Drift、単一Captureの研究候補。
 - Things Motor: 4入力Rotorの係数・慣性モデル候補。
-- Abbey Road: 配置、RAW、入力経路別校正、マイク特性とコンソール色の分離は入力構造へ採用。REDD/TG、RS124、共有空間、RS56、J37、ADTのDSPは未検証候補。
+- Dedalus: 4トラックから明示sendする一基の共有時間メモリ候補。二読取ヘッドのクロスフェード、Scrub、Drift、feedback帯域制限等は研究段階で、第五トラック／第五ルーパーにはしない。
+- BattleFX: 選択トラック用の一基のrhythmic-tail send候補。delay/reverb tailの独立choke、密度、nudgeを候補とし、master常設、4インスタンス、KAOSS型XY復活には使わない。
+- Abbey Road: 配置、RAW、入力経路別校正、マイク特性とコンソール色の分離は入力構造へ採用。REDD/TG、RS124、共有空間、RS56、J37、ADTのDSPは未検証候補。J37の世代管理と時間・音程が結合するvarispeedも未統合。
 - Performance Take: 明示開始の記録核は候補。KAOSS依存イベントと現行UIは再整理が必要。
 
 ## まだ固定しないもの
