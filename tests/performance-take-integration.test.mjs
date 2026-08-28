@@ -4,10 +4,23 @@ import test from 'node:test';
 
 const html = await readFile(new URL('../field-processor/index.html', import.meta.url), 'utf8');
 
-test('loads the recorder as a browser module', () => {
-  assert.match(html, /<script type="module">/);
-  assert.match(html, /import \{ PerformanceTakeRecorder \} from '\.\/performance-take\.mjs';/);
+test('boots as a self-contained classic script', () => {
+  assert.match(html, /<script>/);
+  assert.doesNotMatch(html, /<script type="module">/);
+  assert.doesNotMatch(html, /import \{ PerformanceTakeRecorder \}/);
+  assert.match(html, /class PerformanceTakeRecorder/);
   assert.match(html, /new PerformanceTakeRecorder\(\)/);
+});
+
+test('keeps microphone startup on an explicit user gesture', () => {
+  assert.match(html, /navigator\.mediaDevices\.getUserMedia\(\{audio:audioConstraints\(\)\}\)/);
+  assert.match(html, /\$\('#start'\)\.addEventListener\('click',async\(\)=>/);
+});
+
+test('uses a flat four-track workspace without a portrait blocker', () => {
+  assert.match(html, /\.loops\{display:grid;grid-template-columns:1fr/);
+  assert.match(html, /\.portrait\{display:none!important\}/);
+  assert.match(html, /grid-template-columns:34% 42% 24%/);
 });
 
 test('keeps performance recording behind a separate explicit control', () => {
