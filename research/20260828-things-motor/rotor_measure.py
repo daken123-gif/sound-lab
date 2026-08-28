@@ -42,6 +42,28 @@ def crossfade_gains(local: float, curve: str) -> tuple[float, float]:
     raise ValueError(f"unknown curve: {curve}")
 
 
+def correlation_compensated_gains(
+    local: float, correlation: float, minimum_power: float = 0.25
+) -> tuple[float, float]:
+    """Normalize equal-power gains for an estimated input correlation.
+
+    The expected power of two unit-power signals is
+    g0² + g1² + 2*rho*g0*g1.  A floor prevents extreme boosts near perfect
+    anti-correlation.  This remains a research curve, not a product default.
+    """
+    if minimum_power <= 0.0:
+        raise ValueError("minimum_power must be positive")
+    correlation = min(1.0, max(-1.0, correlation))
+    first, second = crossfade_gains(local, "equal_power")
+    expected_power = (
+        first * first
+        + second * second
+        + 2.0 * correlation * first * second
+    )
+    denominator = math.sqrt(max(minimum_power, expected_power))
+    return first / denominator, second / denominator
+
+
 def rotor_coefficients(
     phase: float, *, track_count: int = 4, curve: str = "equal_power"
 ) -> list[float]:
