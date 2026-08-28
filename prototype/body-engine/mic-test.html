@@ -50,6 +50,14 @@
     .macro { display: grid; grid-template-columns: 64px 1fr 42px; gap: 10px; align-items: center; margin: 10px 0; }
     .macro input { width: 100%; }
     output { text-align: right; }
+    #levels {
+      margin: 12px 0 0;
+      padding: 8px 10px;
+      border: 1px solid #555;
+      color: #f0b429;
+      font-size: .78rem;
+      line-height: 1.5;
+    }
     pre {
       min-height: 112px;
       margin: 14px 0 0;
@@ -98,6 +106,8 @@
       <input id="body" type="range" min="0" max="1" step="0.01" value="0.55" disabled>
       <output id="body-value" for="body">0.55</output>
     </label>
+
+    <div id="levels" aria-live="off">INPUT -- dBFS / BODY -- dBFS</div>
 
     <pre id="status" role="status" aria-live="polite">idle — MIC STARTを押すまでマイクへアクセスしません。</pre>
   </main>
