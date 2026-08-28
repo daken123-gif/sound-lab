@@ -4,6 +4,7 @@ import unittest
 from rotor_measure import (
     Motor,
     adjacent_pair,
+    correlation_compensated_gains,
     crossfade_gains,
     measure_curve,
     measure_motor,
@@ -46,6 +47,33 @@ class RotorCoefficientTests(unittest.TestCase):
     def test_bad_curve_is_rejected(self) -> None:
         with self.assertRaises(ValueError):
             crossfade_gains(0.5, "unknown")
+
+    def test_correlation_compensation_matches_equal_power_at_zero(self) -> None:
+        for local in (0.0, 0.1, 0.5, 0.9, 1.0):
+            self.assertEqual(
+                correlation_compensated_gains(local, 0.0),
+                crossfade_gains(local, "equal_power"),
+            )
+
+    def test_correlation_compensation_preserves_identical_amplitude(self) -> None:
+        for local in (0.0, 0.1, 0.5, 0.9, 1.0):
+            first, second = correlation_compensated_gains(local, 1.0)
+            self.assertAlmostEqual(first + second, 1.0, places=12)
+
+    def test_correlation_compensation_preserves_expected_power(self) -> None:
+        correlation = 0.75
+        for local in (0.0, 0.1, 0.5, 0.9, 1.0):
+            first, second = correlation_compensated_gains(local, correlation)
+            expected = (
+                first * first
+                + second * second
+                + 2.0 * correlation * first * second
+            )
+            self.assertAlmostEqual(expected, 1.0, places=12)
+
+    def test_anti_correlation_boost_is_bounded(self) -> None:
+        first, second = correlation_compensated_gains(0.5, -1.0)
+        self.assertLessEqual(max(first, second), math.sqrt(2.0) + 1.0e-12)
 
 
 class MotorTests(unittest.TestCase):
