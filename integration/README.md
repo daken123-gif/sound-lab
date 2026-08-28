@@ -1,49 +1,43 @@
 # 統合島
 
-ここはミュージックプロジェクト全体の方向を管理する場所である。個別の機材研究を集めた要約ではない。
-
-各研究島は観測、比較、仮説、試作を持つ。統合島は、それらを製品へ採るか、保留するか、採らないかを管理する。
+ここは Sound Lab 全体の方向、採否、失効、実装境界を管理する正本である。個別研究の要約置場ではない。
 
 ## 正本
 
-- [`DIRECTION.md`](DIRECTION.md): 現在の製品像と設計境界
-- [`DECISIONS.md`](DECISIONS.md): 採用、保留、却下、失効の履歴
-- [`STATUS.md`](STATUS.md): 研究、統合、実装、実機検証の現在位置
+- `DIRECTION.md`: 現在の製品像と固定境界
+- `DECISIONS.md`: 採用、保留、却下、失効の履歴
+- `STATUS.md`: Gitで観測できた研究、実装、検証、欠落
 
-同じ内容が個別研究と統合島で食い違う場合、研究上の事実は研究README、プロジェクトとしての採否は統合島を正本とする。
+研究上の事実は各 `research/<research-id>/README.md`、プロジェクトとしての採否は統合島を正本とする。統合島は、研究本文にない検証結果を作らない。
 
-## 各島の読み方
-
-作業開始時に次の順で読む。
+## 読む順序
 
 1. `integration/DIRECTION.md`
-2. `integration/STATUS.md` の自分の領域
-3. 対象研究のREADME
-4. 触る実装パスと競合するopen PR
+2. `integration/DECISIONS.md` の最新判断と `superseded-by`
+3. `integration/STATUS.md` の対象領域
+4. 対象研究のREADME、実験、テスト
+5. 触るパスと競合するopen PR・修理ロック
 
-研究島は、統合島にない機能を製品の決定事項として扱わない。統合島は、研究READMEにない検証結果を作らない。
+## 証拠境界
 
-## 更新の単位
+- `main` にある: 現行製品または現行文書として観測できる。
+- branch / PRだけにある: 保存済み研究または試作。統合・製品採用とは限らない。
+- 名称だけ参照される: 研究本文はGit未確認。内容を推定して統合しない。
+- テスト成功: そのテストが測った範囲だけを検証済みとする。実音、iPhone、UI、聴感へ拡張しない。
 
-- 新しい方向や境界: `DIRECTION.md`
-- 採否の変更: `DECISIONS.md` に追記してから `DIRECTION.md` を更新
-- 現在位置の変更: `STATUS.md`
-- 詳細な根拠や製品解析: 各 `research/<research-id>/README.md`
-- 製品コード: 統合ブランチまたは実装ブランチ
-
-過去の判断を黙って消さない。変更された判断には `superseded-by` を付ける。
+過去判断は黙って消さない。現在判断と矛盾するものは `superseded` とし、置換先を残す。
 
 ## 状態語
 
 - `researching`: 研究中
-- `candidate`: 統合候補。まだ製品決定ではない
-- `adopted`: プロジェクト方針として採用済み
+- `candidate`: 統合候補
+- `adopted`: プロジェクト方針として採用
 - `integrating`: 実装へ接続中
-- `implemented-unverified`: 実装済み、実機未検証
+- `implemented-unverified`: 実装済み、必要な実機検証前
 - `validated`: 必要な実機またはブラウザ検証済み
 - `paused`: 保留
 - `rejected`: 採らない
 - `superseded`: 後の判断で失効
+- `coverage-gap`: 名称や判断はあるが、根拠研究本文をGitで取得できない
 
-`candidate`、`implemented-unverified`、`validated`を混同しない。
-
+`candidate`、`adopted`、`implemented-unverified`、`validated`を混同しない。

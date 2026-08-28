@@ -1,37 +1,74 @@
 # 統合状況
 
-最終観測: 2026-08-28 / GitHub `daken123-gif/sound-lab`
+最終観測: 2026-08-28 07:57 UTC / GitHub `daken123-gif/sound-lab`
 
-この表は採否と実装状態を分ける。open PRがあることは、採用または実機検証の証拠ではない。
+観測時の `main`: `d497753046c3c8ac50aaf0d8e3ad7981ed5a581d`
 
-| 領域 | 現在位置 | プロジェクトでの扱い | 次の統合条件 |
+観測範囲: 26ブランチ、全20 PR、open PR 6件、`main`、各open研究PRの本文と取得可能な研究README・実験・テスト。
+
+## 現在位置
+
+| 領域 | Gitで観測した証拠 | 統合状態 | 未完了 |
 |---|---|---|---|
-| 4トラック・合成波形 | `adopted` | 製品中心 | iPhone実機で録音、再生、波形操作を確認 |
-| iPhoneマイク／入力段 | `integrating` | 専用入力段を採用 | 本体マイクとヘッドホン経路を別々に実機確認 |
-| KAOSSマスターFX | `candidate` | 配置は採用、アルゴリズム構成は未決定 | 4トラック出力への接続とマルチタッチ確認 |
-| Performance Take | `implemented-unverified` | 元音声を変えない演奏記録層の候補 | Draft PR #15をiPhone実機で確認 |
-| Koala Sampler研究 | `researching` | 複雑度の上限として利用 | PR #12の研究判断を統合島へ採否登録 |
-| SOMA研究 | `researching` | 有機的な相互作用と記憶の候補 | PR #16のうちThe Pipeを含む音声入力系を再整理 |
-| ドラム／Elektron | `researching` | ルーパー外の独立演奏系 | 専用research-idと接続境界をGitへ保存 |
-| 空間系／Strymon | `researching` | マスターFX候補の基礎研究 | 製品別アルゴリズムと一般残響研究を分離 |
-| Microcosm | `researching` | グラニュラー／反復変形候補 | KAOSS層との責務重複を判定 |
-| Skulptur | `researching` | 音色生成・モーフ候補 | KAOSSと競合させず、発音源として位置づけを確定 |
+| 4トラック録音 | `main` 実装、Koala・Teenage Engineering研究、PR #15 | `adopted` / `implemented-unverified` | iPhone実機の録音・再生・実波形・位置表示 |
+| iPhone入力段 | `main` と `20260828-iphone-mic-preamp` | `integrating` | 内蔵、有線、Bluetooth別の実機測定 |
+| Skulptur型主演奏面 | Chroma、Things研究が現在判断として参照 | `adopted` / `coverage-gap` | Skulptur研究本文、具体DSP、UI、検証証拠がGit未確認 |
+| KAOSS | 古い研究と旧実装。`main` UI隔離宣言が中心利用を否定 | `superseded` | 主演奏層として再統合しない |
+| 現行Field Looper UI | `main` 冒頭の隔離宣言 | `rejected`（設計再利用） | 音声経路・DSPだけ個別に再検証 |
+| Performance Take | Draft PR #15。明示開始、イベント核、18テストの報告 | `implemented-unverified` | KAOSS依存イベントの除去、iPhone実機、ブラウザ音声 |
+| Koala Sampler | open PR #12、研究README | `researching` | 複雑度上限以外の採否 |
+| THE PIPE | open PR #16 | `researching` | 人声、実機、入力経路 |
+| BODY resonator | open PR #18、独立DSP、12テストの報告 | `candidate` / `implemented-unverified` | 人声、iPhone、Safari AudioWorklet、4トラック統合 |
+| Things Motor | branch `research/20260828-things-motor`、8係数テスト | `candidate` | 実音、相関別カーブ、iPhone、UI。PR未確認 |
+| Chroma Console | Draft PR #19、27節研究、非可換性実験 | `candidate` | 実機比較、実楽器、リアルタイム負荷、統合判断 |
+| Abbey Road | open PR #20、配置からJ37までの研究 | `candidate` | DSP、正規IR、iPhone、音量一致、統合判断 |
+| 独立ドラム | 統合判断のみ | `adopted`（分離） / `coverage-gap` | Elektron等の研究本文と接続仕様 |
 
-## Gitで観測できた現在状態
+## open PR
 
-- `main`: `4c29b503681881521ce98ef9cd89ace47d20567f`
-- open PR #12: Koala Sampler研究
-- Draft PR #15: Performance Take実装。ブラウザ／iPhone実機は未検証
-- open PR #16: SOMA organismic instruments研究。実機検証とDSP実装は未実施
-- `integration/` という全体方針の正本は、この変更以前の `main` には存在しなかった
+- #12 Koala Sampler研究
+- #15 Field Looper録音・実波形・Performance Take（Draft、KAOSS依存を含む）
+- #16 THE PIPE中心研究
+- #18 THE PIPE由来BODY独立DSP
+- #19 Chroma Console研究と非可換性実験（Draft）
+- #20 Abbey Road機材・信号経路研究
 
-## 次の優先順
+open PR、branch、テスト成功は、`main`統合、iPhone実機検証、聴感採用の証拠ではない。
 
-1. iPhone実機で「入力される、録れる、4トラックで返る」を安定させる。
-2. 合成波形を直接触る演奏経路を安定させる。
-3. KAOSSマスター層を接続する。
-4. Performance Takeを実機検証する。
-5. 独立ドラム系を接続仕様から設計する。
+## Gitで本文を取得できた研究
 
-新しい機材研究は続けてよいが、上の順番を崩して製品コードへ入れない。
+- `20260828-iphone-mic-preamp`
+- `20260828-kaoss-master-fx`（歴史資料。現行中心判断ではない）
+- `20260828-teenage-engineering`
+- `20260828-koala-sampler`
+- `20260828-soma-organismic`
+- `20260828-things-motor`
+- `20260828-chroma-console`
+- `20260828-abbey-road-equipment`
+- `prototype/body-engine`
 
+Loopy Pro、RC-505mkII、Dedalus、Strymonはブランチ名を観測したが、監査時点で固有研究READMEを確認できなかった。
+
+## 被覆欠落
+
+次は現行Git文書から名称または役割を確認できるが、固有研究本文を取得できていない。
+
+- Skulptur
+- Microcosm
+- Max/MSP
+- Elektron / 独立ドラム
+- OTO BIM / BAM / BOUM
+- 1192 Blackface
+- AUM
+- Transit 2
+- Combustor
+
+この一覧は研究が存在しないという断定ではない。Git監査で本文を取得できなかったという状態。
+
+## 次の統合順
+
+1. Skulptur研究本文とKAOSS退役の根拠をGitへ保存し、主演奏面の具体境界を確定する。
+2. iPhone実機で入力、明示録音、4トラック再生、実波形、位置表示を検証する。
+3. PR #15からKAOSS中心UIとイベント依存を分離し、再利用可能な録音核だけを判定する。
+4. BODY、Rotor、Chroma、Abbey Roadを主演奏面の代替にせず、個別候補として音響検証する。
+5. Microcosm、Max/MSP、Elektron、OTO、1192等の未収載研究をGitで読める状態にしてから信号順を決める。
