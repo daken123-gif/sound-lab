@@ -1,211 +1,27 @@
-<!doctype html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
-  <meta name="theme-color" content="#070909" />
-  <title>Ambient Loop</title>
-  <style>
-    :root { color-scheme: dark; font-family: ui-rounded, -apple-system, BlinkMacSystemFont, sans-serif; }
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #070909; }
-    body { touch-action: none; user-select: none; }
-    #field { position: fixed; inset: 0; overflow: hidden; background:
-      radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(164,255,210,.22), transparent 34%),
-      linear-gradient(145deg,#101817,#050606 65%); }
-    #field::after { content:""; position:absolute; inset:0; opacity:var(--level,.08); background:radial-gradient(circle,#d8ffe9 0 1px,transparent 2px); background-size:17px 17px; mix-blend-mode:screen; }
-    .top { position:absolute; z-index:2; top:max(18px,env(safe-area-inset-top)); left:20px; right:20px; display:flex; justify-content:space-between; align-items:center; font-size:12px; letter-spacing:.16em; color:#b7c5bf; }
-    #status::before { content:""; display:inline-block; width:7px; height:7px; margin-right:8px; border-radius:50%; background:#4e5b56; }
-    .running #status::before { background:#9fffc8; box-shadow:0 0 14px #75ffad; }
-    #start { position:absolute; z-index:3; left:50%; top:50%; width:152px; height:152px; transform:translate(-50%,-50%); border:1px solid rgba(208,255,228,.3); border-radius:50%; color:#e9fff2; background:rgba(11,22,18,.58); backdrop-filter:blur(18px); font:500 17px/1 ui-rounded,-apple-system,sans-serif; letter-spacing:.12em; box-shadow:0 24px 70px rgba(0,0,0,.45), inset 0 0 40px rgba(160,255,204,.05); }
-    .running #start { width:70px; height:70px; top:auto; bottom:max(26px,env(safe-area-inset-bottom)); font-size:11px; opacity:.72; }
-    #readout { position:absolute; z-index:2; left:20px; right:20px; bottom:max(28px,env(safe-area-inset-bottom)); color:#aebbb5; font-size:11px; line-height:1.7; letter-spacing:.1em; }
-    .running #readout { bottom:max(110px,calc(env(safe-area-inset-bottom) + 92px)); }
-    #meters { position:absolute; z-index:2; top:max(62px,calc(env(safe-area-inset-top) + 44px)); left:20px; right:20px; padding:14px; border:1px solid rgba(183,255,215,.16); border-radius:13px; background:rgba(4,9,7,.54); backdrop-filter:blur(12px); }
-    .meter { display:grid; grid-template-columns:38px 1fr 27px; gap:9px; align-items:center; margin:7px 0; color:#afbeb7; font-size:10px; letter-spacing:.1em; }
-    .track { height:13px; overflow:hidden; border-radius:3px; background:repeating-linear-gradient(90deg,#23302b 0 calc(5% - 2px),transparent calc(5% - 2px) 5%); }
-    .fill { width:0%; height:100%; background:repeating-linear-gradient(90deg,#6bff9f 0 calc(5% - 2px),transparent calc(5% - 2px) 5%); filter:drop-shadow(0 0 5px #62ff9a); transition:width 38ms linear; }
-    .meter.out .fill { background:repeating-linear-gradient(90deg,#82d7ff 0 calc(5% - 2px),transparent calc(5% - 2px) 5%); filter:drop-shadow(0 0 5px #54c9ff); }
-    .gains { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:13px; padding-top:12px; border-top:1px solid rgba(183,255,215,.12); }
-    .gain label { display:flex; justify-content:space-between; margin-bottom:7px; color:#9eada6; font-size:9px; letter-spacing:.09em; }
-    input[type="range"] { width:100%; height:24px; margin:0; accent-color:#9fffc8; }
-    #hint { position:absolute; z-index:2; left:50%; top:calc(50% + 96px); transform:translateX(-50%); white-space:nowrap; color:#74817c; font-size:11px; letter-spacing:.08em; }
-    .running #hint { display:none; }
-  </style>
-</head>
-<body>
-  <main id="field" aria-label="環境音プロセッサの操作面">
-    <div class="top"><span>AMBIENT LOOP</span><span id="status">停止中</span></div>
-    <button id="start" type="button">聴きはじめる</button>
-    <div id="hint">マイクの使用を許可してください</div>
-    <div id="meters">
-      <div class="meter"><span>MIC</span><div class="track"><div id="inputFill" class="fill"></div></div><span id="inputValue">0</span></div>
-      <div class="meter out"><span>OUT</span><div class="track"><div id="outputFill" class="fill"></div></div><span id="outputValue">0</span></div>
-      <div class="gains">
-        <div class="gain"><label for="inputGain"><span>INPUT GAIN</span><span id="inputDb">+8 dB</span></label><input id="inputGain" type="range" min="-12" max="24" value="8" step="1"></div>
-        <div class="gain"><label for="outputGain"><span>OUTPUT GAIN</span><span id="outputDb">+6 dB</span></label><input id="outputGain" type="range" min="-24" max="12" value="6" step="1"></div>
-      </div>
-    </div>
-    <div id="readout"><div id="space">SPACE 46</div><div id="return">RETURN 34</div></div>
-  </main>
-  <script>
-    const field = document.querySelector('#field');
-    const button = document.querySelector('#start');
-    const status = document.querySelector('#status');
-    const spaceText = document.querySelector('#space');
-    const returnText = document.querySelector('#return');
-    const inputFill = document.querySelector('#inputFill');
-    const outputFill = document.querySelector('#outputFill');
-    const inputValue = document.querySelector('#inputValue');
-    const outputValue = document.querySelector('#outputValue');
-    const inputGainControl = document.querySelector('#inputGain');
-    const outputGainControl = document.querySelector('#outputGain');
-    const inputDbText = document.querySelector('#inputDb');
-    const outputDbText = document.querySelector('#outputDb');
-    let ctx, stream, source, analyser, raf, wakeLock;
-    let inputAnalyser, delayA, delayB, delayC, feedbackGain, feedbackLP, feedbackHP;
-    let wetBus, wet, dry, monitor, reverb, reverbGain, chorusLfo, chorusDepth, master, outputGain;
-    let running = false;
-    const dbToGain = db => Math.pow(10, db / 20);
-    const signedDb = db => `${db > 0 ? '+' : ''}${db} dB`;
-
-    const applyGains = () => {
-      const inputDb = Number(inputGainControl.value);
-      const outputDb = Number(outputGainControl.value);
-      inputDbText.textContent = signedDb(inputDb);
-      outputDbText.textContent = signedDb(outputDb);
-      if (ctx) {
-        monitor?.gain.setTargetAtTime(dbToGain(inputDb), ctx.currentTime, .02);
-        outputGain?.gain.setTargetAtTime(dbToGain(outputDb), ctx.currentTime, .02);
-      }
-    };
-
-    const setSurface = (x, y) => {
-      const nx = Math.max(0, Math.min(1, x / innerWidth));
-      const ny = Math.max(0, Math.min(1, y / innerHeight));
-      field.style.setProperty('--x', `${nx * 100}%`);
-      field.style.setProperty('--y', `${ny * 100}%`);
-      if (!ctx) return;
-      const t = ctx.currentTime;
-      const space = 0.55 + nx * 2.05;
-      const returnAmount = 0.28 + (1 - ny) * 0.50;
-      delayA.delayTime.setTargetAtTime(space, t, .18);
-      delayB.delayTime.setTargetAtTime(space * .73 + .11, t, .18);
-      delayC.delayTime.setTargetAtTime(Math.min(3.9, space * 1.37 + .17), t, .18);
-      feedbackGain.gain.setTargetAtTime(returnAmount, t, .12);
-      feedbackLP.frequency.setTargetAtTime(1900 + (1 - ny) * 4300, t, .12);
-      wet.gain.setTargetAtTime(.42 + nx * .36, t, .12);
-      reverbGain.gain.setTargetAtTime(.55 + nx * .38, t, .12);
-      spaceText.textContent = `SPACE ${Math.round(nx * 100)}`;
-      returnText.textContent = `RETURN ${Math.round(returnAmount * 100)}`;
-    };
-
-    const meter = () => {
-      const level = node => {
-        const data = new Uint8Array(node.fftSize);
-        node.getByteTimeDomainData(data);
-        let sum = 0;
-        for (const n of data) { const v = (n - 128) / 128; sum += v * v; }
-        return Math.sqrt(sum / data.length);
-      };
-      const input = level(inputAnalyser);
-      const output = level(analyser);
-      const inputPercent = Math.min(100, Math.round(input * 520));
-      const outputPercent = Math.min(100, Math.round(output * 420));
-      inputFill.style.width = `${inputPercent}%`; outputFill.style.width = `${outputPercent}%`;
-      inputValue.textContent = inputPercent; outputValue.textContent = outputPercent;
-      field.style.setProperty('--level', String(Math.min(.72, .06 + output * 4)));
-      raf = requestAnimationFrame(meter);
-    };
-
-    const makeImpulse = (audioContext, seconds = 5.8, decay = 3.2) => {
-      const length = Math.floor(audioContext.sampleRate * seconds);
-      const impulse = audioContext.createBuffer(2, length, audioContext.sampleRate);
-      for (let channel = 0; channel < 2; channel++) {
-        const data = impulse.getChannelData(channel);
-        let smooth = 0;
-        for (let i = 0; i < length; i++) {
-          const envelope = Math.pow(1 - i / length, decay);
-          smooth = smooth * .72 + (Math.random() * 2 - 1) * .28;
-          data[i] = smooth * envelope * .72;
-        }
-      }
-      return impulse;
-    };
-
-    async function start() {
-      ctx = new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'interactive' });
-      await ctx.resume();
-      stream = await navigator.mediaDevices.getUserMedia({ audio: {
-        echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1
-      }});
-      source = ctx.createMediaStreamSource(stream);
-      inputAnalyser = ctx.createAnalyser(); inputAnalyser.fftSize = 256;
-      monitor = ctx.createGain(); monitor.gain.value = dbToGain(Number(inputGainControl.value));
-      delayA = ctx.createDelay(4); delayA.delayTime.value = 1.5;
-      delayB = ctx.createDelay(4); delayB.delayTime.value = 1.2;
-      delayC = ctx.createDelay(4); delayC.delayTime.value = 2.2;
-      wetBus = ctx.createGain(); wetBus.gain.value = .72;
-      feedbackHP = ctx.createBiquadFilter(); feedbackHP.type = 'highpass'; feedbackHP.frequency.value = 170;
-      feedbackLP = ctx.createBiquadFilter(); feedbackLP.type = 'lowpass'; feedbackLP.frequency.value = 3900; feedbackLP.Q.value = .45;
-      feedbackGain = ctx.createGain(); feedbackGain.gain.value = .46;
-      wet = ctx.createGain(); wet.gain.value = .56;
-      dry = ctx.createGain(); dry.gain.value = .12;
-      reverb = ctx.createConvolver(); reverb.buffer = makeImpulse(ctx);
-      reverbGain = ctx.createGain(); reverbGain.gain.value = .72;
-      chorusLfo = ctx.createOscillator(); chorusLfo.frequency.value = .037;
-      chorusDepth = ctx.createGain(); chorusDepth.gain.value = .055;
-      chorusLfo.connect(chorusDepth).connect(delayB.delayTime); chorusLfo.start();
-      master = ctx.createDynamicsCompressor();
-      master.threshold.value = -10; master.knee.value = 7; master.ratio.value = 8; master.attack.value = .008; master.release.value = .32;
-      outputGain = ctx.createGain(); outputGain.gain.value = dbToGain(Number(outputGainControl.value));
-      analyser = ctx.createAnalyser(); analyser.fftSize = 256;
-
-      source.connect(inputAnalyser);
-      source.connect(monitor);
-      monitor.connect(dry).connect(master);
-      monitor.connect(delayA); monitor.connect(delayB); monitor.connect(delayC);
-      delayA.connect(wetBus); delayB.connect(wetBus); delayC.connect(wetBus);
-      wetBus.connect(wet).connect(master);
-      wetBus.connect(reverb).connect(reverbGain).connect(master);
-      wetBus.connect(feedbackHP).connect(feedbackLP).connect(feedbackGain);
-      feedbackGain.connect(delayA); feedbackGain.connect(delayB); feedbackGain.connect(delayC);
-      master.connect(outputGain).connect(analyser).connect(ctx.destination);
-      running = true;
-      document.body.classList.add('running');
-      status.textContent = '聴取中'; button.textContent = '停止';
-      setSurface(innerWidth * .46, innerHeight * .62);
-      meter();
-      if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen').catch(() => null);
-    }
-
-    async function stop() {
-      running = false;
-      cancelAnimationFrame(raf);
-      stream?.getTracks().forEach(track => track.stop());
-      await ctx?.close();
-      ctx = null;
-      await wakeLock?.release().catch(() => {});
-      document.body.classList.remove('running');
-      status.textContent = '停止中'; button.textContent = '聴きはじめる';
-      field.style.setProperty('--level', '.08');
-      inputFill.style.width = outputFill.style.width = '0%';
-      inputValue.textContent = outputValue.textContent = '0';
-    }
-
-    button.addEventListener('click', async (event) => {
-      event.stopPropagation();
-      button.disabled = true;
-      try { running ? await stop() : await start(); }
-      catch (error) { status.textContent = 'マイクを許可してください'; await stop(); }
-      finally { button.disabled = false; }
-    });
-    field.addEventListener('pointerdown', e => { if (running && e.target !== button) setSurface(e.clientX, e.clientY); });
-    field.addEventListener('pointermove', e => { if (running && e.buttons) setSurface(e.clientX, e.clientY); });
-    inputGainControl.addEventListener('input', applyGains);
-    outputGainControl.addEventListener('input', applyGains);
-    applyGains();
-    document.addEventListener('visibilitychange', () => { if (!document.hidden && running) ctx?.resume(); });
-  </script>
-</body>
-</html>
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#070a0a"><title>Field Looper</title>
+<style>
+:root{color-scheme:dark;font-family:ui-rounded,-apple-system,BlinkMacSystemFont,sans-serif}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#070a0a}body{touch-action:manipulation;user-select:none}main{position:fixed;inset:0;padding:max(18px,env(safe-area-inset-top)) 18px max(18px,env(safe-area-inset-bottom));background:radial-gradient(circle at 50% 36%,rgba(116,255,193,.14),transparent 42%),linear-gradient(155deg,#121b19,#050707 70%);display:flex;flex-direction:column;gap:14px}.top{display:flex;justify-content:space-between;color:#b9c7c1;font-size:11px;letter-spacing:.15em}.top i{display:inline-block;width:7px;height:7px;margin-right:7px;border-radius:50%;background:#46534e}.running .top i{background:#8fffc0;box-shadow:0 0 12px #61ff9f}.meters,.controls{padding:12px;border:1px solid rgba(180,255,214,.15);border-radius:14px;background:rgba(5,10,8,.55);backdrop-filter:blur(12px)}.meter{display:grid;grid-template-columns:32px 1fr 24px;gap:8px;align-items:center;margin:6px 0;color:#aebbb6;font-size:9px;letter-spacing:.09em}.bar{height:11px;background:repeating-linear-gradient(90deg,#26332e 0 calc(5% - 2px),transparent calc(5% - 2px) 5%);overflow:hidden}.fill{height:100%;width:0;background:repeating-linear-gradient(90deg,#6effa4 0 calc(5% - 2px),transparent calc(5% - 2px) 5%);filter:drop-shadow(0 0 4px #6effa4)}.out .fill{background:repeating-linear-gradient(90deg,#73ccff 0 calc(5% - 2px),transparent calc(5% - 2px) 5%);filter:drop-shadow(0 0 4px #73ccff)}.loops{flex:1;min-height:150px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.loop{position:relative;border:1px solid rgba(174,255,210,.16);border-radius:40px;background:rgba(7,15,12,.58);overflow:hidden;color:#8d9b95}.loop::before{content:"";position:absolute;left:0;right:0;bottom:0;height:var(--p,0%);background:linear-gradient(0deg,rgba(102,255,164,.35),rgba(102,255,164,.04));transition:height 60ms linear}.loop.play{border-color:rgba(127,233,255,.32);box-shadow:inset 0 0 25px rgba(81,195,255,.07)}.loop.capture{border-color:#83ffc0;box-shadow:0 0 16px rgba(83,255,163,.18)}.loop.muted{opacity:.35}.loop span{position:absolute;z-index:1;left:0;right:0;text-align:center}.loop .n{top:15px;font-size:15px}.loop .state{bottom:17px;font-size:8px;letter-spacing:.08em}.controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.control label{display:flex;justify-content:space-between;color:#9daba5;font-size:8px;letter-spacing:.07em;margin-bottom:5px}.control input{width:100%;height:22px;margin:0;accent-color:#91ffc0}button#start{align-self:center;width:100%;height:54px;border:1px solid rgba(201,255,225,.27);border-radius:27px;background:rgba(15,30,24,.8);color:#e8fff2;font:500 13px ui-rounded,-apple-system,sans-serif;letter-spacing:.12em}.note{text-align:center;color:#6f7e78;font-size:9px;line-height:1.45;letter-spacing:.06em}
+</style></head><body><main>
+<div class="top"><span>FIELD LOOPER</span><span><i></i><b id="status">停止中</b></span></div>
+<section class="meters"><div class="meter"><span>MIC</span><div class="bar"><div id="inFill" class="fill"></div></div><span id="inVal">0</span></div><div class="meter out"><span>OUT</span><div class="bar"><div id="outFill" class="fill"></div></div><span id="outVal">0</span></div></section>
+<section id="loops" class="loops" aria-label="5つの自動ループ"></section>
+<section class="controls"><div class="control"><label><span>INPUT</span><span id="inputText">+8 dB</span></label><input id="input" type="range" min="-12" max="24" value="8"></div><div class="control"><label><span>AIR</span><span id="airText">-18 dB</span></label><input id="air" type="range" min="-36" max="-6" value="-18"></div><div class="control"><label><span>OUTPUT</span><span id="outputText">+3 dB</span></label><input id="output" type="range" min="-24" max="9" value="3"></div></section>
+<button id="start" type="button">外の音を聴きはじめる</button><div class="note">順番に録音 → 5本の有限ループへ交換<br>各レーンをタップすると消音／復帰</div>
+</main><script>
+const $=s=>document.querySelector(s),db=v=>Math.pow(10,v/20),fmt=v=>`${v>0?'+':''}${v} dB`;
+const durations=[3.7,5.3,7.9,11.3,17.1],rates=[1,.997,.751,.501,1.006];
+const loopBox=$('#loops'),lanes=durations.map((seconds,i)=>{const el=document.createElement('button');el.className='loop';el.innerHTML=`<span class="n">${i+1}</span><span class="state">WAIT</span>`;loopBox.append(el);return{seconds,el,muted:false,data:[],frames:0,source:null,gain:null,filter:null}});
+let ctx,stream,mic,inputGain,airGain,recorder,recorderSink,loopBus,reverb,reverbGain,master,outputGain,inAnalyser,outAnalyser,raf,wakeLock,active=0,running=false;
+const input=$('#input'),air=$('#air'),output=$('#output');
+function values(){$('#inputText').textContent=fmt(+input.value);$('#airText').textContent=fmt(+air.value);$('#outputText').textContent=fmt(+output.value);if(ctx){inputGain.gain.setTargetAtTime(db(+input.value),ctx.currentTime,.03);airGain.gain.setTargetAtTime(db(+air.value),ctx.currentTime,.03);outputGain.gain.setTargetAtTime(db(+output.value),ctx.currentTime,.03)}}
+[input,air,output].forEach(x=>x.addEventListener('input',values));values();
+lanes.forEach(l=>l.el.addEventListener('click',()=>{l.muted=!l.muted;l.el.classList.toggle('muted',l.muted);if(l.gain&&ctx)l.gain.gain.setTargetAtTime(l.muted?0:.36,ctx.currentTime,.08)}));
+function impulse(ac){const len=ac.sampleRate*4|0,b=ac.createBuffer(2,len,ac.sampleRate);for(let c=0;c<2;c++){const d=b.getChannelData(c);let s=0;for(let i=0;i<len;i++){s=s*.78+(Math.random()*2-1)*.22;d[i]=s*Math.pow(1-i/len,3.4)}}return b}
+function capture(chunk){if(!running)return;const lane=lanes[active],need=Math.floor(lane.seconds*ctx.sampleRate)-lane.frames,take=Math.min(need,chunk.length);lane.data.push(chunk.slice(0,take));lane.frames+=take;lane.el.style.setProperty('--p',`${Math.min(100,lane.frames/(lane.seconds*ctx.sampleRate)*100)}%`);lane.el.classList.add('capture');lane.el.querySelector('.state').textContent='REC';if(lane.frames>=Math.floor(lane.seconds*ctx.sampleRate)){commit(lane);lane.el.classList.remove('capture');active=(active+1)%lanes.length;const next=lanes[active];next.data=[];next.frames=0;next.el.style.setProperty('--p','0%')}}
+function commit(lane){const n=lane.frames,buf=ctx.createBuffer(1,n,ctx.sampleRate),d=buf.getChannelData(0);let p=0;for(const x of lane.data){d.set(x,p);p+=x.length}const fade=Math.min(ctx.sampleRate*.18|0,n/8|0);for(let i=0;i<fade;i++){const a=i/fade,tail=d[n-fade+i],head=d[i];d[n-fade+i]=tail*(1-a)+head*a}const src=ctx.createBufferSource();src.buffer=buf;src.loop=true;src.playbackRate.value=rates[lanes.indexOf(lane)];const g=ctx.createGain();g.gain.value=0;const f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.value=4200-lanes.indexOf(lane)*430;src.connect(f).connect(g).connect(loopBus);src.start();const now=ctx.currentTime;g.gain.linearRampToValueAtTime(lane.muted?0:.36,now+1.4);if(lane.source){lane.gain.gain.cancelScheduledValues(now);lane.gain.gain.setValueAtTime(lane.gain.gain.value,now);lane.gain.gain.linearRampToValueAtTime(0,now+1.4);const old=lane.source;setTimeout(()=>{try{old.stop()}catch{}},1600)}lane.source=src;lane.gain=g;lane.filter=f;lane.data=[];lane.el.classList.add('play');lane.el.querySelector('.state').textContent=`${lane.seconds.toFixed(1)}s`}
+function level(a){const d=new Uint8Array(a.fftSize);a.getByteTimeDomainData(d);let s=0;for(const n of d){const v=(n-128)/128;s+=v*v}return Math.sqrt(s/d.length)}
+function meters(){const a=Math.min(100,Math.round(level(inAnalyser)*520)),b=Math.min(100,Math.round(level(outAnalyser)*430));$('#inFill').style.width=`${a}%`;$('#outFill').style.width=`${b}%`;$('#inVal').textContent=a;$('#outVal').textContent=b;raf=requestAnimationFrame(meters)}
+async function start(){ctx=new(window.AudioContext||window.webkitAudioContext)({latencyHint:'interactive'});await ctx.resume();stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false,channelCount:1}});mic=ctx.createMediaStreamSource(stream);inputGain=ctx.createGain();airGain=ctx.createGain();loopBus=ctx.createGain();loopBus.gain.value=.8;reverb=ctx.createConvolver();reverb.buffer=impulse(ctx);reverbGain=ctx.createGain();reverbGain.gain.value=.28;master=ctx.createDynamicsCompressor();master.threshold.value=-14;master.knee.value=12;master.ratio.value=5;master.attack.value=.01;master.release.value=.45;outputGain=ctx.createGain();inAnalyser=ctx.createAnalyser();outAnalyser=ctx.createAnalyser();inAnalyser.fftSize=outAnalyser.fftSize=256;recorder=ctx.createScriptProcessor(2048,1,1);recorderSink=ctx.createGain();recorderSink.gain.value=0;recorder.onaudioprocess=e=>capture(e.inputBuffer.getChannelData(0));mic.connect(inputGain);inputGain.connect(inAnalyser);inputGain.connect(recorder);recorder.connect(recorderSink).connect(ctx.destination);inputGain.connect(airGain).connect(master);loopBus.connect(master);loopBus.connect(reverb).connect(reverbGain).connect(master);master.connect(outputGain).connect(outAnalyser).connect(ctx.destination);running=true;active=0;lanes.forEach(l=>{l.data=[];l.frames=0});values();document.body.classList.add('running');$('#status').textContent='循環録音中';$('#start').textContent='停止';meters();if('wakeLock'in navigator)wakeLock=await navigator.wakeLock.request('screen').catch(()=>null)}
+async function stop(){running=false;cancelAnimationFrame(raf);stream?.getTracks().forEach(t=>t.stop());await ctx?.close();ctx=null;await wakeLock?.release().catch(()=>{});wakeLock=null;document.body.classList.remove('running');$('#status').textContent='停止中';$('#start').textContent='外の音を聴きはじめる';lanes.forEach(l=>{l.source=null;l.gain=null;l.data=[];l.frames=0;l.el.className='loop';l.el.style.setProperty('--p','0%');l.el.querySelector('.state').textContent='WAIT'});$('#inFill').style.width=$('#outFill').style.width='0';$('#inVal').textContent=$('#outVal').textContent='0'}
+$('#start').addEventListener('click',async()=>{const b=$('#start');b.disabled=true;try{running?await stop():await start()}catch(e){await stop();$('#status').textContent='マイクを許可してください'}finally{b.disabled=false}});document.addEventListener('visibilitychange',()=>{if(!document.hidden&&running)ctx?.resume()});
+</script></body></html>
