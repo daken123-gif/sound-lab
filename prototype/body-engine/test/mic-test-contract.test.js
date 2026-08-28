@@ -40,3 +40,9 @@ test("diagnostic shows numeric input and BODY levels without a waveform", () => 
   assert.match(script, /onLevels: showLevels/);
   assert.doesNotMatch(html, /canvas/i);
 });
+
+test("diagnostic reports a stalled AudioWorklet without enabling monitoring", () => {
+  assert.match(script, /BodyLevelWatchdog\(2000\)/);
+  assert.match(script, /INPUT／BODY レベル報告なし/);
+  assert.doesNotMatch(script, /setMonitoring\(true\)/);
+});
