@@ -6,7 +6,7 @@ const html = readFileSync(new URL("../mic-test.html", import.meta.url), "utf8");
 const script = readFileSync(new URL("../mic-diagnostic.js", import.meta.url), "utf8");
 
 test("mic diagnostic exposes only the intended controls", () => {
-  for (const id of ["start", "stop", "monitor", "gate", "size", "decay", "body", "status"]) {
+  for (const id of ["start", "stop", "monitor", "gate", "size", "decay", "body", "levels", "status"]) {
     assert.match(html, new RegExp(`id=["']${id}["']`));
   }
   assert.match(html, /MIC START/);
@@ -33,4 +33,10 @@ test("microphone and output require separate explicit actions", () => {
 test("diagnostics omit persistent device identifiers", () => {
   assert.match(script, /delete actual\.deviceId/);
   assert.match(script, /delete actual\.groupId/);
+});
+
+test("diagnostic shows numeric input and BODY levels without a waveform", () => {
+  assert.match(html, /INPUT -- dBFS \/ BODY -- dBFS/);
+  assert.match(script, /onLevels: showLevels/);
+  assert.doesNotMatch(html, /canvas/i);
 });
