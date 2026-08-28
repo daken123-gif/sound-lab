@@ -95,6 +95,9 @@ W3C Media Capture仕様では、裸の制約値は理想値として扱われ、
 - 診断欄は `requested / supported / actual` を表示するが、`deviceId / groupId` は表示しない。
 - AudioWorkletが処理した入力とBODY出力のRMSを、波形ではなくdBFS数値で表示する。
 - Node上でAudioWorklet実行環境を模擬し、processor登録、閉ゲート時の入力観測、開ゲート時のBODY発音を接続層まで検証する。
+- 2秒以上レベル報告が来なければ `INPUT／BODY レベル報告なし` と表示し、Safari側の処理停止を数値0と混同しない。
+
+W3C Web Audio API 1.1は、AudioNodeの入力処理と内部処理は出力接続の有無やAudioContextの最終出力へ到達するかにかかわらず、AudioContext時間に沿って継続すると規定する。このため、診断を動かす目的でスピーカー出力や無音Gainを自動接続しない。
 
 マイク取得にはsecure contextが必要なため、`mic-test.html` と同じディレクトリのJavaScriptを保ったままHTTPSで配信して開く。`file://` で直接開いた結果は実機検証の証拠にしない。フィードバックを避けるため、`MONITOR` をONにする前にイヤホンまたは外部出力を使う。
 
