@@ -19,7 +19,8 @@ export class BodyBrowserSession {
     audioContext,
     mediaDevices,
     AudioWorkletNodeClass,
-    workletUrl = "./body-worklet-processor.js"
+    workletUrl = "./body-worklet-processor.js",
+    onLevels = null
   }) {
     if (!audioContext?.audioWorklet || typeof audioContext.resume !== "function") {
       throw new TypeError("audioContext with AudioWorklet is required");
@@ -30,11 +31,15 @@ export class BodyBrowserSession {
     if (typeof AudioWorkletNodeClass !== "function") {
       throw new TypeError("AudioWorkletNode constructor is required");
     }
+    if (onLevels !== null && typeof onLevels !== "function") {
+      throw new TypeError("onLevels must be a function or null");
+    }
 
     this.audioContext = audioContext;
     this.mediaDevices = mediaDevices;
     this.AudioWorkletNodeClass = AudioWorkletNodeClass;
     this.workletUrl = workletUrl;
+    this.onLevels = onLevels;
     this.state = "idle";
     this.monitoring = false;
   }
@@ -59,6 +64,11 @@ export class BodyBrowserSession {
         channelCountMode: "explicit",
         outputChannelCount: [1]
       });
+      if (this.onLevels && bodyNode.port) {
+        bodyNode.port.onmessage = (event) => {
+          if (event.data?.type === "levels") this.onLevels(event.data);
+        };
+      }
 
       source.connect(bodyNode);
       const gate = bodyNode.parameters.get("gate");
@@ -134,6 +144,7 @@ export class BodyBrowserSession {
   stop() {
     if (this.state === "stopped" || this.state === "idle") return;
     if (this.bodyNode) {
+      if (this.bodyNode.port) this.bodyNode.port.onmessage = null;
       try { this.bodyNode.disconnect(); } catch {}
     }
     if (this.source) {
