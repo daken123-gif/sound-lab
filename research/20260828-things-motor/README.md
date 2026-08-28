@@ -255,3 +255,21 @@ AUDIO領域は第一UIへ露出させない。
 ## 現在の判定
 
 `4入力Rotor` は研究候補として継続する。Things Motorの全機能を移植する判断も、Field Looperへ採用済みとする判断も行わない。次の有効な作業は、UI制作ではなく、既知信号を使った4入力クロスフェードDSPの測定試作である。
+
+## 2026-08-28 coefficient measurement prototype
+
+UIを作る前に、4入力Rotorの係数モデルをオフライン実装した。
+
+- model: [`rotor_measure.py`](rotor_measure.py)
+- tests: [`test_rotor_measure.py`](test_rotor_measure.py)
+- observed measurements: [`MEASUREMENTS.md`](MEASUREMENTS.md)
+
+実行した8件の単体試験は通過した。測定で確認した境界は次のとおり。
+
+- equal-powerは `g0² + g1² = 1` を浮動小数点誤差内で保った。
+- 同一信号をequal-powerで重ねると中央で `+3.0102999566398116 dB` 膨らんだ。
+- linearは同一信号の振幅を保つが、非相関入力の中央では電力和が `0.5` になる。
+- Track 4からTrack 1への一周境界は係数連続にできた。
+- 150 ms時定数の指数慣性モデルは停止命令で位相をリセットしなかった。
+
+これは係数と位相モデルの検証であり、実音、iPhone、AUv3、聴感、CPU負荷、UIを検証したものではない。研究状態は引き続き `active` とする。
