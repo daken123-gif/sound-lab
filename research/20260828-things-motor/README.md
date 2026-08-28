@@ -174,7 +174,7 @@ phase = wrap01(phase + speed / sampleRate)
 - `HOLE`: 空区画を無音として残す。
 - `HOLD`: 原機のnormalled挙動に近く、直前トラックを空区画へ延長する。
 
-演奏事故を避ける初期既定値は `SKIP`。ただし原機研究として `HOLD` を比較試験する。`HOLE` は意図したリズムゲート用途に限定する。
+係数遷移の比較後、初期既定値候補は `HOLD` へ更新した。固定区画を保つため、離れた位置の角度解釈を変えず、無音区画も強制しない。`SKIP` は比較用、`HOLE` は意図したリズムゲート用途に限定する。
 
 ### オーディオレート
 
@@ -254,7 +254,7 @@ AUDIO領域は第一UIへ露出させない。
 
 ## 現在の判定
 
-`4入力Rotor` は研究候補として継続する。Things Motorの全機能を移植する判断も、Field Looperへ採用済みとする判断も行わない。次の有効な作業は、UI制作ではなく、既知信号を使った4入力クロスフェードDSPの測定試作である。
+`4入力Rotor` は研究候補として継続する。Things Motorの全機能を移植する判断も、Field Looperへ採用済みとする判断も行わない。係数・合成音・参加状態の測定までは完了した。次は実録音を使い、動くRotor上で参加切替を聴感検証する。
 
 ## 2026-08-28 coefficient measurement prototype
 
@@ -290,3 +290,18 @@ UIを作る前に、4入力Rotorの係数モデルをオフライン実装した
 - silence mixed: equal-powerとcorrelation compensation `-3.010300 dB`; linear `-4.771215 dB`。
 
 相関補正は数値上のレベル差を抑えたが、素材解析によって演奏者のクロスフェード則を変える。実音の聴感検証前に自動採用しない。研究状態は `active` のまま維持する。
+
+
+## 2026-08-28 participation layout probe
+
+Track参加状態を変える三方式を同一の係数モデルで比較した。
+
+- model: [`rotor_layout.py`](rotor_layout.py)
+- tests: [`test_rotor_layout.py`](test_rotor_layout.py)
+- measurements and judgment: [`LAYOUT_TRANSITIONS.md`](LAYOUT_TRANSITIONS.md)
+
+既存試験と合わせた26件の単体試験は通過した。Track 4を除外したとき、Track 4が寄与しない固定半周での最大係数ジャンプは `HOLD/HOLE = 0`、`SKIP = 0.707107` だった。つまり `SKIP` は局所的な参加変更で円周全体の角度対応を再配置する。
+
+現時点では `HOLD` を既定値の先頭候補へ更新する。同一トラックが連続区画を所有するときはunityのdwellとして扱い、equal-power係数を重ねて最大+3.01 dBにしない。切替には48 kHzで5 ms（240 samples）の短い係数ランプを使う。
+
+これは係数領域の判断であり、実録音、動作中のRotor、iPhone出力での聴感は未検証である。研究状態は `active` のままとする。
