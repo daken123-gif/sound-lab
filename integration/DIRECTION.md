@@ -33,6 +33,9 @@
 8. **現行Field Looper UIを設計資産として再利用しない**
    - `field-processor/index.html` の視覚言語、配色、円形ループ、微小ラベル、強制横画面、KAOSS中心階層は隔離対象。
    - 再利用可能なのは、別途検証できた音声経路とDSP知見だけ。
+9. **Abbey Road研究を入力構造へ限定接続する**
+   - 物理配置、RAW保持、入力経路ごとの校正、コンソール色の分離をiPhone入力段の採用原則とする。
+   - REDD/TG、RS124、SPACE、RS56、J37、ADTのDSP値や商品名プリセットは候補のままにし、実測・実機検証なしで原機再現としない。
 
 ## 現在の構造
 
@@ -46,14 +49,14 @@
   -> 出力／Performance Take／非破壊バウンス
 ```
 
-THE PIPE型音源は録音前の入力楽器候補。Chroma Console型の可変直列経路、Things Motor型4入力Rotor、Microcosm型時間変換、Strymon／OTO空間、Abbey Road型COLOR・SPACE・BOUNCEは、主演奏面を置き換えない候補部品として扱う。
+THE PIPE型音源は録音前の入力楽器候補。Chroma Console型の可変直列経路、Things Motor型4入力Rotor、Microcosm型時間変換、Strymon／OTO空間は、主演奏面を置き換えない候補部品として扱う。Abbey Road研究からは配置・RAW・校正・コンソール色分離だけを入力構造へ採用し、COLOR・SPACE・BOUNCE各DSPは個別候補として扱う。
 
 ## 統合していない候補
 
 - THE PIPE / BODY: 研究と独立DSP試作。人声、iPhone、Safariは未検証。
 - Chroma Console: 可変直列経路、Gesture、固有Drift、単一Captureの研究候補。
 - Things Motor: 4入力Rotorの係数・慣性モデル候補。
-- Abbey Road: 配置、RAW、校正、REDD/TG、共有空間、RS56、J37バウンスの候補。
+- Abbey Road: 配置、RAW、入力経路別校正、マイク特性とコンソール色の分離は入力構造へ採用。REDD/TG、RS124、共有空間、RS56、J37、ADTのDSPは未検証候補。
 - Performance Take: 明示開始の記録核は候補。KAOSS依存イベントと現行UIは再整理が必要。
 
 ## まだ固定しないもの

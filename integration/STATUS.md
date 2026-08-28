@@ -1,8 +1,8 @@
 # 統合状況
 
-最終観測: 2026-08-28 07:57 UTC / GitHub `daken123-gif/sound-lab`
+最終観測: 2026-08-28 08:10 UTC / GitHub `daken123-gif/sound-lab`
 
-観測時の `main`: `d497753046c3c8ac50aaf0d8e3ad7981ed5a581d`
+観測時の `main`: `810b687924887d6da69a6f48c462b20b7d7e13ed`
 
 観測範囲: 26ブランチ、全20 PR、open PR 6件、`main`、各open研究PRの本文と取得可能な研究README・実験・テスト。
 
@@ -21,7 +21,7 @@
 | BODY resonator | open PR #18、独立DSP、12テストの報告 | `candidate` / `implemented-unverified` | 人声、iPhone、Safari AudioWorklet、4トラック統合 |
 | Things Motor | branch `research/20260828-things-motor`、8係数テスト | `candidate` | 実音、相関別カーブ、iPhone、UI。PR未確認 |
 | Chroma Console | Draft PR #19、27節研究、非可換性実験 | `candidate` | 実機比較、実楽器、リアルタイム負荷、統合判断 |
-| Abbey Road | open PR #20、配置からJ37までの研究 | `candidate` | DSP、正規IR、iPhone、音量一致、統合判断 |
+| Abbey Road | `main` の `20260828-abbey-road-equipment`。配置、マイク校正、REDD/TG、RS124、空間、RS56、J37、ADT | 入力構造は `adopted` / DSPは `candidate` | REDD/TG等のDSP、正規IR、iPhone実機、音量一致 |
 | 独立ドラム | 統合判断のみ | `adopted`（分離） / `coverage-gap` | Elektron等の研究本文と接続仕様 |
 
 ## open PR
@@ -31,7 +31,6 @@
 - #16 THE PIPE中心研究
 - #18 THE PIPE由来BODY独立DSP
 - #19 Chroma Console研究と非可換性実験（Draft）
-- #20 Abbey Road機材・信号経路研究
 
 open PR、branch、テスト成功は、`main`統合、iPhone実機検証、聴感採用の証拠ではない。
 
@@ -70,5 +69,5 @@ Loopy Pro、RC-505mkII、Dedalus、Strymonはブランチ名を観測したが�
 1. Skulptur研究本文とKAOSS退役の根拠をGitへ保存し、主演奏面の具体境界を確定する。
 2. iPhone実機で入力、明示録音、4トラック再生、実波形、位置表示を検証する。
 3. PR #15からKAOSS中心UIとイベント依存を分離し、再利用可能な録音核だけを判定する。
-4. BODY、Rotor、Chroma、Abbey Roadを主演奏面の代替にせず、個別候補として音響検証する。
+4. BODY、Rotor、Chromaを主演奏面の代替にせず、個別候補として音響検証する。Abbey Roadは採用済み入力原則と未検証DSPを分け、REDD/TGから一系統ずつ検証する。
 5. Microcosm、Max/MSP、Elektron、OTO、1192等の未収載研究をGitで読める状態にしてから信号順を決める。
