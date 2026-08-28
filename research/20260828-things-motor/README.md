@@ -333,3 +333,16 @@ Track参加状態を変える三方式を同一の係数モデルで比較した
 WAVとAAC/M4Aの復号、4入力検査、mono downmix、48 kHz resampling、最短入力へのtrim、即時切替と5 ms切替の比較、JSON測定値、二つの試聴WAV出力を実装した。AAC/M4Aはテスト内で実ファイルを生成して復号した。研究全体で37件の単体試験が通過している。
 
 このworkspaceにはユーザーの声、環境音、iPhone収録などの実録音は存在しない。したがって確認済みなのは入力・測定経路までであり、実素材上のclick聴感や `HOLD` の音楽的妥当性は未判定である。研究状態は `active` のままとする。
+
+
+## 2026-08-28 direct-touch / Motor handoff
+
+手動dragとMotor回転が別々の位置を持たないよう、一つの位相状態を共有する操作モデルを実装した。
+
+- model: [`rotor_gesture.py`](rotor_gesture.py)
+- tests: [`test_rotor_gesture.py`](test_rotor_gesture.py)
+- measurements: [`GESTURE_HANDOFF.md`](GESTURE_HANDOFF.md)
+
+0.98から0.03へのpointer移動を `+0.05 rotations` と解釈し、円周境界で逆へ0.95周しない。48 kHzで50 msかけて0.05周dragした場合、最大位相stepはsampleあたり `0.0000208333`、release速度は1 rotation/s、release直後の最初のMotor stepも `0.0000208333` で一致した。touch開始時の位相jumpは0だった。
+
+以前の「tapした絶対位置へ即時移動」は今回の候補から外した。音声上のseek rampを検証せずに復活させない。全研究suiteは44件通過。touch開始時に速度を0へ変える聴感、iPhoneのevent timing・multitouch・latencyは未検証である。研究状態は `active` のままとする。
