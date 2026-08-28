@@ -8,6 +8,7 @@ import {
 test("browser diagnostic dependency graph has no missing files", () => {
   const assets = collectBrowserAssets(new URL("../mic-test.html", import.meta.url));
   assert.deepEqual(assets, [
+    "body-browser-errors.js",
     "body-browser-session.js",
     "body-engine.js",
     "body-level-meter.js",
