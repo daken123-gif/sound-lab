@@ -20,6 +20,12 @@
   - pre Skulptur returnとKILL優先順位
   - BREAK_ECHO / BREAK_ROOMの独立契約
 
+- [Phase 4 — AUv3自動化可能性ゲート](./PHASE_4.md)
+  - AUv3 parameter公開範囲を実機前提へ分離
+  - routing / interruption / material / restorationの四段監査
+  - version不明時の証拠境界
+  - [実機parameter監査票](./AUV3_PARAMETER_AUDIT_TEMPLATE.json)
+
 ## 先に固定する現在判断
 
 BattleFXをField Looperのマスターエフェクトまたは主演奏面として採用しない。Git正本の現行判断では、録音後の主演奏面はSkulptur型であり、KAOSS中心階層は退役済みである。
@@ -404,4 +410,5 @@ Gitで本文を取得できていない研究の内容を補わない。現時�
 - 主演奏面: `no`
 - master effect: `no`
 - 実装開始: `no`
+
 
