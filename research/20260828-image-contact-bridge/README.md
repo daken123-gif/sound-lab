@@ -1,10 +1,10 @@
 # 画像接触研究 → Sound Lab 接触入力bridge
 
 - research-id: `20260828-image-contact-bridge`
-- 状態: `candidate` / `research-only`
+- 状態: `candidate` / `implemented-unverified`
 - 更新日: 2026-08-28
 - 接続先候補: 4トラック録音後のSkulptur型主演奏面の入力層
-- 製品コード変更: なし
+- 製品コード変更: なし（研究ディレクトリ内に参照実装あり）
 - 採用判断: 未実施
 - 実機検証: 未実施
 
@@ -35,7 +35,7 @@
 
 画像側から渡すのは、音色やエフェクト名ではなく「どこへ、どの状態で、どの程度接触したか」のフレームである。
 
-`contact-gesture.schema.json` が機械可読の境界、`acceptance-tests.md` が破綻を防ぐ検査条件である。
+`contact-gesture.schema.json` が機械可読の境界、`acceptance-tests.md` が破綻を防ぐ検査条件である。`contact-gesture.mjs` はその境界を実行時に検査する参照実装、`implementation.md` は検証範囲を記録する。
 
 ## 接触状態
 
@@ -85,6 +85,7 @@ iPhoneの通常タッチでは接触前の `approach` を観測できないた�
 - [x] 機械可読な接触入力候補
 - [x] 検証条件
 - [ ] Skulptur具体mapping
+- [x] 研究内の入力検証参照実装
 - [ ] 製品コード統合
 - [ ] ブラウザruntime
 - [ ] iPhone実機
@@ -92,7 +93,11 @@ iPhoneの通常タッチでは接触前の `approach` を観測できないた�
 
 ## 触る実装パス
 
-なし。今回は研究bridgeと統合島からのlocatorだけを追加する。
+- `research/20260828-image-contact-bridge/contact-gesture.mjs`
+- `research/20260828-image-contact-bridge/contact-gesture.test.mjs`
+- `research/20260828-image-contact-bridge/implementation.md`
+
+研究ディレクトリ内の参照実装だけを追加する。既存UI、DSP、Performance Take、Skulptur mappingは変更しない。
 
 ## 依存する研究
 
