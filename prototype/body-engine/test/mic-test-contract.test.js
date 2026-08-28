@@ -46,3 +46,10 @@ test("diagnostic reports a stalled AudioWorklet without enabling monitoring", ()
   assert.match(script, /INPUT／BODY レベル報告なし/);
   assert.doesNotMatch(script, /setMonitoring\(true\)/);
 });
+
+test("diagnostic renders structured browser failure codes", () => {
+  assert.match(script, /classifyBodyBrowserFailure/);
+  assert.match(script, /secureContext: window\.isSecureContext/);
+  assert.match(script, /MediaDevicesUnavailableError/);
+  assert.match(script, /AudioWorkletUnavailableError/);
+});
