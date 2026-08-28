@@ -101,6 +101,14 @@ W3C Web Audio API 1.1は、AudioNodeの入力処理と内部処理は出力接�
 
 マイク取得にはsecure contextが必要なため、`mic-test.html` と同じディレクトリのJavaScriptを保ったままHTTPSで配信して開く。`file://` で直接開いた結果は実機検証の証拠にしない。フィードバックを避けるため、`MONITOR` をONにする前にイヤホンまたは外部出力を使う。
 
+配備前の欠品検査:
+
+```sh
+npm run verify-browser-assets
+```
+
+`mic-test.html` から通常のES module import、`script src`、AudioWorklet用 `new URL(..., import.meta.url)` を再帰的に辿る。現在必要な静的資産8件のどれかが欠ける、または診断ページのディレクトリ外を参照すると失敗する。これはHTTPS配備済み、Safariで取得可能、マイクが動作する、という検証ではない。
+
 2026-08-28のNode基準測定では、48 kHz / 128 samplesで30秒分を132.25 msで処理し、実時間に対する処理時間比は0.00441だった。これは同じコード経路がオフラインで十分速いことだけを示す。iPhoneのCPU負荷、AudioWorkletスケジューリング、入出力レイテンシー、発熱は未測定。
 
 ## 録音WAVを処理する
