@@ -800,3 +800,169 @@ Abbey Roadの一般録音ガイドでも、コンデンサー・ボーカルは�
   https://www.abbeyroad.com/news/how-to-record-and-process-studio-vocals-at-home-2700
 - Abbey Road Studio Three — KM84 / Fairchild drum treatment  
   https://www.abbeyroad.com/news/abbey-road-rooms-studio-three-with-freddie-light-3443
+
+
+---
+
+## 27. Artificial Double Tracking（ADT）
+
+### 発明の目的
+
+ADTは、歌手が同じパートをもう一度正確に歌う通常のダブル・トラッキングを省くため、1960年代半ばにAbbey Roadの技術者Ken Townsendが考案した。
+
+Abbey Road公式資料では、John Lennonがダブル録音の反復を嫌い、自動化を求めたことが発端とされる。最初期の代表的使用は『Tomorrow Never Knows』の制作時期に結び付けられている。
+
+### 原経路
+
+Waves / Abbey Road共同マニュアルが説明する原構成は次のとおり。
+
+```text
+4-track source tape machine
+├── PLAY head output ───────────────────────→ console SRC fader
+└── RECORD/SYNC head output
+    └── second valve tape machine in record/input
+        └── PLAY head output
+            └── operator-controlled VCO varispeed → console ADT fader
+```
+
+Abbey Roadのソース機には、RECORD/SYNCヘッドとPLAYヘッドを同時に別出力できる二つの出力アンプがあった。二つのヘッド間には物理距離があるため、同一信号でも時間差が生じる。
+
+RECORD/SYNC側を第二の真空管テープ機へ送り、その記録ヘッドと再生ヘッドの間でも遅延を作る。二台のヘッド間遅延がほぼ相殺する位置を基準に、第二機の速度をVCOで変え、複製信号を元信号より前後へ動かした。
+
+### 操作員が効果を演奏する
+
+原ADTでは、テープ・オペレーターがVCOリモートを手で動かし続けた。単語やフレーズ単位で遅延とピッチが変化し、二台それぞれのwow/flutterとモーター速度差も加わった。
+
+したがってADTの中心は固定ディレイでも周期一定のコーラスでもない。
+
+- 時間差
+- テープ速度に伴うピッチ変化
+- 二台の真空管テープ経路の音色差
+- 操作員による非周期的な動き
+- SRCとADTのレベル／パン関係
+
+が同時に働く工程である。
+
+---
+
+## 28. ADTの時間差と資料差
+
+公開資料には数値差があるため、一つの「正解値」へ潰さない。
+
+| 資料 | ADTの説明値 |
+|---|---:|
+| Abbey Road公式 Ken Townsend記事 | 通常8–12 ms |
+| Waves / Abbey Road共同マニュアル本文 | 典型的な効果は約15 ms |
+| 同マニュアルQuick Start | 前後10–15 msを推奨 |
+| 同マニュアル | 0–5 msを連続変化させるとflanging領域 |
+
+この差は、歴史的実機の唯一固定値ではなく、運用域、説明上の丸め、現代エミュレーションの推奨域が異なるものとして扱う。
+
+### FlangingとPhasing
+
+- **ADT**: 主に約8–15 msの前後差で、別テイクのような厚みを作る。
+- **Flanging**: 二信号を0–5 ms付近へ近づけ、速度を連続変化させて櫛形のピーク／ディップを動かす。
+- **Phasing（当時のAbbey Road資料上の呼称）**: 同じ近接遅延で第二信号の極性を180度反転し、ゼロ差付近で深い相殺を作る。
+
+ここでいうphasingは、現代の多段all-pass phaserと同一構造ではない。名称だけでDSPを置換しない。
+
+---
+
+## 29. 4トラックiPhone録音機へのADT移植
+
+### 配置
+
+ADTはRAW録音へ焼き込まず、録音後に選択トラックから分岐する非破壊レイヤーへ置く。
+
+```text
+selected RAW track
+├── SRC: dry playback → level / pan
+└── ADT: tape color → variable time + coupled pitch → level / pan
+                         ↑
+                 manual ride / organic drift
+```
+
+- 元トラックを常に保持する。
+- ADTを新しい演奏テイクの代用品と表示しない。
+- 録音開始時に自動適用しない。
+- 4トラックの一つを恒久的に消費せず、必要ならバウンス時に確定する。
+- ライブ監視経路では未来方向へ先行できないため、ADT信号は後ろへ遅らせるだけにする。
+- 録音後のオフライン処理では先読みを許し、ADT側を元信号より前へ置ける。
+
+### 最小UI
+
+常設の複雑なプラグイン画面は作らない。選択トラックの編集操作として次を候補にする。
+
+| UI | 内部動作 |
+|---|---|
+| `DOUBLE` | SRCとADTを混合。初期中心は約10–12 ms |
+| `SLIP` | ADTを前後へ移動。録音後のみ負値を許可 |
+| `RIDE` | 指で動かした軌跡を非破壊オートメーションとして記録 |
+| `WIDE` | SRC / ADTのパンを離す。モノ確認を同時提供 |
+| `FLANGE` | 0–5 ms域へ限定。通常ADTとは別モード |
+| `FLIP` | ADT側の極性反転。近接遅延時だけ警告付きで使用 |
+
+実装の第一候補は`DOUBLE`と`RIDE`。その他は詳細編集へ隠し、録音面の操作数を増やさない。
+
+### 暫定DSP設計
+
+以下はアプリ設計値であり、実機測定値ではない。
+
+- 通常ADT中心: 10–12 ms
+- 調整域: -15～+15 ms（録音後）
+- ライブ域: 0～+15 ms
+- 手動RIDE範囲: 中心から±3～8 ms
+- 自動ドリフト: randomを中心とした非周期動作
+- 速度変更時は遅延とピッチを結合し、独立のピッチシフターとして動かさない
+- モーター加減速を模す平滑化を入れ、制御値へ瞬時追従させない
+- SRC / ADTのテープ色と微小変動は独立
+- wow/flutter、ノイズ、強いdriveは初期値ゼロ
+- バイパスと聴感音量を合わせる
+- モノ・モニターで櫛形相殺を確認できるようにする
+
+### 採用しない
+
+- 20 ms前後の固定ディレイを`Abbey Road ADT`と呼ぶ。
+- 常時同じ正弦LFOをかける。
+- ピッチだけをランダムに揺らし、時間差と分離する。
+- ADTをすべてのボーカルへ自動適用する。
+- WIDE選択だけでモノ互換を保証する。
+- 0 ms付近の相殺を音量補正で隠す。
+- 実機のBTR個体差を測らず「完全再現」と表示する。
+
+---
+
+## 30. ADTが既存設計へ与える変更
+
+既存の信号経路へ、録音後の選択的レイヤーを追加する。
+
+`配置 → RAW → 校正 → REDD/TG → RS124/TG Dynamics → [選択的ADT] → Chamber/Plate → RS56 → J37`
+
+ただし歴史的にはADT自体が複数テープ機を通るため、単純にコンソール後の一プラグインとして固定できない。アプリでは次の境界を守る。
+
+1. SRCとADTは別経路で処理する。
+2. ADT側のテープ色は最終J37バウンスと別物。
+3. 最終J37処理を行えば、SRCとADTを合成したミックスがさらにテープへ記録される。
+4. Chamber/Plateへの送りは、SRCとADTを合成した後を初期値とする。
+5. S.T.E.E.D.はADTとは別のテープ遅延＋エコー室経路として維持する。
+
+### 実装優先度
+
+1. 録音後のみ動く`DOUBLE`
+2. 手動`RIDE`軌跡
+3. SRC / ADTパンとモノ確認
+4. ライブ遅延限定版
+5. FLANGE / FLIPの特殊効果
+
+---
+
+## 31. ADT追加一次資料
+
+- Abbey Road — Inside Abbey Road: Artificial Double Tracking  
+  https://www.abbeyroad.com/news/inside-abbey-road-artificial-double-tracking-2530
+- Abbey Road — The History of Recorded Music at No. 3 Abbey Road  
+  https://www.abbeyroad.com/news/the-history-of-recorded-music-has-its-roots-firmly-planted-at-no-3-abbey-road-2596
+- Abbey Road — Studer J37 #GearThatMadeUs  
+  https://www.abbeyroad.com/news/studer-j37-gearthatmadeus-3195
+- Waves / Abbey Road — Reel ADT User Guide  
+  https://assets.wavescdn.com/pdf/plugins/reel-adt.pdf
