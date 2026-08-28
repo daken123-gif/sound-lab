@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node --test",
     "render-demo": "node render-demo.js",
-    "process-wav": "node process-wav.js"
+    "process-wav": "node process-wav.js",
+    "benchmark": "node benchmark-realtime.js"
   }
 }
