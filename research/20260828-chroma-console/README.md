@@ -591,3 +591,46 @@ Drive 3段階、Feedback 3段階の9条件を掃引した。最も弱い条件�
 - 生成した3つのWAVがbyte単位で一致
 - Python構文検査に成功
 - 実機一致、実楽器での知覚差、リアルタイム負荷は未検証
+
+## 28. 音響検証2: エフェクト固有DRIFT
+
+共通のDRIFT量を、すべてのエフェクトへ同じランダムLFOとして送る方式と、エフェクトごとに異なる故障状態へ写像する方式を、60秒・100 Hz制御周期の決定論的モデルで比較した。これはChroma Console実機の再現ではなく、設計仮説の検証である。
+
+DRIFT `0.2`から`0.8`で得た変化:
+
+- Vibrato: ランダム成分RMSは`0.193`から`3.593 cents`、左右差RMSは`0.098`から`1.457 cents`
+- Reels: 一周ごとのレベル損失は`0.374`から`1.459 dB`、12周後は`-4.484`から`-17.507 dB`
+- Collage: 60秒中の速度イベントは`1`から`5`回、占有率は`0.783%`から`4.817%`
+
+弱設定では、Vibratoはほぼ同相、Reelsは緩い反復劣化、Collageは希少イベントに留まった。強設定では、連続的な左右揺れ、反復回数に依存する減衰、離散的な倍速／半速イベントという別々の故障像が現れた。
+
+一方、単一のモノラル・ランダムLFOだけでは、左右相関は常に`1.0`であり、反復回数の状態も離散的な読出し速度状態も持てない。LFOを素材として使うこと自体は否定しないが、各エフェクト固有の状態と写像を加える必要がある。
+
+この実験から採用候補とするDRIFT設計:
+
+1. UI上は共通の故障量を一つ持つ
+2. DSP内部では連続変調、累積劣化、希少イベントへ別々に写像する
+3. 希少イベントの発生率は低域を抑えた非線形曲線にする
+4. 乱数系列をエフェクトごとに分離し、一方の変更で他方の挙動を変えない
+5. 再現可能なseedを研究・プリセット診断に使えるようにする
+
+未検証:
+
+- 音声へ適用した際の知覚上の適量
+- 実機DRIFTとの分布一致
+- パラメータ急変時のクリック回避
+- イベント中のCapture／Gestureとの競合
+- iPhone実装時の乱数・状態保存方式
+
+実験資料:
+
+- [`experiments/effect_specific_drift.py`](experiments/effect_specific_drift.py)
+- [`experiments/effect-specific-drift-results.md`](experiments/effect-specific-drift-results.md)
+- [`experiments/effect-specific-drift-metrics.json`](experiments/effect-specific-drift-metrics.json)
+
+検証状態:
+
+- 二回実行でJSONがbyte単位で一致
+- Python構文検査に成功
+- JSONのSHA-256は`07a4d70bf38b2305173d656ae46bfc54054ccbf76961f4dd76cdc3461127d979`
+- 実機一致、聴感評価、リアルタイム負荷は未検証
