@@ -1,4 +1,5 @@
 import { createBodyBrowserSession } from "./body-browser-session.js";
+import { classifyBodyBrowserFailure } from "./body-browser-errors.js";
 import { BodyLevelWatchdog } from "./body-level-watchdog.js";
 
 const startButton = document.querySelector("#start");
@@ -66,9 +67,14 @@ function showDiagnostics(diagnostics) {
 }
 
 function showError(error) {
-  const name = error instanceof Error ? error.name : "Error";
-  const message = error instanceof Error ? error.message : String(error);
-  status.textContent = `${name}: ${message}`;
+  const report = classifyBodyBrowserFailure(error, { secureContext: window.isSecureContext });
+  status.textContent = JSON.stringify(report, null, 2);
+}
+
+function unavailableError(name, message) {
+  const error = new Error(message);
+  error.name = name;
+  return error;
 }
 
 function closeGate() {
@@ -109,9 +115,9 @@ startButton.addEventListener("click", async () => {
 
   try {
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) throw new Error("Web Audio API is not available");
-    if (!navigator.mediaDevices?.getUserMedia) throw new Error("getUserMedia is not available; HTTPSで開いてください");
-    if (!window.AudioWorkletNode) throw new Error("AudioWorkletNode is not available");
+    if (!AudioContextClass) throw unavailableError("AudioContextUnavailableError", "Web Audio API is not available");
+    if (!navigator.mediaDevices?.getUserMedia) throw unavailableError("MediaDevicesUnavailableError", "getUserMedia is not available; HTTPSで開いてください");
+    if (!window.AudioWorkletNode) throw unavailableError("AudioWorkletUnavailableError", "AudioWorkletNode is not available");
 
     audioContext = new AudioContextClass({ latencyHint: "interactive" });
     session = createBodyBrowserSession({
