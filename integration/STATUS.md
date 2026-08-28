@@ -4,7 +4,7 @@
 
 観測時の `main`: `7578007f1b3b3ed7f8fcf0d63e1a58145f62efe5`
 
-観測範囲: 30ブランチ、全26 PR、open PR 7件、`main`、各open研究PRの本文と取得可能な研究README・実験・テスト。
+観測範囲: 30ブランチ、全26 PR、open PR 8件、`main`、各open研究PRの本文と取得可能な研究README・実験・テスト。
 
 ## 現在位置
 
