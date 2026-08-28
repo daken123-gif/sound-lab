@@ -164,8 +164,11 @@ for (const mode of modes) {
   const withProbe = render(mode, true);
   const probeDelta = subtract(withProbe, tailOnly);
   const eventDelta = subtract(withProbe, unchokedReference);
+  const tailWav = pcm16Wav(tailOnly);
   const wav = pcm16Wav(withProbe);
+  const tailFilename = `${mode}-tail-only.wav`;
   const filename = `${mode}.wav`;
+  writeFileSync(join(outputDir, tailFilename), tailWav);
   writeFileSync(join(outputDir, filename), wav);
   results.modes[mode] = {
     duringChokeRms: fixed(rms(tailOnly, chokeStart + 0.04, chokeEnd - 0.04)),
@@ -175,6 +178,9 @@ for (const mode of modes) {
     onsetEventStepProxy: fixed(maxStep(eventDelta, chokeStart)),
     releaseEventStepProxy: fixed(maxStep(eventDelta, chokeEnd)),
     peak: fixed(peak(withProbe)),
+    tailOnlyWav: tailFilename,
+    tailOnlyWavBytes: tailWav.length,
+    tailOnlyWavSha256: createHash("sha256").update(tailWav).digest("hex"),
     wav: filename,
     wavBytes: wav.length,
     wavSha256: createHash("sha256").update(wav).digest("hex")
