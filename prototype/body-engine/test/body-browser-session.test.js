@@ -20,6 +20,7 @@ class FakeWorkletNode extends FakeNode {
     this.context = context;
     this.name = name;
     this.options = options;
+    this.port = { onmessage: null };
     this.parameters = new Map([
       "gate", "size", "decay", "body", "dry", "drive"
     ].map(name => [name, new FakeParameter()]));
@@ -123,4 +124,18 @@ test("a second start while ready is rejected", async () => {
   const f = fixture();
   await f.session.start();
   await assert.rejects(() => f.session.start(), /cannot start session/);
+});
+
+test("level reports are forwarded without changing monitoring", async () => {
+  const f = fixture();
+  const reports = [];
+  f.session.onLevels = report => reports.push(report);
+  await f.session.start();
+  f.session.bodyNode.port.onmessage({ data: { type: "levels", inputRms: 0.2, outputRms: 0.3 } });
+  f.session.bodyNode.port.onmessage({ data: { type: "other" } });
+  assert.equal(reports.length, 1);
+  assert.equal(reports[0].inputRms, 0.2);
+  assert.equal(f.session.monitoring, false);
+  f.session.stop();
+  assert.equal(f.session.bodyNode.port.onmessage, null);
 });
