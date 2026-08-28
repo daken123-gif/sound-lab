@@ -559,3 +559,35 @@ Git上のresearch-idが未確認の研究は、ここでは名称だけを記録
 
 各段階で、公式仕様、こちらの実装、実音観測を別欄へ追記する。
 
+## 27. 音響検証1: DelayとCassetteの非可換性
+
+合成テスト信号と決定論的な簡易DSPモデルを使い、`Delay -> Cassette` と `Cassette -> Delay` を同一RMSで比較した。
+
+既定条件の結果:
+
+- Cross Correlation: `0.9983051715`
+- Difference RMS: `-42.6597475 dBFS`
+- `Delay -> Cassette` の6 kHz以上Energy Ratioは反対順の約`1.4950`倍
+
+Drive 3段階、Feedback 3段階の9条件を掃引した。最も弱い条件から最も強い条件へ、Difference RMSは約11.55 dB増加した。強条件では高域Energy Ratio比が約1.93になった。
+
+この結果は次を支持する。
+
+- 非線形段と時間段の順番は同一結果にならない
+- 順序差の大きさは飽和量、フィードバック量、各段への入力レベルに依存する
+- 各段のEffect Volumeは音量補正だけでなく、後段との相互作用を作る
+
+一方、既定条件の相関は高く、順番を変えるだけで常に劇的な差になるとは判定しない。
+
+実験資料:
+
+- [`experiments/noncommutative_chain.py`](experiments/noncommutative_chain.py)
+- [`experiments/noncommutative-chain-results.md`](experiments/noncommutative-chain-results.md)
+- [`experiments/noncommutative-chain-metrics.json`](experiments/noncommutative-chain-metrics.json)
+
+検証状態:
+
+- 同一スクリプトの二回実行で数値が完全一致
+- 生成した3つのWAVがbyte単位で一致
+- Python構文検査に成功
+- 実機一致、実楽器での知覚差、リアルタイム負荷は未検証
