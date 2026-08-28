@@ -139,3 +139,29 @@ test("level reports are forwarded without changing monitoring", async () => {
   f.session.stop();
   assert.equal(f.session.bodyNode.port.onmessage, null);
 });
+
+test("start failure preserves worklet and microphone phases", async () => {
+  const workletFailure = fixture();
+  workletFailure.audioContext.audioWorklet.addModule = async () => {
+    const error = new Error("module missing");
+    error.name = "NetworkError";
+    throw error;
+  };
+  await assert.rejects(() => workletFailure.session.start(), error => {
+    assert.equal(error.phase, "worklet");
+    assert.equal(error.causeName, "NetworkError");
+    return true;
+  });
+
+  const microphoneFailure = fixture();
+  microphoneFailure.session.mediaDevices.getUserMedia = async () => {
+    const error = new Error("permission denied");
+    error.name = "NotAllowedError";
+    throw error;
+  };
+  await assert.rejects(() => microphoneFailure.session.start(), error => {
+    assert.equal(error.phase, "microphone");
+    assert.equal(error.causeName, "NotAllowedError");
+    return true;
+  });
+});
