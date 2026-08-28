@@ -2,7 +2,7 @@
 
 - research-id: `20260828-image-contact-bridge`
 - 状態: `candidate` / `implemented-unverified`
-- 更新日: 2026-08-28
+- 更新日: 2026-08-29
 - 接続先候補: 4トラック録音後のSkulptur型主演奏面の入力層
 - 製品コード変更: なし（研究ディレクトリ内に参照実装あり）
 - 採用判断: 未実施
@@ -35,7 +35,7 @@
 
 画像側から渡すのは、音色やエフェクト名ではなく「どこへ、どの状態で、どの程度接触したか」のフレームである。
 
-`contact-gesture.schema.json` が機械可読の境界、`acceptance-tests.md` が破綻を防ぐ検査条件である。`contact-gesture.mjs` はその境界を実行時に検査する参照実装、`implementation.md` は検証範囲を記録する。 `pointer-contact-adapter.mjs` はブラウザのPointer Eventを同じframeへ変換する研究用adapterである。
+`contact-gesture.schema.json` が機械可読の境界、`acceptance-tests.md` が破綻を防ぐ検査条件である。`contact-gesture.mjs` はその境界を実行時に検査する参照実装、`implementation.md` は検証範囲を記録する。 `pointer-contact-adapter.mjs` はブラウザのPointer Eventを同じframeへ変換する研究用adapterである。`pointer-contact-browser-harness.html` はその接続を目視確認する研究用診断面、`browser-validation.md` は実行可否と証拠境界の記録である。
 
 ## 接触状態
 
@@ -87,6 +87,7 @@ iPhoneの通常タッチでは接触前の `approach` を観測できないた�
 - [ ] Skulptur具体mapping
 - [x] 研究内の入力検証参照実装
 - [x] 研究内のPointer Event adapter
+- [x] ブラウザ診断面（実行は未検証）
 - [ ] 製品コード統合
 - [ ] ブラウザruntime
 - [ ] iPhone実機
@@ -100,6 +101,8 @@ iPhoneの通常タッチでは接触前の `approach` を観測できないた�
 - `research/20260828-image-contact-bridge/pointer-contact-adapter.mjs`
 - `research/20260828-image-contact-bridge/pointer-contact-adapter.test.mjs`
 - `research/20260828-image-contact-bridge/pointer-adapter.md`
+- `research/20260828-image-contact-bridge/pointer-contact-browser-harness.html`
+- `research/20260828-image-contact-bridge/browser-validation.md`
 
 研究ディレクトリ内の参照実装だけを追加する。既存UI、DSP、Performance Take、Skulptur mappingは変更しない。
 
