@@ -1,0 +1,17 @@
+source,format,bytes,encode_seconds,decode_seconds
+noise,pcm_f32_wav,11520114,0,0
+noise,alac,7532681,0.336,0.111
+noise,flac,7528544,0.260,0.140
+noise,aac,1455987,0.929,0.270
+processed_mix,pcm_f32_wav,11520114,0,0
+processed_mix,alac,6906582,0.382,0.151
+processed_mix,flac,6905880,0.271,0.106
+processed_mix,aac,1455309,0.898,0.266
+tonal,pcm_f32_wav,11520114,0,0
+tonal,alac,3907298,0.351,0.120
+tonal,flac,3175437,0.273,0.131
+tonal,aac,1018645,4.151,0.374
+voice_proxy,pcm_f32_wav,11520114,0,0
+voice_proxy,alac,6219164,0.582,0.283
+voice_proxy,flac,6115747,0.465,0.108
+voice_proxy,aac,1458171,0.991,0.281

@@ -1,0 +1,3 @@
+variant,frames,frame_delta,snr_db,raw_seam_step,raw_seam_error,intended_seam_step,intended_seam_error
+aac,480256,256,58.434,0.022738218,0.046842933,0.093012333,0.023431182
+alac,480000,0,inf,0.069581151,0.000000000,0.069581151,0.000000000
