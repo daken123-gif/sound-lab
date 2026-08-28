@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
-    "render-demo": "node render-demo.js"
+    "render-demo": "node render-demo.js",
+    "process-wav": "node process-wav.js"
   }
 }
