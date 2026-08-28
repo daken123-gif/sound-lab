@@ -1,0 +1,20 @@
+{
+  "name": "sound-lab",
+  "interface": {
+    "displayName": "Sound Lab"
+  },
+  "plugins": [
+    {
+      "name": "sound-lab-research",
+      "source": {
+        "source": "local",
+        "path": "./plugins/sound-lab-research"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
