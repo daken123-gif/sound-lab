@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/daken123-gif/sound-lab/blob/main/research/20260828-image-contact-bridge/contact-gesture.schema.json",
+  "title": "Sound Lab ContactGestureFrame",
+  "description": "Image-contact research bridge event for the four-track post-loop performance input. This schema does not define Skulptur DSP mapping.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "gestureId",
+    "pointerId",
+    "phase",
+    "trackIds",
+    "x",
+    "y",
+    "contactArea",
+    "pressure",
+    "pressureSource",
+    "velocityX",
+    "velocityY",
+    "timestampMs"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "sound-lab.contact-gesture/v0.1"
+    },
+    "gestureId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "pointerId": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "phase": {
+      "enum": [
+        "contact",
+        "press",
+        "slide",
+        "release",
+        "cancel"
+      ]
+    },
+    "trackIds": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 3
+      }
+    },
+    "x": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "y": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "contactArea": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "pressure": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "pressureSource": {
+      "enum": [
+        "hardware",
+        "estimated",
+        "unavailable"
+      ]
+    },
+    "velocityX": {
+      "type": "number"
+    },
+    "velocityY": {
+      "type": "number"
+    },
+    "timestampMs": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "pressureSource": {
+            "const": "unavailable"
+          }
+        },
+        "required": [
+          "pressureSource"
+        ]
+      },
+      "then": {
+        "properties": {
+          "pressure": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "pressureSource": {
+            "enum": [
+              "hardware",
+              "estimated"
+            ]
+          }
+        },
+        "required": [
+          "pressureSource"
+        ]
+      },
+      "then": {
+        "properties": {
+          "pressure": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    }
+  ]
+}
