@@ -69,3 +69,20 @@ MIC
 - Safariが実際に選んだsample rateと入力デバイス
 - TRIM +24 dB、DENSITY 100%時のノイズ床
 - 有線／Bluetoothイヤホン別の遅延
+
+
+## 2026-08-28 アナログプリ試聴
+
+- `PREAMP · CLEAN`: TRIM → HPF → LPFの完全バイパス基準
+- `PREAMP · ANALOG`: 可変コンプレッサー → 非対称ソフト飽和 → 18 Hz DCブロック
+- 切替は12 msクロスフェード。
+- 4倍オーバーサンプリングを維持し、偶数次成分を含む非対称カーブを使用。
+- ノイズ、ヒス、ハムは追加しない。
+- 既存のiPhone内蔵マイク優先選択と `BT MIC / HFP` 経路表示を維持する。
+
+### 実機判定
+
+1. `PREAMP · CLEAN`でVoice Memosとの差を確認する。
+2. 上部の入力経路表示が `iPHONE MIC` か `BT MIC / HFP` か確認する。
+3. CLEANが正常な場合だけANALOGへ切り替え、DENSITYを0から上げる。
+4. CLEANの時点で帯域が狭ければ、アナログ処理ではなく入力経路を原因候補とする。
