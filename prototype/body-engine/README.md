@@ -40,6 +40,29 @@ npm run render-demo
 
 `BodyEngine.process(Float32Array)` は録音済みのモノラル音声を処理する。`processSample(number)` は将来AudioWorkletまたはiOSのリアルタイム音声コールバックへ移す境界。
 
+## リアルタイム処理
+
+- `body-realtime-core.js`: 音声コールバックから独立した可変ブロック処理。
+- `body-worklet-processor.js`: Web Audioの `AudioWorkletProcessor` 接続部。
+- processor名: `soma-body`。
+- `size / decay / body / dry / drive`: ブロック単位制御。
+- `gate`: サンプル単位制御。
+
+`gate` を閉じても共鳴体をresetしない。新しいマイク入力だけを短く減衰させ、すでに鳴ったBODYの尾は自然減衰させる。固定128サンプルを前提にせず、渡された出力ブロック長を使う。
+
+```js
+await audioContext.audioWorklet.addModule("body-worklet-processor.js");
+const body = new AudioWorkletNode(audioContext, "soma-body");
+source.connect(body).connect(audioContext.destination);
+
+body.parameters.get("gate").setValueAtTime(1, audioContext.currentTime);
+body.parameters.get("gate").setValueAtTime(0, audioContext.currentTime + 1);
+```
+
+このコード例は接続構造であり、iPhone Safariでマイク許可、音声ルート、実時間発音を確認した記録ではない。
+
+2026-08-28のNode基準測定では、48 kHz / 128 samplesで30秒分を132.25 msで処理し、実時間に対する処理時間比は0.00441だった。これは同じコード経路がオフラインで十分速いことだけを示す。iPhoneのCPU負荷、AudioWorkletスケジューリング、入出力レイテンシー、発熱は未測定。
+
 ## 録音WAVを処理する
 
 ```sh
