@@ -183,7 +183,17 @@ Teenage Engineering製品に共通する「録る・時間を掴む・一時的�
 - イベント単位のMute／Deleteに対応
 - 元の4トラック音声を参照・変更しない純粋な記録層
 
-`field-processor/index.html`への接続は未実施。同ファイルを変更する未統合PR #13と#14が存在するため、両PR統合後に最新`main`へ追従して接続する。
+`field-processor/index.html`への初期接続を実施した。PR #14の統合とPR #13の終了を確認した後、次を接続した。
+
+- 合成波形内の独立した`REC TAKE`で記録開始／停止
+- 4トラックに録音素材がない場合はTAKE記録を開始しない
+- 合成波形の位置操作を`loop-position`として記録
+- KAOSSの接触中座標とリリースを`kaoss`として記録
+- 記録イベントを合成波形上の赤線として表示
+- 赤線タップでMute、650ms長押しでDelete
+- マイク停止時にTAKEイベントだけを消去
+
+検証は`tests/performance-take.test.mjs`と`tests/performance-take-integration.test.mjs`の合計12件、およびHTML内module scriptの構文確認まで完了。ブラウザ実行環境が取得できなかったため、実ブラウザでのモジュール読込み、音声操作、iPhone実機は未検証。
 
 ## 依存
 
