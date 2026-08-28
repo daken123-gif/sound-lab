@@ -40,6 +40,17 @@ npm run render-demo
 
 `BodyEngine.process(Float32Array)` は録音済みのモノラル音声を処理する。`processSample(number)` は将来AudioWorkletまたはiOSのリアルタイム音声コールバックへ移す境界。
 
+## 録音WAVを処理する
+
+```sh
+node process-wav.js INPUT.wav OUTPUT.wav light
+node process-wav.js INPUT.wav OUTPUT.wav deep
+```
+
+入力は16-bit integer PCMのWAV。モノラルはそのまま、ステレオは左右を平均してモノラル化する。元のサンプルレートを維持し、レベルを自動ノーマライズせずBODY処理後の値を書き出す。圧縮音声や32-bit float WAVは、形式変換を黙って行わずエラーにする。
+
+録音処理用の `light / deep` は、合成デモより駆動量を低くしてある。合成試験入力では `light` がpeak 0.9142 / RMS 0.3737、`deep` がpeak 0.7351 / RMS 0.2429。声の強弱を飽和で潰さず、処理後の自動ノーマライズも行わないための初期値であり、人声での妥当性は未検証。
+
 `render-demo.js` は外部音源や依存パッケージを使わず、母音フォルマント、子音に似た開始過渡、息ノイズを含む合成試験信号を作る。同じ入力を次の順に並べた `demo-output/body-comparison.wav` を生成する。
 
 1. 合成入力
@@ -55,6 +66,8 @@ npm run render-demo
 - 息に似た非周期ノイズでも発音する。
 - 出力が有限値かつ `-1...1` 内に収まる。
 - 異常入力や範囲外マクロで内部状態が壊れない。
+- WAVのエンコード／デコードが量子化誤差内で往復する。
+- 壊れたWAVと未対応形式を拒否する。
 
 2026-08-28の合成試験結果:
 
