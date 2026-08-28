@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BODY MIC TEST</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+      background: #111;
+      color: #f1f1ea;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100svh;
+      padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+    main { width: min(100%, 620px); margin: 0 auto; }
+    h1 { margin: 0 0 4px; font-size: 1.15rem; }
+    .note, label, output { font-size: .82rem; }
+    .note { margin: 0 0 14px; color: #bbb; line-height: 1.45; }
+    .row { display: flex; gap: 8px; margin-bottom: 10px; }
+    button, .monitor {
+      min-height: 46px;
+      border: 1px solid #777;
+      border-radius: 4px;
+      background: #222;
+      color: inherit;
+      font: inherit;
+    }
+    button { padding: 10px 14px; }
+    button:disabled, input:disabled { opacity: .38; }
+    #start { flex: 1; background: #e8e8df; color: #111; }
+    #stop { min-width: 82px; }
+    .monitor { display: flex; align-items: center; padding: 8px 12px; margin-bottom: 10px; }
+    .monitor input { width: 22px; height: 22px; margin-right: 10px; }
+    #gate {
+      width: 100%;
+      min-height: 112px;
+      margin-bottom: 14px;
+      border-color: #aaa;
+      font-size: 1.2rem;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    #gate[data-open="true"] { background: #f0b429; color: #111; }
+    .macro { display: grid; grid-template-columns: 64px 1fr 42px; gap: 10px; align-items: center; margin: 10px 0; }
+    .macro input { width: 100%; }
+    output { text-align: right; }
+    pre {
+      min-height: 112px;
+      margin: 14px 0 0;
+      padding: 10px;
+      overflow: auto;
+      border: 1px solid #444;
+      border-radius: 4px;
+      background: #080808;
+      color: #c9e6c9;
+      font-size: .68rem;
+      line-height: 1.4;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>THE PIPE / BODY MIC TEST</h1>
+    <p class="note">診断用。録音しません。モニターをONにする前にイヤホンか外部出力を使ってください。</p>
+
+    <div class="row">
+      <button id="start" type="button">MIC START</button>
+      <button id="stop" type="button" disabled>STOP</button>
+    </div>
+
+    <label class="monitor">
+      <input id="monitor" type="checkbox" disabled>
+      MONITOR（明示的にON）
+    </label>
+
+    <button id="gate" type="button" data-open="false" disabled>HOLD VOICE GATE</button>
+
+    <label class="macro" for="size">
+      <span>SIZE</span>
+      <input id="size" type="range" min="0" max="1" step="0.01" value="0.55" disabled>
+      <output id="size-value" for="size">0.55</output>
+    </label>
+    <label class="macro" for="decay">
+      <span>DECAY</span>
+      <input id="decay" type="range" min="0" max="1" step="0.01" value="0.42" disabled>
+      <output id="decay-value" for="decay">0.42</output>
+    </label>
+    <label class="macro" for="body">
+      <span>BODY</span>
+      <input id="body" type="range" min="0" max="1" step="0.01" value="0.55" disabled>
+      <output id="body-value" for="body">0.55</output>
+    </label>
+
+    <pre id="status" role="status" aria-live="polite">idle — MIC STARTを押すまでマイクへアクセスしません。</pre>
+  </main>
+  <script type="module" src="./mic-diagnostic.js"></script>
+</body>
+</html>
