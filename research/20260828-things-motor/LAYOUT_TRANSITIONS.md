@@ -60,9 +60,11 @@ was made before transition geometry was measured.
 - `rotor_layout.py` contains the three mappings and the transition ramp.
 - `test_rotor_layout.py` checks cyclic ownership, silent holes, single-track
   unity, no duplicated `HOLD` gain, fixed-map stability, and the ramp bound.
-- The complete study suite currently passes 26 tests.
-- These are coefficient-domain measurements. Live switching with actual field
-  recordings, a moving rotor, and iPhone output remains unverified.
+- The moving-phase continuation is measured separately in
+  [`MOVING_SWITCH_PROBE.md`](MOVING_SWITCH_PROBE.md).
+- The complete study suite currently passes 32 tests.
+- Live switching with actual field recordings and iPhone output remains
+  unverified.
 
 Run:
 
