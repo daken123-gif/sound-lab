@@ -131,6 +131,10 @@ def measure_motor(
     phase_at_stop_command = motor.phase
     motor.target_speed_hz = 0.0
     first_stop_phase, first_stop_speed = motor.tick()
+    maximum_speed_step = max(
+        maximum_speed_step, abs(first_stop_speed - previous_speed)
+    )
+    previous_speed = first_stop_speed
     for _ in range(round(stop_seconds * sample_rate) - 1):
         _, speed = motor.tick()
         maximum_speed_step = max(maximum_speed_step, abs(speed - previous_speed))
