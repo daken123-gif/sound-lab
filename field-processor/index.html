@@ -63,7 +63,8 @@
     const inputDbText = document.querySelector('#inputDb');
     const outputDbText = document.querySelector('#outputDb');
     let ctx, stream, source, analyser, raf, wakeLock;
-    let inputAnalyser, delay, feedback, filter, wet, dry, monitor, master, outputGain;
+    let inputAnalyser, delayA, delayB, delayC, feedbackGain, feedbackLP, feedbackHP;
+    let wetBus, wet, dry, monitor, reverb, reverbGain, chorusLfo, chorusDepth, master, outputGain;
     let running = false;
     const dbToGain = db => Math.pow(10, db / 20);
     const signedDb = db => `${db > 0 ? '+' : ''}${db} dB`;
@@ -86,12 +87,15 @@
       field.style.setProperty('--y', `${ny * 100}%`);
       if (!ctx) return;
       const t = ctx.currentTime;
-      const space = 0.035 + nx * 0.92;
-      const returnAmount = 0.16 + (1 - ny) * 0.77;
-      delay.delayTime.setTargetAtTime(space, t, .04);
-      feedback.gain.setTargetAtTime(returnAmount, t, .04);
-      filter.frequency.setTargetAtTime(550 + (1 - ny) * 7000, t, .04);
-      wet.gain.setTargetAtTime(.34 + nx * .52, t, .04);
+      const space = 0.55 + nx * 2.05;
+      const returnAmount = 0.28 + (1 - ny) * 0.50;
+      delayA.delayTime.setTargetAtTime(space, t, .18);
+      delayB.delayTime.setTargetAtTime(space * .73 + .11, t, .18);
+      delayC.delayTime.setTargetAtTime(Math.min(3.9, space * 1.37 + .17), t, .18);
+      feedbackGain.gain.setTargetAtTime(returnAmount, t, .12);
+      feedbackLP.frequency.setTargetAtTime(1900 + (1 - ny) * 4300, t, .12);
+      wet.gain.setTargetAtTime(.42 + nx * .36, t, .12);
+      reverbGain.gain.setTargetAtTime(.55 + nx * .38, t, .12);
       spaceText.textContent = `SPACE ${Math.round(nx * 100)}`;
       returnText.textContent = `RETURN ${Math.round(returnAmount * 100)}`;
     };
@@ -114,6 +118,21 @@
       raf = requestAnimationFrame(meter);
     };
 
+    const makeImpulse = (audioContext, seconds = 5.8, decay = 3.2) => {
+      const length = Math.floor(audioContext.sampleRate * seconds);
+      const impulse = audioContext.createBuffer(2, length, audioContext.sampleRate);
+      for (let channel = 0; channel < 2; channel++) {
+        const data = impulse.getChannelData(channel);
+        let smooth = 0;
+        for (let i = 0; i < length; i++) {
+          const envelope = Math.pow(1 - i / length, decay);
+          smooth = smooth * .72 + (Math.random() * 2 - 1) * .28;
+          data[i] = smooth * envelope * .72;
+        }
+      }
+      return impulse;
+    };
+
     async function start() {
       ctx = new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'interactive' });
       await ctx.resume();
@@ -123,21 +142,34 @@
       source = ctx.createMediaStreamSource(stream);
       inputAnalyser = ctx.createAnalyser(); inputAnalyser.fftSize = 256;
       monitor = ctx.createGain(); monitor.gain.value = dbToGain(Number(inputGainControl.value));
-      filter = ctx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 3600; filter.Q.value = 1.1;
-      delay = ctx.createDelay(1.2); delay.delayTime.value = .46;
-      feedback = ctx.createGain(); feedback.gain.value = .34;
-      wet = ctx.createGain(); wet.gain.value = .62;
-      dry = ctx.createGain(); dry.gain.value = .28;
+      delayA = ctx.createDelay(4); delayA.delayTime.value = 1.5;
+      delayB = ctx.createDelay(4); delayB.delayTime.value = 1.2;
+      delayC = ctx.createDelay(4); delayC.delayTime.value = 2.2;
+      wetBus = ctx.createGain(); wetBus.gain.value = .72;
+      feedbackHP = ctx.createBiquadFilter(); feedbackHP.type = 'highpass'; feedbackHP.frequency.value = 170;
+      feedbackLP = ctx.createBiquadFilter(); feedbackLP.type = 'lowpass'; feedbackLP.frequency.value = 3900; feedbackLP.Q.value = .45;
+      feedbackGain = ctx.createGain(); feedbackGain.gain.value = .46;
+      wet = ctx.createGain(); wet.gain.value = .56;
+      dry = ctx.createGain(); dry.gain.value = .12;
+      reverb = ctx.createConvolver(); reverb.buffer = makeImpulse(ctx);
+      reverbGain = ctx.createGain(); reverbGain.gain.value = .72;
+      chorusLfo = ctx.createOscillator(); chorusLfo.frequency.value = .037;
+      chorusDepth = ctx.createGain(); chorusDepth.gain.value = .055;
+      chorusLfo.connect(chorusDepth).connect(delayB.delayTime); chorusLfo.start();
       master = ctx.createDynamicsCompressor();
-      master.threshold.value = -12; master.knee.value = 4; master.ratio.value = 12; master.attack.value = .002; master.release.value = .14;
+      master.threshold.value = -10; master.knee.value = 7; master.ratio.value = 8; master.attack.value = .008; master.release.value = .32;
       outputGain = ctx.createGain(); outputGain.gain.value = dbToGain(Number(outputGainControl.value));
       analyser = ctx.createAnalyser(); analyser.fftSize = 256;
 
       source.connect(inputAnalyser);
       source.connect(monitor);
       monitor.connect(dry).connect(master);
-      monitor.connect(filter).connect(delay).connect(wet).connect(master);
-      delay.connect(feedback).connect(filter);
+      monitor.connect(delayA); monitor.connect(delayB); monitor.connect(delayC);
+      delayA.connect(wetBus); delayB.connect(wetBus); delayC.connect(wetBus);
+      wetBus.connect(wet).connect(master);
+      wetBus.connect(reverb).connect(reverbGain).connect(master);
+      wetBus.connect(feedbackHP).connect(feedbackLP).connect(feedbackGain);
+      feedbackGain.connect(delayA); feedbackGain.connect(delayB); feedbackGain.connect(delayC);
       master.connect(outputGain).connect(analyser).connect(ctx.destination);
       running = true;
       document.body.classList.add('running');
