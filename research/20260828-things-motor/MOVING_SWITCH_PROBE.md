@@ -75,7 +75,9 @@ point and not slew all coefficients indiscriminately.
   output for all 12 scenario/mode/ramp combinations.
 - `test_rotor_switch_probe.py` checks live-target landing, phase continuation,
   unaffected-arc identity, ramp reduction, and WAV integrity.
-- The complete study suite passes 32 tests.
+- External WAV/M4A input is covered by
+  [`FIELD_RECORDING_PROBE.md`](FIELD_RECORDING_PROBE.md).
+- The complete study suite passes 37 tests.
 - The inputs remain synthetic. Click audibility with voice, room sound, hard
   transients, iPhone microphone capture, and iPhone playback is still untested.
 
