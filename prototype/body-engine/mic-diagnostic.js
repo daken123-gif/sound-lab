@@ -5,6 +5,7 @@ const stopButton = document.querySelector("#stop");
 const monitor = document.querySelector("#monitor");
 const gate = document.querySelector("#gate");
 const status = document.querySelector("#status");
+const levels = document.querySelector("#levels");
 const macros = ["size", "decay", "body"].map((name) => ({
   name,
   input: document.querySelector(`#${name}`),
@@ -15,6 +16,15 @@ let session = null;
 let audioContext = null;
 let starting = false;
 let gateOpen = false;
+
+function toDbfs(value) {
+  if (!Number.isFinite(value) || value <= 0) return "−∞";
+  return Math.max(-96, 20 * Math.log10(value)).toFixed(1);
+}
+
+function showLevels(report) {
+  levels.textContent = `INPUT ${toDbfs(report.inputRms)} dBFS / BODY ${toDbfs(report.outputRms)} dBFS`;
+}
 
 function setControlsReady(ready) {
   stopButton.disabled = !ready;
@@ -67,6 +77,7 @@ async function stopSession() {
   startButton.disabled = false;
   if (audioContext && audioContext.state !== "closed") await audioContext.close();
   audioContext = null;
+  levels.textContent = "INPUT -- dBFS / BODY -- dBFS";
   status.textContent = "stopped — マイクトラックと音声出力を停止しました。";
 }
 
@@ -87,7 +98,8 @@ startButton.addEventListener("click", async () => {
       audioContext,
       mediaDevices: navigator.mediaDevices,
       AudioWorkletNodeClass: window.AudioWorkletNode,
-      workletUrl: new URL("./body-worklet-processor.js", import.meta.url).href
+      workletUrl: new URL("./body-worklet-processor.js", import.meta.url).href,
+      onLevels: showLevels
     });
 
     const diagnostics = await session.start();
