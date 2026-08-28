@@ -273,3 +273,20 @@ UIを作る前に、4入力Rotorの係数モデルをオフライン実装した
 - 150 ms時定数の指数慣性モデルは停止命令で位相をリセットしなかった。
 
 これは係数と位相モデルの検証であり、実音、iPhone、AUv3、聴感、CPU負荷、UIを検証したものではない。研究状態は引き続き `active` とする。
+
+## 2026-08-28 synthetic audio probe
+
+係数試験を音声ストリームへ進め、同一、強相関、非相関、無音混在の4条件を一周するRotorで測定した。
+
+- renderer: [`rotor_audio_probe.py`](rotor_audio_probe.py)
+- tests: [`test_rotor_audio_probe.py`](test_rotor_audio_probe.py)
+- results and risk analysis: [`AUDIO_PROBE.md`](AUDIO_PROBE.md)
+
+既存試験と合わせた16件の単体試験は通過した。合成条件での主要観測:
+
+- identical: equal-power `+2.139480 dB RMS`; linear `0 dB`; correlation compensation `0 dB`。
+- strongly correlated: equal-power `+1.984025 dB`; linear `-0.132870 dB`; correlation compensation 約 `0 dB`。
+- unrelated: equal-power 約 `0 dB`; linear `-1.760954 dB`; correlation compensation 約 `0 dB`。
+- silence mixed: equal-powerとcorrelation compensation `-3.010300 dB`; linear `-4.771215 dB`。
+
+相関補正は数値上のレベル差を抑えたが、素材解析によって演奏者のクロスフェード則を変える。実音の聴感検証前に自動採用しない。研究状態は `active` のまま維持する。
