@@ -83,6 +83,19 @@ W3C Media Capture仕様では、裸の制約値は理想値として扱われ、
 - https://www.w3.org/TR/mediacapture-streams/
 - https://www.w3.org/TR/webaudio-1.1/
 
+### iPhone向けマイク診断ページ
+
+`mic-test.html` は最終UIではなく、実機でマイク取得と発音経路を分離確認する一画面の診断ページ。
+
+- `MIC START` を押すまで `AudioContext` を作らず、マイク許可も要求しない。
+- 出力は初期OFF。`MONITOR` を明示的にONにした場合だけ接続する。
+- `HOLD VOICE GATE` は押している間だけ開き、指が外れた場合、割込み、画面離脱時には閉じる。
+- 操作マクロは `SIZE / DECAY / BODY` だけを出す。
+- 録音、ルーパー、自動再生を持たない。
+- 診断欄は `requested / supported / actual` を表示するが、`deviceId / groupId` は表示しない。
+
+マイク取得にはsecure contextが必要なため、`mic-test.html` と同じディレクトリのJavaScriptを保ったままHTTPSで配信して開く。`file://` で直接開いた結果は実機検証の証拠にしない。フィードバックを避けるため、`MONITOR` をONにする前にイヤホンまたは外部出力を使う。
+
 2026-08-28のNode基準測定では、48 kHz / 128 samplesで30秒分を132.25 msで処理し、実時間に対する処理時間比は0.00441だった。これは同じコード経路がオフラインで十分速いことだけを示す。iPhoneのCPU負荷、AudioWorkletスケジューリング、入出力レイテンシー、発熱は未測定。
 
 ## 録音WAVを処理する
@@ -128,7 +141,7 @@ node process-wav.js INPUT.wav OUTPUT.wav deep
 
 - 人間の録音音声による母音、子音、息の比較。
 - iPhone実機の内蔵マイクとイヤホンマイク。
-- AudioWorklet、AVAudioEngine、AUv3への接続。
+- iPhone SafariでのAudioWorklet実行、AVAudioEngine、AUv3への接続。
 - 端末レイテンシー、CPU負荷、フィードバック耐性。
 - THE PIPE実機との聴感比較。
 - 4トラックField Looperへの統合。
