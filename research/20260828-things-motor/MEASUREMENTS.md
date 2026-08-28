@@ -54,7 +54,7 @@ Observed values:
 | Speed on first sample after stop command | `1.9971773273936189 Hz` |
 | First-sample phase advance after stop command | `4.1607860987391554e-05 rotations` |
 | Residual speed after 2 seconds | `3.235071277374988e-06 Hz` |
-| Maximum per-sample speed step | `0.0005547714816152016 Hz` |
+| Maximum per-sample speed step | `0.00027775848854738605 Hz` |
 
 The stop command does not reset phase or set speed to zero in one sample. The model therefore preserves coefficient continuity at the command boundary.
 
