@@ -193,7 +193,7 @@ Teenage Engineering製品に共通する「録る・時間を掴む・一時的�
 - 赤線タップでMute、650ms長押しでDelete
 - マイク停止時にTAKEイベントだけを消去
 
-検証は`tests/performance-take.test.mjs`と`tests/performance-take-integration.test.mjs`の合計12件、およびHTML内module scriptの構文確認まで完了。ブラウザ実行環境が取得できなかったため、実ブラウザでのモジュール読込み、音声操作、iPhone実機は未検証。
+検証は`tests/performance-take.test.mjs`と`tests/performance-take-integration.test.mjs`の合計12件、およびHTML内module scriptの構文確認まで完了。ローカルHTTP配信では`index.html`が`200 text/html`、`performance-take.mjs`が`200 text/javascript`で取得できた。ブラウザ実行環境が取得できなかったため、実ブラウザでのモジュール評価、音声操作、iPhone実機は未検証。
 
 ## 依存
 
