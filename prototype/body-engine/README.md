@@ -93,6 +93,7 @@ W3C Media Capture仕様では、裸の制約値は理想値として扱われ、
 - 操作マクロは `SIZE / DECAY / BODY` だけを出す。
 - 録音、ルーパー、自動再生を持たない。
 - 診断欄は `requested / supported / actual` を表示するが、`deviceId / groupId` は表示しない。
+- AudioWorkletが処理した入力とBODY出力のRMSを、波形ではなくdBFS数値で表示する。
 
 マイク取得にはsecure contextが必要なため、`mic-test.html` と同じディレクトリのJavaScriptを保ったままHTTPSで配信して開く。`file://` で直接開いた結果は実機検証の証拠にしない。フィードバックを避けるため、`MONITOR` をONにする前にイヤホンまたは外部出力を使う。
 
