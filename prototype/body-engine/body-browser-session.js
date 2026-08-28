@@ -1,3 +1,5 @@
+import { BodyBrowserSessionError } from "./body-browser-errors.js";
+
 export const BODY_MIC_CONSTRAINTS = Object.freeze({
   audio: Object.freeze({
     channelCount: Object.freeze({ ideal: 1 }),
@@ -50,11 +52,15 @@ export class BodyBrowserSession {
     }
     this.state = "starting";
     let stream = null;
+    let phase = "resume";
 
     try {
       await this.audioContext.resume();
+      phase = "worklet";
       await this.audioContext.audioWorklet.addModule(this.workletUrl);
+      phase = "microphone";
       stream = await this.mediaDevices.getUserMedia(BODY_MIC_CONSTRAINTS);
+      phase = "graph";
       const track = stream.getAudioTracks()[0];
       if (!track) throw new Error("microphone stream has no audio track");
 
@@ -88,7 +94,7 @@ export class BodyBrowserSession {
         for (const track of stream.getTracks()) track.stop();
       }
       this.state = "failed";
-      throw error;
+      throw new BodyBrowserSessionError(phase, error);
     }
   }
 
