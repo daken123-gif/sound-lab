@@ -35,7 +35,7 @@
 
 画像側から渡すのは、音色やエフェクト名ではなく「どこへ、どの状態で、どの程度接触したか」のフレームである。
 
-`contact-gesture.schema.json` が機械可読の境界、`acceptance-tests.md` が破綻を防ぐ検査条件である。`contact-gesture.mjs` はその境界を実行時に検査する参照実装、`implementation.md` は検証範囲を記録する。
+`contact-gesture.schema.json` が機械可読の境界、`acceptance-tests.md` が破綻を防ぐ検査条件である。`contact-gesture.mjs` はその境界を実行時に検査する参照実装、`implementation.md` は検証範囲を記録する。 `pointer-contact-adapter.mjs` はブラウザのPointer Eventを同じframeへ変換する研究用adapterである。
 
 ## 接触状態
 
@@ -86,6 +86,7 @@ iPhoneの通常タッチでは接触前の `approach` を観測できないた�
 - [x] 検証条件
 - [ ] Skulptur具体mapping
 - [x] 研究内の入力検証参照実装
+- [x] 研究内のPointer Event adapter
 - [ ] 製品コード統合
 - [ ] ブラウザruntime
 - [ ] iPhone実機
@@ -96,6 +97,9 @@ iPhoneの通常タッチでは接触前の `approach` を観測できないた�
 - `research/20260828-image-contact-bridge/contact-gesture.mjs`
 - `research/20260828-image-contact-bridge/contact-gesture.test.mjs`
 - `research/20260828-image-contact-bridge/implementation.md`
+- `research/20260828-image-contact-bridge/pointer-contact-adapter.mjs`
+- `research/20260828-image-contact-bridge/pointer-contact-adapter.test.mjs`
+- `research/20260828-image-contact-bridge/pointer-adapter.md`
 
 研究ディレクトリ内の参照実装だけを追加する。既存UI、DSP、Performance Take、Skulptur mappingは変更しない。
 
