@@ -305,3 +305,18 @@ Track参加状態を変える三方式を同一の係数モデルで比較した
 現時点では `HOLD` を既定値の先頭候補へ更新する。同一トラックが連続区画を所有するときはunityのdwellとして扱い、equal-power係数を重ねて最大+3.01 dBにしない。切替には48 kHzで5 ms（240 samples）の短い係数ランプを使う。
 
 これは係数領域の判断であり、実録音、動作中のRotor、iPhone出力での聴感は未検証である。研究状態は `active` のままとする。
+
+
+## 2026-08-28 moving participation switch probe
+
+停止位相での比較を、0.5 rotations/sで動き続けるRotorへ進めた。
+
+- renderer: [`rotor_switch_probe.py`](rotor_switch_probe.py)
+- tests: [`test_rotor_switch_probe.py`](test_rotor_switch_probe.py)
+- results: [`MOVING_SWITCH_PROBE.md`](MOVING_SWITCH_PROBE.md)
+
+既存試験と合わせた32件の単体試験は通過した。Track 4が鳴っていないphase 0.10で、即時切替の最大係数stepは `SKIP = 0.133742`、`HOLD/HOLE = 0.00005295` だった。後者は切替差ではなく通常の0.5 Hz回転による変化である。Track 4が強く鳴るphase 0.80では全方式の即時stepが `0.951077`、5 ms ramp後は `0.003983` になった。
+
+切替ランプは停止位置の係数を保存して追従させず、旧レイアウトと新レイアウトを毎sample現在位相で再計算し、その差分だけを補間する。この方式ならRotorを止めず、変更のない区画の動きも歪めない。
+
+合成正弦波での係数・WAV検証であり、声、環境音、硬いtransient、iPhone入出力でのclick聴感は未検証である。研究状態は `active` のままとする。
