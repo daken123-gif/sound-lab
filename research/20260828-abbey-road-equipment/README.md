@@ -1284,3 +1284,229 @@ mix / selected generation
   https://www.abbeyroad.com/news/abbey-road-rooms-room-22-transfer-archive-with-matthew-cocker-3475
 - Abbey Road — Beginner Studio Set-Up Guide  
   https://www.abbeyroad.com/news/abbey-roads-beginner-studio-set-up-guide-2566
+
+
+---
+
+## 42. EMI TG12410 Transfer / Mastering Console
+
+### 確認事実
+
+TG12410は、EMIが1970年代初頭にレコード・カッティング用として開発したtransfer console。1972年にCutting Room 6へ最初の卓が設置されたというAbbey Road技術者記録がある。
+
+単一の音色回路ではなく、次のモジュールで構成される。
+
+| モジュール | 歴史的役割 |
+|---|---|
+| TG12411 Input | 入力レベル、L/R balance、極性、テープ再生EQなど |
+| TG12412 Tone | 4帯域、固定周波数と離散形状のEQ |
+| TG12413 Limiter | Zener diodeを用いたcompressor / limiter |
+| TG12414 Filter | High-pass、Low-pass、Presence |
+| TG12416 Output | 出力、Sum/Difference型stereo spreader、監視 |
+
+Tone、Limiter、Filterは順序を変更でき、必要なモジュールだけを使う。InputとOutputは経路の両端に残る。
+
+Abbey Roadの現行マスタリング室でも、TG12410の入出力transformerだけを通す、デジタル処理後にflatで通す、特定EQだけを使うといった運用が確認できる。全モジュールを常時強く使う機材ではない。
+
+### TG12412 Toneの離散周波数
+
+Waves / Abbey Road共同マニュアルで公開されたモデル値:
+
+| Band | 周波数 |
+|---|---|
+| 1 | 32 / 45 / 64 / 91 / 128 Hz |
+| 2 | 181 / 256 / 362 / 512 / 724 Hz |
+| 3 | 1.02 / 1.45 / 2.05 / 2.6 / 3.25 kHz |
+| 4 | 4.1 / 5.8 / 8.1 / 11 / 16 kHz |
+
+各帯域はLow shelf、very wide bell、moderately wide bell、very narrow bell、High shelfの5形状。gain rangeは共同モデル上±10 dB。
+
+通常の連続可変parametric EQとして置換しない。TGの性格は周波数点だけでなく、隣接帯域へ及ぶcurveにある。
+
+---
+
+## 43. TG12413 Limiterと安全用Limiterの分離
+
+### 確認事実
+
+TG12413モデルにはOriginal、Limit、Modernの三種があるが、由来を分ける。
+
+- `Original`: 原TG12413のZener diode compressor。
+- `Limit`: 原機Zener limiter modeを基にした硬いknee。
+- `Modern`: 現代マスタリング向けにWaves / Abbey Roadが追加設計したVCA mode。
+- Sidechain filter、Ratio、Mixなどには現代プラグイン側の拡張が含まれる。
+- Recoveryは6段階だが、マニュアルは正確なmillisecond値へ単純変換しにくいと明記する。
+- `Limit`はbrickwall limiterではなく、transientが通ることを前提とする。
+
+### アプリへの採用
+
+```text
+MIX PRINT
+→ optional TG MASTER colour/dynamics
+→ independent export safety
+→ file
+```
+
+- TG12413型は音色・密度・過渡のまとまりを作る。
+- digital true-peak safetyはcodec変換や0 dBFS超過を防ぐ別処理。
+- TG型を使ったから安全な書き出しになるとは表示しない。
+- safety limiterを使ったからTGの音になるとも表示しない。
+- TG処理後とbypassを音量一致で比較する。
+- Original / Limitの正確なrecovery timeは創作しない。
+- Modern modeは歴史的原機ではなく、必要なら`CLEAN LIMIT`として別名・別経路へ置く。
+
+---
+
+## 44. TG12414 Filter、Spreader、Metering
+
+### Filter
+
+共同マニュアル上の固定点:
+
+- High-pass: 40 / 63 / 80 / 110 Hz
+- Presence: 0.5 / 0.8 / 1.2 / 1.8 / 2.8 / 4.2 / 6.5 / 10 kHz
+- Low-pass: 20 / 15 / 12 / 10 / 8 kHz
+
+Presenceは中程度に広いbell。Filterは音を派手にするためだけでなく、媒体へ送れない低域・高域、不要な成分を整理する段。
+
+### Spreader
+
+TG12416のSpreaderはSum / Difference matrixを用いてstereo widthを変更する。
+
+- widerだけでなくnarrowerにもできる。
+- mono互換を同時に確認する。
+- Side成分を増やすことを音質改善と同一視しない。
+- iPhoneの`WIDE`やADT panと二重に広げない。
+
+### Metering
+
+TG12410と共に使われた監視は一個のpeak meterではない。
+
+- PPM: peak level
+- VU: average signal level
+- Phase correlation: stereo関係
+- Gain Reduction: dynamicsの動作
+
+4トラックアプリでも、常時すべてを大表示せず、マスター確認時に`PEAK / AVG / PHASE / GR`を切り替える。phase値を良し悪しの点数にせず、MONO試聴と組み合わせる。
+
+---
+
+## 45. Tape Equalizerを音色プリセットにしない
+
+TG12411のTape Equalizerは本来、IEC / NAB規格が異なるテープを7.5または15 ipsで再生するとき、周波数応答を平坦へ戻す補正。
+
+共同プラグインでは音色用途にも残されているが、歴史的目的はテープ規格変換である。
+
+アプリでは:
+
+- 通常のデジタル録音で初期値`Flat`。
+- J37 formula選択と連動して勝手にIEC/NAB変換しない。
+- 外部テープ転送の規格が分かる場合だけ詳細機能として使用。
+- `Vintage`や`Warm`という名前へ変えない。
+- 規格不明の音源へ自動推定を行ったと表示しない。
+
+---
+
+## 46. Neumann VMS 80 / VMS 82とhalf-speed mastering
+
+### 物理カッティングの制約
+
+Neumann VMS 80はgroove spacing computerとcutting headでラッカー盤へ螺旋溝を刻む。
+
+カッティングでは同時に次を管理する。
+
+- 大きすぎるlevelによるdistortion
+- vocal sibilanceによる溝の破綻
+- 溝間隔が狭すぎるover-cut / skip
+- 小さすぎるlevelで目立つnoise
+- 強い高域でcutting headが過熱する危険
+
+Mastering Suite 7では改造VMS-82、Suite 6ではVMS-80、Miles Showellのhalf-speed工程では修復・改造したVMS 80が確認できる。
+
+### Half-speed
+
+half-speed masteringではsourceを半速再生し、33 1/3 rpm盤ならlatheを16 2/3 rpmで回す。
+
+- stylusが同じ溝形状を刻む時間が2倍になる。
+- 通常はcutting困難な高域が、半速時には扱いやすい中域へ移る。
+- 通常速度で再生すると音程と時間が元へ戻る。
+- 物理的なcutting headとgroove形成に対する技法。
+
+### デジタル・アプリとの境界
+
+offline renderを重くしただけで`half-speed mastered`とは呼ばない。物理旋盤を使わないため、同じ効果ではない。
+
+アプリへ移すのはhalf-speedの名称ではなく、real-time監視と高品質offline exportを分ける思想。
+
+- real-time: 低遅延、演奏継続を優先。
+- offline export: oversampling、true-peak、dither、完全なtail計算を許可。
+- `VINYL CHECK`: mono low-end、過剰Side、sibilance、低域peakを警告する監視。
+- `VINYL SOUND`: crackle、rumble、needle EQを自動追加しない。
+- 実際のvinyl master作成やカッティング完了とは表示しない。
+
+---
+
+## 47. 4トラックのMASTER / EXPORT境界
+
+### 信号経路
+
+```text
+RAW / generations
+→ track colour and dynamics
+→ shared chamber / plate
+→ RS56-style mix shape
+→ J37 BOUNCE = MIX PRINT
+→ optional TG MASTER
+   ├── INPUT
+   ├── TONE
+   ├── DYNAMICS
+   ├── FILTER
+   └── WIDTH
+→ export safety
+→ DIGITAL FILE
+```
+
+### 最小操作
+
+通常画面にTGの5モジュールを並べない。完成したバウンスを選んだ時だけ`MASTER`を開く。
+
+| 表示 | 内部動作 |
+|---|---|
+| `INPUT` | TG12411型level / balance / polarity確認 |
+| `TONE` | TG12412の離散4-band EQ |
+| `DYNAMICS` | TG12413 Original型を中心とする |
+| `FILTER` | TG12414固定HP / LP / Presence |
+| `WIDTH` | TG12416 Sum/Difference、初期値0 |
+| `SAFE` | 独立したdigital true-peak管理 |
+
+すべて初期値Offまたはneutral。MASTERを開いただけで音を変えない。
+
+### 二重処理を避ける
+
+- TrackにTG12345を使っても、MASTERのTG12410は別機材・別役割。
+- ただし両方を使えばtransistor colourは累積する。
+- J37を複数世代重ねた素材へ、MASTER tapeを自動追加しない。
+- RS56で大きく整形済みならTG Toneをneutralから開始。
+- ADT / WIDE / TG Spreaderが重なった場合はphase correlationとMONO確認を必須にする。
+- 大きい方を良い音と判断しないようA/B level matchを保つ。
+
+---
+
+## 48. マスタリング／カッティング追加一次資料
+
+- Abbey Road — Mastering Suite 7 with Alex Wharton  
+  https://www.abbeyroad.com/news/abbey-road-rooms-mastering-suite-7-with-alex-wharton-3238
+- Abbey Road — Mastering Suite 6 with Sean Magee and Oli Morgan  
+  https://www.abbeyroad.com/news/abbey-road-rooms-mastering-suite-6-with-sean-magee-and-oli-morgan-3248
+- Abbey Road — Mastering Suite 5 with Geoff Pesche  
+  https://www.abbeyroad.com/news/abbey-road-rooms-mastering-suite-5-with-geoff-pesche-3355
+- Abbey Road — TG12410 Room 5 Renovation  
+  https://www.abbeyroad.com/news/geoff-pesche-talks-us-through-the-state-of-the-art-renovations-to-his-mastering-suite-2326
+- Abbey Road — Neumann VMS 80 #GearThatMadeUs  
+  https://www.abbeyroad.com/news/neumann-vms-80-gearthatmadeus-3192
+- Abbey Road — Half-Speed Mastering with Miles Showell  
+  https://www.abbeyroad.com/news/what-is-half-speed-mastering-production-hub-2682
+- Abbey Road — Miles Showell on Remastering The White Album  
+  https://www.abbeyroad.com/news/miles-showell-on-remastering-the-white-album-2473
+- Waves / Abbey Road — TG Mastering Chain User Guide  
+  https://assets.wavescdn.com/pdf/plugins/abbey-road-tg-mastering-chain.pdf
