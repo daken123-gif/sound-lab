@@ -1,7 +1,0 @@
-interface:
-  display_name: "Sound Lab研究ルーター"
-  short_description: "音楽アプリ研究をGit正本へ接続し、証拠と採否を分離する"
-  default_prompt: "Use $sound-lab-research-router to continue this Sound Lab task from the current Git evidence."
-
-policy:
-  allow_implicit_invocation: true
