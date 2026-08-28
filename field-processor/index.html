@@ -27,7 +27,7 @@ const input=$('#input'),hpf=$('#hpf'),density=$('#density'),air=$('#air'),output
 function preampCurve(amount){const n=4096,c=new Float32Array(n),drive=db(amount),norm=Math.tanh(drive*1.035);for(let i=0;i<n;i++){const x=i*2/(n-1)-1,asym=x+.035*x*x;c[i]=Math.tanh(asym*drive)/norm}return c}
 const preampProfiles={
 body:{label:'BODY',bodyFreq:160,body:.018,presenceFreq:4300,presenceQ:.65,presence:-.022,airFreq:10500,air:-.012,airActivity:-.18,threshold:-4,thresholdDensity:-.22,ratioDensity:.035,attack:.012,release:.14,colorBase:.25,colorDensity:.005,driveDensity:.055,makeup:.35},
-open:{label:'OPEN',bodyFreq:220,body:-.006,presenceFreq:5200,presenceQ:.55,presence:.008,airFreq:11000,air:.014,airActivity:-.055,threshold:-2,thresholdDensity:-.13,ratioDensity:.018,attack:.006,release:.1,colorBase:.16,colorDensity:.0034,driveDensity:.032,makeup:.18},
+open:{label:'OPEN',bodyFreq:220,body:-.006,presenceFreq:3500,presenceQ:.55,presence:.012,airFreq:11000,air:.014,airActivity:-.055,threshold:-2,thresholdDensity:-.13,ratioDensity:.018,attack:.006,release:.1,colorBase:.16,colorDensity:.0034,driveDensity:.032,makeup:.18},
 focus:{label:'FOCUS',bodyFreq:150,body:-.004,presenceFreq:2400,presenceQMin:.55,presenceQMax:1.35,presence:.014,airFreq:7600,air:-.01,airActivity:-.1,threshold:-5,thresholdDensity:-.18,ratioDensity:.03,attack:.008,release:.11,colorBase:.22,colorDensity:.0042,driveDensity:.043,makeup:.27}
 };
 function currentProfile(){return preampProfiles[preampStyle]||preampProfiles.body}
