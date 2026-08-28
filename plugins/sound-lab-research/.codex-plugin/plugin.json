@@ -1,0 +1,18 @@
+{
+  "name": "sound-lab-research",
+  "version": "0.1.0",
+  "description": "Route Sound Lab music-app research and project work through current Git evidence with bias and governance checks.",
+  "author": {
+    "name": "daken123-gif"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Sound Lab Research",
+    "shortDescription": "Sound Lab研究をGit正本へ接続します。",
+    "longDescription": "Sound Labの研究・設計・実装・統合を現在のGit証拠へ接続し、バイアス、ガバナンス、採用状態、検証状態を分離して扱います。",
+    "developerName": "daken123-gif",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Sound Labの現在のGit証拠を読み、バイアスチェックとガバナンスチェックを行ってから、この作業を続けてください。"
+  }
+}
