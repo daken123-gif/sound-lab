@@ -1,4 +1,5 @@
 import { BodyRealtimeCore } from "./body-realtime-core.js";
+import { BodyLevelMeter } from "./body-level-meter.js";
 
 class SomaBodyProcessor extends AudioWorkletProcessor {
   static get parameterDescriptors() {
@@ -15,6 +16,7 @@ class SomaBodyProcessor extends AudioWorkletProcessor {
   constructor() {
     super();
     this.core = new BodyRealtimeCore(sampleRate);
+    this.levelMeter = new BodyLevelMeter(2048);
     this.monoInput = new Float32Array(0);
   }
 
@@ -39,6 +41,8 @@ class SomaBodyProcessor extends AudioWorkletProcessor {
     }
 
     this.core.processBlock(this.monoInput, outputChannels[0], parameters);
+    const levels = this.levelMeter.add(this.monoInput, outputChannels[0]);
+    if (levels) this.port.postMessage(levels);
     for (let channel = 1; channel < outputChannels.length; channel += 1) {
       outputChannels[channel].set(outputChannels[0]);
     }
