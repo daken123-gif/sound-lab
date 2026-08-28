@@ -6,6 +6,14 @@
 - 研究対象: Unfiltered Audio BattleFX
 - 現在の問い: BattleFX固有の「残響バッファを別周期でchokeする」構造は、4トラック録音素材を人間が再演奏する個人用iPhone楽器へ何を持ち込めるか。
 
+## 継続研究
+
+- [Phase 2 — 三時計と演奏文法](./PHASE_2.md)
+  - material / interruption / instabilityの三時計
+  - Chokeの内部位置による音楽的差
+  - S.RATEによる時間とpitchの結合
+  - `EXCITE / STARVE / BREAK / LEAN / KILL / CATCH`の演奏単位
+
 ## 先に固定する現在判断
 
 BattleFXをField Looperのマスターエフェクトまたは主演奏面として採用しない。Git正本の現行判断では、録音後の主演奏面はSkulptur型であり、KAOSS中心階層は退役済みである。
@@ -390,4 +398,3 @@ Gitで本文を取得できていない研究の内容を補わない。現時�
 - 主演奏面: `no`
 - master effect: `no`
 - 実装開始: `no`
-
