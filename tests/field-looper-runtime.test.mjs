@@ -41,7 +41,7 @@ test('finalizes real captured samples into a playable loop', () => {
   assert.match(html, /new Float32Array\(track\.frames\)/);
   assert.match(html, /context\.createBuffer\(1,data\.length,context\.sampleRate\)/);
   assert.match(html, /const peakData=buildPeaks\(data\)/);
-  assert.match(html, /source\.buffer=track\.buffer/);
+  assert.match(html, /source\.buffer=reverse\?track\.reverseBuffer:track\.buffer/);
   assert.match(html, /source\.loop=true/);
 });
 
@@ -52,8 +52,8 @@ test('draws a growing real waveform while recording', () => {
 });
 
 test('renders an animated playhead with current and total time', () => {
-  assert.match(html, /drawTrack\(track,position\)/);
-  assert.match(html, /current\/track\.buffer\.duration/);
+  assert.match(html, /drawTrack\(track,local\/track\.buffer\.duration\)/);
+  assert.match(html, /const position=transportPosition\(\)/);
   assert.match(html, /formatTime\(seconds\).*formatTime\(total\)/);
   assert.match(html, /draw\.lineTo\(x,height\)/);
 });
@@ -72,5 +72,39 @@ test('removes the rejected generic dark KAOSS interface', () => {
 
 test('has separate portrait and compact landscape layouts', () => {
   assert.match(html, /@media\(orientation:portrait\)/);
-  assert.match(html, /@media\(max-height:420px\) and \(orientation:landscape\)/);
+  assert.match(html, /@media\(max-height:430px\) and \(orientation:landscape\)/);
+});
+
+test('schedules all recorded tracks from one shared tape clock', () => {
+  assert.match(html, /const transport=\{playing:false,duration:0,basePosition:0,anchorAt:0/);
+  assert.match(html, /function restartSources\(position,when=/);
+  assert.match(html, /startTrackSource\(track,when,position\)/);
+  assert.match(html, /source\.start\(when,/);
+  assert.match(html, /transportPosition\(at=context\?\.currentTime\|\|0\)/);
+});
+
+test('shows four real waveforms on one playable composite surface', () => {
+  assert.match(html, /id="compositeWave"[^>]*aria-label="4トラック合成波形"/);
+  assert.match(html, /function drawComposite\(\)/);
+  assert.match(html, /tracks\.forEach\(\(track,trackIndex\)=>/);
+  assert.match(html, /transport\.loopStart\/transport\.duration\*width/);
+  assert.match(html, /transportPosition\(\)\/transport\.duration\*width/);
+});
+
+test('implements the researched time gestures instead of a generic XY pad', () => {
+  for (const label of ['1 BAR', '1/2', '1/4', '1/8', '1/16', 'GRAIN']) {
+    assert.match(html, new RegExp(`name:'${label.replace('/', '\\/')}'`));
+  }
+  assert.match(html, /gesture\.holdTimer=setTimeout/);
+  assert.match(html, /recordTake\('grab-start'/);
+  assert.match(html, /setTransportLoop\(Math\.min\(gesture\.startPosition,position\)/);
+  assert.match(html, /dx<-52&&transport\.direction!==-1/);
+  assert.match(html, /recordTake\('direction'/);
+});
+
+test('performance take remains explicitly armed and records gesture events only', () => {
+  assert.match(html, /take=\{recording:false,nextId:1,events:\[\]\}/);
+  assert.match(html, /if\(!take\.recording\)return/);
+  assert.match(html, /take\.recording=!take\.recording/);
+  assert.match(html, /take\.events\.push\(/);
 });
