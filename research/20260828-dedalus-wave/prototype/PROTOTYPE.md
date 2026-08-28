@@ -13,14 +13,22 @@ not change the research state from `active`.
 - feedback adjustable from `0.0` to the research ceiling `1.5`;
 - a DC blocker and `tanh` soft clipping inside the feedback loop;
 - deterministic reset and parameter clamping.
+- a separate four-line feedback delay network candidate;
+- normalized Hadamard feedback mixing;
+- independent fractional delay coordinates for the four network lines;
+- per-line damping, DC blocking, and soft clipping;
+- a stereo return derived from two line pairs.
 
 ## Deliberately absent
 
-- the proposed four-line feedback delay network;
 - any claim about Dedalus's unpublished internal line count or matrix;
 - stereo crossfeed and random panning;
 - Scrub/Drift modulation, pitch mode, ducking, or gate behavior;
 - Loopy track routing, Skulptur ordering, UI, AUv3, and iPhone integration.
+
+The four-line network remains separate from the dual-head variable-delay cell.
+Connecting them would add four simultaneous crossfades and must be measured
+before it becomes the next topology.
 
 The absence of those parts keeps the first experiment on the narrow question:
 can a delay-time jump be made without an amplitude hole while recursive audio
@@ -38,6 +46,10 @@ The test executable checks impulse timing, fractional interpolation, the
 equal-power transition envelope, transition completion, parameter clamps, and
 100,000 samples at feedback `1.2` for non-finite or unbounded output.
 
+The second test executable checks normalized-Hadamard energy preservation,
+per-line impulse timing, reset behavior, parameter clamps, and 200,000 samples
+of the four-line network at feedback `1.2`.
+
 ## Result on 2026-08-28
 
 The isolated host test passed with GCC under C++17 and warnings treated as
@@ -54,6 +66,9 @@ The same assertions also passed with UndefinedBehaviorSanitizer. The CMake
 wrapper was not executed because CMake is unavailable in the test environment.
 AddressSanitizer was inconclusive because LeakSanitizer cannot inspect `/proc`
 under the environment's tracing boundary; no AddressSanitizer pass is claimed.
+
+The four-line network was subsequently built with the same C++17 warning
+policy. Its host assertions and UndefinedBehaviorSanitizer run also passed.
 
 These results verify only the host-side prototype and its listed assertions.
 Audio quality, click energy on real material, CPU cost, iPhone behavior, and

@@ -6,10 +6,18 @@ add_executable(temporal_memory_tests
     TemporalMemoryPrototypeTests.cpp
 )
 
-target_compile_features(temporal_memory_tests PRIVATE cxx_std_17)
-target_compile_options(temporal_memory_tests PRIVATE
-    $<$<CXX_COMPILER_ID:Clang,GNU>:-Wall;-Wextra;-Wpedantic;-Werror>
+add_executable(four_line_fdn_tests
+    FourLineFeedbackNetwork.cpp
+    FourLineFeedbackNetworkTests.cpp
 )
+
+foreach(target temporal_memory_tests four_line_fdn_tests)
+    target_compile_features(${target} PRIVATE cxx_std_17)
+    target_compile_options(${target} PRIVATE
+        $<$<CXX_COMPILER_ID:Clang,GNU>:-Wall;-Wextra;-Wpedantic;-Werror>
+    )
+endforeach()
 
 enable_testing()
 add_test(NAME temporal_memory_tests COMMAND temporal_memory_tests)
+add_test(NAME four_line_fdn_tests COMMAND four_line_fdn_tests)
