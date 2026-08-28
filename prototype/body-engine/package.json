@@ -1,0 +1,13 @@
+{
+  "name": "soma-pipe-body-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "render-demo": "node render-demo.js",
+    "process-wav": "node process-wav.js",
+    "benchmark": "node benchmark-realtime.js",
+    "verify-browser-assets": "node verify-browser-assets.js"
+  }
+}
