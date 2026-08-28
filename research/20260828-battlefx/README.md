@@ -14,6 +14,12 @@
   - S.RATEによる時間とpitchの結合
   - `EXCITE / STARVE / BREAK / LEAN / KILL / CATCH`の演奏単位
 
+- [Phase 3 — 4トラック共有テイルバス](./PHASE_3.md)
+  - EXCITE開始時のsource latch
+  - release後のSTARVEとwet-only CATCH
+  - pre Skulptur returnとKILL優先順位
+  - BREAK_ECHO / BREAK_ROOMの独立契約
+
 ## 先に固定する現在判断
 
 BattleFXをField Looperのマスターエフェクトまたは主演奏面として採用しない。Git正本の現行判断では、録音後の主演奏面はSkulptur型であり、KAOSS中心階層は退役済みである。
@@ -398,3 +404,4 @@ Gitで本文を取得できていない研究の内容を補わない。現時�
 - 主演奏面: `no`
 - master effect: `no`
 - 実装開始: `no`
+
