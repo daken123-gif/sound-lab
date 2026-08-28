@@ -103,8 +103,30 @@ test('implements the researched time gestures instead of a generic XY pad', () =
 });
 
 test('performance take remains explicitly armed and records gesture events only', () => {
-  assert.match(html, /take=\{recording:false,nextId:1,events:\[\]\}/);
-  assert.match(html, /if\(!take\.recording\)return/);
-  assert.match(html, /take\.recording=!take\.recording/);
+  assert.match(html, /take=\{recording:false,playing:false,nextId:1,events:\[\]/);
+  assert.match(html, /if\(!take\.recording\|\|!context\)return/);
+  assert.match(html, /take\.recording=true/);
   assert.match(html, /take\.events\.push\(/);
+});
+
+test('replays take events on an elapsed performance clock', () => {
+  assert.match(html, /takeTime:Math\.max\(0,context\.currentTime-take\.startedAt\)/);
+  assert.match(html, /function processTakePlayback\(\)/);
+  assert.match(html, /context\.currentTime-take\.playStartedAt/);
+  assert.match(html, /applyTakeEvent\(take\.events\[take\.cursor\+\+\]\)/);
+  assert.match(html, /id="runTakeButton"[^>]*>RUN TAKE<\/button>/);
+});
+
+test('replay applies gestures without recording a second take', () => {
+  assert.match(html, /setTransportLoop\(value\.start,value\.end,\{record:false\}\)/);
+  assert.match(html, /seekTransport\(value\.position,\{record:false\}\)/);
+  assert.match(html, /toggleDirection\(value\.direction,\{record:false\}\)/);
+});
+
+test('take markers support tap mute and hold delete without touching audio buffers', () => {
+  assert.match(html, /function nearestTakeEvent\(event,threshold=12\)/);
+  assert.match(html, /item\.muted=!item\.muted/);
+  assert.match(html, /take\.events\.splice\(index,1\)/);
+  assert.match(html, /EVENT DELETE — AUDIO SAFE/);
+  assert.doesNotMatch(html, /editEventId[\s\S]{0,1000}(?:buffer=null|clearTrack\()/);
 });
