@@ -18,6 +18,7 @@ not change the research state from `active`.
 - independent fractional delay coordinates for the four network lines;
 - per-line damping, DC blocking, and soft clipping;
 - a stereo return derived from two line pairs.
+- independent dual-head delay-time jumps on all four FDN lines.
 
 ## Deliberately absent
 
@@ -26,9 +27,9 @@ not change the research state from `active`.
 - Scrub/Drift modulation, pitch mode, ducking, or gate behavior;
 - Loopy track routing, Skulptur ordering, UI, AUv3, and iPhone integration.
 
-The four-line network remains separate from the dual-head variable-delay cell.
-Connecting them would add four simultaneous crossfades and must be measured
-before it becomes the next topology.
+The four-line network now contains the dual-head transition mechanism on each
+line. The original mono cell remains as the smaller reference experiment; the
+network does not instantiate four copies of its independent feedback loop.
 
 The absence of those parts keeps the first experiment on the narrow question:
 can a delay-time jump be made without an amplitude hole while recursive audio
@@ -48,7 +49,9 @@ equal-power transition envelope, transition completion, parameter clamps, and
 
 The second test executable checks normalized-Hadamard energy preservation,
 per-line impulse timing, reset behavior, parameter clamps, and 200,000 samples
-of the four-line network at feedback `1.2`.
+of the four-line network at feedback `1.2`. It also checks that changing one
+line's delay creates no amplitude hole, completes in the requested number of
+samples, and does not move the other three read coordinates.
 
 ## Result on 2026-08-28
 
@@ -69,6 +72,11 @@ under the environment's tracing boundary; no AddressSanitizer pass is claimed.
 
 The four-line network was subsequently built with the same C++17 warning
 policy. Its host assertions and UndefinedBehaviorSanitizer run also passed.
+
+The dual-head mechanism was then integrated per line. Host and undefined-
+behavior tests passed again, including simultaneous delay jumps inside the
+200,000-sample high-feedback run. Retargeting a line before its current
+crossfade completes remains explicitly unverified.
 
 These results verify only the host-side prototype and its listed assertions.
 Audio quality, click energy on real material, CPU cost, iPhone behavior, and

@@ -31,6 +31,7 @@ FourLineFeedbackNetwork::Config shortDelayConfig() {
     config.sampleRate = 1000.0;
     config.maxDelaySeconds = 0.1;
     config.delaySeconds = {0.003, 0.005, 0.007, 0.011};
+    config.crossfadeSamples = 32;
     config.feedback = 0.0F;
     config.damping = 0.0F;
     return config;
@@ -66,6 +67,12 @@ void testProtectedFeedbackStaysFinite() {
 
     float peak = 0.0F;
     for (int sample = 0; sample < 200000; ++sample) {
+        if (sample == 100) {
+            network.setLineDelaySeconds(0, 0.013);
+            network.setLineDelaySeconds(1, 0.017);
+            network.setLineDelaySeconds(2, 0.019);
+            network.setLineDelaySeconds(3, 0.023);
+        }
         const auto frame = network.process(sample == 0 ? 1.0F : 0.0F);
         expect(std::isfinite(frame.left) && std::isfinite(frame.right),
                "stereo return must remain finite");
@@ -75,6 +82,37 @@ void testProtectedFeedbackStaysFinite() {
         }
     }
     expect(peak <= 2.0F, "protected feedback return must remain bounded");
+}
+
+void testPerLineDelayJumpUsesDualHeads() {
+    FourLineFeedbackNetwork network(shortDelayConfig());
+    for (int sample = 0; sample < 100; ++sample) {
+        network.process(1.0F);
+    }
+
+    network.setLineDelaySeconds(0, 0.013);
+    expect(network.isLineCrossfading(0), "the selected line must enter a transition");
+
+    float selectedMinimum = 1.0F;
+    float selectedMaximum = 0.0F;
+    for (int sample = 0; sample < 32; ++sample) {
+        network.process(1.0F);
+        const auto& lines = network.lastLineOutputs();
+        selectedMinimum = std::min(selectedMinimum, lines[0]);
+        selectedMaximum = std::max(selectedMaximum, lines[0]);
+        expect(std::abs(lines[1] - 0.5F) < 1.0e-6F &&
+                   std::abs(lines[2] - 0.5F) < 1.0e-6F &&
+                   std::abs(lines[3] - 0.5F) < 1.0e-6F,
+               "changing one delay coordinate must not move the other heads");
+    }
+
+    expect(selectedMinimum >= 0.5F,
+           "the dual-head line transition must not create an amplitude hole");
+    expect(selectedMaximum <= 0.708F,
+           "the equal-power line transition must remain within its expected crest");
+    expect(!network.isLineCrossfading(0), "the line transition must finish on schedule");
+    expect(std::abs(network.lineDelaySeconds(0) - 0.013) < 1.0e-9,
+           "the selected line must retain its new delay coordinate");
 }
 
 void testResetClearsRecursiveMemory() {
@@ -97,10 +135,13 @@ void testParameterClamping() {
     FourLineFeedbackNetwork network(shortDelayConfig());
     network.setFeedback(9.0F);
     network.setDamping(-1.0F);
+    network.setLineDelaySeconds(0, -1.0);
     expect(std::abs(network.feedback() - 1.5F) < 1.0e-6F,
            "feedback must clamp to the research ceiling");
     expect(std::abs(network.damping()) < 1.0e-6F,
            "damping must clamp to zero");
+    expect(std::abs(network.lineDelaySeconds(0) - 0.001) < 1.0e-9,
+           "line delay must clamp to one sample");
 }
 } // namespace
 
@@ -108,6 +149,7 @@ int main() {
     testOrthogonalMixPreservesEnergy();
     testEachLineKeepsItsOwnDelayCoordinate();
     testProtectedFeedbackStaysFinite();
+    testPerLineDelayJumpUsesDualHeads();
     testResetClearsRecursiveMemory();
     testParameterClamping();
 

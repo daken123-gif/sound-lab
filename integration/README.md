@@ -41,3 +41,7 @@
 - `coverage-gap`: 名称や判断はあるが、根拠研究本文をGitで取得できない
 
 `candidate`、`adopted`、`implemented-unverified`、`validated`を混同しない。
+
+## 候補bridge
+
+- [画像接触研究 → Sound Lab 接触入力bridge](../research/20260828-image-contact-bridge/README.md) — `candidate / research-only`。画像研究から接触状態だけを受け取り、Skulpturの具体DSP・タッチ割当・UIは固定しない。画像研究側の安定したGit locatorは `coverage-gap`。
