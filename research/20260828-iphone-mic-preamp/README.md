@@ -96,3 +96,14 @@ MIC
 - この場合は入力経路へ `FALLBACK` を表示する。
 - `NotAllowedError`、`NotFoundError`、`NotReadableError`、`OverconstrainedError` を別の日本語表示にした。
 - 模擬検査で、内蔵マイク取得失敗時に初期ストリームが維持され、成功時だけ初期ストリームが停止されることを確認した。
+
+
+## 2026-08-28 ANALOG周波数色付け
+
+- 操作子は増やさず、DENSITYへ3段の穏やかなカーブを連動させた。
+- BODY: 160 Hzローシェルフ、DENSITY 100%で +1.8 dB。
+- PRESENCE: 4.3 kHz、Q 0.65のピーキング、DENSITY 100%で -2.2 dB。
+- AIR: 10.5 kHzハイシェルフ、DENSITY 100%で -1.2 dB。
+- DENSITY 0%では3段とも0 dBとなり、歪み量も最小へ戻る。
+- CLEAN経路は従来どおりTRIM → HPF → LPFから直接出力し、周波数色付けを通さない。
+- 狙いは低域の胴鳴りを少し足し、iPhone内蔵マイクで硬く感じやすい中高域と最上部を穏やかに抑えること。実機聴感は未検証。
