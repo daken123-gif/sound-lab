@@ -2,6 +2,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { BodyEngine } from "./body-engine.js";
+import { writeMonoWav } from "./wav-io.js";
 
 const sampleRate = 48000;
 const here = dirname(fileURLToPath(import.meta.url));
@@ -101,29 +102,6 @@ function normalize(input, peak = 0.86) {
   return Float32Array.from(input, sample => sample * gain);
 }
 
-function writeMonoWav(path, samples) {
-  const dataLength = samples.length * 2;
-  const buffer = Buffer.alloc(44 + dataLength);
-  buffer.write("RIFF", 0);
-  buffer.writeUInt32LE(36 + dataLength, 4);
-  buffer.write("WAVE", 8);
-  buffer.write("fmt ", 12);
-  buffer.writeUInt32LE(16, 16);
-  buffer.writeUInt16LE(1, 20);
-  buffer.writeUInt16LE(1, 22);
-  buffer.writeUInt32LE(sampleRate, 24);
-  buffer.writeUInt32LE(sampleRate * 2, 28);
-  buffer.writeUInt16LE(2, 32);
-  buffer.writeUInt16LE(16, 34);
-  buffer.write("data", 36);
-  buffer.writeUInt32LE(dataLength, 40);
-  for (let index = 0; index < samples.length; index += 1) {
-    const sample = clamp(samples[index], -1, 1);
-    buffer.writeInt16LE(Math.round(sample * (sample < 0 ? 32768 : 32767)), 44 + index * 2);
-  }
-  writeFileSync(path, buffer);
-}
-
 function measure(samples) {
   let sumSquares = 0;
   let peak = 0;
@@ -164,10 +142,10 @@ const gap = silence(0.55);
 const comparison = concatenate([phrase, gap, light, gap, deep]);
 
 mkdirSync(outputDirectory, { recursive: true });
-writeMonoWav(join(outputDirectory, "body-input-synthetic.wav"), phrase);
-writeMonoWav(join(outputDirectory, "body-light.wav"), light);
-writeMonoWav(join(outputDirectory, "body-deep.wav"), deep);
-writeMonoWav(join(outputDirectory, "body-comparison.wav"), comparison);
+writeMonoWav(join(outputDirectory, "body-input-synthetic.wav"), phrase, sampleRate);
+writeMonoWav(join(outputDirectory, "body-light.wav"), light, sampleRate);
+writeMonoWav(join(outputDirectory, "body-deep.wav"), deep, sampleRate);
+writeMonoWav(join(outputDirectory, "body-comparison.wav"), comparison, sampleRate);
 
 const report = {
   source: "synthetic vowel, consonant-like onset, and breath test signal",
