@@ -693,3 +693,60 @@ Gestureを三周反復するあいだ、DRIFTは別の連続時計で進めた�
 - Python構文検査に成功
 - JSONのSHA-256は`c3c1e22a0077ee856aebafdc30ce4ef6d3cef5f9ad4744a0f867e3c48115aa6b`
 - 聴感、実時間Tempo変更、実機一致、製品実装は未検証
+
+## 30. 音響検証4: Captureの録音長別境界処理
+
+ボタンを離した任意の地点から即座に反復を始める場合、180 msの短い断片と2.4秒のフレーズへ同じ固定クロスフェードを使えるかを、48 kHzの決定論的な合成音で検証した。これはChroma Console実機のCapture処理を復元したものではない。
+
+比較した三つの録音長:
+
+| 録音長 | 適応Overlap | 録音に占める割合 | 再生周期 |
+|---:|---:|---:|---:|
+| 180 ms | 45 ms | 25.00% | 135 ms |
+| 650 ms | 30 ms | 4.62% | 620 ms |
+| 2.4秒 | 10 ms | 0.42% | 2.39秒 |
+
+固定120 msは180 ms録音の`66.67%`を占め、対称Overlapでは録音の半分を超えるため成立しない。録音長に応じて境界処理を変える必要がある。
+
+境界の異常度を「境界の一段差 ÷ 波形内の通常の一段差中央値」で比較した。
+
+| 録音長 | 未処理 | 適応Overlap後 | 境界差の減少 |
+|---:|---:|---:|---:|
+| 180 ms | `21.63倍` | `1.05倍` | `26.03 dB` |
+| 650 ms | `41.58倍` | `0.75倍` | `34.74 dB` |
+| 2.4秒 | `44.61倍` | `0.17倍` | `48.47 dB` |
+
+短い録音では元の長さの大きな割合を重ね、密な反復へ変える。長い録音では境界を隠す最小限だけを重ね、フレーズ長をほぼ残す。この一つの機構で、短いCaptureのサステイン化と長いCaptureのフレーズループを連続的に扱える可能性がある。
+
+ただし今回確認したのは境界段差と高域成分の低下であり、音楽的なドローンに聞こえることまでは確認していない。
+
+採用候補:
+
+1. `recordedDuration`、`overlapDuration`、`playbackDuration`を別に保持する
+2. 短いCaptureでは録音長の割合でOverlapを決める
+3. 長いCaptureでは数ms単位の上限へ収束させる
+4. 表示上の録音長を、短縮後の再生周期へ無断で置き換えない
+5. 新規録音は旧CaptureへOverdubせず、録音完了時に一単位で置換する
+
+未検証:
+
+- 声、環境音、打楽器、持続音による聴感比較
+- Stereo素材の左右位相
+- 極端に短いタップ録音の下限
+- 録音置換中のクリック回避
+- Capture PRE／POSTの切替挙動
+- 実機Captureとの一致
+- iPhone上のリアルタイム負荷
+
+実験資料:
+
+- [`experiments/capture_boundary_model.py`](experiments/capture_boundary_model.py)
+- [`experiments/capture-boundary-results.md`](experiments/capture-boundary-results.md)
+- [`experiments/capture-boundary-metrics.json`](experiments/capture-boundary-metrics.json)
+
+検証状態:
+
+- 二回実行でJSONがbyte単位で一致
+- Python構文検査に成功
+- JSONのSHA-256は`9e66c6ee873785b1f87e8d74e30d00568b1c19600ecf671e40bbda246df377c8`
+- 聴感、実機一致、PRE／POST、製品実装は未検証
