@@ -19,8 +19,11 @@
     .running #status::before { background:#9fffc8; box-shadow:0 0 14px #75ffad; }
     #start { position:absolute; z-index:3; left:50%; top:50%; width:152px; height:152px; transform:translate(-50%,-50%); border:1px solid rgba(208,255,228,.3); border-radius:50%; color:#e9fff2; background:rgba(11,22,18,.58); backdrop-filter:blur(18px); font:500 17px/1 ui-rounded,-apple-system,sans-serif; letter-spacing:.12em; box-shadow:0 24px 70px rgba(0,0,0,.45), inset 0 0 40px rgba(160,255,204,.05); }
     .running #start { width:70px; height:70px; top:auto; bottom:max(26px,env(safe-area-inset-bottom)); font-size:11px; opacity:.72; }
-    #readout { position:absolute; z-index:2; left:20px; bottom:max(28px,env(safe-area-inset-bottom)); color:#aebbb5; font-size:11px; line-height:1.7; letter-spacing:.1em; }
+    #readout { position:absolute; z-index:2; left:20px; right:20px; bottom:max(28px,env(safe-area-inset-bottom)); color:#aebbb5; font-size:11px; line-height:1.7; letter-spacing:.1em; }
     .running #readout { bottom:max(110px,calc(env(safe-area-inset-bottom) + 92px)); }
+    .meter { display:grid; grid-template-columns:54px 1fr 34px; gap:10px; align-items:center; margin-top:7px; }
+    .track { height:4px; overflow:hidden; border-radius:4px; background:#25302c; }
+    .fill { width:0%; height:100%; border-radius:4px; background:#9fffc8; box-shadow:0 0 10px #75ffad; transition:width 50ms linear; }
     #hint { position:absolute; z-index:2; left:50%; top:calc(50% + 96px); transform:translateX(-50%); white-space:nowrap; color:#74817c; font-size:11px; letter-spacing:.08em; }
     .running #hint { display:none; }
   </style>
@@ -30,7 +33,11 @@
     <div class="top"><span>AMBIENT LOOP</span><span id="status">停止中</span></div>
     <button id="start" type="button">聴きはじめる</button>
     <div id="hint">マイクの使用を許可してください</div>
-    <div id="readout"><div id="space">SPACE 46</div><div id="return">RETURN 34</div></div>
+    <div id="readout">
+      <div id="space">SPACE 46</div><div id="return">RETURN 34</div>
+      <div class="meter"><span>INPUT</span><div class="track"><div id="inputFill" class="fill"></div></div><span id="inputValue">0</span></div>
+      <div class="meter"><span>OUTPUT</span><div class="track"><div id="outputFill" class="fill"></div></div><span id="outputValue">0</span></div>
+    </div>
   </main>
   <script>
     const field = document.querySelector('#field');
@@ -38,8 +45,12 @@
     const status = document.querySelector('#status');
     const spaceText = document.querySelector('#space');
     const returnText = document.querySelector('#return');
+    const inputFill = document.querySelector('#inputFill');
+    const outputFill = document.querySelector('#outputFill');
+    const inputValue = document.querySelector('#inputValue');
+    const outputValue = document.querySelector('#outputValue');
     let ctx, stream, source, analyser, raf, wakeLock;
-    let delay, feedback, filter, wet, dry, master;
+    let inputAnalyser, delay, feedback, filter, wet, dry, monitor, master;
     let running = false;
 
     const setSurface = (x, y) => {
@@ -60,12 +71,20 @@
     };
 
     const meter = () => {
-      const data = new Uint8Array(analyser.frequencyBinCount);
-      analyser.getByteTimeDomainData(data);
-      let sum = 0;
-      for (const n of data) { const v = (n - 128) / 128; sum += v * v; }
-      const rms = Math.sqrt(sum / data.length);
-      field.style.setProperty('--level', String(Math.min(.72, .06 + rms * 4)));
+      const level = node => {
+        const data = new Uint8Array(node.fftSize);
+        node.getByteTimeDomainData(data);
+        let sum = 0;
+        for (const n of data) { const v = (n - 128) / 128; sum += v * v; }
+        return Math.sqrt(sum / data.length);
+      };
+      const input = level(inputAnalyser);
+      const output = level(analyser);
+      const inputPercent = Math.min(100, Math.round(input * 520));
+      const outputPercent = Math.min(100, Math.round(output * 420));
+      inputFill.style.width = `${inputPercent}%`; outputFill.style.width = `${outputPercent}%`;
+      inputValue.textContent = inputPercent; outputValue.textContent = outputPercent;
+      field.style.setProperty('--level', String(Math.min(.72, .06 + output * 4)));
       raf = requestAnimationFrame(meter);
     };
 
@@ -76,6 +95,8 @@
         echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1
       }});
       source = ctx.createMediaStreamSource(stream);
+      inputAnalyser = ctx.createAnalyser(); inputAnalyser.fftSize = 256;
+      monitor = ctx.createGain(); monitor.gain.value = 2.4;
       filter = ctx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 3600; filter.Q.value = 1.1;
       delay = ctx.createDelay(1.2); delay.delayTime.value = .46;
       feedback = ctx.createGain(); feedback.gain.value = .34;
@@ -85,8 +106,10 @@
       master.threshold.value = -16; master.knee.value = 5; master.ratio.value = 14; master.attack.value = .002; master.release.value = .16;
       analyser = ctx.createAnalyser(); analyser.fftSize = 256;
 
-      source.connect(dry).connect(master);
-      source.connect(filter).connect(delay).connect(wet).connect(master);
+      source.connect(inputAnalyser);
+      source.connect(monitor);
+      monitor.connect(dry).connect(master);
+      monitor.connect(filter).connect(delay).connect(wet).connect(master);
       delay.connect(feedback).connect(filter);
       master.connect(analyser).connect(ctx.destination);
       running = true;
@@ -107,6 +130,8 @@
       document.body.classList.remove('running');
       status.textContent = '停止中'; button.textContent = '聴きはじめる';
       field.style.setProperty('--level', '.08');
+      inputFill.style.width = outputFill.style.width = '0%';
+      inputValue.textContent = outputValue.textContent = '0';
     }
 
     button.addEventListener('click', async (event) => {
