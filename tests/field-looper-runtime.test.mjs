@@ -33,15 +33,34 @@ test('captures with AudioWorklet and retains a Safari fallback', () => {
 
 test('writes microphone samples only into an explicitly recording track', () => {
   assert.match(html, /if\(track\.state!=='recording'\)continue/);
-  assert.match(html, /track\.chunks\.push\(channel\.slice\(0,count\)\)/);
+  assert.match(html, /const copy=channel\.slice\(0,count\);track\.chunks\.push\(copy\)/);
   assert.match(html, /track\.frames\+=count/);
 });
 
 test('finalizes real captured samples into a playable loop', () => {
   assert.match(html, /new Float32Array\(track\.frames\)/);
   assert.match(html, /context\.createBuffer\(1,data\.length,context\.sampleRate\)/);
+  assert.match(html, /const peakData=buildPeaks\(data\)/);
   assert.match(html, /source\.buffer=track\.buffer/);
   assert.match(html, /source\.loop=true/);
+});
+
+test('draws a growing real waveform while recording', () => {
+  assert.match(html, /track\.livePeaks\.push\(peak\)/);
+  assert.match(html, /track\.frames\/\(context\.sampleRate\*MAX_SECONDS\)/);
+  assert.match(html, /recording\?track\.livePeaks:track\.peaks/);
+});
+
+test('renders an animated playhead with current and total time', () => {
+  assert.match(html, /drawTrack\(track,position\)/);
+  assert.match(html, /current\/track\.buffer\.duration/);
+  assert.match(html, /formatTime\(seconds\).*formatTime\(total\)/);
+  assert.match(html, /draw\.lineTo\(x,height\)/);
+});
+
+test('labels silence instead of inventing a waveform', () => {
+  assert.match(html, /track\.silent=peakData\.maximum<\.0005/);
+  assert.match(html, /draw\.fillText\('SILENCE'/);
 });
 
 test('removes the rejected generic dark KAOSS interface', () => {
