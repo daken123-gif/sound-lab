@@ -320,3 +320,16 @@ Track参加状態を変える三方式を同一の係数モデルで比較した
 切替ランプは停止位置の係数を保存して追従させず、旧レイアウトと新レイアウトを毎sample現在位相で再計算し、その差分だけを補間する。この方式ならRotorを止めず、変更のない区画の動きも歪めない。
 
 合成正弦波での係数・WAV検証であり、声、環境音、硬いtransient、iPhone入出力でのclick聴感は未検証である。研究状態は `active` のままとする。
+
+
+## 2026-08-28 external field-recording input path
+
+実録音を投入するためのオフライン測定経路を追加した。
+
+- runner: [`rotor_field_probe.py`](rotor_field_probe.py)
+- tests: [`test_rotor_field_probe.py`](test_rotor_field_probe.py)
+- protocol and evidence boundary: [`FIELD_RECORDING_PROBE.md`](FIELD_RECORDING_PROBE.md)
+
+WAVとAAC/M4Aの復号、4入力検査、mono downmix、48 kHz resampling、最短入力へのtrim、即時切替と5 ms切替の比較、JSON測定値、二つの試聴WAV出力を実装した。AAC/M4Aはテスト内で実ファイルを生成して復号した。研究全体で37件の単体試験が通過している。
+
+このworkspaceにはユーザーの声、環境音、iPhone収録などの実録音は存在しない。したがって確認済みなのは入力・測定経路までであり、実素材上のclick聴感や `HOLD` の音楽的妥当性は未判定である。研究状態は `active` のままとする。
