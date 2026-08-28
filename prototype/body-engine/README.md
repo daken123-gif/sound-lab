@@ -61,6 +61,28 @@ body.parameters.get("gate").setValueAtTime(0, audioContext.currentTime + 1);
 
 このコード例は接続構造であり、iPhone Safariでマイク許可、音声ルート、実時間発音を確認した記録ではない。
 
+## ブラウザのマイクセッション
+
+`body-browser-session.js` は次を固定する。
+
+- `start()` を呼ぶまでマイク許可を要求しない。
+- `start()` はユーザー操作のイベント内から呼ぶ前提。
+- `echoCancellation / noiseSuppression / autoGainControl` は `ideal: false` として要求する。
+- 未対応制約でマイク取得全体を失敗させない。
+- `track.getSettings()` を取得し、要求値と実際値を別々に返す。
+- AudioWorkletロード後も、出力先へ自動接続しない。
+- `setMonitoring(true)` が呼ばれたときだけスピーカー／イヤホン出力へ接続する。
+- `gate` は初期値0。
+- 録音機能を持たず、自動録音もしない。
+- `stop()` で全MediaStreamTrackを停止する。
+
+W3C Media Capture仕様では、裸の制約値は理想値として扱われ、未知の制約はWebIDLで捨てられる。要求した音声処理OFFが実際に採用されたとは限らないため、`requested / supported / actual` を分離して保持する。
+
+参照:
+
+- https://www.w3.org/TR/mediacapture-streams/
+- https://www.w3.org/TR/webaudio-1.1/
+
 2026-08-28のNode基準測定では、48 kHz / 128 samplesで30秒分を132.25 msで処理し、実時間に対する処理時間比は0.00441だった。これは同じコード経路がオフラインで十分速いことだけを示す。iPhoneのCPU負荷、AudioWorkletスケジューリング、入出力レイテンシー、発熱は未測定。
 
 ## 録音WAVを処理する
