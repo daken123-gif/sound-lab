@@ -59,7 +59,7 @@ THE PIPE型音源は録音前の入力楽器候補。Chroma Console型の可変�
 
 ## 統合していない候補
 
-- Skulptur接触演奏: `sound-lab` Draft PR #44。10帯域、Cut / Neutral / Feedback、4次／8次、Elastic / Throw / Flow、明示REC、Contact Performance Take、4ループ＋独立DRUM接続の参照実装。Node 77/77と比較WAV生成の報告はあるが、製品コード未統合、ブラウザ音響・Mobile Safari・iPhone・聴感・負荷・音量安全性は未検証。
+- Skulptur接触演奏: `sound-lab` Draft PR #44。10帯域、Cut / Neutral / Feedback、4次／8次、Elastic / Throw / Flow、明示REC、Contact Performance Take、4ループ＋独立DRUM接続の参照実装。Node 84/84と比較WAV生成の再検証はあるが、製品コード未統合、ブラウザ音響・Mobile Safari・iPhone・聴感・負荷・音量安全性は未検証。
 - THE PIPE / BODY: 研究と独立DSP試作。人声、iPhone、Safariは未検証。
 - Chroma Console: 可変直列経路、Gesture、固有Drift、単一Captureの研究候補。
 - Things Motor: 4入力Rotorの係数・慣性モデル候補。
@@ -72,7 +72,7 @@ THE PIPE型音源は録音前の入力楽器候補。Chroma Console型の可変�
 - 1176LN Blackface: `sympathia` Draftの線形reference core候補。非線形、実機校正、resampling、iPhone検証は未完了。
 - Transit 2: `sympathia` DraftのMotion Engine研究候補。実装・端末検証は未着手。
 - Combustor: `sympathia` branchの独立resonator仮説。コード・テスト・比較WAVはあるが、製品再現や採用の証拠ではない。
-- Performance Take: 明示開始の記録核は候補。PR #44のContact Takeは同一frame列の一回記録・再生まで実装したが、複数Take、永続保存、製品UI、端末runtimeは未固定。
+- Performance Take: 明示開始の記録核は候補。PR #44のContact Takeは同一frame列の一回記録・再生とAudioContext時計へのscheduleまで実装したが、実ブラウザ時間精度、複数Take、永続保存、製品UI、端末runtimeは未固定。
 
 これらの`Draft`、non-Canon branch、テスト成功は、`sound-lab/main`への採用、実機動作、聴感採用を意味しない。
 
