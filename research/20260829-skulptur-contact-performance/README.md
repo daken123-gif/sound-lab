@@ -51,6 +51,9 @@
 - デモは一つの`TAKE`ボタンで録音、停止、一回再生、再生中断を循環する。`REC`の帯域ループ録音とは別機能である。
 - 画面非表示ではTAKE再演をcancelし、復帰時の残りframe一括発行を防ぐ。
 - iOSがAudioContextを休止した場合は、既存STARTボタンを`RESUME`へ切り替え、追加モードなしで明示再開する。
+- TAKE開始時に同じ再生frame object列を表示playerと音響schedulerへ渡し、音響は40ms先行してAudioContext時計へ予約する。
+- AudioWorkletは予約commandをrender quantumごとに適用し、schedule IDの中断で未発行commandとactive接触を破棄する。
+- 予約batchは時刻順、begin/move/end因果、全pointer終端を検査する。
 
 ## 触る実装パス
 
@@ -70,7 +73,7 @@ node --test
 node scripts/render-demo.mjs
 ```
 
-- 自動テスト: 77 pass / 0 fail
+- 自動テスト: 84 pass / 0 fail
 - 4次／8次の比較WAV生成: 成功
 - HTTP配信資産: 検証記録は`prototype/VALIDATION.md`
 - ZIP展開後の同一テスト: 配布物作成時に実施
@@ -106,7 +109,8 @@ node scripts/render-demo.mjs
 - Mobile SafariのPointer Event順序、capture、pressure、contactArea
 - iPhone 13 mini縦横での一画面収まりとマルチタッチ
 - AudioWorklet実時間負荷、Feedback音量安全性
-- `requestAnimationFrame`駆動Takeの聴覚上の時間精度
+- 同じframe列を追う表示と音響の実機上の同期精度
+- AudioContext時計への40ms先行予約がMobile Safariで十分か
 - Mobile SafariがAudioContextを休止・再開する実際のタイミング
 - 複数Takeの選択、命名、保存、再読込み
 - 4トラック個別処理へ発展させる場合のtrack ownership

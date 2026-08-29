@@ -122,17 +122,20 @@ export function instantiateContactPerformanceTake(input, {
 export class ContactPerformanceTakePlayer {
   #onFrame;
   #onFinish;
+  #onSchedule;
   #frames = [];
   #cursor = 0;
   #active = new Map();
   #lastAdvanceTimestampMs = null;
   #playing = false;
 
-  constructor({ onFrame, onFinish = () => {} }) {
+  constructor({ onFrame, onFinish = () => {}, onSchedule = () => {} }) {
     if (typeof onFrame !== "function") reject("PLAYER_CALLBACK", "onFrame must be a function");
     if (typeof onFinish !== "function") reject("PLAYER_CALLBACK", "onFinish must be a function");
+    if (typeof onSchedule !== "function") reject("PLAYER_CALLBACK", "onSchedule must be a function");
     this.#onFrame = onFrame;
     this.#onFinish = onFinish;
+    this.#onSchedule = onSchedule;
   }
 
   start(input, options = {}) {
@@ -140,14 +143,23 @@ export class ContactPerformanceTakePlayer {
     this.#frames = instantiateContactPerformanceTake(input, options);
     this.#cursor = 0;
     this.#active.clear();
-    this.#lastAdvanceTimestampMs = options.startTimestampMs ?? 0;
+    this.#lastAdvanceTimestampMs = null;
     this.#playing = true;
+    try {
+      this.#onSchedule(this.#frames);
+    } catch (error) {
+      this.#playing = false;
+      this.#frames = [];
+      this.#cursor = 0;
+      throw error;
+    }
     return this.#frames.length;
   }
 
   advance(timestampMs) {
     if (!this.#playing) return 0;
-    if (typeof timestampMs !== "number" || !Number.isFinite(timestampMs) || timestampMs < this.#lastAdvanceTimestampMs) {
+    if (typeof timestampMs !== "number" || !Number.isFinite(timestampMs) || timestampMs < 0 ||
+      (this.#lastAdvanceTimestampMs !== null && timestampMs < this.#lastAdvanceTimestampMs)) {
       reject("PLAYER_TIME", "player time must be finite and monotonic");
     }
     this.#lastAdvanceTimestampMs = timestampMs;
@@ -167,7 +179,7 @@ export class ContactPerformanceTakePlayer {
     return emitted;
   }
 
-  stop(timestampMs = this.#lastAdvanceTimestampMs ?? 0) {
+  stop(timestampMs = this.#lastAdvanceTimestampMs ?? this.#frames[0]?.timestampMs ?? 0) {
     if (!this.#playing) return Object.freeze([]);
     if (typeof timestampMs !== "number" || !Number.isFinite(timestampMs) || timestampMs < 0) {
       reject("PLAYER_TIME", "stop time must be a non-negative finite number");

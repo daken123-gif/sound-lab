@@ -10,6 +10,7 @@ import {
 
 const LOOP_SECONDS = 4;
 const SAMPLE_RATE = 48000;
+const TAKE_AUDIO_LOOKAHEAD_SECONDS = 0.04;
 
 const startButton = document.querySelector("#start");
 const recordButton = document.querySelector("#record");
@@ -46,12 +47,15 @@ let lastContactTake = null;
 let takePlaySerial = 0;
 let takeAnimationFrame = null;
 let audioContextStateListener = null;
+let takeAudioScheduleId = null;
 const pointers = new Map();
 
 const takePlayer = new ContactPerformanceTakePlayer({
-  onFrame: performContactFrame,
+  onFrame: renderReplayedContactFrame,
+  onSchedule: scheduleReplayedContactFrames,
   onFinish: () => {
     takeAnimationFrame = null;
+    takeAudioScheduleId = null;
     updateTakeButton();
     updateModeStatus();
   }
@@ -97,10 +101,36 @@ function runTakePlayback(timestampMs) {
 
 function stopTakePlayback() {
   if (!takePlayer.isPlaying) return;
+  if (takeAudioScheduleId && controller) controller.cancelScheduledTouches(takeAudioScheduleId);
+  takeAudioScheduleId = null;
   takePlayer.stop(performance.now());
   if (takeAnimationFrame !== null) cancelAnimationFrame(takeAnimationFrame);
   takeAnimationFrame = null;
   updateTakeButton();
+}
+
+function scheduleReplayedContactFrames(frames) {
+  if (!controller || !audioContext || !takeAudioScheduleId) return;
+  const firstTimestampMs = frames[0].timestampMs;
+  const audioStartTimeSeconds = audioContext.currentTime + Math.max(
+    0,
+    (firstTimestampMs - performance.now()) / 1000
+  );
+  const commands = frames.map(frame => {
+    const command = skulpturCommandFromContactFrame(frame);
+    const timeSeconds = audioStartTimeSeconds + (frame.timestampMs - firstTimestampMs) / 1000;
+    if (command.type === "end") {
+      return { type: "touch-end", pointerId: command.pointerId, throwMotion: command.throwMotion, timeSeconds };
+    }
+    return {
+      type: command.type === "begin" ? "touch-begin" : "touch-move",
+      pointerId: command.pointerId,
+      band: command.band,
+      position: command.position,
+      timeSeconds
+    };
+  });
+  controller.scheduleTouches(takeAudioScheduleId, commands);
 }
 
 function reflectAudioContextState() {
@@ -358,14 +388,20 @@ takeButton.addEventListener("click", () => {
     return;
   }
   if (lastContactTake) {
-    const startTimestampMs = performance.now();
-    takePlayer.start(lastContactTake, {
-      startTimestampMs,
-      instanceId: `demo-${++takePlaySerial}`
-    });
+    const playbackId = `demo-${++takePlaySerial}`;
+    const startTimestampMs = performance.now() + TAKE_AUDIO_LOOKAHEAD_SECONDS * 1000;
+    takeAudioScheduleId = playbackId;
+    try {
+      takePlayer.start(lastContactTake, { startTimestampMs, instanceId: playbackId });
+    } catch (error) {
+      takeAudioScheduleId = null;
+      updateTakeButton();
+      setStatus(`TAKE再生失敗: ${error.message}`);
+      return;
+    }
     updateTakeButton();
     updateModeStatus();
-    runTakePlayback(startTimestampMs);
+    takeAnimationFrame = requestAnimationFrame(runTakePlayback);
     return;
   }
   takeRecorder = new ContactPerformanceTakeRecorder();
@@ -453,6 +489,12 @@ function performContactFrame(frame) {
   };
   if (command.type === "begin") controller.beginTouch(payload);
   else controller.moveTouch(payload);
+}
+
+function renderReplayedContactFrame(frame) {
+  const command = skulpturCommandFromContactFrame(frame);
+  if (command.type === "end") releasePointer(command.pointerId);
+  else drawPointer(command.pointerId, command.band, command.position);
 }
 
 bindPointerContactSurface({

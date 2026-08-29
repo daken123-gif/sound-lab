@@ -65,13 +65,18 @@ test("player emits due frames in time order and finishes once", () => {
   const recorder = new ContactPerformanceTakeRecorder(); recorder.capture(frame());
   recorder.capture(frame({ phase: "slide", x: 0.4, timestampMs: 1010 }));
   recorder.capture(frame({ phase: "release", timestampMs: 1020 }));
-  const emitted = []; let finishes = 0;
-  const player = new ContactPerformanceTakePlayer({ onFrame: item => emitted.push(item), onFinish: () => finishes++ });
+  const emitted = []; let finishes = 0; let scheduled = null;
+  const player = new ContactPerformanceTakePlayer({
+    onFrame: item => emitted.push(item), onFinish: () => finishes++, onSchedule: frames => scheduled = frames
+  });
   assert.equal(player.start(recorder.finish(), { startTimestampMs: 500, instanceId: "play" }), 3);
+  assert.deepEqual(scheduled.map(item => item.phase), ["contact", "slide", "release"]);
+  assert.equal(player.advance(490), 0);
   assert.equal(player.advance(500), 1); assert.equal(player.activeGestureCount, 1);
   assert.equal(player.advance(509), 0); assert.equal(player.advance(510), 1);
   assert.equal(player.advance(520), 1); assert.equal(player.isPlaying, false); assert.equal(finishes, 1);
   assert.deepEqual(emitted.map(item => item.phase), ["contact", "slide", "release"]);
+  assert.equal(scheduled[0], emitted[0]);
 });
 
 test("stopping playback emits cancel for every active synthetic pointer", () => {
@@ -95,4 +100,12 @@ test("player rejects overlapping playback and regressing clocks", () => {
   rejects("PLAYER_ACTIVE", () => player.start(take, { startTimestampMs: 100 }));
   player.advance(100);
   rejects("PLAYER_TIME", () => player.advance(99));
+});
+
+test("player rolls back when audio scheduling rejects the replay", () => {
+  const recorder = new ContactPerformanceTakeRecorder(); recorder.capture(frame());
+  recorder.capture(frame({ phase: "release", timestampMs: 1010 }));
+  const player = new ContactPerformanceTakePlayer({ onFrame: () => {}, onSchedule: () => { throw new Error("schedule failed"); } });
+  assert.throws(() => player.start(recorder.finish()), /schedule failed/);
+  assert.equal(player.isPlaying, false); assert.equal(player.pendingFrameCount, 0);
 });

@@ -1,3 +1,5 @@
+import { normalizeScheduledTouchBatch } from "./scheduled-touch-queue.js";
+
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
 export class SkulpturHostController {
@@ -86,6 +88,19 @@ export class SkulpturHostController {
 
   endTouch(pointerId, { throwMotion = true } = {}) {
     this.#post({ type: "touch-end", pointerId, throwMotion });
+  }
+
+  scheduleTouches(scheduleId, commands) {
+    const batch = normalizeScheduledTouchBatch(scheduleId, commands);
+    this.#post({ type: "touch-schedule", ...batch });
+    return batch.commands.length;
+  }
+
+  cancelScheduledTouches(scheduleId) {
+    if (typeof scheduleId !== "string" || scheduleId.length < 1 || scheduleId.length > 80) {
+      throw new TypeError("scheduleId must contain 1 to 80 characters");
+    }
+    this.#post({ type: "touch-schedule-cancel", scheduleId });
   }
 
   setRecording(enabled) {

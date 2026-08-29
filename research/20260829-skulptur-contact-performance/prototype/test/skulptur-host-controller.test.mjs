@@ -105,6 +105,23 @@ test("host methods preserve explicit transport, record, and touch control", asyn
   assert.equal(controller.node.port.messages[3].throwMotion, false);
 });
 
+test("host posts one validated audio-clock touch schedule and explicit cancellation", async () => {
+  const context = createContext();
+  const controller = await SkulpturHostController.create(context, {
+    workletUrl: "worklet.js", audioWorkletNodeClass: FakeWorkletNode
+  });
+  const commands = [
+    { type: "touch-begin", pointerId: 100, band: 2, position: 0.8, timeSeconds: 2 },
+    { type: "touch-end", pointerId: 100, throwMotion: false, timeSeconds: 2.1 }
+  ];
+  assert.equal(controller.scheduleTouches("take-1", commands), 2);
+  controller.cancelScheduledTouches("take-1");
+  assert.deepEqual(controller.node.port.messages.map(message => message.type), [
+    "touch-schedule", "touch-schedule-cancel"
+  ]);
+  assert.equal(controller.node.port.messages[0].commands[0].timeSeconds, 2);
+});
+
 test("gesture state round-trips through a correlated request", async () => {
   const context = createContext();
   const controller = await SkulpturHostController.create(context, {

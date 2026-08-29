@@ -1,6 +1,7 @@
 import { FourTrackSpectralMixer } from "./four-track-spectral-mixer.js";
 import { SpectralControlEngine } from "./spectral-control-engine.js";
 import { SpectralGestureLoop } from "./spectral-gesture-loop.js";
+import { ScheduledTouchQueue } from "./scheduled-touch-queue.js";
 import {
   composeFeedback,
   SpectralSurfaceControl
@@ -33,6 +34,8 @@ class SkulpturFilterBankProcessor extends AudioWorkletProcessor {
     this.transportRunning = false;
     this.telemetryElapsed = 0;
     this.telemetryIntervalSeconds = 1 / 30;
+    this.scheduledTouches = new ScheduledTouchQueue();
+    this.scheduledPointers = new Map();
 
     this.port.onmessage = ({ data }) => {
       if (data?.type === "reset") this.mixer.reset();
@@ -49,6 +52,17 @@ class SkulpturFilterBankProcessor extends AudioWorkletProcessor {
       if (data?.type === "touch-end") {
         this.surface.endTouch(data.pointerId);
         this.controls.endTouch(data.pointerId, { throwMotion: data.throwMotion !== false });
+      }
+      if (data?.type === "touch-schedule") {
+        this.scheduledTouches.enqueue(data.scheduleId, data.commands);
+      }
+      if (data?.type === "touch-schedule-cancel") {
+        this.scheduledTouches.cancel(data.scheduleId);
+        for (const pointerId of this.scheduledPointers.get(data.scheduleId) ?? []) {
+          this.surface.endTouch(pointerId);
+          this.controls.endTouch(pointerId, { throwMotion: false });
+        }
+        this.scheduledPointers.delete(data.scheduleId);
       }
       if (data?.type === "flow") this.controls.setFlow(data);
       if (data?.type === "clear-motion") this.controls.clearMotion();
@@ -108,6 +122,26 @@ class SkulpturFilterBankProcessor extends AudioWorkletProcessor {
     if (!output?.length) return true;
 
     const frameCount = output[0].length;
+    for (const { scheduleId, command } of this.scheduledTouches.drainDue(currentTime)) {
+      let pointers = this.scheduledPointers.get(scheduleId);
+      if (!pointers) {
+        pointers = new Set();
+        this.scheduledPointers.set(scheduleId, pointers);
+      }
+      if (command.type === "touch-begin" || command.type === "touch-move") {
+        const mapped = command.type === "touch-begin"
+          ? this.surface.beginTouch(command.pointerId, command.band, command.position)
+          : this.surface.moveTouch(command.pointerId, command.band, command.position);
+        if (command.type === "touch-begin") this.controls.beginTouch(command.pointerId, command.band, mapped.gain, command.timeSeconds);
+        else this.controls.moveTouch(command.pointerId, command.band, mapped.gain, command.timeSeconds);
+        pointers.add(command.pointerId);
+      } else {
+        this.surface.endTouch(command.pointerId);
+        this.controls.endTouch(command.pointerId, { throwMotion: command.throwMotion !== false });
+        pointers.delete(command.pointerId);
+      }
+      if (pointers.size === 0) this.scheduledPointers.delete(scheduleId);
+    }
     const toChannels = input => {
       if (!input?.length) return null;
       return Array.from({ length: this.mixer.channels }, (_, index) =>

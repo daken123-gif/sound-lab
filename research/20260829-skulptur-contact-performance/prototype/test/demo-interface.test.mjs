@@ -23,6 +23,16 @@ test("one TAKE control records, replays, and safely stops contact frames", async
   assert.match(source, /画面が隠れたためTAKE再生を停止/);
 });
 
+test("TAKE audio uses the same replay frames on the AudioContext clock", async () => {
+  const source = await read("../demo/app.js");
+  assert.match(source, /onFrame: renderReplayedContactFrame/);
+  assert.match(source, /onSchedule: scheduleReplayedContactFrames/);
+  assert.match(source, /controller\.scheduleTouches\(takeAudioScheduleId, commands\)/);
+  assert.match(source, /controller\.cancelScheduledTouches\(takeAudioScheduleId\)/);
+  assert.match(source, /TAKE_AUDIO_LOOKAHEAD_SECONDS/);
+  assert.match(source, /TAKE再生失敗/);
+});
+
 test("the existing start control resumes an iOS-suspended audio context", async () => {
   const source = await read("../demo/app.js");
   assert.match(source, /audioContext\.addEventListener\("statechange"/);

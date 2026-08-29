@@ -90,7 +90,30 @@ const replayFrames = instantiateContactPerformanceTake(take, {
 
 再生列は座標、phase、trackIds、pressure由来を保持し、gesture ID、pointer ID、時刻を新しい再生instanceへ変換します。合成pointer IDにより、再生中の実指と衝突しません。
 
-`ContactPerformanceTakePlayer`は単調時刻を`advance(timestampMs)`へ渡す実時間playerです。途中で`stop(timestampMs)`すると、再生中の全接触へcancelを発行してから停止します。デモでは`requestAnimationFrame`から駆動し、同じ`performContactFrame`へ再生frameを戻します。
+`ContactPerformanceTakePlayer`は単調時刻を`advance(timestampMs)`へ渡す表示playerです。開始時の`onSchedule(frames)`には、表示へ順次渡されるものと同じ再生frame object列が一度だけ渡ります。音響はその列から作ったcommandをAudioContext時計へ先行予約します。
+
+```js
+const commands = replayFrames.map(frame => {
+  const mapped = skulpturCommandFromContactFrame(frame);
+  const timeSeconds = audioStartTime + (frame.timestampMs - replayFrames[0].timestampMs) / 1000;
+  if (mapped.type === "end") {
+    return { type: "touch-end", pointerId: mapped.pointerId, throwMotion: mapped.throwMotion, timeSeconds };
+  }
+  return {
+    type: mapped.type === "begin" ? "touch-begin" : "touch-move",
+    pointerId: mapped.pointerId,
+    band: mapped.band,
+    position: mapped.position,
+    timeSeconds
+  };
+});
+
+skulptur.scheduleTouches("take-2", commands);
+// 中断時
+skulptur.cancelScheduledTouches("take-2");
+```
+
+予約batchは全pointerが`touch-begin`から`touch-end`まで完結し、時刻が後退しない場合だけ受理されます。AudioWorkletは`currentTime`が到来したcommandをrender quantumごとに適用します。表示は`requestAnimationFrame`で同じframe列を追跡しますが、音響時刻には使用しません。
 
 ## 演奏状態の保存
 
