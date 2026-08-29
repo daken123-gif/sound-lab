@@ -1,0 +1,111 @@
+{
+  "sample_rate_hz": 48000,
+  "duration_s": 4.0,
+  "model_boundary": "deterministic research model; not Chroma Console emulation",
+  "delay_then_cassette": {
+    "rms_dbfs": -17.999999999999737,
+    "peak_dbfs": -8.986312776653392,
+    "crest_db": 9.013687223346343,
+    "spectral_centroid_hz": 167.14060464359613,
+    "energy_above_6khz_ratio": 0.0019574940415003094,
+    "tail_rms_dbfs": -22.01116282535701
+  },
+  "cassette_then_delay": {
+    "rms_dbfs": -17.999999999999737,
+    "peak_dbfs": -8.99148998323327,
+    "crest_db": 9.008510016766468,
+    "spectral_centroid_hz": 159.18805788739346,
+    "energy_above_6khz_ratio": 0.0013093240301309329,
+    "tail_rms_dbfs": -22.36496022508598
+  },
+  "cross_correlation": 0.9983051715248863,
+  "difference_rms_dbfs": -42.65974747730665,
+  "parameter_sweep": [
+    {
+      "drive": 1.2,
+      "feedback": 0.35,
+      "cross_correlation": 0.9995549863544567,
+      "difference_rms_dbfs": -48.49697668937411,
+      "centroid_delta_hz": 5.0547025219505315,
+      "high_band_ratio_a_over_b": 1.2310184446762826
+    },
+    {
+      "drive": 1.2,
+      "feedback": 0.67,
+      "cross_correlation": 0.9989413807992684,
+      "difference_rms_dbfs": -44.7204048851708,
+      "centroid_delta_hz": 4.522009255284615,
+      "high_band_ratio_a_over_b": 1.2132396210031018
+    },
+    {
+      "drive": 1.2,
+      "feedback": 0.82,
+      "cross_correlation": 0.9977497758591012,
+      "difference_rms_dbfs": -41.4386018903231,
+      "centroid_delta_hz": 5.566729705518924,
+      "high_band_ratio_a_over_b": 1.217676961420732
+    },
+    {
+      "drive": 2.35,
+      "feedback": 0.35,
+      "cross_correlation": 0.9991819870903361,
+      "difference_rms_dbfs": -45.856739850341,
+      "centroid_delta_hz": 7.908037201798891,
+      "high_band_ratio_a_over_b": 1.4689869522192465
+    },
+    {
+      "drive": 2.35,
+      "feedback": 0.67,
+      "cross_correlation": 0.9983051715248863,
+      "difference_rms_dbfs": -42.65974747730665,
+      "centroid_delta_hz": 7.952546756202679,
+      "high_band_ratio_a_over_b": 1.4950417134733747
+    },
+    {
+      "drive": 2.35,
+      "feedback": 0.82,
+      "cross_correlation": 0.9968542690911356,
+      "difference_rms_dbfs": -39.96208870986039,
+      "centroid_delta_hz": 10.512250106867299,
+      "high_band_ratio_a_over_b": 1.5293318522385733
+    },
+    {
+      "drive": 4.0,
+      "feedback": 0.35,
+      "cross_correlation": 0.9982441179873154,
+      "difference_rms_dbfs": -42.54337368620432,
+      "centroid_delta_hz": 9.048325106580108,
+      "high_band_ratio_a_over_b": 1.7184242831859566
+    },
+    {
+      "drive": 4.0,
+      "feedback": 0.67,
+      "cross_correlation": 0.9963158052815233,
+      "difference_rms_dbfs": -39.28236055509318,
+      "centroid_delta_hz": 9.457676400254542,
+      "high_band_ratio_a_over_b": 1.8382348228682324
+    },
+    {
+      "drive": 4.0,
+      "feedback": 0.82,
+      "cross_correlation": 0.993696235788532,
+      "difference_rms_dbfs": -36.94711573678716,
+      "centroid_delta_hz": 13.097031401498327,
+      "high_band_ratio_a_over_b": 1.9320727744181843
+    }
+  ],
+  "files": {
+    "input": {
+      "path": "rendered/input.wav",
+      "sha256": "a4193e8b78400dcddc01e8c880b95b43c5e5246e7a75a943825bb2200aa905ad"
+    },
+    "delay_then_cassette": {
+      "path": "rendered/delay-then-cassette.wav",
+      "sha256": "62ed4ee351478f47a14a831e284ee9e209673bae04ab6fd92053579e0dd3d19d"
+    },
+    "cassette_then_delay": {
+      "path": "rendered/cassette-then-delay.wav",
+      "sha256": "2542ff88935685d1ce6eaa93503bb7fb5f6ff87e033215f1a9b0faf4f82a2fed"
+    }
+  }
+}
