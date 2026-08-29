@@ -20,7 +20,7 @@ Sound Labの`main`に入った画像接触研究を、Skulptur試奏面の入力
 | 座標 | surface内の正規化`x / y`。範囲外はclampせず拒否 |
 | 所有権 | 共通スペクトル面が作用する4トラックを`[0,1,2,3]`と明示 |
 | pressure | `hardware / estimated / unavailable`の出自を検査。既定は`null + unavailable` |
-| 中断 | `pointercancel / lostpointercapture / blur / pagehide / orientationchange`をcancelへ変換 |
+| 中断 | `pointercancel / lostpointercapture / blur / pagehide / orientationchange / visibilitychange`をcancelへ変換 |
 | Skulptur mapping | `x`→10帯域、`1-y`→Cut・Neutral・Feedbackの既存位置 |
 | Take | 受理済みframe列を相対時刻で保存し、再生instanceへ展開 |
 | Player | 単調時刻でframeを順次発行し、中断時は全active接触をcancel |
@@ -42,5 +42,6 @@ Sound Labの`main`に入った画像接触研究を、Skulptur試奏面の入力
 - Take再生時は元のgesture IDを再利用せず、新しい再生instance IDを付与する。
 - 再生pointer IDも高い合成IDへ分離し、同時に触れた実pointerと衝突させない。
 - デモの一つの`TAKE`ボタンで録音、停止、一回再生、再生中断を循環する。
+- 画面非表示ではTAKE再演もcancelし、iOSの音響休止後は既存STARTボタンから明示再開する。
 
 pressure非対応時の`0.5`をhardware値とみなさず、接触面積も実機由来を確認するまで推定しません。
