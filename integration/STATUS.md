@@ -1,10 +1,10 @@
 # 統合状況
 
-最終観測: 2026-08-29 01:12 UTC
+最終観測: 2026-08-29 02:17 UTC
 
 観測対象:
 
-- `daken123-gif/sound-lab` — `main` `3d1a47ccffc884f437574dfe6a0e0ebb7fc74439`、49ブランチ、全44 PR、open PR 12件
+- `daken123-gif/sound-lab` — `main` `5af8aace3a838fc1761bd70f05d63a07705852aa`、51ブランチ、全46 PR、open PR 12件
 - `daken123-gif/sympathia` — 音楽研究のDraft PRとnon-Canon branch。採用先ではなく、研究本文と検証状態を確認する補助リポジトリ
 
 ## 現在位置
@@ -12,10 +12,10 @@
 | 領域 | Gitで観測した証拠 | 統合状態 | 未完了 |
 |---|---|---|---|
 | 4トラック録音 | `sound-lab/main` 実装、Koala・Teenage Engineering研究、PR #15 | `adopted` / `implemented-unverified` | iPhone実機の録音・再生・実波形・位置表示 |
-| iPhone入力段 | `sound-lab/main`、`20260828-iphone-mic-preamp` | `integrating` | 内蔵、有線、Bluetooth別の実機測定 |
-| Skulptur型主演奏面 | 役割は`integration/DIRECTION.md`と`sympathia` PR #410。専用候補は`sound-lab` Draft PR #44、37ファイルの研究実装、Node 77/77、4次／8次比較WAV | 役割 `adopted` / 実体 `candidate` / `implemented-unverified` | 製品コード未統合。ブラウザ音響、Mobile Safari、iPhone、聴感、負荷、Feedback音量安全性、4次／8次とmappingの採否 |
+| iPhone入力段 | `sound-lab/main`、`20260828-iphone-mic-preamp`、merged PR #46の未処理RAWテイク同期保持 | 原則 `adopted` / RAW保持 `implemented-unverified` | 内蔵、有線、Bluetooth別の実機測定。RAWと処理後経路のiPhone実音読戻し |
+| Skulptur型主演奏面 | 役割は`integration/DIRECTION.md`と`sympathia` PR #410。専用候補は`sound-lab` Draft PR #44 head `c3adb6f`、39ファイルの研究実装、ローカル再検証84/84、4次／8次比較WAV | 役割 `adopted` / 実体 `candidate` / `implemented-unverified` | 製品コード未統合。ブラウザ音響、Mobile Safari、iPhone、聴感、負荷、Feedback音量安全性、4次／8次とmappingの採否 |
 | 接触入力bridge | `sound-lab` merged PR #36 / #37 / #40 / #43。frame schema、runtime gate、Pointer adapter、ブラウザ診断面 | `candidate` / `implemented-unverified` | Chrome実行はURL安全制約でblocked。Mobile Safari、iPhone、実音未検証 |
-| Contact Performance Take | PR #44。同じ受理frame列から音響・描画・一回記録／再生、停止時cancel | `candidate` / `implemented-unverified` | 複数Take、命名、永続保存、製品UI、ブラウザ／iPhone時間精度 |
+| Contact Performance Take | PR #44。同じ受理frame列から音響・描画・一回記録／再生、停止時cancel。head `c3adb6f`でAudioContext時計へのtouch scheduleを追加 | `candidate` / `implemented-unverified` | scheduleはNode検証のみ。複数Take、命名、永続保存、製品UI、ブラウザ／iPhone時間精度 |
 | KAOSS | 古い研究と旧実装。現在の中心判断とPR #410 v0.2契約でMaster / XY / follow / layerを退役 | `superseded` | 主演奏層として再統合しない |
 | Live Canvas UI | `sound-lab/main` `169d15d`、QA記録 `3e71909` | `active-local` / `render-unverified` | static/source確認のみ。ブラウザ描画、操作、iPhone QAはblocked |
 | 旧Field Looper UI | KAOSS中心の円形UIと強制横画面 | `rejected`（設計再利用） | Live Canvasとは分離し、復活させない |
@@ -65,15 +65,16 @@
 - 4ループ合成後の共通スペクトル面と独立DRUM bypass
 - 同じ受理frame列を描画、音響、Contact Performance Takeへ渡す
 - 一つの`TAKE`ボタンによる記録、停止、一回再生、中断
+- replay frameをAudioContext時計へ一括scheduleし、同時刻順序、重複、時刻後退、schedule取消を検査する候補
 - pointer cancel回復、画面非表示時のcancel、AudioContextの明示`RESUME`
 - ローカルファイル試奏、4秒整形、同期クロスフェード
 
 Gitで読んだ検証記録:
 
-- `node --check`成功、`node --test` 77 pass / 0 fail
+- PR #44 head `c3adb6fbe5ae6fa414d90bf00451e5bca4f681ad`をローカルへfast-forward後、`node --check`成功、`node --test` 84 pass / 0 fail
 - 4次／8次の48 kHz stereo比較WAV生成
 - HTTP 10資産が200
-- ただしクラウドブラウザからローカルURLへの接続が遮断され、ブラウザ自動操作は未実行
+- 2026-08-29のCloud Chrome再試行でもローカルURLは開けず、タブは`about:blank`のまま終了した。ブラウザ自動操作、AudioWorklet実行、可聴確認は未実行
 
 固定していない:
 
@@ -116,7 +117,7 @@ SkulpturはPR #44で専用研究と候補実装を確認したため、被覆欠
 
 ## 次の統合順
 
-1. PR #44を実ブラウザ、Mobile Safari、iPhone実機で動かし、入力順序、同一frame追跡、AudioWorklet負荷、Feedback音量安全性、Take時間精度を検証する。
+1. PR #44を外部から到達可能な検証面または実端末で開き、AudioContext時計schedule、入力順序、同一frame追跡、AudioWorklet負荷、Feedback音量安全性、Take時間精度を検証する。Cloud ChromeからローカルURLへは接続できないため、未実行を維持する。
 2. 実機証拠を基に4次／8次、`x / y` mapping、周波数、`pressure / contactArea`の不使用継続または割当を判断する。
 3. その後にだけ、PR #44の製品コード統合、Live Canvas接続、4トラック共通処理／個別処理、PR #15旧Takeとの関係を決める。
 4. iPhone入力、明示録音、4トラック再生、実波形、位置表示を同じ端末試験で確認する。
