@@ -162,7 +162,7 @@ export function bindPointerContactSurface({ surface, scope = globalThis, onFrame
   const lostCapture = safely(event => emit(adapter.handleLostPointerCapture(event)));
   const interrupt = safely(event => { for (const frame of adapter.cancelAll(event.timeStamp)) emit(frame); });
   const pointerTypes = ["pointerdown", "pointermove", "pointerup", "pointercancel"];
-  const interruptionTypes = ["blur", "pagehide", "orientationchange"];
+  const interruptionTypes = ["blur", "pagehide", "orientationchange", "visibilitychange"];
   for (const type of pointerTypes) surface.addEventListener(type, pointer);
   surface.addEventListener("lostpointercapture", lostCapture);
   for (const type of interruptionTypes) scope.addEventListener(type, interrupt);

@@ -55,6 +55,7 @@
 - PASS: Pointer Eventをcontact/press/slide/release/cancelへ変換
 - PASS: fallback pressure 0.5をhardware測定値として扱わない
 - PASS: capture喪失と画面向き変更をcancelへ変換し、所有権を解放
+- PASS: 画面非表示をcancelへ変換し、所有権を解放
 - PASS: 同じ接触frameからSkulpturの10帯域とCut↔Feedback位置を導出
 - PASS: 画面外pointercancelを最後の有効接触点から終了
 - PASS: 画面外pointerupをcancelへ回復し、pointer所有権を解放
@@ -66,7 +67,9 @@
 - PASS: 再生停止時に全active接触へcancelを発行
 - PASS: playerの二重開始と時刻後退を拒否
 - PASS: 一つのTAKEボタンから録音・再生・安全停止へ到達
-- 合計: 75 pass / 0 fail
+- PASS: 画面非表示時にTAKE再演を停止し、復帰時の残りframe一括発行を防止
+- PASS: iOSによるAudioContext休止を既存STARTボタンのRESUME操作へ接続
+- 合計: 77 pass / 0 fail
 
 `node scripts/render-demo.mjs`
 
@@ -93,6 +96,7 @@
 - iPhone 13 mini実機のCPU負荷
 - Safari/WebKit上のAudioWorklet動作
 - Mobile Safari上のPointer Event順序、capture、pressure、contactArea
+- Mobile Safariが実際にAudioContextを休止・再開するタイミング
 - iPhone実機上で描画と音響が同じ接触frameを追跡すること
 - Contact Performance Takeの複数Take一覧、命名、永続保存UI
 - Safari上で端末内の各音声形式を`decodeAudioData`できる範囲

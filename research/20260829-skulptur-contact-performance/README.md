@@ -40,7 +40,7 @@
 
 - `pointercancel`は画面外座標を再計算せず、最後に成立した接触点からcancelする。
 - capture中の`pointerup`がsurface外で拒否された場合、releaseを捏造せずcancelを発行する。
-- capture喪失、blur、pagehide、orientationchangeでもactive pointerを残さない。
+- capture喪失、blur、pagehide、orientationchange、visibilitychangeでもactive pointerを残さない。
 
 ### Contact Performance Take
 
@@ -49,6 +49,8 @@
 - 再生時はgesture IDとpointer IDを新しいinstanceへ分離し、実指との衝突を避ける。
 - 実時間playerは期限到来frameだけを発行し、中断時は全active接触へcancelを発行する。
 - デモは一つの`TAKE`ボタンで録音、停止、一回再生、再生中断を循環する。`REC`の帯域ループ録音とは別機能である。
+- 画面非表示ではTAKE再演をcancelし、復帰時の残りframe一括発行を防ぐ。
+- iOSがAudioContextを休止した場合は、既存STARTボタンを`RESUME`へ切り替え、追加モードなしで明示再開する。
 
 ## 触る実装パス
 
@@ -68,7 +70,7 @@ node --test
 node scripts/render-demo.mjs
 ```
 
-- 自動テスト: 75 pass / 0 fail
+- 自動テスト: 77 pass / 0 fail
 - 4次／8次の比較WAV生成: 成功
 - HTTP配信資産: 検証記録は`prototype/VALIDATION.md`
 - ZIP展開後の同一テスト: 配布物作成時に実施
@@ -105,5 +107,6 @@ node scripts/render-demo.mjs
 - iPhone 13 mini縦横での一画面収まりとマルチタッチ
 - AudioWorklet実時間負荷、Feedback音量安全性
 - `requestAnimationFrame`駆動Takeの聴覚上の時間精度
+- Mobile SafariがAudioContextを休止・再開する実際のタイミング
 - 複数Takeの選択、命名、保存、再読込み
 - 4トラック個別処理へ発展させる場合のtrack ownership

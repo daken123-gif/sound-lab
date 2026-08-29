@@ -19,6 +19,16 @@ test("one TAKE control records, replays, and safely stops contact frames", async
   assert.match(source, /takePlayer\.start\(lastContactTake/);
   assert.match(source, /takePlayer\.stop\(performance\.now\(\)\)/);
   assert.match(source, /if \(takeRecorder\) takeRecorder\.capture\(frame\)/);
+  assert.match(source, /document\.addEventListener\("visibilitychange"/);
+  assert.match(source, /画面が隠れたためTAKE再生を停止/);
+});
+
+test("the existing start control resumes an iOS-suspended audio context", async () => {
+  const source = await read("../demo/app.js");
+  assert.match(source, /audioContext\.addEventListener\("statechange"/);
+  assert.match(source, /startButton\.textContent = running \? "STOP" : "RESUME"/);
+  assert.match(source, /if \(audioContext\?\.state !== "running"\) return resumeAudio\(\)/);
+  assert.match(source, /audioContext\.removeEventListener\("statechange"/);
 });
 
 test("the demo connects four loops and one independent drum input", async () => {

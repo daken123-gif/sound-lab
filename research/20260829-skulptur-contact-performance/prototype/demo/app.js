@@ -45,6 +45,7 @@ let takeRecorder = null;
 let lastContactTake = null;
 let takePlaySerial = 0;
 let takeAnimationFrame = null;
+let audioContextStateListener = null;
 const pointers = new Map();
 
 const takePlayer = new ContactPerformanceTakePlayer({
@@ -100,6 +101,30 @@ function stopTakePlayback() {
   if (takeAnimationFrame !== null) cancelAnimationFrame(takeAnimationFrame);
   takeAnimationFrame = null;
   updateTakeButton();
+}
+
+function reflectAudioContextState() {
+  if (!audioContext || !controller || audioContext.state === "closed") return;
+  const running = audioContext.state === "running";
+  startButton.textContent = running ? "STOP" : "RESUME";
+  startButton.classList.toggle("running", running);
+  setControlsEnabled(running);
+  if (!running) setStatus("音響停止中 — RESUMEを押してください");
+}
+
+async function resumeAudio() {
+  if (!audioContext || !controller || audioContext.state === "closed") return;
+  startButton.disabled = true;
+  setStatus("音響エンジン再開中");
+  try {
+    await audioContext.resume();
+    reflectAudioContextState();
+    if (audioContext.state === "running") updateModeStatus();
+  } catch (error) {
+    setStatus(`再開失敗: ${error.message}`);
+  } finally {
+    startButton.disabled = false;
+  }
 }
 
 function createDemoBuffers(context) {
@@ -227,6 +252,8 @@ async function startAudio() {
   setStatus("音響エンジン起動中");
   try {
     audioContext = new AudioContext({ latencyHint: "interactive", sampleRate: SAMPLE_RATE });
+    audioContextStateListener = () => reflectAudioContextState();
+    audioContext.addEventListener("statechange", audioContextStateListener);
     controller = await SkulpturHostController.create(audioContext, {
       workletUrl: "../src/skulptur-filter-bank.worklet.js",
       channels: 2,
@@ -272,6 +299,10 @@ async function stopAudio() {
   activeDrumBuffer = null;
   lastPhase = 0;
   pendingFileTrack = null;
+  if (audioContext && audioContextStateListener) {
+    audioContext.removeEventListener("statechange", audioContextStateListener);
+  }
+  audioContextStateListener = null;
   if (audioContext && audioContext.state !== "closed") await audioContext.close();
   audioContext = null;
   recording = false;
@@ -291,7 +322,11 @@ async function stopAudio() {
   setStatus("停止中");
 }
 
-startButton.addEventListener("click", () => controller ? stopAudio() : startAudio());
+startButton.addEventListener("click", () => {
+  if (!controller) return startAudio();
+  if (audioContext?.state !== "running") return resumeAudio();
+  return stopAudio();
+});
 
 recordButton.addEventListener("click", () => {
   recording = !recording;
@@ -426,6 +461,12 @@ bindPointerContactSurface({
   resolveTrackIds: () => [0, 1, 2, 3],
   onFrame: performContactFrame,
   onError: error => setStatus(`接触入力エラー: ${error.message}`)
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState !== "hidden" || !takePlayer.isPlaying) return;
+  stopTakePlayback();
+  setStatus("画面が隠れたためTAKE再生を停止");
 });
 
 window.addEventListener("pagehide", () => stopAudio());

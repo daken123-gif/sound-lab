@@ -67,6 +67,14 @@ test("binding requests capture, emits interruption cancel, and disposes", () => 
   assert.deepEqual(frames.map(frame => frame.phase), ["contact", "cancel"]); assert.deepEqual(surface.captures, [7]);
   binding.dispose(); assert.equal(surface.count("pointerdown"), 0); assert.equal(scope.count("orientationchange"), 0);
 });
+test("visibility loss cancels active contact ownership", () => {
+  const surface = new Target(); const scope = new Target(); const frames = [];
+  const binding = bindPointerContactSurface({ surface, scope, resolveTrackIds: () => [0], onFrame: frame => frames.push(frame) });
+  surface.dispatch(event("pointerdown")); scope.dispatch({ type: "visibilitychange", timeStamp: 1010 });
+  assert.deepEqual(frames.map(frame => frame.phase), ["contact", "cancel"]);
+  assert.equal(binding.adapter.activeCount(), 0);
+  binding.dispose(); assert.equal(scope.count("visibilitychange"), 0);
+});
 test("binding converts an outside pointerup failure to cancel without leaking ownership", () => {
   const surface = new Target(); const scope = new Target(); const frames = []; const errors = [];
   const binding = bindPointerContactSurface({ surface, scope, resolveTrackIds: () => [0],
