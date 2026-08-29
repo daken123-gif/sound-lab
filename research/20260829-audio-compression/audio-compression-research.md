@@ -1,6 +1,6 @@
 # iPhone音楽アプリ：音声圧縮形式研究
 
-更新日：2026-08-28
+更新日：2026-08-29
 
 ## 現段階の研究候補（仕様決定ではない）
 
@@ -218,6 +218,32 @@ XCTestの`XCTClockMetric`、`XCTCPUMetric`、`XCTMemoryMetric`を別々に記録
 
 現在の作業環境にはSwift、Xcode、iOS SDK、接続済みiPhoneがない。したがって、テストコードと手順は作成済みだが、コンパイル、実機性能、実機でのFLAC読込み、発熱は未検証。形式選定はこの結果が得られるまで保留する。
 
+## 4トラック復号と圧縮器のCPU競合試験
+
+120秒・48 kHz・24-bitステレオ素材を使い、4本の圧縮音声を同時復号する処理へ、別のPCM素材を同じ形式へ符号化する処理を重ねた。FFmpeg 6.1.1の同一プロセス内で並行実行し、CPU時間、壁時計時間、最大常駐メモリを取得した。数値は中央値。
+
+最初は圧縮ファイルの書込みまで含めたが、試行後に一部の出力が切断状態で再出現し、FFmpegが復号エラーを出しても終了コード0を返す事象が起きた。復号PCMバイト数の照合を追加しても、削除後に一部ファイルが再出現したため、この実行環境では書込み完了時点を保証できないと判定した。その測定値は破棄した。
+
+再試験ではALAC／FLACエンコーダーの出力をFFmpegの`null` muxerへ送り、ファイルとコンテナの書込みを除外した。したがって測っているのは圧縮器のCPU／メモリ競合であり、ストレージI/O競合ではない。
+
+| 形式・処理 | 反復 | CPU時間 | 壁時計時間 | 最大常駐メモリ |
+|---|---:|---:|---:|---:|
+| ALAC圧縮器のみ | 5 | 0.679秒 | 0.677秒 | 50,712 KB |
+| ALAC 4トラック復号 | 3 | 1.720秒 | 0.611秒 | 58,332 KB |
+| ALAC 4トラック復号＋圧縮器 | 3 | 2.080秒 | 1.051秒 | 59,540 KB |
+| FLAC圧縮器のみ | 5 | 0.462秒 | 0.458秒 | 57,728 KB |
+| FLAC 4トラック復号 | 3 | 0.776秒 | 0.345秒 | 57,784 KB |
+| FLAC 4トラック復号＋圧縮器 | 3 | 1.309秒 | 0.876秒 | 66,424 KB |
+
+4トラック復号だけの場合と比べ、保存圧縮を重ねたときの増加率は次の通り。
+
+| 形式 | CPU時間 | 壁時計時間 | 最大常駐メモリ |
+|---|---:|---:|---:|
+| ALAC | +20.9% | +72.0% | +2.1% |
+| FLAC | +68.7% | +153.9% | +15.0% |
+
+両形式ともこのPCでは120秒分を実時間より大幅に速く処理できたが、これはiPhoneのオーディオコールバックが期限内に完了する証拠ではない。圧縮器を重ねるとCPU、壁時計時間、メモリの競合が増えることは観測できた。次の実機試験では平均処理時間だけでなく、128／256フレームのI/Oバッファ条件でドロップアウト回数、最大コールバック時間、熱状態、実ファイル書込みを測る必要がある。圧縮を即時実行する案と、演奏停止後へ遅延する案は別条件として比較し、ここでは選ばない。
+
 ## 一次資料
 
 - [Apple Core Audio Format Specification](https://developer.apple.com/library/archive/documentation/MusicAudio/Reference/CAFSpec/CAF_spec/CAF_spec.html)
@@ -255,3 +281,8 @@ XCTestの`XCTClockMetric`、`XCTCPUMetric`、`XCTMemoryMetric`を別々に記録
 - `ios-lossless-benchmark/LosslessDecodeBenchmarks.swift`：AVAudioFileによるiPhone実機XCTest
 - `ios-lossless-benchmark/README.md`：実機への組込み、条件固定、測定手順
 - `ios-lossless-benchmark/ios-results-template.csv`：機種、iOS、熱状態、CPU、時間、メモリ、シーク一致の記録欄
+- `lossless_contention_benchmark.sh`：4トラック復号と保存圧縮の同時実行試験
+- `analyze_lossless_contention.py`：中央値と4トラック復号単独比の増加率計算
+- `lossless-contention-codec-benchmark/results.csv`：圧縮器出力を破棄した全22試行の生データ
+- `lossless-contention-codec-benchmark/summary.csv`：形式・処理別の中央値
+- `lossless-contention-codec-benchmark/overhead.csv`：圧縮器を重ねたときの増加率

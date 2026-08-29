@@ -1,0 +1,7 @@
+format,mode,runs,median_cpu_seconds,median_wall_seconds,median_max_rss_kb
+alac,encode_codec_only,5,0.679,0.677,50712
+alac,four_decode,3,1.720,0.611,58332
+alac,four_decode_plus_encode_codec_only,3,2.080,1.051,59540
+flac,encode_codec_only,5,0.462,0.458,57728
+flac,four_decode,3,0.776,0.345,57784
+flac,four_decode_plus_encode_codec_only,3,1.309,0.876,66424
