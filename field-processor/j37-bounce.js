@@ -62,15 +62,18 @@
     const highCoefficient = onePoleCoefficient(clamp(cutoff, 5000, sampleRate * 0.45), sampleRate);
     const wow = clamp(settings.wow, 0, 1);
     const flutter = clamp(settings.flutter, 0, 1);
+    const modulated = wow > 0 || flutter > 0;
     const noiseAmount = clamp(settings.noise, 0, 1) * 0.0025;
     const random = seededNoise(settings.seed);
     let low = 0;
     let smooth = 0;
 
     for (let index = 0; index < input.length; index += 1) {
-      const wowOffset = wow * sampleRate * 0.0009 * Math.sin(2 * Math.PI * 0.55 * index / sampleRate);
-      const flutterOffset = flutter * sampleRate * 0.00012 * Math.sin(2 * Math.PI * 6.1 * index / sampleRate);
-      const source = readLinear(input, index + wowOffset + flutterOffset);
+      const source = modulated
+        ? readLinear(input, index
+          + wow * sampleRate * 0.0009 * Math.sin(2 * Math.PI * 0.55 * index / sampleRate)
+          + flutter * sampleRate * 0.00012 * Math.sin(2 * Math.PI * 6.1 * index / sampleRate))
+        : input[index];
       low = lowCoefficient * low + (1 - lowCoefficient) * source;
       const preTape = (source + low * bump) * hitGain;
       const colored = Math.tanh(preTape * drive) / normalizer;

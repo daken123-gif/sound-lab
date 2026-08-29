@@ -38,6 +38,24 @@ test('noise, wow and flutter remain off by default', () => {
   assert.ok(output.every(sample => sample === 0));
 });
 
+test('default path skips modulation oscillators', () => {
+  const source = sine(440, 0.01);
+  const originalSin = Math.sin;
+  let calls = 0;
+  Math.sin = value => {
+    calls += 1;
+    return originalSin(value);
+  };
+  try {
+    processChannel(source, sampleRate, { wow: 0, flutter: 0 });
+    assert.equal(calls, 0);
+    processChannel(source, sampleRate, { wow: 0.1, flutter: 0 });
+    assert.ok(calls > 0);
+  } finally {
+    Math.sin = originalSin;
+  }
+});
+
 test('HIT and saturation are independent controls', () => {
   const source = sine(997, 0.1, 0.72);
   const lowHit = processChannel(source, sampleRate, { hit: 0, saturation: 0.6 });
