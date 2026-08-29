@@ -1,0 +1,238 @@
+{
+  "schema": "battlefx-auv3-parameter-audit/v1",
+  "researchId": "20260828-battlefx",
+  "run": {
+    "id": null,
+    "status": "NOT_RUN",
+    "observedAt": null,
+    "device": null,
+    "osVersion": null,
+    "host": null,
+    "hostVersion": null,
+    "sampleRate": null,
+    "bufferFrames": null
+  },
+  "product": {
+    "name": "BattleFX",
+    "appStoreId": "6764648922",
+    "observedVersion": null,
+    "observedBuild": null,
+    "versionEvidence": "UNOBTAINED"
+  },
+  "routing": {
+    "wetOnlyConfirmed": null,
+    "dryLeakageObserved": null,
+    "latencySamples": null,
+    "notes": null
+  },
+  "parameters": [
+    {
+      "semanticTarget": "DELAY_WET",
+      "expectedNames": [
+        "Delay Gain",
+        "Delay Mix",
+        "Delay Solo",
+        "Delay Mute"
+      ],
+      "priority": "GATE_A",
+      "observed": []
+    },
+    {
+      "semanticTarget": "REVERB_WET",
+      "expectedNames": [
+        "Reverb Gain",
+        "Reverb Mix",
+        "Reverb Solo",
+        "Reverb Mute"
+      ],
+      "priority": "GATE_A",
+      "observed": []
+    },
+    {
+      "semanticTarget": "DELAY_TO_REVERB_SEND",
+      "expectedNames": [
+        "Send"
+      ],
+      "priority": "GATE_A",
+      "observed": []
+    },
+    {
+      "semanticTarget": "DELAY_CHOKE_ENABLE",
+      "expectedNames": [
+        "Delay Choke"
+      ],
+      "priority": "GATE_B",
+      "observed": []
+    },
+    {
+      "semanticTarget": "DELAY_CHOKE_RATE",
+      "expectedNames": [
+        "Delay Choke Rate"
+      ],
+      "priority": "GATE_B",
+      "observed": []
+    },
+    {
+      "semanticTarget": "DELAY_EUCLIDEAN",
+      "expectedNames": [
+        "Delay Euclidean",
+        "Delay Pattern"
+      ],
+      "priority": "GATE_B",
+      "observed": []
+    },
+    {
+      "semanticTarget": "DELAY_NUDGE",
+      "expectedNames": [
+        "Delay Nudge"
+      ],
+      "priority": "GATE_B",
+      "observed": []
+    },
+    {
+      "semanticTarget": "REVERB_CHOKE_ENABLE",
+      "expectedNames": [
+        "Reverb Choke"
+      ],
+      "priority": "GATE_B",
+      "observed": []
+    },
+    {
+      "semanticTarget": "REVERB_CHOKE_RATE",
+      "expectedNames": [
+        "Reverb Choke Rate"
+      ],
+      "priority": "GATE_B",
+      "observed": []
+    },
+    {
+      "semanticTarget": "REVERB_EUCLIDEAN",
+      "expectedNames": [
+        "Reverb Euclidean",
+        "Reverb Pattern"
+      ],
+      "priority": "GATE_B",
+      "observed": []
+    },
+    {
+      "semanticTarget": "REVERB_NUDGE",
+      "expectedNames": [
+        "Reverb Nudge"
+      ],
+      "priority": "GATE_B",
+      "observed": []
+    },
+    {
+      "semanticTarget": "DELAY_TIME",
+      "expectedNames": [
+        "Time",
+        "Delay Time"
+      ],
+      "priority": "GATE_C",
+      "observed": []
+    },
+    {
+      "semanticTarget": "DELAY_FEEDBACK",
+      "expectedNames": [
+        "Feedback"
+      ],
+      "priority": "GATE_C",
+      "observed": []
+    },
+    {
+      "semanticTarget": "DELAY_GLITCH",
+      "expectedNames": [
+        "Glitch"
+      ],
+      "priority": "GATE_C",
+      "observed": []
+    },
+    {
+      "semanticTarget": "DELAY_SAMPLE_RATE",
+      "expectedNames": [
+        "S.RATE",
+        "Sample Rate"
+      ],
+      "priority": "GATE_C",
+      "observed": []
+    },
+    {
+      "semanticTarget": "REVERB_PREDELAY",
+      "expectedNames": [
+        "Predelay"
+      ],
+      "priority": "GATE_C",
+      "observed": []
+    },
+    {
+      "semanticTarget": "REVERB_DECAY",
+      "expectedNames": [
+        "Decay"
+      ],
+      "priority": "GATE_C",
+      "observed": []
+    },
+    {
+      "semanticTarget": "REVERB_SAMPLE_RATE",
+      "expectedNames": [
+        "S.RATE",
+        "Sample Rate"
+      ],
+      "priority": "GATE_C",
+      "observed": []
+    },
+    {
+      "semanticTarget": "REVERB_INPUT_TILT",
+      "expectedNames": [
+        "In Tilt",
+        "Input Tilt"
+      ],
+      "priority": "GATE_C",
+      "observed": []
+    },
+    {
+      "semanticTarget": "REVERB_OUTPUT_TILT",
+      "expectedNames": [
+        "Out Tilt",
+        "Output Tilt"
+      ],
+      "priority": "GATE_C",
+      "observed": []
+    },
+    {
+      "semanticTarget": "MAXIMIZE",
+      "expectedNames": [
+        "Maximize"
+      ],
+      "priority": "GATE_C",
+      "observed": []
+    }
+  ],
+  "parameterObservationShape": {
+    "address": null,
+    "identifier": null,
+    "displayName": null,
+    "groupPath": null,
+    "minimum": null,
+    "maximum": null,
+    "defaultValue": null,
+    "unit": null,
+    "flags": [],
+    "writable": null,
+    "automationRecorded": null,
+    "automationReplayed": null,
+    "midiMapped": null,
+    "simultaneousGesture": null,
+    "stateRestored": null,
+    "notes": null
+  },
+  "decision": {
+    "gateA": "NOT_RUN",
+    "gateB": "NOT_RUN",
+    "gateC": "NOT_RUN",
+    "gateD": "NOT_RUN",
+    "overall": "NOT_RUN",
+    "eligibleForPhase3Prototype": false
+  }
+}
+
