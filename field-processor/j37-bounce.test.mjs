@@ -70,4 +70,6 @@ test('Field Looper loads the engine and keeps RAW separate from bounced generati
   assert.match(html, /lane\.buffer=rendered;lane\.generation\+=1/);
   assert.match(html, /<button id="bounce" type="button">J37 バウンス<\/button>/);
   assert.match(html, /bounce\.addEventListener\('click',bounceAllJ37\)/);
+  assert.match(html, /lane\.state==='recording'\|\|lane\.state==='overdubbing'/);
+  assert.match(html, /録音を確定してからJ37/);
 });
