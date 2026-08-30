@@ -37,8 +37,11 @@ test("the existing start control resumes an iOS-suspended audio context", async 
   const source = await read("../demo/app.js");
   assert.match(source, /audioContext\.addEventListener\("statechange"/);
   assert.match(source, /startButton\.textContent = running \? "STOP" : "RESUME"/);
-  assert.match(source, /if \(audioContext\?\.state !== "running"\) return resumeAudio\(\)/);
+  assert.match(source, /if \(audioContext\?\.state !== "running" \|\| audioRecoveryRequired\) return resumeAudio\(\)/);
   assert.match(source, /audioContext\.removeEventListener\("statechange"/);
+  assert.match(source, /verifyAudioClockAfterVisibility/);
+  assert.match(source, /if \(context\.state === "running"\) await context\.suspend\(\)/);
+  assert.match(source, /音響時計が停止中/);
 });
 
 test("the demo connects four loops and one independent drum input", async () => {

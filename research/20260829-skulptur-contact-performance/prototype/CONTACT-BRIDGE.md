@@ -42,7 +42,7 @@ Sound Labの`main`に入った画像接触研究を、Skulptur試奏面の入力
 - Take再生時は元のgesture IDを再利用せず、新しい再生instance IDを付与する。
 - 再生pointer IDも高い合成IDへ分離し、同時に触れた実pointerと衝突させない。
 - デモの一つの`TAKE`ボタンで録音、停止、一回再生、再生中断を循環する。
-- 画面非表示ではTAKE再演もcancelし、iOSの音響休止後は既存STARTボタンから明示再開する。
+- 画面非表示ではTAKE再演もcancelする。復帰時はAudioContext時計の前進を検査し、`running`表示でも止まっていれば既存STARTボタンから`suspend → resume`して再検査する。
 - TAKEの同じ再生frame列を40ms先行でAudioWorkletへ渡し、`requestAnimationFrame`を音響時計にしない。
 - 予約batchは時刻順、begin/move/end因果、全pointer終端を検査し、schedule ID単位で中断する。
 

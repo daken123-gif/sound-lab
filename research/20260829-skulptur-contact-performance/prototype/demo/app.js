@@ -3,6 +3,7 @@ import { SkulpturHostController } from "../src/skulptur-host-controller.js";
 import { fitAudioBufferToLoop } from "../src/audio-loop-fit.js";
 import { bindPointerContactSurface } from "../src/pointer-contact-adapter.js";
 import { skulpturCommandFromContactFrame } from "../src/skulptur-contact-bridge.js";
+import { audioClockAdvanced } from "../src/audio-clock-health.js";
 import {
   ContactPerformanceTakePlayer,
   ContactPerformanceTakeRecorder
@@ -48,6 +49,8 @@ let takePlaySerial = 0;
 let takeAnimationFrame = null;
 let audioContextStateListener = null;
 let takeAudioScheduleId = null;
+let audioRecoveryRequired = false;
+let audioClockProbeSerial = 0;
 const pointers = new Map();
 
 const takePlayer = new ContactPerformanceTakePlayer({
@@ -135,21 +138,46 @@ function scheduleReplayedContactFrames(frames) {
 
 function reflectAudioContextState() {
   if (!audioContext || !controller || audioContext.state === "closed") return;
-  const running = audioContext.state === "running";
+  const running = audioContext.state === "running" && !audioRecoveryRequired;
   startButton.textContent = running ? "STOP" : "RESUME";
   startButton.classList.toggle("running", running);
   setControlsEnabled(running);
   if (!running) setStatus("音響停止中 — RESUMEを押してください");
 }
 
+async function verifyAudioClockAfterVisibility() {
+  const context = audioContext;
+  if (!context || !controller || context.state !== "running") {
+    reflectAudioContextState();
+    return;
+  }
+  const serial = ++audioClockProbeSerial;
+  const advanced = await audioClockAdvanced(context);
+  if (serial !== audioClockProbeSerial || context !== audioContext || !controller) return;
+  audioRecoveryRequired = !advanced;
+  reflectAudioContextState();
+  if (advanced) updateModeStatus();
+  else setStatus("音響時計が停止中 — RESUMEを押してください");
+}
+
 async function resumeAudio() {
-  if (!audioContext || !controller || audioContext.state === "closed") return;
+  const context = audioContext;
+  if (!context || !controller || context.state === "closed") return;
   startButton.disabled = true;
   setStatus("音響エンジン再開中");
   try {
-    await audioContext.resume();
+    audioClockProbeSerial += 1;
+    audioRecoveryRequired = false;
+    if (context.state === "running") await context.suspend();
+    if (context !== audioContext || !controller) return;
+    await context.resume();
+    if (context !== audioContext || !controller) return;
+    const advanced = await audioClockAdvanced(context);
+    if (context !== audioContext || !controller) return;
+    audioRecoveryRequired = !advanced;
     reflectAudioContextState();
-    if (audioContext.state === "running") updateModeStatus();
+    if (advanced) updateModeStatus();
+    else setStatus("音響時計を再開できませんでした — もう一度RESUME");
   } catch (error) {
     setStatus(`再開失敗: ${error.message}`);
   } finally {
@@ -281,6 +309,8 @@ async function startAudio() {
   startButton.disabled = true;
   setStatus("音響エンジン起動中");
   try {
+    audioRecoveryRequired = false;
+    audioClockProbeSerial += 1;
     audioContext = new AudioContext({ latencyHint: "interactive", sampleRate: SAMPLE_RATE });
     audioContextStateListener = () => reflectAudioContextState();
     audioContext.addEventListener("statechange", audioContextStateListener);
@@ -333,6 +363,8 @@ async function stopAudio() {
     audioContext.removeEventListener("statechange", audioContextStateListener);
   }
   audioContextStateListener = null;
+  audioClockProbeSerial += 1;
+  audioRecoveryRequired = false;
   if (audioContext && audioContext.state !== "closed") await audioContext.close();
   audioContext = null;
   recording = false;
@@ -354,7 +386,7 @@ async function stopAudio() {
 
 startButton.addEventListener("click", () => {
   if (!controller) return startAudio();
-  if (audioContext?.state !== "running") return resumeAudio();
+  if (audioContext?.state !== "running" || audioRecoveryRequired) return resumeAudio();
   return stopAudio();
 });
 
@@ -506,9 +538,14 @@ bindPointerContactSurface({
 });
 
 document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState !== "hidden" || !takePlayer.isPlaying) return;
-  stopTakePlayback();
-  setStatus("画面が隠れたためTAKE再生を停止");
+  if (document.visibilityState === "hidden") {
+    if (takePlayer.isPlaying) {
+      stopTakePlayback();
+      setStatus("画面が隠れたためTAKE再生を停止");
+    }
+    return;
+  }
+  verifyAudioClockAfterVisibility();
 });
 
 window.addEventListener("pagehide", () => stopAudio());

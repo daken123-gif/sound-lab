@@ -30,7 +30,7 @@ Skulpturのソースコードを解析・複製したものではなく、公開
 - 画面外release、capture喪失、画面回転でもpointer所有権を残さないcancel回復
 - 同じ接触frame列を保存し、別時刻・別gesture IDの再生列へ展開するContact Performance Take
 - 一つの`TAKE`ボタンによる接触演奏の録音・一回再生・安全停止
-- 画面非表示時の接触cancelとTAKE再演停止、iOS音響休止後の同一STARTボタンからの再開
+- 画面非表示時の接触cancelとTAKE再演停止、iOS復帰時の音響時計検査と同一STARTボタンからの再開
 - 同じTAKE再生frame列をAudioContext時計へ40ms先行予約し、音をAudioWorkletのrender quantumで発行
 - 再生中の実指と衝突しない合成pointer ID
 - DSPが実際に再生しているREC・Flow・Throwの帯域位置を30fpsで表示
@@ -64,7 +64,7 @@ npm run demo
 - 指を離した後の細いマーカーは、DSP側で再生中のREC・Flow・Throwです。画面だけの疑似アニメーションではありません。
 - `LOOP 1`〜`LOOP 4`を押して音声ファイルを選ぶと、選んだトラックだけが現在位置から差し替わります。読み込むのは先頭4秒です。
 - `TAKE`を押して演奏し、指を離して`TAKE STOP`を押すと接触演奏を保持します。次の`TAKE PLAY`で音と表示を同じframe列から一回再生します。再生中の`TAKE STOP`はcancelを発行して止めます。
-- 再演中にアプリを隠すとTAKEをその場でcancelします。iOSが音響を休止した場合は、既存のSTARTボタンが`RESUME`へ変わり、明示操作で再開します。
+- 再演中にアプリを隠すとTAKEをその場でcancelします。復帰後は`AudioContext.state`だけでなく`currentTime`が実際に進むかを検査します。時計が止まっていれば既存のSTARTボタンが`RESUME`へ変わり、明示操作で`suspend → resume`して再検査します。
 - TAKEの音響接触は再生開始時に40ms先行してAudioWorkletへ予約します。表示は同じframe列を画面更新に合わせて追い、描画落ちで音響eventまで16ms単位に遅れる経路を避けます。
 - 接触面では、Pointer Eventをまず検証済み接触frameへ変換し、その同じframeから表示と音響操作を駆動します。
 
@@ -79,6 +79,7 @@ npm run demo
 - pressureとcontactAreaは入力契約へ保持しますが、iPhone実機で由来を検証するまで音響パラメータへ割り当てません。
 - `REC`は一周ごとの帯域カーブ録音、`TAKE`は指の接触そのものを一回録音・再生する別機能です。複数Takeの一覧、名前、永続保存UIは未実装です。
 - TAKEの予約精度はNode上のqueue因果とAudioContext時刻mappingを検証済みですが、Mobile Safariの実render quantumと聴覚上のずれは未検証です。
+- 音響時計停止の判定と復旧手順は単体検証済みですが、WebKit不具合をiPhone実機で再現して復旧できることは未検証です。
 - 内部オーバーサンプリングは未実装です。
 - `wetTrim` は暫定値で、ラウドネス整合はまだ行っていません。
 

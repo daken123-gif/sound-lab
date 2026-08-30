@@ -2,7 +2,7 @@
 
 - research-id: `20260829-skulptur-contact-performance`
 - 状態: `candidate / implemented-unverified`
-- 更新日: 2026-08-29
+- 更新日: 2026-08-30
 - 対象: 4トラック録音後のSkulptur型主演奏面
 - 製品採用: 未判断
 - iPhone実機: 未検証
@@ -50,7 +50,7 @@
 - 実時間playerは期限到来frameだけを発行し、中断時は全active接触へcancelを発行する。
 - デモは一つの`TAKE`ボタンで録音、停止、一回再生、再生中断を循環する。`REC`の帯域ループ録音とは別機能である。
 - 画面非表示ではTAKE再演をcancelし、復帰時の残りframe一括発行を防ぐ。
-- iOSがAudioContextを休止した場合は、既存STARTボタンを`RESUME`へ切り替え、追加モードなしで明示再開する。
+- iOS復帰時はAudioContextの`state`だけでなく`currentTime`の前進を検査する。`running`表示でも時計が止まっていれば、既存STARTボタンを`RESUME`へ切り替え、`suspend → resume`後に再検査する。
 - TAKE開始時に同じ再生frame object列を表示playerと音響schedulerへ渡し、音響は40ms先行してAudioContext時計へ予約する。
 - AudioWorkletは予約commandをrender quantumごとに適用し、schedule IDの中断で未発行commandとactive接触を破棄する。
 - 予約batchは時刻順、begin/move/end因果、全pointer終端を検査する。
@@ -68,12 +68,13 @@
 
 ```sh
 node --check demo/app.js
+node --check src/audio-clock-health.js
 node --check src/contact-performance-take.js
 node --test
 node scripts/render-demo.mjs
 ```
 
-- 自動テスト: 84 pass / 0 fail
+- 自動テスト: 87 pass / 0 fail
 - 4次／8次の比較WAV生成: 成功
 - HTTP配信資産: 検証記録は`prototype/VALIDATION.md`
 - ZIP展開後の同一テスト: 配布物作成時に実施
@@ -112,5 +113,6 @@ node scripts/render-demo.mjs
 - 同じframe列を追う表示と音響の実機上の同期精度
 - AudioContext時計への40ms先行予約がMobile Safariで十分か
 - Mobile SafariがAudioContextを休止・再開する実際のタイミング
+- `running`状態で止まったAudioContext時計を`suspend → resume`で実機回復できること
 - 複数Takeの選択、命名、保存、再読込み
 - 4トラック個別処理へ発展させる場合のtrack ownership

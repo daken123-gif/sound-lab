@@ -1,6 +1,6 @@
 # Validation record
 
-実行日: 2026-08-29 UTC
+実行日: 2026-08-30 UTC
 
 ## 実行済み
 
@@ -69,6 +69,9 @@
 - PASS: 一つのTAKEボタンから録音・再生・安全停止へ到達
 - PASS: 画面非表示時にTAKE再演を停止し、復帰時の残りframe一括発行を防止
 - PASS: iOSによるAudioContext休止を既存STARTボタンのRESUME操作へ接続
+- PASS: `running`状態でも`currentTime`が進まない音響時計停止を検出
+- PASS: 復旧操作で`suspend → resume`後に音響時計を再検査
+- PASS: 時計検査中にContext状態が中断へ変わった場合は不健全と判定
 - PASS: 同じTAKE再生frame object列を表示playerと音響schedulerへ供給
 - PASS: AudioContext時計上の予約時刻を順序通りqueueから発行
 - PASS: 同時刻commandの記録順序を保持
@@ -76,7 +79,7 @@
 - PASS: 未開始move、二重begin、未終了pointer、時刻後退を拒否
 - PASS: Hostから予約batchと明示cancelをAudioWorkletへ送信
 - PASS: 音響予約が拒否された場合に表示playerの開始状態を巻き戻す
-- 合計: 84 pass / 0 fail
+- 合計: 87 pass / 0 fail
 
 `node scripts/render-demo.mjs`
 
@@ -96,14 +99,15 @@
 - PASS: `src/contact-performance-take.js`
 - PASS: `src/contact-performance-take.schema.json`
 - PASS: `src/scheduled-touch-queue.js`
+- PASS: `src/audio-clock-health.js`
 - PASS: `src/skulptur-filter-bank.worklet.js`
-- 11資産ともHTTP 200
+- 12資産ともHTTP 200
 
 ## 時間設計の一次根拠
 
 - Web Audio API 1.1: `AudioContext.currentTime`はrunning中にrender threadで単調増加し、すべての予約時刻の座標系になる。<https://webaudio.github.io/web-audio-api/>
 - HTML Standard: 非表示documentではrendering opportunityが大幅に間引かれ得るため、`requestAnimationFrame`を音響時計にしない。<https://html.spec.whatwg.org/multipage/webappapis.html>
-- WebKit Bug 231105 / 263627: iOSのbackground遷移と復帰でAudioContext停止・再開が一貫しない事例がある。<https://bugs.webkit.org/show_bug.cgi?id=231105> / <https://bugs.webkit.org/show_bug.cgi?id=263627>
+- WebKit Bug 231105 / 263627: iOSのbackground遷移と復帰でAudioContext停止・再開が一貫せず、`running`でも`currentTime`が進まない報告がある。<https://bugs.webkit.org/show_bug.cgi?id=231105> / <https://bugs.webkit.org/show_bug.cgi?id=263627>
 
 ## 未検証
 
@@ -111,6 +115,7 @@
 - Safari/WebKit上のAudioWorklet動作
 - Mobile Safari上のPointer Event順序、capture、pressure、contactArea
 - Mobile Safariが実際にAudioContextを休止・再開するタイミング
+- Mobile Safariで`running`かつ時計停止を再現した際に`suspend → resume`で回復すること
 - iPhone実機上で描画と音響が同じ接触frameを追跡すること
 - AudioWorklet予約がMobile Safari実機でrender quantum範囲のずれに収まること
 - Contact Performance Takeの複数Take一覧、命名、永続保存UI
