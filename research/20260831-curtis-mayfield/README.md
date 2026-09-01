@@ -2,7 +2,7 @@
 
 - status: `active`
 - research-id: `20260831-curtis-mayfield`
-- 更新日時: 2026-08-31
+- 更新日時: 2026-09-01
 - 変更範囲: 研究記録のみ。製品コード、`integration/`、既存判断は変更しない
 
 ## 研究対象と現在の問い
@@ -266,14 +266,15 @@ Jeff Millsからは複数周期をその場で投入・離脱させる操作速�
 | “Billy Jack” | Tunebat | 140 BPM / C# minor / 6:07 | 自動解析由来の参考値 |
 | “Billy Jack” | Chordify | 143 BPM | 自動同期由来の参考値 |
 | “Billy Jack” | SongBPM | 82 BPM / 6:30 | 上記と音源長も異なるため同一版か未確定 |
-| “Sweet Exorcist” | Tunebat | 113 BPM / A major | 自動解析由来の参考値 |
+| “Sweet Exorcist” | Beatport (2019 remaster) | 113 BPM / A major / 3:51 | 配信メタデータ由来の参考値 |
 
 参照:
 
 - https://tunebat.com/Info/Billy-Jack-Curtis-Mayfield/58g78TAudwqiMzSJHrhjYB
 - https://chordify.net/chords/curtis-mayfield-songs/billy-jack-chords
 - https://songbpm.com/%40curtis-mayfield/billy-jack-c0580b98-206f-4445-ae67-8d9d7c2d9fc2
-- https://tunebat.com/Info/Future-Shock-by-Curtis-Mayfield/4Qt3qAKiQW0aP4HcpaWlNl
+- https://www.beatport.com/track/sweet-exorcist/26999255
+- https://trackify.am/track/5AeG4Wp99kjbznPo607bAT/tempo
 
 この比較から確定できるのは、BPM集計が一致していないことだけである。独自の拍検出をまだ実行していないため、どれか一値を正解として採用しない。
 
@@ -292,14 +293,16 @@ Jeff Millsからは複数周期をその場で投入・離脱させる操作速�
 コード支援サービスが返す候補は次の通り。
 
 - “Billy Jack”: C#m7、F#m7、B、F#mを中心とする候補。
-- “Sweet Exorcist”: A、F#m、D、C#、E、Bm、C#mを含む候補。
+- “Sweet Exorcist”: F#m、Bm7、C#7、Amaj7を含む候補。ページ上の反復表示ではAmaj7とBm / Bm/Aが長く現れる。
 
 参照:
 
 - https://chordify.net/chords/curtis-mayfield-songs/billy-jack-chords
-- https://chordu.com/chords-tabs-curtis-mayfield-jesus-id_OX5I-sbBKFo
+- https://chordify.net/es/chords/curtis-mayfield-songs/sweet-exorcist-chords
 
-これらは公式スコアでも独自採譜でもないため、コード進行として確定しない。ただし次の比較仮説を作れる。
+これらは公式スコアでも独自採譜でもないため、コード進行として確定しない。なお、前版で “Sweet Exorcist” の根拠にしたChordU URLは別曲 “Jesus” を指していたため、そのリンクとそこから得た和音集合を撤回した。またBPM欄のTunebat URLも別曲 “Future Shock” だったため撤回し、曲名と版が一致するBeatport / Trackifyの値へ差し替えた。ただし新しい値も独自実測ではない。
+
+修正後に残る比較仮説は次の通り。
 
 - “Billy Jack”は短調側の狭い重心へ繰り返し戻り、物語の逃げ場を狭くする。
 - “Sweet Exorcist”は長調／短調の近親領域を広く通り、拘束から解放へ向かう幅を作る。
@@ -352,6 +355,74 @@ Jeff Millsからは複数周期をその場で投入・離脱させる操作速�
 公開音源ページのメタデータと第三者解析値は取得した。一方、音源ファイルを解析環境へ取得する経路は実行時に切断され、波形、オンセット、テンポ揺れ、マイクロタイミングの独自計測は実施していない。
 
 したがって今回追加したBPMとコードは、取得元を明示した参考値およびそこからの仮説であり、実測結果ではない。
+
+## 継続研究4 — 二重拍場と弾性クオンタイズ
+
+### 一般知見と曲固有の証拠を分ける
+
+音楽情報検索では、知覚上の拍を半分または二倍の階層へ割り当てる「tempo octave error」が主要問題として知られている。Hockman & Fujinagaは、周期性解析には半拍／倍拍を含む複数ピークが現れ、単一のメトロノーム値だけでは知覚速度を十分に説明できないと述べる。FMPの解説も、異なるpulse levelが整数倍・整数分のtempo harmonic / subharmonicを作ると整理している。
+
+参照:
+
+- Hockman, Jason A. & Ichiro Fujinaga, “Fast vs Slow: Learning Tempo Octaves from User Data,” ISMIR 2010  
+  https://ismir2010.ismir.net/proceedings/ismir2010-41.pdf
+- Meinard Müller, *Fundamentals of Music Processing*, “Tempo and Beat Tracking” companion notebook  
+  https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S2_TempoBeat.html
+- Schreiber & Müller, “Exploiting Global Features for Tempo Octave Correction,” ICASSP 2014  
+  https://www.audiolabs-erlangen.de/content/05_fau/professor/00_mueller/03_publications/2014_SchreiberMueller_TempoEstimation_ICASSP.pdf
+
+これは “Billy Jack” 自体の拍階層を証明する資料ではない。今回曲固有に確認できたのは、公開値が82 / 140 / 143 BPMに割れていることだけである。したがって「140の正解拍に82が誤答した」とは決めず、演奏系では複数の拍候補を保持する。
+
+### 単一BPMではなく拍場を持つ
+
+固定した一本のgridではなく、共有位相から複数階層を派生させる候補。
+
+- `PULSE.sub`: 身体が拾える速い下位パルス。
+- `PULSE.macro`: 2、3、4個の下位パルスをまとめる遅い大拍。
+- `PULSE.weight[k]`: 現在どの階層を強く感じさせるか。排他的に一つを正解にしない。
+- `PULSE.phase`: 連続する共有位相。小節末でゼロへ強制リセットしない。
+- `EVENT.gap`: 発音間隔。パルス速度から独立させる。
+
+“Billy Jack”側の仮説は、`PULSE.sub`を失わず`PULSE.macro`と長い`EVENT.gap`を前景化すること。“Sweet Exorcist”側は、約113–115 BPMと報告される中位パルスを保ちながら、声と和声の遷移をそれより長い窓へ置くこと。いずれも原曲BPMの再現ではなく、速い内部運動と遅い出来事進行を分離する設計仮説である。
+
+### 弾性クオンタイズ
+
+入力時刻を消して最寄りgridへ吸着するのではなく、入力時刻と選ばれた拍候補の間だけを動かす。
+
+```
+t_event = t_input + kappa * wrapNearest(t_grid - t_input)
+```
+
+- `kappa = 0`: 生の接触時刻を保持。
+- `kappa = 1`: 選択した階層へ完全吸着。
+- 通常演奏では0と1の間を使い、階層ごとに異なる`kappa`を持てる。
+- `kappa`はランダムなhumanizeではなく、接触継続時間、移動速度、接触間距離、直前のイベント密度から決める。
+- BODYは比較的強く結合できるが、VOICEとHORIZONは弱く結合し、同時着地を避ける。
+- 原入力`t_input`と導出結果`t_event`を別に保持し、後から関係を検証可能にする。
+
+この式はMayfield録音から測定したモデルではなく、三時計仮説を試作可能な状態へ下ろすためのcandidateである。
+
+### 「人間味」を乱数へ外注しない
+
+マイクロタイミング研究では、自然なずれを消した量子化版が常に低評価になるわけではなく、ずれを単純拡大すると評価が下がる結果も報告されている。よってMayfieldらしさを「各音をランダムに前後させる」と定義しない。
+
+参照:
+
+- Datseris et al., “Does It Swing? Microtiming Deviations and Swing Feeling in Jazz,” 2019  
+  https://arxiv.org/abs/1904.03442
+
+本研究が保持したいのは誤差量ではなく、どの層がどの拍階層へどれだけ結合するか、その結合を接触の履歴で変えられることである。
+
+### 試作前の追加受入条件
+
+1. 82 / 140 / 143のどれか一値へ全層を固定しなくても動作する。
+2. `PULSE.sub`を速くしても、`EVENT.gap`が自動的に狭くならない。
+3. BODYがgridへ寄っても、VOICE / HORIZONが同じ瞬間へ吸着しない。
+4. 接触を離して再接触したとき、全位相をbar 1へ戻さない。
+5. 乱数を切っても、接触履歴だけでタイミング差が生じる。
+6. Performance Takeでは`t_input`と`t_event`を区別して再現・比較できる。
+7. `kappa`の変化を画面操作で直接編集させず、演奏身振りから知覚可能な応答として得られる。
+8. 原曲実測が入るまで、各曲名をプリセット名や既定値名に使わない。
 
 ## 現在の結論
 
