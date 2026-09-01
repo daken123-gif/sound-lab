@@ -1,0 +1,217 @@
+{
+  "synthetic_calibration": [
+    {
+      "case": "straight_eighth",
+      "bpm_candidate": 119.94,
+      "beat_confidence": 3.928,
+      "onset_rate_per_s": 3.667,
+      "phase_histogram_12": [
+        0,
+        0,
+        0,
+        0,
+        9,
+        13,
+        0,
+        0,
+        0,
+        0,
+        17,
+        4
+      ],
+      "top_phase_centers": [
+        0.875,
+        0.458,
+        0.375,
+        0.958
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.514,
+      "binary_spacing_score": 0.739,
+      "triplet_spacing_score": 0.0,
+      "usable_onsets": 43
+    },
+    {
+      "case": "swing_2_to_1",
+      "bpm_candidate": 119.94,
+      "beat_confidence": 3.738,
+      "onset_rate_per_s": 3.667,
+      "phase_histogram_12": [
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        18,
+        0,
+        0,
+        15
+      ],
+      "top_phase_centers": [
+        0.708,
+        0.958,
+        0.042,
+        0.625
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.494,
+      "binary_spacing_score": 0.0,
+      "triplet_spacing_score": 0.28,
+      "usable_onsets": 43
+    },
+    {
+      "case": "shifted_straight_eighth",
+      "bpm_candidate": 120.06,
+      "beat_confidence": 3.814,
+      "onset_rate_per_s": 3.667,
+      "phase_histogram_12": [
+        0,
+        0,
+        0,
+        0,
+        5,
+        17,
+        0,
+        0,
+        0,
+        0,
+        17,
+        5
+      ],
+      "top_phase_centers": [
+        0.875,
+        0.458,
+        0.375,
+        0.958
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.495,
+      "binary_spacing_score": 0.541,
+      "triplet_spacing_score": 0.0,
+      "usable_onsets": 44
+    }
+  ],
+  "previews": [
+    {
+      "file": "01-billy-jack_(Drums)_kuielab_b_drums.wav",
+      "bpm_candidate": 141.78,
+      "beat_confidence": 3.589,
+      "onset_rate_per_s": 2.969,
+      "phase_histogram_12": [
+        0,
+        0,
+        0,
+        1,
+        2,
+        5,
+        7,
+        0,
+        2,
+        1,
+        0,
+        69
+      ],
+      "top_phase_centers": [
+        0.958,
+        0.542,
+        0.458,
+        0.708
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.333,
+      "binary_spacing_score": 0.143,
+      "triplet_spacing_score": 0.016,
+      "usable_onsets": 87
+    },
+    {
+      "file": "01-billy-jack_(Bass)_kuielab_b_bass.wav",
+      "bpm_candidate": 139.97,
+      "beat_confidence": 0.368,
+      "onset_rate_per_s": 1.168,
+      "phase_histogram_12": [
+        5,
+        3,
+        3,
+        4,
+        0,
+        4,
+        3,
+        2,
+        2,
+        1,
+        1,
+        6
+      ],
+      "top_phase_centers": [
+        0.958,
+        0.042,
+        0.458,
+        0.292
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.916,
+      "binary_spacing_score": 0.846,
+      "triplet_spacing_score": 0.677,
+      "usable_onsets": 34
+    },
+    {
+      "file": "026-43465733_(Drums)_kuielab_b_drums.wav",
+      "bpm_candidate": 111.63,
+      "beat_confidence": 3.524,
+      "onset_rate_per_s": 4.243,
+      "phase_histogram_12": [
+        40,
+        0,
+        1,
+        1,
+        10,
+        3,
+        4,
+        10,
+        39,
+        1,
+        1,
+        13
+      ],
+      "top_phase_centers": [
+        0.042,
+        0.708,
+        0.958,
+        0.625
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.698,
+      "binary_spacing_score": 0.142,
+      "triplet_spacing_score": 0.715,
+      "usable_onsets": 123
+    },
+    {
+      "file": "026-43465733_(Bass)_kuielab_b_bass.wav",
+      "bpm_candidate": 111.27,
+      "beat_confidence": 1.76,
+      "onset_rate_per_s": 1.871,
+      "phase_histogram_12": [
+        15,
+        2,
+        0,
+        2,
+        11,
+        4,
+        0,
+        2,
+        5,
+        1,
+        1,
+        12
+      ],
+      "top_phase_centers": [
+        0.042,
+        0.958,
+        0.375,
+        0.708
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.774,
+      "binary_spacing_score": 0.239,
+      "triplet_spacing_score": 0.662,
+      "usable_onsets": 55
+    }
+  ],
+  "hard_limit": "rotation-invariant phase spacing cannot identify syncopation without a verified beat/downbeat anchor"
+}
