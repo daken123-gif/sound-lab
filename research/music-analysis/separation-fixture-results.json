@@ -1,0 +1,26 @@
+[
+  {
+    "target": "drums",
+    "si_sdr_db": 7.644,
+    "target_cosine": 0.9237,
+    "non_target_cosines": {
+      "bass": 0.0138,
+      "other": 0.0029
+    },
+    "predicted_rms": 0.058603,
+    "target_rms": 0.098671,
+    "reconstruction_residual_rms": 0.00490148
+  },
+  {
+    "target": "bass",
+    "si_sdr_db": 12.79,
+    "target_cosine": 0.9747,
+    "non_target_cosines": {
+      "drums": 0.0288,
+      "other": 0.0009
+    },
+    "predicted_rms": 0.088497,
+    "target_rms": 0.117027,
+    "reconstruction_residual_rms": 0.006072712
+  }
+]
