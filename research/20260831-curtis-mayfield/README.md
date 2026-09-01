@@ -88,7 +88,7 @@ Mayfieldのファルセットと歌詞が担う。歌はリズム隊の周期を
 
 #### 3. 危険／解放の時計
 
-ホーン、ストリングス、鍵盤、ギターの挿入が担う。常時音数を増やすのではなく、長い時間幅で圧力を上げ下げする。“Billy Jack”では危険と不可逆性、“Sweet Exorcist”では拘束と解放の幅として働く。
+ホーン／木管、鍵盤、ギターなどの編曲層が担う。常時音数を増やすのではなく、長い時間幅で圧力を上げ下げする。前版ではここへ「ストリングス」と記したが、取得済みクレジットと未実施の聴取分析からは確定できないため撤回する。“Billy Jack”では危険と不可逆性、“Sweet Exorcist”では拘束と解放の幅として働く。
 
 三つの時計は同じフレーズを共有しない。したがって部分的な反復があっても、全層が同時に同じ状態へ戻らない。
 
@@ -113,7 +113,7 @@ Mayfieldのファルセットと歌詞が担う。歌はリズム隊の周期を
 - 同じ低速域でも、“Billy Jack”より内側へ向かう。
 - リズム隊は前進の号令より、身体から重さを抜くための反復運動を作る。
 - ギターは和音の説明を完了せず、短い接触と余韻で空間を開ける。
-- ストリングス／編曲は曲を巨大化するより、閉じていた調和の幅を徐々に広げる。
+- 長音価の編曲層は曲を巨大化するより、閉じていた調和の幅を徐々に広げるように働く、という聴取候補。具体的な楽器編成は未確認。
 - 声は支配する主体ではなく、重荷から救い出してほしい主体として置かれる。
 
 #### タイトルの働き
@@ -423,6 +423,70 @@ t_event = t_input + kappa * wrapNearest(t_grid - t_input)
 6. Performance Takeでは`t_input`と`t_event`を区別して再現・比較できる。
 7. `kappa`の変化を画面操作で直接編集させず、演奏身振りから知覚可能な応答として得られる。
 8. 原曲実測が入るまで、各曲名をプリセット名や既定値名に使わない。
+
+## 継続研究5 — “Billy Jack”の編成縮約から不変項を絞る
+
+### 確認できた二つの編成
+
+1975年スタジオ版の曲別クレジットでは、Curtis Mayfield（歌、ギター）、Phil Upchurch（ギター）、Joseph “Lucky” Scott（ベース）、Quinton Joseph（ドラム）、Henry Gibson（打楽器）、Richard Tufo（編曲）が確認できる。Qobuzの再発版メタデータにはGary Thompson（ギター）とMayfield / Tufoの鍵盤も記載される。
+
+- MusicBrainz, *There’s No Place Like America Today*, A1 “Billy Jack”  
+  https://musicbrainz.org/release/3c42c9c4-7490-45ca-b36d-f6dfaaca239f
+- Qobuz, *There’s No Place Like America Today*  
+  https://www.qobuz.com/us-en/album/theres-no-place-like-america-today-curtis-mayfield/0081227863661
+
+一方、1988年7月31日のRonnie Scott’s録音にも“Billy Jack”が収録されている。確認できる演奏編成はMayfield（歌、ギター）、Benny Scott（ベース）、Buzz Amato（鍵盤）、Lee Goodness（ドラム）、Luis Stefanell（打楽器）の五人で、独立したホーン、木管、追加ギターはクレジットされていない。
+
+- MusicBrainz, *Live at Ronnie Scott’s*  
+  https://musicbrainz.org/release/bf7d9d8d-4cff-43db-8cee-883da193d556
+- Vaski Libraries catalog, *Live at Ronnie Scott’s*  
+  https://vaski.finna.fi/Record/vaski.436682
+- SWR提供 “Billy Jack (Live)”, 1990 Baden-Baden  
+  https://www.youtube.com/watch?v=_ITVaSoMhXU
+
+ここから確定できるのは、少なくとも“Billy Jack”が後年、歌／本人のギター／ベース／ドラム／打楽器／鍵盤という縮約編成で独立トラックとして演奏・収録されたことまでである。スタジオ版とライブ版でどのリズム、フレーズ、和声が同一かは、音源比較を実行していないため未確認。
+
+### 不変項の候補
+
+クレジット比較だけからホーンや多重ギターを曲の必須条件にはできない。したがって楽器モデルの最小核を次へ絞る。
+
+- `CORE.body`: ベース、ドラム、打楽器に相当するが、三音源へ固定せず、重心・アタック・隙間の関係として保持する。
+- `CORE.narrator`: 句読点を持つ単独の前景主体。原曲では歌だが、製品では接触主体がその役割を担える。
+- `CORE.puncture`: Mayfieldのギターに相当する短い切れ目。持続和音で全面を埋めない。
+- `COLOR.horizon`: ホーン／木管、追加ギター、長音価の編曲効果を受け持つ任意層。ゼロでもCOREが演奏として成立しなければならない。
+
+これは五人編成を五本指へ写す案ではない。人物・楽器数ではなく、縮約後にも残る機能を候補化している。
+
+### HORIZONを必須伴奏から外す
+
+前の三時計モデルではHORIZONを一つの時計として置いたが、音源層として常時鳴らす必要はない。
+
+- HORIZONの状態は無音中も変化できる。
+- `COLOR.horizon = 0`でもBODY / VOICEの関係は止まらない。
+- COLORが入るときは新しいループを開始せず、すでに蓄積した`HORIZON.tension`を可聴化する。
+- COLORを抜いても、COREの位相と関係記憶をリセットしない。
+- COLORの有無を「Billy Jackらしさ」のON / OFFにしない。
+
+### 同一身振りによる縮約試験
+
+実装へ進む場合、同じ入力記録から次の二つを派生レンダーし、音色嗜好ではなく構造保持を比較する。
+
+1. `core-only`: BODY、narrator、punctureだけ。
+2. `core+color`: 同じ入力と同じCOREへHORIZONの可聴層だけを加える。
+
+保存する入力は同一の`ContactGestureFrame`列とし、二版で演奏身振りを変えない。次を満たさなければモデルを棄却する。
+
+- `core-only`でも保持と離脱による緊張差が聞き分けられる。
+- COLORを足してもイベント密度が自動上昇しない。
+- COLORを除いても拍階層と`RELATION.memory`が変わらない。
+- `core+color`が単に「豪華な正解版」、`core-only`が「欠損版」にならない。
+- 二版の差を原入力と導出イベントのログで追跡できる。
+
+### 今回の撤回
+
+- “Billy Jack”または“Sweet Exorcist”にストリングスが存在するとした前版の楽器同定。
+- HORIZONを、常時鳴る管弦・パッド層として読むこと。
+- スタジオ版の多人数編成を、そのまま必要な同時接触数へ変換すること。
 
 ## 現在の結論
 
