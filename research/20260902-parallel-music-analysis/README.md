@@ -229,3 +229,143 @@ pulse、重心、役割を保持しながらイベント列を変えた版と、
 - mainへ統合されたこと
 
 ブランチ保存は研究の存在と内容を固定するだけであり、PR作成、merge、製品採用を意味しない。
+
+
+## 11. 2026-09-02追加 — Hunter × Millsから接触因果場へ
+
+### 11.1 取得状態の訂正
+
+第1版の「Jeff Mills正本ブランチを取得できなかった」という記述は、この時点の取得状態として失効した。現在は次の正本を取得した。
+
+| 研究 | ref | blob SHA | この接続で使う差分 |
+| --- | --- | --- | --- |
+| Charlie Hunter | `research/20260902-charlie-hunter` | `8328d29a5968264075cb38d1549dbdf3ebaf8938` | 指が固定声部ではなくチームとして働き、低音・上声・リズムを一つのポケットへ従属させる |
+| Jeff Mills | `research/20260902-jeff-mills` | `2fe28c9091a24cf9fadaee690d7f2b6d29fa3c93` | 素材のentry / exit / phase / recoveryを短い判断窓で更新する |
+| Autechre | `research/20260831-autechre` | `c57156415879d6ce6ee49511b9586182b26e55d0` | event列でなくrelationとstate transitionを演奏する |
+| J Dilla | `research/20260902-j-dilla` | `fb32ed2b1eb7d6c485e7e3261b29449ea1f48f71` | 一括swingでなく、安定層と競合するclock／声部間摩擦を分離する |
+| James Brown | `research/20260831-james-brown` | `947ba74bbab1da7e0632929d6f188914076b7c81` | 声部の散開、主導権移動、primary / secondary Oneへの回帰 |
+| Dub演奏文法 | `research/20260831-dub-performance-grammar` | `53ddca03d44a7b8f334ab38d6d4525d63302cd5f` | CUT、THROW、REVEAL、dryとtailの別時計 |
+| ノンミュージシャン演奏 | `research/20260831-non-musician-performance` | `e330526ebcb08fb53e7caf394445de25ad10302e` | 指番号でなくnode / edge / cluster / bridgeとして接触数を増やす |
+| 楽理研究 | `research/20260901-music-theory` | `3a1085488be642ae22b5dd6d9cf4163d3cf13a28` | eventへ反復変形規則 `μ` を持たせる |
+
+Aphex Twinについては独立した `research/...` ブランチを現在の全研究ブランチ一覧から取得できていない。別README内の名称、短い境界、外部インタビュー参照はあるが、それをAphex Twin研究の正本とは扱わない。
+
+### 11.2 共通化しない差
+
+接続は全員を「関係を演奏する」という一語へ潰さない。
+
+| 研究 | 演奏者が保持する責任 | システムへ渡してよい補助 | 渡さないもの |
+| --- | --- | --- | --- |
+| Hunter | 同時声部の音価、ミュート、押し引き、共通ポケット | 音域制約、相対音程の可視化 | 完成bass / chord / melody |
+| Mills | entry、stay、exit、位相差、事故後の回復 | 一時lock、可視位相、有限tail | 常時完全sync、完成trackの長時間所有 |
+| Dilla | clock間の摩擦と再合流 | 複数clock候補、関係保持 | 全声共通swing、random humanize |
+| James Brown | 主導権、空白、Oneへの異なる帰路 | 不在声部の記憶、局所return候補 | Oneの自動強調、全声一斉帰還 |
+| Dub | dryの存在、過去のthrow、tailの終了 | 安全上限、tail状態表示 | 自動drop、自動dub mix |
+| Autechre | 現状態へ介入し、返答へ次の操作で応じる | 履歴と有限の状態依存応答 | 放置して完成曲を作るprocess |
+
+### 11.3 接触因果場
+
+固定した「一本目はbass、二本目はchord、三本目はeffect」を廃止する。接触は指の番号ではなく、現在見えて聞こえる関係へclaimを持つ。
+
+```text
+CONTACT_CLAIM {
+  contactId
+  target: node | edge | empty
+  phase: enter | hold | deform | cut | release
+  causalEnergy
+}
+
+POCKET_STATE {
+  clocks[]
+  voices[]
+  couplings[]
+  returnPoints[]
+  absentVoiceMemory[]
+  liveTail[]
+  floor: absent | forming | held | tensioned | broken | rebuilt
+}
+```
+
+- 空白へ触れる: 薄いvoiceまたはclock候補を一つだけ開始する。完成phraseは開始しない。
+- nodeへ触れる: そのvoiceの音価、再発音、音高、attackのいずれかを現在動作で直接変える。
+- edgeへ触れる: 二voice間の位相、coupling、return条件を変える。
+- nodeを外へ払う: dryをCUTするが、関係記憶または明示されたtailは残せる。
+- 消えたnodeへ再接触する: 保存済みloop頭でなく、現在のpocketへREVEALする。
+- releaseする: 対象claimへのエネルギー供給を止める。他のnodeを勝手に止めない。
+
+画面はnodeとedgeを表示し、分類を隠れたジェスチャー認識へ任せない。同じ接触が時間とともに `enter -> hold -> deform -> release` へ移れるため、指ごとの固定役割も不要になる。
+
+### 11.4 因果エネルギー — 放置再生を構造的に止める
+
+接触中の操作は各claimへ有限の `causalEnergy` を供給する。発音、再発音、位相移動、tail帰還はenergyを消費する。
+
+```text
+energy_next
+  = clamp(
+      energy_now
+      + performed_input
+      - event_cost
+      - elapsed_decay,
+      0,
+      safe_max
+    )
+```
+
+- `performed_input` は現在のtap、移動、保持中の微小運動、複数接触関係の変化からだけ入る。
+- release後は新しいenergyを補給しない。
+- Dubのtail、Mills型の位相事故、Autechre型の状態応答は残存energyの範囲で続く。
+- energyが尽きたvoiceは無期限ループせず、発音を止める。ただし不在声部の関係記憶は無音状態として残せる。
+- energyを音量そのものへ直結しない。大音量化による危険と、演奏継続時間を分離する。
+
+これは「手を離した瞬間に全部止める」規則ではない。人間が起こした因果が有限の寿命を持ち、その寿命を再び触って延ばすか、CUT / TAIL CHOKEで終えるかを演奏に残す。
+
+### 11.5 状態遷移
+
+```text
+ABSENT
+  -> FORMING      最初のevent / clock候補
+  -> HELD         二つ以上の関係が可聴に維持
+  -> TENSIONED    位相、主導権、密度、clock関係を変形
+  -> BROKEN       floorまたは主要voiceを意図的／偶発的に喪失
+  -> REBUILT      現在状態から別のreturn pointを成立
+  -> HELD
+```
+
+`BROKEN` を自動undoしない。Mills型の回復は、残ったfloor、tail、不在声部記憶のどれを新しい基準にするかを次の接触で選ぶ。Hunter型のポケットは、常時完全同期ではなく、声部が違う局所offsetを持ちながら共通の前進感を失わない `HELD / TENSIONED` の往復として扱う。
+
+### 11.6 24秒の具体演奏列
+
+| 時間 | 接触 | 可聴結果 | 接続する研究 |
+| --- | --- | --- | --- |
+| 0–3秒 | 空白へ一接触し、短く往復する | 低域の単発列。往復ごとに再発音し、放置反復しない | Hunter / James Brown |
+| 3–6秒 | 二接触を追加し、低域nodeとのedgeを保つ | 上声二つ。各指の動きが音価と局所offsetを作る | Hunter |
+| 6–9秒 | 一つのedgeだけを前へずらす | 低域、上声、細分のclock関係に摩擦が生じる | J Dilla |
+| 9–12秒 | 三nodeを寄せ、別々の経路で局所returnへ向かわせる | 一度だけ強い合流。その後は再散開する | James Brown |
+| 12–15秒 | 上声nodeを外へ払う | dryは消えるが、短いtailと不在声部記憶が残る | Dub |
+| 15–18秒 | 残ったedgeをずらし、一時lockして解放する | floorを保ったまま位相が揺れ、別の配置へ移る | Mills |
+| 18–21秒 | 消えたnodeへ現在位置で再接触する | loop頭でなく現在pocketへ上声が戻る | Mills / Dub |
+| 21–24秒 | 全接触を離し、tailを一度だけchokeする | 残存energyが尽き、無期限の完成loopを残さず終了 | Autechre / Dub |
+
+この演奏列は成功例の自動保証ではない。指の時刻、移動量、release順が変われば、濁り、空白、位相崩壊、回復失敗も起こる必要がある。
+
+### 11.7 反証条件
+
+1. 接触を止めても、完成度の高い伴奏が長時間自走するなら不採用。
+2. node / edgeの表示を見ても、どのclaimを操作しているかノンミュージシャンが判別できないなら接触因果場を修正する。
+3. Hunter型のvoice保持とMills型のcut / phase介入が同じgestureとして誤認されるなら、同一surfaceへの統合を棄却する。
+4. 因果エネルギーが「忙しく指を動かし続ける義務」にしかならず、音価と空白を作れないなら不採用。
+5. 複数clockを導入しても、聴感がrandom humanizeと区別できないならDilla接続を弱める。
+6. `BROKEN -> REBUILT` が実演で選択できず、自動補正だけが回復を作るならMills接続とは呼ばない。
+7. 4本以上の接触で遮蔽、誤接触、cancelが増え、三本より表現責任が減るなら、認識上限ではなく実用同時接触数を下げる。
+
+### 11.8 採用状態と次の検証
+
+この追加は `research-only / candidate` である。製品採用、UI決定、音響実装、PR作成、main統合は行っていない。
+
+次の検証単位は、音色を作る前のイベントシミュレーションとする。
+
+1. 1、3、5接触の疑似`ContactGestureFrame`列を作る。
+2. 同じ入力から`CONTACT_CLAIM`、`POCKET_STATE`、可聴event列、表示node / edgeを生成する。
+3. release後に因果エネルギーが有限時間でゼロになることを検査する。
+4. 一つのnodeだけCUT / REVEALしても他voiceのpocketが保持されるか調べる。
+5. `BROKEN -> REBUILT` が自動undoなしで成立する入力列と、失敗する入力列を両方残す。
