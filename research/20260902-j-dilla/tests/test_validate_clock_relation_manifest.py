@@ -32,15 +32,11 @@ class ManifestValidationTests(unittest.TestCase):
         changed = copy.deepcopy(self.manifest)
         item = changed["recordings"][0]
         item.update(
-            source_status="acquired",
-            source_kind="full_length",
-            rights_basis="user-owned local file",
-            local_filename="runnin.wav",
-            sha256="not-a-hash",
-            duration_seconds=180.0,
-            sample_rate_hz=44100,
-            channels=2,
-            file_size_bytes=123456,
+            source_status="acquired", source_kind="full_length",
+            source_locator="user://runnin.wav", rights_basis="user-owned local file",
+            local_filename="runnin.wav", sha256="not-a-hash",
+            duration_seconds=180.0, sample_rate_hz=44100, channels=2,
+            file_size_bytes=123456, codec="pcm_s16le",
         )
         errors = MODULE.validate_manifest(changed)
         self.assertTrue(any("lowercase 64-character hex" in e for e in errors))
@@ -48,15 +44,39 @@ class ManifestValidationTests(unittest.TestCase):
     def test_region_must_have_sixteen_bars(self):
         changed = copy.deepcopy(self.manifest)
         changed["recordings"][0]["regions"] = [{
-            "region_id": "r1",
-            "start_seconds": 10.0,
-            "end_seconds": 20.0,
-            "start_bar": 1,
-            "bar_count": 8,
-            "alignment_note": "test",
+            "region_id": "r1", "start_seconds": 10.0, "end_seconds": 20.0,
+            "start_bar": 1, "bar_count": 8, "alignment_note": "test",
         }]
         errors = MODULE.validate_manifest(changed)
         self.assertTrue(any("bar_count must be at least 16" in e for e in errors))
+
+    def test_ambiguous_identity_cannot_be_ready(self):
+        changed = copy.deepcopy(self.manifest)
+        players = next(x for x in changed["recordings"] if x["recording_id"] == "players-analysis-master")
+        players["analysis_status"] = "ready"
+        errors = MODULE.validate_manifest(changed)
+        self.assertTrue(any("must remain blocked_version_ambiguous" in e for e in errors))
+        self.assertTrue(any("cannot be ready before version identity is resolved" in e for e in errors))
+
+    def test_catalog_duration_does_not_count_as_acquired_duration(self):
+        changed = copy.deepcopy(self.manifest)
+        item = changed["recordings"][3]
+        item.update(
+            source_status="acquired", source_kind="full_length",
+            source_locator="user://come-get-it.wav", rights_basis="user-owned local file",
+            local_filename="come-get-it.wav", sha256="0" * 64,
+            sample_rate_hz=44100, channels=2, file_size_bytes=123456,
+            codec="pcm_s16le",
+        )
+        self.assertIsNone(item["duration_seconds"])
+        errors = MODULE.validate_manifest(changed)
+        self.assertTrue(any("duration_seconds is required when acquired" in e for e in errors))
+
+    def test_catalog_candidates_must_not_be_empty(self):
+        changed = copy.deepcopy(self.manifest)
+        changed["recordings"][0]["catalog_candidates"] = []
+        errors = MODULE.validate_manifest(changed)
+        self.assertTrue(any("catalog_candidates must be a non-empty list" in e for e in errors))
 
 
 if __name__ == "__main__":
