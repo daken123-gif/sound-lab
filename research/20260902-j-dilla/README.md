@@ -365,3 +365,119 @@ H3を現在の有力仮説とするが、採用済みの設計原理にはしな
 - Charlie Hunter、Jeff Mills、Autechre、Aphex Twin各研究本文のremote由来取得と接続監査
 - iPhone実機上での複数時間層操作の遅延と演奏可能性
 
+## 20. GitHub実体を取得した研究との接続
+
+取得日: 2026-09-02
+
+### 取得できた実体
+
+| research-id | 取得ref | 取得ファイル | blob SHA | 状態 |
+| --- | --- | --- | --- | --- |
+| 20260831-james-brown | research/20260831-james-brown | research/20260831-james-brown/README.md | 947ba74bbab1da7e0632929d6f188914076b7c81 | PRIMARY_ARTIFACTとして本文取得 |
+| 20260831-anderson-paak | research/20260831-anderson-paak | research/20260831-anderson-paak/README.md | b3798491a5e88d1680920516b901a9548adb16cb | PRIMARY_ARTIFACTとして本文取得 |
+| 20260901-music-theory | research/20260901-music-theory | research/20260901-music-theory/README.md | 59b775936eb5bad4e8b0f9416cd2f5a6b787b17d | PRIMARY_ARTIFACTとして本文取得 |
+
+検索結果に対する汚染scannerはCLEANだった。これは制御文や現在クエリの自己反響を検出しなかったことだけを意味し、各研究の仮説が真であることや製品採用を証明しない。
+
+### James Brown研究との接続
+
+取得したJames Brown研究は、共通拍を共有する複数声部が、休符、アクセント、microtiming、primary / secondary One、主導権を分担すると記述する。特に次の点がJ Dilla研究と直接接続する。
+
+- microtimingをランダムHumanizeではなく、周期内の時間形状として扱う
+- 4トラックを完成音声ではなく相互に影響する4声として扱う
+- couplingを音量関係ではなく、別声部の次の発音位置や休符を動かす関係として扱う
+- ブレイク中にも不在声部との関係を保持する
+
+ただし、James Brown研究では「4声が別々の周期を持つ」という一般化が失効し、共通拍の内部で発音位置を分担するモデルへ修正されている。したがって、J Dillaのmulti-clock仮説をJames Brownへ逆流させない。
+
+比較軸は次のように分ける。
+
+| 軸 | James Brown研究 | J Dilla研究 |
+| --- | --- | --- |
+| 基準 | 共通拍とprimary / secondary One | 複数clock candidateの併存可能性 |
+| 差異 | 共通拍内部の声部別timing shape | straight / swing、sample / drum等の時計間摩擦 |
+| 回帰 | Oneへ収束 | 同期回帰するか自体を未検証 |
+| 反復 | 生演奏関係の循環 | sample / sequence内の長周期を含む |
+| 共通禁止 | 固定Swing、ランダムHumanize、完成ループの垂れ流し | 同左 |
+
+### Anderson .Paak研究との接続
+
+取得したAnderson .Paak研究では、「一定」と「同一」を分けている。
+
+- 一定: pulse、重心、反復周期を保つ
+- 同一: 前小節と同じ打点、強度、音色を再生する
+
+この区別をJ Dilla研究へ接続すると、clock candidateの安定は、同じイベント列の再生を意味しない。安定したsnare / hi-hat層を保持しながら、kickやbassのイベント列を変化させられる。
+
+また.Paak研究の前景交替と負荷階層は、J Dillaの複数時間層を人間が演奏可能にする際の制約になる。
+
+| .Paak研究の要素 | J Dilla研究への接続 |
+| --- | --- |
+| 半自動のpulse保持 | 一つのclock candidateを身体側で維持 |
+| 意図的なkick / snare決定 | 別clockとの位相関係へ介入 |
+| 反射的なghost / fill | timing shapeを局所変形 |
+| foreground role | 操作対象の時間層を交替 |
+| 指の追加・離脱 | clock層の介入・解除 |
+
+.Paak研究本文内のCharlie Hunter / Jeff Mills接続は、そのREADMEの推論である。Charlie Hunter / Jeff Mills各研究本文の代替にはしない。
+
+### 楽理研究との接続
+
+取得した楽理研究は、演奏イベントを次の組で扱う。
+
+    E = (t, Δt, p, c, a, r, μ)
+
+- t: 発音位置
+- Δt: 想定グリッドからの変位
+- p: 音高関係
+- c: 音色
+- a: 強度・包絡
+- r: 他音との役割関係
+- μ: 次の反復で何が変わるか
+
+J Dilla研究では、Δtを単一グリッドに対する値へ固定せず、参照clockを追加する。
+
+    E_dilla = (t, clock_id, Δt_clock, p, c, a, r, μ)
+
+ここで重要なのは、clock_idを増やすこと自体ではない。
+
+- rは、どの声部が安定層、不安定化層、前景、回帰点を担うかを保持する
+- μは、次の反復で偏差、密度、声部間couplingの何が変わるかを保持する
+- cとaは、物理onsetを変えずに時間知覚を変えるattack仮説の検証に使う
+- Δt_clockは、どの時計に対する偏差かを失わない
+
+これにより、楽理研究の第一命題「同一性を保ちながら差異を生成する周期構造」を、J Dillaの具体的な反証実験へ落とせる。
+
+### 取得不能の研究
+
+次の語でbranch検索を二波行った。
+
+- Charlie Hunter: charlie-hunter / hunter
+- Jeff Mills: jeff-mills / mills
+- Autechre: autechre / autech
+- Aphex Twin: aphex / aphex-twin
+
+対応ブランチは取得できなかった。したがって現時点では以下の状態を維持する。
+
+| 研究 | 状態 |
+| --- | --- |
+| Charlie Hunter | referenced only。本文未取得 |
+| Jeff Mills | referenced only。本文未取得 |
+| Autechre | referenced only。本文未取得 |
+| Aphex Twin | referenced only。本文未取得 |
+
+過去会話の要約や、別研究README内の短い説明を各研究の正本本文へ昇格させない。
+
+## 21. 接続後に更新された実証焦点
+
+三研究を接続したことで、J Dillaの実証は「打点が何msずれたか」だけでは不足する。
+
+1. clock: 何が時間基準を作るか
+2. relation: どの声部が別声部の発音可能性を制約するか
+3. mutation: 次の反復で何が保持・変形されるか
+4. foreground: どの時間層を演奏者が現在操作しているか
+5. return: 共通着地点へ戻るのか、摩擦を維持するのか
+6. embodiment: ノンミュージシャンが説明なしに関係を演奏できるか
+
+これらを、既存music-analysisのonset / phase計測と、4曲の変形聴取へ同時に記録する。
+
