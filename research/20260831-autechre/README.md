@@ -697,11 +697,103 @@ RESUMABLE_PERFORMANCE_STATE {
 
 これはまだSound Labの採用仕様ではない。特に「一時回帰」と「中断復帰」は操作主体、誤操作防止、復帰時の音量安全性を含めて別途設計する必要がある。
 
-## 18. 未検証事項
+## 18. cellの技術的最小像 — 固定sceneではなく、loadとmorphの束
+
+### 1. 2022年の本人説明が追加する内部構造
+
+2022年のSean Twitch AMAには、2025年の演奏文法だけでは見えなかったcell内部の説明がある。Seanによれば、globalな`pattr`には、どのmoduleがloadされるか、および各moduleがどの`pattr`群を参照するかが含まれ、それがsetの基本構造を形成する。moduleの選択とsettingsのtargetはhard setだが、各module内では`pattr`同士をmorphでき、JSONで保持したsettingsの間もmorphできる。set内の移動は手動で、jumpも可能だが、しばしばsemi-linearに進む。
+
+この説明から直接確認できる層を、本人の実装名と本研究の分析語を混ぜずに分離する。
+
+| 層 | 本人説明で確認できること | まだ確認できないこと |
+| --- | --- | --- |
+| structural load | global `pattr`がloadするmoduleと参照先`pattr`を保持し、基本構造を作る | object単位の完全なpatch配線、全channel数 |
+| target state | moduleの選択とsettings targetはhard set | targetの全parameter値、保存formatの完全schema |
+| local flex | module内の`pattr`間、およびJSON settings間をmorphできる | morph曲線、補間不能parameter、controller割当の全容 |
+| traversal | 移動は手動で、jump可能、しばしばsemi-linear | 各公演で実際に選ばれたcell番号と全遷移 |
+
+ここで重要なのは、`hard set`と`morph`が対立しないことである。固定されているのは完成音声ではなく、loadする構成と到達対象の一部であり、その内部状態と移動時間には演奏可能な幅がある。
+
+```text
+CELL_CONFIGURATION {
+  structural_load {
+    module_assignment
+    target_state_references
+  }
+  local_flex {
+    morphable_module_states
+    morphable_json_settings
+  }
+}
+
+SET_TRAJECTORY {
+  manual_traversal
+  often_semi_linear
+  optional_jump
+  variable_dwell
+}
+```
+
+`structural_load`、`local_flex`、`SET_TRAJECTORY`は本研究の分析語であり、Autechreが使うclass名やdata structure名ではない。
+
+### 2. cellはtrackでも、公開segmentでもない
+
+同じ2022年の回答でSeanは、`column thirteen`がlive setのcellだったこと、`NTS Sessions`の多くがlive setのcellまたはrecorded jamを編集したもので、一部は古いもの、当時のもの、NTS用に作ったものだったと説明している。
+
+これはcellとrelease trackの関係が一対一ではないことを示す。cellからjamを録音し、編集してtrackへできるなら、cellは完成音声clipそのものではなく、音を発生・変形させるperformance configurationとして働く。ただし、すべてのNTS trackが単一cellからできた、またはcellとjamが同義だとは言えない。
+
+2025年にもSeanは、fanによる録音分割は基本的に一つのtrackを分けたもので、別々のtrackではないと答え、現在setにsolo cellはないと述べている。したがって次の同一視を退ける。
+
+```text
+cell != released_track
+cell != fan_segment_number
+cell != frozen_audio_clip
+cell != one_person_solo_part
+```
+
+AEPagesの`#1`–`#63`は録音間の対応を取るための共同分析ラベルであり、内部cell番号ではない。一つの公開segmentが一つのcellに対応するとも、複数cellを含むとも、現資料だけでは確定できない。
+
+### 3. cellをscene bankへ翻訳すると失われるもの
+
+一般的なscene recallは、複数parameterの完成状態を一括で呼び戻す。しかし今回の証拠が示すcellには、少なくとも次の三つが同時にある。
+
+1. moduleとsettings参照を定める構造的なload。
+2. target間をmorphする局所的な可動域。
+3. roomとsoundcheckを受けて、skip、linger、mute、flip、jumpする手動trajectory。
+
+このためSound Labへ移す候補を「sceneボタンを並べること」とはしない。残す候補は、完成音を呼び出すsceneではなく、**関係と可動域をloadするstate bundle**である。
+
+```text
+RELATION_STATE_BUNDLE {
+  voices_or_modules
+  coupling_references
+  reachable_targets
+  morphable_range
+  continuation_hints
+}
+```
+
+`RELATION_STATE_BUNDLE`は製品名でも採用仕様でもない。特に`continuation_hints`を自動transportと決めず、演奏者が現在のgestureを切らずに次の因果領域へ移れるかを調べるための候補に留める。
+
+### 4. 二次資料の技術詳細を保留する
+
+AEPagesの`AE_2022－`解説には、channel／slot数、dynamic loading、cell総数、controller mappingについて具体的な記述がある。しかし今回、そこから参照される公開Max demoの原映像・原発言を主張単位で取得できなかった。
+
+そのため、次はcommunity synthesisとして探索対象には残すが、本人確認済みの実装事実へ昇格させない。
+
+- 内部cell総数の具体値。
+- channel、slot、同時load数の具体値。
+- 各controllerがどのparameter層へ割り当てられるか。
+- cell作成時の全保存・発展workflow。
+
+この保留により、公開segment数、推定内部cell数、Max上のchannel数を一つの数へまとめる経路を閉じる。
+
+## 19. 未検証事項
 
 - 各作品の音源を取得した波形・イベント列の分析。
 - `AE_LIVE`複数公演のcommunity segmentation比較は2025年まで進めたが、音声ファイルによるtoolset、境界、公演差、anomalyの直接測定。
 - 2022 Twitch AMAと2025 KEYOSC AMAの全回答を、年代、記憶留保、後続訂正まで含めて監査すること。今回取得した該当回答は上記範囲に限定する。
+- 2022年の公開Max demo原映像を取得し、channel／slot数、dynamic loading、cell総数、controller mappingに関する二次記述を主張単位で照合すること。
 - Max systemの実際のstate、clock、coupling、controller mapping。
 - 3本以上の同時接触を含むMobile Safari / iPhoneのtouch取得安定性。
 - 因果エンジンが演奏者へ理解可能な応答を返すか。
@@ -709,7 +801,7 @@ RESUMABLE_PERFORMANCE_STATE {
 - 独立DRUMと4トラック間の同期を、固定BPM以外でどう成立させるか。
 - 低遅延、CPU、電池、発熱、音量安全性。
 
-## 19. 触る実装パス
+## 20. 触る実装パス
 
 今回の研究では製品コードを変更しない。
 
@@ -718,7 +810,7 @@ RESUMABLE_PERFORMANCE_STATE {
 - 未変更: `prototype/`
 - 未変更: `integration/`
 
-## 20. 依存する研究・判断
+## 21. 依存する研究・判断
 
 - `RESEARCH_WORKFLOW.md`
 - `integration/DIRECTION.md`
@@ -729,9 +821,10 @@ RESUMABLE_PERFORMANCE_STATE {
 - `research/20260902-jeff-mills/` — 持続層、手動破断、事故からの回復。長期研究branch本文を取得。
 - Skulptur研究本文 — Git上では未取得のため、この研究から内容を補完しない。
 
-## 21. 失効した判断
+## 22. 失効した判断
 
 - section 16の可変窓モデルを、入口から出口まで一方向にしか進まない完全モデルとして使う候補は失効。2025年までの共同分析には、同一区間の反復、停止後の再開、過去領域への一時回帰、別公演での古い窓の再選択がある。通常経路としての`preferred_forward_order`は維持し、section 17の`ELASTIC_SPINE`を後継候補とする。
+- cellを、一曲、一つの公開segment、完成parameterを一括recallする固定sceneのいずれかへ等置する候補は失効。2022年の本人説明が示すmodule／settings参照のhard-set層、内部morph、手動semi-linear traversalを分離したsection 18のモデルを後継候補とする。
 
 今後訂正が生じた場合、古い判断を黙って削除せず、失効理由と後継判断をここへ追記する。
 
@@ -750,9 +843,9 @@ RESUMABLE_PERFORMANCE_STATE {
 5. [Radio Študent — Autechre interview (2016、aepages保存transcript)](https://aepages.org/wiki/R%C5%A0_INTERVJU_Autechre%2C_Radio_Student_FM89.3%2C_November_2016)
    - 2014/15 setの終了、新setの速度と焦点、旧`AE_LIVE`と`elseq`のsetup共有、Kino Šiškaを新set設計で参照したことについて両名が回答。
 6. [Sean Twitch AMA, July 2022（aepages全文transcript）](https://aepages.org/wiki/Sean_Twitch_AMA,_July_2022)
-   - live setの設計量とbounded flexibility、deterministic chaos、specific seed、controller、live set cellについてSeanが回答。
+   - live setの設計量とbounded flexibility、deterministic chaos、specific seed、controllerに加え、global `pattr`によるmodule load／settings参照、module内とJSON settings間のmorph、手動でsemi-linearなset traversal、NTSとlive set cellの関係についてSeanが回答。
 7. [Ask Autechre Anything Again, KEYOSC, April 2025（transcript spreadsheet）](https://docs.google.com/spreadsheets/d/1XAizLmKun4yF6oBVUhIrewYN-ZiY_9ORckmT-hF93Ho/edit?gid=447739750)
-   - iteration保存、`AE_2022－`の累積性、preferred cell order、skip／linger／mute／settings flip、役割交替、roomとsoundcheckについて両名が回答。
+   - iteration保存、`AE_2022－`の累積性、cellが別々のtrackではないこと、preferred cell order、skip／linger／mute／settings flip、solo cell不在、役割交替、roomとsoundcheckについて両名が回答。
 
 ### 公式公開面
 
