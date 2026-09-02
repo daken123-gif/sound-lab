@@ -298,7 +298,74 @@ Autechre由来の構造は、4トラックを四つの自動生成器へ置き�
 
 実測時には、拍位置を一つのBPMへ強制せず、event interval、accent、休止、同時発音、局所period、長期密度を別々に記録する。
 
-## 12. 未検証事項
+## 12. 反復史の再記述 — 非反復から状態遷移へ
+
+### 証拠から分けられる四層
+
+今回の追加調査では、Autechreの反復を「同じbarがある／ない」だけで扱わず、次の四層へ分ける。
+
+| 層 | 固定または再帰するもの | 変化しうるもの | 研究上の問い |
+| --- | --- | --- | --- |
+| event sequence | 発音イベントの並び | 各barの打点 | 同一barを避けても、長い固定列になっていないか |
+| relation | 声部、音色族、密度域、重心の関係 | 個々の発音位置、休止、accent | イベントが変わっても何が同じ曲として残るか |
+| state transition | 現在状態から次状態へ移る条件 | 条件分岐、履歴、他声部の入力 | 何が次の出来事を可能／不可能にするか |
+| performance trajectory | 同じtoolsetと可動範囲 | 演奏者の操作、公演ごとの経路 | 同じ系から、どこまで異なる演奏が生まれるか |
+
+この分離により、公開資料から読める変遷は次のようになる。
+
+1. **`Flutter`: event sequenceの同一性を崩す。** 盤面警告では、同一beatを持つbarがないようプログラムされたとされる。これは法的な「repetitive beats」を作品構造から攪乱した。ただし、公開された録音としての`Flutter`は再生ごとに同じ記録を返す。したがって、bar非反復はopen-ended generationと同義ではない。
+2. **`Tri Repetae`: loopの持続を閾値まで押す。** Seanの2023年の回顧では、loopを通常より長く、許容限界近くまで持続させ、incrementalに変化させること自体が中心だった。ここでは反復を避けず、聴取の耐久と微差の知覚を作曲対象にする。
+3. **`Chiastic Slide`: loopを対象から操作可能な物質へ変える。** 問いが「何をloopできるか」「loopへ何を行えるか」へ移る。固定patternへ装飾を重ねるのではなく、loopの内部、境界、変形可能性を調べる段階として読む。
+4. **`Confield`: event sequenceよりprocessとparameter relationを前面化する。** 2005年のSeanの説明では、`VI Scose Poise`はcounterが変化を起動するhands-off process、`Uviol`はfaderでgeneration parameterを演奏するsequencerから作られた。一方、同じ時期の全曲を一つの生成方式へまとめられず、曲ごとにprocess、performance、細密作曲の比率が異なる。
+5. **`AE_LIVE`: state transitionを二人で演奏し、trajectoryを作品化する。** 2015年のSeanの説明では、note sequencingの多くは毎回異なる一方、各trackの全体的な“flavor”と可能範囲は保たれ、結果の多くはconditionalsで決まる。二人はdataを共有し、相互のsystemが無視するか反応するかを操作できる。ここでは単発の生成結果ではなく、同じ系を各公演でどう通過したかが記録になる。
+
+### 現在の修正結論
+
+Autechreの進展を「反復が減り、ランダムが増えた」とは記述しない。より正確には、**反復の正本が、音声列から関係、状態遷移、演奏経路へ順に移動した**と仮定する。
+
+これは作品の波形・イベント列を測定した確定結果ではない。本人発言と公開資料から立てた歴史モデルであり、`Flutter`、`Clipper`、`Cichli`、`VI Scose Poise`、`Uviol`、複数の`AE_LIVE`を同じEVENT / RELATION / TRANSITION記法で測って反証する。
+
+## 13. Git上の並行研究本文との接続
+
+### 取得した研究実体
+
+| 研究 | 取得ref | README blob | 証拠状態 |
+| --- | --- | --- | --- |
+| Charlie Hunter | `research/20260902-charlie-hunter@6d0a0c053c94a3e3f14dc58583880f7ee26c240d` | `080c91224ccbf2fbc224ac8cb40790c6c122797f` | `researching`。同一身体に拘束された低音／上声関係。音源測定は未実施 |
+| J Dilla | `research/20260902-j-dilla@3e9249a3a3ea676d141c8ab55553f49f4d6dc3fa` | `e0e5e1b2d7f329091ddb12b483fee9c6a05f9058` | `researching`。複数clock candidateとpreview周期解析。微細timingは未確定 |
+| Jeff Mills | `research/20260902-jeff-mills@06fb70d76da8020b1919e3e69ad10448a1563498` | `39b514ffcfd1c060b2112d7c6b10a7858163ebd2` | `researching / long-term`。本人資料と演奏観察。解析音源は未取得 |
+| Aphex Twin | — | — | `not found in searched Git scope`。`sound-lab`の全head名、`sympathia`の`aphex` / `twin` branch名、`sympathia`の全状態PR、両repoのdefault-branch code searchを確認したが本文未取得 |
+
+Aphex Twinは「存在しない」とは判定しない。今回検索したGit範囲で本文を取得できていないため、名称だけでAutechreとの差や共通項を補完しない。
+
+### 接続して残る差
+
+| 研究 | 現在形で演奏する関係 | Autechreと接続する点 | Autechreへ回収しない点 |
+| --- | --- | --- | --- |
+| Charlie Hunter | 同一身体に拘束された低音／上声の音価、mute、局所前後差 | 別声部が互いの次の可能性を制約するcoupling | system間data共有は、一人の手と姿勢が作る身体制約の代替にならない |
+| J Dilla | 安定層を残したclock候補間の分割、位相、attack、長周期 | 単一master gridを正解にせず、関係と変化規則を保存する | open-ended generationは、Dilla固有の時間形状や録音済みtimingの証明にならない |
+| Jeff Mills | 持続する床を保ちながら、cut、entry、位相事故、回復を短い判断窓で組み替える | 現在状態から事故を消去せず次の構造へ変換する | conditionalsによる自律遷移は、Millsの即時認知、手動破断、回復判断の代替にならない |
+| Autechre | relation、condition、履歴、相互dataによる次イベントとtrajectory | relation自体を演奏し、同じtoolsetから非同一の結果を作る | Hunterの身体拘束、Dillaの実測timing、MillsのDJ状況判断を「生成系」で一括自動化しない |
+
+共通項は「複雑さ」でも「ずれ」でもない。**反復中の同一性を保持する層と、現在形で更新する関係を分けること**である。ただし、保持の担い手は同じではない。
+
+- Hunterでは身体と実行可能性。
+- Dillaでは安定層と競合する時間基準。
+- Millsでは床の連続性と演奏者の回復判断。
+- Autechreではtoolset、可動範囲、condition、共有data。
+
+### Sound Labへ接続する場合の候補境界
+
+この比較から直ちに新機能は採用しない。独立DRUMの研究候補を記述するなら、一つの「Autechreモード」ではなく次を別軸として保つ。
+
+1. `BODY_COUPLING`: 一つのgestureが複数voiceの実行可能性を拘束する。
+2. `CLOCK_RELATION`: voiceごとのclock candidate、phase、再合流条件を保持する。
+3. `FLOOR_AND_BREAK`: 持続層と手動破断層を分け、事故後の回復を演奏者へ残す。
+4. `STATE_TRANSITION`: 履歴、別voice、gestureから次イベントの可能範囲を変える。
+
+四軸は同時実装を意味しない。特に`STATE_TRANSITION`が他三軸を自動化すると、Hunter、Dilla、Millsから取得した身体的・時間的・判断的な差を消してしまう。Autechre研究からの第一実験は、独立DRUM内で`STATE_TRANSITION`だけを最小化し、録音開始、素材選択、4トラック、Skulptur主演奏面へ権限を広げない。
+
+## 14. 未検証事項
 
 - 各作品の音源を取得した波形・イベント列の分析。
 - `AE_LIVE`複数公演で共通するtoolsetと公演差の比較。
@@ -310,7 +377,7 @@ Autechre由来の構造は、4トラックを四つの自動生成器へ置き�
 - 独立DRUMと4トラック間の同期を、固定BPM以外でどう成立させるか。
 - 低遅延、CPU、電池、発熱、音量安全性。
 
-## 13. 触る実装パス
+## 15. 触る実装パス
 
 今回の研究では製品コードを変更しない。
 
@@ -319,15 +386,18 @@ Autechre由来の構造は、4トラックを四つの自動生成器へ置き�
 - 未変更: `prototype/`
 - 未変更: `integration/`
 
-## 14. 依存する研究・判断
+## 16. 依存する研究・判断
 
 - `RESEARCH_WORKFLOW.md`
 - `integration/DIRECTION.md`
 - `integration/DECISIONS.md` の `D-001`, `D-002`, `D-004`, `D-006`, `D-007`, `D-008`, `D-009`
 - `research/20260828-image-contact-bridge/` — 接触入力を同一frame列で扱う既存研究。Autechre由来のDSP mappingを定義するものではない。
+- `research/20260902-charlie-hunter/` — 同一身体へ拘束された声部間関係。研究branch本文を取得。
+- `research/20260902-j-dilla/` — 複数clock candidate、声部間摩擦、反復変形。研究branch本文を取得。
+- `research/20260902-jeff-mills/` — 持続層、手動破断、事故からの回復。長期研究branch本文を取得。
 - Skulptur研究本文 — Git上では未取得のため、この研究から内容を補完しない。
 
-## 15. 失効した判断
+## 17. 失効した判断
 
 - なし。
 
@@ -355,3 +425,5 @@ Autechre由来の構造は、4トラックを四つの自動生成器へ置き�
 
 7. [VICE — How the Political Warning of Autechre's Anti EP Made it a Warp Records Classic](https://www.vice.com/en/article/warp-25-autechre-anti-ep/)
    - `Anti EP`盤面警告文と`Flutter`の非同一bar設計を確認する補助資料。本人への新規インタビューではないため、盤面一次資料と同格には扱わない。
+8. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
+   - `AE_LIVE`で毎回異なるnote sequencing、各trackの可能範囲を決めるconditionals、二人のdata共有と即時反応についてSean Boothが説明。
