@@ -119,3 +119,14 @@ S09ではmono onset周期とstereo空間周期を分ける。S10ではonset topo
 | S12 | 音源分離結果を観測上の正解として扱うこと |
 
 合成音源は実録音の代替ではない。正解を完全に制御できる第一輪として使い、公開データと実際の参照音源による第二・第三輪で一般化を検証する。
+
+## 第二輪・公開データ受入れ
+
+第二輪の候補、利用条件、取得状態、S01〜S12との対応は[public-data-audit.md](public-data-audit.md)と`public-dataset-manifest.json`に記録する。公式資料を確認したことと、音源を取得・解析したことを分離する。
+
+```bash
+python3 validate_public_dataset_manifest.py
+python3 -m unittest -v test_public_dataset_manifest.py
+```
+
+manifestの全候補は現在`not_acquired`かつ`evaluation_ready: false`である。音源のchecksum一致、注釈schemaの実読取り、local rootの存在を確認するまで評価可能状態へ昇格させない。

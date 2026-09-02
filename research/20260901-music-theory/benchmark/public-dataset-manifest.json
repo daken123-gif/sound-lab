@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-02",
+  "research_id": "20260901-music-theory",
+  "round": "public-recording-round-2",
+  "datasets": [
+    {
+      "id": "e-gmd-v1.0.0",
+      "name": "Expanded Groove MIDI Dataset",
+      "version": "1.0.0",
+      "official_url": "https://magenta.withgoogle.com/datasets/e-gmd",
+      "license": {
+        "spdx_like": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "review": "verified_from_official_page"
+      },
+      "evidence": {
+        "audio": "444.5 hours, 44.1 kHz/24-bit, 43 re-recorded drum kits",
+        "annotations": "MIDI aligned within 2 ms; note velocity; predefined split",
+        "known_limit": "The official page reports unusable tracks caused by recording-pipeline errors."
+      },
+      "artifact": {
+        "url": "https://magenta.withgoogle.com/datasets/e-gmd",
+        "size_display_declared": "90 GB (132 GB uncompressed)",
+        "checksum_algorithm": "sha256",
+        "checksum_declared": "7d9a264fb4c9eabd9fec09d5f8e333192f529b1a1b845d170279a977ac436053"
+      },
+      "split_unit": "unique_sequence",
+      "case_targets": ["S04", "S05", "S06", "S07", "S10", "S11"],
+      "acquisition": {
+        "state": "not_acquired",
+        "local_root": null,
+        "checksum_observed": null
+      },
+      "annotation_schema_checked": false,
+      "evaluation_ready": false
+    },
+    {
+      "id": "maestro-v3.0.0",
+      "name": "MAESTRO",
+      "version": "3.0.0",
+      "official_url": "https://magenta.tensorflow.org/datasets/maestro",
+      "license": {
+        "spdx_like": "CC-BY-NC-SA-4.0",
+        "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+        "review": "verified_from_official_page"
+      },
+      "evidence": {
+        "audio": "198.7 hours, 44.1-48 kHz/16-bit PCM stereo acoustic piano",
+        "annotations": "MIDI aligned to audio at approximately 3 ms; velocity and pedal controls; composition-disjoint proposed split",
+        "known_limit": "Piano-only classical repertoire; alignment is not a direct/tail boundary annotation."
+      },
+      "artifact": {
+        "url": "https://magenta.tensorflow.org/datasets/maestro",
+        "size_display_declared": "101 GB (120 GB uncompressed)",
+        "checksum_algorithm": "sha256",
+        "checksum_declared": "6680fea5be2339ea15091a249fbd70e49551246ddbd5ca50f1b2352c08c95291"
+      },
+      "split_unit": "composition",
+      "case_targets": ["S04", "S05", "S08", "S10", "S11"],
+      "acquisition": {
+        "state": "not_acquired",
+        "local_root": null,
+        "checksum_observed": null
+      },
+      "annotation_schema_checked": false,
+      "evaluation_ready": false
+    },
+    {
+      "id": "rwc-v2",
+      "name": "RWC Music Database",
+      "version": "v2",
+      "official_url": "https://zenodo.org/records/18656623",
+      "license": {
+        "spdx_like": "CC-BY-NC-4.0",
+        "url": "https://creativecommons.org/licenses/by-nc/4.0/",
+        "review": "verified_from_official_record"
+      },
+      "evidence": {
+        "audio": "315 pieces across popular, royalty-free, classical, jazz, and genre subsets",
+        "annotations": "Audio is on Zenodo; current annotations are maintained separately at rwc-music/rwc-annotations",
+        "known_limit": "The AIST annotation page warns that annotations are imperfect and contain errors."
+      },
+      "artifact": {
+        "url": "https://zenodo.org/records/18656623",
+        "size_display_declared": "13.4 GB",
+        "checksum_algorithm": "per_archive_md5",
+        "checksum_declared": "listed_on_zenodo_record"
+      },
+      "split_unit": "piece",
+      "case_targets": ["S01", "S02", "S03", "S06", "S07", "S08", "S09", "S10", "S11", "S12"],
+      "acquisition": {
+        "state": "not_acquired",
+        "local_root": null,
+        "checksum_observed": null
+      },
+      "annotation_schema_checked": false,
+      "evaluation_ready": false
+    },
+    {
+      "id": "musdb18",
+      "name": "MUSDB18",
+      "version": "2017 corpus",
+      "official_url": "https://sigsep.github.io/datasets/musdb.html",
+      "license": {
+        "spdx_like": "mixed-per-track-academic-use",
+        "url": "https://github.com/sigsep/website/blob/master/content/datasets/musdb.md",
+        "review": "manual_review_required"
+      },
+      "evidence": {
+        "audio": "150 stereo full-length tracks at 44.1 kHz; approximately 10 hours",
+        "annotations": "Mixture plus drums, bass, vocals, and other stems; fixed 100/50 train/test split",
+        "known_limit": "Access requires approval; licenses vary by track; official errata document stem bleed and mixture defects."
+      },
+      "artifact": {
+        "url": "https://zenodo.org/records/1117372",
+        "size_display_declared": "4.4 GB",
+        "checksum_algorithm": "unobtained",
+        "checksum_declared": "unobtained"
+      },
+      "split_unit": "track",
+      "case_targets": ["S07", "S09", "S12"],
+      "acquisition": {
+        "state": "not_acquired",
+        "local_root": null,
+        "checksum_observed": null
+      },
+      "annotation_schema_checked": false,
+      "evaluation_ready": false
+    }
+  ]
+}
