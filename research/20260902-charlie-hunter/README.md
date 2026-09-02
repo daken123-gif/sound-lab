@@ -524,3 +524,115 @@ Hunterの中心能力を「一人でベースとギターを弾くこと」へ�
 
 この判断はまだ音源測定結果ではない。四条件の同じ版を確保し、上記イベント記録を作成するまでは、比較設計として保持する。
 
+## 2026-09-03追補 — 出力分離は声部独立ではない
+
+### 追加取得資料
+
+- Hybrid Guitars Co., `HYBRID 6` 公式仕様  
+  https://hybrid-guitars.com/hybrid-6-1
+- Hybrid Guitars Co., `Tunings & String Gauges`  
+  https://hybrid-guitars.com/tunings-string-gauges
+- Novax Guitars, `Charlie Hunter Solidbody 8-string` 公式仕様  
+  https://www.novaxguitars.com/sales/ch8.html
+- Premier Guitar, `Interview: Charlie Hunter — Get Rhythm` (2012)  
+  https://www.premierguitar.com/artists/interview-charlie-hunter-get-rhythm
+- Premier Guitar, `Charlie Hunter's Impossible Mission` (2016)  
+  https://www.premierguitar.com/artists/charlie-hunters-impossible-mission
+- Guitar World, Charlie Hunter interview (2024)  
+  https://www.guitarworld.com/features/charlie-hunter-hybrid-guitars
+- Premier Guitar, `Ella Feingold and Charlie Hunter: A Rhythmic Symposium` (2025)  
+  https://www.premierguitar.com/features/artist-features/charlie-hunter-ella-feingold
+
+### 仕様を一つの「Hunterギター」にまとめない
+
+取得資料は、販売モデル、Hunter本人の時期別個体、回想上の概数を含む。これらを同じ仕様表へ無条件に統合しない。
+
+| 時点・対象 | 物理的な群 | 出力・ピックアップ | 調弦・弦長 | 証拠境界 |
+|---|---|---|---|---|
+| Novax公式8弦販売モデル | 低音3＋ギター5 | passive stereo、各群の個別出力、専用Bartolini、個別ブリッジ | 公式ページの取得本文に寸法なし | 「Hunterの当時の全個体」とは限らない |
+| Blue Note期8弦についての2012年回想 | 低音3＋上声5 | 当該発言では未詳 | 低音側29”、高音側25.5”、低いEが緩い | 回想された個体／時期の値 |
+| 2012年Traugott 7弦 | 低音3＋ギター4 | Bartolini bass pickup＋Lollar 4-pole guitar pickup | `G-C-F / C-F-Bb-D` | 記事掲載時の使用個体 |
+| Hybrid Guitars公式Hybrid 6 | 低音3＋ギター3 | Kent Armstrong mono/stereo切替3×3 humbuckers、single/dual出力切替 | 公式調弦表にはshort/long scaleの`G Hybrid`等がある | 製品系列。Hunter本人の現在個体と同一仕様とは断定しない |
+| HunterのBig 6、2024年説明 | 低音3＋ギター3 | 1基を3×3へ分割したpickupとの説明 | 低音30”、高音27” | 2024年本人説明 |
+| HunterのBig 6、2025年説明 | 低音3＋ギター3 | 記事の機材欄はHybrid 6 | 低音31”、高音28”、`F-Bb-Eb / Bb-Eb-Ab` | 2025年本人説明 |
+
+### 未解消の仕様差
+
+#### Big 6の弦長
+
+2024年の本人説明は低音30インチ／高音27インチ、2025年の本人説明は31インチ／28インチである。現時点では次の競合仮説を残す。
+
+1. 使用個体またはモデルが異なる。
+2. 期間内に仕様が変更された。
+3. 一方または両方が概数である。
+4. 記事側の転記差がある。
+
+Hybrid Guitarsの取得済み公式製品本文には、長短両タイプを示す画像名はあるが、各スケール長の数値は本文にない。したがって公式ページを使ってどちらかへ確定しない。
+
+#### Big 6の調弦
+
+Hybrid Guitars公式調弦表の6弦 `G Hybrid` は、低音から `G1-C2-F2-C3-F3-Bb3`。2025年にHunterが説明した個人調弦は `F-Bb-Eb / Bb-Eb-Ab` で、一音低い別関係である。
+
+これは矛盾として消すのではなく、製品の推奨例と本人の使用設定を分ける。公式製品名が同じでも調弦を同一と仮定しない。
+
+### 四つの独立した層
+
+Hunter型楽器では、次を同じものとして扱わない。
+
+1. **物理群** — どの弦が低音側／上声側に属するか。
+2. **身体役割** — 親指、他指、左右手が何を保持・発音・ミュートするか。
+3. **信号経路** — 一つの出力か、低音／上声を別出力にするか。
+4. **音楽的声部** — 聴取上いくつの役割があり、どう相互依存するか。
+
+Hybrid 6は同じ3＋3の物理群を、スイッチで単一baritone出力または二系統出力へ変更できる。したがって、信号経路が一つになっても身体内の対位法は消えず、二系統になっても二人の独立演奏者にはならない。
+
+### 楽器変遷の中心は「能力追加」ではなく再配分
+
+8弦期の本人回想では、低いEを含む広い音域を保持する代わりに、低音弦の緩さとパンチ不足があった。7弦期には低音をGまで上げ、三つの低音を `G-C-F` とすることで、張りと立ち上がりを得た。Hunterはこれをドラマーが感じられるpumpy tightnessと説明する。
+
+2016年の説明でも、29インチの低いEを捨て、低音弦を短三度上げることでE、F、F#を失う一方、低音のcharacterを得たとしている。また、高い張力、弦ゲージ、低音とギター音の相互干渉には身体・音響上の上限がある。
+
+したがって変遷は、
+
+[
+	ext{最大音域} ightarrow 	ext{立ち上がり・張力・時間精度・身体で扱える対位法}
+]
+
+への重心移動として読む。弦数が減ったことは縮小ではなく、リアルタイムに責任を持てる範囲への再編集である。
+
+### 足元操作を捨てたこととの接続
+
+2012年の本人説明では、volume pedalやLeslie系の操作をやめた理由として、足の操作を考えることが楽器のrhythmic integrityを損なうと述べる。これは「エフェクトが不要」という一般論ではない。現在の身体が時間と対位法へ割ける注意資源を優先した具体的な編集である。
+
+この観測は、弦を減らしたこと、低音域を捨てたこと、出力を切替可能にしたことと同じ方向を持つ。
+
+- 常時操作する役割を減らす。
+- 低音／上声の関係へ注意を戻す。
+- 音色変化を増やす前に時間の完全性を守る。
+- できることの総数より、同時に責任を持てることを選ぶ。
+
+### Sound Labへの含意（未採用）
+
+1. **タッチ数、声部数、出力数を分離する。**  
+   三点入力が三声、二出力が二演奏者という対応を作らない。
+
+2. **同じ演奏を一系統／複数系統へ後段で配線できるようにする。**  
+   routing変更で演奏履歴や身体内結合の意味を書き換えない。
+
+3. **音域と機能の喪失を失敗扱いしない。**  
+   低い音、追加声部、追加エフェクトを削ることで、attack、mute、rest、phaseの制御が明瞭になる可能性を評価する。
+
+4. **同時操作の注意予算を測る。**  
+   新しい操作を足すたび、既存の低音・上声関係、共有時間、休止判断のどれが壊れるかを検証する。
+
+5. **機能数ではなく責任範囲を表示する。**  
+   UIは「何トラック鳴っているか」だけでなく、現在一つのジェスチャーがどの役割を束ねているかを示す。
+
+### 反証・未検証
+
+- Big 6の2024年と2025年の弦長差は未解消。
+- Hybrid Guitarsのshort scale／long scale各個体の正確な寸法は取得本文から確認できていない。
+- Hunter本人のBig 6が公式製品と同じpickup配線、switch、弦ゲージを常に使うかは未確認。
+- 弦数削減が実際のonset偏差、音価、疲労をどれだけ改善したかは測定していない。
+- single／dual出力で演奏自体が変わる可能性は残る。routingが演奏意味を変えないという主張は設計原則であり、経験的事実ではない。
+
