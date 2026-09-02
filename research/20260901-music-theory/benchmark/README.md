@@ -73,6 +73,20 @@ python3 -m venv --system-site-packages .venv-librosa
 
 S01〜S04の読戻し結果と限界は[relational-graph-results.md](relational-graph-results.md)に記録した。
 
+## 文脈証拠ストリーム
+
+```bash
+.venv-librosa/bin/python contextual_analyzer.py \
+  generated/s05.wav generated/s06.wav generated/s07.wav generated/s08.wav \
+  --output generated/contextual-s05-s08.json
+
+.venv-librosa/bin/python -m unittest -v test_contextual_analyzer.py
+```
+
+S05では符号つきmicrotiming形状と偏差量を分離し、groove品質を数値から推定しない。S06ではtimbre、pitch、amplitude、rhythmの境界を別ストリームに保つ。S07ではlow／highを固定役割にせずpulse-anchorの移動を関係として表す。S08では直接音終了と減衰tail終了を別の定義と証拠で出力する。
+
+実測値、読戻しで除去した誤判定、一般化上の限界は[contextual-results.md](contextual-results.md)に記録した。
+
 ## ケース
 
 | ID | 反証対象 |

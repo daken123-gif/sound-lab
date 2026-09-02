@@ -2,7 +2,7 @@
 
 - status: `active`
 - research-id: `20260901-music-theory`
-- 更新日時: 2026-09-01
+- 更新日時: 2026-09-02
 
 ## 研究対象と現在の問い
 
@@ -139,7 +139,9 @@ SoundQuest本文の全文複製は行わない。
 
 - `research/20260901-music-theory/benchmark/`
 
-S01〜S12の合成反証音源生成器と、S01〜S04を対象にしたNumPy／SciPy基準線をローカル作業ツリーで実装・検証した。Gitへのcommit・pushは未実施。
+S01〜S12の合成反証音源生成器を実装した。S01〜S04では複数周期、位相、レイヤー周期、tempo curveとmicrotimingを検証し、S05〜S08では符号つきtiming形状、特徴別境界、pulse-anchor役割交替、直接音と減衰tailの分離を検証した。
+
+実装・テスト・結果資料は`research/20260901-music-theory`ブランチでGit管理する。生成WAVと生成JSONは再生成物として除外する。
 
 ## 依存する研究
 
