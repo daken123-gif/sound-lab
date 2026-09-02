@@ -4,7 +4,7 @@
 - research-id: `20260831-anderson-paak`
 - 研究対象: Anderson .Paak、The Free Nationals、NxWorries
 - 現在の問い: 「Come Down」の反復が、なぜワンループの垂れ流しにならないのか。その演奏原理を、iPhoneのマルチタッチ楽器へどう移せるか
-- 更新日時: 2026-08-31
+- 更新日時: 2026-09-02
 - 正本候補: この研究ブランチ上のREADME。mainへ統合されるまでは製品採用済みではない
 
 ## 1. 一次資料
@@ -80,10 +80,10 @@
 
 ### 4.1 反復単位は音列ではなく状態
 
-“Come Down”で保存されているのは、固定された一小節の音列ではない。
+Tiny Desk版で演奏者が維持しているものを、スタジオ版の制作構造と分けて記述する。スタジオ版の土台はHi-Tekが構築した固定ビートであり、「Come Down」全体を固定音列ではないとする以前の記述は不正確だった。
 
 ```text
-GROOVE_STATE = {
+LIVE_GROOVE_STATE = {
   pulse,
   backbeat,
   bass_ostinato,
@@ -94,7 +94,7 @@ GROOVE_STATE = {
 }
 ```
 
-演奏中はこの状態が継続し、各打点はその時点の身体運動とバンドの応答から生成される。
+Tiny Deskの演奏中はこの状態が継続し、各打点はその時点の身体運動とバンドの応答から生成される。一方、スタジオ版ではHi-Tekの固定ビートが先にあり、.Paakはその空間へ声、複数の人格、掛け合いを配置した。
 
 ### 4.2 「一定」と「同一」は違う
 
@@ -203,7 +203,14 @@ BREAK_FOREGROUND
 
 ## 10. 失効した判断
 
-現段階ではなし。
+### 失効: 「Come Down」で保存されているのは固定音列ではない
+
+以前の記述はTiny Desk版の演奏観測を、スタジオ版の制作構造へ拡張していたため失効する。スタジオ版の土台はHi-Tekによるベースラインと刻んだドラムから作られた固定ビートである。
+
+現在有効な区別は次のとおり。
+
+- スタジオ版: 固定ビートを制約として、.Paakが声の時間と場面を作る。
+- Tiny Desk版: 固定ビートの骨格をバンドが再演奏し、各打点と前景交代を現在の身体へ戻す。
 
 「反復はすべて悪い」「ループを使わない」という判断にはしていない。問題にしているのは、演奏者の現在の行為から切断された完成音列の垂れ流しである。
 
@@ -217,3 +224,103 @@ BREAK_FOREGROUND
 - 四本以上の指を使ったiPhone実機での誤接触率
 - 接触保持を固定パターン再生に落とさず、身体運動として維持する音生成方式
 - `Come Down`以外でも同じ原理が保持されるか
+
+
+## 12. 2026-09-02追補 — 固定ビートを身体へ取り戻す
+
+### 追加資料
+
+1. [DJBooth: Hi-Tek “Beat Break” interview](https://djbooth.net/features/2017-09-22-hi-tek-interview-beat-break/)  
+   Hi-Tek本人による“Come Down”制作経緯。
+2. [Issue Magazine: Anderson .Paak interview](https://www.issuemagazine.com/anderson-paak/)  
+   .Paak本人によるHi-Tekのビート、曲の完成時期、空間を使うプロデューサーについての説明。
+3. [Shazam: “Come Down” credits](https://www.shazam.com/en-us/song/1065681770/come-down)  
+   Hi-Tekのproducer credit、演奏者credit。
+4. [Pitchfork: “Come Down” track review](https://pitchfork.com/reviews/tracks/17909-andersonpaak-come-down/)  
+   スタジオ版をshuffling drum loopと空間のあるHi-Tek productionとして記述。
+5. [NPR Music Tiny Desk Concert](https://www.youtube.com/watch?v=ferZnZ0_rSM)  
+   .PaakとThe Free Nationalsによるライブ再演奏。
+
+### 追加事実
+
+- Hi-Tek本人によれば、ベースラインの着想は第二作目のReflection Eternal制作期に録音していたが、適切なドラムを長く決められなかった。
+- 2015年にドラムを刻んで配置し、以前のベースラインへ結合した。Hi-Tekは完成版を約98 BPMと説明している。
+- .Paak本人はHi-Tekから送られたビートを当初寝かせており、“Come Down”はアルバムのmastering直前に加えた曲の一つだと説明している。
+- .PaakはHi-TekとKnxwledgeについて、空間を使うproducerとして評価している。
+- スタジオ版のproducer creditはHi-Tekであり、Tiny Deskでは.Paak自身がドラムを演奏する。
+
+### 二つの“Come Down”
+
+| 層 | スタジオ版 | Tiny Desk版 |
+|---|---|---|
+| 時間の土台 | Hi-Tekが構築した固定ビート | .Paakとバンドがその場で維持する |
+| .Paakの主な現在行為 | 声、ラップ、掛け合い、人格交代 | 声に加えて打点、音価、フィル、停止 |
+| 反復の変化 | 主に声と編曲上の配置 | 打点、強度、音価、前景が演奏中に変わる |
+| ループの位置 | 完成音源を成立させる制約 | 再演奏される骨格または記憶 |
+| 時間への責任 | producerのビートとvocal phrasingに分散 | .Paakとバンドの身体へ戻る |
+
+ここから得られるのは「ループを使えば垂れ流し、使わなければ演奏」という二分ではない。
+
+スタジオ版では、固定ビートが動かなくても.Paakの声が空間を演奏している。Tiny Deskでは、その固定ビート自体を身体へ戻し、ドラムと声の両側から再編している。二版の関係は、loop versus liveではなく、**固定された時間へ何を現在行為として残すか**の違いである。
+
+### Sound Labへの更新仮説（未採用）
+
+#### 1. ループを録音物ではなく譜面として扱う
+
+保存した一小節をそのまま鳴らし続けるのではなく、次の周期で守る骨格だけを抽出する。
+
+```text
+BEAT_OBJECT = {
+  cycle_length,
+  invariant_accents,
+  bass_contour,
+  backbeat_slots,
+  silence_slots
+}
+```
+
+演奏時には、この骨格から各打点を現在入力で再発音する。元音声を鳴らす場合も、演奏の主役ではなく参照層に留める。
+
+#### 2. 保持だけでは完全な周期を再生させない
+
+一本の指を置いたままにするだけでハイハット、キック、スネアが完成し続けるなら、それは接触を再生ボタンへ置き換えただけである。
+
+- 移動
+- 再打
+- 離指
+- 指の追加
+- 指同士の距離変化
+- 周期直前の選択
+
+のいずれかが次周期へ残る必要がある。何も入力されなければ、音を消す、骨格だけへ痩せる、未決定打点を休符にする等の挙動が候補になる。
+
+#### 3. 「現在行為率」を設計評価に使う
+
+```text
+CURRENT_ACTION_RATIO =
+  current_gesture_derived_events
+  / audible_structural_events
+```
+
+これは音楽的価値を一数値へ還元する指標ではない。ループが演奏支援から自動再生へ変質していないかを検査するための診断値である。
+
+比率を100%へ固定する必要はない。スタジオ版“Come Down”のように、固定ビートの上で声が時間を演奏する構造もある。重要なのは、どの層を現在の演奏者が引き受けているかが見えることである。
+
+#### 4. BeatからBandへの連続変形を作る
+
+```text
+FIXED_BEAT
+  -> GESTURE_MODULATED_BEAT
+  -> PARTIALLY_REARTICULATED_BEAT
+  -> FULLY_REEMBODIED_BAND
+```
+
+モード切替ではなく連続量として扱う。指が増えるほど単純に音数を増やすのではなく、固定ビート側に残っていた時間責任を演奏者側へ引き取る。
+
+### 更新後の中心命題
+
+.Paakから移すべきものは、ライブ・ドラムの見た目でも、Hi-Tekの一小節でもない。
+
+**固定ビートを受け取り、声で占有し、必要なら身体へ取り戻して別の現在形へ変える能力**である。
+
+これは、既成ループを禁止する設計より厳しい。ループを使っても、使わなくても、現在の演奏者が時間へ何をしたかが音に残らなければならない。
