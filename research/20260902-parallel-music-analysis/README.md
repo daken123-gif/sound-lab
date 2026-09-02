@@ -38,7 +38,7 @@
 | blind20監査 | `main` | `research/music-analysis/blind20-audit-20260902.md` | `5f68b76ea105ada904bec58b3385575164045ced` | 濃縮非三連則のブラインド反例監査 |
 | J Dilla | `research/20260902-j-dilla` | `research/20260902-j-dilla/README.md` | `e0e5e1b2d7f329091ddb12b483fee9c6a05f9058` | 複数clock候補、声部間摩擦、変形実験 |
 | Charlie Hunter | `research/20260902-charlie-hunter` | `research/20260902-charlie-hunter/README.md` | `080c91224ccbf2fbc224ac8cb40790c6c122797f` | 拘束された対位法、同一身体内の声部関係 |
-| Curtis Mayfield | `research/20260831-curtis-mayfield` | `research/20260831-curtis-mayfield/README.md` | `916ee140477db082415df0b77aad4f7bcbcf2c38` | BODY / VOICE / HORIZON、総ループ非形成 |
+| Curtis Mayfield | `research/20260831-curtis-mayfield` | `research/20260831-curtis-mayfield/README.md` | `7fe9816c4f0613d8c566cf140fe0d03fcc82e6ce` | BODY / VOICE / HORIZON、総ループ非形成 |
 | Dub演奏文法 | `research/20260831-dub-performance-grammar` | `research/20260831-dub-performance-grammar/README.md` | `ed38441b9220eb17ea0e7fee93a5970fdfb7ad88` | CUT / THROW / REVEAL、tail、事件時刻 |
 | James Brown | `research/20260831-james-brown` | `research/20260831-james-brown/README.md` | `947ba74bbab1da7e0632929d6f188914076b7c81` | 共通拍内の散開とOneへの収束、不在声部の記憶 |
 | Anderson .Paak | `research/20260831-anderson-paak` | `research/20260831-anderson-paak/README.md` | `b3798491a5e88d1680920516b901a9548adb16cb` | 不変骨格、前景交替、「一定」と「同一」の分離 |
@@ -182,7 +182,7 @@ pulse、重心、役割を保持しながらイベント列を変えた版と、
 
 | 優先 | 作業 | 接続先 | 完了条件 |
 | --- | --- | --- | --- |
-| A | “Billy Jack” blind20結果をEVENT / RELATION形式へ再記述 | music-analysis / Curtis | 観測、推論、反例が分離される |
+| A（ケース化済み） | “Billy Jack” blind20結果をEVENT / RELATION形式へ再記述 | music-analysis / Curtis | `cases/billy-jack-v1.md`。EVENT列生成は未完了 |
 | A | J Dilla 4曲反例コーパスの同一音源を固定 | J Dilla / music-analysis | edition、hash、区間、入手境界が記録される |
 | A | “Spanish Joint”の声部・音価・休符を測定 | Charlie / J Dilla / .Paak | 原mix再確認付きイベント列が得られる |
 | B | James BrownのOne収束とDillaのclock競合を同じ指標で比較 | James Brown / J Dilla | 同一指標で差が消えない |
@@ -191,6 +191,11 @@ pulse、重心、役割を保持しながらイベント列を変えた版と、
 | C | Jeff Mills正本の所在を確定 | Charlie / .Paak / Curtis依存 | branch/path/blob SHAまたは取得不能境界が確定する |
 
 これらは同じ順番で実行する必要はない。各研究ブランチで並行し、接続層には主張単位の差分だけを戻す。
+
+## 7.1 実証ケース
+
+- [ケース01 — Curtis Mayfield “Billy Jack”](cases/billy-jack-v1.md)  
+  blind20の実測JSONをSOURCE / EVENT / RELATIONへ再記述。ドラム集約で直接言えることと、BODY / VOICE / HORIZON仮説の未検証部分を分離した。
 
 ## 8. 設計候補への境界
 
