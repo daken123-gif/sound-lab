@@ -602,10 +602,105 @@ PERFORMANCE_PATH {
 - 公演ごとの入口・出口候補が、本人回答にあるroom／soundcheck差とどこまで対応するか。
 - 順序の逆行、分岐、再訪が本当にないのか、それとも現在の表が前向き列へ整理しているだけか。
 
-## 17. 未検証事項
+## 17. 2025公演による修正 — 累積は一本道ではない
+
+### 取得範囲と限界
+
+AEPages共同分析の2025年表とperformance anomaliesを追加取得した。2025年の録音は、現時点で公式`AE_2022－`bundleへ収録されたsoundboardではなく、主にaudience recordingを基にした共同分析である。したがって以下は本人回答で確認したpreferred order／skip／extendを、非公式録音の対応表で検査する段階に留まる。
+
+### 1. 新しい窓が増えても、古い窓は消えない
+
+2025年8月の欧州公演は、共同分析上おおむね#36付近から#51付近までを使っている。10月の北米公演では、#49付近から始まり、新しく対応づけられた#52–63へ進む公演が多く現れる。
+
+これだけなら「時間とともに入口が後方へ移動し、古い部分を捨てた」と読める。しかし同日二公演を分けると、その読みは崩れる。
+
+| 同日二公演 | 前方の窓 | 後方の窓 |
+| --- | --- | --- |
+| Seattle 2025 | A: おおむね#49–63 | B: #36–51 |
+| Los Angeles 2025 | A: おおむね#49–63 | B: #36–48 |
+| New York 2025 | A: #49–62 | B: おおむね#36–48 |
+
+新しいsegment候補が追加された後も、以前の窓は別公演で再選択されている。したがって`accretion`を、古いsetの末尾へ新素材を足し、常にその先端だけを演奏することとは定義しない。
+
+現在の候補は、**累積した長い作品に複数のplayable windowが共存する**という構造である。
+
+```text
+ACCUMULATIVE_REPERTOIRE {
+  retained_regions
+  newly_added_regions
+  selectable_windows
+  window_specific_entry
+  window_specific_exit
+}
+```
+
+ここで`retained_regions`は、音が毎回同一であることを意味しない。同じ領域へ戻っても、dwell、mapping、mute、settings、二人の役割、roomによってtrajectoryは変わりうる。
+
+### 2. preferred orderには例外と回復がある
+
+AEPagesのanomaly注記には、前向きの連続列だけでは記述できない候補がある。
+
+- Barcelona 2022: #7を続けて二度演奏したと分析されている。
+- Rennes 2024: #29内の固有interlude後、同区間を再開したと分析されている。
+- Manchester 2025: #37冒頭で停止・再開し、#46の途中で短く#40へ戻ってから通常順序へ復帰したと分析されている。
+- Amsterdam 2025: #39途中で停止し、その後再開したと分析されている。
+
+これらはAutechre本人によるcell同定ではなく、共同分析上のanomalyである。とくにManchesterのUSB切断原因はAEPagesが引用する報告に依存し、今回その原発言本文は取得できていない。ただし、録音上の停止と再開、および分析者が過去区間との一致を聴取したという主張は、単純な一方向モデルへの反証候補になる。
+
+section 16の`preferred_forward_order`は、通常経路の記述として残すが、経路全体を尽くすものではない。次を加える。
+
+```text
+ELASTIC_SPINE {
+  preferred_forward_order
+  hold_or_extend
+  skip_forward
+  repeat_current_region
+  temporary_return
+  resume_after_halt
+  select_another_window_next_show
+}
+```
+
+`temporary_return`は自由なランダムjumpとは異なる。Manchesterの共同分析が正しければ、過去領域へ短く触れた後に元の順序へ戻っており、逸脱と復帰点が対になっている。
+
+### 3. 「失敗しない設計」を無停止と読まない
+
+2022 AMAから得た`designed_failure_bounds`は、機材も演奏も停止しないという意味ではなかった。2025年の中断候補は、少なくとも次の二種類を分ける必要を示す。
+
+| 種類 | 内容 | 研究上の扱い |
+| --- | --- | --- |
+| musical instability | parameter操作やchaosが予想外の音楽結果を返す | 可動域内で制御・選択する |
+| infrastructure failure | interface、connection、audio pathなど演奏基盤が途切れる | 音楽生成とは別の回復経路を持つ |
+
+`designed_failure_bounds`は前者の音楽的破綻を抑える設計語であり、後者の機材障害まで防いだ証拠にはならない。Sound Labでも、因果エンジンの音楽的安定性と、iPhone／browser／audio session中断からの復帰を同じテストへ潰さない。
+
+### 4. Sound Labへの候補
+
+今回追加するのはscene選択UIではなく、**復帰可能な演奏状態**という研究候補である。
+
+```text
+RESUMABLE_PERFORMANCE_STATE {
+  active_window
+  current_region
+  local_state
+  preferred_successor
+  return_target?
+  recovery_anchor?
+}
+```
+
+ただし`recovery_anchor`を一定間隔の自動checkpointと決めてはいない。自動保存がgesture、audio clock、外部入力との不整合を作る可能性があるため、何を保存すれば音楽的に「続き」になるかは未検証である。
+
+ここまでの修正で、Autechreから移す候補は次のように絞られる。
+
+> 固定loopを再生するのではなく、複数の可動窓を保持し、その中で滞在・前進・省略・一時回帰・中断復帰を演奏する。
+
+これはまだSound Labの採用仕様ではない。特に「一時回帰」と「中断復帰」は操作主体、誤操作防止、復帰時の音量安全性を含めて別途設計する必要がある。
+
+## 18. 未検証事項
 
 - 各作品の音源を取得した波形・イベント列の分析。
-- `AE_LIVE`複数公演のcommunity segmentation比較は開始したが、音声ファイルによるtoolset、境界、公演差の直接測定。
+- `AE_LIVE`複数公演のcommunity segmentation比較は2025年まで進めたが、音声ファイルによるtoolset、境界、公演差、anomalyの直接測定。
 - 2022 Twitch AMAと2025 KEYOSC AMAの全回答を、年代、記憶留保、後続訂正まで含めて監査すること。今回取得した該当回答は上記範囲に限定する。
 - Max systemの実際のstate、clock、coupling、controller mapping。
 - 3本以上の同時接触を含むMobile Safari / iPhoneのtouch取得安定性。
@@ -614,7 +709,7 @@ PERFORMANCE_PATH {
 - 独立DRUMと4トラック間の同期を、固定BPM以外でどう成立させるか。
 - 低遅延、CPU、電池、発熱、音量安全性。
 
-## 18. 触る実装パス
+## 19. 触る実装パス
 
 今回の研究では製品コードを変更しない。
 
@@ -623,7 +718,7 @@ PERFORMANCE_PATH {
 - 未変更: `prototype/`
 - 未変更: `integration/`
 
-## 19. 依存する研究・判断
+## 20. 依存する研究・判断
 
 - `RESEARCH_WORKFLOW.md`
 - `integration/DIRECTION.md`
@@ -634,9 +729,9 @@ PERFORMANCE_PATH {
 - `research/20260902-jeff-mills/` — 持続層、手動破断、事故からの回復。長期研究branch本文を取得。
 - Skulptur研究本文 — Git上では未取得のため、この研究から内容を補完しない。
 
-## 20. 失効した判断
+## 21. 失効した判断
 
-- なし。
+- section 16の可変窓モデルを、入口から出口まで一方向にしか進まない完全モデルとして使う候補は失効。2025年までの共同分析には、同一区間の反復、停止後の再開、過去領域への一時回帰、別公演での古い窓の再選択がある。通常経路としての`preferred_forward_order`は維持し、section 17の`ELASTIC_SPINE`を後継候補とする。
 
 今後訂正が生じた場合、古い判断を黙って削除せず、失効理由と後継判断をここへ追記する。
 
@@ -675,4 +770,4 @@ PERFORMANCE_PATH {
 13. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
    - `AE_LIVE`で毎回異なるnote sequencing、各trackの可能範囲を決めるconditionals、二人のdata共有と即時反応についてSean Boothが説明。
 14. [AEPages — AE_2022－ Analysis](https://aepages.org/wiki/AE_2022%EF%BC%8D#Analysis)
-   - 公式soundboardとbootlegを跨いだsegment対応とtimestampの共同分析。work in progressであり、内部cell名や確定境界とは扱わない。
+   - 公式soundboardとbootlegを跨いだsegment対応、timestamp、2025年までのperformance anomalyの共同分析。work in progressであり、内部cell名や確定境界とは扱わない。
