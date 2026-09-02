@@ -577,3 +577,74 @@ Dilla研究との接続では、完成音声を再生するのでなく次を演
 
 フル尺音源がない現状態では、この境界を越えた数値を作らない。
 
+## 23. 「本文未取得」判定の訂正と三研究の実体接続
+
+取得日: 2026-09-02
+
+Section 18および最初のSection 20にある「Charlie Hunter、Jeff Mills、Autechreの本文未取得／referenced only」という状態は、全ブランチ一覧と各READMEの直接取得によって失効した。過去の記述は探索履歴として残すが、現在状態には使わない。
+
+| 研究 | 取得ref | README blob | 現在の証拠境界 |
+| --- | --- | --- | --- |
+| Charlie Hunter | `research/20260902-charlie-hunter@6d0a0c053c94a3e3f14dc58583880f7ee26c240d` | `080c91224ccbf2fbc224ac8cb40790c6c122797f` | 「拘束された対位法」「内部位相差」は研究仮説。音源のonset／位相は未測定 |
+| Jeff Mills | `research/20260902-jeff-mills@06fb70d76da8020b1919e3e69ad10448a1563498` | `39b514ffcfd1c060b2112d7c6b10a7858163ebd2` | 持続層・手動破断・回復は本人資料と演奏観察に基づく仮説。解析音源は未取得 |
+| Autechre | `research/20260831-autechre@65e0a8ce6ae7584bb1d8be177b9ccab622e51664` | `c57156415879d6ce6ee49511b9586182b26e55d0` | relation／state transition／performance trajectoryは研究モデル。作品別の独自信号測定は未完了 |
+| Aphex Twin | — | — | 今回取得した`sound-lab`全branch headに対応名なし。存在しないとは判定せず、本文未取得を維持 |
+
+検索結果の衛生検査では、三研究の直接取得結果はCLEANだった。これは制御文や現在クエリの自己反響を検出しなかったことだけを意味し、研究仮説の真偽や製品採用を証明しない。
+
+### Charlie Hunter: clockの独立ではなく、身体による相互制約
+
+Hunter研究の「拘束された対位法」は、低音と上声が別のリズムを持ちながら、同じ手、姿勢、拍感に拘束され、一方の音価・mute・accentが他方の実行可能性を変えるという仮説である。
+
+J Dilla研究へ移せるのは、voiceを完全独立trackとして扱わず、あるvoiceの次イベントが別voiceの可能性を制約する`BODY_COUPLING`の観点である。ただし、sample、kick、snare、hatが一人の身体へ物理的に拘束されているとは仮定しない。Hunterの身体制約とDillaのclock関係は、同じcouplingでも根拠が異なる。
+
+実験では、`Δkick-snare`等の値だけでなく、一方のonsetを移動したとき別voiceの許容位置・休符・音価も連動させる版と、各voiceを独立移動する版を比較する。
+
+### Jeff Mills: 固定した結果ではなく、床・破断・回復
+
+Mills研究は、完全同期を精度とせず、持続する床を保ったまま手動破断を加え、位相差や事故を次の入口へ変換する能力を中心仮説に置く。二台の909を同期patternと手動演奏へ分ける記述は、`FLOOR_AND_BREAK`を物理的に分離する例として扱われている。
+
+J Dilla研究への接続では、安定するsnare／hat／sample等を床候補とし、kick、bass、別細分を一時的な破断層として操作できるかを試す。ただし、録音済みDilla beatのtiming関係は、Millsのライブ事故回復と同一ではない。
+
+変形実験へ次を追加する。
+
+1. 床候補を固定し、破断層だけを一時介入して戻す版
+2. 全層を同時にずらし、床自体を失う版
+3. 介入解除時に即時量子化する版
+4. 直前の位相差を残して次周期へ回復する版
+
+比較対象は「どれがDillaらしいか」だけでなく、床の連続性を失わず演奏者が事故を次の構造へ使えるかである。
+
+### Autechre: event列からrelationとstate transitionへ
+
+Autechre研究は、反復の正本がevent sequenceからrelation、state transition、performance trajectoryへ移るという歴史モデルを置く。また、open-ended systemを自動作曲者にせず、予想外の出力へ人間が次の演奏で応答できることを重視する。
+
+J Dilla研究で保存すべき対象も、固定swing templateや完成loopではなく、次の関係になる。
+
+- どのvoice／clockが同一性を保持するか
+- どの条件で別clockへの介入が始まり、終わるか
+- 直前の関係が次周期の可能範囲をどう変えるか
+- 演奏者のgestureがrelationをどちらへ押すか
+- 同じtoolsetから非同一のperformance trajectoryを作れるか
+
+ただし、Autechre型のstate transitionがDillaのtimingを自動生成する設計へ短絡してはならない。まず4曲コーパスから実測したrelationを反証材料として固定し、その後にrelationの可動範囲だけを演奏対象にする。
+
+### 四軸の分離
+
+| 軸 | 主要な由来 | J Dilla研究内の役割 | 混同しないもの |
+| --- | --- | --- | --- |
+| `BODY_COUPLING` | Charlie Hunter | voice間の実行可能性と休符・音価の連動 | 一身体の物理制約とsample層の関係 |
+| `CLOCK_RELATION` | J Dilla | clock候補、位相、分割、attack、再合流条件 | 単一master gridからの誤差 |
+| `FLOOR_AND_BREAK` | Jeff Mills | 安定層を保った介入、解除、回復 | 録音済みtimingとライブ事故 |
+| `STATE_TRANSITION` | Autechre | 履歴・別voice・gestureが次状態を変える条件 | Dilla風の自動作曲 |
+
+この四軸は同時実装の許可ではない。J Dilla研究で次に実証する中心は`CLOCK_RELATION`であり、他三軸は変形実験と演奏可能性を比較するための境界として使う。
+
+### 更新された未検証事項
+
+- Charlie Hunterの`BODY_COUPLING`を使った連動変形と独立変形のブラインド比較
+- Mills型`FLOOR_AND_BREAK`で、床を失わない介入・解除・回復の操作時間測定
+- Autechre型`STATE_TRANSITION`が関係を豊かにする条件と、作家様式の自動化へ転ぶ条件の分離
+- 四軸のうち何軸までならノンミュージシャンが説明なしで区別して演奏できるか
+- Aphex Twin研究の正本ref／fileのGit上の所在
+
