@@ -410,3 +410,211 @@ quantizeを設ける場合も演奏者が明示選択し、録音開始やinput 
 - その結果から、gesture数を増やさずに必要なprimitiveを絞る。
 
 この時間分析とiPhone実機検証が終わるまで、Dub層のUI、DSP、製品採用は確定しない。
+
+## 18. 2026-09-02更新: 原曲／Dub版コーパスの固定
+
+### 18.1 取得状態
+
+Spotify検索から曲名、artist、収録album、duration、再生可能状態、track URIを取得した。ただし検索結果には`audio_preview_url`も音声fileも含まれなかった。
+
+この取得結果が証明するのは、指定版がSpotify上に存在し再生可能と表示されていることまでである。音響内容を私が聴いた、波形を取得した、時間分析したことは証明しない。
+
+したがって以下では、同じcompilationに収録された原曲とDub版を分析対象として固定する。事件時刻、mute位置、echo回数、filter軌跡はまだ記入しない。
+
+### 18.2 Corpus A: Rockers pair
+
+| 役割 | 取得した版 | Spotify URI | 尺 |
+| --- | --- | --- | --- |
+| vocal original | Jacob Miller — [Baby I Love You So](https://open.spotify.com/track/2iCshqpZ6LQEOaUj7vQEgc) | `spotify:track:2iCshqpZ6LQEOaUj7vQEgc` | 150.840秒 |
+| Dub | Augustus Pablo — [King Tubby Meets Rockers Uptown](https://open.spotify.com/track/0Mx3BZtH58ASK4XFg9TKWB) | `spotify:track:0Mx3BZtH58ASK4XFg9TKWB` | 148.373秒 |
+
+両方とも`Who Say Jah No Dread - The Classic Augustus Pablo Sessions`収録版を使う。別々の再発盤を混ぜず、transfer / mastering差を可能な範囲で減らすためである。
+
+外部資料では`King Tubby Meets Rockers Uptown`を`Baby I Love You So`のDub版としている。元singleでは両曲が表裏に置かれた版がある。
+
+- 補助資料: https://en.wikipedia.org/wiki/King_Tubby_Meets_Rockers_Uptown_%28song%29
+- Augustus Pablo公式Bandcamp上のDub版: https://augustuspablo.bandcamp.com/track/king-tubby-meets-rockers-uptown
+
+### 18.3 Corpus B: Scientist / Junjo pair
+
+| 役割 | 取得した版 | Spotify URI | 尺 |
+| --- | --- | --- | --- |
+| vocal original | Michael Prophet — [You Are A No Good](https://open.spotify.com/track/5FfdvCaBbRj6xzkcNmsUUN) | `spotify:track:5FfdvCaBbRj6xzkcNmsUUN` | 199.426秒 |
+| Dub | Roots Radics — [Dance Of The Vampires](https://open.spotify.com/track/1vexvgYQCSVjT8yPB5ZFcx) | `spotify:track:1vexvgYQCSVjT8yPB5ZFcx` | 205.786秒 |
+
+両方とも[Junjo Presents: The Evil Curse Of The Vampires](https://open.spotify.com/album/1XBhEfYQ0JiEa6MBBKDmB0)収録版を使う。このSpotify版ではDub曲のartist表示がScientistではなくRoots Radicsになっているため、表示artistだけからmixer creditを推定しない。
+
+盤資料は`Dance Of The Vampires`をScientist mix、Henry “Junjo” Lawes production、Roots Radics演奏、King Tubby's studioでのmixとして記載する。原曲対応は`You Are A No Good`とされている。
+
+- 盤・制作credit: https://www.reggaerecord.com/en/catalog/description.php?code=3578
+- riddim対応表: https://www.riddim.nl/version/album.php?albumid=10&artist=Scientist&medium=LP&title=Scientist+Rids+The+World+Of+The+Evil+Curse+Of+The+Vampires
+- album整理: https://en.wikipedia.org/wiki/Scientist_Rids_the_World_of_the_Evil_Curse_of_the_Vampires
+
+### 18.4 Scientist albumの暫定対応表
+
+二つのriddim databaseとalbum整理で対応が一致するものを次段階の候補にする。ただし本研究ではoriginal masterとの音響同一性をまだ照合していない。
+
+| Dub | vocal / riddim source候補 |
+| --- | --- |
+| The Voodoo Curse | Wailing Souls — Oh What A Feeling |
+| Dance Of The Vampires | Michael Prophet — You Are A No Good |
+| Blood On His Lips | Wayne Jarrett — Love In My Heart / database上ではBubble Up表記もあるため要解決 |
+| Cry Of The Werewolf | Michael Prophet — Hold On To What You Got |
+| The Mummy's Shroud | Wailing Souls — Fire House Rock |
+| The Corpse Rises | Wailing Souls — Bandits Taking Over |
+| Night Of The Living Dead | Michael Prophet — Youthman |
+| Your Teeth In My Neck | Michael Prophet — Love And Unity |
+| Plague Of Zombies | Johnny Osbourne — He Can Surely Turn The Tide |
+| Ghost Of Frankenstein | Michael Prophet — Sweet Loving |
+
+`Blood On His Lips`は参照資料間で原曲名とriddim名の表記が一致しない。異名か別録音かを解決するまで確定pairにしない。
+
+### 18.5 今回コーパスへ入れないもの
+
+- Lee Perry / `Super Ape`
+  - 理由: 同一rhythmのvocal sourceと正確なmix lineageを本更新では固定できていない。
+- Mad Professor / `No Protection`
+  - 理由: album単位のremix関係は明白だが、同じmaster由来か、追加録音を含むかをtrack別に取得していない。
+- Basic Channel
+  - 理由: vocal originalに対するDub versionという比較ではなく、Dub操作がcompositionへ内在化した別系列である。
+
+## 19. 時間分析の記録形式
+
+### 19.1 一行を一事件にする
+
+```text
+DubObservation = {
+  pairId,
+  versionId,
+  evidenceClass,
+  tAbsolute,
+  tNormalized,
+  loopOrPhraseIndex,
+  sourceClass,
+  action,
+  tailEnd,
+  confidence,
+  note
+}
+```
+
+### 19.2 証拠区分
+
+| 値 | 意味 |
+| --- | --- |
+| `METADATA` | 曲名、版、尺、credit等、取得した外部記録 |
+| `DIRECT_AUDIO` | 実際に取得した音声から直接聴取・測定した観測 |
+| `INFERENCE` | `DIRECT_AUDIO`をもとにした信号経路・演奏意図の推論 |
+| `UNRESOLVED` | 複数解釈が残り確定できない箇所 |
+
+Spotifyで再生可能と表示されたことを`DIRECT_AUDIO`へ昇格させない。
+
+### 19.3 action語彙
+
+既存の七語をそのまま押しつけず、聴取時には次の観測語へ分ける。
+
+| 観測語 | 判定 |
+| --- | --- |
+| `DRY_EXIT` | dry sourceが知覚上退場する |
+| `DRY_ENTRY` | dry sourceが知覚上再登場する |
+| `SEND_EVENT` | 特定の音片だけが時間／空間系へ投げられる |
+| `RETURN_ONLY` | 原音不在でreturnだけが残る |
+| `RETURN_CUT` | 継続中のreturnが知覚上切られる |
+| `FILTER_NARROW` | sourceの帯域が狭まり身体性が減る |
+| `FILTER_OPEN` | 狭まった帯域が戻る |
+| `MASS_DROP` | 複数sourceが短時間に退場する |
+| `FULL_OR_PARTIAL_RESET` | 基準編成へ戻る |
+
+分析後にだけ、`DRY_EXIT -> RETURN_ONLY`を`CUT + THROW`候補へ、`MASS_DROP`を`VACUUM`候補へ写像する。先に七語へ押し込んで人物差を消さない。
+
+### 19.4 時刻
+
+- `tAbsolute`: 取得音源の先頭からの秒。
+- `tNormalized`: `tAbsolute / duration`。再発版の無音余白や速度差があるため補助値として使う。
+- `loopOrPhraseIndex`: 小節数を断定できる場合だけ記入する。不明なら空欄。
+- 版の先頭無音、fade、速度差を確認せず、秒数だけで原曲とDub版を機械的に対応させない。
+
+### 19.5 tailの因果
+
+tailを単に「echoあり」と数えない。
+
+1. 親になったsource eventを特定する。
+2. dry sourceが残るか消えるかを分ける。
+3. tailが次のphrase境界を越えるか記録する。
+4. 新しいsource entryと衝突するか、空白を占有するか記録する。
+5. returnが自然減衰したか、演奏者に切られたように聞こえるかを分ける。
+
+親eventを特定できないreturnは`UNRESOLVED`にする。
+
+## 20. 比較指標候補
+
+指標は優劣評価ではなく、人物ごとの演奏文法の差を見つけるために使う。
+
+### 20.1 介入密度
+
+```text
+interventionDensity = DIRECT_AUDIO事件数 / 分
+```
+
+同じ長さでも、ScientistがTubbyより多いと決めつけず、実測後に比較する。
+
+### 20.2 dry不在率
+
+```text
+dryAbsenceRatio(source) = sourceが知覚上不在の時間 / 全時間
+```
+
+stem分離なしの聴感判定になる場合は、confidenceを必ず付ける。
+
+### 20.3 tail自律率
+
+```text
+tailAutonomyRatio = RETURN_ONLY時間 / return総時間
+```
+
+値が高いほど優れているのではない。原音を消した後、過去がどれだけ独立声部として働くかを見る。
+
+### 20.4 編成状態数
+
+同時に知覚できるsource classの組をstateとして数える。ただし細かな音色差を別stateへ水増ししない。
+
+例:
+
+```text
+{bass, drums, vocal}
+{bass, drums, vocalTail}
+{drums, hornTail}
+{bass, drums}
+```
+
+### 20.5 予測破り
+
+定量値へ急いで落とさず、次の二条件を満たす事件を注記する。
+
+- 直前まで成立していた反復規則が破られる。
+- 破った後もrhythmまたは別の因果が残り、曲が単に停止しない。
+
+Scientistのいうsurpriseを、effect数やランダム性へ置換しないための観測欄である。
+
+## 21. コーパスから設計へ戻すゲート
+
+一曲で見つかったgestureを直ちに製品機能へしない。次を通ったものだけ設計候補として残す。
+
+1. 二人以上のmixer、または同一mixerの三曲以上で再観測される。
+2. sourceの音色に依存せず、存在・不在・時間・距離の操作として抽出できる。
+3. 既存のSkulptur主演奏面を置換しない。
+4. 第五trackを作らない。
+5. hidden multi-touch commandを要求しない。
+6. 演奏者が発生時刻と終了時刻を引き受けられる。
+7. iPhone実機で入力因果と音量安全性を検証できる。
+
+現在このゲートを通過済みのDub機能はない。七つの演奏文法も`candidate`のままである。
+
+## 22. 次の未完了工程
+
+- Corpus AとBの音声を、権利と取得経路を保ったまま実際に取得する。
+- 取得した版のcontent identity、duration、先頭無音を固定する。
+- 最初は自動stem分離を使わず、原曲／Dub版を交互に聴いて事件表を人手で作る。
+- 次に必要な箇所だけ波形、spectrogram、loudness、band energyで観測を補助する。
+- 自動解析結果を聴取事実へ置き換えない。
+- Corpus AとBで語彙が安定した後、Lee Perryの別系統を追加する。
