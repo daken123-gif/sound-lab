@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "research_id": "20260902-j-dilla",
+  "status": "candidate_not_integrated",
+  "supersedes": {
+    "path": "research/20260902-j-dilla/data/cross-research-timing-model-v1.json",
+    "blob_sha": "6e05bd81d1d3a49d1009f07d4688ac67d068f44a",
+    "rule": "v1 remains historical evidence; v2 adds an Aphex Twin-derived identity/edit-horizon axis"
+  },
+  "retrieved_references": [
+    {
+      "research_id": "20260902-charlie-hunter",
+      "ref": "research/20260902-charlie-hunter",
+      "path": "research/20260902-charlie-hunter/README.md",
+      "blob_sha": "28b8c8fdfa48678b1eabf2a67d5ce998b794e5a2"
+    },
+    {
+      "research_id": "20260902-jeff-mills",
+      "ref": "research/20260902-jeff-mills",
+      "path": "research/20260902-jeff-mills/README.md",
+      "blob_sha": "2fe28c9091a24cf9fadaee690d7f2b6d29fa3c93"
+    },
+    {
+      "research_id": "20260831-autechre",
+      "ref": "research/20260831-autechre",
+      "path": "research/20260831-autechre/README.md",
+      "blob_sha": "67f99f1f5371bdd50074da7038d33e0361a626b9"
+    },
+    {
+      "research_id": "20260902-aphex-twin",
+      "ref": "research/20260902-aphex-twin",
+      "path": "research/20260902-aphex-twin/README.md",
+      "blob_sha": "49e578cadfcd6d6ce4e3166279e8ae951cc3d9fb"
+    }
+  ],
+  "distinct_axes": {
+    "j_dilla_clock_relation": {
+      "question": "where each voice sits relative to stable layers, subdivisions, attacks and cycle positions",
+      "evidence_boundary": "prior literature and synthetic counterexamples; independent full-track onset measurement pending"
+    },
+    "charlie_hunter_body_coupling": {
+      "question": "how several roles share one body, large time and execution budget",
+      "evidence_boundary": "retrieved research artifact; independent audio microtiming measurement pending"
+    },
+    "jeff_mills_floor_and_break": {
+      "question": "how a persistent floor survives manual rupture, layer exchange and recovery",
+      "evidence_boundary": "retrieved research artifact; independent performance measurement pending"
+    },
+    "autechre_state_transition": {
+      "question": "how current state, history, local clocks and coupling constrain the next event",
+      "evidence_boundary": "retrieved research artifact; internal patches and original event data unavailable"
+    },
+    "aphex_twin_identity_edit_horizon": {
+      "question": "what remains identifiable while local details, takes, tuning or edition change on another timescale",
+      "evidence_boundary": "retrieved research artifact based on cited primary sources; its planned track-level listening and measurement remain unfinished"
+    }
+  },
+  "time_field": {
+    "floor": {
+      "clock_candidates": [],
+      "selected_reference": null,
+      "continuity": 0.0
+    },
+    "voices": [],
+    "coupling_matrix": [],
+    "recent_event_memory": [],
+    "active_interventions": [],
+    "recovery_targets": [],
+    "identity_memory": {
+      "selected_anchor": null,
+      "anchor_family": [
+        "phrase_shape",
+        "bass_position",
+        "timbre_family",
+        "accent_or_rest_shape",
+        "tuning_relation"
+      ],
+      "edit_horizon": null,
+      "explicit_recording_only": true,
+      "automatic_selection": false
+    }
+  },
+  "event_time_equation": "t_event = t_floor + delta_voice_shape + delta_coupling + delta_gesture + delta_recovery",
+  "cross_scale_constraint": "local event changes may vary inside an edit horizon while at least one explicitly selected identity anchor remains observable",
+  "performance_operations": [
+    {
+      "operation": "hold_floor",
+      "meaning": "maintain a reference layer while other relations change"
+    },
+    {
+      "operation": "bend_relation",
+      "meaning": "move one voice before or after another without shifting every voice equally"
+    },
+    {
+      "operation": "change_subdivision",
+      "meaning": "change one voice's subdivision family while preserving a perceptible reference"
+    },
+    {
+      "operation": "cut_layer",
+      "meaning": "remove a voice while retaining its relational trace in the remaining field"
+    },
+    {
+      "operation": "recover_from_current_state",
+      "meaning": "turn phase conflict or an error into the next playable relation instead of rewinding"
+    },
+    {
+      "operation": "release_to_floor",
+      "meaning": "return only the released intervention toward the current reference, not every layer to a loop start"
+    },
+    {
+      "operation": "select_identity_anchor",
+      "meaning": "explicitly choose what must remain recognizable while another scale changes"
+    },
+    {
+      "operation": "transform_local_detail",
+      "meaning": "change events inside a chosen edit horizon without automatically changing the selected identity anchor"
+    },
+    {
+      "operation": "commit_snapshot",
+      "meaning": "record the current performance only after an explicit user action; recording does not start autonomous playback"
+    },
+    {
+      "operation": "relisten_then_reenter",
+      "meaning": "use an explicitly selected recorded observation to inform the next live action without letting the system choose a finished result"
+    }
+  ],
+  "separation_rules": [
+    "do not equate J Dilla's recorded microtiming with Aphex Twin's editing or one-take workflow",
+    "do not classify Autechre as rules and Aphex Twin as hand editing without work-level evidence",
+    "do not treat a one-take recording as proof of unprepared improvisation",
+    "do not treat edition identity, performance identity and event timing as one variable"
+  ],
+  "anti_patterns": [
+    "one global swing amount",
+    "random timing scatter called humanize",
+    "one touch equals one independent completed track",
+    "automatic rewind to a stored loop start",
+    "automatic recording or playback after release",
+    "automatic selection of the best take",
+    "adding voices whenever touch count increases",
+    "artist-branded presets as a substitute for relations"
+  ],
+  "falsification_tests": [
+    "remove the selected identity anchor while preserving local event statistics and test whether continuity is unchanged",
+    "preserve the identity anchor while changing local event order and test whether continuity survives",
+    "compare explicit snapshot and automatic loop playback for perceived live agency",
+    "compare event-level recovery with phrase-level reentry after the same interruption"
+  ],
+  "implementation_boundary": "research model only; no product path, integration decision, listening result or artist-style reproduction claim changed"
+}
