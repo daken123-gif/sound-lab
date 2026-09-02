@@ -571,3 +571,155 @@ Medicine Showは当初、Madlib Invazionから毎月一枚を出す挑戦とし�
   - https://www.stonesthrow.com/news/madlib-all-12/
 - Stones Throw, “Madlib Medicine Show: The Aftermath”
   - https://www.stonesthrow.com/news/madlib-medicine-show-the-aftermath/
+
+
+## 14. 追補: `Madvillainy` の版間比較――完成は追加だけでなく圧縮で起きる
+
+### 14.1 「デモ版」は一つではない
+
+前節では2008年に公式化されたデモ・カセットを基準に「12曲、36分」と記した。この記述は当該カセットについては維持するが、`Madvillainy Demos` 全体の固定仕様としては使わない。
+
+2025年1月31日に公式Bandcampで公開された `Madvillainy Demos` は14曲である。2008年版の公式曲目にはなかった `Do Not Fire! (demo)` と `Bistro (demo)` が冒頭に入り、末尾には `One False Move (“Great Day” demo - instrumental)` が置かれている。
+
+以後は次のように版を明記する。
+
+| 呼称 | 収録単位 | 本研究での扱い |
+|---|---:|---|
+| 2002年初期シーケンス | 流出時の並び。現物差異は未照合 | 制作途中の歴史的状態 |
+| 2008年公式デモ・カセット | 12曲、公式説明では36分 | 最初に商品化されたデモ版 |
+| 2025年公式 `Madvillainy Demos` | 14曲 | 現在公式に取得できる拡張デモ版 |
+| 2004年完成盤 | 22曲 | 正規アルバム構成 |
+| 2008年 `Madvillainy 2` | 25曲 | Madlibによる私的再編集の公開版 |
+
+2002年の流出物、2008年のカセット、2025年の拡張版を、同じ曲数・同じ配列の「原版」として混同しない。
+
+### 14.2 2025年デモ版と2004年完成盤の同名／改題対応
+
+以下は公式Bandcampに表示された曲名と時間を比較したもの。音源波形を照合した結果ではなく、同名曲と公式に改題関係が示された曲の書誌的対応である。
+
+| 2025年デモ版 | デモ時間 | 2004年完成盤 | 完成盤時間 | 増減 |
+|---|---:|---|---:|---:|
+| Do Not Fire! (demo) | 0:52 | Do Not Fire! | 0:52 | 0秒 |
+| Bistro (demo) | 1:08 | Bistro | 1:07 | −1秒 |
+| One False Move | 2:12 | Great Day | 2:16 | ＋4秒 |
+| America’s Most Blunted (demo) | 3:53 | America’s Most Blunted | 3:54 | ＋1秒 |
+| Operation Lifesaver (demo) | 1:25 | Operation Lifesaver | 1:30 | ＋5秒 |
+| Figaro (demo) | 2:33 | Figaro | 2:25 | −8秒 |
+| Rainbows (demo) | 3:02 | Rainbows | 2:51 | −11秒 |
+| Just for Kicks | 2:46 | Meat Grinder | 2:11 | −35秒 |
+| Fancy Clown (demo) | 3:30 | Fancy Clown | 1:55 | −95秒 |
+| Shadows of Tomorrow (demo) | 4:02 | Shadows of Tomorrow | 2:36 | −86秒 |
+| Money Folder (demo) | 3:16 | Money Folder | 3:02 | −14秒 |
+| Stakes | 1:18 | Supervillain Theme | 0:52 | −26秒 |
+| All Caps (demo) | 2:20 | All Caps | 2:10 | −10秒 |
+
+この13対応の表示時間を合計すると、デモ版は32分17秒、完成盤側は27分41秒で、完成盤は4分36秒短い。中央値も10秒の短縮になる。
+
+ただし平均値だけでは編集の性格を捉えられない。ほぼ同じ長さを維持する曲と、大幅に圧縮する曲が同居している。
+
+- **ほぼ保存**: `Do Not Fire!`、`Bistro`、`America’s Most Blunted`
+- **軽い圧縮**: `Figaro`、`Rainbows`、`Money Folder`、`All Caps`
+- **大幅な圧縮**: `Meat Grinder`、`Fancy Clown`、`Shadows of Tomorrow`、`Supervillain Theme`
+
+これはMadlibの短曲性が一律の尺制限ではないことを示す。素材ごとに「残すべき時間」の判定が異なる。
+
+### 14.3 完成盤はデモを磨いただけではない
+
+完成盤22曲のうち、2025年デモ版に同名または公式な改題対応がない曲目は次の九つである。
+
+- The Illest Villains
+- Accordion
+- Raid
+- Sickfit
+- Curls
+- Hardcore Hustle
+- Strange Ways
+- Eye
+- Rhinestone Cowboy
+
+これは九曲すべてが流出後に新規制作されたことを証明しない。公式曲目から確認できるのは、2025年デモ版と完成盤の構成差だけである。
+
+Pitchforkの制作史では、初期版流出後にDOOMが全ボーカルを録り直し、より低く、落ち着いた声へ変えたこと、歌詞の一部を修正したこと、`Accordion` と `Bistro` を追加したことが、Peanut Butter WolfとJeff Jankの証言として記録されている。ここから完成工程を三種類に分ける。
+
+1. **圧縮**: 既存曲から時間を削る
+2. **再身体化**: 同じ歌詞でも声の高さ、速度感、拍への沈み方を録り直す
+3. **再構成**: 新しい曲・インタールードを加えて全体の順序を作り直す
+
+完成とは、情報や展開を足すことだけではない。長いデモを削り、声を録り直し、別の短い断片を間へ入れることで、アルバム全体の密度を上げている。
+
+### 14.4 声の録り直しはビート編集でもある
+
+DOOMのボーカル変更を「ラッパー側の仕上げ」として分離すると、Madlibとの時間関係を落とす。
+
+同じビートでも、声が高く前へ飛び出すか、低く拍の内側へ沈むかで、聴こえる重心が変わる。制作史の証言どおり全ボーカルが録り直されたなら、完成盤ではビート素材を大きく変えなくても、声によって時間構造全体を再設計できる。
+
+したがってMadlib研究では、ビート単体のオンセットだけでなく、次を同時に測る必要がある。
+
+- 声の音節開始とキック／スネアの距離
+- 行末が小節線を越える位置
+- デモと完成盤の発話速度
+- 同じ歌詞で休符が増減した場所
+- ボーカル削除後にも残るビート側の時間感覚
+- 声を戻したときに生じる重心の変化
+
+これを行わず、完成盤の低い声をMadlibの「ヨレ」へ誤帰属しない。
+
+### 14.5 2008年リミックスは「別ミックス」より再作曲に近い
+
+公式Bandcampは `Madvillainy 2: The Madlib Remix` を、Madlibが完成盤全体を発売約四年後に私的鑑賞用としてリミックスした作品と説明している。全25曲には、同名曲を並べた通常のリミックス盤ではなく、`No Brain`、`Pearls`、`Boulder Holder`、`Butter King Jewels`、`Cold One` など別タイトルが付けられている。
+
+このため、曲名だけから完成盤との一対一対応を断定できない。正確な対応には音源または公式ライナーノーツが必要であり、現段階では未検証とする。
+
+それでも構造上、次は確認できる。
+
+- 完成盤22曲に対し、再編集版は25曲
+- 20秒、44秒、45秒のインタールード／リプライズを含む
+- `No Brain` を二曲続けて置く
+- 最終曲 `Cold One` の直後に45秒のリプライズを置く
+- Madlib自身が完成盤を終点とせず、私的な別配列を作った
+
+ここでは「完成作品を保存し、素材関係だけを再演する」ことが起きている。原版を上書きせず、別の時間系列を成立させる。
+
+### 14.6 Field Looperへ接続する版管理
+
+製品採用済みではない。研究からの設計候補として、次を置く。
+
+1. 捕獲した演奏を破壊編集せず、原テイクとして残す
+2. 原テイクから短縮版を複数作れる
+3. 同じ断片へ別の声・別のタッチ演奏を録り直せる
+4. 曲名やスロット名ではなく、素材の由来関係を保持する
+5. 一つの「完成ループ」で終了せず、同じ素材群から別の演奏系列を呼び出す
+6. 版の差をエフェクト設定だけでなく、尺、順序、持越し層、声の位置として保存する
+
+```text
+原テイク
+  ├─ 圧縮版A
+  ├─ 圧縮版B
+  ├─ 別ボーカル版
+  └─ 別シーケンス版
+```
+
+Madlibから引くべきなのは「たくさん保存する機能」ではない。原テイク、圧縮、再身体化、再配列を同じ素材の系譜として演奏中に扱えることにある。
+
+### 14.7 今回の認知更新
+
+前節の「12曲36分の初期デモ」という記述は、2008年公式カセットの仕様へ限定した。2025年公式版を含めたデモ史全体の曲数としては失効する。
+
+新しい中心仮説は次である。
+
+> Madlibの完成度は、ループを発展させた量ではなく、素材ごとに必要な時間だけを残し、声と配列を別の身体でやり直せることから生まれる。
+
+この仮説のうち、曲長差と版の曲目差は公式表示から確認済み。具体的にどの小節、声、サンプルが削られたかは音響照合前の未検証事項である。
+
+### 14.8 追加資料
+
+- Madvillain Bandcamp, `Madvillainy Demos`
+  - https://madvillain.bandcamp.com/album/madvillainy-demos
+- Madvillain Bandcamp, `Madvillainy`
+  - https://madvillain.bandcamp.com/album/madvillainy
+- Madvillain Bandcamp, `Madvillainy 2: The Madlib Remix`
+  - https://madvillain.bandcamp.com/album/madvillainy-2-the-madlib-remix
+- Stones Throw, “20 Years of Madvillainy: Demos & Audiophile Edition on Vinyl”
+  - https://www.stonesthrow.com/news/madvillainy-demos-audiophile-edition-vinyl/
+- Pitchfork, “Searching for Tomorrow: The Story of Madlib and DOOM’s Madvillainy”
+  - https://pitchfork.com/features/article/9478-searching-for-tomorrow-the-story-of-madlib-and-dooms-madvillainy/
