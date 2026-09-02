@@ -56,9 +56,11 @@ Quasimotoは当初、自分と身近な仲間だけで聴く私的なビート�
 
 ### 1.5 変名と架空バンド
 
-Yesterday’s New Quintetでは複数の演奏者名が設定されているが、Madlib自身がドラム、ベース、鍵盤などを多重録音している。2002年の講演で、20以上の変名があり、聴き手に別人だと思わせたいと話している。
+初期Yesterday’s New Quintetでは複数の演奏者名が設定され、Madlib自身がドラム、ベース、鍵盤などを多重録音している。2002年の講演で、20以上の変名があり、聴き手に別人だと思わせたいと話している。
 
-本研究では、変名を作品整理用の偽名ではなく、演奏判断を変えるための仮想的な身体として扱う。
+ただし、後に拡張されたYesterdays Universe全体までMadlib一人の架空名義とは扱わない。公式ガイドはKarriem Riggins、Ivan “Mamao” Conti、Todd Simon、Dan Ubickなど、Madlib圏外でも活動する実在奏者の参加と、記録されたライブ演奏を明記している。
+
+本研究では、初期YNQの変名を作品整理用の偽名ではなく、演奏判断を変えるための仮想的な身体として扱い、拡張後の実在奏者との共演は別層として記録する。
 
 ### 1.6 Madvillainy
 
@@ -283,3 +285,139 @@ Madlibが大量生成
   - https://madlib.bandcamp.com/album/sound-ancestors
 - Red Bull Music Academy Daily, “Interview: Freddie Gibbs on Madlib, Young Jeezy and Gary, Indiana”
   - https://daily.redbullmusicacademy.com/2014/03/freddie-gibbs-interview/
+
+
+## 12. 追補: Yesterdays New Quintetと複数身体
+
+### 12.1 初期YNQと拡張Universeを分ける
+
+Stones Throwの公式ガイドが示す系列は次の通り。
+
+- 2000–2001: Yesterdays New Quintet
+- 2002: Joe McDuphrey Experience
+- 2003: Ahmad Miller
+- 2004: Monk Hughes & The Outer Realm
+- 2005: Malik Flavors
+- 2007: Otis Jackson Jr. Trio
+- 2007以降: Sound Directions、Young Jazz Rebels、The Last Electro-Acoustic Space Jazz & Percussion Ensembleなどを含むYesterdays Universe
+
+初期YNQはJoe McDuphrey、Malik Flavors、Ahmad Miller、Monk Hughes、Otis Jackson Jr.という五人の名義と、Madlibのプロデューサー／編曲／録音という外枠で構成された。Madlibが全楽器を演奏した一人プロジェクトとして報じられ、本人も「周囲に誰もいないから自分でやる」「最初にドラムを演奏し、残りを加える」と説明している。
+
+一方、Universe拡張後は実在奏者を含む。このため、次の二層を混ぜない。
+
+| 層 | 主体 | 研究上の意味 |
+|---|---|---|
+| 初期YNQ | Madlibの一人多重演奏＋五つの演奏者名義 | 一人の身体を役割ごとに分割する |
+| 拡張Universe | Madlibの制作・編曲＋実在奏者＋派生名義 | 私的な仮想バンドを実際の協働網へ開く |
+
+### 12.2 「上手く全楽器を弾く」ことが目的ではない
+
+MadlibはYNQについて、自分は大きなソロを弾くような演奏家ではなく、音の雰囲気を組み合わせ、頭の中の曲を形にすると説明している。
+
+ここでの能力は、各楽器を独奏レベルで習得することではない。
+
+1. 曲に必要な最小語彙を各楽器で覚える。
+2. ドラム、ベース、鍵盤、打楽器へ異なる役割を与える。
+3. ひとつ前の演奏を聴き、次の役割として応答する。
+4. 各テイクを直し続けず、大量の録音へ進む。
+5. 後で素材を選び、アルバムへ構成する。
+
+Peanut Butter Wolfは、20枚から30枚規模のCD-R群から `Angles Without Edges` の素材を選んだと複数の同時代記事で記録されている。したがって制作単位は「完成曲」だけではなく、「異なる自分による大量の試行群」である。
+
+### 12.3 仮想メンバーは時間規則の分割として読める
+
+五つの名義を単なる物語設定ではなく、演奏規則の分割として仮定する。
+
+| 仮想役割 | 担当する判断 |
+|---|---|
+| ドラム身体 | 曲の絶対時間を作る。外部グリッドへ戻らない |
+| ベース身体 | ドラムの局所的な前後へ追従し、重心を作る |
+| 鍵盤身体 | 和声を説明しすぎず、色と反復を置く |
+| 打楽器身体 | 拍を補強するのでなく、別の周期を持ち込む |
+| 編曲身体 | 個別演奏から距離を取り、残す断片を選ぶ |
+
+これは史料上の各名義と楽器を厳密に同定した表ではない。Field Looperへ移すための設計仮説である。
+
+重要なのは、同じ人間がすべてを操作しても、全レイヤーが同じ判断癖を持たないようにすること。Charlie Hunter型の同時分担とは異なり、Madlib型は時間をずらして別の身体へ入り直す。
+
+### 12.4 human timeの最小モデル
+
+通常の量子化ルーパーは、入力イベントを共通格子 `G` へ吸着させる。
+
+```text
+入力イベント → 最寄りのG → 全レイヤー共通の正しい拍
+```
+
+Madlib型では、最初のドラム層 `D` 自体を時間基準にする。
+
+```text
+D = {d1, d2, d3 ...}        最初のドラム
+B = {d(i) + ΔB(i)}          ドラムを聴いたベース
+K = {b(j) + ΔK(j)}          ドラム＋ベースを聴いた鍵盤
+P = 独立周期または局所追従  打楽器
+```
+
+`Δ` はランダムなヒューマナイズ値ではない。演奏者が先行層を聴いて生じた応答時間である。ソフト側が後から乱数を加える方法では代替できない。
+
+実装候補では次を保存する。
+
+- 各入力イベントの生時刻
+- イベント間隔
+- どのレイヤーを聴きながら録音したか
+- 録音開始時の親レイヤー位置
+- 量子化前のタッチ圧、位置、移動速度
+- レイヤーごとの反復長
+
+これにより、全層を同じ小節長へ切り揃えず、親子関係を持つ時間を再生できる。
+
+### 12.5 マルチタッチ楽器への最小操作
+
+画面上の三本指を「三つのパラメータ」ではなく、「三つの演奏主体」として扱う。
+
+- 第一接触: 現在の音を捕獲し、基準層を作る
+- 第二接触: 基準層を聴きながら別の音域／音色を重ねる
+- 第三接触: 現在の層を壊さず、別断片へ場面転換する
+- 接触の移動: タイミング補正ではなく、層間の追従度を変える
+- 長押し: 直前の演奏状態を自己生成クレートへ残す
+- 三点同時接触: 全層同期ではなく、現在の時間関係を一時固定する
+
+ここで三本指は上限ではない。最小の身体分割として置く。OSとブラウザが何点まで安定取得できるかは実機検証事項として残す。
+
+### 12.6 試作時の判定条件
+
+今後の試作は、音が「Madlibっぽい」かではなく次で判定する。
+
+1. 意図的に不均等な最初の演奏が、再生時に均されていないか。
+2. 後続層が親層と異なるタイミング輪郭を保持しているか。
+3. 反復の途中で断片を交換しても、すべての層が小節頭へ戻らないか。
+4. 演奏ミスを削除だけで処理せず、別断片として退避できるか。
+5. 既製ループを使わず、直前の演奏だけで素材庫が成長するか。
+6. 同じ指の操作を繰り返しても、役割の違いによって異なる結果が生じるか。
+7. 画面説明を読まなくても、触ることで捕獲・追従・転換の差が分かるか。
+
+### 12.7 今回の認知更新
+
+以前の記述には、初期YNQの一人多重録音と、拡張後のYesterdays Universeを連続した架空名義群として読める余地があった。
+
+今回の資料確認により、次のように限定する。
+
+- 初期YNQ: Madlibの一人多重録音と仮想メンバーの研究対象
+- 拡張Universe: 実在奏者を含む協働ネットワーク
+- 共通項: Madlibがプロデューサー／編曲者として異なる演奏主体を一つの宇宙へ配置すること
+
+この限定により、「仮想メンバー」という面白さを残しながら、実在奏者の寄与をMadlib一人へ誤帰属しない。
+
+### 12.8 追加資料
+
+- Stones Throw, “A guide to Madlib’s Yesterdays New Quintet and Yesterdays Universe”
+  - https://www.stonesthrow.com/news/guide-to-madlib-yesterdays-new-quintet-yesterdays-universe/
+- Stones Throw, “Madlib’s Yesterdays New Quintet”
+  - https://www.stonesthrow.com/news/phases-madlib-yesterdays-new-quintet/
+- Stones Throw, “Angles Without Edges”
+  - https://store.stonesthrow.com/products/angles-without-edges
+- Stones Throw, “Beyond Hip Hop”
+  - https://www.stonesthrow.com/news/beyond-hip-hop/
+- Stones Throw, “Diary of the Mad Man”
+  - https://www.stonesthrow.com/news/diary-of-the-mad-man/
+- Stones Throw, “A Tribute To Brother Weldon”
+  - https://www.stonesthrow.com/store/a-tribute-to-brother-weldon/
