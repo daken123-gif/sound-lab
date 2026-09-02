@@ -271,3 +271,125 @@ JBの中心をポリメーターとして扱う案は失効。共通拍を共有
 - 音響的な妥当性
 - ユーザーによる演奏検証
 
+
+
+## 11. 四曲比較 — 反復の中で何が変わるか
+
+> この節は音源の直接再生・波形採取ではなく、演奏者の証言、公開トランスクリプト、専門研究の記述を突き合わせた比較である。小節ごとの精密採譜と音源照合は未実施。
+
+| 曲 | 変化の主座 | 根拠から読めること | エンジンへ移すなら |
+|---|---|---|---|
+| `Cold Sweat` | マイクロタイミングの周期形 | The One から偏差が広がり、次の One に向けて収束する。2小節目の beat 1 裏は副次的な収束点として働く | 音符を一様にスウィングさせず、周期内の位相に応じて各声部の遅速を拡大・収束させる |
+| `Funky Drummer` | 不在声部の記憶 | ドラムだけになっても、フィルと着地が元の合奏の空間を保つ | mute を「消去」にせず、休んだ声部のアクセント予測を影として残す |
+| `Sex Machine` | リーダーシップと応答 | count-off、歌と応答、bridge cue、bass/guitar/drums の噛み合わせが同じ反復を更新する | 一つの声部を一時的な leader にし、その onset・rest が他声部の選択確率を変える |
+| `Doing It to Death` | 指名 cue による即時作曲 | 「誰が吹くか」「どこで構造を変えるか」が演奏中の指示で決まる | cue を装飾エフェクトでなく、役割・調的重心・密度を切り替える構造命令にする |
+
+四曲は同じ「反復」の例ではない。少なくとも次の四つの更新機構に分かれる。
+
+1. **MICROFORM** — 周期内部の遅速が呼吸する。
+2. **MEMORY** — 休んでいる声部も、他声部の選択に痕跡を残す。
+3. **LEADERSHIP** — leader の交代が合奏全体の onset と rest を再配分する。
+4. **CUE** — 演奏中の短い命令が、次に成立する収束点で構造を変える。
+
+この分解により、JB 的な生々しさを「スウィング量」「ヒューマナイズ」「シャッフル」の単一ノブへ畳む設計は棄却する。
+
+## 12. The One の再定義
+
+The One は毎小節の頭に置く固定アクセントではなく、直前まで分散していた関係が再び共有される**収束イベント**として扱う。
+
+```text
+spread -> tension -> viable convergence -> shared return
+```
+
+したがって、生成器は小節番号だけを見て One を鳴らさない。各声部について、直近の onset、休符、音価、リーダーへの追従度、break 中に保持した記憶を評価し、十分な声部が「戻れる」瞬間を候補にする。
+
+```text
+one_score(t) =
+  agreement(t)
+  + return_pressure(t)
+  + remembered_accents(t)
+  - collision_cost(t)
+```
+
+ここで `agreement` は全声部の同時発音率ではない。kick と bass が着地し、guitar や horn が休む場合も、役割が共有されていれば強い One になり得る。
+
+### 副次的な One
+
+`Cold Sweat` の2小節形から、副次的な収束点を持たせる。主 One と同じ強さのアクセントを複製するのではなく、次の主 One まで周期を保つ中間の結び目にする。
+
+```ts
+type Convergence = {
+  strength: number;     // 主従
+  participants: VoiceId[];
+  phase: number;        // 周期内位置
+  action: "land" | "leave-space" | "answer";
+};
+```
+
+## 13. iPhone 演奏面の修正 — One を多指ジェスチャーに固定しない
+
+前節の「複数指を寄せると One」という案は、象徴としては分かりやすいが、毎回の収束に3〜4本の指を要求すると演奏を止め、端末のジェスチャーとも競合する。よって必須操作としては棄却する。
+
+代わりに、片方の親指で画面端を保持している間だけ **conductor layer** を開く。
+
+| 状態 | 他の指の同じ動作 |
+|---|---|
+| 親指保持なし | 発音、休符、音価、attack を直接演奏 |
+| 親指保持あり | `solo`、`break`、`return`、`downshift` など関係への cue |
+
+重要なのはボタン数ではなく、演奏層と指揮層が同じ面に重なることだ。cue は押した瞬間に機械的に小節を切り替えず、次の `viable convergence` で実行する。親指を離せば即座に通常演奏へ戻る。
+
+多指の「寄せる」動作は、全声部を強制的に同期させる命令ではなく、任意の強い `return_pressure` 入力として残す余地だけを持たせる。
+
+## 14. 次のプロトタイプで反証可能にする条件
+
+以下は史実ではなく、次段階の設計仮説である。
+
+1. **放置劣化**  
+   入力が止まったら録音ループのように同じ密度を維持せず、2〜4周期を目安に onset・attack・参加声部のいずれかが衰える。
+
+2. **cue の遅延実行**  
+   cue は必ず「次の小節頭」ではなく、関係上成立した次の収束候補で発火する。結果として実行時刻は演奏ごとに変わる。
+
+3. **leader の波及**  
+   leader 交代が音量だけでなく、少なくとも二つの従属声部の onset または rest の分布を変える。
+
+4. **break memory**  
+   mute した声部を戻したとき、録音済みループの先頭ではなく、休止中に他声部から推定した関係位置へ入る。
+
+5. **One の非強制**  
+   全声部同時発音を禁止しても One を知覚できる構成が生成される。休符も参加として記録される。
+
+### 失敗判定
+
+- どの曲モデルでも結果が同じ「少しヨレた16分」になる。
+- cue が実質的にプリセット切替または fill ボタンになる。
+- leader を替えても他声部の音量以外が変わらない。
+- break 復帰が常にループ頭へスナップする。
+- The One が最大ベロシティの同時発音にしかならない。
+
+## 15. 今回の研究更新で確定したこと／未確定のこと
+
+### 確定した設計判断
+
+- JB の反復を四つの更新機構 `MICROFORM / MEMORY / LEADERSHIP / CUE` に分ける。
+- The One を固定拍ではなく、声部関係の収束イベントとして実装候補にする。
+- conductor layer は片親指保持で一時的に開き、通常の演奏面を恒久的なボタンで埋めない。
+- 多指 pinch を The One の必須入力にしない。
+
+### 未確定・次に検証すること
+
+- 四曲それぞれの小節単位の転記と、公式音源への時刻アンカー。
+- `viable convergence` の重みと閾値。
+- 片親指保持が iPhone 実機で誤操作・疲労を生まないか。
+- bass leader と drum leader で従属声部に生じる差の定量化。
+- `downshift` を調的変化として一般化するか、曲固有 cue として限定するか。
+
+## 16. この追記の根拠
+
+- Patrick Ainsworth, “Microtiming in Early Funk” — `Cold Sweat` を含む初期ファンクの The One、周期内の偏差拡大と収束、副次的 One の分析。
+- Fred Wesley interview (Red Bull Music Academy) — `Doing It to Death` の短時間での組み上げ、各奏者への指名 cue、対照的に長時間かかった `Papa Don't Take No Mess` の回想。
+- Bootsy Collins interviews — `Sex Machine` の count-off、The One を軸にした bass、guitar の “chicken scratch”、歌と応答、bridge cue。
+- John “Jabo” Starks interview (American Archive of Public Broadcasting) — Brown が一度舞台を離れても続いた Bootsy 期バンドの groove に関する証言。
+- Bonedo specialist analysis — `Sex Machine` で drums / bass / guitar の共有アクセントが限定され、休符を含めて歯車状に噛み合うという補助的分析。
+
