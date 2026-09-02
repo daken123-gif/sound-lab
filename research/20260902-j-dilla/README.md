@@ -220,3 +220,148 @@ J Dilla的な時間を、全打点へ同じswing量を加える処理として�
 - Field Looperへ製品採用されたこと
 - 製品コードへ実装されたこと
 - 実機または人間の演奏評価で妥当性が確認されたこと
+
+## 14. 先行研究による中心仮説の修正
+
+### 追加取得した研究
+
+1. Sean Peterson, *Something Real: Rap, Resistance, and the Music of the Soulquarians*, University of Oregon doctoral dissertation, 2018.
+   - 書誌・要旨: https://scholarsbank.uoregon.edu/items/5b4c64fb-52b8-4c19-82fd-7289be624d66/full
+   - PDF: https://scholarsbank.uoregon.edu/bitstreams/0e04faef-6878-4733-92d0-ae4cf00f9ecd/download
+   - J DillaとD'Angeloの録音について、波形、スペクトログラム、タイミンググラフを用いたmicrotiming分析を報告している。
+
+2. Daniel Akira Stadnicki, “Play like Jay: Pedagogies of drum kit performance after J Dilla,” *Journal of Popular Music Education* 1(3), 2017.
+   - DOI: https://doi.org/10.1386/jpme.1.3.253_1
+   - 取得範囲は書誌と要旨。全文は未取得。
+   - Dillaのサンプルベースの時間感覚が、後続の生ドラム演奏と教育実践へ移されたことを扱う。
+
+3. Loren Kajikawa, Dan Charnas, Kelley L. Carter and Robert Glasper, “Dilla Time,” *Journal of Popular Music Studies* 34(4), 2022.
+   - DOI: https://doi.org/10.1525/jpms.2022.34.4.4
+   - 取得範囲は公開冒頭と書誌。全文は未取得。
+
+4. J Dilla公式Bandcamp上の *Welcome 2 Detroit – The 20th Anniversary Edition*.
+   - https://jdilla.bandcamp.com/album/welcome-2-detroit-the-20th-anniversary-edition
+   - 「Come Get It」について通常版、instrumental、cassette demo、alt beatが収録されていることを確認した。
+   - 各版の音源内容自体はまだ取得・比較していない。
+
+### 中心仮説の修正
+
+Petersonの分析に従うと、Dillaの時間感覚を「遅いスネア」へ縮めることはできない。曲によって安定する声部、不安定化する声部、競合する分割が異なる。
+
+> 暫定中心仮説: Dillaの時間感覚は、全声部を同じ方向へ遅らせる処理ではなく、安定した基準層を残したまま、キック、スネア、ハイハット、ベース、サンプルへ異なる分割・先行・遅延・周期を与えることで成立する。
+
+これは先行研究から導いた実証対象であり、私たち自身の音源測定による確定結果ではない。
+
+## 15. 4曲の反例コーパス
+
+以下の観測はPetersonの博士論文が報告した内容であり、私たち自身による再測定結果ではない。
+
+| 作品 | 先行研究上の観測 | 実証での役割 |
+| --- | --- | --- |
+| The Pharcyde「Runnin'」 | スネアとハイハットは安定した八分音符グリッドを作り、不規則なキックが対置される | 安定層と不規則層 |
+| Slum Village「Players」 | live-likeなキックと低域要素が拍位置へ食い込む | 低域による拍の先取り |
+| Slum Village「Keep It On (This Beat)」 | スネアがわずかに前進し、低域が拍位置を先取りする | 「Dilla = 遅いスネア」説の反例 |
+| J Dilla「Come Get It」 | straightな十六分系キックとtripletを示唆するハイハットが競合する | 異なる分割原理の同時存在 |
+
+この4曲を、既存の *Fan-Tas-Tic, Vol. 2* プレビュー群とは別の反例コーパスとして扱う。既存プレビュー解析を無効化せず、単一アルバム内の周期推定と、作家内で異なる時間技法を検証するコーパスの役割を分ける。
+
+## 16. 対立仮説と反証条件
+
+| ID | 仮説 | 主な反証条件 |
+| --- | --- | --- |
+| H1 | 一括humanize説 | 同じ偏差分布をランダム配置した版で知覚が保たれない |
+| H2 | 固定swingテンプレート説 | 4曲間で基準声部、偏差方向、細分原理が共通しない |
+| H3 | 声部間摩擦説 | 声部関係を壊して単独偏差だけ再現しても知覚が保たれる |
+| H4 | 知覚的錯覚説 | snare位置を固定し、kickまたはsample側だけ変えても「遅いsnare」感が変わる |
+| H5 | 音色attack説 | onset時刻を固定し、attack envelopeだけ変えて時間知覚が変化する |
+| H6 | 長周期構成説 | 一小節へ短縮ループしても元の推進・弛緩が失われない |
+
+H3を現在の有力仮説とするが、採用済みの設計原理にはしない。
+
+## 17. 測定と変形実験
+
+### 声部間の主変数
+
+単独声部のグリッド偏差だけでなく、次の声部間差を保持する。
+
+    Δkick-snare(n) = tkick(n) - tsnare(n)
+    Δbass-kick(n) = tbass(n) - tkick(n)
+    Δhat-grid(n) = that(n) - tgrid(n)
+
+各onsetには次を保存する。
+
+- absolute time
+- bar、beat、subdivision
+- 参照したclock candidate
+- clockからの偏差
+- onset confidence
+- attack rise time
+- loudnessまたはpeak
+- 分離モデル
+- 原mixでの再確認
+- 人手訂正
+
+### 周期
+
+- 1、2、4、8、16、20小節候補でパターン相関を見る
+- 同じ小節内位置の偏差分布を比較する
+- 完全反復、変奏、長周期シーケンスを分ける
+- ループ素材自体のtempo driftと追加ドラムの偏差を分ける
+
+### 最低限生成する変形版
+
+1. 原音
+2. 全声部クオンタイズ
+3. kickのみクオンタイズ
+4. snareのみクオンタイズ
+5. hi-hatのみ同一swing化
+6. bassのみグリッドへ戻す
+7. 元の偏差を声部間で交換
+8. 偏差の符号を反転
+9. 偏差量を保ったまま小節内位置をシャッフル
+10. 同じ分布によるランダムhumanize
+
+原音と変形版はラウドネスを揃え、タイトルと処理条件を隠した聴取比較を行う。
+
+## 18. 他の音楽研究との接続
+
+### research/music-analysis
+
+音源同一性、二重分離、BPM信頼度、phase/onset分析の基盤として参照する。ただし汎用解析結果だけでDillaの作家性を断定しない。
+
+### Charlie Hunter研究
+
+複数声部が異なる役割と時間を同じ身体で保持する仕組みを、マルチタッチの指ごとの役割分担へ接続する。Charlie Hunter研究本文はこの更新ではGitHubから全文取得していないため、具体的な演奏規則はまだ取り込まない。
+
+### Jeff Mills長期研究
+
+基準層を維持しながら別の時間層へ即時介入し、解除する操作へ接続する。Jeff Mills研究本文はこの更新ではGitHubから全文取得していないため、長期研究の採用状態は変更しない。
+
+### Autechre / Aphex Twin研究
+
+複数時間原理、周期変形、再演可能な生成状態へ接続する。両研究本文はこの更新ではGitHubから全文取得していない。
+
+### Field Looperへの暫定写像
+
+| 研究上の関係 | 操作候補 |
+| --- | --- |
+| 安定した時間層 | 一つの指が基準を保持する |
+| 先行・遅延する別層 | 別の指が小節位置ごとの偏差を操作する |
+| binary / triplet競合 | 三本目の指が細分比を移動する |
+| 層間摩擦 | 指同士の距離でcouplingを操作する |
+| 長周期変形 | 指の保持時間でmemory lengthを変える |
+| 層の解除 | 指を離すとその層だけ基準へ戻る |
+
+この写像は設計仮説であり、実装許可でも製品採用でもない。
+
+## 19. 追加された未検証事項
+
+- 4曲の正規音源ファイル取得とhash固定
+- 「Runnin'」「Players」「Keep It On」「Come Get It」の各16小節以上の声部別onset測定
+- Petersonの図表と私たちの測定値の再現性
+- 「Come Get It」の通常版、instrumental、cassette demo、alt beat比較
+- ランダムhumanizeと構造化偏差のブラインド聴取差
+- onset時刻とattack envelopeの寄与分離
+- Charlie Hunter、Jeff Mills、Autechre、Aphex Twin各研究本文のremote由来取得と接続監査
+- iPhone実機上での複数時間層操作の遅延と演奏可能性
+
