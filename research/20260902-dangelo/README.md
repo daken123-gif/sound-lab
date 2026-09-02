@@ -58,6 +58,14 @@ The Vanguard名義、ギターの前景化、ファンク／ロック／政治�
    https://lightintheattic.net/blogs/news/the-time-is-out-of-joint-notes-on-dangelo-s-voodoo
 4. Slate, Voodoo制作記事  
    https://www.slate.com/articles/arts/music_box/2013/02/behind_the_scenes_with_questlove_and_d_angelo_on_voodoo.html
+5. Qobuz, Voodoo track credits  
+   https://www.qobuz.com/us-en/album/voodoo-dangelo/0060255736891
+6. MusicBrainz, Voodoo release／recording credits  
+   https://musicbrainz.org/release/c38e2ae2-ed32-4e8d-aa4a-4c8bac3bec64
+7. Easy Song／Music Reports・HFA由来の著作権情報  
+   https://www.easysong.com/search/songs/song-copyright-holder-information.aspx?s=2264748
+8. Sony Music Japan「Black Messiah～来日記念最強盤」公開曲解説  
+   https://www.sonymusic.co.jp/artist/dangelo/info/465019
 
 参加者証言、公式メタデータ、第三者分析を同じ権威として扱わない。補助資料のコード名、調性、構成説明は、採譜または音源測定で再検証する。
 
@@ -103,8 +111,9 @@ Elevadoの証言では、48トラックのテープとPro Toolsを同期し、�
 - Roy Hargrove: ホーン
 - Giovanni Hidalgo: コンガ／パーカッション
 - Russell Elevado: 録音、ミックス
+- Steve Mandel: assistant／second engineerとする資料がある
 
-正式クレジットの版ごとの差は、後続工程で原盤ブックレットと照合する。
+公開クレジットの対応づけには差がある。QobuzとAllMusicはElevadoを録音エンジニア、Mandelをassistant／second engineerとする。MusicBrainzの一部トラック欄はMandelをengineerと表示する一方、同サイトのrelease-level欄はElevadoを録音エンジニアとする。原盤ブックレットを直接取得できていないため、主担当と補助担当の最終表記は未確定として保持する。
 
 ### 録音の核
 
@@ -113,6 +122,14 @@ Charlie Hunterの証言では、D'Angeloはベースラインを含む曲の内�
 Elevadoの証言では、Hunterの最終日に約一時間で形を作り、第一テイクを使用した。
 
 両証言は、短時間の共同編曲、Hunterがベースとギターを同時に担ったこと、早いテイクが核である点では整合する。テイク番号は「第一テイク」と断定せず、証言差を残す。
+
+### 「全部できていた」と共作者クレジットは矛盾しない
+
+Hunterの「D'Angeloの頭の中ではベースラインを含め全部できていた」という証言が直接指すのは、HunterへRhodesで提示された基礎曲と演奏指定である。完成原盤の全レイヤーをD'Angelo一人が事前確定していた証拠ではない。
+
+複数の盤情報はRoy Hargroveを「Spanish Joint」の共作者として記載する。MusicnotesはRoy Hargroveをwriterとして表示し、MusicBrainzとDavid Sanborn版のクレジットはD'Angelo／Hargroveを作曲者とする。一方、Qobuzと著作権情報集約サービスEasy SongにはAngela Stoneも含む表記がある。この差は未解決で、原盤表記とSongview等の権利者データを直接照合する必要がある。
+
+現時点で確実に言えるのは、Hargroveの関与を「完成後に足したホーン装飾」とだけ扱えないこと。共作者クレジットは、ホーン／和声／セクション設計の少なくとも一部が曲の同一性に属する可能性を強める。ただし、Hargroveが具体的にどの音、コード、区間を書いたかは未取得である。
 
 ### Charlie Hunterの二声部は一つの束である
 
@@ -151,6 +168,12 @@ D'Angeloの多重声も、歌詞伝達だけでなく、子音の立ち上がり
 この曲では、Charlie Hunterのブラジル音楽／ジャズ／ファンク的なギター運動、Puerto Rico出身のGiovanni HidalgoによるAfro-Caribbean percussion、Hargroveのジャズ／ファンク／ゴスペル的ホーン語法が接続する。
 
 現段階では、曲全体を厳密なsalsa、son、rumba、samba、特定claveとして固定しない。パーカッションのonsetとアクセント周期を採譜するまでは、複数の系譜が同居するものとして記述する。
+
+### 後年ライブでは別曲から入れる可変モジュールになった
+
+Sony Music Japanの公式解説は、2015年のライブ音源で「Betray My Heart」の中盤から「Spanish Joint」へ移り、フル尺で演奏したと記す。2021年のApollo TheaterでのVERZUZでも演目に含まれたことは複数の公演記録で確認できる。
+
+直接音源を比較していないため編曲差はまだ断定しない。ただし2015年版の接続方法は、曲の同一性が原盤のイントロ順序だけに依存せず、グルーヴ状態、和声、合図の組合せとして別曲の途中から起動できることを示す。これは固定song formより「遷移可能な演奏状態」として扱う仮説を補強する。
 
 ### テンポ、拍子、調性
 
@@ -242,6 +265,9 @@ D'Angeloの合図に対し、全員が同時サンプル精度で切り替わる
 4. ベースとギターは独立した二演奏者として分析できる  
    失効。Hunterの両声部は別出力でも同一身体へ拘束される。
 
+5. Hargroveのホーンは完成後の装飾層にすぎない  
+   失効。共作者クレジットが確認できるため、曲の同一性を構成する層として再評価する。具体的な作曲分担は未検証。
+
 ## 未検証事項
 
 1. 許諾された音源または正規プレビューからの波形取得。
@@ -257,6 +283,10 @@ D'Angeloの合図に対し、全員が同時サンプル精度で切り替わる
 11. デモ版と完成版の構成、テンポ、声部差。
 12. 「The Root」「Greatdayndamornin'」等との同一時間モデルの比較。
 13. Brown SugarからBlack Messiahまでの制作方法の連続と断絶。
+14. 原盤ブックレットにおけるRussell Elevado／Steve Mandelの正確な役職表記。
+15. D'Angelo、Roy Hargrove、Angela Stoneの著作権クレジット差と持分。
+16. Hargroveが担当した具体的な旋律、和声、ホーン配置、セクション設計。
+17. 2015年「Betray My Heart」接続版と原盤の構成差。
 
 ## 次の研究工程
 
@@ -268,6 +298,8 @@ D'Angeloの合図に対し、全員が同時サンプル精度で切り替わる
 6. 遷移前後二小節を別窓にし、予測と反応時間を調べる。
 7. デモ版を取得できた場合、D'Angeloの作曲核と参加者の追加判断を比較する。
 8. 「The Root」へ移り、ライブ核と多層録音が同じモデルで説明できるか反証する。
+9. 原盤ブックレットまたはレーベル由来のcredit sheetを取得し、録音／補助録音と共作者表記を確定する。
+10. 2015年ライブ版を正規音源で比較し、別曲からの進入点と原曲状態の復元方法を記述する。
 
 ## 触る実装パス
 
@@ -278,6 +310,7 @@ D'Angeloの合図に対し、全員が同時サンプル精度で切り替わる
 - この会話では原盤の直接波形解析、stem解析、onset測定を実施していない。
 - 「観測できた事実」は参加者／制作者証言および取得資料で確認できた範囲に限定する。
 - 補助分析のコード名、調性、セクション数、テンポは再検証対象である。
+- 公開メタデータ間で録音担当と共作者の表記が一致していない。原盤／権利者データの直接取得までは確定しない。
 - 聴感上の説明を測定済み事実として扱わない。
 - ユーザーの好みと製品判断はユーザーが権威を持つ。ここでの設計候補は決定ではない。
 - このブランチ保存はPR作成、mainへの統合、merge、製品採用を意味しない。
