@@ -518,10 +518,94 @@ Git commitは研究本文とcodeの保存証拠にはなるが、古いiPhone、
 
 Autechreのlive systemを「アルゴリズムが自由に作曲し、二人がparameterを触るもの」とは記述しない。現在の証拠に近いのは、**preferred orderを持つ共同cell群と、破綻しないよう事前設計された可動域を、roomの反応を受けながら二人がskip、linger、mute、flip、role-shiftしていく累積作品**である。
 
-## 16. 未検証事項
+## 16. 公演差の比較開始 — 順序よりも窓と滞在が変わる
+
+### 今回使う資料の権威
+
+公演差の実測へ進む前段として、AEPages上でEnergyIsMassiveLightとZythionが作成している`AE_2022－`のsegment timestamp表を取得した。この表は複数の公式soundboardとbootlegを聴き比べ、2022／2023を#1–35、2024を#21–51として対応づけた共同分析である。
+
+ただし、作成者自身がtimestampはwork in progressで、演奏上の開始・終了がsegment境界へ綺麗に収まらないと明記している。したがって本研究では次の三層を混ぜない。
+
+| 層 | 確認できること | 確認できないこと |
+| --- | --- | --- |
+| 公式release metadata | 公演名、日付、公開された録音尺 | 内部cell、操作、遷移理由 |
+| 2025 AMA本人回答 | preferred order、skip、linger、mute、settings flip | 各録音の具体的な境界番号 |
+| AEPages共同分析 | 公演間で対応すると聴取された区間と暫定timestamp | Autechre内部のcell名、patch構造、確定した区切り |
+
+以下の`#1`–`#51`はAEPages分析上の仮番号であり、本人が呼ぶcell番号ではない。
+
+### 1. 2022系 — 同じ入口でも滞在時間と出口が違う
+
+共同分析では、Milan、Athens、Helsinki、London A、Bergen、Turin、Melbourneがいずれも#1から始まり、少なくとも#11まで同じ前向き順序で対応づけられている。一方、終端はMelbourneの#11からBergenの#15まで異なる。
+
+同じsegment候補の開始timestamp差から、最初の二区間だけでも滞在時間は固定されていない。
+
+| 公演 | #1の滞在 | #2の滞在 | 共同分析上の最終segment候補 |
+| --- | ---: | ---: | ---: |
+| Milan 2022 | 7:06 | 4:56 | #12 |
+| Athens 2022 | 7:41 | 6:35 | #14 |
+| Helsinki 2022 | 7:42 | 5:08 | #12 |
+| London A 2022 | 6:12 | 3:42 | #12 |
+| Bergen 2022 | 7:00 | 3:42 | #15 |
+| Turin 2022 | 5:59 | 3:43 | #13 |
+| Melbourne 2023 | 7:54 | 4:43 | #11 |
+
+この対応が正しいなら、#1の滞在rangeは`1:55`、#2は`2:53`になる。同一順序候補があることと、固定再生であることは両立しない。変化は順序の全面組み換えだけでなく、**同じ領域にどれだけ留まるか**にも現れる。
+
+### 2. 2024系 — 公演は累積列の異なる窓を開く
+
+2024年の共同分析には、さらに明瞭な三組がある。
+
+| 対応群 | 共通する入口 | 共通範囲 | 異なる出口 |
+| --- | ---: | --- | --- |
+| Brussels / Paris / Krems | #21 | #21–35 | Parisだけ#38まで延長 |
+| Rennes / Barcelona / Madrid | #24 | #24–35 | Rennes #35、Barcelona #38、Madrid #39 |
+| Lisbon B / Lyon | #36 | #36–48 | Lyonだけ#51まで延長 |
+
+これは、2025 AMAの「preferred order」「一部を長くする／飛ばす」という本人回答と矛盾しない。しかし共同分析だけからskipの具体例を確定することはできない。表に見える空白は、意図的skip、別の入口、録音欠落、分析境界のいずれでもありうる。
+
+現在もっとも弱い仮定で記述できるのは、自由なnode graphよりも次の**可変窓モデル**である。
+
+```text
+PERFORMANCE_PATH {
+  entry_region
+  preferred_forward_order
+  variable_dwell
+  local_mutation
+  optional_skip       // 本人回答で存在確認、各公演の位置は未確定
+  exit_or_extension
+}
+```
+
+`entry_region`と`exit_or_extension`を持つため、公演は同じ長大作品の全体再生ではない。`variable_dwell`と`local_mutation`を持つため、同じ区間を通っても固定loopの再生ではない。`preferred_forward_order`を持つため、毎回任意のsceneへ飛ぶランダムplaylistでもない。
+
+### 3. Sound Labへ移せる候補を絞る
+
+この比較からSound Labへ移す候補は「51個のsceneを作る」ことではない。AEPagesの分節数を製品仕様へ写すのは、共同分析上の聴取ラベルをAutechreの内部実装へ誤帰属し、さらにそれをSound Labへ複製する二重の飛躍になる。
+
+残す候補は、演奏者が次を身体的に決められる構造である。
+
+1. 今いる因果領域へ留まり、内部関係を深く変形する。
+2. preferred successorへ進む。
+3. 局所領域を飛ばす。
+4. その演奏をどこで閉じるか、または先へ延ばす。
+
+ここでも自動transportを主役にしない。Autechreの公演差から得るのはscene数ではなく、**順序骨格を残したまま、滞在・変形・退出を演奏判断にする**という候補である。製品採用とtouch mappingはまだ決定していない。
+
+### 次の音源実測で反証すること
+
+今回の比較はcommunity timestampを計算したもので、音声ファイルの波形・onset・spectral特徴を本研究が直接測った結果ではない。次の実測では少なくとも次を確認する。
+
+- 対応segment内のself-similarityが、公演を跨いで境界外より高いか。
+- 同じ仮segmentで、event density、休止、spectral centroid、低域エネルギー、局所periodがどれだけ変わるか。
+- timestampの差が単なるmastering前後の無音や録音開始位置ではなく、演奏中のdwell差か。
+- 公演ごとの入口・出口候補が、本人回答にあるroom／soundcheck差とどこまで対応するか。
+- 順序の逆行、分岐、再訪が本当にないのか、それとも現在の表が前向き列へ整理しているだけか。
+
+## 17. 未検証事項
 
 - 各作品の音源を取得した波形・イベント列の分析。
-- `AE_LIVE`複数公演で共通するtoolsetと公演差の比較。
+- `AE_LIVE`複数公演のcommunity segmentation比較は開始したが、音声ファイルによるtoolset、境界、公演差の直接測定。
 - 2022 Twitch AMAと2025 KEYOSC AMAの全回答を、年代、記憶留保、後続訂正まで含めて監査すること。今回取得した該当回答は上記範囲に限定する。
 - Max systemの実際のstate、clock、coupling、controller mapping。
 - 3本以上の同時接触を含むMobile Safari / iPhoneのtouch取得安定性。
@@ -530,7 +614,7 @@ Autechreのlive systemを「アルゴリズムが自由に作曲し、二人がp
 - 独立DRUMと4トラック間の同期を、固定BPM以外でどう成立させるか。
 - 低遅延、CPU、電池、発熱、音量安全性。
 
-## 17. 触る実装パス
+## 18. 触る実装パス
 
 今回の研究では製品コードを変更しない。
 
@@ -539,7 +623,7 @@ Autechreのlive systemを「アルゴリズムが自由に作曲し、二人がp
 - 未変更: `prototype/`
 - 未変更: `integration/`
 
-## 18. 依存する研究・判断
+## 19. 依存する研究・判断
 
 - `RESEARCH_WORKFLOW.md`
 - `integration/DIRECTION.md`
@@ -550,7 +634,7 @@ Autechreのlive systemを「アルゴリズムが自由に作曲し、二人がp
 - `research/20260902-jeff-mills/` — 持続層、手動破断、事故からの回復。長期研究branch本文を取得。
 - Skulptur研究本文 — Git上では未取得のため、この研究から内容を補完しない。
 
-## 19. 失効した判断
+## 20. 失効した判断
 
 - なし。
 
@@ -590,3 +674,5 @@ Autechreのlive systemを「アルゴリズムが自由に作曲し、二人がp
    - `Anti EP`盤面警告文と`Flutter`の非同一bar設計を確認する補助資料。本人への新規インタビューではないため、盤面一次資料と同格には扱わない。
 13. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
    - `AE_LIVE`で毎回異なるnote sequencing、各trackの可能範囲を決めるconditionals、二人のdata共有と即時反応についてSean Boothが説明。
+14. [AEPages — AE_2022－ Analysis](https://aepages.org/wiki/AE_2022%EF%BC%8D#Analysis)
+   - 公式soundboardとbootlegを跨いだsegment対応とtimestampの共同分析。work in progressであり、内部cell名や確定境界とは扱わない。
