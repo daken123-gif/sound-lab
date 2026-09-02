@@ -471,3 +471,172 @@ EVENT_WINDOW = {
 - iPhoneを二人で触る場合の所有権、誤接触、再突入競合
 - 自動応答なしでも初心者がコール＆レスポンスを成立させられるか
 - 小節クオンタイズとイベント窓方式の演奏感比較
+
+
+## 14. 2026-09-02追補 — パルスを委譲しても演奏は手放さない
+
+### 今回の比較資料
+
+1. [NME: Anderson .Paak live in Birmingham](https://www.nme.com/reviews/anderson-paak-leaves-it-all-on-the-stage-as-he-delivers-a-high-energy-masterclass-in-birmingham-2541008)  
+   “Come Down”のインストゥルメンタル上で.Paakがステージ左、右、中央の順に観客へジャンプを要求し、その後キットへ戻って次曲へ進んだと記録している。
+2. [808sandjazzbreaks: Best Teef in the Game Tour review](https://www.808sandjazzbreaks.com/concert-reviews/3w4ghykwm6f2lo47wk2pu333r1grmp)  
+   “Heart Don’t Stand a Chance”をキット上で終えたあと、.Paakがキットを離れ、“Come Down”ではステージと客席を移動しながら観客を動かしたと記録している。
+3. [The Line of Best Fit: Anderson .Paak live in London](https://www.thelineofbestfit.com/reviews/live-reviews/anderson-paak-the-forum-london)  
+   “Come Down”冒頭のベースラインと、観客の応答を.Paakが引き出す公演構造を記録している。
+4. [Austin Chronicle: ACL Review — Anderson .Paak](https://www.austinchronicle.com/music/acl-review-anderson-paak-12096736/)  
+   “Come Down”を冒頭曲に置き、.Paakがドラムを行き来しながらバンド全体のまとめ役を担ったことを記録している。
+5. [NPR Music Tiny Desk Concert](https://www.youtube.com/watch?v=ferZnZ0_rSM)  
+   “Come Down”を.Paak自身がキット上で歌いながら演奏する比較対象。
+
+### 前章への修正
+
+前章までの「一方の手がパルスを保持し、もう一方が `CALL / CUT / REENTRY` を指揮する」という設計は、Tiny Desk型の**身体内分担**には有効である。しかし“Come Down”一般の中心原理ではない。
+
+別公演では.Paakがキットを離れても曲は成立している。その間、周期の実音はバンドまたはインストゥルメンタルへ委譲され、.Paakは観客の区分、煽り、応答要求、次の曲への遷移へ身体を使う。
+
+したがって次の二つを分ける必要がある。
+
+- **時間源**: 誰／何がパルスを実際に鳴らすか
+- **出来事の決定権**: 誰が次の停止、応答、再突入、遷移を決めるか
+
+.Paakは時間源を委譲できるが、出来事の決定権まで無関係な自動進行へ渡してはいない。これが現在の比較から得られる中心差である。
+
+### 二軸モデル
+
+```text
+TIME_SOURCE =
+  FIXED_BEAT
+  | PAAK_BODY
+  | BAND_MEMBER
+  | SHARED_BODY
+
+EVENT_AUTHORITY =
+  FRONT_PERSON
+  | BAND
+  | CROWD
+  | SHARED
+  | SYSTEM
+```
+
+この二軸は一致しなくてよい。
+
+| 公演構造 | 時間源 | 出来事の決定権 |
+|---|---|---|
+| スタジオ版 | Hi-Tekの固定ビート | 録音された声と編曲 |
+| Tiny Desk版 | .PaakとThe Free Nationals | .Paakとバンド |
+| Birmingham評に記録された“Come Down” | インストゥルメンタル／バンド | 観客を区分し指揮する.Paak |
+| 観客の応答中 | バンドが骨格を保持 | .Paakから観客へ一時移譲 |
+
+厳密な時間源の内訳は各公演の音源分離をしていないため未確定である。表は取得資料で判別できる責任配置だけを示す。
+
+### 委譲と放棄を分ける
+
+#### 委譲
+
+- 委譲先が明示される
+- 何を維持するかが限定される
+- 元の演奏者が状態を聴き続ける
+- 合図によって停止、変形、回収できる
+- 委譲中に別の現在行為が前景化する
+
+#### 放棄
+
+- 完成ループが無期限に進む
+- 誰も次の境界を引き受けない
+- 観客入力が音楽状態へ影響しない
+- 回収が再生停止ボタンだけになる
+- 演奏者が何もしなくても同じ展開へ到達する
+
+ループの使用自体ではなく、この差が「垂れ流し」かどうかを決める。
+
+### Sound Labへの更新仮説（未採用）
+
+#### 1. `DELEGATE_PULSE` を独立操作にする
+
+保持していたパルスを離指と同時に消すか、永久再生へ移すかの二択にしない。
+
+```text
+DELEGATE_PULSE = {
+  target,
+  retained_skeleton,
+  max_unattended_cycles,
+  reclaim_window,
+  audible_owner
+}
+```
+
+委譲後も、どの層が誰に預けられているかを触覚または画面上の運動で判別できる必要がある。
+
+#### 2. システムへ二軸を同時に渡さない
+
+システムが時間源を担当する局面は許容する。しかし同時に次の出来事まで自動決定させると、演奏者は観客になる。
+
+暫定制約:
+
+```text
+if TIME_SOURCE == SYSTEM:
+    EVENT_AUTHORITY != SYSTEM
+```
+
+自動伴奏中でも、密度、停止、呼びかけ、応答受付、再突入の少なくとも一つは現在入力に残す。
+
+#### 3. 空間への呼びかけを音高パッドへ還元しない
+
+Birmingham公演で記録された左・右・中央への呼びかけは、三つのサンプルを鳴らす操作ではない。観客を一時的な演奏群へ分け、同じ要求を別々に通す操作である。
+
+```text
+ADDRESS_GROUP = {
+  region,
+  requested_action,
+  response_window,
+  accepted_energy
+}
+```
+
+iPhone一台でも、画面領域を固定音色へ割り当てるのでなく、「今は誰へ時間を渡しているか」を示す空間として使える。
+
+#### 4. 委譲中の前景を必須にする
+
+パルスを預けたあと、演奏者が次に何を担うかを選ぶ。
+
+- `ADDRESS_GROUP`: 参加者を指名する
+- `REQUEST_RESPONSE`: 応答窓を開く
+- `SHAPE_DENSITY`: バンドの密度を動かす
+- `CUT`: 共有境界を作る
+- `RECLAIM_PULSE`: 時間源を身体へ戻す
+
+何も選ばれない周期が一定数続けば、安全な骨格へ痩せる。完成アレンジへ自動発展させない。
+
+#### 5. 回収を演奏可能にする
+
+委譲したパルスを身体へ戻すとき、単なるモード切替にしない。
+
+```text
+RECLAIM_PULSE requires:
+  cue_gesture
+  + entry_attack
+  + accepted_phase_window
+```
+
+現在の打撃または接触が次の重心を作り、システム側の骨格はその位相へ追従する。演奏者がループへ戻るのではなく、ループが演奏者の新しい打点へ戻る。
+
+### 更新後の中心命題
+
+.Paakの“Come Down”は、ライブ・ドラムがある公演だけで成立する曲ではない。固定ビート、ライブ・バンド、キット上の身体、ステージ前方の身体の間を移動できる。
+
+その可搬性を支えるのは、音色や担当楽器の固定ではなく、
+
+**時間源を他者へ預けながら、出来事の決定権を現在の身体と場のあいだで移し続けられること**
+
+である。
+
+Sound Labで目指すべきなのも、全音を一人で生成する純粋性ではない。必要な層を委譲して別の行為へ出ながら、再び時間を身体へ回収できる演奏構造である。
+
+### 追加した未検証事項
+
+- Birmingham公演の“Come Down”で時間源を担う各パートの実音確認
+- キットを離れる直前と戻る直前の合図、フィル、視線の採譜
+- 左・右・中央への要求が同一か、段階的に強度を変えているか
+- 観客応答中にバンドが保持する最小骨格
+- `max_unattended_cycles` が演奏支援から自動再生へ変質する境界
+- `DELEGATE_PULSE` の所有表示を視覚、触覚、音のどれで伝えるべきか
