@@ -425,11 +425,104 @@ PERFORMANCE_RECORD {
 
 これは製品仕様ではない。特に`venue_or_device_context`を自動補正の口実にせず、何が演奏者の操作で、何がiPhone、browser、speaker、roomによる結果かを再現時に分離するための研究候補である。
 
-## 15. 未検証事項
+## 15. 2022／2025 AMA原文による修正
+
+### 取得範囲
+
+- 2022年7月のSean Twitch AMA全文transcriptから、live setの設計量、柔軟性、deterministic chaos、seed、controller、live set cellに関する回答を取得した。
+- 2025年4月のKEYOSC AMAは、SeanとRobが回答した約500問のtranscript本体とspreadsheetを取得し、少なくともQ22–24、Q58–65、Q67を主張単位で確認した。
+
+AMAは本人回答だが、即時回答、記憶の留保、質問側の仮説を含む。質問文に詳細なcell番号やBPMがあっても、Seanが肯定していない細部は本人確認済み事実へ昇格させない。
+
+### 1. 自由度は広さではなく、破綻しない可動域である
+
+Seanは2022年、現在のlive setはalbum以上に作業量が多い場合があり、十分なflexibilityとvariationを持たせながら、off-the-cuffにも完全固定にもせず、parameterを動かしただけで悪い結果になる自由度を避ける必要があると説明した。
+
+これにより、本研究の「open-ended」を無制限な状態空間と読む経路を修正する。
+
+```text
+PERFORMANCE_SPACE = {
+  reachable_states
+  guarded_transitions
+  controllable_instability
+  designed_failure_bounds
+}
+```
+
+`guarded_transitions`と`designed_failure_bounds`は本研究の分析語であり、本人の実装名ではない。意味するのは、何でも起こせることではなく、演奏者が強く介入しても音楽として次へ進める範囲を事前に設計することである。
+
+### 2. “random”はrandom objectと同義ではない
+
+Seanは同じAMAで、random objectをそのまま使う方式ではなく、deterministicなchaosを制御し、特定の方法でseedできる仕組みを使うと説明した。randomに聞こえるstateへ持っていけるが、本人はそれがrandomでないことを知っているとも述べた。
+
+したがってAutechre由来の候補を次のように訂正する。
+
+- `randomize`: 非採用。現在状態と関係なく結果を振り直す。
+- `seeded chaos`: 研究候補。初期条件と操作履歴から予測困難だが再検査可能な差を作る。
+- `selection`: 必須。複数生成物から選ぶ、交配する、方向づける判断を自動生成へ渡さない。
+
+ただし「seedがあれば公演全体を再現できる」とはまだ言えない。Seanの回答が直接支えるのは、自身のchaos機構がdeterministicでspecificにseed可能だという範囲であり、二人分のlive system、外部controller、message timing、software dependency、audio clockまで同一再生できることではない。
+
+### 3. cellにはpreferred orderがある
+
+2025年のSeanの回答で、現在setにcellとpreferred orderがあることが確認できた。実演では、roomでの機能に応じて次を行う。
+
+- 一部cellを飛ばす。
+- 一部を長く演奏する。
+- 音をmuteし、設定を反転する。
+- soundcheckで機能した部分をその夜に使う。
+- cellごとの役割は固定した「Seanのbeat／Robのmelody」ではなく、局所的に一方がbeatを多く担うなど交替する。
+
+Seanは、solo cellはないとも回答している。したがってcellを、独立曲、preset、scene、片方の完成素材とは確定しない。現段階では次の最小記述だけを採用する。
+
+```text
+CELL {
+  preferred_neighbors
+  variable_duration
+  skippable
+  mutable_settings
+  shared_authorship
+  local_role_balance
+}
+```
+
+これは内部Max patchの復元ではなく、本人回答が許す範囲の演奏文法である。
+
+### 4. `AE_2022－`は完成したsetではなく累積作品である
+
+Seanは2025年、`AE_2022－`を“a sort of accumulative piece”と呼び、興味が続く限り発展させ、終了日を先に決めないと回答した。また、Lisbonでは二公演を二部構成にし、part 2をpart 1の停止地点から始めた例を挙げている。
+
+ここから、`SET_ITERATION`は旧版を捨てて新版へ置き換えるversion番号だけでは不足すると判断する。次の三つを分ける。
+
+- `revision`: 既存cellまたはmappingを修正する。
+- `accretion`: 新しいcell、経路、役割関係を累積する。
+- `continuation`: 前公演または前partの到達地点から再開する。
+
+この区別も本研究の分析語である。どの公演がどのrevision／accretionを含むかは、今後の公演比較で確定する。
+
+### 5. 保存されたiterationと再現可能性は同じではない
+
+2025年の回答では、Seanはすべてのiterationを保存しており、必要なら古いmachineも残していると述べた。一方Robは、OS更新やmachine能力のため、当時と完全に同じtaskを実行できない場合があると説明した。
+
+これはSound Labの保存モデルにも直接関係する。保存対象を一個のpresetへ縮めず、次を分離する候補が必要になる。
+
+1. logical stateとparameter。
+2. rule、cell、依存moduleのversion。
+3. software／OS／browser／device dependency。
+4. gesture、message、audio-clock event。
+5. 再実行できた範囲と、当時環境を失った範囲。
+
+Git commitは研究本文とcodeの保存証拠にはなるが、古いiPhone、Mobile Safari、Web Audio実装、音響出力まで再現できる証拠にはならない。
+
+### 現在の修正結論
+
+Autechreのlive systemを「アルゴリズムが自由に作曲し、二人がparameterを触るもの」とは記述しない。現在の証拠に近いのは、**preferred orderを持つ共同cell群と、破綻しないよう事前設計された可動域を、roomの反応を受けながら二人がskip、linger、mute、flip、role-shiftしていく累積作品**である。
+
+## 16. 未検証事項
 
 - 各作品の音源を取得した波形・イベント列の分析。
 - `AE_LIVE`複数公演で共通するtoolsetと公演差の比較。
-- Autechre本人の2022 Twitch AMAおよび2025 KEYOSC AMAの該当回答の原文取得。
+- 2022 Twitch AMAと2025 KEYOSC AMAの全回答を、年代、記憶留保、後続訂正まで含めて監査すること。今回取得した該当回答は上記範囲に限定する。
 - Max systemの実際のstate、clock、coupling、controller mapping。
 - 3本以上の同時接触を含むMobile Safari / iPhoneのtouch取得安定性。
 - 因果エンジンが演奏者へ理解可能な応答を返すか。
@@ -437,7 +530,7 @@ PERFORMANCE_RECORD {
 - 独立DRUMと4トラック間の同期を、固定BPM以外でどう成立させるか。
 - 低遅延、CPU、電池、発熱、音量安全性。
 
-## 16. 触る実装パス
+## 17. 触る実装パス
 
 今回の研究では製品コードを変更しない。
 
@@ -446,7 +539,7 @@ PERFORMANCE_RECORD {
 - 未変更: `prototype/`
 - 未変更: `integration/`
 
-## 17. 依存する研究・判断
+## 18. 依存する研究・判断
 
 - `RESEARCH_WORKFLOW.md`
 - `integration/DIRECTION.md`
@@ -457,7 +550,7 @@ PERFORMANCE_RECORD {
 - `research/20260902-jeff-mills/` — 持続層、手動破断、事故からの回復。長期研究branch本文を取得。
 - Skulptur研究本文 — Git上では未取得のため、この研究から内容を補完しない。
 
-## 18. 失効した判断
+## 19. 失効した判断
 
 - なし。
 
@@ -477,19 +570,23 @@ PERFORMANCE_RECORD {
    - setupが方法を規定すること、Quaristiceのlive session、ツアーを独立projectとして扱うこと、hip-hopとの連続性。
 5. [Radio Študent — Autechre interview (2016、aepages保存transcript)](https://aepages.org/wiki/R%C5%A0_INTERVJU_Autechre%2C_Radio_Student_FM89.3%2C_November_2016)
    - 2014/15 setの終了、新setの速度と焦点、旧`AE_LIVE`と`elseq`のsetup共有、Kino Šiškaを新set設計で参照したことについて両名が回答。
+6. [Sean Twitch AMA, July 2022（aepages全文transcript）](https://aepages.org/wiki/Sean_Twitch_AMA,_July_2022)
+   - live setの設計量とbounded flexibility、deterministic chaos、specific seed、controller、live set cellについてSeanが回答。
+7. [Ask Autechre Anything Again, KEYOSC, April 2025（transcript spreadsheet）](https://docs.google.com/spreadsheets/d/1XAizLmKun4yF6oBVUhIrewYN-ZiY_9ORckmT-hF93Ho/edit?gid=447739750)
+   - iteration保存、`AE_2022－`の累積性、preferred cell order、skip／linger／mute／settings flip、役割交替、roomとsoundcheckについて両名が回答。
 
 ### 公式公開面
 
-6. [Warp — Autechre artist page](https://warp.net/artists/autechre)
-7. [Autechre official Bandcamp](https://autechre.bandcamp.com/)
-8. [AE_STORE — AE_LIVE 2016/2018](https://autechre.warp.net/release/310992-autechre-aelive-20162018)
+8. [Warp — Autechre artist page](https://warp.net/artists/autechre)
+9. [Autechre official Bandcamp](https://autechre.bandcamp.com/)
+10. [AE_STORE — AE_LIVE 2016/2018](https://autechre.warp.net/release/310992-autechre-aelive-20162018)
    - 7公演の公式tracklist、収録日、尺を確認。
-9. [Autechre official Bandcamp — AE_2022－](https://autechre.bandcamp.com/album/ae-2022)
+11. [Autechre official Bandcamp — AE_2022－](https://autechre.bandcamp.com/album/ae-2022)
    - 2022–2024年の19公演を含む公式bundleとtracklistを確認。
 
 ### 補助資料
 
-10. [VICE — How the Political Warning of Autechre's Anti EP Made it a Warp Records Classic](https://www.vice.com/en/article/warp-25-autechre-anti-ep/)
+12. [VICE — How the Political Warning of Autechre's Anti EP Made it a Warp Records Classic](https://www.vice.com/en/article/warp-25-autechre-anti-ep/)
    - `Anti EP`盤面警告文と`Flutter`の非同一bar設計を確認する補助資料。本人への新規インタビューではないため、盤面一次資料と同格には扱わない。
-11. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
+13. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
    - `AE_LIVE`で毎回異なるnote sequencing、各trackの可能範囲を決めるconditionals、二人のdata共有と即時反応についてSean Boothが説明。
