@@ -640,3 +640,184 @@ Sound Labで目指すべきなのも、全音を一人で生成する純粋性�
 - 観客応答中にバンドが保持する最小骨格
 - `max_unattended_cycles` が演奏支援から自動再生へ変質する境界
 - `DELEGATE_PULSE` の所有表示を視覚、触覚、音のどれで伝えるべきか
+
+
+## 15. 2026-09-02追補 — James Brownから受け継ぐ「未完成な指示」
+
+### 参照境界
+
+既存のJames Brown研究ブランチは横断取得できたが、現在の検索語との自己反響が強く、逆流防止検査で隔離された。その本文の主張はこの追補の証拠として使用していない。
+
+過去READMEからは一次資料の所在だけを取り出し、以下の公開本文を直接取得し直した。
+
+1. [Fred Wesley interview — Red Bull Music Academy Daily](https://daily.redbullmusicacademy.com/2013/03/fred-wesley-interview/)
+2. [Fred Wesley interview — American Archive of Public Broadcasting](https://americanarchive.org/catalog/cpb-aacip-15-w66930p811)
+3. [Pitchfork: Anderson .Paak “Come Down” track review](https://pitchfork.com/reviews/tracks/17909-andersonpaak-come-down/)
+4. [Pitchfork: The 100 Best Songs of 2016 — “Come Down”](https://pitchfork.com/features/lists-and-guides/9981-the-100-best-songs-of-2016/?page=6)
+5. [NME: Anderson .Paak live in Birmingham](https://www.nme.com/reviews/anderson-paak-leaves-it-all-on-the-stage-as-he-delivers-a-high-energy-masterclass-in-birmingham-2541008)
+
+### 取得した事実
+
+- Fred Wesleyによれば、James Brownは完成した譜面を各奏者へ渡すだけでなく、発想、唸り、短い声を提示し、Jimmy Nolenをはじめとする奏者がそれをリフへ翻訳した。
+- Brownは奏者が作った具体形を聴き、望む形へ至るまで修正させ、採用の判断を行った。
+- “Doing It to Death”では、Brownが演奏中に奏者名と短い発話でソロを指名し、録音自体が短時間の共同生成として成立したとWesleyは説明している。
+- 同じ証言には、服装、生活、演奏ミスへの過剰な統制や罰金も含まれる。音楽上の短い合図と、労働上の支配は分離して評価する必要がある。
+- “Come Down”についてPitchforkは、Hi-Tekの空間のある固定ビート上で.Paakが複数の人格と想像上の群衆を作り、James Brown的な “get down” の身振りを現代ヒップホップへ接続したと評している。
+- Birmingham公演では、.Paakが固定された一人の応答者を指名するのでなく、会場を左、右、中央へ分け、同じ要求を別々の群へ投げている。
+
+### 継承されるもの
+
+#### 1. 指示は完成した音ではない
+
+Brownの唸りや短い発想は、最終的なギター・リフ、ベース・ライン、ホーン譜そのものではない。奏者が解釈しなければ音楽にならない。
+
+.Paakの観客への要求も同様に、観客の声量、タイミング、身体運動を事前録音として決めていない。呼びかけは応答可能性を開くが、応答の実体はその場の人間が作る。
+
+共通するのは次の形である。
+
+```text
+INCOMPLETE_CUE
+  -> HUMAN_INTERPRETATION
+  -> AUDIBLE_RESPONSE
+  -> ACCEPT | MODIFY | REDIRECT
+```
+
+#### 2. 声が構成操作と発音を兼ねる
+
+Brownの短い呼びかけは、それ自体が曲中の音でありながら、次のソロやパート配置を変更する。
+
+.Paakの掛け声も、声ネタとして上へ追加されるだけでなく、観客の参加、バンドの密度、場面の境界を変える。
+
+したがって声入力を「録音してループへ載せるトラック」だけとして扱うと、この二重機能を失う。
+
+#### 3. バンドは命令の再生装置ではない
+
+Brownが強い最終決定権を持っていても、具体的なリフは各奏者の翻訳能力から生まれた。入力と出力の間には演奏者固有の差がある。
+
+.Paakの場合、その翻訳主体はThe Free Nationalsだけでなく、観客の群、固定ビート上の複数人格、.Paak自身のドラム／声の切替へ広がる。
+
+### 変わったもの
+
+| 層 | James Brownの証言から確認できる構造 | “Come Down”で見える展開 |
+|---|---|---|
+| 合図の主対象 | 熟練したバンド奏者 | バンド、固定ビート上の人格、観客群 |
+| 合図の主機能 | リフ生成、ソロ指名、構成変更 | 群の指名、応答要求、エネルギー配分、再突入 |
+| 翻訳単位 | 個々の楽器パート | 楽器、声、身体運動、群衆の反応 |
+| 時間源 | 主にライブ・バンド | 固定ビートとライブ・バンドを横断 |
+| 権力構造 | Brownへ決定権が集中し、労働統制と結合 | 少なくとも取得した公演記録では、参加を観客へ分配 |
+| 不変点 | 短い合図が現在の演奏を変える | 短い合図が現在の場を変える |
+
+最後の「参加を観客へ分配」は公演記録からの観測であり、.Paakの全運営・全労働関係を民主的だと断定するものではない。
+
+### `EVENT_AUTHORITY` の再分解
+
+前章の一変数では、Brown型の指示と奏者の翻訳、.Paakの呼びかけと観客の応答を区別できない。
+
+```text
+EVENT_AUTHORITY = {
+  proposal_authority,
+  realization_authority,
+  acceptance_authority,
+  veto_authority,
+  reclaim_authority
+}
+```
+
+- `proposal_authority`: 次に何を起こしたいか提示する
+- `realization_authority`: 実際の音・身体運動へ翻訳する
+- `acceptance_authority`: 応答を採用し次へ進める
+- `veto_authority`: 応答を拒否または止める
+- `reclaim_authority`: 委譲した時間を自分へ戻す
+
+これらを一人またはシステムへ自動集中させない。
+
+### Sound Labへの更新仮説（未採用）
+
+#### 1. `CUE_PACKET` は意図的に未完成にする
+
+```text
+CUE_PACKET = {
+  target_role,
+  desired_change,
+  response_window,
+  hard_constraints,
+  open_dimensions,
+  recall_gesture
+}
+```
+
+`hard_constraints` は安全な着地点や衝突回避だけを指定する。`open_dimensions` には音高、細部のリズム、強度、音色、応答人数など、翻訳者へ残す自由を明示する。
+
+#### 2. 合図から完成フレーズを自動生成しない
+
+初心者支援のために全フレーズをシステムが完成させると、合図はプリセット選択になる。
+
+システムが担ってよいもの:
+
+- 位相衝突を避ける
+- 音域の危険な重複を警告する
+- 応答可能な空白を確保する
+- 戻れる着地点を提示する
+
+現在入力へ残すもの:
+
+- いつ応答するか
+- どの輪郭を選ぶか
+- 応答しないか
+- どこで止めるか
+- どの応答を次の骨格へ残すか
+
+#### 3. 翻訳量を測る
+
+```text
+TRANSLATION_DISTANCE =
+  difference(cue_constraints, performed_response)
+```
+
+差がゼロなら、参加者は命令を再生しただけである。差が大きすぎて共通骨格が失われれば、合図が届いていない。
+
+狙うのは一定値ではなく、演奏中にこの距離を広げたり狭めたりできること。初心者には制約を多く、慣れるほど `open_dimensions` を増やす。
+
+#### 4. 応答しない権利を残す
+
+Brown型の罰金・服装統制・過酷な拘束を、リアルタイム指揮の必要条件として持ち込まない。
+
+```text
+response = PERFORM | TRANSFORM | DECLINE | SILENCE
+```
+
+観客または共同演奏者が応答しない場合、システムは勝手に参加したことにしない。空白を出来事として残す。
+
+#### 5. 貢献の由来を消さない
+
+合図を出した人と、実際のフレーズを作った人を分けて保持する。
+
+```text
+EVENT_PROVENANCE = {
+  proposed_by,
+  realized_by,
+  transformed_from,
+  accepted_by
+}
+```
+
+これは権利処理をこの研究だけで解決するものではない。少なくともUIと内部状態で、フロント役が全応答の作者だったことにしないための条件である。
+
+### 更新後の中心命題
+
+James Brownから.Paakへ継承されるのは、声質、ホーン、Oneの強調だけではない。
+
+**短い未完成の合図を出し、他者がそれを音へ翻訳し、その結果を現在の構成へ戻すこと。**
+
+.Paakはこの構造を、ライブ・バンドだけでなく、Hi-Tekの固定ビート、複数の声の人格、会場を分けた観客応答へ拡張する。
+
+Sound Labでは、指揮する人が全音を事前所有する構造にも、システムが全応答を代作する構造にも戻さない。合図と実現の間に、別の身体が本当に音楽へ入れる距離を残す。
+
+### 追加した未検証事項
+
+- “Come Down”各公演で、.Paakの合図がバンドの具体的リフを変更しているか
+- 観客応答の採用／再要求／拒否を示す身体合図
+- The Free Nationals側が.Paakの非言語合図をどう分類しているか
+- 初心者に必要な `hard_constraints` と自由を奪う過剰制約の境界
+- `TRANSLATION_DISTANCE` を音高差だけでなくリズム、音色、密度、沈黙で測れるか
+- 複数参加者の `EVENT_PROVENANCE` を演奏中に負担なく表示できるか
