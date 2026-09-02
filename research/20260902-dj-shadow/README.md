@@ -617,3 +617,266 @@ Shadow本人はヒップホップを自分があらゆる音楽を見る基準�
 - 製品コードへ実装されたこと
 - iPhoneで演奏可能と確認されたこと
 - mainへ統合されたこと
+
+## 19. 長尺二曲の版固定
+
+今回の追補では、長尺構成の仮説を聴感印象のまま進めず、まず分析対象の版を分離する。
+
+### 19.1 取得した版情報
+
+現行Spotify表示では、次の単位になっている。
+
+| 対象 | 表示時間 | 分析上の扱い |
+| --- | ---: | --- |
+| “Stem / Long Stem – Medley” | 7:47 | 主分析対象 |
+| “Transmission 2” | 1:29 | 主曲から分離する |
+| “Napalm Brain / Scatter Brain – Medley” | 9:21 | 主分析対象 |
+
+一方、CD資料には“Stem / Long Stem / Transmission 2”を一つの約9分台トラックとして表示する版がある。したがって、曲長だけを比較するときも、Transmissionの結合状態を記録する。
+
+公式20周年版`Endtrospective`の追加ディスクには、次の別形態がある。
+
+- “Stem – Cops ’N’ Robbers Mix”
+- “Napalm Brain – Original Demo Beat”
+
+公式販売ページは収録名を確認できる。Qobuzのデラックス版メタデータでは“Napalm Brain (Demo Beat)”は0:34と表示される。現時点では、この34秒が完成版の直接の起点か、後年に選ばれた一断片かを確定しない。
+
+### 19.2 版を混ぜないための訂正
+
+2022年の本人回顧で、映画`Heat`のVHSを借りてサンプルしたと説明される対象は、明確に“the seven-inch mix of Stem”である。
+
+したがって本研究では、次を分ける。
+
+- アルバム版“Stem / Long Stem”
+- 7インチ版“Stem”
+- “Stem – Cops ’N’ Robbers Mix”
+- “Transmission 2”の結合版／分離版
+
+映画台詞の使用をアルバム版の事実として一般化しない。サンプル元が似ていても、版ごとの配置と役割が同じとはみなさない。
+
+### 19.3 追補資料
+
+11. DJ Shadow official store, `Endtroducing (20th Anniversary Endtrospective Edition)`
+    https://djshadow.com/products/endtroducing-20th-anniversary-endtrospective-edition-3cd-deluxe-digipack
+12. Spotify, `Endtroducing.....` album page
+    https://open.spotify.com/embed/album/4tUVkNYSFrrEqqrxBQW9PN
+13. Qobuz, `Endtroducing (Deluxe Edition)`
+    https://www.qobuz.com/jp-ja/album/endtroducing-dj-shadow/gj94mf6b5hfgb
+14. Nate Patrin, `Total Breakdown: Hidden Transmissions From The MPC Era, 1992–1996`, *Pitchfork*, 2012
+    https://pitchfork.com/reviews/albums/17145-total-breakdown-hidden-transmissions-from-the-mpc-era-1992-1996/
+
+## 20. 「長いループ」から「短い核を長い時間へ写像する」へ
+
+前節までのROLE / SCENE仮説を、次の二段階モデルへ更新する。
+
+### Stage A: seed
+
+短い断片または短いビートが、局所的な同一性を作る。
+
+```text
+SEED = {pulse_candidate, timbre_signature, gesture, source_memory}
+```
+
+ここではまだ曲の長さも場面数も決まらない。seedが良いことと、長尺曲になることは同じではない。
+
+### Stage B: temporal scaling
+
+seedを単に長く反復せず、役割、密度、空間、前景、回帰条件を時間上で変える。
+
+```text
+LONG_FORM = map(SEED, ROLE_EVENT[], SCENE_TRANSITION[], RETURN_CONDITION[])
+```
+
+長尺化の評価対象は素材数ではなく、次の差分である。
+
+- 同じseedが別役割へ移るか
+- 新しい素材が既存sceneを強化するか、破るか
+- 境界で拍の基準が変わるか
+- 前景と背景が交換されるか
+- 終端で全素材が同時に止まるか、残存物へ縮退するか
+
+James Lavelleは制作依頼を回顧して、verse／chorusを心配せず音を押し進めること、Pink FloydやBeethovenのような大きなsoundscapeを考えていたと述べる。これは個々の曲の編集工程を証明しないが、長尺形式を通常の歌形式だけで測らない歴史的根拠にはなる。
+
+Pitchforkの初期MPC資料評は、一部の短いスケッチを、興味深いループが展開せず尽きるものとして区別し、初期のドラムロールに後の“Napalm Brain / Scatter Brain”のcrescendoの予兆を読む。二次批評ではあるが、seedの存在だけでは完成長尺曲にならないという比較対象を与える。
+
+## 21. 曲別の検証仮説
+
+以下は音源の時刻注釈前の仮説であり、確定した構成表ではない。
+
+### 21.1 “Stem / Long Stem”
+
+検証する仮説は、二つの題名が二つの独立曲を機械的に連結したことではなく、保持される役割と交換される役割の組合せで連続性を作ることである。
+
+主な問い:
+
+1. `Stem -> Long Stem`で保持されるのはPULSE、FRAME、音色署名、空間、gestureのどれか。
+2. 境界は瞬間切替か、複数要素が別々の時刻で移る分散遷移か。
+3. 後半が前半の素材を再提示する場合、同じ役割で戻るか、記憶として戻るか。
+4. “Transmission 2”は曲内sceneではなく、アルバム階層のframeとして分離できるか。
+5. 7インチ版の映画台詞はscene境界を補強するのか、別の物語層を追加するのか。
+
+暫定的な反証:
+
+- 前後半で役割、前景、拍基準、空間に有意な差がない
+- 境界と呼んだ箇所が単なる短いfillにすぎない
+- 別mix間の差が音量または尺だけで、構成機能が変わらない
+
+### 21.2 “Napalm Brain / Scatter Brain”
+
+ここでは「テンポが徐々に上がる曲」という要約を出発点にしない。BPM変化、イベント密度、細分化、ドラムロール、前景交替は分けて測る。
+
+主な問い:
+
+1. 物理的BPMは変化するか。それとも同じ拍上で細分イベントが増え、速く感じるのか。
+2. crescendoは音量、帯域占有、同時発音数、ドラム密度のどれで作られるか。
+3. `Napalm -> Scatter`は素材交替か、同じ素材の役割崩壊か。
+4. 終盤は新sceneへの到着か、既存sceneのterminal reductionか。
+5. 34秒のdemo beatにある要素のうち、完成版でPULSEとして保持されるもの、RUPTUREへ変わるもの、消えるものは何か。
+
+暫定的な反証:
+
+- 知覚上の加速を測定BPMの加速と誤認している
+- 密度増加がscene変化ではなく、同一scene内の装飾にとどまる
+- demo beatと完成版の同一性が題名以外に確認できない
+
+## 22. SCENE境界の注釈プロトコル
+
+### 22.1 必須メタデータ
+
+```yaml
+ANALYSIS_SOURCE:
+  title:
+  edition:
+  service_or_medium:
+  track_duration:
+  transmission_split: true | false
+  acquisition_date:
+  file_hash: null
+  legal_basis:
+```
+
+ストリーミング聴取だけなら`file_hash`は`null`とし、PCM解析済みと書かない。
+
+### 22.2 境界候補
+
+境界時刻`t`で、前後8秒を比較する。次のうち二項目以上が変化した場合だけ、scene候補にする。
+
+| 変数 | 観測 |
+| --- | --- |
+| `pulse_source` | 拍の基準となる音の交替 |
+| `foreground_role` | 前景役割の交替 |
+| `event_density` | 単位時間当たりの主要イベント数 |
+| `spectral_occupancy` | 低・中・高域の占有変化 |
+| `space_signature` | 残響、距離、モノ／ステレオ感の不連続 |
+| `motif_state` | 導入、継続、欠落、変形、回帰 |
+| `rupture` | cut、drop、roll、scrub、無音など |
+
+### 22.3 瞬間境界と分散境界
+
+`SCENE_TRANSITION`へ次を追加する。
+
+```yaml
+transition_shape: hard | overlap | dissolve | distributed
+onset_first_change:
+onset_last_change:
+transition_duration:
+retained_roles: []
+reassigned_roles: []
+```
+
+一つのタイムスタンプへ無理に圧縮しない。たとえばPULSEが先に変わり、FRAMEが残り、VOICEが後から入るなら`distributed`として開始と終了を持つ。
+
+### 22.4 独立注釈
+
+最初の試行では、二名が曲名以外の事前説明を共有せず境界候補を付ける。
+
+- 境界時刻が±2秒以内で一致: 強い候補
+- 2秒を超えてずれるが同じ変数群を指す: 分散遷移候補
+- 一方だけが指す: 弱い候補
+- 題名上の`/`位置を先に教えない
+
+一致率を高く見せるために許容幅を後から変更しない。
+
+## 23. 長尺構成の測定値
+
+単なるscene数ではなく、次を曲ごとに記録する。
+
+```text
+retention_ratio = 境界をまたいで保持された役割数 / 境界前の役割数
+reassignment_count = 同一断片が別役割へ移った回数
+return_distance = 断片の消失から再登場までの時間
+transition_spread = 最初の変化から最後の変化までの秒数
+terminal_reduction = 終盤で残る役割数 / 最大同時役割数
+```
+
+これらはShadowらしさの点数ではない。二曲の長尺化が同じ方法か、別方法かを比較するための記述量である。
+
+予測:
+
+- “Stem / Long Stem”は`retention_ratio`と`transition_spread`が主要差分になる可能性がある。
+- “Napalm Brain / Scatter Brain”は`event_density`、`reassignment_count`、`terminal_reduction`が主要差分になる可能性がある。
+
+この予測は実測前なので、逆の結果でも失敗ではない。逆ならROLE / SCENEモデルの曲別適用を狭める。
+
+## 24. Sound Labへの限定的含意
+
+今回の追補から新しいエフェクトや“DJ Shadowモード”は採用しない。候補を一つに絞るなら、`transition spread`を演奏可能にすることが先である。
+
+### Transition Spread Gesture
+
+一つのgestureで全要素をscene Bへ切り替えず、役割ごとに遷移時刻をずらす。
+
+```yaml
+GESTURE:
+  source_scene: A
+  target_scene: B
+  spread: 0.0..1.0
+  retained_roles: [FRAME]
+  early_roles: [PULSE]
+  late_roles: [VOICE]
+  rupture_policy: manual
+```
+
+設計条件:
+
+- `spread = 0`ではhard cut
+- 値を上げると、PULSE、BODY、VOICEなどが異なる時刻で移る
+- FRAMEを保持する選択がある
+- いつでも現在状態をsceneとして採取できる
+- AIは移行先や最適な順序を自動決定しない
+- iPhoneで一つの連続gestureとして扱えることを、実装前に紙上／低忠実度で検証する
+
+これは既存の`Gesture transition`を精密化する研究候補であり、製品仕様の承認ではない。
+
+## 25. 更新後の未解決事項
+
+1. 公式20周年版の各別形態と分析対象版を同一取得条件で聴取できていない。
+2. “Napalm Brain – Original Demo Beat”と完成版の系譜は題名以外未確認。
+3. “Stem / Long Stem”の題名境界と音響上の境界が一致するか未確認。
+4. 二曲の物理BPM、拍知覚、イベント密度を分離測定していない。
+5. `transition_spread`の変数が実際の聴取境界を十分説明するか未検証。
+6. 二名独立注釈を実施していない。
+7. 音源版のhashを取得していない。
+8. Sound Lab上のgesture試作、iPhone操作検証、製品採用は行っていない。
+
+## 26. 次の研究工程
+
+1. 合法的に取得可能な同一版を固定し、曲長、媒体、Transmission分離、hashを記録する。
+2. “Stem / Long Stem”を二名で独立注釈し、hard／distributed境界を比較する。
+3. “Napalm Brain / Scatter Brain”でBPM、イベント密度、音量、帯域占有を分離する。
+4. 34秒demo beatと完成版の共通イベントを、題名に依存せず照合する。
+5. 結果がROLE / SCENE仮説を支持しない場合、その曲への適用を撤回または限定する。
+6. 研究結果が揃うまで製品コードと`integration/`を変更しない。
+
+## 27. 今回の証拠状態
+
+- 文献探索: 実施
+- 本人発言による版限定: 確認
+- 公式20周年版の別形態収録: 確認
+- 現行配信上の曲分割と表示時間: 確認
+- フル尺音源取得: 未実施
+- 音響信号測定: 未実施
+- scene時刻注釈: 未実施
+- 仮説の実証: 未完了
+- 製品実装: 未実施
+- PR作成／main統合: 対象外
