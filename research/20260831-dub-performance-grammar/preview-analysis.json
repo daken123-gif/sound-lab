@@ -1,0 +1,250 @@
+{
+  "scope": "Shazam/Apple Music catalog previews only",
+  "files": [
+    {
+      "file": "preview_jm.m4a",
+      "sha256": "34252808861763eb2e317491c4c2f7ac075d2072cffc61fbddfd1d58fb61077a",
+      "duration_s": 29.929083,
+      "sample_rate_hz": 24000,
+      "rms_dbfs": -8.903,
+      "peak_dbfs": 2.789,
+      "crest_db": 11.692,
+      "band_energy_ratio": {
+        "40_250_hz": 0.704149,
+        "250_4000_hz": 0.288714,
+        "4000_11000_hz": 0.007137
+      },
+      "spectral_centroid_median_hz": 405.95,
+      "largest_multiband_transitions": [
+        {
+          "time_s": 13.61,
+          "change_score_db": 13.35
+        },
+        {
+          "time_s": 14.31,
+          "change_score_db": 14.396
+        },
+        {
+          "time_s": 18.11,
+          "change_score_db": 13.101
+        },
+        {
+          "time_s": 18.79,
+          "change_score_db": 15.413
+        },
+        {
+          "time_s": 20.79,
+          "change_score_db": 14.565
+        },
+        {
+          "time_s": 21.47,
+          "change_score_db": 15.714
+        },
+        {
+          "time_s": 26.17,
+          "change_score_db": 15.209
+        },
+        {
+          "time_s": 28.41,
+          "change_score_db": 14.88
+        }
+      ]
+    },
+    {
+      "file": "preview_ap.m4a",
+      "sha256": "e2f9af4ca52f0c75bd4539d507dd9f76ecdce919e07391e127f3e30476cd238d",
+      "duration_s": 29.929083,
+      "sample_rate_hz": 24000,
+      "rms_dbfs": -9.745,
+      "peak_dbfs": 2.728,
+      "crest_db": 12.473,
+      "band_energy_ratio": {
+        "40_250_hz": 0.850796,
+        "250_4000_hz": 0.136561,
+        "4000_11000_hz": 0.012643
+      },
+      "spectral_centroid_median_hz": 265.276,
+      "largest_multiband_transitions": [
+        {
+          "time_s": 7.13,
+          "change_score_db": 16.033
+        },
+        {
+          "time_s": 9.38,
+          "change_score_db": 18.171
+        },
+        {
+          "time_s": 10.06,
+          "change_score_db": 15.951
+        },
+        {
+          "time_s": 10.73,
+          "change_score_db": 15.633
+        },
+        {
+          "time_s": 12.77,
+          "change_score_db": 16.887
+        },
+        {
+          "time_s": 13.67,
+          "change_score_db": 17.117
+        },
+        {
+          "time_s": 14.76,
+          "change_score_db": 16.728
+        },
+        {
+          "time_s": 26.87,
+          "change_score_db": 16.036
+        }
+      ]
+    },
+    {
+      "file": "preview_mp.m4a",
+      "sha256": "2af34400c4239368afdc5c4ba0b6417bd1f2b9408107932c44c163a11159c849",
+      "duration_s": 29.9755,
+      "sample_rate_hz": 24000,
+      "rms_dbfs": -8.741,
+      "peak_dbfs": 2.439,
+      "crest_db": 11.181,
+      "band_energy_ratio": {
+        "40_250_hz": 0.574133,
+        "250_4000_hz": 0.401582,
+        "4000_11000_hz": 0.024285
+      },
+      "spectral_centroid_median_hz": 544.479,
+      "largest_multiband_transitions": [
+        {
+          "time_s": 0.21,
+          "change_score_db": 14.612
+        },
+        {
+          "time_s": 7.42,
+          "change_score_db": 19.987
+        },
+        {
+          "time_s": 12.61,
+          "change_score_db": 14.196
+        },
+        {
+          "time_s": 14.14,
+          "change_score_db": 17.719
+        },
+        {
+          "time_s": 17.4,
+          "change_score_db": 15.989
+        },
+        {
+          "time_s": 21.11,
+          "change_score_db": 14.286
+        },
+        {
+          "time_s": 26.53,
+          "change_score_db": 18.555
+        },
+        {
+          "time_s": 28.29,
+          "change_score_db": 19.13
+        }
+      ]
+    },
+    {
+      "file": "preview_dv.m4a",
+      "sha256": "cb2aa36e8d8f102d5db94bc548a7e7652164fe5128229939dff1256b5f8911e1",
+      "duration_s": 29.9755,
+      "sample_rate_hz": 24000,
+      "rms_dbfs": -10.923,
+      "peak_dbfs": 3.276,
+      "crest_db": 14.199,
+      "band_energy_ratio": {
+        "40_250_hz": 0.797806,
+        "250_4000_hz": 0.158689,
+        "4000_11000_hz": 0.043505
+      },
+      "spectral_centroid_median_hz": 369.889,
+      "largest_multiband_transitions": [
+        {
+          "time_s": 0.3,
+          "change_score_db": 19.181
+        },
+        {
+          "time_s": 0.96,
+          "change_score_db": 19.139
+        },
+        {
+          "time_s": 2.08,
+          "change_score_db": 19.377
+        },
+        {
+          "time_s": 10.85,
+          "change_score_db": 17.663
+        },
+        {
+          "time_s": 14.33,
+          "change_score_db": 17.423
+        },
+        {
+          "time_s": 22.89,
+          "change_score_db": 18.425
+        },
+        {
+          "time_s": 24.86,
+          "change_score_db": 17.638
+        },
+        {
+          "time_s": 28.36,
+          "change_score_db": 17.551
+        }
+      ]
+    }
+  ],
+  "pairs": [
+    {
+      "a": "preview_jm.m4a",
+      "b": "preview_ap.m4a",
+      "feature": "log-energy envelope by frequency band",
+      "band_matches": {
+        "40_250_hz": {
+          "best_lag_s_a_relative_to_b": 1.54,
+          "normalized_correlation": 0.948695
+        },
+        "250_4000_hz": {
+          "best_lag_s_a_relative_to_b": 1.54,
+          "normalized_correlation": 0.514559
+        },
+        "4000_11000_hz": {
+          "best_lag_s_a_relative_to_b": 1.54,
+          "normalized_correlation": 0.610098
+        }
+      },
+      "interpretation_limit": "Band-envelope similarity only; not proof of identical master or causality."
+    },
+    {
+      "a": "preview_mp.m4a",
+      "b": "preview_dv.m4a",
+      "feature": "log-energy envelope by frequency band",
+      "band_matches": {
+        "40_250_hz": {
+          "best_lag_s_a_relative_to_b": -1.72,
+          "normalized_correlation": 0.5265
+        },
+        "250_4000_hz": {
+          "best_lag_s_a_relative_to_b": 8.73,
+          "normalized_correlation": 0.249625
+        },
+        "4000_11000_hz": {
+          "best_lag_s_a_relative_to_b": 5.23,
+          "normalized_correlation": 0.324338
+        }
+      },
+      "interpretation_limit": "Band-envelope similarity only; not proof of identical master or causality."
+    }
+  ],
+  "method": {
+    "decoder": "ffmpeg mono float32",
+    "analysis_sample_rate_hz": 24000,
+    "stft_frame": 2048,
+    "stft_hop": 240,
+    "warning": "Measurements do not substitute for listening and do not describe unpreviewed portions of a track."
+  }
+}
