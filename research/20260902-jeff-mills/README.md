@@ -301,9 +301,61 @@ Shazam等による曲同定／Apple Music Catalog照合
 ### 現在の境界
 
 - ShazamのApple Music Catalog検索による曲同定とPreview URL取得: 実施済み
-- `The Bells` Sequence版Preview音声の取得と基礎測定: ローカルで実施済み、Git未保存
+- Sequence版5曲のPreview音声取得と基礎測定: 実施済み
 - 窓別BPM・調のEssentia監査: 依存環境復元が途中停止し、未実施
-- 本事故記録以後の解析結果: 後続追補として記録する
+- 基礎測定値: `preview-basic-results-20260902.json` に保存
+
+## 2026-09-02追補 — Sequence版5曲のPreview基礎測定
+
+### 取得・同定
+
+Shazamが提供するApple Music Catalog検索で、Jeff Mills本人のアルバム `Sequence - a Retrospective of Axis Records`（album ID `598481473`）を取得し、収録曲のApple Music曲ID、ISRC、約30秒Preview URLを照合した。周囲で鳴っている音をShazam認識したのではなく、Shazam接続内のApple Music Catalog検索を使用した。
+
+| 曲 | Apple Music曲ID | ISRC | Preview実体 |
+|---|---:|---|---|
+| Gamma Player | `598481481` | `USAX10000230` | AAC / 44.1kHz stereo / 29.98秒 |
+| Life Cycle | `598481974` | `USAX10000248` | AAC / 44.1kHz stereo / 29.98秒 |
+| The Bells | `598481975` | `USAX10000249` | AAC / 44.1kHz stereo / 29.98秒 |
+| Step To Enchantment (Srtringent) | `598481979` | `USAX10000258` | AAC / 44.1kHz stereo / 29.98秒 |
+| Changes of Life | `598481980` | `USAX10000254` | AAC / 44.1kHz stereo / 29.98秒 |
+
+### 30秒Preview測定
+
+`research/music-analysis/analyze_previews.py` を同一条件で使用した。下記は曲全体の測定ではなく、開始位置不明の約30秒Preview区間に限る。
+
+| 曲 | RMS dBFS | スペクトル重心 | onset/s | 周期候補 |
+|---|---:|---:|---:|---|
+| Gamma Player | -10.32 | 3114.0 Hz | 8.353 | 175.19, 63.41 |
+| Life Cycle | -10.86 | 2592.1 Hz | 8.554 | 67.56, 107.67 |
+| The Bells | -8.59 | 3633.1 Hz | 8.821 | 68.91, 137.81, 54.98, 91.47ほか |
+| Step To Enchantment | -7.37 | 5500.7 Hz | 9.355 | 137.81, 68.45, 92.29, 54.98 |
+| Changes of Life | -8.86 | 4865.4 Hz | 8.854 | 136.00, 68.45, 181.33 |
+
+### 10秒窓で残った観測
+
+- **The Bells** — 3窓すべてに137.81 BPM候補またはその半周期68.91が残る。Preview区間では周期族が安定している。
+- **Step To Enchantment** — 3窓の候補は137.81 / 136.00 / 137.81。5曲中、全区間スペクトル重心とonset密度が最も高く、明るい高域成分と細かな発音が前景にある可能性を支持する。
+- **Changes of Life** — 3窓すべてで136.00 BPM候補が第一候補として残る。スペクトル重心は4767–4980 Hzで、Preview内の変動が比較的小さい。
+- **Life Cycle** — 3窓の第一候補が67.56 / 67.12 / 67.56で安定し、倍周期なら約134–135 BPMになる。ただし解析器は拍を同定していないため、135 BPMの確定値とはしない。
+- **Gamma Player** — 3窓すべてで172.27 BPM候補が現れ、外部メタデータの127 BPMとは一致しない。細分化層を拾った、Preview区間固有、外部メタデータ側の版差などを競合仮説として残す。
+
+### 比較から生じた仮説
+
+この5曲だけでも、Millsの反復を一種類の「高速ミニマル」へまとめられない。
+
+- `The Bells`、`Step To Enchantment`、`Changes of Life`は約136–138 BPMの周期族を共有するが、高域重心と発音密度は異なる。
+- `Step To Enchantment`は今回の区間で最も高域重心が高く、打点数も多い。硬さはBPMだけでなく、短い発音と高域占有によって生じる可能性がある。
+- `Gamma Player`は30秒内のフレームRMS幅が5曲中最大で、平均RMSは低い。一定の床を最大音圧で押すより、区間内部の強弱差を大きく取っている可能性がある。
+- `Life Cycle`は平均RMSとスペクトル重心がともに最も低い一方、発音密度は大きく落ちない。暗さ／低さと時間密度が独立している可能性がある。
+
+以上は信号測定から生じた区間仮説であり、旋律、楽器、制作意図、全曲構成の断定ではない。
+
+### 未完了
+
+- Essentiaによる窓別BPM・調・複数方式比較は、依存環境を取得できず未実施。
+- `Casa`は今回使用したSequenceに含まれないため未取得。
+- 音源分離は、この5曲に対してまだ実施していない。
+- Preview開始位置が不明なため、曲全体の導入・展開・終結は評価していない。
 
 ## 2026-09-02追補 — DJ／909演奏の操作文法とCharlie Hunter接続
 
