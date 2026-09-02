@@ -188,6 +188,57 @@ Worrellは`Flash Light`を例に、ドラムとリズムギターだけの基礎
 
 重要なのは、トラック1を常にgroundへ固定しないこと。演奏中に役割を交換できなければ、これは結局「四本の完成ループを管理する画面」へ戻る。
 
+## Apple Music preview実測（2026-09-02）
+
+### 取得範囲と再現条件
+
+- iTunes Search APIが返したApple Musicの30秒previewを使用した。
+- `Wars of Armageddon`: track ID `1595227753`、collection ID `1595227414`。
+- `Cosmic Slop`: track ID `1595220197`。
+- 両ファイルともAAC、44.1 kHz、stereo。ファイルのSHA-256、container duration、全測定値は`excerpt-window-results.json`に固定した。
+- previewが全曲中のどこを切り出したものかは不明である。全曲構成、曲頭からの位置、小節番号は推定しない。
+- `Maggot Brain`原版とfull-band alternate mixは、この取得経路では同定できなかったため比較していない。
+- Essentia依存の厳格監査は実行環境にモジュールがなく未実施。今回は`research/music-analysis/`で校正済みのNumPy/SciPy測定だけを採用した。
+
+再現コマンド：
+
+```bash
+python research/20260902-funkadelic/analyze_excerpt_windows.py \
+  analysis-work/1595227753-wars-of-armageddon.m4a \
+  analysis-work/1595220197-cosmic-slop.m4a
+```
+
+preview音源自体は再配布せず、取得物はGitへ含めない。
+
+### 測定事実
+
+`onset`は検出器イベントであり、楽器・音符・拍を同定したものではない。`periodicity candidates`もBPMの断定ではない。
+
+| 曲／窓 | onset/s | onset間隔中央値 | RMS | spectral centroid | 主要periodicity candidates |
+| --- | ---: | ---: | ---: | ---: | --- |
+| `Wars` 全30秒 | 8.040 | 0.1161 s | -13.39 dBFS | 2691 Hz | 127.60 / 63.80 / 51.68 |
+| `Wars` 0–10秒 | 7.700 | 0.1190 s | -12.96 dBFS | 2746 Hz | 127.60 / 63.80 / 51.68 |
+| `Wars` 10–20秒 | 8.600 | 0.1045 s | -13.44 dBFS | 2637 Hz | 63.80 / 127.60 / 51.42 |
+| `Wars` 20–約30秒 | 8.220 | 0.1161 s | -13.84 dBFS | 3367 Hz | 127.60 / 63.41 |
+| `Cosmic Slop` 全30秒 | 8.052 | 0.1190 s | -13.07 dBFS | 2900 Hz | 198.77 / 66.26 / 98.44 |
+| `Cosmic Slop` 0–10秒 | 8.100 | 0.1161 s | -13.23 dBFS | 3464 Hz | 195.02 / 65.83 / 98.44 |
+| `Cosmic Slop` 10–20秒 | 7.800 | 0.1161 s | -13.00 dBFS | 2635 Hz | 202.67 / 66.26 / 98.44 |
+| `Cosmic Slop` 20–約30秒 | 7.956 | 0.1277 s | -12.98 dBFS | 2982 Hz | 195.02 / 98.44 / 65.83 |
+
+### 測定から許される推論
+
+1. 2曲の全previewは、onset数がともに241、密度が約8.04 events/s、RMSも約0.3 dB差である。この指標だけでは2曲の演奏構造を区別できない。
+2. `Wars`では127.6 / 63.8系の周期候補が三つの窓を通じて残る一方、末尾窓のspectral centroidは2637 Hzから3367 Hzへ上がり、RMSは緩やかに下がる。この30秒については、周期的な足場を保ちながら表面の素材が変わるという仮説と整合する。
+3. `Cosmic Slop`では195–203 / 98 / 約66系の候補と約8 events/sの密度を保ちながら、centroidが3464→2635→2982 Hzと移る。この30秒については、イベントを増減するより、前景の音色または担当が移るという仮説と整合する。
+4. ただし、centroid変化から特定楽器、call/response、人物、編曲操作を同定することはできない。これらには聴取転記またはsource separationを要する。
+
+### 設計への採用
+
+- `density`と`identity / foreground`を同じノブへ畳み込まない。ほぼ同じイベント密度のまま、音色担当と前景だけを交換できる必要がある。
+- groundの周期再現とevent layerの非周期的侵入を別制御にする。`Wars`の仮説を、イベント追加＝テンポ変更へ短絡しない。
+- 役割交換は発音数の増減としてではなく、同じ発音密度の内部でのforeground、寿命、帯域、空間位置の移譲として扱う。
+- spectral centroidをそのままUIパラメータ名にしない。測定軸と演奏者が触る語彙は分ける。
+
 ## 他研究との接続
 
 ### 取得できたブランチ
@@ -235,7 +286,7 @@ Worrellは`Flash Light`を例に、ドラムとリズムギターだけの基礎
 
 ## 未検証事項
 
-1. 正規取得音源を用いた三曲の秒単位セクション記録。
+1. 正規取得した全曲音源を用いた三曲の秒単位セクション記録。`Wars of Armageddon`と`Cosmic Slop`は位置不明の30秒previewのみ測定済み。
 2. `Wars of Armageddon`の基礎トラック、追加音、声、効果音の録音順序と担当者。
 3. `Maggot Brain`原版とfull-band alternate mixの比較測定。
 4. `Cosmic Slop`でgroundを保持する奏者と、call/responseを交代する奏者の小節単位転記。

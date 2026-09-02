@@ -1,0 +1,147 @@
+{
+  "sample_rate": 44100,
+  "measurement_class": "calibration-approved excerpt/window measurements",
+  "source": {
+    "service": "Apple Music preview via iTunes Search API",
+    "preview_position": "unknown",
+    "tracks": [
+      {
+        "title": "Wars of Armageddon",
+        "track_id": 1595227753,
+        "collection_id": 1595227414,
+        "codec": "aac",
+        "channels": 2,
+        "container_duration_s": 30.000998,
+        "sha256": "340440a6b40999ed5dbfbd9e0fe05ed5f67adb1cbbd8fe6fda6d8b8a54326396"
+      },
+      {
+        "title": "Cosmic Slop",
+        "track_id": 1595220197,
+        "codec": "aac",
+        "channels": 2,
+        "container_duration_s": 29.976961,
+        "sha256": "e1afd601afb686926f4de54c4b28689ed87c01da1a6e8342cf0c5f90ec6d4bd4"
+      }
+    ]
+  },
+  "tracks": [
+    {
+      "file": "1595227753-wars-of-armageddon.m4a",
+      "whole_excerpt": {
+        "duration_s": 29.9755,
+        "rms_dbfs": -13.39,
+        "frame_rms_dbfs_p10_p50_p90": [-19.72, -14.19, -10.42],
+        "spectral_centroid_hz": 2691.1,
+        "stereo_balance_minus_left_plus_right": 0.0683,
+        "onset_count": 241,
+        "onsets_per_second": 8.04,
+        "onset_interval_median_s": 0.1161,
+        "onset_interval_cv": 0.331,
+        "periodicity_candidates_bpm": [127.6, 63.8, 51.68]
+      },
+      "windows": [
+        {
+          "preview_window_s": [0, 10.0],
+          "duration_s": 10.0,
+          "rms_dbfs": -12.96,
+          "frame_rms_dbfs_p10_p50_p90": [-19.93, -13.86, -9.74],
+          "spectral_centroid_hz": 2745.7,
+          "stereo_balance_minus_left_plus_right": 0.0581,
+          "onset_count": 77,
+          "onsets_per_second": 7.7,
+          "onset_interval_median_s": 0.119,
+          "onset_interval_cv": 0.327,
+          "periodicity_candidates_bpm": [127.6, 63.8, 51.68, 86.13]
+        },
+        {
+          "preview_window_s": [10, 20.0],
+          "duration_s": 10.0,
+          "rms_dbfs": -13.44,
+          "frame_rms_dbfs_p10_p50_p90": [-18.78, -13.99, -10.78],
+          "spectral_centroid_hz": 2637.2,
+          "stereo_balance_minus_left_plus_right": 0.089,
+          "onset_count": 86,
+          "onsets_per_second": 8.6,
+          "onset_interval_median_s": 0.1045,
+          "onset_interval_cv": 0.312,
+          "periodicity_candidates_bpm": [63.8, 127.6, 51.42]
+        },
+        {
+          "preview_window_s": [20, 29.9755],
+          "duration_s": 9.9755,
+          "rms_dbfs": -13.84,
+          "frame_rms_dbfs_p10_p50_p90": [-20.06, -14.73, -11.0],
+          "spectral_centroid_hz": 3367.4,
+          "stereo_balance_minus_left_plus_right": 0.0576,
+          "onset_count": 82,
+          "onsets_per_second": 8.22,
+          "onset_interval_median_s": 0.1161,
+          "onset_interval_cv": 0.326,
+          "periodicity_candidates_bpm": [127.6, 63.41]
+        }
+      ]
+    },
+    {
+      "file": "1595220197-cosmic-slop.m4a",
+      "whole_excerpt": {
+        "duration_s": 29.9291,
+        "rms_dbfs": -13.07,
+        "frame_rms_dbfs_p10_p50_p90": [-18.62, -14.15, -10.15],
+        "spectral_centroid_hz": 2899.6,
+        "stereo_balance_minus_left_plus_right": -0.026,
+        "onset_count": 241,
+        "onsets_per_second": 8.052,
+        "onset_interval_median_s": 0.119,
+        "onset_interval_cv": 0.339,
+        "periodicity_candidates_bpm": [198.77, 66.26, 98.44]
+      },
+      "windows": [
+        {
+          "preview_window_s": [0, 10.0],
+          "duration_s": 10.0,
+          "rms_dbfs": -13.23,
+          "frame_rms_dbfs_p10_p50_p90": [-20.66, -14.52, -9.77],
+          "spectral_centroid_hz": 3463.8,
+          "stereo_balance_minus_left_plus_right": -0.0336,
+          "onset_count": 81,
+          "onsets_per_second": 8.1,
+          "onset_interval_median_s": 0.1161,
+          "onset_interval_cv": 0.301,
+          "periodicity_candidates_bpm": [195.02, 65.83, 67.12, 98.44]
+        },
+        {
+          "preview_window_s": [10, 20.0],
+          "duration_s": 10.0,
+          "rms_dbfs": -13.0,
+          "frame_rms_dbfs_p10_p50_p90": [-18.98, -14.26, -9.78],
+          "spectral_centroid_hz": 2635.2,
+          "stereo_balance_minus_left_plus_right": -0.0215,
+          "onset_count": 78,
+          "onsets_per_second": 7.8,
+          "onset_interval_median_s": 0.1161,
+          "onset_interval_cv": 0.386,
+          "periodicity_candidates_bpm": [202.67, 66.26, 65.01, 98.44]
+        },
+        {
+          "preview_window_s": [20, 29.9291],
+          "duration_s": 9.9291,
+          "rms_dbfs": -12.98,
+          "frame_rms_dbfs_p10_p50_p90": [-16.89, -13.66, -10.62],
+          "spectral_centroid_hz": 2982.4,
+          "stereo_balance_minus_left_plus_right": -0.0234,
+          "onset_count": 79,
+          "onsets_per_second": 7.956,
+          "onset_interval_median_s": 0.1277,
+          "onset_interval_cv": 0.3,
+          "periodicity_candidates_bpm": [195.02, 98.44, 65.83]
+        }
+      ]
+    }
+  ],
+  "hard_limits": [
+    "Apple preview source position is unknown",
+    "periodicity candidates are not asserted as musical beat or BPM",
+    "onsets are detector events, not identified instruments or notes",
+    "30-second excerpts do not establish full-song form"
+  ]
+}
