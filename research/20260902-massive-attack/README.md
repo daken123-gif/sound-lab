@@ -244,3 +244,106 @@ Massive AttackからLive Canvasへ移植する対象は音色ではない。
 ```
 
 研究は`active`。製品採用、実装、実機検証は未実施。
+
+## 2026-09-02追補 — Git上の並行研究本文との横断接続
+
+### 取得した研究実体
+
+以下は名称の類似ではなく、各research branchのREADME本文を取得して接続した。参照blobは取得時点のもの。
+
+| 研究 | 取得ref | README blob | 証拠状態 |
+| --- | --- | --- | --- |
+| Dub演奏文法 | `research/20260831-dub-performance-grammar` | `53ddca03d44a7b8f334ab38d6d4525d63302cd5f` | 本人証言・歴史資料・設計仮説を分離。比較音源は未取得 |
+| Portishead | `research/20260902-portishead` | `36116426fb096bbd9f599574eb9bd54c4d296c1f` | 制作資料と構造分析を分離。DSP計測は未実施 |
+| Autechre | `research/20260831-autechre` | `57268cb5fd9bbe7625ad332b0474a98dd3edf4e2` | 本人発言と設計仮説を分離。公演音源比較は未実施 |
+| Jeff Mills | `research/20260902-jeff-mills` | `2fe28c9091a24cf9fadaee690d7f2b6d29fa3c93` | 本人資料と演奏観察を取得。対象音源の独自解析は未実施 |
+
+Can／This Heat／Conny PlankとHorace Andy単独研究は、今回検索した`sound-lab`のbranch名から本文を取得できなかった。「存在しない」とは判定せず、未接続として残す。
+
+### 接続して見える共通核と差
+
+| 研究 | 保持するもの | 現在形で変えるもの | Massive Attackとの接続 | 同一化しない点 |
+| --- | --- | --- | --- | --- |
+| Dub | riddim、低域の基準、録音済み素材 | 原音の在／不在、投擲、帰還、空白、前景 | selector／engineerの判断を一曲内部の編集主体へ移す | Dubの一回のmix passと、Massive Attackの長期スタジオ編集は時間責任が異なる |
+| Portishead | 限定された音数、声の身体、不安定な素材関係 | 録音の世代、媒体、調律、圧力、音源間の距離 | 自作演奏も外部資料のように扱い、素材の由来より配置後の意味を優先する | Massive Attackは複数人格を配置し、Portisheadは単独の声と構築された過去の対立を深める |
+| Autechre | 音色族、密度域、可動範囲、関係 | event、condition、履歴、performance trajectory | `A0 -> A1 -> A2`を音色変化でなく状態遷移として精密化できる | Massive Attackの編集判断を自律生成へ置換しない |
+| Jeff Mills | 床の連続性、身体が引き受ける共通時間 | entry、stay、exit、位相、事故後の回復 | 編集を事後工程から短い判断窓の演奏へ戻す | スタジオで選別できるMassive Attackと、巻き戻せないDJ／909演奏を同じ即時性とみなさない |
+
+### 横断後の修正仮説
+
+Massive Attackの本体を「異種素材の編集主体」とした仮説は維持する。ただし、編集を一語でまとめると四つの時間責任が消える。
+
+1. **Dub — 在／不在を決める。**  
+   元素材を鳴らすか、空白へ退かせるか、過去のtailだけを残すかを演奏する。
+
+2. **Portishead — 世代を変える。**  
+   現在の演奏を捕捉し、媒体・摩耗・再録音を経た別時代の資料として戻す。
+
+3. **Autechre — 次に可能な出来事を変える。**  
+   同じ素材を反復しながら、履歴と他声部の状態によって次状態の範囲を更新する。
+
+4. **Jeff Mills — 入口と出口を引き受ける。**  
+   床を保ちながら素材の滞在時間を短い判断窓で決め、事故を次の構造へ変える。
+
+この四つを合わせると、Live Canvasでいう「編集を演奏する」は次のように具体化できる。
+
+```text
+capture
+-> choose presence
+-> assign generation
+-> alter next-state conditions
+-> enter / stay / exit
+-> preserve or rebuild the floor
+```
+
+### Live Canvasへ返す最小実験候補（未採用）
+
+#### 実験A: PRESENCE / TAIL
+
+一つの録音断片について、`dry presence`、`send`、`return tail`を別状態にする。目的はDub音色の再現ではなく、原音が消えた後も過去だけが独立して作用できるかの確認。
+
+#### 実験B: GENERATION HANDOFF
+
+直前の演奏をRolling Captureで掴み、一世代だけ帯域・速度・残響境界を変えて、元入力とは別の演奏対象へする。Portishead研究のself-sampleを、Massive Attackの「強い瞬間だけを選ぶ」判断へ接続する。
+
+#### 実験C: STATE-BOUND MUTATION
+
+`A0 -> A1 -> A2`の遷移を自動ランダム化せず、直前のgesture、別層の休止、最近の反復回数だけで候補範囲を変える。演奏者は方向を決め、システムは制約内の細部を返す。
+
+#### 実験D: ENTRY / STAY / EXIT
+
+素材の再生トグルではなく、入れる、滞在させる、抜くを分ける。床が`held | weakened | broken | rebuilt`のどこへ移ったかをPerformance Takeへ記録する。
+
+四実験を一度に実装しない。最初はAまたはDの一つだけを既存4層のうち一層へ限定し、操作が止まったとき完成ループが無期限に代演しないことを評価する。
+
+### 反証条件
+
+次のいずれかが観察された場合、横断仮説を修正する。
+
+- PRESENCE / TAIL分離が聴覚上の編成変化でなく、通常のsend effectとしてしか知覚されない。
+- 世代加工が演奏の履歴を作らず、単なるlo-fi presetになる。
+- 状態遷移が演奏者の方向選択より強くなり、自動作曲へ寄る。
+- entry / stay / exit分離が即時判断を増やさず、操作負荷だけを増やす。
+- 床の維持が常に安全側へ固定され、破断と再構築が演奏上の選択にならない。
+- 四研究の差を保つより一つのmacroへ畳む方が、実機試験で明確に演奏可能性を高める。
+
+### 更新された未検証事項
+
+1. Dub、Portishead、Autechre、Jeff Millsの対象音源を同一EVENT / RELATION / TRANSITION記法で比較する。
+2. Massive Attackの`Angel`、Portisheadの`The Rip`、Autechreの反復対象、Jeff Millsの実演区間を、素材保持／状態変化／入口出口の三軸で照合する。
+3. Can／This Heat／Conny PlankとHorace Andy単独研究の正本を取得し、今回保留した接続を検証する。
+4. 実験A〜Dのうち一つをiPhone実機へ限定実装し、判断時間、誤操作、床の破断、回復時間を測る。
+5. 横断仮説が既存`integration/DIRECTION.md`と`integration/DECISIONS.md`に抵触しないか、統合判断時に再確認する。
+
+### 横断後の現在判断
+
+Massive Attackから抽出した編集主体は、素材を加工する人物名では足りない。Live Canvasへ移すなら、演奏者が次の責任を持てる構造でなければならない。
+
+- 何を今ここに存在させるか
+- 直前の演奏をどの世代として戻すか
+- 何が次の出来事を可能にするか
+- 素材をいつ入れ、いつ抜くか
+- 床を保つか、壊すか、どう再構築するか
+
+研究は引き続き`active`。横断接続は研究記録へ反映したが、製品採用・コード変更・統合判断は未実施。
+
