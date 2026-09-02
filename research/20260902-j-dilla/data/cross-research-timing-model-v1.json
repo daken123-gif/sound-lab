@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "research_id": "20260902-j-dilla",
+  "status": "candidate_not_integrated",
+  "retrieved_references": [
+    {
+      "research_id": "20260902-charlie-hunter",
+      "ref": "research/20260902-charlie-hunter",
+      "path": "research/20260902-charlie-hunter/README.md",
+      "blob_sha": "28b8c8fdfa48678b1eabf2a67d5ce998b794e5a2"
+    },
+    {
+      "research_id": "20260902-jeff-mills",
+      "ref": "research/20260902-jeff-mills",
+      "path": "research/20260902-jeff-mills/README.md",
+      "blob_sha": "2fe28c9091a24cf9fadaee690d7f2b6d29fa3c93"
+    },
+    {
+      "research_id": "20260831-autechre",
+      "ref": "research/20260831-autechre",
+      "path": "research/20260831-autechre/README.md",
+      "blob_sha": "67f99f1f5371bdd50074da7038d33e0361a626b9"
+    }
+  ],
+  "source_roles": {
+    "j_dilla": {
+      "contribution": "stable reference layers with voice-relative timing, subdivision and attack relations",
+      "evidence_state": "hypothesis supported by cited prior research; independent full-track measurement pending"
+    },
+    "charlie_hunter": {
+      "contribution": "constrained polyphony: several roles share one body, large time and execution budget",
+      "evidence_state": "retrieved research artifact; its audio microtiming remains unmeasured"
+    },
+    "jeff_mills": {
+      "contribution": "persistent floor plus manual rupture, layer exchange and recovery from the current state",
+      "evidence_state": "retrieved research artifact; independent audio analysis remains pending"
+    },
+    "autechre": {
+      "contribution": "history-dependent causal rules, local clocks and coupling instead of a fixed event list",
+      "evidence_state": "retrieved research artifact; internal patches and event data are not available"
+    }
+  },
+  "time_field": {
+    "floor": {
+      "clock_candidates": [],
+      "selected_reference": null,
+      "continuity": 0.0
+    },
+    "voices": [],
+    "coupling_matrix": [],
+    "recent_event_memory": [],
+    "active_interventions": [],
+    "recovery_targets": []
+  },
+  "voice_state": {
+    "role": null,
+    "phase": 0.0,
+    "local_rate": 1.0,
+    "subdivision_family": null,
+    "offset_shape": [],
+    "attack_shape": null,
+    "density": 0.0,
+    "activity": 0.0,
+    "influence": 0.0,
+    "memory_length": 0.0
+  },
+  "performance_operations": [
+    {
+      "operation": "hold_floor",
+      "meaning": "maintain a reference layer while other relations change"
+    },
+    {
+      "operation": "bend_relation",
+      "meaning": "move one voice before or after another without shifting every voice equally"
+    },
+    {
+      "operation": "change_subdivision",
+      "meaning": "change one voice's subdivision family while preserving a perceptible reference"
+    },
+    {
+      "operation": "cut_layer",
+      "meaning": "remove a voice while retaining its relational trace in the remaining field"
+    },
+    {
+      "operation": "recover_from_current_state",
+      "meaning": "turn phase conflict or an error into the next playable relation instead of rewinding"
+    },
+    {
+      "operation": "release_to_floor",
+      "meaning": "return only the released intervention toward the current reference, not every layer to a loop start"
+    }
+  ],
+  "anti_patterns": [
+    "one global swing amount",
+    "random timing scatter called humanize",
+    "one touch equals one independent completed track",
+    "automatic rewind to a stored loop start",
+    "adding voices whenever touch count increases",
+    "artist-branded presets as a substitute for relations"
+  ],
+  "implementation_boundary": "research model only; no product path or integration decision changed"
+}
