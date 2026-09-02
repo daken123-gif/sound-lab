@@ -365,7 +365,67 @@ Aphex Twinは「存在しない」とは判定しない。今回検索したGit�
 
 四軸は同時実装を意味しない。特に`STATE_TRANSITION`が他三軸を自動化すると、Hunter、Dilla、Millsから取得した身体的・時間的・判断的な差を消してしまう。Autechre研究からの第一実験は、独立DRUM内で`STATE_TRANSITION`だけを最小化し、録音開始、素材選択、4トラック、Skulptur主演奏面へ権限を広げない。
 
-## 14. 未検証事項
+## 14. AE_LIVEの変化を四段階へ分ける
+
+### 追加取得した事実
+
+1. 2014/15の`AE_LIVE`について、Seanは2015年に、note sequencingの多くは毎回異なるが、各trackの全体的な“flavor”と可能範囲は保たれ、conditionalsと二人のdata共有が即時反応を可能にすると説明した。
+2. Seanは2018年、2014 live setを、全要素を前面へ出したcartoon-likeなclub musicとして回顧し、その後は初聴で気づかない要素を含むdeep mixingと三次元的なsound stageへ関心が移ったと説明した。
+3. 2016年11月の本人インタビューでは、2014/15系を「そのsetの行き止まり」と判断して新しいsetを作り、以前より少し遅く、soundとbeatへ焦点を移したと説明している。`elseq`は旧`AE_LIVE`と同じsetup systemから生まれ、新setは別のものと明示された。
+4. 同じ2016年インタビューで、Kino Šiškaの音響と会場経験を、新setを作る際の参照にしたと両名が述べている。会場は演奏結果へ反応する外部条件であるだけでなく、set設計以前へ遡って作用していた。
+5. 2023年の本人インタビューでは、2022年からのsetに少なくとも第一・第二iterationがあり、dancefloor向けに作られたsetをseated venueでも演奏したこと、会場形状、観客の参加、分単位の判断が公演録音の差へ作用したと説明している。
+6. 公式公開面では、`AE_LIVE 2016/2018`は2016年5公演と2018年2公演の計7録音、`AE_2022－`は2022年から2024年までの計19録音を一つの系列として掲載している。
+
+### 一つの「ライブ差」に潰さない
+
+| 変化層 | 何が変わるか | 現在の証拠例 | 同一視してはいけないもの |
+| --- | --- | --- | --- |
+| `SYSTEM_GENERATION` | setup、sequencing、synthesis、controlの基盤 | 2014/15系を終え、2016に別setを構築 | 一夜の即興差 |
+| `SET_ITERATION` | 同じ世代内の構成、可動域、会場想定 | 2022 setの第一・第二iteration | system全体の作り直し |
+| `PERFORMANCE_TRAJECTORY` | conditionalsを通る経路、二人の操作、分単位の判断 | 同一tour内の公演差 | 曲またはsetの固定構造 |
+| `CAPTURE_CONTEXT` | 会場形状、音響、観客の参加、収録条件 | Kino Šiška参照、2022以降の会場差 | 演奏者の操作だけで生じた差 |
+
+したがって、複数の`AE_LIVE`を比較して共通部分が見つかっても、それを直ちに「systemの不変核」としない。公演間の共通性は、同じset iteration、似たtrajectory、venue制約、編集・収録条件からも生じうる。逆に大きな差も、system generationの変更ではなく、一夜のtrajectory差である可能性がある。
+
+### 比較実測の設計
+
+最初の比較は二段に分ける。
+
+#### A. 同一世代内
+
+- `AE_LIVE 2016/2018`から2016年の3公演を選ぶ。
+- `AE_2022－`から2022年の3公演を選ぶ。
+- 各組で、局所period、event density、休止、onsetの離散性、spectral depth、長期密度曲線、再帰区間を同じ方法で測る。
+- wall-clockの同じ時刻を機械的に対応させず、self-similarityと知覚上の状態遷移から候補区間を作り、人手で再確認する。
+
+#### B. 世代間
+
+- 2014/15、2016/18、2022－から各3公演を使う。
+- 世代内分散を先に求め、その範囲を越える差だけを世代差候補にする。
+- 本人発言にある`upfront / deep mixing`、`slower`、`sound / beat`、会場想定を測定項目へ翻訳するが、発言へ合う結果だけを選ばない。
+
+音源は公式公開面で再生・購入経路を確認したが、今回の更新では音声ファイルを取得していない。上記は実測済み結果ではなく、比較対象と反証方法の固定である。
+
+### Sound Labへ返る新しい境界
+
+deterministic replayを設計するとき、seedとgestureだけでは不足する可能性がある。研究上の候補snapshotは次になる。
+
+```text
+PERFORMANCE_RECORD {
+  system_generation
+  set_iteration
+  initial_state
+  gesture_and_control_events
+  inter_system_messages
+  state_transitions
+  audio_clock
+  venue_or_device_context
+}
+```
+
+これは製品仕様ではない。特に`venue_or_device_context`を自動補正の口実にせず、何が演奏者の操作で、何がiPhone、browser、speaker、roomによる結果かを再現時に分離するための研究候補である。
+
+## 15. 未検証事項
 
 - 各作品の音源を取得した波形・イベント列の分析。
 - `AE_LIVE`複数公演で共通するtoolsetと公演差の比較。
@@ -377,7 +437,7 @@ Aphex Twinは「存在しない」とは判定しない。今回検索したGit�
 - 独立DRUMと4トラック間の同期を、固定BPM以外でどう成立させるか。
 - 低遅延、CPU、電池、発熱、音量安全性。
 
-## 15. 触る実装パス
+## 16. 触る実装パス
 
 今回の研究では製品コードを変更しない。
 
@@ -386,7 +446,7 @@ Aphex Twinは「存在しない」とは判定しない。今回検索したGit�
 - 未変更: `prototype/`
 - 未変更: `integration/`
 
-## 16. 依存する研究・判断
+## 17. 依存する研究・判断
 
 - `RESEARCH_WORKFLOW.md`
 - `integration/DIRECTION.md`
@@ -397,7 +457,7 @@ Aphex Twinは「存在しない」とは判定しない。今回検索したGit�
 - `research/20260902-jeff-mills/` — 持続層、手動破断、事故からの回復。長期研究branch本文を取得。
 - Skulptur研究本文 — Git上では未取得のため、この研究から内容を補完しない。
 
-## 17. 失効した判断
+## 18. 失効した判断
 
 - なし。
 
@@ -415,15 +475,21 @@ Aphex Twinは「存在しない」とは判定しない。今回検索したGit�
    - `VI Scose Poise`、`Uviol`、`Draft 7.30`の方法差、non-timeline sequencer、物理interfaceについてSeanが回答。
 4. [Sean Booth Speaks (2010、aepages保存transcript)](https://aepages.org/wiki/Sean_Booth_Speaks,_April_2010)
    - setupが方法を規定すること、Quaristiceのlive session、ツアーを独立projectとして扱うこと、hip-hopとの連続性。
+5. [Radio Študent — Autechre interview (2016、aepages保存transcript)](https://aepages.org/wiki/R%C5%A0_INTERVJU_Autechre%2C_Radio_Student_FM89.3%2C_November_2016)
+   - 2014/15 setの終了、新setの速度と焦点、旧`AE_LIVE`と`elseq`のsetup共有、Kino Šiškaを新set設計で参照したことについて両名が回答。
 
 ### 公式公開面
 
-5. [Warp — Autechre artist page](https://warp.net/artists/autechre)
-6. [Autechre official Bandcamp](https://autechre.bandcamp.com/)
+6. [Warp — Autechre artist page](https://warp.net/artists/autechre)
+7. [Autechre official Bandcamp](https://autechre.bandcamp.com/)
+8. [AE_STORE — AE_LIVE 2016/2018](https://autechre.warp.net/release/310992-autechre-aelive-20162018)
+   - 7公演の公式tracklist、収録日、尺を確認。
+9. [Autechre official Bandcamp — AE_2022－](https://autechre.bandcamp.com/album/ae-2022)
+   - 2022–2024年の19公演を含む公式bundleとtracklistを確認。
 
 ### 補助資料
 
-7. [VICE — How the Political Warning of Autechre's Anti EP Made it a Warp Records Classic](https://www.vice.com/en/article/warp-25-autechre-anti-ep/)
+10. [VICE — How the Political Warning of Autechre's Anti EP Made it a Warp Records Classic](https://www.vice.com/en/article/warp-25-autechre-anti-ep/)
    - `Anti EP`盤面警告文と`Flutter`の非同一bar設計を確認する補助資料。本人への新規インタビューではないため、盤面一次資料と同格には扱わない。
-8. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
+11. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
    - `AE_LIVE`で毎回異なるnote sequencing、各trackの可能範囲を決めるconditionals、二人のdata共有と即時反応についてSean Boothが説明。
