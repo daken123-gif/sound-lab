@@ -648,3 +648,105 @@ J Dilla研究で保存すべき対象も、固定swing templateや完成loopで�
 - 四軸のうち何軸までならノンミュージシャンが説明なしで区別して演奏できるか
 - Aphex Twin研究の正本ref／fileのGit上の所在
 
+## 2026-09-02追補 — Hunter・Mills・Autechre実体取得後の時間場モデル
+
+### 取得した研究実体
+
+今回は名称や会話要約ではなく、GitHubの各研究ブランチからREADME本文を取得した。
+
+| 研究 | ref | blob SHA | Dilla研究へ持ち込む範囲 |
+| --- | --- | --- | --- |
+| Charlie Hunter | `research/20260902-charlie-hunter` | `28b8c8fdfa48678b1eabf2a67d5ce998b794e5a2` | 同じ身体と大時間へ拘束された複数声部、音価・ミュート・局所位相 |
+| Jeff Mills | `research/20260902-jeff-mills` | `2fe28c9091a24cf9fadaee690d7f2b6d29fa3c93` | 持続する床、手動破断層、位相事故から現在状態を使った回復 |
+| Autechre | `research/20260831-autechre` | `67f99f1f5371bdd50074da7038d33e0361a626b9` | 局所clock、履歴、refractory、couplingによるopen-endedな因果遷移 |
+
+各研究は独立した研究ブランチ上の一次成果物として取得した。作家本人についての一次資料ではなく、各研究が現在どの仮説と証拠境界を持つかを示すGit実体である。
+
+### 四研究の役割を混ぜない
+
+四者を「複雑なリズム」という共通語へ潰さない。
+
+- **J Dilla:** 声部ごとに異なる細分、先行、遅延、attackを、安定層との関係として配置する。
+- **Charlie Hunter:** 複数声部が完全独立せず、一つの身体、拍感、実行可能性へ拘束される。
+- **Jeff Mills:** 連続する床を残しながら層を挿入・撤去し、位相衝突や失敗を次の構造へ変える。
+- **Autechre:** 固定イベント列ではなく、現在状態、直前履歴、別声部、演奏操作から次の出来事を決める。
+
+接続すると、Dillaのタイミングを保存済みテンプレートとして再生するのではなく、演奏者が現在形で維持・変形・回復できる**時間場**として扱える。
+
+### 時間場の最小モデル
+
+```text
+TIME_FIELD {
+  floor {
+    clockCandidates
+    selectedReference
+    continuity
+  }
+  voices[]
+  couplingMatrix
+  recentEventMemory
+  activeInterventions
+  recoveryTargets
+}
+
+VOICE {
+  role
+  phase
+  localRate
+  subdivisionFamily
+  offsetShape
+  attackShape
+  density
+  activity
+  influence
+  memoryLength
+}
+```
+
+発音時刻は次の合成候補として扱う。
+
+```text
+t_event
+  = t_floor
+  + delta_voice_shape
+  + delta_coupling
+  + delta_gesture
+  + delta_recovery
+```
+
+- `delta_voice_shape`: Dilla研究から得る、小節位置や声部に固有の前後形状
+- `delta_coupling`: Hunter研究から得る、同じ身体内で一方の実行が他方を制約する関係
+- `delta_gesture`: Mills研究から得る、現在の挿入・撤去・位相介入
+- `delta_recovery`: Autechre／Mills研究から得る、事故または離指後に現在状態から次の関係へ移る量
+
+これは人物を四つの機能へ機械的に割り当てる分類ではない。各研究から取得した異なる問題を、一つの検証可能な演奏モデルへ置いたものだ。
+
+### マルチタッチで必要な操作
+
+作家名を指へ割り当てない。タッチ数を声部数へ直結させない。
+
+| 操作候補 | 時間場で起きること | 避ける短絡 |
+| --- | --- | --- |
+| `hold_floor` | 一つの基準層を保持し、他の関係変更を受け止める | 全層の完全同期 |
+| `bend_relation` | 選択声部だけを別声部の前後へ動かす | 一括swing |
+| `change_subdivision` | 基準を残して一声部のbinary／triplet等を移す | 全トラックの拍子変更 |
+| `cut_layer` | 音を消しても、残った声部へ関係の痕跡を保持する | 単純mute |
+| `recover_from_current_state` | 衝突を巻き戻さず、現在位置から次の着地点を作る | ループ頭への強制復帰 |
+| `release_to_floor` | 離した介入だけが現在の床へ戻る | 全状態リセット |
+
+重要なのは、指を離した後も完成済み演奏を垂れ流すことではない。離指によって介入が減衰し、残された声部関係が次の演奏可能性を作ることにある。
+
+### 実装前の反証条件
+
+この時間場モデルは次の場合に棄却または縮小する。
+
+1. 一括swingだけで、声部間関係を持つ変形版と知覚差が出ない。
+2. couplingを除いて各声部を独立操作した方が、演奏者の意図と結果の対応が良い。
+3. 現在状態からの回復よりループ頭復帰の方が、連続性と即興性の両方で優れる。
+4. 履歴依存を加えると、同じジェスチャーに一貫した傾向が返らず学習不能になる。
+5. 基準層を保持する接触が、ノンミュージシャンにとって演奏ではなく保守作業になる。
+
+### 保存した機械可読モデル
+
+`data/cross-research-timing-model-v1.json` に、取得ref、blob SHA、各研究の役割、状態、操作、禁止する短絡を保存した。これは `candidate_not_integrated` であり、製品仕様ではない。
+
