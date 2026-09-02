@@ -66,6 +66,12 @@
 - Nathan Cobb, [Switch Up the Groove](https://mtosmt.org/issues/mto.25.31.2/mto.25.31.2.cobb.html)
 - David Geary, [Formal Functions of Drum Patterns](https://mtosmt.org/issues/mto.24.30.2/mto.24.30.2.geary.html)
 
+### 受領した体系的レビュー
+
+- [音楽分析手法レビュー受入れ監査](method-review-intake.md)
+
+ユーザー提供の体系的レビューは、MIRの技術地図と資料索引として受領した。別調査の内部引用IDを一次資料の代用にせず、採用判断に必要な公式資料だけをこの研究で再取得した。
+
 ## 観測できた事実
 
 ### SoundQuestの体系
@@ -131,7 +137,9 @@ SoundQuest本文の全文複製は行わない。
 
 ## 触る実装パス
 
-現段階ではなし。研究記録のみ。
+- `research/20260901-music-theory/benchmark/`
+
+S01〜S12の合成反証音源生成器と、S01〜S04を対象にしたNumPy／SciPy基準線をローカル作業ツリーで実装・検証した。Gitへのcommit・pushは未実施。
 
 ## 依存する研究
 
