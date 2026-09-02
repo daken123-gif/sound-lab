@@ -143,6 +143,12 @@ Curtis Mayfieldの決定的に選んだ20 Previewで、10秒窓3個を比較し�
 - MLX Audio Separator: https://github.com/ssmall256/mlx-audio-separator — Apple Silicon用。Mac実機候補であり、今回のLinux試験には未使用。
 - Essentia: https://essentia.upf.edu/
 
+## Mac実機の独立分離監査
+
+MDXの共有バイアスを検査するため、固定済みB01〜B20を`demucs-mlx`の`htdemucs`で再分離するMac用ランナーを作成した。Apple Previewの再取得、SHA-256照合、`afconvert`、分離、固定ルールによる再解析までを自動化する。
+
+現時点ではランナー作成、構文検査、20 Previewの再取得・SHA-256一致、既存stemを使った比較器の決定性検査まで完了した。Mac実機の`demucs-mlx`分離と`afconvert`は未実施。実行条件と独立性の範囲は`mac-demucs-protocol.md`に記録する。
+
 ## ファイル
 
 - `calibrate_analyzer.py` — 合成信号による基礎校正
@@ -159,5 +165,9 @@ Curtis Mayfieldの決定的に選んだ20 Previewで、10秒窓3個を比較し�
 - `blind20_audit.py` / `blind20-results-blinded.json` — 復号前解析
 - `blind20-title-map.json` / `decode_blind20.py` / `blind20-results-decoded.json` — 事後復号
 - `blind20-audit-20260902.md` — 結果、限界、次の検証
+- `download_blind20_previews.py` — Apple Preview再取得とSHA-256照合
+- `run_mac_demucs_audit.sh` — Mac実機の取得・変換・Demucs分離・解析ランナー
+- `demucs_blind20_audit.py` — Demucs結果とMDX合意結果の比較
+- `mac-demucs-protocol.md` — 固定条件、独立性、未実施境界
 
 音源本体、Preview、モデル、仮想環境、分離WAVはGitへ保存しない。
