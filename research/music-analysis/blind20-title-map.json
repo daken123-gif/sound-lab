@@ -1,0 +1,27 @@
+{
+  "protocol": "curtis-blind20-v1",
+  "decode_timing": "created only after blind20-results-blinded.json had been produced",
+  "metadata_source": "Apple iTunes Search API lookup; track URLs point to Apple Music",
+  "tracks": [
+    {"blind_id":"B01","track_id":59389113,"title":"If I Were a Child Again","album":"Back to the World","track_number":5,"url":"https://music.apple.com/us/album/if-i-were-a-child-again/59389126?i=59389113"},
+    {"blind_id":"B02","track_id":43465821,"title":"All Night Long","album":"Never Say You Can't Survive","track_number":6,"url":"https://music.apple.com/us/album/all-night-long/43465808?i=43465821"},
+    {"blind_id":"B03","track_id":20003492,"title":"Keep On Keeping On","album":"Roots","track_number":2,"url":"https://music.apple.com/us/album/keep-on-keeping-on/20003471?i=20003492"},
+    {"blind_id":"B04","track_id":59389120,"title":"Can't Say Nothin'","album":"Back to the World","track_number":6,"url":"https://music.apple.com/us/album/cant-say-nothin/59389126?i=59389120"},
+    {"blind_id":"B05","track_id":1535459398,"title":"We Got to Have Peace","album":"People Never Give Up","track_number":3,"url":"https://music.apple.com/gb/album/we-got-to-have-peace/1535459389?i=1535459398"},
+    {"blind_id":"B06","track_id":358129767,"title":"Just a Little Bit of Love","album":"New World Order","track_number":5,"url":"https://music.apple.com/us/album/just-a-little-bit-of-love/358129713?i=358129767"},
+    {"blind_id":"B07","track_id":1048472221,"title":"Freddie's Dead (Theme from \"Superfly\")","album":"Superfly (Soundtrack from the Motion Picture)","track_number":3,"url":"https://music.apple.com/us/album/freddies-dead-theme-from-superfly/1048472205?i=1048472221"},
+    {"blind_id":"B08","track_id":59389088,"title":"Back to the World","album":"Back to the World","track_number":1,"url":"https://music.apple.com/us/album/back-to-the-world/59389126?i=59389088"},
+    {"blind_id":"B09","track_id":120146023,"title":"Billy Jack","album":"There's No Place Like America Today","track_number":1,"url":"https://music.apple.com/us/album/billy-jack/120146434?i=120146023","verification":"remote preview SHA-256 exactly matched locked local source"},
+    {"blind_id":"B10","track_id":111218313,"title":"Something to Believe In","album":"Something to Believe In","track_number":6,"url":"https://music.apple.com/us/album/something-to-believe-in/111218572?i=111218313"},
+    {"blind_id":"B11","track_id":43465735,"title":"To Be Invisible","album":"Sweet Exorcist","track_number":3,"url":"https://music.apple.com/us/album/to-be-invisible/43465713?i=43465735"},
+    {"blind_id":"B12","track_id":43465815,"title":"When We're Alone","album":"Never Say You Can't Survive","track_number":3,"url":"https://music.apple.com/us/album/when-were-alone/43465808?i=43465815"},
+    {"blind_id":"B13","track_id":358129807,"title":"The Girl I Find Stays On My Mind","album":"New World Order","track_number":11,"url":"https://music.apple.com/us/album/the-girl-i-find-stays-on-my-mind/358129713?i=358129807"},
+    {"blind_id":"B14","track_id":43465743,"title":"Make Me Belive In You","album":"Sweet Exorcist","track_number":7,"url":"https://music.apple.com/us/album/make-me-belive-in-you/43465713?i=43465743","note":"Title spelling follows Apple metadata"},
+    {"blind_id":"B15","track_id":20003497,"title":"Underground","album":"Roots","track_number":3,"url":"https://music.apple.com/us/album/underground/20003471?i=20003497"},
+    {"blind_id":"B16","track_id":59389104,"title":"Right On for the Darkness","album":"Back to the World","track_number":3,"url":"https://music.apple.com/us/album/right-on-for-the-darkness/59389126?i=59389104"},
+    {"blind_id":"B17","track_id":20003540,"title":"We Got to Have Peace","album":"Roots","track_number":10,"url":"https://music.apple.com/us/album/we-got-to-have-peace/20003471?i=20003540"},
+    {"blind_id":"B18","track_id":358129792,"title":"Here But I'm Gone","album":"New World Order","track_number":8,"url":"https://music.apple.com/us/album/here-but-im-gone/358129713?i=358129792"},
+    {"blind_id":"B19","track_id":29168230,"title":"We the People Who Are Darker Than Blue","album":"Curtis (Expanded Edition)","track_number":4,"url":"https://music.apple.com/us/album/we-the-people-who-are-darker-than-blue/29168201?i=29168230"},
+    {"blind_id":"B20","track_id":29168288,"title":"Wild and Free","album":"Curtis (Expanded Edition)","track_number":7,"url":"https://music.apple.com/us/album/wild-and-free/29168201?i=29168288"}
+  ]
+}

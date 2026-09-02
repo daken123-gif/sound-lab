@@ -1,0 +1,27 @@
+{
+  "protocol": "curtis-blind20-v1",
+  "population_size": 100,
+  "selection": "20 smallest SHA-256 ranks of protocol + NUL + source path",
+  "selected": [
+    {"blind_id": "B01", "source": "quota-probe-100-add80/015-59389113.m4a", "sha256": "87e137cfcc07d3e82e481fc5b739ba15b7e430643318534822ef8b681393cd60"},
+    {"blind_id": "B02", "source": "quota-probe-100-add80/061-43465821.m4a", "sha256": "c77ee42d22688656c095152a207bbafcb068138d70d2931455fea99efbdab655"},
+    {"blind_id": "B03", "source": "quota-probe-100-add80/033-20003492.m4a", "sha256": "422c1ec39626f71688d8ef97bd9cbc26f53edb449484d14835744b99491d23fa"},
+    {"blind_id": "B04", "source": "quota-probe-100-add80/016-59389120.m4a", "sha256": "93b367d9f7f1170b464bec0603d7899008e3338427bf8e09024ff2fa4934b7da"},
+    {"blind_id": "B05", "source": "quota-probe-100-add80/066-1535459398.m4a", "sha256": "9124aa78984920da39432019fb4ddaacf07c195e7a5b558fd77f2976433c2882"},
+    {"blind_id": "B06", "source": "quota-probe-100-add80/047-358129767.m4a", "sha256": "01b2a55c011d0816d30b6e039600856e7a400741e634328b6d6ba24b3eca9172"},
+    {"blind_id": "B07", "source": "quota-probe-100-add80/004-1048472221.m4a", "sha256": "4732f01b094888d015f9a5eeefc7c02b1716093022224158a31a344fbb69fd19"},
+    {"blind_id": "B08", "source": "quota-probe-100-add80/011-59389088.m4a", "sha256": "7452c87f9bac3fbea5a545bca958dc0f5e89e51a306f9c92d2e84a6dcb2dc79f"},
+    {"blind_id": "B09", "source": "quota-probe-5/01-billy-jack.m4a", "sha256": "e298d2a8ff43aa257c1a86a81d8fc71503b72e2e867353bc9c63b3df90057d3f"},
+    {"blind_id": "B10", "source": "quota-probe-100-add80/023-111218313.m4a", "sha256": "2532a5a35eab2ae033d2e637d9465a2a0d57a45639a3c61f30a00c71adc6e475"},
+    {"blind_id": "B11", "source": "quota-probe-100-add80/027-43465735.m4a", "sha256": "bca9b1dde03e9ae99b09a513597085db443c7f4171876b98172f395b88541e33"},
+    {"blind_id": "B12", "source": "quota-probe-100-add80/058-43465815.m4a", "sha256": "351d9f20ac34be4536eadc75e319fb78fe387a2147bfdbee4556354836bc2479"},
+    {"blind_id": "B13", "source": "quota-probe-100-add80/053-358129807.m4a", "sha256": "3260dc8981a9f774ac7cb7e9deb19307d466bdeaf2c8ecb2f7706c961cf1febe"},
+    {"blind_id": "B14", "source": "quota-probe-100-add80/031-43465743.m4a", "sha256": "e11dcea7245308fcf7538ad4dd97aafeac1239f8a710a01fe4f7c0020139c440"},
+    {"blind_id": "B15", "source": "quota-probe-100-add80/034-20003497.m4a", "sha256": "2b46809ef1e3c627f404c484216d90c40b953bb7a167e0894491fe50c4733bd7"},
+    {"blind_id": "B16", "source": "quota-probe-100-add80/013-59389104.m4a", "sha256": "6d50fb2f7af67d191237c55fcb590fc59e2ed8623a1593611858f8a7735ebf5a"},
+    {"blind_id": "B17", "source": "quota-probe-100-add80/041-20003540.m4a", "sha256": "6adb7aee839bf2a004dc34cf562215875d8af65c6e91d8d2c48b74656ef4f29c"},
+    {"blind_id": "B18", "source": "quota-probe-100-add80/050-358129792.m4a", "sha256": "147cd0918e5117d35ef4f0de521d6c40c4447956540bb43d47a19a3b72afaccd"},
+    {"blind_id": "B19", "source": "quota-probe-20-add15/04-29168230.m4a", "sha256": "2063d9dd142d37e7f3044572a7ff71f4376c3cdbad9565df776a9a99e659c414"},
+    {"blind_id": "B20", "source": "quota-probe-20-add15/07-29168288.m4a", "sha256": "d1150b196568f5af802f0bdd0fb21d4f9da301a45bc2b4c0e568274cfb0d299a"}
+  ]
+}

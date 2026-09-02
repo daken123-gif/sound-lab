@@ -1,6 +1,6 @@
 # 音源取得・解析方式の校正記録
 
-最終更新: 2026-09-01 UTC
+最終更新: 2026-09-02 UTC
 
 ## 目的
 
@@ -121,6 +121,21 @@ Curtis Mayfieldの決定的に選んだ20 Previewで、10秒窓3個を比較し�
 - Previewから全曲構成を断定しない。
 - 同一ライブラリ内の複数方式は、完全に独立した再現とは数えない。
 
+## 20資産・事後復号ブラインド監査
+
+既存100 PreviewからSHA-256順位で20資産を決定論的に固定し、B01〜B20だけをMDX A/Bドラムモデルへ渡した。曲名を結合する前に、beat confidence、3窓BPM安定性、A/B BPM一致を信頼性ゲートとして適用した。
+
+| 判定 | 件数 |
+|---|---:|
+| stable intermediate | 15 |
+| rejected | 4 |
+| concentrated non-triplet reproduced | 1 |
+| triplet spacing reproduced | 0 |
+
+事後復号すると、唯一の`concentrated non-triplet reproduced`はBilly Jackだった。A/B BPMは141.14/141.78、triplet scoreは0.005/0.016で、各モデルの3窓条件も通過した。All Night Longはfull triplet scoreが0.808/0.845だったが区間BPM不安定のため棄却した。
+
+この20資産は曲名文字列で19種であり、`We Got to Have Peace`が別リリースIDで2件含まれる。Sweet Exorcist本体は無作為標本に入っていない。詳細は`blind20-audit-20260902.md`を参照する。
+
 ## 主要な外部資料
 
 - Demucs README: https://github.com/facebookresearch/demucs — Meta版はarchive済みで、作者は非保守・forkも重要修正のみと明記。
@@ -140,5 +155,9 @@ Curtis Mayfieldの決定的に選んだ20 Previewで、10秒窓3個を比較し�
 - `stem_window_audit.py` — 分離stemの窓監査
 - `separation-fixture-results.json` — fixture結果
 - `stem-window-results.json` — 2曲のstem結果
+- `prepare_blind20.py` / `blind20-manifest.json` — 盲検標本の固定と由来
+- `blind20_audit.py` / `blind20-results-blinded.json` — 復号前解析
+- `blind20-title-map.json` / `decode_blind20.py` / `blind20-results-decoded.json` — 事後復号
+- `blind20-audit-20260902.md` — 結果、限界、次の検証
 
 音源本体、Preview、モデル、仮想環境、分離WAVはGitへ保存しない。
