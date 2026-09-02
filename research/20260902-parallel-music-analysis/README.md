@@ -374,3 +374,42 @@ ABSENT
 3. release後に因果エネルギーが有限時間でゼロになることを検査する。
 4. 一つのnodeだけCUT / REVEALしても他voiceのpocketが保持されるか調べる。
 5. `BROKEN -> REBUILT` が自動undoなしで成立する入力列と、失敗する入力列を両方残す。
+
+
+## 12. 2026-09-02追加 — 接触因果場 simulation-v0
+
+### 保存物
+
+- `simulation-v0/contact-causal-field.mjs` — 現行 `sound-lab.contact-gesture/v0.1` を受理し、claim、node、edge、audio event、floor状態を生成する決定的シミュレーター。
+- `simulation-v0/fixtures.mjs` — 1、3、5接触、release後の減衰、CUT後のREVEALを含む疑似入力列。
+- `simulation-v0/contact-causal-field.test.mjs` — Node.js標準test runnerによる構造テスト。
+- `simulation-v0/README.md` — 目的、実行方法、schema不足、演奏責任の境界。
+
+### 実行した検証
+
+```text
+node --test research/20260902-parallel-music-analysis/simulation-v0/contact-causal-field.test.mjs
+tests 6
+pass 6
+fail 0
+```
+
+確認できた範囲:
+
+1. 1、3、5接触は同じ規則で受理され、edge数は `n(n-1)/2` でなく `n-1` に留まる。
+2. 同じ入力列は同じstateとaudio event列を返す。
+3. release後は新しい演奏eventを自走生成せず、有限減衰後は `decay-stop` だけを発行して無音になる。
+4. CUT後の再接触は同じnodeをREVEALし、`broken -> rebuilt` へ移る。
+5. pressure取得不能時の架空pressureとtimestamp逆行を拒否する。
+
+### 実装中に判明した不足
+
+現行schemaには `targetKind: node | edge | empty` と `targetId` がない。このためv0ではnodeのhitを座標から一度だけ決定できるが、edgeを直接claimする入力は表現できない。
+
+これはUIの見た目の問題ではなく、Hunter型の声部関係を保持したままMills型に位相をずらす操作を、同じevent列で音響と描画へ渡すための不足である。描画側と音響側が別々にhit testすると、同じ指が別の対象へ作用する破綻が起こる。
+
+ただし、この研究では既存bridge schemaを変更していない。次段階はadapter出力へ一度だけ解決したtargetを付加する候補の比較であり、製品採用ではない。
+
+### 証拠境界
+
+この検証はNode.js上の決定的イベントシミュレーションである。音源、DSP、聴感、描画、iPhone実機の同時接触、遮蔽、cancel、遅延、発熱は未検証。5接触をデータとして受理できたことは、iPhoneで5本指演奏が実用的である証明ではない。
