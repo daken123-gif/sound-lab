@@ -821,3 +821,210 @@ Sound Labでは、指揮する人が全音を事前所有する構造にも、�
 - 初心者に必要な `hard_constraints` と自由を奪う過剰制約の境界
 - `TRANSLATION_DISTANCE` を音高差だけでなくリズム、音色、密度、沈黙で測れるか
 - 複数参加者の `EVENT_PROVENANCE` を演奏中に負担なく表示できるか
+
+
+## 16. 2026-09-03追補 — 音ではなく「応答の空席」を保存する
+
+### 追加資料
+
+1. [Issue Magazine: Anderson .Paak interview by Talib Kweli](https://www.issuemagazine.com/anderson-paak/)  
+   .Paak本人が、声をビート内の「もう一つの楽器」として捉えること、Hi-TekやKnxwledgeのように余白を使うプロデューサーを好むことを説明している。
+2. [Pitchfork: The 100 Best Songs of 2016 — “Come Down”](https://pitchfork.com/features/lists-and-guides/9981-the-100-best-songs-of-2016/?page=6)  
+   固定ビートの空間を、想像上の群衆と複数の人格で満たす構造として“Come Down”を記述している。
+3. [NPR Illinois: “Come Down” live at SXSW 2016](https://www.nprillinois.org/the-x/2016-03-19/anderson-paak-the-free-nationals-come-down-live-at-sxsw-2016)  
+   .Paakが客席前へ入り、複数の声によるチャントが実際のライブ空間を形成する記録。
+4. [Complex: “Come Down” video premiere](https://www.complex.com/music/a/edwin-ortiz/anderson-paak-come-down-video-premiere)  
+   .Paakが演奏者だけでなく複数の登場人物を演じ、Ernie Barnes《Sugar Shack》の群衆空間を映像として展開したことを記録している。
+5. [NME: Anderson .Paak live in Birmingham](https://www.nme.com/reviews/anderson-paak-leaves-it-all-on-the-stage-as-he-delivers-a-high-energy-masterclass-in-birmingham-2541008)  
+   会場の左・右・中央を別々の応答群として指揮する公演記録。
+
+### 証拠から確認できる範囲
+
+- .Paakは歌詞をビートから独立した情報層として置くのではなく、音色、旋律、cadenceを含む一つの楽器としてビートへ参加させる。
+- .Paakは、情報を詰め込むトラックより、声が入る余白を残す制作を明確に評価している。
+- Pitchforkの批評では、“Come Down”の声は単一の語り手に閉じず、主人公、煽る群衆、複数の人格が同じ空間にいるように配置される。
+- SXSWやBirminghamの公演では、録音上の群衆的役割を、実際の観客の声や身体運動が占める。
+- 公式映像では、.Paak一人が複数の人物を演じることで、一人の声／身体と一つの社会的役割を固定しない。
+
+ただし、スタジオ版の個別stem、全ヴォーカル・テイク、各声の演唱者は未取得である。「録音内のすべての群衆声を.Paak一人が多重録音した」とは断定しない。
+
+### スタジオ版が保存したもの
+
+スタジオ版には実在のライブ観客はいない。それでも、呼ぶ側、拒む側、煽る側、返す側の位置関係が聞こえる。
+
+ここで保存されているのは応答音声だけではない。次の声または身体が入りうる**役割の空席**である。
+
+```text
+ROLE_SLOT = {
+  requested_role,
+  opened_at,
+  response_window,
+  expected_energy,
+  relation_to_pulse,
+  current_occupant,
+  vacancy_tension
+}
+```
+
+- `requested_role`: 呼応、否定、煽り、合唱、句読点など
+- `response_window`: いつ入れるか
+- `relation_to_pulse`: One、裏拍、語尾、ブレイク後などの関係
+- `current_occupant`: 録音声、演奏者、観客、無人
+- `vacancy_tension`: 埋まらない状態が作る緊張
+
+`current_occupant = NONE` でもslotは消えない。空白そのものが次の行為を要求する。
+
+### スタジオからライブへの置換
+
+```text
+STUDIO:
+  fixed beat
+  + recorded protagonist
+  + recorded / imagined response roles
+
+LIVE:
+  live or delegated beat
+  + current protagonist
+  + band / audience response roles
+```
+
+重要なのは、ライブでスタジオ音源を忠実再生することではない。録音で作られた役割関係を保持しつつ、その占有者を現在の身体へ交換できることにある。
+
+```text
+ROLE_CONTINUITY != AUDIO_CONTINUITY
+```
+
+- 音声が変わっても役割関係が続けば、曲の社会的骨格は保たれる
+- 同じ音声を再生しても、誰も応答を引き受けていなければ、現在の出来事にはならない
+
+### 一人と複数人を対立させない
+
+“Come Down”には二方向の変換がある。
+
+1. 一人の身体が複数の役割へ分かれる  
+   .Paakが歌、ラップ、掛け声、人物演技を切り替える。
+2. 一つの役割を複数の身体が共有する  
+   群衆が同じチャントや運動を引き受ける。
+
+したがって、楽器の「一人用」と「複数人用」を別モードへ分断する必要はない。
+
+```text
+ONE_BODY -> MANY_ROLES
+MANY_BODIES -> ONE_ROLE
+```
+
+同じ `ROLE_SLOT` に対して、占有者の数と同一性だけを変えられる構造が必要になる。
+
+### Sound Labへの更新仮説（未採用）
+
+#### 1. ループではなくrole memoryを残す
+
+```text
+ROLE_MEMORY = {
+  role_type,
+  phase_relation,
+  response_duration,
+  last_energy,
+  previous_occupants,
+  unresolved_call
+}
+```
+
+保存対象から完成音声を必須にしない。前周期で「どこに、どの種類の応答が求められたか」を残し、次周期の音は現在入力から作る。
+
+#### 2. 空席を知覚できるようにする
+
+画面へ「RESPONSEを入力してください」と説明文を出すのではなく、音と触覚で入口を示す。
+
+候補:
+
+- 呼びかけ後に特定帯域だけを空ける
+- 次の着地点へ向かう弱い触覚パルスを残す
+- 入力可能な領域が呼吸するように拡縮する
+- 応答期限をカウント表示せず、音の減衰で感じさせる
+- 誰も入らなければ空白を閉じず、緊張として次周期へ持ち越す
+
+これはアフォーダンス候補であり、実機で直感的に理解されるかは未検証。
+
+#### 3. 指を音色ではなく役割占有へ使う
+
+```text
+touch.begin  -> occupy(role_slot)
+touch.move   -> shape(role_energy)
+touch.split  -> divide_one_role_across_bodies
+touch.join   -> merge_roles_into_chorus
+touch.end    -> vacate_without_deleting_role
+```
+
+離指時に録音音声を永久再生しない。同時に、離指した瞬間に役割関係まで削除しない。
+
+#### 4. 仮想応答を実在の応答へ差し替える
+
+一人演奏時にシステムが最小応答を担うことは許容する。ただし、別人の接触、マイク入力、明示的な第二ジェスチャーが入った時点で、仮想応答は前景を譲る。
+
+```text
+if human_response_detected:
+    virtual_response -> SKELETON | SILENCE
+    human_response   -> FOREGROUND
+```
+
+人間の応答へシステム音を重ねて「盛った結果」を成功扱いしない。参加者の強度が小さくても、その差を保持する。
+
+#### 5. 不在を自動修復しない
+
+応答slotが埋まらない場合も有効な演奏結果とする。
+
+```text
+VACANCY_OUTCOME =
+  SUSPEND
+  | CARRY_TENSION
+  | REDIRECT_CALL
+  | CLOSE_WITHOUT_RESPONSE
+```
+
+自動フィル、歓声音源、生成ヴォーカルで穴を隠すと、呼びかけと応答の関係が偽装される。
+
+### 最小プロトタイプ試験
+
+#### 試験A — 一人で複数役割
+
+- 一本目の接触で時間骨格を保持する
+- 二本目で応答slotを開く
+- 三本目または声で別役を占有する
+- 同じ音色を使っても役割交代が知覚できるか確認する
+
+#### 試験B — 二人で一役
+
+- 一人目がcallを開く
+- 二人目が同じ画面の別接触でresponseへ入る
+- システムが二人目の音を完成ループへ吸収しないことを確認する
+
+#### 試験C — 応答なし
+
+- call後に誰も触らない
+- 自動応答を出さない
+- 空白が故障ではなく演奏上の未解決として知覚されるか確認する
+
+#### 試験D — 仮想から実在へ
+
+- 仮想応答が最小骨格を担う
+- 実際の声または第二演奏者が入る
+- 位相を壊さず仮想層が退き、人間の差異が前景化するか確認する
+
+### 更新後の中心命題
+
+“Come Down”が強いのは、一つのループの上へ声をたくさん重ねたからではない。
+
+**固定ビートの余白に、異なる主体が入れる役割を作り、スタジオでは声の人格が、ライブではバンドと観客が、その空席を現在形で占有できるからである。**
+
+Sound Labで保存すべきものも、前回鳴った応答そのものだけではない。次の誰かが別の仕方で入れる、時間上の空席である。
+
+### 追加した未検証事項
+
+- スタジオ版のヴォーカルstemと各演唱者
+- 主人公声、群衆声、掛け声の正確な定位・音量・処理
+- スタジオ版のrole slotとSXSW／Tiny Desk版の観客応答位置の対応
+- 空席を説明文なしに触覚と音だけで理解できるか
+- 無応答を初心者が故障と誤認する率
+- 一台のiPhoneへ二人が触れる際の画面遮蔽と所有競合
+- role memoryを保持しながら音声履歴を捨てる場合の曲同一性
