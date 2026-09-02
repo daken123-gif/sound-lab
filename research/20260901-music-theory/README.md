@@ -139,7 +139,7 @@ SoundQuest本文の全文複製は行わない。
 
 - `research/20260901-music-theory/benchmark/`
 
-S01〜S12の合成反証音源生成器を実装した。S01〜S04では複数周期、位相、レイヤー周期、tempo curveとmicrotimingを検証し、S05〜S08では符号つきtiming形状、特徴別境界、pulse-anchor役割交替、直接音と減衰tailの分離を検証した。
+S01〜S12の合成反証音源生成器と第一輪のaudio-only基準線を実装した。S01〜S04では複数周期、位相、レイヤー周期、tempo curveとmicrotiming、S05〜S08では符号つきtiming形状、特徴別境界、pulse-anchor役割交替、直接音と減衰tail、S09〜S12では空間周期、dynamics変形を伴う反復、cycle伸縮、低域音源重畳を検証した。
 
 実装・テスト・結果資料は`research/20260901-music-theory`ブランチでGit管理する。生成WAVと生成JSONは再生成物として除外する。
 

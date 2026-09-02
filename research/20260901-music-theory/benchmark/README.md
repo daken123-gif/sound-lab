@@ -87,6 +87,20 @@ S05では符号つきmicrotiming形状と偏差量を分離し、groove品質を
 
 実測値、読戻しで除去した誤判定、一般化上の限界は[contextual-results.md](contextual-results.md)に記録した。
 
+## 拡張関係証拠
+
+```bash
+.venv-librosa/bin/python extended_evidence_analyzer.py \
+  generated/s09.wav generated/s10.wav generated/s11.wav generated/s12.wav \
+  --output generated/extended-s09-s12.json
+
+.venv-librosa/bin/python -m unittest -v test_extended_evidence_analyzer.py
+```
+
+S09ではmono onset周期とstereo空間周期を分ける。S10ではonset topologyの同一性とcycleごとのdynamics変形を併存させる。S11では伸縮するcycle-local period列を中央値で置換しない。S12では混合音中のresonance候補を観測するが、kick／bassというsource identityは付与しない。
+
+実測値と一般化上の限界は[extended-results.md](extended-results.md)に記録した。
+
 ## ケース
 
 | ID | 反証対象 |
