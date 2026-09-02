@@ -750,3 +750,44 @@ t_event
 
 `data/cross-research-timing-model-v1.json` に、取得ref、blob SHA、各研究の役割、状態、操作、禁止する短絡を保存した。これは `candidate_not_integrated` であり、製品仕様ではない。
 
+
+
+## 2026-09-02追補 — 合成イベントによる反証可能性の固定
+
+フル尺音源が未取得の状態で実測値を捏造せず、時間場モデルの論理差だけを検査する決定的シミュレータを追加した。
+
+- `tools/simulate_time_field.py`
+- `tests/test_simulate_time_field.py`
+- `data/synthetic-time-field-v1.json`
+
+この合成fixtureはJ Dillaの音源、MIDI、打点測定を含まない。数値は作家様式のプリセットではなく、競合する処理を区別するための反例である。
+
+### 検査した差
+
+| 条件 | 合成結果 | 現在の意味 |
+| --- | --- | --- |
+| `global_swing` | 同じ細分位置ではkick、snare、hatが同一時刻になる | 一つのswing量だけでは声部固有関係を表現できない |
+| `structured_relation` | 同じ細分位置でも三声の時刻が分かれる | 声部と周期内位置に依存する関係を表現できる |
+| `release_to_floor` | snare介入だけを0へ戻し、kickとhatを保持する | 離指を全状態resetから分離できる |
+| `recover_from_current_state` | 現在1.37秒から次の着地点1.60秒へ進む | loop originへ巻き戻さない回復を定義できる |
+
+実行した6件の単体試験はすべて成功した。
+
+1. 一括swingが声部間で同一になる
+2. 構造化関係が声部間で異なる
+3. `release_to_floor`が選択声部だけを変更する
+4. 回復時刻が現在より前へ戻らない
+5. fixture生成が決定的でJSON化できる
+6. 保存fixtureがgenerator出力と一致する
+
+### 証拠境界
+
+この試験が支持するのは、`one global swing amount`、全状態reset、loop頭巻戻しとは異なる演算を実装可能であることだけである。以下は未証明のまま維持する。
+
+- 合成offsetがJ Dillaの録音を再現する
+- 合成offsetが実音源から測定された
+- 聴取者が構造化関係と一括swingを区別できる
+- Field Looperの操作として演奏可能である
+- 製品コードへ統合すべきである
+
+次の実証は、権利と版を固定した音源によるonset測定、またはこのfixtureから作る匿名化クリック／無著作権音によるブラインド聴取比較である。
