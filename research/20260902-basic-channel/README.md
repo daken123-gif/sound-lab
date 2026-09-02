@@ -233,3 +233,127 @@ y(t)   = C(theta(t)) x(t) + D(theta(t)) u(t)
 ## 12. 次の研究工程
 
 次は音源を取得したときに、まず `Quadrant Dub I/II`、`Presence`、`Radiance I-III`の三群を同じ方法で解析する。曲名を見た印象で説明を作らず、反復窓の一致度、残響残差、帯域別変動、変化点を先に出す。その後でMoritz本人の「horizontal」「patterns constantly changing」という説明と照合する。
+
+
+## 13. 継続研究: 音源到達性と概念の発生順序
+
+### 13.1 音源到達性の実測
+
+2026-09-02に、対象曲を実際に信号解析へ渡せるか確認した。
+
+| 経路 | 観測した状態 | 信号解析への使用 |
+|---|---|---|
+| Basic Channel公式SoundCloud | `Quadrant Dub I`、`Radiance I`、`Presence`等の公式トラックページと公開名義を確認 | ブラウザ内の音声transcodingを取得できず、未実施 |
+| Apple Music | `Quadrant Dub I`のPreviewボタンから約90秒の音声再生を確認 | 音声ファイル取得がブラウザ安全制約で拒否され、未実施 |
+| Spotify | Basic Channel、`BCD`、`BCD-2`、複数の収録曲と再生可能状態を確認 | 検索結果に解析用preview URLがなく、未実施 |
+
+参照:
+
+- https://soundcloud.com/basicchannelofficial/quadrant-dub-i
+- https://soundcloud.com/basicchannelofficial/radiance-i
+- https://soundcloud.com/basicchannelofficial
+- https://music.apple.com/us/song/quadrant-dub-i/276360114
+- https://open.spotify.com/album/3QiuQrKMLpt7MDgjUDvv8d
+- https://open.spotify.com/album/6QKaXJQss3zBjQYyYQHoMv
+
+ここで確認できたのは「正規の公開再生面が存在すること」と「ブラウザ内でPreviewが再生されたこと」までである。音声バイトを取得して解析器へ入力した状態ではない。BPM、キー、残響、スペクトル、反復性の実測値は追加しない。
+
+### 13.2 「dub techno」という完成概念から逆算しない
+
+Moritz von Oswaldへのインタビューでは、次の順序が説明されている。
+
+1. 先に音楽を作る
+2. その音が作品のconceptを決める
+3. その後でartwork、label、公開方法を決める
+4. Basic Channelは「dub technoを作る」という企画から始まったものではない
+
+同じインタビューで、minimal technoは冷たいという聞き手の規定をMoritzは否定し、warm、emotional、deepとしている。また、長尺作品はクラブで聴く環境が重要だと述べている。
+
+参照:
+
+- Andrew Parks, “A QUICK TALK WITH … Moritz Von Oswald”
+  https://www.self-titledmag.com/a-quick-talk-with-moritz-von-oswald-about-getting-deep-with-dubstep-the-richness-of-the-next-moritz-von-oswald-trio-record-and-why-minimal-techno-isnt-as-cold-as-you-think/
+
+証拠上の注意: 取得時点の同ページには本文と無関係な不正・スパム的リンク列が混入していた。インタビュー本文は検索結果とページ本文で一致したが、サイト全体の現在の完全性は保証できない。このため、この資料単独で新しい歴史的断定を作らず、Moritz本人のRBMA講演および公式カタログと整合する範囲で使う。
+
+### 13.3 三層モデルへの更新
+
+前節の状態空間モデルだけでは、再生媒体と部屋を外部条件へ追い出しすぎていた。Basic Channel研究では次を分ける。
+
+```text
+u(t)      : 少数の励起素材
+x(t)      : delay / reverb / filter内の履歴
+theta(t)  : 手動ミックスと演奏操作
+M         : vinyl、デジタル、スピーカー等の媒体条件
+E         : club、部屋、ヘッドホン等の聴取環境
+
+y_mix(t)  = StateNetwork(u, x, theta)
+y_heard(t)= Environment(E, Medium(M, y_mix))
+```
+
+重要なのは、`M`と`E`を音色プリセットとして偽装しないことである。クラブ感をreverbで足すのではなく、低域の再生可能性、残響のマスキング、モノ／ステレオ、内蔵スピーカーとヘッドホンの差を実測条件として扱う。
+
+### 13.4 Dubplates & Masteringを音色神話へ使わない
+
+Robert Henkeは、Basic Channelが1995年にDubplates & Masteringを設立し、自身が1996〜1998年にmastering engineer／vinyl cutterとして働いたと記している。Rashad Beckerとの対話では、masteringを媒体や部屋など特定目的へ作品を仕上げる工程として説明し、周波数・振幅・位相、mid/side、EQ、compression、distortion、vinylの物理条件を論じている。
+
+参照:
+
+- Robert Henke / Rashad Becker, “Mastering”
+  https://roberthenke.com/interviews/mastering.html
+
+ただしこの対話は2008年のRashad Beckerの実務についての資料であり、1993〜1994年のBasic Channel各盤の実際のsignal chainを証明しない。「Basic Channelの音はtube compressorで作られた」などの機材断定には使わない。
+
+ここから採るのは、作品、mastering、媒体、再生環境を一つに潰さず、それぞれを比較する必要があるという方法だけである。
+
+### 13.5 製品設計への新しい接続
+
+#### 音からUIを決める
+
+先に「dub画面」「宇宙的な見た目」「霧状のvisual」を作り、そこへ音を従わせない。
+
+1. 履歴依存feedback networkを実装する
+2. 指で操作して、身体的に区別できる状態を採取する
+3. その状態差を最小の表示へ写す
+4. 操作を説明する名前ではなく、挙動から名前を決める
+
+これは名称研究・affordance研究との接続候補だが、当該研究本文をこのブランチではまだ取得していないため、統合判断にはしない。
+
+#### 長尺を「長いループ」にしない
+
+長尺の必要性を、同じ素材を長く回す免罪符にしない。長い時間でだけ知覚できる状態変化を設計する。
+
+- 数秒: touchと音の因果が分かる
+- 数十秒: feedback履歴が別のリズムを作る
+- 数分: 同じ素材の役割が前景／背景間を移る
+- 演奏全体: scene切替なしでも不可逆な履歴が残る
+
+#### 環境を演奏条件へ戻す
+
+最低でも次の三条件を別々に試す。
+
+- ヘッドホン
+- iPhone内蔵スピーカー
+- マイク入力を開いたスピーカー再生
+
+同じparameter mappingを共用しても、feedback上限、low-end補償、state表示を同じにしない。環境差を自動で「補正して消す」だけでなく、演奏者がその差を利用できる余地を残す。
+
+### 13.6 更新された中核判断
+
+Basic Channelから採る対象は「ダブ・テクノの音」ではない。
+
+- studioをinstrumentとして扱う
+- 手動mixを再現不能なperformanceとして残す
+- 少数要素の関係を長時間変化させる
+- 媒体と聴取環境を作品の外へ捨てない
+- 音がconceptとsurfaceを決める順序を守る
+
+したがって製品側の問いは、「どうすればBasic Channel風に聞こえるか」ではなく、**固定された少数素材から、演奏者の履歴と環境によって同じ状態へ戻れない楽器をどう作るか**へ更新する。
+
+### 13.7 次の未完了工程
+
+- 正規に解析可能な音源ファイルまたは明示的に利用可能なpreview fileの取得
+- `Quadrant Dub I`の90秒previewが曲中のどの区間かの同定
+- original 12-inch、`BCD` edit、デジタル再発の版差固定
+- 既存`research/music-analysis/`へ渡すmanifest作成
+- 名称研究／affordance研究の本文取得後、sound-firstの順序と照合
