@@ -481,3 +481,99 @@ J Dilla研究では、Δtを単一グリッドに対する値へ固定せず、�
 
 これらを、既存music-analysisのonset / phase計測と、4曲の変形聴取へ同時に記録する。
 
+## 20. 再現可能なプレビュー周期解析
+
+研究ディレクトリ内に、30秒WAVから粗い周期候補を求める最小実装を追加した。
+
+- `tools/analyze_preview_periodicity.py`
+- `tests/test_analyze_preview_periodicity.py`
+- `data/preview-periodicity-v1.json`
+
+処理は次の順序で固定した。
+
+1. PCM WAVをmonoの浮動小数点波形へ正規化
+2. STFT（frame 2048、hop 256）
+3. log magnitudeの正方向spectral flux
+4. unbiased autocorrelation
+5. 70–130 BPM範囲の局所ピーク
+6. parabolic interpolationによるサブフレーム周期候補
+7. 入力WAVのSHA-256、長さ、サンプルレート、方法パラメータをJSONへ保存
+
+合成96 BPMクリック列に対する単体試験は成功した。9本のプレビューWAVを再解析し、保存済みJSONとのbyte単位比較も一致した。これは実装の再実行可能性だけを示し、音楽的正解やマイクロタイミング妥当性を証明しない。
+
+### v1の第一候補
+
+| ファイル | BPM候補 | autocorrelation score |
+| --- | ---: | ---: |
+| conant_album_preview.wav | 94.040944 | 0.625253 |
+| conant_instrumental_preview.wav | 94.006832 | 0.717590 |
+| climax_album_preview.wav | 95.336879 | 0.279008 |
+| climax_instrumental_preview.wav | 95.414627 | 0.303532 |
+| raise_album_preview.wav | 95.012745 | 0.411676 |
+| raise_it_up_instrumental_preview.wav | 94.880350 | 0.751613 |
+| hold_tight_album_preview.wav | 96.871095 | 0.288505 |
+| hold_tight_instrumental_preview.wav | 97.064079 | 0.706373 |
+| hold_tight_vinyl_instrumental_preview.wav | 102.211309 | 0.663320 |
+
+初期READMEの丸め値との差は、方法パラメータとピーク補間を固定していなかったために生じた。以後、再現値としては `preview-periodicity-v1.json` を使う。ただし、短いAAC由来WAVという証拠限界は変わらない。
+
+この追加により、Section 9の「現段階では実装パスなし」は失効した。製品コードは依然として変更していない。
+
+## 21. 他研究から取得した差分
+
+以下は各研究ブランチのREADME本文を取得して比較した結果であり、`main`へ統合済みという意味ではない。
+
+### 楽理研究との接続
+
+楽理研究は演奏イベントを `E = (t, Δt, p, c, a, r, μ)` と置き、反復時の変化規則 `μ` まで演奏対象にする。J Dilla研究はこのうち `Δt` を単一グリッドからの誤差にせず、`clock_candidate` と声部間差へ分解する。
+
+したがって接続後の候補は次になる。
+
+```text
+E_dilla = (
+  onset_time,
+  clock_candidate,
+  offset_from_clock,
+  source_role,
+  relation_deltas,
+  attack,
+  repeat_transform
+)
+```
+
+### James Brown研究との差
+
+James Brown研究では、共通拍を共有したまま各声が小節内部の発音位置、休符、アクセントを分担する。別々の周期を持つという一般化は同研究内ですでに失効している。
+
+Dilla研究でも「複数時計」を即座にポリメーターとみなさない。比較単位は次のように分ける。
+
+- JB: 共通拍の内部で、声部がOneから離れ、別経路で戻る
+- Dilla: 安定層を残し、別声部の分割、位相、attack、長周期を競合させる可能性
+- 共通点: 固定swingやランダムhumanizeではなく、声部間関係を保存する
+
+### Anderson .Paak研究との差
+
+Anderson .Paak研究は「一定」と「同一」を分け、身体がパルスを維持しながら前景と局所変化を現在形で生成すると記述する。
+
+Dilla研究との接続では、完成音声を再生するのでなく次を演奏状態として保持する。
+
+- 基準層を保持する接触
+- 別層の先行／遅延または細分を動かす接触
+- 層間couplingを変える接触
+- 指を離したとき、その層だけ基準へ戻す規則
+
+ここで重要なのは、Dillaの録音結果を固定テンプレート化することではない。.Paak研究の身体的維持と接続し、時間関係そのものを演奏者が現在形で作り続けることにある。
+
+## 22. 次の実証境界
+
+プレビュー周期解析の次に必要なのは、より高性能なBPM推定器ではない。
+
+1. フル尺・同一マスターを固定する
+2. 原mixと分離補助から声部候補を付ける
+3. 原mixでonsetを再確認する
+4. attack envelopeとonset timeを分離する
+5. 声部間差 `Δkick-snare`、`Δbass-kick`、`Δhat-grid` を小節位置ごとに保存する
+6. 量子化、符号反転、声部間交換、ランダムhumanizeの変形版を比較する
+
+フル尺音源がない現状態では、この境界を越えた数値を作らない。
+
