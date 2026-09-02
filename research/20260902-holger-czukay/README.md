@@ -214,3 +214,152 @@ CAN脱退後の中心的ソロ作品。`Persian Love` では、ラジオから�
 - David Sylvian / Holger Czukay release documentation.  
   https://www.davidsylvian.net/releases/albums/plight-a-premonition/
 
+
+
+## 2026-09-02追補 — 並行研究との交差とチューカイ固有性
+
+### 取得状態の更新
+
+旧節「依存する研究」の末尾にある「これらの研究本文は本研究では未取得」という記述は、この追補で一部失効した。今回、Git上の次の研究正本を取得し、主張単位で照合した。
+
+- Charlie Hunter: `research/20260902-charlie-hunter/README.md`
+- Jeff Mills: `research/20260902-jeff-mills/README.md`
+- Autechre: `research/20260831-autechre/README.md`
+- Aphex Twin: `research/20260902-aphex-twin/README.md`
+- Dub演奏文法: `research/20260831-dub-performance-grammar/README.md`
+- Conny Plank: `research/20260831-conny-plank/README.md`
+
+Jah Wobbleについては、今回確認したGit範囲に独立した研究正本を同定できていない。`Full Circle`等における低音の具体的分析は、Dub一般論から補完せず未検証のまま残す。
+
+### 交差比較 — 何が音楽の連続性を担うか
+
+| 研究対象 | 主な連続性の担い手 | 現在形で変えるもの | チューカイへ回収しない差 |
+| --- | --- | --- | --- |
+| Charlie Hunter | 一つの身体と共有ポケット | 音価、ミュート、低音／上声の局所差 | 指のチーム制約は、録音物・外部入力の時間差と同一ではない |
+| Jeff Mills | 床の連続性と演奏者の回復判断 | entry、exit、位相、密度、素材交換 | Millsは床を守りながら介入するが、チューカイは床そのものを別時間へ置換しうる |
+| Autechre | relation、toolset、可動域、condition | 状態遷移と公演ごとのtrajectory | 条件分岐による遷移は、ラジオを待ち編集点を選ぶ人間判断の代替にならない |
+| Aphex Twin | 曲ごとに選ばれた保持層 | 句内部の音価、休止、調律、編集 | 「手編集の人」という固定分類や、全層ランダム化へ短絡しない |
+| Dub | rhythm／dryの骨格と共有return | CUT、THROW、REVEAL、VACUUM、TAIL CHOKE | shared tailは部屋そのものではなく、Dub固有の帰還時間である |
+| Conny Plank | performed signal pathと奏者への返送 | 位相、空間、変換音への応答 | 奏者を取り巻く制作環境と、異時点の録音物を共演者化する編集は分ける |
+| Holger Czukay | **共通の部屋と、何を現在へ残すかを選ぶ編集責任** | 過去の露出、切断、変速、逆転、欠落、外部入力への応答 | 連続性を固定ループ、床、身体、tail、生成規則のどれか一つへ委譲しない |
+
+この比較でチューカイの固有性は明確になった。異なる時刻・場所・媒体の素材を接続しても、同じ部屋へ再投入することで空間の連続性を残す。一方、時間の連続性は意図的に壊し、その切断点を演奏者が引き受ける。
+
+したがって、チューカイ型Field Looperの不変核を一つ挙げるなら、閉じた音声区間ではなく次の組である。
+
+```text
+CONTINUITY = shared_room + human_editorial_responsibility
+```
+
+`shared_room`だけでは常時リヴァーブになり、`human_editorial_responsibility`だけではクリップ編集画面になる。両者が同時に働き、異質な時間を同じ現在の出来事として成立させる必要がある。
+
+### 各研究から得た接続と境界
+
+#### Dubとの接続 — holeとreturnを同一視しない
+
+Dub研究は、原音の存在、時間系への投擲、tailの帰還、tailの停止を別操作にする。これはチューカイの`holes`と強く接続する。しかし、チューカイのholeはDubのCUTだけではない。逆転、急な速度変化、ドラムの消失、別時間の侵入によって、残った素材の意味を変える。
+
+よって候補操作を次のように分ける。
+
+- `SOURCE CUT`: 現在の原音を抜く。
+- `TIME HOLE`: 過去の連続部分を抜き、別時点へ接合する。
+- `SPECTRAL HOLE`: 一部帯域だけを失わせる。
+- `TAIL CHOKE`: 共有帰還だけを終わらせる。
+
+一つのmuteボタンへ畳むと、Dubとチューカイ双方の差が消える。
+
+#### Jeff Millsとの接続 — floor保護とground置換を分ける
+
+Mills研究の`entry / stay / exit`、手動再同期、事故からの回復は、チューカイの過去露出と短い判断窓へ接続できる。ただしMills型の介入は多くの場合、床を失わず別素材へ移る責任を持つ。チューカイ型では、ラジオ、逆転、編集接合によって床の所在自体を交換できる。
+
+したがって将来の試験では、次の二状態を混ぜない。
+
+- `FLOOR_AND_BREAK`: 床を保持し、その上の関係を破断・回復する。
+- `GROUND_REPLACEMENT`: 共有時間の基準そのものを過去または外部入力へ渡す。
+
+後者を常用すると方向感覚を失うため、移行と帰還が演奏として知覚できる条件を測る。
+
+#### Charlie Hunterとの接続 — 指数ではなく一つの判断束
+
+Hunter研究により、複数指を対等な独立声部へ直結する案は弱くなった。指は役割の異なるチームとして、一つの身体時間へ拘束される。チューカイ型でも、一本目が過去、二本目が変速、三本目がholeという固定的な加算より、同時接触全体を一つの編集身振りとして解釈する方が整合する可能性がある。
+
+このため旧節Dの「三本目の接触でhole」は仕様候補として失効させる。`HOLE`という意味操作は保持するが、必要指本数、接触順序、領域、長押し等の入力文法は実機試験まで未決定とする。
+
+#### Autechreとの接続 — bounded freedomは使うが、選択を自動化しない
+
+Autechre研究は、自由度を無制限な状態空間ではなく、強く介入しても次へ進める`designed failure bounds`として捉える。また反復の正本をevent列ではなく、relation、state transition、performance trajectoryへ置く。
+
+これは過去読取り位置、速度、逆転、room feedbackの可動域設計に使える。ただし`magic points`を自動検出された正解へ変えてはいけない。システムは音色・密度・方向変化から接合候補を示せても、採用、棄却、滞在、焼込みは演奏者が決める。
+
+候補生成と決定権を分ける。
+
+```text
+system: propose / constrain / protect
+human: select / expose / cut / commit
+```
+
+#### Aphex Twinとの接続 — 保持層と変形層を毎回選ぶ
+
+Aphex Twin研究からは、一つの層を保持しながら別層の音価・休止・句内部へ介入する比較課題を持ち込める。これはチューカイの「部屋だけが一定」と似るが、作家全体を手編集対生成の二分法へ固定しない。
+
+チューカイ試験では、各gesture前に何を保持するかを明示する。
+
+- roomを保持して素材時間を変える。
+- 低域またはpulseを保持して外部入力を入れる。
+- tailを保持してdryを抜く。
+- 現在音を保持して過去だけを変速する。
+
+全層を同時に変形するrandomizeは非採用候補のままとする。
+
+#### Conny Plankとの接続 — 同じstudio思想でも役割が違う
+
+Plank研究の`performed signal path`、手動位相差、変換音を奏者へ返して次の入力を生む循環は、チューカイのroom再録音と接続する。共通するのはeffectを後装飾ではなく、次の演奏条件にする点である。
+
+差は、Plankが主に奏者と録音環境の関係を設計するのに対し、チューカイは録音済みの過去、放送、環境音そのものを現在の共演者へ変える点にある。Conny PlankをCANの主要録音エンジニアとして混同しない既存境界も維持する。
+
+### 修正された最小演奏モデル（未採用）
+
+最初の試験単位を、四本の完成ループではなく一つの短い時間場とする。
+
+```text
+CURRENT input -------------------------------> shared room -> output
+      |                                             ^
+      +-> ephemeral history -> EXPOSE / WARP -------+
+external input -------------> ACCEPT / REJECT ------+
+selected moment ------------> HOLE / SPLICE / COMMIT
+```
+
+状態と権限:
+
+1. `CURRENT`: 現在音。止めずに過去を重ねられる。
+2. `HISTORY`: 端末内だけの揮発性リングバッファ。自動で作品保存しない。
+3. `EXTERNAL`: 内容を予測できない入力。自動採用せず、演奏者が受け入れる。
+4. `ROOM`: 全素材が戻れる共有空間。常時master effectには固定しない。
+5. `COMMIT`: 選択した関係を次世代へ焼き込む明示操作。undo不能を強制しない。
+
+ここで常時バッファは録音開始権を奪わない。`HISTORY`への一時保持と、ファイル／takeとして残す`COMMIT`を分け、後者だけを明示操作にする。利用者自身にも見えない録音や、第三者を無断保存する設計にはしない。
+
+### 最小検証課題
+
+1. 同一素材をroom経由／非経由で切断し、接合後の同一性をブラインド比較する。
+2. `SOURCE CUT`、`TIME HOLE`、`TAIL CHOKE`を別操作として認識できるか測る。
+3. 過去露出中に現在音を失わず、指を離した復帰が拍量子化なしでも演奏として理解できるか試す。
+4. `FLOOR_AND_BREAK`と`GROUND_REPLACEMENT`を演奏者が意図して使い分けられるか記録する。
+5. 自動接合候補あり／なしで、発見速度だけでなく人間の選択責任が残るか比較する。
+6. iPhoneで二点以上の同時接触、画面遮蔽、OS gesture競合、AudioContext負荷を実測する。
+7. 原音、処理音、gesture event、buffer／room状態を同時記録し、結果だけから操作を推測しない。
+
+### 現在の更新結論
+
+チューカイから継承すべきものは、ヴィンテージ音色でも大量編集でもサンプラー機能でもない。**現在を流しながら、過去と外部世界を手で発見し、異質な時間を同じ部屋へ通し、どこで切って次世代へ残すかを演奏者が決め続ける構造**である。
+
+Dubの減算、Millsの回復、Hunterの身体拘束、Autechreの状態遷移、Aphex Twinの句内部介入、Plankの演奏される信号経路は、この構造の一部を照らす。しかし、どれか一つへチューカイを還元すると、時間そのものを録音・編集・共演者へ変える固有性が失われる。
+
+### 変更履歴追補
+
+- 並行研究6本を取得し、旧「未取得」記述を一部失効。
+- 連続性の担い手を比較し、チューカイ固有の核を`shared_room + human_editorial_responsibility`として仮説化。
+- 三本目の指をholeへ固定する案を失効させ、入力文法を未決定へ戻した。
+- 常時バッファを揮発性履歴、保存を明示的`COMMIT`として分離。
+- Dub shared tail、Mills floor、Autechre condition、Plank signal pathとの接続境界を記録。
+- 研究のみ更新。製品コード、統合判断、PR、mergeは変更していない。
