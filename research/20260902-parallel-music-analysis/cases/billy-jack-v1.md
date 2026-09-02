@@ -229,3 +229,44 @@ B02 “All Night Long”はfull triplet scoreがA/Bで0.808 / 0.845だったが�
 > Curtis Mayfield 100プレビューから決定論的に抽出したblind20内で、同一30秒プレビューの推定ドラムonset-spacingは、二つのMDX weightと三つの時間窓を通して、集中した非三連系という事前規則を唯一通過した。
 
 BODY / VOICE / HORIZON、総ループ非形成、物語圧力、低温のグルーヴは、これと接続可能な研究仮説だが、今回の監査値による確定結果ではない。
+
+## 11. イベント候補出力器 v1
+
+前節で欠けていたabsolute onset timeを捨てずに出力するため、次を追加した。
+
+- `tools/export_onset_events.py`
+- `tests/test_export_onset_events.py`
+
+出力器はPCM WAVの短時間RMS上昇からonset候補を取り出し、次を保存する。
+
+- source ID、入力ファイルSHA-256、sample rate、duration
+- onset候補のabsolute timeと正規化confidence
+- role未確定、分離由来未確定、原mix未確認という空欄
+- 呼出側がBPMとbeat originの両方を与えた場合だけbeat indexとoffset
+
+beat originがない場合は、最初のonsetを拍頭へ仮置きせず、clock-relative fieldを`null`にする。
+
+### 合成fixture試験
+
+ローカル実行:
+
+```text
+python3 -m unittest discover -s research/20260902-parallel-music-analysis/tests -v
+Ran 3 tests in 0.012s
+OK
+```
+
+確認したもの:
+
+1. 5つの合成clickから5つのabsolute onset timeを抽出できる。
+2. 120 BPM、beat origin 0秒を明示した場合、2.13秒のoff-grid clickを約+0.1325秒として保持する。
+3. beat originを与えない場合、offsetを生成しない。
+4. BPMだけを与える半指定をエラーにする。
+
+### 証拠境界
+
+- この試験は合成clickに対するruntime確認であり、Billy Jackのイベント抽出成功を示さない。
+- 現実音源でのkick / snare / hat分類、原mix再確認、bar / downbeatは未実装。
+- 短時間RMS上昇は候補生成であり、Essentiaの既存blind20判定を置き換えない。
+- 対応入力は現時点でPCM WAVの8、16、32-bit。24-bit PCMと圧縮音源は未対応。
+- Billy Jackまたは分離stemの実体をこの実行環境で取得していないため、B09イベントJSONは未生成。
