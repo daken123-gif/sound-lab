@@ -2,7 +2,7 @@
 
 - 状態: `active`
 - research-id: `20260831-dub-performance-grammar`
-- 更新日時: 2026-08-31
+- 更新日時: 2026-09-02
 - 研究対象: Jamaican dubの成立、コンソール演奏、反復の再構成、4トラック・マルチタッチ楽器への変換
 - 現在の問い: 固定ループを垂れ流さず、録音済み4トラックを毎瞬再作曲するために、Dubから何を操作文法として抽出できるか
 
@@ -411,72 +411,85 @@ quantizeを設ける場合も演奏者が明示選択し、録音開始やinput 
 
 この時間分析とiPhone実機検証が終わるまで、Dub層のUI、DSP、製品採用は確定しない。
 
-## 18. 2026-09-02更新: 原曲／Dub版コーパスの固定
+## 18. 2026-09-02訂正: Shazamプレビューによる実信号取得
 
-### 18.1 取得状態
+### 18.1 経路訂正
 
-Spotify検索から曲名、artist、収録album、duration、再生可能状態、track URIを取得した。ただし検索結果には`audio_preview_url`も音声fileも含まれなかった。
+直前の更新でSpotify検索をコーパス取得経路として採用したのは誤りだった。依頼されていた手順は、Shazam検索が返すApple Music catalogのpreviewを取得し、その実音を研究対象にする流れである。
 
-この取得結果が証明するのは、指定版がSpotify上に存在し再生可能と表示されていることまでである。音響内容を私が聴いた、波形を取得した、時間分析したことは証明しない。
+Spotify由来のURI、再生可能表示、尺は本研究の証拠から撤回する。以下はShazamの検索結果と曲取得結果から再確定した。Apple Musicの曲ページはcatalog項目の参照先であり、preview本体はShazamが返した`previews[].url`から取得した。
 
-したがって以下では、同じcompilationに収録された原曲とDub版を分析対象として固定する。事件時刻、mute位置、echo回数、filter軌跡はまだ記入しない。
+### 18.2 取得したプレビュー
 
-### 18.2 Corpus A: Rockers pair
+| pair | 役割 | 曲・版 | Apple Music ID | ISRC | catalog尺 | 取得preview |
+| --- | --- | --- | --- | --- | ---: | ---: |
+| A | vocal original | Jacob Miller — [Baby I Love You So](https://music.apple.com/us/album/baby-i-love-you-so/1060638661?i=1060639199) | `1060639199` | `GBBZV9201384` | 150.840秒 | 29.977秒 |
+| A | Dub | Augustus Pablo — [King Tubby Meets Rockers Uptown](https://music.apple.com/us/album/king-tubby-meets-rockers-uptown/1060638661?i=1060639201) | `1060639201` | `GBBZV9201260` | 148.373秒 | 29.977秒 |
+| B | vocal original | Michael Prophet — [You Are a No Good](https://music.apple.com/us/album/you-are-a-no-good/1101800620?i=1101802290) | `1101802290` | `GBBZV8004722` | 199.427秒 | 30.004秒 |
+| B | Dub | Roots Radics — [Dance of the Vampires](https://music.apple.com/us/album/dance-of-the-vampires/1101800620?i=1101802077) | `1101802077` | `GBBZV1555866` | 205.787秒 | 30.004秒 |
 
-| 役割 | 取得した版 | Spotify URI | 尺 |
-| --- | --- | --- | --- |
-| vocal original | Jacob Miller — [Baby I Love You So](https://open.spotify.com/track/2iCshqpZ6LQEOaUj7vQEgc) | `spotify:track:2iCshqpZ6LQEOaUj7vQEgc` | 150.840秒 |
-| Dub | Augustus Pablo — [King Tubby Meets Rockers Uptown](https://open.spotify.com/track/0Mx3BZtH58ASK4XFg9TKWB) | `spotify:track:0Mx3BZtH58ASK4XFg9TKWB` | 148.373秒 |
+pair Aは両曲とも`Who Say Jah No Dread: The Classic Augustus Pablo Sessions`、pair Bは両曲とも`Junjo Presents: The Evil Curse of the Vampires`に収録されたcatalog版である。
 
-両方とも`Who Say Jah No Dread - The Classic Augustus Pablo Sessions`収録版を使う。別々の再発盤を混ぜず、transfer / mastering差を可能な範囲で減らすためである。
+取得ファイルのSHA-256:
 
-外部資料では`King Tubby Meets Rockers Uptown`を`Baby I Love You So`のDub版としている。元singleでは両曲が表裏に置かれた版がある。
+- `Baby I Love You So`: `34252808861763eb2e317491c4c2f7ac075d2072cffc61fbddfd1d58fb61077a`
+- `King Tubby Meets Rockers Uptown`: `e2f9af4ca52f0c75bd4539d507dd9f76ecdce919e07391e127f3e30476cd238d`
+- `You Are a No Good`: `2af34400c4239368afdc5c4ba0b6417bd1f2b9408107932c44c163a11159c849`
+- `Dance of the Vampires`: `cb2aa36e8d8f102d5db94bc548a7e7652164fe5128229939dff1256b5f8911e1`
 
-- 補助資料: https://en.wikipedia.org/wiki/King_Tubby_Meets_Rockers_Uptown_%28song%29
-- Augustus Pablo公式Bandcamp上のDub版: https://augustuspablo.bandcamp.com/track/king-tubby-meets-rockers-uptown
+preview音源そのものはGitへ保存しない。解析手順は[`analyze_dub_previews.py`](./analyze_dub_previews.py)、測定結果は[`preview-analysis.json`](./preview-analysis.json)に保存する。
 
-### 18.3 Corpus B: Scientist / Junjo pair
+### 18.3 測定条件
 
-| 役割 | 取得した版 | Spotify URI | 尺 |
-| --- | --- | --- | --- |
-| vocal original | Michael Prophet — [You Are A No Good](https://open.spotify.com/track/5FfdvCaBbRj6xzkcNmsUUN) | `spotify:track:5FfdvCaBbRj6xzkcNmsUUN` | 199.426秒 |
-| Dub | Roots Radics — [Dance Of The Vampires](https://open.spotify.com/track/1vexvgYQCSVjT8yPB5ZFcx) | `spotify:track:1vexvgYQCSVjT8yPB5ZFcx` | 205.786秒 |
+- decoder: ffmpeg
+- mono float32へdecode
+- analysis sample rate: 24 kHz
+- STFT: 2048 samples、hop 240 samples
+- 帯域: 40–250 Hz / 250–4000 Hz / 4000–11000 Hz
+- preview外の区間は一切記述しない
+- この実行環境は音声を聴覚入力として受け取れないため、「聴いた」とは記述しない
+- 数値は取得previewの信号測定であり、聴感上のsource同定やmix意図を自動的に証明しない
 
-両方とも[Junjo Presents: The Evil Curse Of The Vampires](https://open.spotify.com/album/1XBhEfYQ0JiEa6MBBKDmB0)収録版を使う。このSpotify版ではDub曲のartist表示がScientistではなくRoots Radicsになっているため、表示artistだけからmixer creditを推定しない。
+### 18.4 測定結果
 
-盤資料は`Dance Of The Vampires`をScientist mix、Henry “Junjo” Lawes production、Roots Radics演奏、King Tubby's studioでのmixとして記載する。原曲対応は`You Are A No Good`とされている。
+| 曲 | RMS dBFS | crest dB | 40–250 Hz | 250–4000 Hz | 4000–11000 Hz | median centroid |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Baby I Love You So | -8.903 | 11.692 | 70.415% | 28.871% | 0.714% | 405.950 Hz |
+| King Tubby Meets Rockers Uptown | -9.745 | 12.473 | 85.080% | 13.656% | 1.264% | 265.276 Hz |
+| You Are a No Good | -8.741 | 11.181 | 57.413% | 40.158% | 2.429% | 544.479 Hz |
+| Dance of the Vampires | -10.923 | 14.199 | 79.781% | 15.869% | 4.351% | 369.889 Hz |
 
-- 盤・制作credit: https://www.reggaerecord.com/en/catalog/description.php?code=3578
-- riddim対応表: https://www.riddim.nl/version/album.php?albumid=10&artist=Scientist&medium=LP&title=Scientist+Rids+The+World+Of+The+Evil+Curse+Of+The+Vampires
-- album整理: https://en.wikipedia.org/wiki/Scientist_Rids_the_World_of_the_Evil_Curse_of_the_Vampires
+`DIRECT_AUDIO / signal measurement`として確認できる範囲:
 
-### 18.4 Scientist albumの暫定対応表
+- 両pairのpreviewで、Dub版は原曲版より40–250 Hzのエネルギー比が高い。pair Aは70.415%から85.080%、pair Bは57.413%から79.781%へ変化した。
+- 両pairのpreviewで、Dub版は250–4000 Hzの比率が低い。pair Aは28.871%から13.656%、pair Bは40.158%から15.869%へ変化した。
+- median spectral centroidは両pairで低下した。pair Aは405.950 Hzから265.276 Hz、pair Bは544.479 Hzから369.889 Hzである。
+- Dub版は両pairでRMSが低く、crest factorが高い。ただしpreviewのmastering差を分離していないため、歴史的mixの絶対音量やdynamic range一般へ拡張しない。
 
-二つのriddim databaseとalbum整理で対応が一致するものを次段階の候補にする。ただし本研究ではoriginal masterとの音響同一性をまだ照合していない。
+### 18.5 pair内の時間対応
 
-| Dub | vocal / riddim source候補 |
-| --- | --- |
-| The Voodoo Curse | Wailing Souls — Oh What A Feeling |
-| Dance Of The Vampires | Michael Prophet — You Are A No Good |
-| Blood On His Lips | Wayne Jarrett — Love In My Heart / database上ではBubble Up表記もあるため要解決 |
-| Cry Of The Werewolf | Michael Prophet — Hold On To What You Got |
-| The Mummy's Shroud | Wailing Souls — Fire House Rock |
-| The Corpse Rises | Wailing Souls — Bandits Taking Over |
-| Night Of The Living Dead | Michael Prophet — Youthman |
-| Your Teeth In My Neck | Michael Prophet — Love And Unity |
-| Plague Of Zombies | Johnny Osbourne — He Can Surely Turn The Tide |
-| Ghost Of Frankenstein | Michael Prophet — Sweet Loving |
+40–250 Hzのlog-energy envelopeを±10秒で相互相関した。
 
-`Blood On His Lips`は参照資料間で原曲名とriddim名の表記が一致しない。異名か別録音かを解決するまで確定pairにしない。
+- pair A: 原曲をDub版に対して+1.54秒ずらした位置で相関`0.948695`。250–4000 Hzと4000–11000 Hzも同じ+1.54秒が最大だが、相関はそれぞれ`0.514559`、`0.610098`だった。
+- pair B: 低域の最大相関は`0.526500`、lagは-1.72秒。中域と高域の最大lagは+8.73秒、+5.23秒に分かれた。
 
-### 18.5 今回コーパスへ入れないもの
+pair Aではpreview内の低域時間構造が強く対応し、中高域の対応が弱い。しかし、これだけで同一master、個別のmute、echo投擲、filter操作の因果までは証明しない。
 
-- Lee Perry / `Super Ape`
-  - 理由: 同一rhythmのvocal sourceと正確なmix lineageを本更新では固定できていない。
-- Mad Professor / `No Protection`
-  - 理由: album単位のremix関係は明白だが、同じmaster由来か、追加録音を含むかをtrack別に取得していない。
-- Basic Channel
-  - 理由: vocal originalに対するDub versionという比較ではなく、Dub操作がcompositionへ内在化した別系列である。
+pair Bはpreview同士を単一lagで整列できない。別の曲位置が切り出された可能性を含むため、同期事件比較には使わない。
+
+### 18.6 現段階の設計含意
+
+二つの短いpreviewで再現したのは、Dub版が低域の占有を保ち／強めつつ、中域の占有を大きく減らす関係である。これは「BODYをanchorとして残し、source identityを担う帯域や声部を減算する」という候補を補強する。
+
+ただし、次はまだ補強されていない。
+
+- `CUT`、`THROW`、`REVEAL`、`VACUUM`、`TAIL CHOKE`の個別事件
+- delay time、feedback、filter軌跡
+- phrase境界を越えるtail
+- 演奏者がreturnを意図的に切った時刻
+- 30秒preview外を含む一曲全体の介入密度
+
+したがって今回の測定からDSPやUIを採用決定しない。まずpreviewを実際に聴取できる経路、またはユーザーとの共同聴取で事件表を作る。
 
 ## 19. 時間分析の記録形式
 
@@ -507,7 +520,7 @@ DubObservation = {
 | `INFERENCE` | `DIRECT_AUDIO`をもとにした信号経路・演奏意図の推論 |
 | `UNRESOLVED` | 複数解釈が残り確定できない箇所 |
 
-Spotifyで再生可能と表示されたことを`DIRECT_AUDIO`へ昇格させない。
+catalog metadataやpreview URLの存在だけを`DIRECT_AUDIO`へ昇格させない。取得したpreviewの直接測定または聴取だけをこの区分へ入れる。
 
 ### 19.3 action語彙
 
@@ -612,7 +625,7 @@ Scientistのいうsurpriseを、effect数やランダム性へ置換しないた
 
 ## 22. 次の未完了工程
 
-- Corpus AとBの音声を、権利と取得経路を保ったまま実際に取得する。
+- Corpus AとBの30秒previewは取得済み。次は権利と取得経路を保ったままfull-length版を確保する。
 - 取得した版のcontent identity、duration、先頭無音を固定する。
 - 最初は自動stem分離を使わず、原曲／Dub版を交互に聴いて事件表を人手で作る。
 - 次に必要な箇所だけ波形、spectrogram、loudness、band energyで観測を補助する。
