@@ -73,6 +73,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--stems", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--implementation", default="demucs-mlx")
+    parser.add_argument("--implementation-version", default="1.4.6")
+    parser.add_argument("--device", default="Apple Silicon")
+    parser.add_argument("--seed", type=int, default=0)
     args = parser.parse_args()
 
     manifest = json.loads((ROOT / "blind20-manifest.json").read_text())
@@ -105,10 +109,12 @@ def main() -> None:
         "protocol": manifest["protocol"],
         "separator": {
             "architecture": "Hybrid Transformer Demucs",
-            "implementation": "demucs-mlx",
+            "implementation": args.implementation,
+            "implementation_version": args.implementation_version,
+            "device": args.device,
             "model": "htdemucs",
             "shifts": 1,
-            "seed": 0,
+            "seed": args.seed,
             "overlap": 0.25,
         },
         "environment": {
@@ -132,4 +138,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
