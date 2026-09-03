@@ -1,0 +1,656 @@
+{
+  "analysis_date_utc": "2026-09-03",
+  "source_previews_sha256": {
+    "stem-long-stem-preview.m4a": "12f10578146558fd2e15d8342314b8f1a155481522ec514e40887c77d00264a7",
+    "stem-cops-robbers-preview.m4a": "317551ae1ad70813f818fbe1ae7c7a4e101cf36c3ef1980e88444f916d3f9b29",
+    "napalm-scatter-preview.m4a": "ba0146f68a8c7b607099ea9fd14e357c5adadcee40cd4caff839f7dad985f0d6"
+  },
+  "method": {
+    "boundary_window_lengths_s": [
+      1.0,
+      1.5,
+      2.0,
+      3.0,
+      4.0
+    ],
+    "boundary_hop_s": 0.25,
+    "candidate_search_radius_s": 1.0,
+    "feature_contribution_definition": "squared share of standardized adjacent-window delta"
+  },
+  "candidate_robustness": {
+    "stem_reference_3_5s": {
+      "reference_s": 3.5,
+      "search_radius_s": 1.0,
+      "settings": [
+        {
+          "window_s": 1.0,
+          "nearest_local_peak_s": 3.5,
+          "distance_from_reference_s": 0.0,
+          "novelty": 3.127,
+          "global_rank_among_hops": 7,
+          "percentile_among_hops": 94.8,
+          "top_contributors": [
+            {
+              "feature": "band_20_150",
+              "squared_distance_share": 0.336
+            },
+            {
+              "feature": "band_150_1000",
+              "squared_distance_share": 0.301
+            },
+            {
+              "feature": "band_1000_6000",
+              "squared_distance_share": 0.23
+            }
+          ]
+        },
+        {
+          "window_s": 1.5,
+          "nearest_local_peak_s": 3.5,
+          "distance_from_reference_s": 0.0,
+          "novelty": 2.739,
+          "global_rank_among_hops": 6,
+          "percentile_among_hops": 95.6,
+          "top_contributors": [
+            {
+              "feature": "band_20_150",
+              "squared_distance_share": 0.324
+            },
+            {
+              "feature": "band_150_1000",
+              "squared_distance_share": 0.293
+            },
+            {
+              "feature": "band_1000_6000",
+              "squared_distance_share": 0.271
+            }
+          ]
+        },
+        {
+          "window_s": 2.0,
+          "nearest_local_peak_s": 3.5,
+          "distance_from_reference_s": 0.0,
+          "novelty": 3.091,
+          "global_rank_among_hops": 2,
+          "percentile_among_hops": 99.1,
+          "top_contributors": [
+            {
+              "feature": "band_1000_6000",
+              "squared_distance_share": 0.325
+            },
+            {
+              "feature": "band_6000_nyquist",
+              "squared_distance_share": 0.298
+            },
+            {
+              "feature": "band_20_150",
+              "squared_distance_share": 0.174
+            }
+          ]
+        },
+        {
+          "window_s": 3.0,
+          "nearest_local_peak_s": 3.5,
+          "distance_from_reference_s": 0.0,
+          "novelty": 3.388,
+          "global_rank_among_hops": 2,
+          "percentile_among_hops": 99.1,
+          "top_contributors": [
+            {
+              "feature": "onsets_per_second",
+              "squared_distance_share": 0.701
+            },
+            {
+              "feature": "band_1000_6000",
+              "squared_distance_share": 0.147
+            },
+            {
+              "feature": "band_20_150",
+              "squared_distance_share": 0.064
+            }
+          ]
+        },
+        {
+          "window_s": 4.0,
+          "nearest_local_peak_s": 3.5,
+          "distance_from_reference_s": 0.0,
+          "novelty": 1.779,
+          "global_rank_among_hops": 15,
+          "percentile_among_hops": 86.4,
+          "top_contributors": [
+            {
+              "feature": "band_1000_6000",
+              "squared_distance_share": 0.28
+            },
+            {
+              "feature": "onsets_per_second",
+              "squared_distance_share": 0.251
+            },
+            {
+              "feature": "band_20_150",
+              "squared_distance_share": 0.193
+            }
+          ]
+        }
+      ],
+      "median_peak_s": 3.5,
+      "peak_time_range_s": [
+        3.5,
+        3.5
+      ],
+      "settings_at_or_above_90th_percentile": 4,
+      "settings_tested": 5
+    },
+    "napalm_reference_4_5s": {
+      "reference_s": 4.5,
+      "search_radius_s": 1.0,
+      "settings": [
+        {
+          "window_s": 1.0,
+          "nearest_local_peak_s": 4.25,
+          "distance_from_reference_s": -0.25,
+          "novelty": 6.011,
+          "global_rank_among_hops": 1,
+          "percentile_among_hops": 100.0,
+          "top_contributors": [
+            {
+              "feature": "band_150_1000",
+              "squared_distance_share": 0.512
+            },
+            {
+              "feature": "band_1000_6000",
+              "squared_distance_share": 0.353
+            },
+            {
+              "feature": "rms_dbfs",
+              "squared_distance_share": 0.107
+            }
+          ]
+        },
+        {
+          "window_s": 1.5,
+          "nearest_local_peak_s": 3.75,
+          "distance_from_reference_s": -0.75,
+          "novelty": 6.295,
+          "global_rank_among_hops": 1,
+          "percentile_among_hops": 100.0,
+          "top_contributors": [
+            {
+              "feature": "band_150_1000",
+              "squared_distance_share": 0.614
+            },
+            {
+              "feature": "band_1000_6000",
+              "squared_distance_share": 0.334
+            },
+            {
+              "feature": "onsets_per_second",
+              "squared_distance_share": 0.052
+            }
+          ]
+        },
+        {
+          "window_s": 2.0,
+          "nearest_local_peak_s": 4.25,
+          "distance_from_reference_s": -0.25,
+          "novelty": 5.865,
+          "global_rank_among_hops": 1,
+          "percentile_among_hops": 100.0,
+          "top_contributors": [
+            {
+              "feature": "onsets_per_second",
+              "squared_distance_share": 0.383
+            },
+            {
+              "feature": "band_6000_nyquist",
+              "squared_distance_share": 0.193
+            },
+            {
+              "feature": "band_20_150",
+              "squared_distance_share": 0.163
+            }
+          ]
+        },
+        {
+          "window_s": 3.0,
+          "nearest_local_peak_s": 5.0,
+          "distance_from_reference_s": 0.5,
+          "novelty": 1.368,
+          "global_rank_among_hops": 5,
+          "percentile_among_hops": 96.3,
+          "top_contributors": [
+            {
+              "feature": "band_150_1000",
+              "squared_distance_share": 0.354
+            },
+            {
+              "feature": "band_20_150",
+              "squared_distance_share": 0.254
+            },
+            {
+              "feature": "band_6000_nyquist",
+              "squared_distance_share": 0.208
+            }
+          ]
+        },
+        {
+          "window_s": 4.0,
+          "nearest_local_peak_s": 4.0,
+          "distance_from_reference_s": -0.5,
+          "novelty": 1.592,
+          "global_rank_among_hops": 2,
+          "percentile_among_hops": 99.0,
+          "top_contributors": [
+            {
+              "feature": "band_150_1000",
+              "squared_distance_share": 0.323
+            },
+            {
+              "feature": "band_20_150",
+              "squared_distance_share": 0.251
+            },
+            {
+              "feature": "band_6000_nyquist",
+              "squared_distance_share": 0.191
+            }
+          ]
+        }
+      ],
+      "median_peak_s": 4.25,
+      "peak_time_range_s": [
+        3.75,
+        5.0
+      ],
+      "settings_at_or_above_90th_percentile": 5,
+      "settings_tested": 5
+    }
+  },
+  "stem_album_vs_cops_alignment": {
+    "segment_results": [
+      {
+        "range_s": [
+          0.0,
+          10.0
+        ],
+        "onset_envelope": {
+          "correlation": 0.6756,
+          "lag_s": 0.7314
+        },
+        "rms_envelope": {
+          "correlation": 0.5926,
+          "lag_s": 0.7198
+        }
+      },
+      {
+        "range_s": [
+          10.0,
+          20.0
+        ],
+        "onset_envelope": {
+          "correlation": 0.3552,
+          "lag_s": -1.5209
+        },
+        "rms_envelope": {
+          "correlation": 0.4146,
+          "lag_s": 1.2887
+        }
+      },
+      {
+        "range_s": [
+          20.0,
+          29.5
+        ],
+        "onset_envelope": {
+          "correlation": 0.4305,
+          "lag_s": 1.3003
+        },
+        "rms_envelope": {
+          "correlation": 0.39,
+          "lag_s": -1.2771
+        }
+      }
+    ],
+    "segment_onset_lag_range_s": [
+      -1.5209,
+      1.3003
+    ],
+    "whole_preview_event_match_at_previous_best_lag": {
+      "tested_lag_s": 0.7314,
+      "events_a": 99,
+      "events_b": 98,
+      "a_events_matched_within_50ms": 51,
+      "a_events_matched_within_100ms": 62,
+      "match_rate_within_50ms": 0.515,
+      "match_rate_within_100ms": 0.626,
+      "median_nearest_event_distance_s": 0.0349
+    },
+    "interpretation_guardrail": "A stable nonzero feature lag may indicate excerpt placement or an edit; codec delay requires fine waveform evidence and is not established here."
+  },
+  "napalm_periodicity_window_robustness": {
+    "windows": [
+      {
+        "window_s": 6.0,
+        "range_s": [
+          0.0,
+          6.0
+        ],
+        "candidates_bpm": [
+          97.51,
+          76.56,
+          215.33
+        ],
+        "has_70_75_family": false,
+        "has_140_150_family": false
+      },
+      {
+        "window_s": 6.0,
+        "range_s": [
+          3.0,
+          9.0
+        ],
+        "candidates_bpm": [
+          71.78,
+          73.3,
+          145.58
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 6.0,
+        "range_s": [
+          6.0,
+          12.0
+        ],
+        "candidates_bpm": [
+          71.78,
+          73.3,
+          145.58
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 6.0,
+        "range_s": [
+          9.0,
+          15.0
+        ],
+        "candidates_bpm": [
+          73.3,
+          71.78,
+          143.55
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 6.0,
+        "range_s": [
+          12.0,
+          18.0
+        ],
+        "candidates_bpm": [
+          72.79,
+          71.28,
+          143.55
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 6.0,
+        "range_s": [
+          15.0,
+          21.0
+        ],
+        "candidates_bpm": [
+          72.28
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": false
+      },
+      {
+        "window_s": 6.0,
+        "range_s": [
+          18.0,
+          24.0
+        ],
+        "candidates_bpm": [
+          70.79,
+          72.28,
+          143.55,
+          154.27
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 6.0,
+        "range_s": [
+          21.0,
+          27.0
+        ],
+        "candidates_bpm": [
+          71.78,
+          143.55
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 8.0,
+        "range_s": [
+          0.0,
+          8.0
+        ],
+        "candidates_bpm": [
+          73.3,
+          71.28
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": false
+      },
+      {
+        "window_s": 8.0,
+        "range_s": [
+          4.0,
+          12.0
+        ],
+        "candidates_bpm": [
+          71.78,
+          145.58
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 8.0,
+        "range_s": [
+          8.0,
+          16.0
+        ],
+        "candidates_bpm": [
+          143.55,
+          72.79,
+          71.28
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 8.0,
+        "range_s": [
+          12.0,
+          20.0
+        ],
+        "candidates_bpm": [
+          72.79,
+          143.55
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 8.0,
+        "range_s": [
+          16.0,
+          24.0
+        ],
+        "candidates_bpm": [
+          71.78,
+          143.55
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 8.0,
+        "range_s": [
+          20.0,
+          28.0
+        ],
+        "candidates_bpm": [
+          71.78,
+          143.55,
+          147.66
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 10.0,
+        "range_s": [
+          0.0,
+          10.0
+        ],
+        "candidates_bpm": [
+          71.78,
+          73.3,
+          145.58,
+          156.61
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 10.0,
+        "range_s": [
+          5.0,
+          15.0
+        ],
+        "candidates_bpm": [
+          71.78,
+          73.3,
+          143.55
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 10.0,
+        "range_s": [
+          10.0,
+          20.0
+        ],
+        "candidates_bpm": [
+          72.79,
+          143.55
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 10.0,
+        "range_s": [
+          15.0,
+          25.0
+        ],
+        "candidates_bpm": [
+          72.28,
+          143.55
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 12.0,
+        "range_s": [
+          0.0,
+          12.0
+        ],
+        "candidates_bpm": [
+          71.78,
+          145.58
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 12.0,
+        "range_s": [
+          6.0,
+          18.0
+        ],
+        "candidates_bpm": [
+          71.78,
+          73.3,
+          143.55
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 12.0,
+        "range_s": [
+          12.0,
+          24.0
+        ],
+        "candidates_bpm": [
+          71.78,
+          143.55
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 15.0,
+        "range_s": [
+          0.0,
+          15.0
+        ],
+        "candidates_bpm": [
+          73.3,
+          71.78,
+          145.58
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      },
+      {
+        "window_s": 15.0,
+        "range_s": [
+          7.5,
+          22.5
+        ],
+        "candidates_bpm": [
+          71.78,
+          143.55
+        ],
+        "has_70_75_family": true,
+        "has_140_150_family": true
+      }
+    ],
+    "window_count": 23,
+    "70_75_family_support": 0.957,
+    "140_150_family_support": 0.87,
+    "either_family_support": 0.957
+  },
+  "limits": [
+    "all analysis is limited to approximately 30-second Apple Music previews",
+    "preview source positions are unknown",
+    "feature novelty is not a semantic scene-boundary detector",
+    "periodicity candidates are not equivalent to a human beat judgment",
+    "no listening judgment or full-track analysis is claimed"
+  ]
+}
