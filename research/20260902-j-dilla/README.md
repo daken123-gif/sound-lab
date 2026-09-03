@@ -839,3 +839,53 @@ Dillaの時間関係をAphex Twinの編集方法で説明したことにはし�
 v2構造に対する5件と、直前の合成時間場に対する6件、合計11件のローカル単体試験は成功した。これはJSON構造、由来blob、明示録音境界、作家研究の非混同、既存操作の保持を検証したものであり、音響的・知覚的妥当性はまだ検証していない。
 
 `cross-research-timing-model-v1.json` は履歴として保持する。v2は研究候補であり、製品仕様、統合判断、作家様式再現ではない。
+
+
+## 2026-09-03追補 — 匿名合成WAVによる聴取比較器
+
+時間場の論理差を耳で比較するため、J Dillaの音源、sample、MIDI、実測onsetを一切使わない合成刺激生成器を追加した。
+
+- `tools/generate_blind_timing_stimuli.py`
+- `tests/test_generate_blind_timing_stimuli.py`
+- `data/synthetic-blind-listening-protocol-v1.json`
+
+### 比較条件
+
+二条件は同じkick、snare、hatの音色、発音回数、8周期、8.5秒、44.1 kHz mono PCMを使う。異なるのは発音時刻の規則だけである。
+
+1. `global_swing`: 奇数細分へ全声部共通の20 ms遅延を置く
+2. `structured_relation`: 声部と周期内位置ごとに異なる合成offsetを置く
+
+生成時には二条件を `stimulus-A.wav` と `stimulus-B.wav` へseed付きで匿名割当する。公開用`blind-manifest.json`には条件名を入れず、対応表は別の`condition-key.json`へ出す。回答を固定する前にkeyを開かない。
+
+評価軸は次の五つへ限定する。
+
+- continuity
+- forward motion
+- instability
+- human intention
+- preference
+
+「Dillaらしさ」は評価軸にしない。この刺激はDillaの演奏や録音の再現ではなく、一括swingと声部別関係を知覚上区別できるかを調べる反例だからである。
+
+### 初回検証と修正
+
+最初の実行では、構造化条件で発音が重なった箇所だけpeak制限が働き、二条件のRMSが一致しなかった。これはタイミング以外の手掛かりを作るため不合格とした。target RMSを0.12から0.04へ下げ、両条件がpeak制限なしで同じRMSへ正規化されるよう修正した。
+
+修正後の6件の試験はすべて成功した。
+
+- 二つの匿名WAVが同じ形式・長さを持つ
+- event contentは共通で、音声hashは異なる
+- 量子化前RMSが一致する
+- 公開manifestから条件対応を読めない
+- manifestのSHA-256が実ファイルと一致する
+- 同じseedでWAV、manifest、keyがbyte単位で再生成される
+
+参照実行（seed `20260903`）では、両刺激とも8.5秒、RMS 0.04となった。
+
+| 匿名刺激 | SHA-256 |
+| --- | --- |
+| stimulus-A.wav | `e5d48a426efb4f3243783436fc386283a471cdf7d393006fbebf7b1539951ba1` |
+| stimulus-B.wav | `d6c23f9e1217e6db55239a8ea547c2363da6f4a8137d02e9a073d282ba9658dd` |
+
+WAVと条件keyはGitへcommitしていない。generatorとprotocolだけを研究ブランチへ保存し、刺激は聴取試験ごとに生成する。現段階では人間の回答取得、統計解析、Dilla実音源との照合、製品実装はいずれも未実施である。
