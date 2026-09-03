@@ -880,3 +880,171 @@ GESTURE:
 - 仮説の実証: 未完了
 - 製品実装: 未実施
 - PR作成／main統合: 対象外
+
+## 28. Shazam経由の実信号取得
+
+### 28.1 以前の未実施状態を更新する
+
+前節までの「フル尺音源取得／音響信号測定／scene時刻注釈は未実施」は、フル尺とscene注釈については現在も有効である。ただし、Shazamが返すApple Musicカタログの公式previewについて、音声バイト取得と30秒断片の測定を実施したため、「音響信号測定は全面的に未実施」という状態は失効した。
+
+使用した経路は、Dub、Jeff Mills、Curtis Mayfield各研究で確立済みの次の経路である。
+
+`Shazam searchmusic -> getsong / getalbum -> Apple Music公式preview URL -> AAC取得 -> 断片測定`
+
+周囲で鳴っている音を認識する`recognizemusic`は使用していない。Shazamは曲名、版、Apple Music ID、ISRC、カタログ尺、preview URLの取得面であり、以下の音響特徴をShazamが解析したわけではない。
+
+### 28.2 固定した版
+
+| 役割 | 曲／版 | Apple Music song ID | ISRC | カタログ尺 |
+| --- | --- | ---: | --- | ---: |
+| 主対象 | “Stem / Long Stem (Medley)” — `Endtroducing.....` | `1660486400` | `GBAQH9600069` | 467.373秒 |
+| 主対象 | “Napalm Brain / Scatter Brain (Medley)” — `Endtroducing.....` | `1660486425` | `GBAQH9600072` | 561.360秒 |
+| 比較 | “Stem (Cops 'n' Robbers)” — Deluxe Edition | `1660367654` | `GBAQH9601074` | 228.640秒 |
+| 比較 | “Napalm Brain (Demo Beat)” — Deluxe Edition | `1660368000` | `GBAQH0500006` | 34.800秒 |
+| 版照合 | “Stem / Long Stem / Transmission 2” — Deluxe Edition | `1660367323` | `GBAQH0500010` | 562.253秒 |
+| 版照合 | “Napalm Brain / Scatter Brain (Medley)” — Deluxe Edition | `1660367643` | `GBAQH9600072` | 563.827秒 |
+
+Apple Music JP:
+
+- https://music.apple.com/jp/album/stem-long-stem-medley/1660485817?i=1660486400
+- https://music.apple.com/jp/album/napalm-brain-scatter-brain-medley/1660485817?i=1660486425
+- https://music.apple.com/jp/album/stem-cops-n-robbers/1660367299?i=1660367654
+- https://music.apple.com/jp/album/napalm-brain-demo-beat/1660367299?i=1660368000
+- https://music.apple.com/jp/album/stem-long-stem-transmission-2/1660367299?i=1660367323
+- https://music.apple.com/jp/album/napalm-brain-scatter-brain-medley/1660367299?i=1660367643
+
+現行版とDeluxe版の“Napalm Brain / Scatter Brain”は同一ISRCだが、カタログ尺には2.467秒差がある。同一ISRCを同一ファイルまたは同一masterの証明にはしない。
+
+### 28.3 取得音声
+
+六版のApple Music公式previewからAACを取得した。全ファイルは44.1 kHz、stereo。長尺五版のcontainer尺は30.000秒、34.800秒のdemo曲から返ったpreviewは30.017秒だった。音源ファイルそのものはGitへ保存しない。
+
+| 断片 | SHA-256 |
+| --- | --- |
+| Stem / Long Stem | `12f10578146558fd2e15d8342314b8f1a155481522ec514e40887c77d00264a7` |
+| Napalm Brain / Scatter Brain | `ba0146f68a8c7b607099ea9fd14e357c5adadcee40cd4caff839f7dad985f0d6` |
+| Stem (Cops 'n' Robbers) | `317551ae1ad70813f818fbe1ae7c7a4e101cf36c3ef1980e88444f916d3f9b29` |
+| Napalm Brain (Demo Beat) | `569081e4baf04d428a4ac4874c45ce5e74c0487177d9022b3260af430c3604d5` |
+| Stem / Long Stem / Transmission 2 — Deluxe | `1d35fb8cf78b41d9bd2f1163f38c1925fe46dfd86eaf29a22d891092da3ed1c2` |
+| Napalm Brain / Scatter Brain — Deluxe | `36f63de0f650f59473547aac5fe59dcc671c7d22926204575ffb8e5a31be3dc2` |
+
+長尺曲のpreview開始位置はカタログ応答に含まれない。したがって以下の測定を、導入、曲中盤、題名上の境界、終盤の代表として扱わない。
+
+### 28.4 校正済み抽出器による30秒断片測定
+
+Jeff Mills研究で使用した抽出器と校正器を同じ条件で実行した。合成信号による校正は12項目中12項目が通過した。周期候補は人間の聴く拍を自動確定せず、倍／半分を含む候補列として残す。
+
+| 断片 | RMS | centroid | onset/s | median IOI | 強い周期候補 |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Stem / Long Stem | -19.64 dBFS | 2796.1 Hz | 8.340 | 0.1045秒 | 108.80, 191.41, 219.91, 145.58 |
+| Stem (Cops 'n' Robbers) | -17.22 dBFS | 2336.1 Hz | 8.540 | 0.1103秒 | 161.50, 191.41, 109.96, 106.56 |
+| Stem / Long Stem / Transmission 2 — Deluxe | -18.73 dBFS | 2582.1 Hz | 8.507 | 0.1103秒 | 105.47, 108.80, 219.91, 191.41 |
+| Napalm Brain / Scatter Brain | -14.49 dBFS | 2613.0 Hz | 4.971 | 0.1219秒 | 71.78, 143.55 |
+| Napalm Brain (Demo Beat) | -14.59 dBFS | 2532.6 Hz | 7.373 | 0.1103秒 | 73.30, 145.58, 58.07, 98.44 |
+| Napalm Brain / Scatter Brain — Deluxe | -13.79 dBFS | 2571.2 Hz | 5.271 | 0.1161秒 | 71.78, 143.55 |
+
+ここでの`onset/s`は同じ抽出器内の比較量であり、打音数、ノート数、演奏密度そのものではない。
+
+### 28.5 現行版previewとDeluxe版previewの照合
+
+未知位置のpreview同士を±2秒で整列し、onset包絡、RMS包絡、周期profile、四帯域profileを比較した。
+
+| 曲 | onset相関 | RMS相関 | 周期profile cosine | 帯域profile cosine |
+| --- | ---: | ---: | ---: | ---: |
+| Stem現行分離版 vs Deluxe結合版 | 0.9752 | 0.9986 | 0.9999 | 0.9999 |
+| Napalm現行版 vs Deluxe版 | 0.9844 | 0.9961 | 0.9999 | 0.9997 |
+
+二組ともpreview内ではほぼ同じ局所素材を返している。これは比較対象のpreview位置が大きくずれていないことを補強する。ただし、曲全体のmaster同一性、Transmission部分、2.467秒の尺差の原因は確定しない。
+
+### 28.6 短縮版／demoとの探索的比較
+
+次の比較量は校正済みの同一性判定器ではなく、競合仮説を絞る探索量である。
+
+| 比較 | onset整列相関 | RMS整列相関 | 周期profile cosine | 帯域profile cosine |
+| --- | ---: | ---: | ---: | ---: |
+| Stem album vs Cops 'n' Robbers | 0.4175 | 0.5964 | 0.7424 | 0.9973 |
+| Napalm final vs Demo Beat | 0.1323 | 0.3153 | 0.7829 | 0.8893 |
+
+“Stem”の二版は30秒全体の帯域比が非常に近い一方、個々のonsetとRMS包絡は同一時系列としては中程度しか整列しない。少なくとも「同じ30秒ファイルを音量だけ変えた」とは扱えない。しかし、別の曲位置、別mix、編集差、codec差の寄与は分離していない。
+
+“Napalm”完成版とdemoは、周期profileと大域帯域profileには類似が残るが、個々のイベント時系列は整列しない。この結果は「短いseedと完成版に粗い周期族が共有される可能性」には整合するが、demoが完成版の直接祖先であること、同じbreakであること、同じsceneを切り出したことは証明しない。
+
+### 28.7 10秒窓で見えた局所変化
+
+探索的な別抽出器で30秒を三つの約10秒窓へ分けた。
+
+“Stem / Long Stem”のpreviewでは、20–150 Hzのエネルギー比が`0.4708 -> 0.0010 -> 0.0005`、150–1000 Hzが`0.5137 -> 0.9880 -> 0.9873`へ移った。RMSも`-14.07 -> -18.86 -> -18.87 dBFS`へ低下した。これは同じ30秒の内部で、低域の担い手と音量重心が大きく変わる直接測定である。原因となる楽器、sample、mix操作、曲全体のscene位置は未同定。
+
+“Napalm Brain / Scatter Brain”のpreviewでは、RMSが`-15.59 -> -12.03 -> -9.31 dBFS`へ連続上昇した。一方、同じ抽出器のonset/sは`1.300 -> 2.300 -> 2.211`で、最後まで単調増加しなかった。したがって、このpreviewの強まりを「BPMが上がった」または「イベント数が増え続けた」だけで説明しない。低域比、帯域再配分、個々の打音の強度、重なりも競合説明として残る。
+
+### 28.7.1 局所周期候補
+
+校正済み抽出器を同じ三つの約10秒窓へ適用した。
+
+| 断片 | 0–10秒 | 10–20秒 | 20–29.95秒 |
+| --- | --- | --- | --- |
+| Stem / Long Stem | 191.41, 145.58, 132.51, 161.50 | 108.80, 53.00, 70.79 | 107.67, 71.78, 53.55, 215.33 |
+| Napalm Brain / Scatter Brain | 71.78, 73.30, 145.58, 156.61 | 72.79, 143.55 | 72.28, 143.55, 147.66 |
+
+“Napalm Brain / Scatter Brain”では約72／144 BPMの周期族が三窓すべてに残る。よって、少なくとも取得した30秒内の強度上昇を、周期基準そのものが連続的に高速化した結果とは読まない。これは曲全体のBPM一定を証明せず、preview区間に限定した反証である。
+
+“Stem / Long Stem”では、最初の窓の候補集合と後二窓の約108／54 BPM族が異なる。帯域比とRMSの大幅変化も同時にあるため、preview内部に周期役割を含む状態変化があるという候補は強まった。ただし曲名上の`Stem / Long Stem`境界との一致は未取得。
+
+2秒窓、0.5秒hopでRMS、onset率、四帯域比の変化量を探索すると、最大候補は“Stem”でpreview内3.5秒、“Napalm”で4.5秒だった。この検出器は校正済みのscene認識器ではないため、時刻をscene境界として確定せず、再聴取用の弱い候補としてJSONにだけ残す。
+
+### 28.8 ROLE / SCENE仮説の更新
+
+実信号取得後、中心仮説を次のように狭める。
+
+> Shadowの長尺化は、短いseedの単純延長ではない。ただし変化を直ちにscene数やテンポ上昇へ変換せず、まず帯域を担う役割、音量包絡、周期族、イベント時系列が別々に変わるものとして記述する。
+
+今回の30秒断片は、二つの異なる変化型を示した。
+
+- “Stem / Long Stem”: preview内部で低域占有とRMSが大きく落ち、別の帯域役割へ移る。
+- “Napalm Brain / Scatter Brain”: preview内部でRMSは強まるが、onset率は最後まで増え続けない。
+
+したがって`transition_spread`は「複数トラックが順番に切り替わる時間」だけでなく、`energy_role`、`pulse_role`、`foreground_role`が異なる時刻で変わる幅として定義し直す。
+
+```yaml
+transition_spread:
+  first_changed_dimension:
+  last_changed_dimension:
+  energy_role_change:
+  pulse_role_change:
+  foreground_role_change:
+  event_timeline_change:
+```
+
+### 28.9 保存物と未取得
+
+Gitへ保存する:
+
+- `preview-analysis-20260903.json` — カタログ、hash、全測定値、比較値、限界
+- `tools/calibrate_analyzer.py` — 校正器
+- `tools/analyze_previews.py` — 校正済み断片抽出器
+- `tools/compare_shadow_previews.py` — 10秒窓と探索的版間比較
+
+Gitへ保存しない:
+
+- preview AAC本体
+- デコードしたPCM
+- Apple Music以外から取得した音源
+
+現在も未取得:
+
+- フル尺波形
+- previewの曲内開始時刻
+- “Stem / Long Stem”の題名境界
+- “Napalm / Scatter”の題名境界
+- 曲全体のtempo map
+- 二名独立scene注釈
+- sample単位の同一性
+- 製品実装とiPhone実機検証
+
+## 29. 次の研究工程
+
+1. preview範囲の探索的境界候補は抽出済み。次は3.5秒／4.5秒候補の前後を別特徴量と聴取で検証する。
+2. “Stem”二版の0.7314秒付近の最良lagがcodec遅延か編集差かを、波形ではなくイベント列で再検証する。
+3. “Napalm”の約72／144 BPM周期族は三つの10秒窓で維持された。次は窓長変更への頑健性を調べる。
+4. demoの30秒が34.8秒曲のどの部分か、preview URLだけでは解けない場合は未取得のまま保持する。
+5. フル尺を取得できる権利経路が成立するまで、曲全体のscene図を確定しない。
