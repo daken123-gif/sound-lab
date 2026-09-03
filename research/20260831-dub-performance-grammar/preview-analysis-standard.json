@@ -1,0 +1,159 @@
+{
+  "status": "active",
+  "generated_at": "2026-09-03",
+  "acquisition": {
+    "route": "Shazam -> Apple Music catalog preview URL -> local preview bytes",
+    "scope": "unknown-position approximately 30-second previews",
+    "preview_sha256": {
+      "preview_jm_m4a": "34252808861763eb2e317491c4c2f7ac075d2072cffc61fbddfd1d58fb61077a",
+      "preview_ap_m4a": "e2f9af4ca52f0c75bd4539d507dd9f76ecdce919e07391e127f3e30476cd238d",
+      "preview_mp_m4a": "2af34400c4239368afdc5c4ba0b6417bd1f2b9408107932c44c163a11159c849",
+      "preview_dv_m4a": "cb2aa36e8d8f102d5db94bc548a7e7652164fe5128229939dff1256b5f8911e1"
+    }
+  },
+  "analyzer": {
+    "authority": "daken123-gif/sound-lab main",
+    "analyze_previews_path": "research/music-analysis/analyze_previews.py",
+    "analyze_previews_blob_sha": "4e36a19c5760cc1f3a7cf4b80ad3e9ad6e3baa47",
+    "calibrate_analyzer_path": "research/music-analysis/calibrate_analyzer.py",
+    "calibrate_analyzer_blob_sha": "314db6380f63c12017b52dcd3dd2dfcaff94a539",
+    "execution": "Exact fetched UTF-8 source executed in memory; no Dub-specific feature extractor used."
+  },
+  "calibration": {
+    "passed": 12,
+    "total": 12,
+    "all_passed": true,
+    "method_limits": [
+      "periodicity candidates are not equivalent to a human musical beat",
+      "polyrhythm produces valid subharmonic and multiple-tempo candidates",
+      "frequency estimates require confidence-based rejection",
+      "local tempo must be retained when tempo changes over time"
+    ]
+  },
+  "measurement": {
+    "sample_rate": 44100,
+    "measurement_class": "calibration-approved excerpt measurements",
+    "tracks": [
+      {
+        "file": "preview_jm.m4a",
+        "duration_s": 29.9291,
+        "rms_dbfs": -11.91,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -17.91,
+          -12.77,
+          -8.93
+        ],
+        "spectral_centroid_hz": 2590.5,
+        "stereo_balance_minus_left_plus_right": -0.0015,
+        "onset_count": 249,
+        "onsets_per_second": 8.32,
+        "onset_interval_median_s": 0.1103,
+        "onset_interval_cv": 0.364,
+        "periodicity_candidates_bpm": [
+          134.23,
+          66.26,
+          88.34
+        ],
+        "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+      },
+      {
+        "file": "preview_ap.m4a",
+        "duration_s": 29.9291,
+        "rms_dbfs": -12.75,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -24.11,
+          -14.15,
+          -9.05
+        ],
+        "spectral_centroid_hz": 2605.4,
+        "stereo_balance_minus_left_plus_right": -0.0522,
+        "onset_count": 230,
+        "onsets_per_second": 7.685,
+        "onset_interval_median_s": 0.1161,
+        "onset_interval_cv": 0.474,
+        "periodicity_candidates_bpm": [
+          134.23,
+          88.34,
+          65.83,
+          53.28
+        ],
+        "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+      },
+      {
+        "file": "preview_mp.m4a",
+        "duration_s": 29.9755,
+        "rms_dbfs": -11.74,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -19.14,
+          -12.01,
+          -9.01
+        ],
+        "spectral_centroid_hz": 3560.1,
+        "stereo_balance_minus_left_plus_right": 0.0207,
+        "onset_count": 246,
+        "onsets_per_second": 8.207,
+        "onset_interval_median_s": 0.1103,
+        "onset_interval_cv": 0.375,
+        "periodicity_candidates_bpm": [
+          137.81,
+          68.91,
+          91.47,
+          54.69
+        ],
+        "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+      },
+      {
+        "file": "preview_dv.m4a",
+        "duration_s": 29.9755,
+        "rms_dbfs": -13.93,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -30.33,
+          -14.12,
+          -10.52
+        ],
+        "spectral_centroid_hz": 3094.1,
+        "stereo_balance_minus_left_plus_right": -0.0301,
+        "onset_count": 223,
+        "onsets_per_second": 7.439,
+        "onset_interval_median_s": 0.1103,
+        "onset_interval_cv": 0.438,
+        "periodicity_candidates_bpm": [
+          68,
+          137.81,
+          91.47,
+          54.4
+        ],
+        "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+      }
+    ]
+  },
+  "pair_comparison": {
+    "rockers": {
+      "original": "preview_jm.m4a",
+      "dub": "preview_ap.m4a",
+      "onset_rate_change_per_s": -0.6350000000000007,
+      "rms_p10_change_db": -6.199999999999999,
+      "rms_p50_change_db": -1.3800000000000008,
+      "rms_p90_change_db": -0.120000000000001,
+      "centroid_change_hz": 14.900000000000091,
+      "periodicity_observation": "134.23 BPM candidate is shared; secondary candidates are in the same family."
+    },
+    "vampires": {
+      "original": "preview_mp.m4a",
+      "dub": "preview_dv.m4a",
+      "onset_rate_change_per_s": -0.7680000000000007,
+      "rms_p10_change_db": -11.189999999999998,
+      "rms_p50_change_db": -2.1099999999999994,
+      "rms_p90_change_db": -1.5099999999999998,
+      "centroid_change_hz": -466,
+      "periodicity_observation": "137.81/68-69 BPM half-double family is shared; ranking differs."
+    }
+  },
+  "evidence_boundary": [
+    "No listening claim is made.",
+    "Preview start positions are unknown.",
+    "Periodicity candidates are not asserted as musical beat.",
+    "Onset density does not identify CUT, THROW, REVEAL, VACUUM, or TAIL CHOKE.",
+    "The earlier Dub-specific centroid conclusion is superseded because it does not reproduce under the shared calibrated analyzer."
+  ]
+}
