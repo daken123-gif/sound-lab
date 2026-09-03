@@ -723,3 +723,119 @@ Madlibから引くべきなのは「たくさん保存する機能」ではな�
   - https://www.stonesthrow.com/news/madvillainy-demos-audiophile-edition-vinyl/
 - Pitchfork, “Searching for Tomorrow: The Story of Madlib and DOOM’s Madvillainy”
   - https://pitchfork.com/features/article/9478-searching-for-tomorrow-the-story-of-madlib-and-dooms-madvillainy/
+
+
+## 15. 追補: Shazamプレビュー取得経路の実測
+
+### 15.1 今回実行したこと
+
+ShazamのApple Musicカタログ検索を使い、前節で大幅な尺の圧縮が確認された三組を日本ストアで検索した。
+
+- `Fancy Clown (demo)` / `Fancy Clown`
+- `Shadows of Tomorrow (demo)` / `Shadows of Tomorrow`
+- `Just for Kicks (“Meat Grinder” demo)` / `Meat Grinder`
+
+検索後、候補名だけで判断せず、曲IDを指定して曲情報を再取得した。六曲すべてについて、アルバム名、曲名、Apple Music曲ID、ISRC、ミリ秒単位の曲尺、プレビューURLの存在を確認した。
+
+### 15.2 特定できた六曲
+
+| 版 | 曲名 | Apple Music曲ID | ISRC | カタログ曲尺 | プレビュー |
+|---|---|---:|---|---:|---|
+| デモ | Fancy Clown (demo) | 1785333006 | US2S70465038 | 210,432 ms | URLあり |
+| 完成盤 | Fancy Clown (feat. Viktor Vaughn) | 887699529 | US2S70465017 | 115,827 ms | URLあり |
+| デモ | Shadows of Tomorrow (demo) | 1785333007 | US2S70465039 | 242,769 ms | URLあり |
+| 完成盤 | Shadows of Tomorrow (feat. Quasimoto) | 887699521 | US2S70465012 | 156,187 ms | URLあり |
+| デモ | Just for Kicks (“Meat Grinder” demo) | 1785332998 | US2S70465037 | 166,017 ms | URLあり |
+| 完成盤 | Meat Grinder | 887699512 | US2S70465003 | 131,867 ms | URLあり |
+
+安定した参照先として、変動し得る音声CDNのURLではなくApple Music曲ページを記録する。
+
+- https://music.apple.com/jp/album/fancy-clown-demo/1785332878?i=1785333006
+- https://music.apple.com/jp/album/fancy-clown-feat-viktor-vaughn/887699504?i=887699529
+- https://music.apple.com/jp/album/shadows-of-tomorrow-demo/1785332878?i=1785333007
+- https://music.apple.com/jp/album/shadows-of-tomorrow-feat-quasimoto/887699504?i=887699521
+- https://music.apple.com/jp/album/just-for-kicks-meat-grinder-demo/1785332878?i=1785332998
+- https://music.apple.com/jp/album/meat-grinder/887699504?i=887699512
+
+### 15.3 取得できたことと、取得できなかったこと
+
+今回のShazam経路で取得できたのは、カタログ情報と各曲のプレビューURLである。プレビュー音声のバイト列や再生音は、この実行環境の分析面へ渡っていない。音声CDNへの直接取得も許可されず、実行できなかった。
+
+したがって現在の状態を分ける。
+
+| 工程 | 状態 |
+|---|---|
+| 対象曲の検索 | 実施済み |
+| デモ／完成盤の候補分離 | 実施済み |
+| 曲ID・ISRCによる再同定 | 実施済み |
+| プレビューURLの存在確認 | 実施済み |
+| プレビュー音声の取得 | 未実施 |
+| 音声の聴取 | 未実施 |
+| 波形・オンセット解析 | 未実施 |
+| デモ／完成盤の音響比較 | 未実施 |
+
+「プレビューURLがある」を「プレビューを聴いた」へ変換しない。この境界は、他の音楽研究でShazamを使う場合にも維持する。
+
+### 15.4 カタログメタデータの注意点
+
+Apple Musicカタログでは `Madvillainy Demos` のレコードレーベル表記と著作権年は2025年だが、各曲の `releaseDate` は完成盤と同じ2004年3月23日として返る。
+
+一方、公式Bandcampはデジタル版 `Madvillainy Demos` の公開日を2025年1月31日とする。
+
+したがってApple Music APIの `releaseDate` を、その版が一般公開された日付として単独使用しない。次を分ける必要がある。
+
+- 録音／作品に付与された原日付
+- そのマスターまたは再発版の著作権年
+- その版が実際に公開・発売された日付
+- カタログへ登録された日付
+
+これは曲名、尺、ISRCの同定には直ちに影響しないが、版の制作史を復元する際には重要である。
+
+### 15.5 ここまでで強化された点
+
+前節の曲尺比較は、Bandcampの秒表示だけでなく、Shazam経由で取得したApple Musicのミリ秒値でも再確認できた。
+
+| 曲 | 前節の秒表示による短縮 | Apple Music値による短縮 |
+|---|---:|---:|
+| Fancy Clown | 約95秒 | 94,605 ms |
+| Shadows of Tomorrow | 約86秒 | 86,582 ms |
+| Just for Kicks / Meat Grinder | 約35秒 | 34,150 ms |
+
+二つのカタログで大幅短縮の順位は一致する。
+
+1. Fancy Clown
+2. Shadows of Tomorrow
+3. Just for Kicks / Meat Grinder
+
+ただし、短くなった箇所がイントロ、声、反復、アウトロのどこかはまだ分からない。曲尺一致は編集位置の証拠にならない。
+
+### 15.6 音響分析へ進むための必要条件
+
+次の工程では、合法的に取得でき、解析環境へ実際の音声バイト列として渡せる素材が必要になる。
+
+最低条件は次の通り。
+
+1. デモ版と完成盤の両方について、同じ長さの試聴区間または正規入手音源がある
+2. 音声ファイルの由来、版、曲IDを保持できる
+3. 実際に取得したファイルの長さ、形式、ハッシュを確認できる
+4. 波形を読み込み、オンセット、無音、声区間、反復境界を測れる
+5. 解析結果を曲全体へ無断で一般化しない
+
+この条件が揃うまでは、音響分析を完了扱いにしない。
+
+### 15.7 今回の研究上の意味
+
+今回の進展は音そのものの分析ではなく、音響分析へ入る前の対象同定と証拠境界の確定である。
+
+Shazamは「どの商用録音を指しているか」「プレビューが存在するか」の解決には使えた。しかし現状の実行経路では、Shazamの検索成功だけでは聴取研究にならない。
+
+これにより、従来の音楽研究にあり得た次の混同を切り離せる。
+
+- 曲を検索した
+- カタログ情報を取得した
+- プレビューURLを得た
+- 音源を取得した
+- 音を聴いた
+- 音響特徴を測った
+
+この六段階は別工程である。
