@@ -1,6 +1,6 @@
 # 音源取得・解析方式の校正記録
 
-最終更新: 2026-09-02 UTC
+最終更新: 2026-09-03 UTC
 
 ## 目的
 
@@ -157,6 +157,14 @@ Python、NumPy、PyTorchのseedを0へ固定した。固定解析は同じstem�
 
 この結果はMacの`demucs-mlx`実機試験ではない。分離アーキテクチャの独立性は増したが、特徴抽出器と閾値は共有している。詳細は`linux-demucs-audit-20260902.md`を参照する。
 
+## 標準Demucs seed感度監査
+
+前回のモデル間不一致・seed感応例から7曲を事前理由で選び、official `demucs 4.0.1`の`htdemucs`をseed 0〜4で計35回実行した。7曲中4曲は5 seedでカテゴリ一致、B14・B16・B19の3曲はカテゴリが揺れた。
+
+`Billy Jack`は5/5で`concentrated_non_triplet_reproduced`となり、MDX A/B合意とも一致した。B06とB10も5/5で同カテゴリだったがMDX合意とは不一致。B14はphase entropyが固定閾値0.5の直近（0.497対0.502）で反転し、B16は1/5だけ窓BPM不安定で棄却、B19は2/5だけ極端判定だった。
+
+今後、`shifts > 0`のDemucsカテゴリは単一seedで確定せず、最低5 seedの一致数と閾値距離を保存する。同一モデルの複数seedを独立モデル複数個とは数えない。詳細は`demucs-seed-sensitivity-20260903.md`を参照する。
+
 ## ファイル
 
 - `calibrate_analyzer.py` — 合成信号による基礎校正
@@ -181,5 +189,9 @@ Python、NumPy、PyTorchのseedを0へ固定した。固定解析は同じstem�
 - `demucs_cpuinfo_compat.py` — `/proc/cpuinfo`を参照できない制限容器用wrapper
 - `demucs-results-linux-cpu.json` — 標準Demucsによる全20件の測定結果
 - `linux-demucs-audit-20260902.md` — 実行証拠、MDXとの一致・不一致、解釈境界
+- `demucs_seed_sensitivity.py` — 事前選択パネルの複数seed集計器
+- `run_demucs_seed_sensitivity.sh` — 5 seed × 7曲の再現ランナー
+- `demucs-seed-sensitivity-20260903.json` — 35分離の特徴、カテゴリ、stem SHA-256
+- `demucs-seed-sensitivity-20260903.md` — seed安定性、閾値境界、採用判断
 
 音源本体、Preview、モデル、仮想環境、分離WAVはGitへ保存しない。
