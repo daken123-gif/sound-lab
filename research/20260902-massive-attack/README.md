@@ -347,3 +347,139 @@ Massive Attackから抽出した編集主体は、素材を加工する人物名
 
 研究は引き続き`active`。横断接続は研究記録へ反映したが、製品採用・コード変更・統合判断は未実施。
 
+## 2026-09-03追補 — `Angel`取得境界と区間分析プロトコル
+
+### 今回取得できた実体
+
+| surface | 取得内容 | 証拠として使える範囲 |
+| --- | --- | --- |
+| Shazam `Angel` | Massive Attack、Horace Andy、`Mezzanine`、1998-04-20、クレジット、認識集中区間 `01:45–01:50` | 曲同定、参加役割、Shazam上の認識行動。音響測定には使わない |
+| Massive Attack公式YouTube | 公式music video、表示尺 `5:24` | 公式映像版の存在と尺。アルバム版全体の代替にしない |
+| Apple Music / Amazon Music / Qobuz | `Mezzanine`収録版、表示尺約`6:19–6:20` | アルバム版の同定と版差 |
+| Shazam `Angel (Angel Dust)` | Mad Professor remix、表示BPM `106`、remixer credit | 将来の原曲／Dub再構成比較候補。原曲BPMの証拠にしない |
+| Robert Del Naja interview PDF | `Angel`でHorace Andyを「strange space」へ置いたという本人説明 | 声そのものより配置空間を変えた制作意図 |
+| Shazam / release credits | Andy Gangadeen: drums、Angelo Bruschini: guitar、Vowles / Marshall: sampler、Del Naja / Davidge: keyboards、Stent: mixing | 聞こえた音から担当を推定せず、参加役割の候補を固定する |
+
+取得先:
+
+- https://www.shazam.com/song/724339174/angel
+- https://www.youtube.com/watch?v=hbe3CQamF8k
+- https://music.apple.com/us/song/724466660
+- https://music.amazon.com/tracks/B000T02G8K
+- https://www.qobuz.com/jp-ja/album/angel-massive-attack/o38rwl7mc96qb
+- https://www.shazam.com/en-gb/song/1428690324/angel-angel-dust
+- https://static1.squarespace.com/static/5eaed1cb8ae5a8a899d9a3645/t/5eb1bc8f41e95f3504a5b2f3/1588706454264/Massive%2BAttack%2Bcombined.pdf
+
+### 取得できなかったもの
+
+Shazamの検索・曲ページは取得できたが、再現可能な音声ファイルまたは`audio_preview_url`は取得できなかった。したがって、今回は次を実施済みとは扱わない。
+
+- `Angel`アルバム版の直接聴取
+- 波形、スペクトル、オンセット、ラウドネス、ステレオ幅の測定
+- 音響イベントの秒単位転記
+- `01:45–01:50`で何が鳴っているかの断定
+- 原曲と`Angel (Angel Dust)`の実音比較
+
+公式music videoの`5:24`とアルバム版の約`6:19`は尺が異なる。両者の時間座標をそのまま対応させない。
+
+### Shazamの`01:45–01:50`が示すもの
+
+Shazamは、この区間が過去7日間に最も多く認識された区間だと表示している。これは楽曲構造そのものの測定ではなく、利用者がその時点で認識操作を行った集計である。
+
+それでも研究上は、次の検証窓を選ぶ外部指標にはできる。
+
+1. `01:35–01:55`を前後込みで切り出す。
+2. 低域、声、ドラム、ギター、空間成分のentryを個別に転記する。
+3. `01:45–01:50`の直前に、認識を促す新規entry、密度上昇、声の再提示、帯域拡張があるか測る。
+4. 何も対応しない場合、「認識ピーク＝構造的転換点」という仮説を棄却する。
+5. 同じ手順を別週のShazam表示で再取得し、区間が安定しているか確認する。
+
+### `Angel`の中心仮説を修正する
+
+以前の仮説は「加算による包囲」だった。今回の資料を接続すると、検証対象は単純な音数増加では足りない。
+
+`Angel`では、Horace Andyの歌唱を脅威的な声へ直接加工したのではなく、親密な歌唱の同一性をある程度保持したまま、低域、打楽器、ギター、残響、帯域占有が周囲の状況を変えた可能性がある。Del Naja自身の「Horace Andyをstrange spaceへ置いた」という説明は、この読みを支える。ただし、どの処理がどの時刻で意味を変えたかは音源取得後の検証事項である。
+
+したがって、分析単位を次の四層にする。
+
+| 層 | 保持／変化を見る対象 | 記録値 |
+| --- | --- | --- |
+| VOICE | 音高輪郭、発語、伸長、反復、前景距離 | phrase start/end、pitch contour、短時間ラウドネス、残響比 |
+| FLOOR | bassとkickが作る周期・重量 | onset、sub-band envelope、周期候補、休止 |
+| PRESSURE | drums / guitar / noiseによる包囲 | onset density、帯域占有、crest factor、歪み候補 |
+| SPACE | dryとreturn、定位、奥行き | stereo width、残響尾、前景／後景の交代 |
+
+中心仮説は次へ更新する。
+
+```text
+声の意味を直接書き換える
+ではなく
+声の同一性を残す
+-> 周囲の床・圧力・空間を変える
+-> 同じ親密さを脅威として再読させる
+```
+
+### EVENT / RELATION / TRANSITION記法
+
+音源取得後は、感想文ではなく一事件一行で記録する。
+
+```text
+t_start
+t_end
+layer      VOICE | FLOOR | PRESSURE | SPACE
+event      enter | exit | thicken | thin | widen | narrow | distort | return
+evidence   DIRECT_AUDIO | MEASURED | CREDIT | INTERVIEW | INFERENCE
+relation   voice-floor | floor-pressure | voice-space | pressure-space
+state_from exposed | held | enclosed | saturated | released
+state_to   exposed | held | enclosed | saturated | released
+confidence high | medium | low
+note
+```
+
+同じ音の追加でも、`VOICE`を覆うのか、`FLOOR`を維持するのか、`SPACE`を狭めるのかで別事件として扱う。
+
+### `Angel (Angel Dust)`を対照群にする理由
+
+Mad Professorによるremixは、単に別バージョンを増やす資料ではない。Dub研究の「原音の在／不在、投擲、帰還、空白」と、Massive Attack版の「周囲を変えて声を再文脈化する」を同じ素材系列で比較できる可能性がある。
+
+比較時は次を固定する。
+
+- vocal phraseの残存率
+- dry vocal不在区間
+- bass floorの連続性
+- return tailの自律時間
+- guitar / percussionのentry数
+- 編成状態数
+- 最大密度後に空白へ戻る経路
+- 声の意味変化を、声処理と環境処理のどちらが担うか
+
+Shazamがremixへ表示する`106 BPM`は外部メタデータとして保存するが、アルバム版とのテンポ一致や倍テンポ解釈は独自測定まで確定しない。
+
+### Live Canvasへ返す一つの実験（未採用）
+
+前回の四候補から、最初の検証対象を`VOICE / ENVIRONMENT REVERSAL`へ絞る。
+
+1. 一つの声断片をRolling Captureする。
+2. 声自体のpitch、timing、formantは固定する。
+3. `FLOOR`、`PRESSURE`、`SPACE`だけを別々に演奏する。
+4. 演奏者が「親密／脅威」のような意味ラベルを操作しない。
+5. 聴取者が声の意味変化を感じた時刻と、環境層の操作ログを照合する。
+6. 声そのものを加工した条件を対照として用意する。
+
+目的は`Angel`風の音色を作ることではない。**素材を変えず、関係を変えることで意味が移動するか**を検証する。
+
+### 反証条件
+
+- 声を固定した条件では、環境層を変えても意味知覚が動かない。
+- 意味変化が低域や空間でなく、歌詞理解または声自体の加工だけで説明される。
+- `VOICE / FLOOR / PRESSURE / SPACE`の分離が聴取上識別できない。
+- Shazamの認識集中区間が再取得時に大きく移動し、分析窓選択の補助にもならない。
+- `Angel (Angel Dust)`との比較で、Dub操作より別ミックス／マスタリング差が支配的になる。
+- Live Canvas上で三環境層の操作が演奏にならず、単なるmacro automationになる。
+
+### 現在の到達点
+
+`Angel`について、曲同定、版差、参加役割、制作意図、Shazam認識集中区間までは取得した。音響事件の時刻分析は未実施である。
+
+次の正当な前進条件は、Shazam等から正規に取得可能なpreview音声、ユーザー提供音源、または解析を許されたローカル音源のいずれかを得ること。その時点で`01:35–01:55`を第一窓とし、全曲へ拡張する。
+
