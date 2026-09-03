@@ -38,3 +38,49 @@ v0は座標から既存nodeへのhitを決定し、新規nodeを最も近い可�
 - cut、濁り、空白、broken状態は自動undoしない。
 - 5接触の受理は、iPhone実機で5接触が実用的に演奏できる証明ではない。
 
+
+
+## resolved-target adapter
+
+### 比較した方式
+
+| 方式 | 判定 | 理由 |
+| --- | --- | --- |
+| 元の `ContactGestureFrame` に `targetKind` / `targetId` を追加 | 不採用 | 現行schemaは `additionalProperties: false`。取得事実と解決結果も混ざる |
+| 音響と描画が各自でhit test | 不採用 | 同じ接触を別targetへ解釈でき、B-03の同一接触境界を壊す |
+| 元frameをimmutableなresolved envelopeで包み、一度だけhit test | 候補 | 元schemaを保持し、音響と描画へ同じ解決結果をfan-outできる |
+
+### envelope
+
+```text
+ResolvedContactEnvelope {
+  schemaVersion: sound-lab.resolved-contact/v0.1
+  resolutionId
+  source: ContactGestureFrame
+  target: { kind: node | edge | empty, id }
+  resolutionMethod: single-hit-test | bound-claim
+}
+```
+
+`contact` 時だけnode優先でhit testする。そのpointerの `press / slide / release / cancel` は同じ `resolutionId` とtargetへ拘束し、途中で再判定しない。release / cancel後だけbindingを破棄する。
+
+### 実行結果
+
+```text
+node --test resolved-target-adapter.test.mjs
+tests 7
+pass 7
+fail 0
+```
+
+確認した範囲:
+
+- 元の `ContactGestureFrame` を変更しない。
+- edge中央をedgeとして解決できる。
+- edgeを掴んだ指がnode上へ移動してもedge claimを維持する。
+- nodeとedgeのhit領域が重なる場合は可視nodeを優先する。
+- 音響と描画へ同じimmutable envelopeを渡せる。
+- release後はbindingを破棄し、pointerIdの再利用を新しい接触として解決する。
+- 5接触を独立したclaimとして保持する。
+
+adapterはtargetを解決するだけで、edge操作を位相、coupling、returnのどれへ写すかは決めない。したがって、この試験はMills型の位相演奏やHunter型の声部維持が音として成立した証明ではない。
