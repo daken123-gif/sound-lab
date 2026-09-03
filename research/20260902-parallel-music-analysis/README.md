@@ -442,3 +442,10 @@ Node.js標準test runnerで7件を実行し、7件成功・0件失敗を確認�
 - 既存bridge schemaへの採用判断
 
 したがって現在状態は `adapter prototype verified in Node.js / research-only` であり、製品実装済みではない。
+
+## 14. 2026-09-03追加 — onset候補・拍参照・分離証拠のDeep Research監査
+
+- [Deep Research監査 — onset候補・拍参照・分離証拠の境界](./report-source.md)
+- RMS出力器を音楽的onset検出器ではなく、未レビューのenergy-rise候補器としてschema v2へ訂正。
+- stereo逆相相殺を防ぎ、人手referenceとの最大一対一照合器を追加。
+- 合成fixtureは9件成功。Billy Jack実音源／stem、人手onset、beat/downbeatは未取得のため、B09イベントJSONは未生成。
