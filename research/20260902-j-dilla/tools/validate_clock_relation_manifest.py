@@ -23,6 +23,10 @@ REQUIRED_RECORDINGS = {
     "come-get-it-alt-beat",
 }
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+IDENTITY_BLOCK_STATUS = {
+    "ambiguous": "blocked_version_ambiguous",
+    "release_family_resolved_master_ambiguous": "blocked_master_ambiguous",
+}
 
 
 def validate_manifest(data: dict) -> list[str]:
@@ -72,8 +76,11 @@ def validate_manifest(data: dict) -> list[str]:
             continue
 
         identity_status = item["identity_status"]
-        if identity_status not in {"resolved_candidate", "ambiguous"}:
-            errors.append(f"{prefix}.identity_status must be resolved_candidate or ambiguous")
+        if identity_status not in {"resolved_candidate", *IDENTITY_BLOCK_STATUS}:
+            errors.append(
+                f"{prefix}.identity_status must be resolved_candidate, ambiguous, "
+                "or release_family_resolved_master_ambiguous"
+            )
         candidates = item["catalog_candidates"]
         if not isinstance(candidates, list) or not candidates:
             errors.append(f"{prefix}.catalog_candidates must be a non-empty list")
@@ -135,10 +142,14 @@ def validate_manifest(data: dict) -> list[str]:
                     errors.append(f"{rprefix}.end_seconds must be greater than start_seconds")
 
         analysis_status = item["analysis_status"]
-        if analysis_status not in {"blocked_source_unobtained", "blocked_version_ambiguous", "ready"}:
+        if analysis_status not in {
+            "blocked_source_unobtained", "blocked_version_ambiguous",
+            "blocked_master_ambiguous", "ready",
+        }:
             errors.append(f"{prefix}.analysis_status is not a recognized v1 state")
-        if identity_status == "ambiguous" and analysis_status != "blocked_version_ambiguous":
-            errors.append(f"{prefix} must remain blocked_version_ambiguous while identity is ambiguous")
+        required_block = IDENTITY_BLOCK_STATUS.get(identity_status)
+        if required_block and analysis_status != required_block:
+            errors.append(f"{prefix} must remain {required_block} while identity is unresolved")
         if analysis_status == "ready" and identity_status != "resolved_candidate":
             errors.append(f"{prefix} cannot be ready before version identity is resolved")
         if analysis_status == "ready" and source_status != "acquired":

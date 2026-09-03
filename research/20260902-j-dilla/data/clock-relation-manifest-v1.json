@@ -62,35 +62,35 @@
       "recording_id": "players-analysis-master",
       "artist": "Slum Village",
       "title": "Players",
-      "version_label": "unresolved release version",
-      "identity_status": "ambiguous",
+      "version_label": "Fantastic Vol. 2 recording family; delivery master unresolved",
+      "identity_status": "release_family_resolved_master_ambiguous",
       "catalog_candidates": [
         {
-          "release_title": "Fan-Tas-Tic Vol. 1",
-          "release_year": 2005,
-          "track_number": 17,
-          "catalog_duration_seconds": null,
-          "locator": "https://open.spotify.com/album/78xn7eWk5Q5MiEqtetsNer",
-          "authority": "Spotify distributor catalog plus Ne'Astra retail track lists",
-          "identity_note": "Retail/distributor durations conflict around 2:55-3:03; do not collapse them before fingerprinting."
-        },
-        {
-          "release_title": "Fantastic Vol. 2",
+          "release_title": "Fan-Tas-Tic, Vol. 2",
           "release_year": 2000,
           "track_number": 14,
           "catalog_duration_seconds": 146,
-          "locator": "https://open.spotify.com/album/3nwgfMl8nYGTNqiepnoEFY",
-          "authority": "Spotify distributor catalog",
-          "identity_note": "Published duration 2:26; Peterson's 2:13-2:19 window fits this duration but does not alone prove identity."
+          "locator": "https://www.shazam.com/song/1159993676/players",
+          "authority": "Shazam / Apple Music distributor catalog",
+          "identity_note": "2:26 delivery. Shazam places this song ID on Fan-Tas-Tic, Vol. 2; Peterson independently names Fantastic, Vol. 2 as the album family."
+        },
+        {
+          "release_title": "Fantastic, Vol. 2.10",
+          "release_year": 2000,
+          "track_number": null,
+          "catalog_duration_seconds": 183,
+          "locator": "https://www.shazam.com/song/1159912751/players",
+          "authority": "Shazam / Apple Music distributor catalog",
+          "identity_note": "3:03 delivery with a separate song ID. Peterson's 2:13-2:19 window also fits, so timing alone does not distinguish it from the 2:26 delivery."
         }
       ],
-      "excluded_versions": [],
+      "excluded_versions": ["Fan-Tas-Tic, Vol. 1", "Players (Instrumental)", "Players (Mixed)", "2023 remaster"],
       "reference_intervals": [
         {
           "start_seconds": 133.0,
           "end_seconds": 139.0,
           "reference": "Sean Peterson dissertation, Figure 16",
-          "purpose": "Published four-measure kick-loop example; use to resolve the candidate by content alignment."
+          "purpose": "Published four-measure kick-loop example. The album family is resolved; compare audio content to determine which current delivery master carries the analyzed waveform."
         }
       ],
       "source_status": "unobtained",
@@ -104,7 +104,7 @@
       "channels": null,
       "file_size_bytes": null,
       "codec": null,
-      "analysis_status": "blocked_version_ambiguous",
+      "analysis_status": "blocked_master_ambiguous",
       "regions": []
     },
     {

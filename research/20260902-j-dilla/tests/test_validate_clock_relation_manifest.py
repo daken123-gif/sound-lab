@@ -50,13 +50,23 @@ class ManifestValidationTests(unittest.TestCase):
         errors = MODULE.validate_manifest(changed)
         self.assertTrue(any("bar_count must be at least 16" in e for e in errors))
 
-    def test_ambiguous_identity_cannot_be_ready(self):
+    def test_unresolved_master_cannot_be_ready(self):
         changed = copy.deepcopy(self.manifest)
         players = next(x for x in changed["recordings"] if x["recording_id"] == "players-analysis-master")
         players["analysis_status"] = "ready"
         errors = MODULE.validate_manifest(changed)
-        self.assertTrue(any("must remain blocked_version_ambiguous" in e for e in errors))
+        self.assertTrue(any("must remain blocked_master_ambiguous" in e for e in errors))
         self.assertTrue(any("cannot be ready before version identity is resolved" in e for e in errors))
+
+    def test_players_family_is_resolved_but_master_is_not(self):
+        players = next(x for x in self.manifest["recordings"] if x["recording_id"] == "players-analysis-master")
+        self.assertEqual(players["identity_status"], "release_family_resolved_master_ambiguous")
+        self.assertEqual(players["analysis_status"], "blocked_master_ambiguous")
+        self.assertEqual(
+            {candidate["catalog_duration_seconds"] for candidate in players["catalog_candidates"]},
+            {146, 183},
+        )
+        self.assertIn("Fan-Tas-Tic, Vol. 1", players["excluded_versions"])
 
     def test_catalog_duration_does_not_count_as_acquired_duration(self):
         changed = copy.deepcopy(self.manifest)
