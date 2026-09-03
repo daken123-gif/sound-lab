@@ -368,7 +368,7 @@ Massive Attackから抽出した編集主体は、素材を加工する人物名
 - https://music.amazon.com/tracks/B000T02G8K
 - https://www.qobuz.com/jp-ja/album/angel-massive-attack/o38rwl7mc96qb
 - https://www.shazam.com/en-gb/song/1428690324/angel-angel-dust
-- https://static1.squarespace.com/static/5eaed1cb8ae5a8a899d9a3645/t/5eb1bc8f41e95f3504a5b2f3/1588706454264/Massive%2BAttack%2Bcombined.pdf
+- https://static1.squarespace.com/static/5eaed1cb8ae7d55c0a9c1322/t/5eb1bc8f41e95f3504a5b2f3/1588706454264/Massive%2BAttack%2Bcombined.pdf
 
 ### 取得できなかったもの
 
