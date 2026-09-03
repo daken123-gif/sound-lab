@@ -42,6 +42,7 @@ def download(url: str, target: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--ids", nargs="+", help="optional blind-ID subset")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
 
@@ -52,8 +53,13 @@ def main() -> None:
     if set(expected) != set(metadata):
         raise SystemExit("manifest and title map blind IDs differ")
 
+    selected_ids = sorted(args.ids or expected)
+    unknown = sorted(set(selected_ids) - set(expected))
+    if unknown:
+        raise SystemExit(f"unknown blind IDs: {', '.join(unknown)}")
+
     verified = []
-    for blind_id in sorted(expected):
+    for blind_id in selected_ids:
         row = expected[blind_id]
         meta = metadata[blind_id]
         country = "GB" if "/gb/" in meta["url"] else "US"
@@ -83,4 +89,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
