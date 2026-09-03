@@ -363,3 +363,165 @@ Dubの減算、Millsの回復、Hunterの身体拘束、Autechreの状態遷移�
 - 常時バッファを揮発性履歴、保存を明示的`COMMIT`として分離。
 - Dub shared tail、Mills floor、Autechre condition、Plank signal pathとの接続境界を記録。
 - 研究のみ更新。製品コード、統合判断、PR、mergeは変更していない。
+
+## 2026-09-03追補 — `Full Circle`から`Radio Wave Surfer`への演奏・合成・再編集
+
+### 今回の証拠境界
+
+今回追加したのは、本人インタビュー、Jah Wobble／Czukayの1981年前後の発言を収めた雑誌記事の転記、Spoon Records／Grönland Recordsの公式情報、`Radio Wave Surfer`再発元の商品記述に基づく資料研究である。
+
+音源ファイルまたはShazam経由で版を固定したpreviewは取得していない。したがって、bass onset、切断位置、radio出現時刻、編集境界の信号解析は未実施である。以下では、当事者証言、公式情報、再発資料、研究上の推論を分ける。
+
+### 1. ラジオは多層generatorではなく、一つの乾いた非対称共演者だった
+
+2009年の本人インタビューでCzukayは、短波ラジオを次に何が来るか分からず、演奏者が即興で反応する必要がある楽器として説明している。使用するradioは一度に一台で、effectを通さずdryのまま使ったとも述べる。VFO／single-sideband受信自体が十分に複雑な音響変化を作るという説明である。
+
+さらにCzukayは、radio内の人物は演奏者側を聴けないが、演奏者側はその人物を聴けると説明した。これは通常の相互即興ではない。外部の時間は演奏へ応答せず、こちらだけが注意、入場、撤去、演奏内容を変える。
+
+ここから、前追補の`EXTERNAL -> ACCEPT / REJECT`という二値モデルを修正する。
+
+```text
+EXTERNAL_STREAM {
+  continues_without_us
+  ATTEND       // 聴取対象として追う
+  ADMIT        // shared roomへ入れる
+  WITHDRAW     // 出力から退けるがstreamは止めない
+  RESPOND      // 現在の演奏側を変える
+}
+```
+
+`REJECT`は外部の出来事自体を止めたように見えるため失効させる。radio側の時間は継続し、こちらが聴取または出力から離れるだけである。複数streamの自動選択、beat同期、常時effect、内容分類による自動採用はCzukayの証言からは導けない。
+
+### 2. `Full Circle` — 低音は床であると同時に編集される輪郭だった
+
+Spoon Recordsは`Full Circle`を1982年、`Snake Charmer`を1983年の共同制作として記録している。Grönland Recordsの公式再発tracklistは、`How Much Are They?`、`Where Is The Money?`、`Full Circle RPS (No. 7)`、`Mystery RPS (No. 8)`、`Trench Warfare`、`Twilight World`の六曲を掲げる。
+
+1981年前後の雑誌記事を転記したFodderstompf資料では、Wobbleが、Czukayはbassに三trackを使い、中域を落とすだけでなく、各bass音を手作業で切って膨らみを短くしたと説明している。これは当時の記事転記であり、multi-track tapeや完成音源を今回独自検証した事実ではない。
+
+ただし、この証言が示す設計上の差は重要である。bassを長時間不変の`ANCHOR`に固定するのではなく、grooveを支える低域を保ったまま、各音のattack／swell／release境界を編集して輪郭を作る。
+
+そこで`TIME HOLE`から次を分離する。
+
+- `EDGE CUT`: 一音の立上りまたは余韻を短くし、低域の重さを残したまま時間輪郭を変える。
+- `EVENT HOLE`: 音または短い事件全体を抜く。
+- `SEQUENCE SPLICE`: 離れた時点を接続し、並びそのものを変える。
+
+`EDGE CUT`はgate presetではない。どの音をどれだけ短くしたときrhythmが前景化するかを、演奏者が耳で選ぶ編集行為である。
+
+### 3. mixの著者はCzukay一人に固定されていない
+
+同じ転記資料でCzukayは、`Twilight World`のmixについて、Wobbleが音にrhythmとlifeが足りないと指摘し、実際に卓を操作して各controlを極端な位置へ動かした結果、rhythmが見えるようになったと説明している。
+
+この事例では、Czukayが素材を一方的に編集し、他者がsourceを供給するだけではない。Wobbleはbass奏者であると同時にmixing surfaceへ介入し、Czukayはその判断を受け取る。したがって`human_editorial_responsibility`のhumanを単独のmaster editorへ固定しない。
+
+```text
+EDITORIAL_RESPONSIBILITY = movable_between_performers
+```
+
+Sound Labへ接続するなら、誰が録音したtrackかと、誰が現在その関係を切断・空間化・commitするかを同一にする必要はない。ただし権限の自動移譲や複数人network sessionは今回の採用事項ではない。
+
+### 4. `Trench Warfare` — 共同演奏と後の再構成を同一takeと呼ばない
+
+Czukayは`Trench Warfare`について、Wobbleとbasic trackおよび一つのoverdubを作った後、Wobble不在のmixで自分が最初から作り直したと述べている。また、初めて手にしたFrench hornを同曲で演奏したとも別の本人インタビューで説明する。
+
+ここでは最低でも次の由来を分ける必要がある。
+
+1. 共同で演奏されたbasic track。
+2. 共同で加えられたoverdub。
+3. Czukayが不在の共同者の素材を再構成したmix／edit。
+4. 完成音源で新たに成立した作品上の関係。
+
+完成結果だけを`performance take`として保存すると、誰の同時判断で生じ、どこから編集者の単独判断へ移ったかが消える。これは作品価値の否定ではなく、再現研究に必要なprovenance境界である。
+
+### 5. `Radio Wave Surfer` — 演奏時の合成と、後の時間編集を分ける
+
+再発元P-Vineの記述では、`Radio Wave Surfer`は1984〜1987年の演奏をまとめ、一本のstereo microphoneで録音され、mixは施されていない。参加者としてCzukay、Jaki Liebezeit、Michael Karoli、Sheldon Ancelが挙げられ、後半には短波radioと三人の演奏の絡みが記録される。
+
+一方、複数の再発紹介が引用するsleeve noteには、mix不要、一方で各曲は慎重に編集され、teamworkで即興演奏された素材をCzukayが再作曲した、という趣旨がある。今回は盤面原本を直接取得していないため、sleeve note文言は二次転記として扱う。
+
+この二つは矛盾ではなく、異なる操作層を示す可能性が高い。
+
+| 操作層 | `Radio Wave Surfer`で資料が示すもの |
+| --- | --- |
+| ensemble relation | 人、radio、roomの関係を同時演奏する |
+| spatial capture | 一本のstereo micで関係全体を一つのroom imageへ畳む |
+| post mix | 個別trackのbalanceを後から作り直さない |
+| temporal recomposition | stereo compositeの選択、切断、順序を後から編集する |
+
+したがってCzukay型の`COMMIT`は単なるbounceではない。現在の複数source関係を一度不可分のstereo generationへまとめ、そのgenerationを次の時間編集対象にする。
+
+### 6. Dubとの境界がさらに明確になった
+
+Dub演奏では、録音済みsourceのdry、send、return、tailをmix中に個別操作し続ける。一方`Radio Wave Surfer`型では、演奏時の関係を一本のstereo imageへcollapseした後、その合成物の時間を編集する。
+
+```text
+DUB:     stems remain addressable -> live relation is recomposed
+CZUKAY:  live relation -> stereo composite -> time is recomposed
+```
+
+両者はCUTと空間を共有するが、編集対象の粒度が違う。Dub returnをCzukayのroomへ改名したり、stereo compositeを第五trackとして常時積層したりしない。
+
+### 7. Field Looperの修正版研究モデル（未採用）
+
+四本のRAWを保存したまま、主演奏面では次のgeneration構造を試験候補にする。
+
+```text
+4 RAW SOURCES + EXTERNAL_STREAM
+          |
+          v
+ LIVE RELATION / SHARED ROOM
+          | explicit COMMIT
+          v
+ STEREO GENERATION + EDIT MAP
+          | EXPOSE / EDGE CUT / EVENT HOLE / SPLICE
+          v
+ NEXT CURRENT RELATION
+```
+
+固定する候補境界:
+
+- RAWは消さないが、常に四stemを編集するDAW画面へ戻さない。
+- `COMMIT`前はsource relationを演奏し、後はcompositeの時間を演奏する。
+- compositeを自動で積み重ねず、現在前景化するgeneration数を制限する。
+- editは非破壊mapとして保持できても、演奏中は細かな波形修正画面を主演奏経路にしない。
+- external streamは録音物へ自動保存しない。残す範囲は明示的に決定する。
+- generationにはsource ref、演奏時刻、room state、gesture／mix event、編集者の区間をprovenanceとして結ぶ。
+
+このモデルは製品仕様ではなく、Czukay研究から導いた反証可能な候補である。実装pathは今回変更しない。
+
+### 8. 次の実測課題
+
+1. 正規previewをShazam経路で版固定できる場合、`Full Circle`六曲と`Radio Wave Surfer`代表区間を別々に取得する。
+2. `Full Circle`ではbass onset、swell、release、無音長を測り、`EDGE CUT`仮説を支持・反証する。
+3. `Twilight World`ではfilter／levelの極端な移動がrhythm知覚をどう変えるか、音源上の区間を同定する。
+4. `Radio Wave Surfer`ではradio、drums、guitar、voiceのentry／withdrawと、編集境界候補を時刻付きで記録する。
+5. 一本のstereo compositeを切る場合と、四stemを後mixする場合を同一素材で比較し、判断速度、関係の保持、DAW化の度合いを評価する。
+6. 一台のdry external streamと、複数stream＋effectを比較し、予測不能性が機能数ではなく応答を生むか確認する。
+7. `ATTEND / ADMIT / WITHDRAW / RESPOND`をiPhone画面上で区別できる最小gestureを、二点・三点の固定割当なしに検証する。
+
+### 9. 取得不能・未検証
+
+- `research/20260902-jah-wobble`は、現在のGitHub branch検索で取得できず、期待refへの直接取得も成功しなかった。過去会話にはpush許可の記録があるが、許可を保存完了の証拠にしない。
+- `Radio Wave Surfer`の盤面／sleeve note原本は未取得。
+- 今回は音源を再生・取得しておらず、聴取記述または信号測定を追加していない。
+- Wobbleの「bass三track」「各音を手切り」という証言を、session tapeまたは独立した技術資料で再確認していない。
+- `Trench Warfare`のbasic track、overdub、完成mixの各境界を音源上で同定していない。
+
+### 追加資料
+
+- FACT, “Interview: Holger Czukay” (2009): https://www.factmag.com/2009/05/11/interview-holger-czukay/
+- Electronic Sound, “A conversation with Holger Czukay: There’s a method to this madness”: https://www.electronicsound.co.uk/features/long-reads/a-conversation-with-holger-czukay-theres-a-method-to-this-madness/
+- Fodderstompf press archive, Jah Wobble & Holger Czukay interviews 1981: https://www.fodderstompf.com/ARCHIVES/INTERVIEWS/holg81.html
+- Spoon Records, Holger Czukay obituary／career note: https://www.spoonrecords.com/news/holgers-obituary.php
+- Grönland Records, `Full Circle` official reissue: https://www.groenland.com/en/products/holger-czukay-jah-wobble-jaki-liebezeit-full-circle-cd
+- P-Vine, `Radio Wave Surfer` reissue information: https://anywherestore.p-vine.jp/products/plp-8082
+
+### 変更履歴追補
+
+- dryの一台radioを、非対称に継続する外部共演者として記録。
+- `ACCEPT / REJECT`を失効し、`ATTEND / ADMIT / WITHDRAW / RESPOND`へ修正。
+- bass編集を`EDGE CUT / EVENT HOLE / SEQUENCE SPLICE`へ分離。
+- editorial responsibilityが演奏者間を移動しうることを追加。
+- live relation、stereo capture、post mix、temporal recompositionを分離。
+- Dubのstem再構成とCzukayのstereo composite時間編集の境界を追加。
+- 資料研究のみ更新。音源解析、製品実装、main変更、PR、mergeは行っていない。
