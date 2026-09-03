@@ -3,7 +3,7 @@
 - 状態: `active`
 - research-id: `20260902-charlie-hunter`
 - 研究期間: 長期
-- 更新日時: 2026-09-02 UTC
+- 更新日時: 2026-09-03 UTC
 - 対象: Charlie Hunterの演奏、楽器設計、リズム思想、録音方法
 - 現在の問い: ベース、コード、旋律を一人の身体へ拘束することで生じるグルーヴを、珍しい奏法の模倣にせず、演奏可能な構造としてどう記述できるか
 
@@ -734,3 +734,64 @@ CAUSAL_SIGNATURE {
 
 最初の比較では、同一の短い無著作権イベント素材に対して、(a) 独立voice、(b) 全声固定macro、(c) Hunter型couplingの三条件を用意する。音数を揃え、ジェスチャーから音価・ミュート・局所位相・空白への因果署名だけを比較する。現段階では研究設計であり、音源実測、UI実装、製品採用は行っていない。
 
+## 2026-09-03追補 — 合成イベントでcouplingとmacroを分離
+
+### 目的と証拠境界
+
+前節で定義した因果署名を、同じ入力、同じ三声、同じ9個のvoice枠で比較できる決定的な合成モデルへ落とした。比較する条件は次の三つである。
+
+1. `independent_voice`: 一つのgestureが指定voiceだけを変える。
+2. `fixed_macro`: 一つのgestureが全voiceへ同じ変化を与える。
+3. `hunter_coupling`: 一つのgestureが複数voiceへ届くが、役割ごとに異なる変化を与える。
+
+`hunter_coupling` の係数は差を検査するための合成値である。Charlie Hunterの録音、MIDI、onset測定、奏法の数値化、本人の機材設定を含まず、「Hunter風」presetでもない。
+
+### 保存した再現物
+
+- `tools/simulate_hunter_coupling.py` — 三条件から因果署名とevent枠を生成する。
+- `data/synthetic-hunter-coupling-v1.json` — 決定的な生成結果。
+- `tests/test_simulate_hunter_coupling.py` — 条件差、決定性、fixture一致を検査する7件の回帰試験。
+
+### 合成結果
+
+| 条件 | 各gestureの影響voice数 | 各gesture内の異なる変化pattern数 | 自動追加event |
+|---|---|---|---:|
+| 独立voice | `1 / 1 / 1` | `1 / 1 / 1` | 0 |
+| 全声固定macro | `3 / 3 / 3` | `1 / 1 / 1` | 0 |
+| Hunter型coupling | `3 / 3 / 3` | `3 / 3 / 3` | 0 |
+
+この結果から、**一つのgestureが何声へ届くかだけでは、固定macroと拘束された対位法を区別できない**。両者とも三声へ届くが、固定macroは全声を同じ方向・量で変え、Hunter型couplingはbass、chord、melodyへ異なる結果を返す。
+
+`chord_mute` でも差が出る。
+
+- 独立voice: chordだけを消し、他声は変わらない。
+- 固定macro: 三声すべてを消す。
+- Hunter型coupling: chordを消しつつ、bassの音価とmelodyの次発音位置が別々に変わる。
+
+したがってHunter固有の不変条件には、複数voiceへの波及だけでなく、**役割差を保った相互制約**が必要である。一方、合成係数の音楽的妥当性はまだ支持されていない。
+
+### 実行結果
+
+`python -m unittest discover -s research/20260902-charlie-hunter/tests -p 'test_*.py' -v` を実行し、7件すべて成功した。
+
+検査したのは次の範囲である。
+
+1. 同じ入力から同じJSONが得られる。
+2. 全条件で9個のvoice枠を保ち、自動eventを追加しない。
+3. 独立voiceは各gestureにつき一声だけを変える。
+4. 固定macroは三声へ同一patternを返す。
+5. Hunter型couplingは三声へ異なるpatternを返す。
+6. chord mute後もbassとmelodyのactive状態を保つ。
+7. 保存fixtureがgenerator出力と一致する。
+
+### 現在の判断と次の反証
+
+合成試験により、三つの因果topologyを機械的に区別できることは確認した。以下は未確認である。
+
+- Hunter型couplingがCharlie Hunterの実演を再現すること。
+- 合成した時間差・音価差が音楽的に有効であること。
+- 利用者がgestureと複数結果の対応を学習できること。
+- 独立voiceまたは固定macroより即興性が高いこと。
+- iPhoneのマルチタッチ操作として成立すること。
+
+次の反証単位は、同じ無著作権click／tone素材から三条件の短い音響版を作り、条件名を隠して、(a) 原因を追えるか、(b) 役割差を聴き分けられるか、(c) 空白を意図的に作れるかを比較することである。これは次工程であり、今回の保存物には音声、UI、製品実装を含めない。

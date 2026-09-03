@@ -1,0 +1,466 @@
+{
+  "conditions": {
+    "fixed_macro": {
+      "causal_signatures": [
+        {
+          "action": "bass_shorten",
+          "gesture_id": "g1",
+          "targets": [
+            {
+              "active_changed": false,
+              "duration_delta": -0.2,
+              "onset_delta": 0.0,
+              "voice": "bass"
+            },
+            {
+              "active_changed": false,
+              "duration_delta": -0.2,
+              "onset_delta": 0.0,
+              "voice": "chord"
+            },
+            {
+              "active_changed": false,
+              "duration_delta": -0.2,
+              "onset_delta": 0.0,
+              "voice": "melody"
+            }
+          ]
+        },
+        {
+          "action": "melody_delay",
+          "gesture_id": "g2",
+          "targets": [
+            {
+              "active_changed": false,
+              "duration_delta": 0.0,
+              "onset_delta": 0.12,
+              "voice": "bass"
+            },
+            {
+              "active_changed": false,
+              "duration_delta": 0.0,
+              "onset_delta": 0.12,
+              "voice": "chord"
+            },
+            {
+              "active_changed": false,
+              "duration_delta": 0.0,
+              "onset_delta": 0.12,
+              "voice": "melody"
+            }
+          ]
+        },
+        {
+          "action": "chord_mute",
+          "gesture_id": "g3",
+          "targets": [
+            {
+              "active_changed": true,
+              "duration_delta": 0.0,
+              "onset_delta": 0.0,
+              "voice": "bass"
+            },
+            {
+              "active_changed": true,
+              "duration_delta": 0.0,
+              "onset_delta": 0.0,
+              "voice": "chord"
+            },
+            {
+              "active_changed": true,
+              "duration_delta": 0.0,
+              "onset_delta": 0.0,
+              "voice": "melody"
+            }
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "active": true,
+          "duration": 0.55,
+          "gesture_id": "g1",
+          "onset": 1.0,
+          "voice": "bass"
+        },
+        {
+          "active": true,
+          "duration": 0.55,
+          "gesture_id": "g1",
+          "onset": 1.0,
+          "voice": "chord"
+        },
+        {
+          "active": true,
+          "duration": 0.55,
+          "gesture_id": "g1",
+          "onset": 1.0,
+          "voice": "melody"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g2",
+          "onset": 2.12,
+          "voice": "bass"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g2",
+          "onset": 2.12,
+          "voice": "chord"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g2",
+          "onset": 2.12,
+          "voice": "melody"
+        },
+        {
+          "active": false,
+          "duration": 0.75,
+          "gesture_id": "g3",
+          "onset": 3.0,
+          "voice": "bass"
+        },
+        {
+          "active": false,
+          "duration": 0.75,
+          "gesture_id": "g3",
+          "onset": 3.0,
+          "voice": "chord"
+        },
+        {
+          "active": false,
+          "duration": 0.75,
+          "gesture_id": "g3",
+          "onset": 3.0,
+          "voice": "melody"
+        }
+      ]
+    },
+    "hunter_coupling": {
+      "causal_signatures": [
+        {
+          "action": "bass_shorten",
+          "gesture_id": "g1",
+          "targets": [
+            {
+              "active_changed": false,
+              "duration_delta": -0.2,
+              "onset_delta": 0.0,
+              "voice": "bass"
+            },
+            {
+              "active_changed": false,
+              "duration_delta": 0.0,
+              "onset_delta": -0.06,
+              "voice": "chord"
+            },
+            {
+              "active_changed": false,
+              "duration_delta": 0.05,
+              "onset_delta": 0.0,
+              "voice": "melody"
+            }
+          ]
+        },
+        {
+          "action": "melody_delay",
+          "gesture_id": "g2",
+          "targets": [
+            {
+              "active_changed": false,
+              "duration_delta": 0.0,
+              "onset_delta": -0.03,
+              "voice": "bass"
+            },
+            {
+              "active_changed": false,
+              "duration_delta": -0.06,
+              "onset_delta": 0.0,
+              "voice": "chord"
+            },
+            {
+              "active_changed": false,
+              "duration_delta": 0.0,
+              "onset_delta": 0.12,
+              "voice": "melody"
+            }
+          ]
+        },
+        {
+          "action": "chord_mute",
+          "gesture_id": "g3",
+          "targets": [
+            {
+              "active_changed": false,
+              "duration_delta": -0.08,
+              "onset_delta": 0.0,
+              "voice": "bass"
+            },
+            {
+              "active_changed": true,
+              "duration_delta": 0.0,
+              "onset_delta": 0.0,
+              "voice": "chord"
+            },
+            {
+              "active_changed": false,
+              "duration_delta": 0.0,
+              "onset_delta": 0.04,
+              "voice": "melody"
+            }
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "active": true,
+          "duration": 0.55,
+          "gesture_id": "g1",
+          "onset": 1.0,
+          "voice": "bass"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g1",
+          "onset": 0.94,
+          "voice": "chord"
+        },
+        {
+          "active": true,
+          "duration": 0.8,
+          "gesture_id": "g1",
+          "onset": 1.0,
+          "voice": "melody"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g2",
+          "onset": 1.97,
+          "voice": "bass"
+        },
+        {
+          "active": true,
+          "duration": 0.69,
+          "gesture_id": "g2",
+          "onset": 2.0,
+          "voice": "chord"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g2",
+          "onset": 2.12,
+          "voice": "melody"
+        },
+        {
+          "active": true,
+          "duration": 0.67,
+          "gesture_id": "g3",
+          "onset": 3.0,
+          "voice": "bass"
+        },
+        {
+          "active": false,
+          "duration": 0.75,
+          "gesture_id": "g3",
+          "onset": 3.0,
+          "voice": "chord"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g3",
+          "onset": 3.04,
+          "voice": "melody"
+        }
+      ]
+    },
+    "independent_voice": {
+      "causal_signatures": [
+        {
+          "action": "bass_shorten",
+          "gesture_id": "g1",
+          "targets": [
+            {
+              "active_changed": false,
+              "duration_delta": -0.2,
+              "onset_delta": 0.0,
+              "voice": "bass"
+            }
+          ]
+        },
+        {
+          "action": "melody_delay",
+          "gesture_id": "g2",
+          "targets": [
+            {
+              "active_changed": false,
+              "duration_delta": 0.0,
+              "onset_delta": 0.12,
+              "voice": "melody"
+            }
+          ]
+        },
+        {
+          "action": "chord_mute",
+          "gesture_id": "g3",
+          "targets": [
+            {
+              "active_changed": true,
+              "duration_delta": 0.0,
+              "onset_delta": 0.0,
+              "voice": "chord"
+            }
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "active": true,
+          "duration": 0.55,
+          "gesture_id": "g1",
+          "onset": 1.0,
+          "voice": "bass"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g1",
+          "onset": 1.0,
+          "voice": "chord"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g1",
+          "onset": 1.0,
+          "voice": "melody"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g2",
+          "onset": 2.0,
+          "voice": "bass"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g2",
+          "onset": 2.0,
+          "voice": "chord"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g2",
+          "onset": 2.12,
+          "voice": "melody"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g3",
+          "onset": 3.0,
+          "voice": "bass"
+        },
+        {
+          "active": false,
+          "duration": 0.75,
+          "gesture_id": "g3",
+          "onset": 3.0,
+          "voice": "chord"
+        },
+        {
+          "active": true,
+          "duration": 0.75,
+          "gesture_id": "g3",
+          "onset": 3.0,
+          "voice": "melody"
+        }
+      ]
+    }
+  },
+  "evidence_boundary": "Synthetic topology contrast only; no Charlie Hunter audio, MIDI, onset measurement, or artist-style preset is included.",
+  "input": {
+    "gestures": [
+      {
+        "action": "bass_shorten",
+        "amount": 0.2,
+        "id": "g1",
+        "time": 1.0
+      },
+      {
+        "action": "melody_delay",
+        "amount": 0.12,
+        "id": "g2",
+        "time": 2.0
+      },
+      {
+        "action": "chord_mute",
+        "amount": 1.0,
+        "id": "g3",
+        "time": 3.0
+      }
+    ],
+    "voices": [
+      "bass",
+      "chord",
+      "melody"
+    ]
+  },
+  "schema_version": "sound-lab.synthetic-hunter-coupling/v1",
+  "summary": {
+    "affected_voice_counts": {
+      "fixed_macro": [
+        3,
+        3,
+        3
+      ],
+      "hunter_coupling": [
+        3,
+        3,
+        3
+      ],
+      "independent_voice": [
+        1,
+        1,
+        1
+      ]
+    },
+    "automatic_events_added": {
+      "fixed_macro": 0,
+      "hunter_coupling": 0,
+      "independent_voice": 0
+    },
+    "distinct_target_patterns": {
+      "fixed_macro": [
+        1,
+        1,
+        1
+      ],
+      "hunter_coupling": [
+        3,
+        3,
+        3
+      ],
+      "independent_voice": [
+        1,
+        1,
+        1
+      ]
+    },
+    "event_slots": {
+      "fixed_macro": 9,
+      "hunter_coupling": 9,
+      "independent_voice": 9
+    }
+  }
+}
