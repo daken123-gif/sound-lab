@@ -393,3 +393,153 @@ type Convergence = {
 - John “Jabo” Starks interview (American Archive of Public Broadcasting) — Brown が一度舞台を離れても続いた Bootsy 期バンドの groove に関する証言。
 - Bonedo specialist analysis — `Sex Machine` で drums / bass / guitar の共有アクセントが限定され、休符を含めて歯車状に噛み合うという補助的分析。
 
+
+
+## 17. 訂正 — LEADERSHIP は一枚の権限ではない
+
+前回の `LEADERSHIP` は、leader が他声部の onset / rest を直接変える一つの変数としていた。しかし、これは Brown の指揮とバンドの groove を一つの上下関係へ潰している。
+
+Patrick Ainsworth の初期 funk のマイクロタイミング分析では、`Cold Sweat`、`Funky Drummer`、`Sex Machine`、`Super Bad` における Brown の vocal interjection は、drums のリズムを有意に攪乱していないとされる。Brown は恐るべき bandleader であると同時に、groove の内部では「バンドの一部」として振る舞う、という観察である。
+
+一方、`Funky Drummer` では Brown が事前に lay out と return を言語で指示し、count の後に全員が抜け、drummer を残し、再度戻す。この二つは矛盾しない。**構造を決める権限と、拍を生成する権限が別だからである。**
+
+したがって、`LEADERSHIP` を廃止せず、次の三つへ分解する。
+
+| 権限 | 決めるもの | JB 研究上の例 | 他権限への影響 |
+|---|---|---|---|
+| `STRUCTURAL_AUTHORITY` | break、return、solo、modulation、区間境界 | Brown の count と指名 cue | 拍そのものを再生成しない |
+| `PULSE_AUTHORITY` | 位相、周期、microtiming contour、着地可能性 | Stubblefield / Starks が維持する pocket | 構造 cue の実行可能時刻を与える |
+| `PHRASE_AUTHORITY` | 局所フレーズ、fill、応答、音価 | drummer の ghost note、horn や vocal の応答 | 一時的に attention を移す |
+
+これは固定メンバー表ではない。同じ人物・同じ声部が、ある瞬間には複数の権限を持てる。重要なのは、人ではなく**何を決める権限か**を分離することだ。
+
+## 18. Cue は時計を奪わず、実行待ちになる
+
+Brown 型 cue を、押した瞬間に全体を切り替える UI event として処理しない。cue はまず発行され、pulse が成立させた次の収束可能点まで待つ。
+
+```ts
+type PendingCue = {
+  action: "break" | "return" | "solo" | "downshift";
+  target: VoiceId | VoiceGroup;
+  issuedAt: AudioTime;
+  issuer: AuthorityId;
+  executeAt: "next-viable-convergence";
+  urgency: number;
+  expiresAfterCycles: number;
+};
+
+type PulseState = {
+  phase: number;
+  cycle: number;
+  confidence: number;
+  microtimingContour: number[];
+  candidateConvergences: Convergence[];
+};
+```
+
+実行器は次の順序で動く。
+
+1. `STRUCTURAL_AUTHORITY` が cue を pending queue に入れる。
+2. `PULSE_AUTHORITY` は現在の groove を止めず、収束候補を更新する。
+3. cue 対象の voice が、現在の note / rest を壊さず移行できるか評価する。
+4. 最初の十分な候補で cue を実行する。
+5. 実行後も pulse の位相は原則として連続させる。
+
+```text
+can_execute(cue, t) =
+  pulse_confidence(t) >= p_min
+  && convergence_score(t) >= c_min
+  && transition_collision(cue, t) <= k_max
+```
+
+ここで閾値は未確定であり、史実の数値ではない。実装時に演奏感から反証する対象である。
+
+### 強制 cue
+
+通常 cue と、即時停止を必要とする強制 cue は分ける。JB の演奏上の cue から非常停止までを同じ仕組みにしない。
+
+```ts
+type CueMode =
+  | "musical-pending"  // 関係を保って次の収束で実行
+  | "hard-stop";       // 安全・明示停止。収束を待たない
+```
+
+## 19. Break memory の根拠を強める
+
+Anne Danielsen の `Continuity and Break: James Brown's 'Funky Drummer'` は、cut によって残った drum が目立つだけでなく、消えた bass、organ、guitar、horn の層も「不在」として知覚されると論じる。break は単純なトラック削除ではなく、直前まであった関係を露出させる操作である。
+
+この観察から、`MEMORY` は録音データの保持ではなく、予測されていた関係の保持とする。
+
+```ts
+type AbsentVoiceMemory = {
+  voice: VoiceId;
+  expectedOnsets: PhaseDistribution;
+  expectedRests: PhaseDistribution;
+  lastRelationToPulse: number;
+  lastRelationToPeers: Record<VoiceId, number>;
+  decay: number;
+};
+```
+
+break 中、消えた voice の audio は鳴らさない。しかし、その `expectedOnsets` と `expectedRests` は残った voice の配置評価に使う。復帰時は録音ループの先頭でも、機械的な小節頭でもなく、その時点で更新された関係位置へ入る。
+
+このため、break は subtractive mixer ではなく、**聞こえない声部を含む合奏状態**になる。
+
+## 20. 最小シミュレーターの仕様
+
+次の実装段階では音色を作り込まない。四声部の event だけで、権限分離が成立するかを先に試す。
+
+### 入力
+
+- 4 voices: `DRUM / BASS / GUITAR / HORN`
+- 各 voice: onset、rest、duration、accent、phase
+- 2-cycle の初期 pattern
+- cue: `break / return / solo / downshift`
+- authority assignment: structural / pulse / phrase
+
+### 観測ログ
+
+```ts
+type ObservationFrame = {
+  time: AudioTime;
+  pulsePhase: number;
+  activeVoices: VoiceId[];
+  pendingCues: PendingCue[];
+  executedCue?: PendingCue;
+  convergenceScore: number;
+  authorityMap: Record<AuthorityKind, VoiceId | "performer">;
+};
+```
+
+### 合格条件
+
+- structural cue を発行しても、その瞬間に pulse phase が飛ばない。
+- pulse authority を DRUM から BASS へ移すと、収束候補の位置が変わる。
+- phrase authority の solo は他声部を一律 mute せず、rest 密度を局所的に再配分する。
+- break 中に absent voice memory が更新され、return が固定 loop start にならない。
+- Brown 相当の structural authority が発音しなくても cue を出せる。
+- Brown 相当の vocal voice が発音しても、それだけで drum microtiming が引きずられない。
+
+### ここで棄却する実装
+
+- `leaderId` 一つだけで timing、form、solo をすべて支配する。
+- cue 受信時に sequencer position をゼロへ戻す。
+- break を単なる gain = 0 として扱う。
+- humanize の乱数だけで voice 間の差を作る。
+- One のたびに全 voice を同時発音させる。
+
+## 21. 追加資料
+
+- Patrick Ainsworth, [Microtiming in Early Funk](https://www.gmth.de/zeitschrift/artikel/1224.aspx)
+- Anne Danielsen, [Continuity and Break: James Brown's 'Funky Drummer'](https://www.researchgate.net/publication/334695958_Continuity_and_Break_James_Brown%27s_%27Funky_Drummer%27)
+- NPR / KLCC, [The Original Funky Drummers On Life With James Brown](https://www.klcc.org/npr-music/2015-01-05/the-original-funky-drummers-on-life-with-james-brown)
+- Roland, [Behind the Beat: “Funky Drummer”](https://articles.roland.com/behind-the-beat-funky-drummer-by-james-brown/)
+
+## 22. この更新後に残る検証
+
+- `Funky Drummer` の full take を正規に取得し、cue 発行、count、cut、return の時刻を音源から転記する。
+- `Cold Sweat` の二小節 microtiming contour を一次分析表から数値化する。
+- pulse authority の交代と、単なる instrument mute の聴感差を比較する。
+- 最小シミュレーターを実装し、上記ログを実際に採取する。
+- iPhone 実機の conductor layer は、シミュレーターが成立した後に検証する。
+
