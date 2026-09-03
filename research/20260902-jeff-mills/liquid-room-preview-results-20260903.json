@@ -1,0 +1,163 @@
+{
+  "research_id": "20260902-jeff-mills",
+  "measured_at_utc": "2026-09-03",
+  "source": "Apple Music Catalog previews resolved through Shazam connector",
+  "album": {
+    "id": "1860112728",
+    "name": "Jeff Mills at The Liquid Room (DJ Mix)",
+    "artist": "Jeff Mills",
+    "track_count": 36
+  },
+  "measurement_class": "calibration-approved excerpt measurements",
+  "sample_rate_hz": 44100,
+  "limitations": [
+    "Each file is an unknown-position approximately 30-second preview of an Apple Music DJ Mix chapter.",
+    "Chapter labels do not prove that the preview contains the chapter boundary or only the named source track.",
+    "Periodicity candidates are not asserted as musical beats or exact playback tempo.",
+    "The Utopia preview is unusually quiet and right-weighted, so its periodicity candidates are not used for the tempo-arc hypothesis.",
+    "Audio files are not committed to Git."
+  ],
+  "tracks": [
+    {
+      "track_number": 1,
+      "song_id": "1860112729",
+      "isrc": "US23A8217400",
+      "name": "Utopia (Mixed)",
+      "duration_in_catalog_ms": 86139,
+      "preview_measurement": {
+        "duration_s": 29.9755,
+        "rms_dbfs": -26.0,
+        "spectral_centroid_hz": 2736.1,
+        "stereo_balance_minus_left_plus_right": 0.3571,
+        "onsets_per_second": 8.774,
+        "periodicity_candidates_bpm": [112.35, 166.71]
+      },
+      "window_primary_periodicity_candidates_bpm": [166.71, null, 169.44],
+      "window_rms_dbfs": [-28.44, -25.56, -24.8]
+    },
+    {
+      "track_number": 5,
+      "song_id": "1860112733",
+      "isrc": "US23A8217404",
+      "name": "Step To Enchantment (Srtringent) [Mixed]",
+      "duration_in_catalog_ms": 154587,
+      "preview_measurement": {
+        "duration_s": 29.9755,
+        "rms_dbfs": -11.74,
+        "spectral_centroid_hz": 2796.7,
+        "stereo_balance_minus_left_plus_right": 0.0457,
+        "onsets_per_second": 9.174,
+        "periodicity_candidates_bpm": [73.83, 147.66, 114.84, 86.86, 64.6, 54.4, 202.67]
+      },
+      "window_periodicity_families_bpm": [
+        [73.83, 147.66],
+        [73.83, 147.66],
+        [73.83, 147.66]
+      ]
+    },
+    {
+      "track_number": 6,
+      "song_id": "1860112734",
+      "isrc": "US23A8217405",
+      "name": "Life Cycle (Mixed)",
+      "duration_in_catalog_ms": 80077,
+      "preview_measurement": {
+        "duration_s": 29.9755,
+        "rms_dbfs": -13.07,
+        "spectral_centroid_hz": 3064.8,
+        "stereo_balance_minus_left_plus_right": -0.0761,
+        "onsets_per_second": 9.474,
+        "periodicity_candidates_bpm": [73.3, 147.66, 53.0, 187.93]
+      },
+      "window_periodicity_families_bpm": [
+        [73.3, 147.66],
+        [73.3, 147.66],
+        [73.3, 147.66]
+      ]
+    },
+    {
+      "track_number": 17,
+      "song_id": "1860112745",
+      "isrc": "US23A8217416",
+      "name": "ID1 (from Jeff Mills at The Liquid Room) [Mixed]",
+      "duration_in_catalog_ms": 123564,
+      "preview_measurement": {
+        "duration_s": 29.9755,
+        "rms_dbfs": -13.55,
+        "spectral_centroid_hz": 4842.9,
+        "stereo_balance_minus_left_plus_right": -0.0954,
+        "onsets_per_second": 9.641,
+        "periodicity_candidates_bpm": [72.28, 143.55, 70.79, 195.02, 161.5, 129.2, 114.84, 52.73]
+      },
+      "window_supported_periodicity_family_bpm": [143.55, 144.56]
+    },
+    {
+      "track_number": 23,
+      "song_id": "1860112751",
+      "isrc": "US23A8217422",
+      "name": "Strings of Life (Mixed)",
+      "artist_name": "Derrick May",
+      "duration_in_catalog_ms": 208837,
+      "preview_measurement": {
+        "duration_s": 29.9755,
+        "rms_dbfs": -15.28,
+        "spectral_centroid_hz": 4223.8,
+        "stereo_balance_minus_left_plus_right": -0.0438,
+        "onsets_per_second": 7.306,
+        "periodicity_candidates_bpm": [65.01, 129.2, 143.55, 118.8, 61.89, 68.0]
+      },
+      "window_periodicity_families_bpm": [
+        [65.01, 129.2, 143.55],
+        [65.01, 129.2, 143.55],
+        [65.01, 129.2, 143.55]
+      ]
+    },
+    {
+      "track_number": 35,
+      "song_id": "1860112763",
+      "isrc": "US23A8217434",
+      "name": "Casa (Mixed)",
+      "duration_in_catalog_ms": 219183,
+      "preview_measurement": {
+        "duration_s": 29.9755,
+        "rms_dbfs": -12.87,
+        "spectral_centroid_hz": 3658.3,
+        "stereo_balance_minus_left_plus_right": -0.0182,
+        "onsets_per_second": 8.307,
+        "periodicity_candidates_bpm": [70.79, 139.67, 77.71, 65.42, 172.27, 120.19]
+      },
+      "window_supported_periodicity_family_bpm": [137.81, 141.59, 139.67]
+    },
+    {
+      "track_number": 36,
+      "song_id": "1860112764",
+      "isrc": "US23A8217435",
+      "name": "Life Cycle / Step To Enchantment (Srtringent) [Mixed]",
+      "duration_in_catalog_ms": 196890,
+      "preview_measurement": {
+        "duration_s": 29.9755,
+        "rms_dbfs": -12.1,
+        "spectral_centroid_hz": 3283.8,
+        "stereo_balance_minus_left_plus_right": -0.0119,
+        "onsets_per_second": 9.441,
+        "periodicity_candidates_bpm": [143.55, 72.28, 82.03, 64.2, 52.47, 191.41, 113.58]
+      },
+      "window_supported_periodicity_family_bpm": [143.55, 145.58, 143.55]
+    }
+  ],
+  "studio_comparison": [
+    {
+      "name": "Step To Enchantment",
+      "sequence_preview_supported_family_bpm": [136.0, 137.81],
+      "liquid_room_preview_supported_family_bpm": [147.66],
+      "conditional_ratio_if_same_pulse_layer": 1.0715
+    },
+    {
+      "name": "Life Cycle",
+      "sequence_preview_supported_family_bpm": [134.24, 135.12],
+      "sequence_note": "doubled from the stable 67.12-67.56 periodicity family",
+      "liquid_room_preview_supported_family_bpm": [147.66],
+      "conditional_ratio_if_same_pulse_layer": 1.0928
+    }
+  ]
+}
