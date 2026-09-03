@@ -11,6 +11,7 @@ resulting CPU tensors without the failing copy path.
 from __future__ import annotations
 
 import random
+import os
 
 import numpy as np
 import torch
@@ -20,9 +21,10 @@ import demucs.states
 
 ORIGINAL_SET_STATE = demucs.states.set_state
 
-random.seed(0)
-np.random.seed(0)
-torch.manual_seed(0)
+SEED = int(os.environ.get("SOUND_LAB_DEMUCS_SEED", "0"))
+random.seed(SEED)
+np.random.seed(SEED)
+torch.manual_seed(SEED)
 
 
 def compatible_set_state(model, state, quantizer=None):
