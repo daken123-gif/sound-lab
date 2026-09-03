@@ -2,7 +2,7 @@
 
 - 状態: `active`
 - research-id: `20260902-dangelo`
-- 更新日時: 2026-09-02 UTC
+- 更新日時: 2026-09-03 UTC
 - 対象: D'Angeloの作曲、演奏、録音、グルーヴ設計
 - 現在の中心曲: 「Spanish Joint」
 - 現在の問い: サンプラー以後の時間感覚を、生演奏者どうしの関係と多層録音によってどう成立させたか
@@ -66,6 +66,10 @@ The Vanguard名義、ギターの前景化、ファンク／ロック／政治�
    https://www.easysong.com/search/songs/song-copyright-holder-information.aspx?s=2264748
 8. Sony Music Japan「Black Messiah～来日記念最強盤」公開曲解説  
    https://www.sonymusic.co.jp/artist/dangelo/info/465019
+9. Apple Music「Spanish Joint」原盤候補ページ（track ID 1443830824）  
+   https://music.apple.com/us/song/1443830824
+10. Apple Music「Voodoo」album page（album ID 1443829916）  
+   https://music.apple.com/us/album/voodoo/1443829916
 
 参加者証言、公式メタデータ、第三者分析を同じ権威として扱わない。補助資料のコード名、調性、構成説明は、採譜または音源測定で再検証する。
 
@@ -181,6 +185,43 @@ Sony Music Japanの公式解説は、2015年のライブ音源で「Betray My He
 
 コード断片としてF minor 6等が言及されるが、全進行は原盤の採譜で確認する。
 
+## Preview取得試行 2026-09-03
+
+### 同定できた対象
+
+Apple Musicの公開ページで、D'Angelo名義、アルバム`Voodoo`、曲名`Spanish Joint`、track ID `1443830824`を原盤Previewの取得候補として固定した。ページはPreviewの存在を表示する。
+
+検索結果には別releaseのtrack ID `1440841910`、DJ Mix収録の`Spanish Joint (Mixed)`も現れた。今回の対象はDJ Mix版ではなく、`Voodoo`収録の`1443830824`である。同名曲やmix版を代用しない。
+
+### 取得できなかったもの
+
+2026-09-03 UTC時点で実行環境が`unavailable`となり、Appleのlookup APIと公開ページのブラウザ取得はいずれも完了しなかった。
+
+したがって次は未取得である。
+
+- `previewUrl`
+- 音声bytes
+- SHA-256
+- Previewの実時間位置
+- codec、sample rate、channel数
+- 非無音検査
+- 波形、RMS、spectrum、onset
+- BPM候補、窓安定性、位相特徴
+- 音源分離stem
+
+曲IDの同定を音声取得とみなさない。Preview表示を聴取・測定・分析の証拠にしない。
+
+### 再開時の固定手順
+
+1. `https://itunes.apple.com/lookup?id=1443830824&country=US`を取得する。
+2. 応答のtrack ID、artist、track name、collectionを再照合する。
+3. 応答内の`previewUrl`から一度だけ取得する。
+4. 元bytesのSHA-256、容量、codec、duration、sample rate、channels、非無音を記録する。
+5. 30秒を10秒窓三つへ分け、全ミックスのBPM候補、onset、RMS、spectral centroid、位相間隔を測る。
+6. 複数窓で安定しないBPM／調は棄却する。
+7. 分離は二次証拠としてdrums、bass等を測り、必ず元ミックスへ戻って照合する。
+8. Preview開始位置が不明な限り、全曲構成やセクション境界を断定しない。
+
 ## 現在の分析
 
 ### 時間は単一の「後ろノリ」ではない
@@ -287,6 +328,8 @@ D'Angeloの合図に対し、全員が同時サンプル精度で切り替わる
 15. D'Angelo、Roy Hargrove、Angela Stoneの著作権クレジット差と持分。
 16. Hargroveが担当した具体的な旋律、和声、ホーン配置、セクション設計。
 17. 2015年「Betray My Heart」接続版と原盤の構成差。
+18. Apple Music track ID `1443830824`のPreview bytes、SHA-256、区間位置。
+19. 同Previewの三窓測定と、全曲仮説へ使える範囲。
 
 ## 次の研究工程
 
