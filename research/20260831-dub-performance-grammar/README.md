@@ -2,7 +2,7 @@
 
 - 状態: `active`
 - research-id: `20260831-dub-performance-grammar`
-- 更新日時: 2026-09-02
+- 更新日時: 2026-09-03
 - 研究対象: Jamaican dubの成立、コンソール演奏、反復の再構成、4トラック・マルチタッチ楽器への変換
 - 現在の問い: 固定ループを垂れ流さず、録音済み4トラックを毎瞬再作曲するために、Dubから何を操作文法として抽出できるか
 
@@ -439,57 +439,68 @@ pair Aは両曲とも`Who Say Jah No Dread: The Classic Augustus Pablo Sessions`
 
 preview音源そのものはGitへ保存しない。解析手順は[`analyze_dub_previews.py`](./analyze_dub_previews.py)、測定結果は[`preview-analysis.json`](./preview-analysis.json)に保存する。
 
-### 18.3 測定条件
+### 18.3 解析経路の再訂正
 
-- decoder: ffmpeg
-- mono float32へdecode
-- analysis sample rate: 24 kHz
-- STFT: 2048 samples、hop 240 samples
-- 帯域: 40–250 Hz / 250–4000 Hz / 4000–11000 Hz
-- preview外の区間は一切記述しない
-- この実行環境は音声を聴覚入力として受け取れないため、「聴いた」とは記述しない
-- 数値は取得previewの信号測定であり、聴感上のsource同定やmix意図を自動的に証明しない
+2026-09-03に、Dub専用の`analyze_dub_previews.py`を新設して先に数値化した経路を失効させた。理由は、`main/research/music-analysis`に校正済みの共通解析器が既に存在しており、個別研究ごとに異なる特徴定義を追加すると比較可能性が壊れるためである。
 
-### 18.4 測定結果
+現在の解析権威:
 
-| 曲 | RMS dBFS | crest dB | 40–250 Hz | 250–4000 Hz | 4000–11000 Hz | median centroid |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Baby I Love You So | -8.903 | 11.692 | 70.415% | 28.871% | 0.714% | 405.950 Hz |
-| King Tubby Meets Rockers Uptown | -9.745 | 12.473 | 85.080% | 13.656% | 1.264% | 265.276 Hz |
-| You Are a No Good | -8.741 | 11.181 | 57.413% | 40.158% | 2.429% | 544.479 Hz |
-| Dance of the Vampires | -10.923 | 14.199 | 79.781% | 15.869% | 4.351% | 369.889 Hz |
+- `main:research/music-analysis/calibrate_analyzer.py`
+  - blob: `314db6380f63c12017b52dcd3dd2dfcaff94a539`
+- `main:research/music-analysis/analyze_previews.py`
+  - blob: `4e36a19c5760cc1f3a7cf4b80ad3e9ad6e3baa47`
 
-`DIRECT_AUDIO / signal measurement`として確認できる範囲:
+GitHubから取得した上記ソースをそのままメモリ上で実行した。合成校正は12件中12件成功した。現行の測定結果は[`preview-analysis-standard.json`](./preview-analysis-standard.json)に保存する。
 
-- 両pairのpreviewで、Dub版は原曲版より40–250 Hzのエネルギー比が高い。pair Aは70.415%から85.080%、pair Bは57.413%から79.781%へ変化した。
-- 両pairのpreviewで、Dub版は250–4000 Hzの比率が低い。pair Aは28.871%から13.656%、pair Bは40.158%から15.869%へ変化した。
-- median spectral centroidは両pairで低下した。pair Aは405.950 Hzから265.276 Hz、pair Bは544.479 Hzから369.889 Hzである。
-- Dub版は両pairでRMSが低く、crest factorが高い。ただしpreviewのmastering差を分離していないため、歴史的mixの絶対音量やdynamic range一般へ拡張しない。
+旧[`analyze_dub_previews.py`](./analyze_dub_previews.py)は実行停止するtombstoneへ変更した。旧[`preview-analysis.json`](./preview-analysis.json)は履歴を消さず`superseded`へ変更した。
 
-### 18.5 pair内の時間対応
+### 18.4 共通解析器による測定
 
-40–250 Hzのlog-energy envelopeを±10秒で相互相関した。
+| 曲 | RMS dBFS | frame RMS p10 / p50 / p90 | centroid | onset/s | onset interval median | onset interval CV |
+| --- | ---: | --- | ---: | ---: | ---: | ---: |
+| Baby I Love You So | -11.91 | -17.91 / -12.77 / -8.93 | 2590.5 Hz | 8.320 | 0.1103秒 | 0.364 |
+| King Tubby Meets Rockers Uptown | -12.75 | -24.11 / -14.15 / -9.05 | 2605.4 Hz | 7.685 | 0.1161秒 | 0.474 |
+| You Are a No Good | -11.74 | -19.14 / -12.01 / -9.01 | 3560.1 Hz | 8.207 | 0.1103秒 | 0.375 |
+| Dance of the Vampires | -13.93 | -30.33 / -14.12 / -10.52 | 3094.1 Hz | 7.439 | 0.1103秒 | 0.438 |
 
-- pair A: 原曲をDub版に対して+1.54秒ずらした位置で相関`0.948695`。250–4000 Hzと4000–11000 Hzも同じ+1.54秒が最大だが、相関はそれぞれ`0.514559`、`0.610098`だった。
-- pair B: 低域の最大相関は`0.526500`、lagは-1.72秒。中域と高域の最大lagは+8.73秒、+5.23秒に分かれた。
+周期候補:
 
-pair Aではpreview内の低域時間構造が強く対応し、中高域の対応が弱い。しかし、これだけで同一master、個別のmute、echo投擲、filter操作の因果までは証明しない。
+| pair | vocal original | Dub | 観測 |
+| --- | --- | --- | --- |
+| A | 134.23 / 66.26 / 88.34 | 134.23 / 88.34 / 65.83 / 53.28 | 134.23が一致し、二次候補も同じ周期族にある |
+| B | 137.81 / 68.91 / 91.47 / 54.69 | 68.00 / 137.81 / 91.47 / 54.40 | 137.81とhalf/double候補を共有するが順位が異なる |
 
-pair Bはpreview同士を単一lagで整列できない。別の曲位置が切り出された可能性を含むため、同期事件比較には使わない。
+これらは周期候補であり、検証済みのbeatまたはBPMではない。
 
-### 18.6 現段階の設計含意
+### 18.5 再現した差
 
-二つの短いpreviewで再現したのは、Dub版が低域の占有を保ち／強めつつ、中域の占有を大きく減らす関係である。これは「BODYをanchorとして残し、source identityを担う帯域や声部を減算する」という候補を補強する。
+二つのpairで同方向に再現したのは次である。
 
-ただし、次はまだ補強されていない。
+- Dub版のonset密度が低い。
+  - pair A: 8.320/s → 7.685/s
+  - pair B: 8.207/s → 7.439/s
+- Dub版のframe RMS p10が大きく下がる。
+  - pair A: -17.91 dBFS → -24.11 dBFS
+  - pair B: -19.14 dBFS → -30.33 dBFS
+- Dub版のframe RMS p50も下がる。
+  - pair A: -12.77 dBFS → -14.15 dBFS
+  - pair B: -12.01 dBFS → -14.12 dBFS
+- 周期候補の族は原曲とDub版で保たれる。
 
-- `CUT`、`THROW`、`REVEAL`、`VACUUM`、`TAIL CHOKE`の個別事件
-- delay time、feedback、filter軌跡
-- phrase境界を越えるtail
-- 演奏者がreturnを意図的に切った時刻
-- 30秒preview外を含む一曲全体の介入密度
+30秒preview内では、Dub版は周期的な骨格候補を保ちながら、発音候補の密度を下げ、静かな側の振幅領域を深くしている。この関係は「基礎リズムを保持したまま、編成と空白を再構成する」という仮説を補強する。
 
-したがって今回の測定からDSPやUIを採用決定しない。まずpreviewを実際に聴取できる経路、またはユーザーとの共同聴取で事件表を作る。
+ただしonset detectorは声、打楽器、ギター、echo returnを区別しない。onset減少をそのままsource mute数、`CUT`数、演奏者の意図へ変換しない。
+
+### 18.6 反証と撤回
+
+旧Dub専用解析では「両pairのDub版でmedian spectral centroidが低下した」と記録した。しかし共通解析器では次になった。
+
+- pair A: 2590.5 Hz → 2605.4 Hz（Dub版が14.9 Hz高い）
+- pair B: 3560.1 Hz → 3094.1 Hz（Dub版が466.0 Hz低い）
+
+したがって「Dub版では一貫してスペクトル重心が低下する」という主張は撤回する。旧方式はエネルギー帯域比とframe中央値に基づき、共通方式は全区間FFT magnitudeの重心を使う。定義が異なる値を同じ指標名で比較したことが誤りである。
+
+現時点で直接証拠にできるのは取得previewの信号測定までである。この実行環境では音声を聴覚入力として受け取れないため、「聴いた」とは記述しない。次は人間の時間位置つき知覚記録が必要であり、それ以前に`CUT`、`THROW`、`REVEAL`、`VACUUM`、`TAIL CHOKE`の事件時刻を確定しない。
 
 ## 19. 時間分析の記録形式
 
