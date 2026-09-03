@@ -3,7 +3,7 @@
 - research-id: `20260902-funkadelic`
 - status: `active`
 - branch: `research/20260902-funkadelic`
-- updated: `2026-09-02`
+- updated: `2026-09-03`
 
 ## 研究対象と現在の問い
 
@@ -40,6 +40,17 @@ Funkadelicを「サイケデリック・ロックとファンクの融合」と�
   - https://georgeclinton.com/audio/motor-city-madness-the-ultimate-funkadelic-westbound-compilation/
 
 公式サイト内にもWikipedia等から転載された説明があるため、当事者証言と同じ証拠水準には置かない。ここでは曲順、収録版、収録時間、公式サイトが掲げるクレジットの確認に限定して用いる。
+
+### 追加取得した二次資料
+
+- TIDAL Magazine, Brad Farberman, `Mothership Connections: George Clinton @ 80` (2021)
+  - https://tidal.com/magazine/article/george-clinton-80/1-80027
+  - `Wars of Armageddon`の中心にBilly Bass NelsonのベースとBernie Worrellのオルガンがあると記述し、Tiki Fulwoodが`Maggot Brain`全曲で演奏したとしている。
+- MusicBrainz, `Cosmic Slop` 2005 Westbound CD release
+  - https://musicbrainz.org/release/34c1beef-cea0-4be0-89dc-8f10d66afa06
+  - アルバム単位でGeorge Clintonをproducer、Lee De Carloをengineer、Manta SoundとUnited Sound Systemsを録音場所として記録する。
+
+いずれも当事者への一次取材や原盤ライナーノーツそのものではない。特にMusicBrainzのrelease creditを、タイトル曲だけの演奏者クレジットへ転用しない。
 
 ## 取得状態の境界
 
@@ -197,6 +208,7 @@ Worrellは`Flash Light`を例に、ドラムとリズムギターだけの基礎
 - `Wars of Armageddon`: track ID `1595227753`、collection ID `1595227414`。
 - `Cosmic Slop`: track ID `1595220197`。
 - 両ファイルともAAC、44.1 kHz、stereo。ファイルのSHA-256、container duration、全測定値は`excerpt-window-results.json`に固定した。
+- 2026-09-03に再取得し、container SHA-256が両曲とも前回値と一致することを確認した。さらに復号後PCMのSHA-256も記録した。
 - previewが全曲中のどこを切り出したものかは不明である。全曲構成、曲頭からの位置、小節番号は推定しない。
 - `Maggot Brain`原版とfull-band alternate mixは、この取得経路では同定できなかったため比較していない。
 - Essentia依存の厳格監査は実行環境にモジュールがなく未実施。今回は`research/music-analysis/`で校正済みのNumPy/SciPy測定だけを採用した。
@@ -205,6 +217,10 @@ Worrellは`Flash Light`を例に、ドラムとリズムギターだけの基礎
 
 ```bash
 python research/20260902-funkadelic/analyze_excerpt_windows.py \
+  analysis-work/1595227753-wars-of-armageddon.m4a \
+  analysis-work/1595220197-cosmic-slop.m4a
+
+python research/20260902-funkadelic/analyze_foreground_windows.py \
   analysis-work/1595227753-wars-of-armageddon.m4a \
   analysis-work/1595220197-cosmic-slop.m4a
 ```
@@ -232,6 +248,17 @@ preview音源自体は再配布せず、取得物はGitへ含めない。
 2. `Wars`では127.6 / 63.8系の周期候補が三つの窓を通じて残る一方、末尾窓のspectral centroidは2637 Hzから3367 Hzへ上がり、RMSは緩やかに下がる。この30秒については、周期的な足場を保ちながら表面の素材が変わるという仮説と整合する。
 3. `Cosmic Slop`では195–203 / 98 / 約66系の候補と約8 events/sの密度を保ちながら、centroidが3464→2635→2982 Hzと移る。この30秒については、イベントを増減するより、前景の音色または担当が移るという仮説と整合する。
 4. ただし、centroid変化から特定楽器、call/response、人物、編曲操作を同定することはできない。これらには聴取転記またはsource separationを要する。
+
+### 2.5秒窓による前景変化候補
+
+全窓の値は`foreground-window-results.csv`へ保存した。onsetは30秒全体で一度だけ正規化・検出し、各窓へ振り分けた。隣接窓の差は探索用であり、知覚上の重要度ではない。
+
+| 曲 | 観測された大きな変化 | 同時に保たれたもの |
+| --- | --- | --- |
+| `Wars` | 7.5秒境界でcentroid -492 Hz。25.0秒、27.5秒境界では左右balanceがそれぞれ+0.112、+0.095移動 | 各2.5秒窓のonset数は17–22 |
+| `Cosmic Slop` | 2.5秒境界でcentroid -1485 Hz、5.0秒で+921 Hz、7.5秒で-701 Hz | 各窓のonset数は17–22。冒頭三境界の左右balance変化は0.006未満 |
+
+このpreview範囲では、`Cosmic Slop`の冒頭は発音数や左右位置を大きく変えず、スペクトル上の明暗だけを激しく受け渡している。`Wars`は同じ程度の発音数を維持しつつ、後半に左右配置の変化候補が現れる。これは特定楽器の同定ではなく、次の聴取転記を行う時刻候補を絞った結果である。
 
 ### 設計への採用
 

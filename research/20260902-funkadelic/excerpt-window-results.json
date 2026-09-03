@@ -12,7 +12,9 @@
         "codec": "aac",
         "channels": 2,
         "container_duration_s": 30.000998,
-        "sha256": "340440a6b40999ed5dbfbd9e0fe05ed5f67adb1cbbd8fe6fda6d8b8a54326396"
+        "sha256": "340440a6b40999ed5dbfbd9e0fe05ed5f67adb1cbbd8fe6fda6d8b8a54326396",
+        "decoded_pcm_f32le_stereo_44100_sha256": "11ff49b7e786aff8c67d00ed2072a99f51c6d848e2b91a07c3331fd225994197",
+        "reverified_utc_date": "2026-09-03"
       },
       {
         "title": "Cosmic Slop",
@@ -20,7 +22,9 @@
         "codec": "aac",
         "channels": 2,
         "container_duration_s": 29.976961,
-        "sha256": "e1afd601afb686926f4de54c4b28689ed87c01da1a6e8342cf0c5f90ec6d4bd4"
+        "sha256": "e1afd601afb686926f4de54c4b28689ed87c01da1a6e8342cf0c5f90ec6d4bd4",
+        "decoded_pcm_f32le_stereo_44100_sha256": "f93496a53b0f3bc9c38f06806ed633e12b603fbc5c9dae57ca262039ffc0822e",
+        "reverified_utc_date": "2026-09-03"
       }
     ]
   },

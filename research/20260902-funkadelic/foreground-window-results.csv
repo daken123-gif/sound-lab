@@ -1,0 +1,25 @@
+track,start_s,end_s,rms_dbfs,spectral_centroid_hz,stereo_balance_minus_left_plus_right,global_detector_onset_count
+Wars of Armageddon,0.0,2.5,-12.70,2670.9,0.0174,22
+Wars of Armageddon,2.5,5.0,-14.05,2738.6,0.0871,17
+Wars of Armageddon,5.0,7.5,-13.04,2865.1,0.0395,18
+Wars of Armageddon,7.5,10.0,-12.24,2373.3,0.0898,21
+Wars of Armageddon,10.0,12.5,-13.09,2619.6,0.0548,20
+Wars of Armageddon,12.5,15.0,-13.17,2856.9,0.0756,19
+Wars of Armageddon,15.0,17.5,-13.15,2603.8,0.1352,22
+Wars of Armageddon,17.5,20.0,-14.48,2770.0,0.0950,22
+Wars of Armageddon,20.0,22.5,-14.46,3021.3,0.0265,19
+Wars of Armageddon,22.5,25.0,-12.92,3031.7,-0.0314,21
+Wars of Armageddon,25.0,27.5,-14.16,2822.3,0.0809,21
+Wars of Armageddon,27.5,29.976,-13.97,2753.4,0.1760,19
+Cosmic Slop,0.0,2.5,-13.12,4167.6,-0.0268,20
+Cosmic Slop,2.5,5.0,-13.75,2683.1,-0.0307,19
+Cosmic Slop,5.0,7.5,-12.93,3604.2,-0.0360,22
+Cosmic Slop,7.5,10.0,-13.16,2903.4,-0.0406,20
+Cosmic Slop,10.0,12.5,-13.35,3240.1,-0.0336,21
+Cosmic Slop,12.5,15.0,-13.34,2947.8,-0.0329,17
+Cosmic Slop,15.0,17.5,-12.53,2534.9,-0.0140,20
+Cosmic Slop,17.5,20.0,-12.83,2762.2,-0.0096,22
+Cosmic Slop,20.0,22.5,-12.97,2757.7,-0.0444,19
+Cosmic Slop,22.5,25.0,-13.29,3058.8,-0.0171,19
+Cosmic Slop,25.0,27.5,-12.65,2802.5,-0.0149,20
+Cosmic Slop,27.5,29.929,-13.02,3000.9,-0.0183,22
