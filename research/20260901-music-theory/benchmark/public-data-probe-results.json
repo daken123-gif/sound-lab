@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "observed_on": "2026-09-03",
+  "e_gmd": {
+    "status": "metadata_and_midi_schema_verified",
+    "metadata": {
+      "sha256": "80677e8fb00e973f33cb91ddaaf7f0cffe55359f9a76c1833ce56c84d1d92c64",
+      "rows": 45537,
+      "split_counts": {"test": 5289, "train": 35217, "validation": 5031},
+      "unique_kits": 43,
+      "unique_sequences": 1059,
+      "missing_cells_total": 0
+    },
+    "midi_archive": {
+      "sha256": "5e70a6f4d760385a5e5ec986a2f02179d96f61181a920e592876b577a75844d3",
+      "midi_files_checked": 45537,
+      "metadata_paths_missing": 0,
+      "header_formats": {"1": 45537},
+      "time_divisions": {"480": 45537}
+    },
+    "audio": {"state": "not_acquired", "files_checked": 0}
+  },
+  "rwc_annotations": {
+    "status": "metadata_and_annotation_schema_verified",
+    "source_revision": "0a1a6c31dbe73a7f5d44f7caef8cd0999402a4c2",
+    "metadata": {
+      "sha256": "eba3fe129f835db58a9c23dad554547201ab02ef3af90c10857ef5b50b8b99da",
+      "rows": 328,
+      "unique_recording_ids": 328,
+      "collection_counts": {"C": 61, "G": 102, "J": 50, "P": 100, "R": 15}
+    },
+    "annotations": {
+      "aligned_midi_files": 328,
+      "beat_files": 328,
+      "beat_rows": 150272,
+      "chord_files": 100,
+      "chord_rows": 13467,
+      "melody_files": 100,
+      "melody_rows": 2421695,
+      "midi_header_formats": {"1": 328},
+      "midi_time_divisions": {"480": 328}
+    }
+  },
+  "rwc_audio_subset": {
+    "state": "checksum_and_schema_verified",
+    "subset": "R",
+    "md5": "63e3b6263656a42c592ce1e90a88caa3",
+    "wav_files_checked": 15,
+    "sample_rates": {"44100": 15},
+    "channels": {"2": 15},
+    "sample_width_bytes": {"2": 15},
+    "annotation_join_missing_counts": {
+      "aligned_midi_missing_for_audio": 0,
+      "audio_missing_for_metadata": 0,
+      "beat_missing_for_audio": 0,
+      "metadata_missing_for_audio": 0
+    }
+  }
+}

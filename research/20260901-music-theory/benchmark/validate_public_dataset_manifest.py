@@ -13,6 +13,7 @@ ALLOWED_ACQUISITION_STATES = {
     "not_acquired",
     "metadata_only",
     "acquired_unverified",
+    "partial_checksum_verified",
     "checksum_verified",
 }
 EXPECTED_CASES = {f"S{number:02d}" for number in range(1, 13)}
@@ -83,6 +84,8 @@ def validate_manifest(manifest: dict[str, Any], workspace: Path) -> list[str]:
         state = _require(acquisition, "state", f"{context} acquisition")
         if state not in ALLOWED_ACQUISITION_STATES:
             raise ManifestError(f"{context}: invalid acquisition state {state}")
+        if state != "not_acquired" and not acquisition.get("verified_components"):
+            raise ManifestError(f"{context}: acquired state needs verified_components")
 
         ready = _require(dataset, "evaluation_ready", context)
         schema_checked = _require(dataset, "annotation_schema_checked", context)

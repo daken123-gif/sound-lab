@@ -129,4 +129,20 @@ python3 validate_public_dataset_manifest.py
 python3 -m unittest -v test_public_dataset_manifest.py
 ```
 
-manifestの全候補は現在`not_acquired`かつ`evaluation_ready: false`である。音源のchecksum一致、注釈schemaの実読取り、local rootの存在を確認するまで評価可能状態へ昇格させない。
+E-GMDはmetadata＋MIDI schema、RWCは現行注釈とRWC-R音声15曲のchecksum・schema・ID結合を検証済みである。MAESTROとMUSDB18は未取得で、4候補とも全体としては`evaluation_ready: false`を維持する。
+
+```bash
+python3 public_dataset_probe.py \
+  --egmd-csv /path/to/e-gmd-v1.0.0.csv \
+  --egmd-midi-zip /path/to/e-gmd-v1.0.0-midi.zip \
+  --rwc-root /path/to/rwc-annotations \
+  --rwc-revision <commit> \
+  --rwc-audio-zip /path/to/RWC-R.zip \
+  --rwc-audio-md5 63e3b6263656a42c592ce1e90a88caa3
+
+python3 rwc_period_pilot.py \
+  --audio-zip /path/to/RWC-R.zip \
+  --annotations-root /path/to/rwc-annotations
+```
+
+観測値は`public-data-probe-results.json`、15曲pilotの判断は[rwc-period-pilot-results.md](rwc-period-pilot-results.md)に記録する。外部音源・注釈そのものはGitへ転載しない。

@@ -4,7 +4,9 @@
 
 ## 結論
 
-合成音源S01〜S12を実録音へ移す第二輪の候補として、E-GMD、MAESTRO v3.0.0、RWC v2、MUSDB18を採用する。ただし、**音源の取得、checksum照合、注釈schemaの読取りはまだ行っていない**。したがって、現時点で実録音に対する性能値や合否は一つも確定していない。
+合成音源S01〜S12を実録音へ移す第二輪の候補として、E-GMD、MAESTRO v3.0.0、RWC v2、MUSDB18を採用する。2026-09-03にE-GMDの公式metadataとMIDI-only archive、RWCの現行注釈repository、RWC-R音声15曲を取得・検査し、RWC-RではS01の20秒excerpt pilotまで実行した。
+
+ただし、E-GMDの90 GB音声本体、RWCのR以外、MAESTRO、MUSDB18は未取得である。RWC-Rの結果を「第二輪全体の評価完了」へ拡張しない。
 
 候補情報と取得状態の正本は`public-dataset-manifest.json`とする。`validate_public_dataset_manifest.py`は、未取得データを`evaluation_ready: true`へ昇格できないようにする。
 
@@ -12,9 +14,9 @@
 
 | データセット | 第二輪で見る証拠 | 対応ケース | 現在状態 |
 | --- | --- | --- | --- |
-| E-GMD 1.0.0 | 人間が演奏したドラムの発音時刻、velocity、kit差 | S04–S07、S10–S11 | 未取得・評価不可 |
+| E-GMD 1.0.0 | 人間が演奏したドラムの発音時刻、velocity、kit差 | S04–S07、S10–S11 | metadata＋MIDI schema検証済み、音声未取得 |
 | MAESTRO 3.0.0 | 約3 ms整列の音声/MIDI、velocity、pedal、composition split | S04–S05、S08、S10–S11 | 未取得・評価不可 |
-| RWC v2 | 複数ジャンルの実録音と拍・旋律・サビ等の別管理注釈 | S01–S03、S06–S12 | 未取得・評価不可 |
+| RWC v2 | 複数ジャンルの実録音と拍・旋律・サビ等の別管理注釈 | S01–S03、S06–S12 | RWC-R 15曲取得・S01 pilot実行、他subset未取得 |
 | MUSDB18 | stereo mixとdrums/bass/vocals/other stem | S07、S09、S12 | 承認・曲別license監査前、評価不可 |
 
 対応ケースは「そのデータだけで正解が得られる」という意味ではない。何を観測でき、何が観測できないかを検査する入口である。
@@ -61,6 +63,8 @@ P0からP4を一足飛びにしない。公式ページに書かれたデータ�
 
 Google/Magentaの公式ページは、43 drum kitsで再録音した444.5時間の音声、44.1 kHz/24-bit、元MIDIとの2 ms以内の整列、velocity注釈、CC BY 4.0を明記する。90 GB archiveのSHA-256も公開されている。一方、semi-manual pipelineにより使用不能なtrackがあると公式に注意されている。
 
+公式CSV 45,537行とMIDI-only archiveを取得した。MIDI-only archiveのSHA-256は公式値と一致し、45,537のmetadata pathすべてがarchive内のMIDIへ結合した。全MIDIはformat 1、time division 480の有効なheaderを持つことを確認した。これはMIDI event内容や音声との2 ms整列を再検証したことまでは意味しない。
+
 - [Expanded Groove MIDI Dataset](https://magenta.withgoogle.com/datasets/e-gmd)
 
 ### MAESTRO
@@ -72,6 +76,10 @@ Google/Magentaの公式ページは、43 drum kitsで再録音した444.5時間�
 ### RWC v2
 
 2026年のZenodo v2はCC BY-NC 4.0でオンライン公開され、Popular、Royalty-Free、Classical、Jazz、Genreの音声archiveを含む。音声は13.4 GBで、現行注釈は別の`rwc-music/rwc-annotations`で管理される。旧AIST注釈ページ自身が注釈に誤りが残ると明記するため、注釈を無謬の正解として扱わない。
+
+現行注釈repositoryのcommit `0a1a6c31dbe73a7f5d44f7caef8cd0999402a4c2`を取得し、328 recording ID、beat 328、aligned MIDI 328、chord 100、melody 100を実読取りした。公式説明の315 musical piecesとmetadataの328 recording IDは同じ単位ではない。件数を比較するときはpieceとreleased recording IDを分ける。
+
+注釈READMEは対応音源としてZenodo v1 record `17177919`を示す一方、音源の新しいv2 recordは`18656623`である。RWC-Rについてはv2 archive 15曲と現行metadata・beat・aligned MIDIのID対応が欠損0であることを確認した。他subsetはまだ対応未検査である。
 
 - [RWC Music Database v2](https://zenodo.org/records/18656623)
 - [AIST Annotation for the RWC Music Database](https://staff.aist.go.jp/m.goto/RWC-MDB/AIST-Annotation/)
@@ -93,8 +101,18 @@ SigSep公式ページは、150曲・約10時間、44.1 kHz stereo、mix＋4 stem
 | RWC注釈の種類と誤りに関する注意 | *AIST Annotation for the RWC Music Database* | AIST / Masataka Goto、archive page | [公式ページ](https://staff.aist.go.jp/m.goto/RWC-MDB/AIST-Annotation/) | overview、notes regarding useを読取り |
 | MUSDB18の曲数、stem、stereo、split、access、混合license、errata | *MUSDB18* | SigSep、最終更新2022-09-29 | [公式ページ](https://sigsep.github.io/datasets/musdb.html) | corpus、access、format、errata欄を読取り |
 
-この調査は第二輪の受入れ判断に必要な公式情報が揃った時点で止めた。MedleyDBはMUSDB18の構成元として確認したが、単独audioの現在の取得経路と曲別licenseをこの段階で十分に確定できなかったため、manifestへは加えていない。
+この調査は第二輪の受入れ判断に必要な公式情報が揃った時点で止めた。MedleyDBはMUSDB18の構成元として確認したが、単独audioの現在の取得経路と曲別licenseをこの段階で十分に確定できなかったため、manifestへは加えていない。取得後の観測値は`public-data-probe-results.json`へ分離した。
+
+## 第一pilot：RWC-Rの周期候補
+
+RWC-R 15曲の各20秒excerptを、合成第一輪と同じenergy-flux autocorrelation基準線へ入力した。参照beat周期は推定後の照合にだけ使った。
+
+- 参照拍周期そのものを上位12候補で回収: 10/15
+- 参照拍周期そのものがrank 1: 2/15
+- 0.25、0.5、1、2、3、4倍のmeter-related候補を一つ以上回収: 15/15
+
+単一top候補をBPMとして確定すると13曲で参照拍周期を外す一方、候補集合を残すと10曲で直接周期を回収できた。詳細と失敗例は[rwc-period-pilot-results.md](rwc-period-pilot-results.md)に保存した。
 
 ## 次の実行単位
 
-最初のpilotは、直接取得でき利用条件が明瞭なE-GMDから始める。ただし90 GB全体を先に取得せず、公式metadataと小さな許諾済みsubsetでadapter・split・出力schemaを検証する。RWC v2はRoyalty-Free subset（約320 MB）を次候補にする。MUSDB18は承認と曲別license監査が済むまで取得済みへ進めない。
+次はE-GMD MIDIのevent時刻とvelocityを読み、S04／S05／S10のsymbolic pilotを行う。音声照合は90 GB本体の取得を必要とするため別段階に置く。RWCは同じ15曲の別区間で再現性を確認した後、P/J/G/Cの順序と容量を決める。MUSDB18は承認と曲別license監査が済むまで取得済みへ進めない。

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-09-02",
+  "updated": "2026-09-03",
   "research_id": "20260901-music-theory",
   "round": "public-recording-round-2",
   "datasets": [
@@ -28,11 +28,23 @@
       "split_unit": "unique_sequence",
       "case_targets": ["S04", "S05", "S06", "S07", "S10", "S11"],
       "acquisition": {
-        "state": "not_acquired",
+        "state": "metadata_only",
         "local_root": null,
-        "checksum_observed": null
+        "checksum_observed": null,
+        "verified_components": [
+          {
+            "type": "metadata_csv",
+            "sha256": "80677e8fb00e973f33cb91ddaaf7f0cffe55359f9a76c1833ce56c84d1d92c64",
+            "rows": 45537
+          },
+          {
+            "type": "midi_only_archive",
+            "sha256": "5e70a6f4d760385a5e5ec986a2f02179d96f61181a920e592876b577a75844d3",
+            "midi_files_checked": 45537
+          }
+        ]
       },
-      "annotation_schema_checked": false,
+      "annotation_schema_checked": true,
       "evaluation_ready": false
     },
     {
@@ -79,7 +91,7 @@
       "evidence": {
         "audio": "315 pieces across popular, royalty-free, classical, jazz, and genre subsets",
         "annotations": "Audio is on Zenodo; current annotations are maintained separately at rwc-music/rwc-annotations",
-        "known_limit": "The AIST annotation page warns that annotations are imperfect and contain errors."
+        "known_limit": "The current annotation repository points to Zenodo v1 record 17177919 while the manifest tracks newer v2 record 18656623; exact audio/annotation joins are verified only for RWC-R."
       },
       "artifact": {
         "url": "https://zenodo.org/records/18656623",
@@ -90,11 +102,25 @@
       "split_unit": "piece",
       "case_targets": ["S01", "S02", "S03", "S06", "S07", "S08", "S09", "S10", "S11", "S12"],
       "acquisition": {
-        "state": "not_acquired",
+        "state": "partial_checksum_verified",
         "local_root": null,
-        "checksum_observed": null
+        "checksum_observed": null,
+        "verified_components": [
+          {
+            "type": "annotations_repository",
+            "revision": "0a1a6c31dbe73a7f5d44f7caef8cd0999402a4c2",
+            "recording_ids_checked": 328
+          },
+          {
+            "type": "audio_subset",
+            "subset": "RWC-R",
+            "md5": "63e3b6263656a42c592ce1e90a88caa3",
+            "wav_files_checked": 15,
+            "annotation_join_missing": 0
+          }
+        ]
       },
-      "annotation_schema_checked": false,
+      "annotation_schema_checked": true,
       "evaluation_ready": false
     },
     {

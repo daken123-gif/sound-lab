@@ -30,6 +30,7 @@ class PublicDatasetManifestTest(unittest.TestCase):
         changed = copy.deepcopy(self.manifest)
         dataset = changed["datasets"][0]
         dataset["evaluation_ready"] = True
+        dataset["annotation_schema_checked"] = False
         dataset["acquisition"]["state"] = "checksum_verified"
         dataset["acquisition"]["local_root"] = "fixtures/e-gmd"
         dataset["acquisition"]["checksum_observed"] = dataset["artifact"]["checksum_declared"]
@@ -55,6 +56,12 @@ class PublicDatasetManifestTest(unittest.TestCase):
             for case in dataset["case_targets"]
         }
         self.assertEqual(targets, {f"S{number:02d}" for number in range(1, 13)})
+
+    def test_partial_acquisition_requires_component_evidence(self):
+        changed = copy.deepcopy(self.manifest)
+        changed["datasets"][0]["acquisition"].pop("verified_components")
+        with self.assertRaisesRegex(ManifestError, "needs verified_components"):
+            validate_manifest(changed, HERE)
 
 
 if __name__ == "__main__":

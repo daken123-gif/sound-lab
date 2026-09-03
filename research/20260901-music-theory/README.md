@@ -141,7 +141,7 @@ SoundQuest本文の全文複製は行わない。
 
 S01〜S12の合成反証音源生成器と第一輪のaudio-only基準線を実装した。S01〜S04では複数周期、位相、レイヤー周期、tempo curveとmicrotiming、S05〜S08では符号つきtiming形状、特徴別境界、pulse-anchor役割交替、直接音と減衰tail、S09〜S12では空間周期、dynamics変形を伴う反復、cycle伸縮、低域音源重畳を検証した。
 
-第二輪として、E-GMD、MAESTRO v3.0.0、RWC v2、MUSDB18の公式配布情報と利用条件を監査し、取得・checksum・注釈schema・評価可能状態を分離するmanifestと検証器を追加した。現時点では4候補とも音源未取得・実録音評価未実施である。
+第二輪として、E-GMD、MAESTRO v3.0.0、RWC v2、MUSDB18の公式配布情報と利用条件を監査し、取得・checksum・注釈schema・評価可能状態を分離するmanifestと検証器を追加した。E-GMDはmetadata＋MIDI、RWCは現行注釈とRoyalty-Free音声15曲を検証し、RWC-RではS01の20秒excerpt pilotを実行した。MAESTRO、MUSDB18、E-GMD音声、RWCの他subsetは未取得である。
 
 実装・テスト・結果資料は`research/20260901-music-theory`ブランチでGit管理する。生成WAVと生成JSONは再生成物として除外する。
 
