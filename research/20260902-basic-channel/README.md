@@ -239,13 +239,16 @@ y(t)   = C(theta(t)) x(t) + D(theta(t)) u(t)
 
 ### 13.1 音源到達性の実測
 
-2026-09-02に、対象曲を実際に信号解析へ渡せるか確認した。
+2026-09-02の最初の到達試験では、SoundCloudとApple Musicの再生面までは確認したが、音声ファイルを解析器へ渡せなかった。Spotify検索も試したが、これは本研究群で決めた正式取得経路ではない。
 
-| 経路 | 観測した状態 | 信号解析への使用 |
+2026-09-03にユーザーの訂正を受け、正式経路をShazam／Apple Music Catalog APIへ戻した。Shazam検索から曲ID、ISRC、全曲尺、30秒Preview URLを取得し、6ファイルを解析器へ入力できた。測定結果は第15節に記録する。
+
+| 経路 | 現在の位置づけ | 信号解析への使用 |
 |---|---|---|
-| Basic Channel公式SoundCloud | `Quadrant Dub I`、`Radiance I`、`Presence`等の公式トラックページと公開名義を確認 | ブラウザ内の音声transcodingを取得できず、未実施 |
-| Apple Music | `Quadrant Dub I`のPreviewボタンから約90秒の音声再生を確認 | 音声ファイル取得がブラウザ安全制約で拒否され、未実施 |
-| Spotify | Basic Channel、`BCD`、`BCD-2`、複数の収録曲と再生可能状態を確認 | 検索結果に解析用preview URLがなく、未実施 |
+| Shazam／Apple Music Catalog API | 本研究群の正式取得経路 | 12-inch版と`BCD`版、計6 Previewを取得・解析 |
+| Basic Channel公式SoundCloud | 公式公開名義と曲ページの確認 | 音声取得には未使用 |
+| Apple Musicのブラウザ再生面 | 表示・再生の補助確認 | 音声取得には未使用 |
+| Spotify | 誤って使用した経路。正式な取得・解析証拠から除外 | 未使用 |
 
 参照:
 
@@ -253,10 +256,8 @@ y(t)   = C(theta(t)) x(t) + D(theta(t)) u(t)
 - https://soundcloud.com/basicchannelofficial/radiance-i
 - https://soundcloud.com/basicchannelofficial
 - https://music.apple.com/us/song/quadrant-dub-i/276360114
-- https://open.spotify.com/album/3QiuQrKMLpt7MDgjUDvv8d
-- https://open.spotify.com/album/6QKaXJQss3zBjQYyYQHoMv
 
-ここで確認できたのは「正規の公開再生面が存在すること」と「ブラウザ内でPreviewが再生されたこと」までである。音声バイトを取得して解析器へ入力した状態ではない。BPM、キー、残響、スペクトル、反復性の実測値は追加しない。
+Spotifyで得た存在確認を、以後の音源取得、版同定、信号測定の証拠には使わない。
 
 ### 13.2 「dub techno」という完成概念から逆算しない
 
@@ -382,7 +383,7 @@ Basic Channelから採る対象は「ダブ・テクノの音」ではない。
 |---|---|---|
 | edit群 | 元12-inch版 ↔ `BCD`の同名`Edit` | どの時間帯を切ったかではなく、どの状態遷移を残したか |
 | full-length群 | 元12-inch版 ↔ `BCD-2`収録版 | 同一尺でもmastering／媒体差があるか。未確認の同一マスター扱いをしない |
-| 内部対照群 | `BCD`で`Edit`表記のない`Radiance I`、`Q1.2`等 | 表記差が実際の尺・構造差と一致するか |
+| 表記非Edit群 | `BCD`で`Edit`表記のない`Radiance I`、`Q1.2`等 | 表記が実際の尺・版差と一致するか。`Radiance I`は第15節で別尺・別ISRCと判明 |
 
 ### 14.2 一つの長さではなく、三つの時間を分ける
 
@@ -477,3 +478,101 @@ Basic Channel研究から抽出する「反復」は、次の三つを同時に�
 - edit位置を自動推定した後、人間の聴取で状態遷移を注釈
 - full-length仮説を90秒previewで検証したと誤認しない
 - snapshot／forkを既存四トラック設計へ持ち込む前に、CPU・メモリ・再現性を測る
+
+
+## 15. Shazam Previewによる初回信号解析
+
+### 15.1 取得経路と版同定
+
+ShazamのApple Music Catalog検索から、`Quadrant Dub I`、`Radiance I`、`Presence`について、1994年の12-inch収録版と1995年の`BCD`収録版を取得した。
+
+| 短縮名 | Apple曲ID | album | 全曲尺 | ISRC | Preview SHA-256 |
+|---|---:|---|---:|---|---|
+| Quadrant 12 | 276360114 | Quadrant Dub | 936.017秒 | DEW259400126 | `084cc6378ac59674bc3862e442c64c5ff798274a20611e05f8de1d4ed6b2c266` |
+| Quadrant BCD | 47296248 | BCD | 416.960秒 | DEW259500104 | `bdc8747b5001245ebaf54cf6d15c911d53c377c2b17e520479dad56e43520dcf` |
+| Radiance 12 | 276508664 | Radiance | 811.138秒 | DEW259400130 | `9923083261c4714992cfa14acca66721d333763c25e7ce844c4e4818ef91e86a` |
+| Radiance BCD | 47297098 | BCD | 477.867秒 | DEW259500110 | `fd53863bb76ed9b89883eb502a48ce17b81422d418b653288e77063ce925a9c1` |
+| Presence 12 | 276503162 | Inversion | 1239.951秒 | DEW259400125 | `9785b5d9f19fcd2f9e3f64bd851e238b497459b212cbb0cfbd1f8d38bcb1ecaf` |
+| Presence BCD | 47296710 | BCD | 497.493秒 | DEW259500107 | `5b693ae345dd1d2721a61e7712f4406de18e031183700183ccea18b9af624dec` |
+
+全PreviewはAAC、44.1kHz、stereo、取得ファイル尺29.976961秒、復号後有効音声約29.9291秒だった。Preview本体はGitへ保存しない。
+
+重要な訂正: Apple Music上の`BCD`版`Radiance I`は曲名に`Edit`が表示されないが、1994年版と全曲尺もISRCも異なる。曲名だけでは版を同定できない。
+
+### 15.2 共通解析器の使用
+
+独自の解析器を先に作る経路は採用しなかった。GitHub `main`の`research/music-analysis/`から次を取得して使用した。
+
+- `calibrate_analyzer.py`
+- `analyze_previews.py`
+- `reliability_audit.py`
+
+合成信号による校正は12/12項目で成功した。窓別信頼性監査には`Essentia 2.1b6.dev1389`を使用した。
+
+### 15.3 校正済み基本測定
+
+以下は開始位置不明の約30秒区間に対する測定であり、全曲値ではない。
+
+| Preview | RMS dBFS | spectral centroid | onset/s | 周期候補 |
+|---|---:|---:|---:|---|
+| Quadrant 12 | -12.83 | 1359.4 Hz | 4.076 | 61.89 / 124.53 / 83.35 |
+| Quadrant BCD | -18.44 | 995.5 Hz | 4.444 | 61.89 / 124.53ほか |
+| Radiance 12 | -16.80 | 2904.2 Hz | 7.217 | 175.19 / 53.83 |
+| Radiance BCD | -21.17 | 2188.9 Hz | 5.714 | 175.19 |
+| Presence 12 | -24.19 | 1122.5 Hz | 9.188 | 63.80 / 61.52 |
+| Presence BCD | -25.76 | 920.0 Hz | 9.322 | 63.80 / 62.64 / 61.52 |
+
+RMS差をmasteringの音圧差とは断定しない。Previewの開始位置、Catalog側の処理、元の状態差を分離できていないためである。周期候補も音楽上のBPMそのものではない。
+
+### 15.4 10秒×3窓の信頼性監査
+
+| Preview | 窓BPM推定 | 判定 | 信頼度上の扱い |
+|---|---|---|---|
+| Quadrant 12 | 124.05 / 123.99 / 123.56 | 直接安定 | 約124 BPMの局所pulse候補を保持 |
+| Quadrant BCD | 96.12 / 123.39 / 123.66 | 不安定 | 単一BPMを棄却 |
+| Radiance 12 | 172.27 / 172.27 / 166.19 | 数値上は直接安定 | 全体信頼度0.791、方式差4.65%のため単一BPMを棄却 |
+| Radiance BCD | 71.89 / 106.72 / 165.76 | 不安定 | 単一BPMを棄却 |
+| Presence 12 | 62.96 / 62.27 / 62.35 | 直接安定 | 約62.5 BPMの局所pulse候補を保持 |
+| Presence BCD | 62.43 / 62.60 / 61.87 | 直接安定 | 約62.5 BPMの局所pulse候補を保持 |
+
+調推定は、3窓一致した`Radiance 12`の`C# minor`だけが既存採用規則を通過した。ただし、これもPreview区間の推定であり、全曲の調性や作曲意図へ拡張しない。
+
+### 15.5 ここから言えること
+
+#### Presenceは版を越えて局所pulseが残る
+
+`Presence`の両Previewは、全曲尺が約20分40秒と約8分17秒で大きく異なる。一方、Preview内では両方とも約62.5 BPM候補が3窓で安定し、onset rateも9.188／9.322と近い。
+
+これは、edit後も局所的なpulse familyが保持されたという仮説を支持する。ただし、両Previewが原曲上の対応区間かは未同定であり、「状態軌道の節点を保存した」というH6までは証明しない。
+
+#### Quadrantでは同じ周期候補と窓不安定が同居する
+
+`Quadrant`両版の基本解析には61.89／124.53 BPM近傍が現れた。しかし`BCD`版の最初の10秒窓だけ96.12 BPMへ外れた。
+
+ここで単一BPMへ平均化すると、区間内でオンセット検出の手掛かりが変わった事実を消す。Basic Channel型の反復を調べる際は、pulseの存続と、表面上のイベント密度の変化を別変数にする必要がある。
+
+#### Radianceは単一BPM推定が最も壊れやすい
+
+`Radiance 12`は高いspectral centroidとonset rateを示したが、BPM信頼度が低く二方式も不一致だった。`BCD`版は3窓が71.89／106.72／165.76 BPMへ分裂した。
+
+これはテンポが実際に変化した証明ではない。残響、連続音、帯域変化、Preview位置によって、beat trackerが異なる層をpulseとして掴んだ競合仮説を残す。ここでは「正しいBPMを決める」より、どの音響層が周期推定を支配したかが研究対象になる。
+
+### 15.6 製品設計への更新
+
+初回解析から、状態表示を一つのtempo値へ従属させない。
+
+- `pulse`: 複数窓で残る周期候補
+- `event density`: onset rateとその時間変化
+- `spectral field`: 帯域重心と広がり
+- `confidence`: 解析器同士・時間窓同士の一致
+- `ambiguity`: 複数の層が別の周期を示す状態
+
+演奏画面で曖昧さをエラーとして消すのではなく、安定したpulseの周囲で別の層が動いていることを表示できる可能性がある。これは実装決定ではなく、Basic Channelの反復を一つのBPMへ平坦化しないための設計候補である。
+
+### 15.7 未完了
+
+- Preview開始位置の同定
+- 12-inch版と`BCD`版の対応区間整列
+- `Quadrant Dub II`、`Radiance II/III`、`Inversion`への標本拡張
+- 原ミックスと推定stemを照合した周期層の分離
+- 30秒を越えるH6／H7の検証
