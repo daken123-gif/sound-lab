@@ -1,0 +1,706 @@
+{
+  "schema_version": "sound-lab.dj-shadow-preview-analysis/v1",
+  "retrieved_at": "2026-09-03",
+  "retrieval_path": "Shazam searchmusic -> getsong/getalbum -> Apple Music catalog preview URL -> AAC bytes",
+  "audio_files_committed": false,
+  "catalog": [
+    {
+      "file": "stem-long-stem-preview.m4a",
+      "apple_music_song_id": "1660486400",
+      "name": "Stem / Long Stem (Medley)",
+      "isrc": "GBAQH9600069",
+      "catalog_duration_ms": 467373,
+      "preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/eb/46/06/eb4606e7-b63e-943e-d705-0e6f99da67f0/mzaf_3350830195850347408.plus.aac.p.m4a",
+      "sha256": "12f10578146558fd2e15d8342314b8f1a155481522ec514e40887c77d00264a7"
+    },
+    {
+      "file": "napalm-scatter-preview.m4a",
+      "apple_music_song_id": "1660486425",
+      "name": "Napalm Brain / Scatter Brain (Medley)",
+      "isrc": "GBAQH9600072",
+      "catalog_duration_ms": 561360,
+      "preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/e2/97/ef/e297efb8-4899-f8f7-ee65-0f3e3955fa65/mzaf_5967438095073490880.plus.aac.p.m4a",
+      "sha256": "ba0146f68a8c7b607099ea9fd14e357c5adadcee40cd4caff839f7dad985f0d6"
+    },
+    {
+      "file": "stem-cops-robbers-preview.m4a",
+      "apple_music_song_id": "1660367654",
+      "name": "Stem (Cops 'n' Robbers)",
+      "isrc": "GBAQH9601074",
+      "catalog_duration_ms": 228640,
+      "preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/fa/a0/b4/faa0b4e9-803a-a7d4-9ac9-3dbd32981835/mzaf_1921945657027850200.plus.aac.p.m4a",
+      "sha256": "317551ae1ad70813f818fbe1ae7c7a4e101cf36c3ef1980e88444f916d3f9b29"
+    },
+    {
+      "file": "napalm-demo-preview.m4a",
+      "apple_music_song_id": "1660368000",
+      "name": "Napalm Brain (Demo Beat)",
+      "isrc": "GBAQH0500006",
+      "catalog_duration_ms": 34800,
+      "preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/09/7b/78/097b780e-155c-c265-28cf-77c4849ad361/mzaf_8373899871069073634.plus.aac.p.m4a",
+      "sha256": "569081e4baf04d428a4ac4874c45ce5e74c0487177d9022b3260af430c3604d5"
+    },
+    {
+      "file": "stem-deluxe-combined-preview.m4a",
+      "apple_music_song_id": "1660367323",
+      "name": "Stem / Long Stem / Transmission 2",
+      "isrc": "GBAQH0500010",
+      "catalog_duration_ms": 562253,
+      "preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d8/79/dd/d879dd77-6bb7-8cd7-b116-be37a7273120/mzaf_2252541655061770398.plus.aac.p.m4a",
+      "sha256": "1d35fb8cf78b41d9bd2f1163f38c1925fe46dfd86eaf29a22d891092da3ed1c2"
+    },
+    {
+      "file": "napalm-deluxe-preview.m4a",
+      "apple_music_song_id": "1660367643",
+      "name": "Napalm Brain / Scatter Brain (Medley)",
+      "isrc": "GBAQH9600072",
+      "catalog_duration_ms": 563827,
+      "preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/77/07/be/7707be12-2b47-ee6f-05a2-7d8c35fd80d2/mzaf_18398112188643905126.plus.aac.p.m4a",
+      "sha256": "36f63de0f650f59473547aac5fe59dcc671c7d22926204575ffb8e5a31be3dc2"
+    }
+  ],
+  "decoder_observation": {
+    "codec": "AAC",
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "container_duration_s": {
+      "napalm-demo-preview.m4a": 30.017,
+      "all_other_previews": 30
+    }
+  },
+  "calibrated_extractor": {
+    "calibration": "12/12 checks passed",
+    "sample_rate_hz": 44100,
+    "tracks": [
+      {
+        "file": "stem-long-stem-preview.m4a",
+        "duration_s": 29.9755,
+        "rms_dbfs": -19.64,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -27.48,
+          -22.18,
+          -17.48
+        ],
+        "spectral_centroid_hz": 2796.1,
+        "stereo_balance_minus_left_plus_right": 0.0798,
+        "onset_count": 250,
+        "onsets_per_second": 8.34,
+        "onset_interval_median_s": 0.1045,
+        "onset_interval_cv": 0.344,
+        "periodicity_candidates_bpm": [
+          108.8,
+          191.41,
+          219.91,
+          145.58,
+          105.47,
+          132.51,
+          202.67,
+          161.5
+        ],
+        "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+      },
+      {
+        "file": "napalm-scatter-preview.m4a",
+        "duration_s": 29.9755,
+        "rms_dbfs": -14.49,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -26.67,
+          -20.48,
+          -9.26
+        ],
+        "spectral_centroid_hz": 2613,
+        "stereo_balance_minus_left_plus_right": -0.0087,
+        "onset_count": 149,
+        "onsets_per_second": 4.971,
+        "onset_interval_median_s": 0.1219,
+        "onset_interval_cv": 1.254,
+        "periodicity_candidates_bpm": [
+          71.78,
+          143.55
+        ],
+        "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+      },
+      {
+        "file": "stem-cops-robbers-preview.m4a",
+        "duration_s": 29.9755,
+        "rms_dbfs": -17.22,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -23.94,
+          -19.68,
+          -13.52
+        ],
+        "spectral_centroid_hz": 2336.1,
+        "stereo_balance_minus_left_plus_right": 0.0374,
+        "onset_count": 256,
+        "onsets_per_second": 8.54,
+        "onset_interval_median_s": 0.1103,
+        "onset_interval_cv": 0.338,
+        "periodicity_candidates_bpm": [
+          161.5,
+          191.41,
+          109.96,
+          106.56,
+          145.58,
+          154.27,
+          139.67,
+          219.91
+        ],
+        "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+      },
+      {
+        "file": "napalm-demo-preview.m4a",
+        "duration_s": 29.9755,
+        "rms_dbfs": -14.59,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -21.42,
+          -17.29,
+          -10.41
+        ],
+        "spectral_centroid_hz": 2532.6,
+        "stereo_balance_minus_left_plus_right": 0.0005,
+        "onset_count": 221,
+        "onsets_per_second": 7.373,
+        "onset_interval_median_s": 0.1103,
+        "onset_interval_cv": 0.487,
+        "periodicity_candidates_bpm": [
+          73.3,
+          145.58,
+          58.07,
+          98.44
+        ],
+        "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+      },
+      {
+        "file": "stem-deluxe-combined-preview.m4a",
+        "duration_s": 29.9755,
+        "rms_dbfs": -18.73,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -26.57,
+          -21.37,
+          -16.63
+        ],
+        "spectral_centroid_hz": 2582.1,
+        "stereo_balance_minus_left_plus_right": 0.0988,
+        "onset_count": 255,
+        "onsets_per_second": 8.507,
+        "onset_interval_median_s": 0.1103,
+        "onset_interval_cv": 0.335,
+        "periodicity_candidates_bpm": [
+          105.47,
+          108.8,
+          219.91,
+          191.41,
+          145.58,
+          169.44,
+          127.6,
+          117.45
+        ],
+        "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+      },
+      {
+        "file": "napalm-deluxe-preview.m4a",
+        "duration_s": 29.9755,
+        "rms_dbfs": -13.79,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -27.41,
+          -20.38,
+          -8.42
+        ],
+        "spectral_centroid_hz": 2571.2,
+        "stereo_balance_minus_left_plus_right": 0.0166,
+        "onset_count": 158,
+        "onsets_per_second": 5.271,
+        "onset_interval_median_s": 0.1161,
+        "onset_interval_cv": 1.561,
+        "periodicity_candidates_bpm": [
+          71.78,
+          143.55
+        ],
+        "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+      }
+    ]
+  },
+  "exploratory_comparison": {
+    "sample_rate": 22050,
+    "files": {
+      "stem-long-stem-preview.m4a": {
+        "decoded_duration_s": 29.9755,
+        "windows": [
+          {
+            "range_s": [
+              0,
+              10
+            ],
+            "rms_dbfs": -14.07,
+            "onsets_per_second": 2.4,
+            "band_energy_ratio": {
+              "20_150": 0.4708,
+              "150_1000": 0.5137,
+              "1000_6000": 0.0149,
+              "6000_nyquist": 0.0005
+            }
+          },
+          {
+            "range_s": [
+              10,
+              20
+            ],
+            "rms_dbfs": -18.86,
+            "onsets_per_second": 3.1,
+            "band_energy_ratio": {
+              "20_150": 0.001,
+              "150_1000": 0.988,
+              "1000_6000": 0.0102,
+              "6000_nyquist": 0.0008
+            }
+          },
+          {
+            "range_s": [
+              20,
+              29.95
+            ],
+            "rms_dbfs": -18.87,
+            "onsets_per_second": 3.317,
+            "band_energy_ratio": {
+              "20_150": 0.0005,
+              "150_1000": 0.9873,
+              "1000_6000": 0.0119,
+              "6000_nyquist": 0.0003
+            }
+          }
+        ]
+      },
+      "stem-cops-robbers-preview.m4a": {
+        "decoded_duration_s": 29.9755,
+        "windows": [
+          {
+            "range_s": [
+              0,
+              10
+            ],
+            "rms_dbfs": -11.99,
+            "onsets_per_second": 2.5,
+            "band_energy_ratio": {
+              "20_150": 0.567,
+              "150_1000": 0.4232,
+              "1000_6000": 0.0094,
+              "6000_nyquist": 0.0004
+            }
+          },
+          {
+            "range_s": [
+              10,
+              20
+            ],
+            "rms_dbfs": -15.73,
+            "onsets_per_second": 3.6,
+            "band_energy_ratio": {
+              "20_150": 0.0134,
+              "150_1000": 0.9366,
+              "1000_6000": 0.049,
+              "6000_nyquist": 0.001
+            }
+          },
+          {
+            "range_s": [
+              20,
+              29.95
+            ],
+            "rms_dbfs": -16.27,
+            "onsets_per_second": 3.618,
+            "band_energy_ratio": {
+              "20_150": 0.0013,
+              "150_1000": 0.9547,
+              "1000_6000": 0.0413,
+              "6000_nyquist": 0.0028
+            }
+          }
+        ]
+      },
+      "napalm-scatter-preview.m4a": {
+        "decoded_duration_s": 29.9755,
+        "windows": [
+          {
+            "range_s": [
+              0,
+              10
+            ],
+            "rms_dbfs": -15.59,
+            "onsets_per_second": 1.3,
+            "band_energy_ratio": {
+              "20_150": 0.5382,
+              "150_1000": 0.2866,
+              "1000_6000": 0.1705,
+              "6000_nyquist": 0.0046
+            }
+          },
+          {
+            "range_s": [
+              10,
+              20
+            ],
+            "rms_dbfs": -12.03,
+            "onsets_per_second": 2.3,
+            "band_energy_ratio": {
+              "20_150": 0.6209,
+              "150_1000": 0.2905,
+              "1000_6000": 0.0837,
+              "6000_nyquist": 0.0048
+            }
+          },
+          {
+            "range_s": [
+              20,
+              29.95
+            ],
+            "rms_dbfs": -9.31,
+            "onsets_per_second": 2.211,
+            "band_energy_ratio": {
+              "20_150": 0.5826,
+              "150_1000": 0.3822,
+              "1000_6000": 0.033,
+              "6000_nyquist": 0.0021
+            }
+          }
+        ]
+      },
+      "napalm-demo-preview.m4a": {
+        "decoded_duration_s": 29.9755,
+        "windows": [
+          {
+            "range_s": [
+              0,
+              10
+            ],
+            "rms_dbfs": -13.85,
+            "onsets_per_second": 3.3,
+            "band_energy_ratio": {
+              "20_150": 0.3266,
+              "150_1000": 0.4681,
+              "1000_6000": 0.2033,
+              "6000_nyquist": 0.0021
+            }
+          },
+          {
+            "range_s": [
+              10,
+              20
+            ],
+            "rms_dbfs": -10.42,
+            "onsets_per_second": 4.4,
+            "band_energy_ratio": {
+              "20_150": 0.3515,
+              "150_1000": 0.5015,
+              "1000_6000": 0.1445,
+              "6000_nyquist": 0.0026
+            }
+          },
+          {
+            "range_s": [
+              20,
+              29.95
+            ],
+            "rms_dbfs": -11.16,
+            "onsets_per_second": 3.92,
+            "band_energy_ratio": {
+              "20_150": 0.3243,
+              "150_1000": 0.5265,
+              "1000_6000": 0.1468,
+              "6000_nyquist": 0.0025
+            }
+          }
+        ]
+      },
+      "stem-deluxe-combined-preview.m4a": {
+        "decoded_duration_s": 29.9755,
+        "windows": [
+          {
+            "range_s": [
+              0,
+              10
+            ],
+            "rms_dbfs": -13.11,
+            "onsets_per_second": 2.6,
+            "band_energy_ratio": {
+              "20_150": 0.4803,
+              "150_1000": 0.5062,
+              "1000_6000": 0.0131,
+              "6000_nyquist": 0.0004
+            }
+          },
+          {
+            "range_s": [
+              10,
+              20
+            ],
+            "rms_dbfs": -18.09,
+            "onsets_per_second": 3.2,
+            "band_energy_ratio": {
+              "20_150": 0.001,
+              "150_1000": 0.9893,
+              "1000_6000": 0.0089,
+              "6000_nyquist": 0.0007
+            }
+          },
+          {
+            "range_s": [
+              20,
+              29.95
+            ],
+            "rms_dbfs": -18,
+            "onsets_per_second": 3.317,
+            "band_energy_ratio": {
+              "20_150": 0.0005,
+              "150_1000": 0.9886,
+              "1000_6000": 0.0106,
+              "6000_nyquist": 0.0002
+            }
+          }
+        ]
+      },
+      "napalm-deluxe-preview.m4a": {
+        "decoded_duration_s": 29.9755,
+        "windows": [
+          {
+            "range_s": [
+              0,
+              10
+            ],
+            "rms_dbfs": -15.06,
+            "onsets_per_second": 1.2,
+            "band_energy_ratio": {
+              "20_150": 0.5657,
+              "150_1000": 0.276,
+              "1000_6000": 0.1544,
+              "6000_nyquist": 0.0039
+            }
+          },
+          {
+            "range_s": [
+              10,
+              20
+            ],
+            "rms_dbfs": -11.26,
+            "onsets_per_second": 2.2,
+            "band_energy_ratio": {
+              "20_150": 0.6446,
+              "150_1000": 0.2797,
+              "1000_6000": 0.0721,
+              "6000_nyquist": 0.0036
+            }
+          },
+          {
+            "range_s": [
+              20,
+              29.95
+            ],
+            "rms_dbfs": -8.52,
+            "onsets_per_second": 2.211,
+            "band_energy_ratio": {
+              "20_150": 0.5914,
+              "150_1000": 0.3783,
+              "1000_6000": 0.0287,
+              "6000_nyquist": 0.0017
+            }
+          }
+        ]
+      }
+    },
+    "comparisons": {
+      "stem_album_vs_cops_robbers": {
+        "onset_envelope_best_alignment": {
+          "correlation": 0.4175,
+          "lag_s": 0.7314
+        },
+        "rms_envelope_best_alignment": {
+          "correlation": 0.5964,
+          "lag_s": 0.7314
+        },
+        "tempo_profile_cosine": 0.7424,
+        "band_profile_cosine": 0.9973,
+        "boundary": "exploratory similarity of unknown-position previews; not identity or lineage proof"
+      },
+      "napalm_final_vs_demo": {
+        "onset_envelope_best_alignment": {
+          "correlation": 0.1323,
+          "lag_s": 1.1842
+        },
+        "rms_envelope_best_alignment": {
+          "correlation": 0.3153,
+          "lag_s": -1.9156
+        },
+        "tempo_profile_cosine": 0.7829,
+        "band_profile_cosine": 0.8893,
+        "boundary": "exploratory similarity of unknown-position previews; not identity or lineage proof"
+      },
+      "stem_current_vs_deluxe": {
+        "onset_envelope_best_alignment": {
+          "correlation": 0.9752,
+          "lag_s": -0.1045
+        },
+        "rms_envelope_best_alignment": {
+          "correlation": 0.9986,
+          "lag_s": -0.1045
+        },
+        "tempo_profile_cosine": 0.9999,
+        "band_profile_cosine": 0.9999,
+        "boundary": "exploratory similarity of unknown-position previews; not identity or lineage proof"
+      },
+      "napalm_current_vs_deluxe": {
+        "onset_envelope_best_alignment": {
+          "correlation": 0.9844,
+          "lag_s": 0.1858
+        },
+        "rms_envelope_best_alignment": {
+          "correlation": 0.9961,
+          "lag_s": 0.1858
+        },
+        "tempo_profile_cosine": 0.9999,
+        "band_profile_cosine": 0.9997,
+        "boundary": "exploratory similarity of unknown-position previews; not identity or lineage proof"
+      }
+    },
+    "local_periodicity_10s_windows": {
+      "stem-long-stem-preview.m4a": [
+        {
+          "range_s": [
+            0,
+            10
+          ],
+          "candidates_bpm": [
+            191.41,
+            145.58,
+            132.51,
+            161.5,
+            169.44,
+            127.6,
+            219.91,
+            117.45
+          ]
+        },
+        {
+          "range_s": [
+            10,
+            20
+          ],
+          "candidates_bpm": [
+            108.8,
+            53,
+            70.79
+          ]
+        },
+        {
+          "range_s": [
+            20,
+            29.95
+          ],
+          "candidates_bpm": [
+            107.67,
+            71.78,
+            53.55,
+            215.33
+          ]
+        }
+      ],
+      "napalm-scatter-preview.m4a": [
+        {
+          "range_s": [
+            0,
+            10
+          ],
+          "candidates_bpm": [
+            71.78,
+            73.3,
+            145.58,
+            156.61
+          ]
+        },
+        {
+          "range_s": [
+            10,
+            20
+          ],
+          "candidates_bpm": [
+            72.79,
+            143.55
+          ]
+        },
+        {
+          "range_s": [
+            20,
+            29.95
+          ],
+          "candidates_bpm": [
+            72.28,
+            143.55,
+            147.66
+          ]
+        }
+      ]
+    },
+    "exploratory_boundary_candidates": {
+      "stem-long-stem-preview.m4a": [
+        {
+          "time_s": 3.5,
+          "novelty": 4.665
+        },
+        {
+          "time_s": 16.5,
+          "novelty": 3.961
+        },
+        {
+          "time_s": 6.5,
+          "novelty": 3.158
+        },
+        {
+          "time_s": 18.5,
+          "novelty": 2.695
+        },
+        {
+          "time_s": 9.5,
+          "novelty": 2.685
+        }
+      ],
+      "napalm-scatter-preview.m4a": [
+        {
+          "time_s": 4.5,
+          "novelty": 5.856
+        },
+        {
+          "time_s": 18.5,
+          "novelty": 2.076
+        },
+        {
+          "time_s": 8.5,
+          "novelty": 1.971
+        },
+        {
+          "time_s": 16,
+          "novelty": 1.905
+        },
+        {
+          "time_s": 13.5,
+          "novelty": 1.701
+        }
+      ]
+    },
+    "limits": [
+      "long-track previews have unknown source positions",
+      "the 30-second demo preview covers most, not all, of the 34.8-second catalog track",
+      "window statistics do not establish full-track scene boundaries",
+      "similarity metrics are exploratory and were not part of the calibrated extractor"
+    ],
+    "method_status": {
+      "windows_and_similarity": "exploratory",
+      "local_periodicity": "uses calibrated periodicity_candidates",
+      "boundary_candidates": "uncalibrated navigation hints; not semantic scene labels"
+    }
+  },
+  "interpretation_boundary": [
+    "No statement extends beyond the retrieved preview intervals.",
+    "Preview start positions within long tracks are unknown.",
+    "Catalog identity and matching ISRC do not prove byte-identical masters.",
+    "The demo title and coarse similarity do not prove a direct production lineage.",
+    "Audio bytes are temporary research inputs and are not stored in Git."
+  ]
+}
