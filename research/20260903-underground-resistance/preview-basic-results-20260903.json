@@ -1,0 +1,96 @@
+{
+  "sample_rate": 44100,
+  "measurement_class": "calibration-approved excerpt measurements",
+  "analyzer": "research/music-analysis/analyze_previews.py",
+  "tracks": [
+    {
+      "track_id": 1607947261,
+      "track": "Sonic Destroyer",
+      "duration_s": 29.9291,
+      "rms_dbfs": -14.0,
+      "frame_rms_dbfs_p10_p50_p90": [-19.13, -15.47, -10.68],
+      "spectral_centroid_hz": 5002.0,
+      "stereo_balance_minus_left_plus_right": 0.0246,
+      "onset_count": 267,
+      "onsets_per_second": 8.921,
+      "onset_interval_median_s": 0.1103,
+      "onset_interval_cv": 0.236,
+      "periodicity_candidates_bpm": [62.26, 124.53, 99.38, 82.69, 166.71]
+    },
+    {
+      "track_id": 257080622,
+      "track": "Waveform",
+      "duration_s": 29.9291,
+      "rms_dbfs": -10.23,
+      "frame_rms_dbfs_p10_p50_p90": [-21.56, -10.08, -7.62],
+      "spectral_centroid_hz": 3875.5,
+      "stereo_balance_minus_left_plus_right": -0.0559,
+      "onset_count": 240,
+      "onsets_per_second": 8.019,
+      "onset_interval_median_s": 0.1219,
+      "onset_interval_cv": 0.321,
+      "periodicity_candidates_bpm": [82.03, 164.06, 54.98, 61.52, 123.05]
+    },
+    {
+      "track_id": 1677723768,
+      "track": "Base Camp Alpha 808",
+      "duration_s": 29.9291,
+      "rms_dbfs": -9.71,
+      "frame_rms_dbfs_p10_p50_p90": [-15.91, -11.08, -6.2],
+      "spectral_centroid_hz": 3597.8,
+      "stereo_balance_minus_left_plus_right": 0.0273,
+      "onset_count": 263,
+      "onsets_per_second": 8.787,
+      "onset_interval_median_s": 0.1103,
+      "onset_interval_cv": 0.337,
+      "periodicity_candidates_bpm": [124.53]
+    },
+    {
+      "track_id": 317941013,
+      "track": "The Seawolf",
+      "duration_s": 29.9291,
+      "rms_dbfs": -15.5,
+      "frame_rms_dbfs_p10_p50_p90": [-24.72, -17.04, -11.76],
+      "spectral_centroid_hz": 4263.0,
+      "stereo_balance_minus_left_plus_right": 0.0,
+      "onset_count": 236,
+      "onsets_per_second": 7.885,
+      "onset_interval_median_s": 0.1161,
+      "onset_interval_cv": 0.352,
+      "periodicity_candidates_bpm": [68.0, 136.0]
+    },
+    {
+      "track_id": 603658788,
+      "track": "Timeline",
+      "duration_s": 29.9291,
+      "rms_dbfs": -13.99,
+      "frame_rms_dbfs_p10_p50_p90": [-21.12, -15.94, -10.85],
+      "spectral_centroid_hz": 4939.2,
+      "stereo_balance_minus_left_plus_right": -0.1701,
+      "onset_count": 236,
+      "onsets_per_second": 7.885,
+      "onset_interval_median_s": 0.1161,
+      "onset_interval_cv": 0.37,
+      "periodicity_candidates_bpm": [76.0, 152.0, 50.67, 60.44, 102.34]
+    },
+    {
+      "track_id": 269752702,
+      "track": "I Am Ur",
+      "duration_s": 29.9291,
+      "rms_dbfs": -10.68,
+      "frame_rms_dbfs_p10_p50_p90": [-34.97, -15.25, -5.64],
+      "spectral_centroid_hz": 3954.7,
+      "stereo_balance_minus_left_plus_right": 0.0009,
+      "onset_count": 213,
+      "onsets_per_second": 7.117,
+      "onset_interval_median_s": 0.1277,
+      "onset_interval_cv": 0.394,
+      "periodicity_candidates_bpm": [90.67, 54.69, 68.45, 137.81, 195.02, 85.42]
+    }
+  ],
+  "scope": "unknown-position approximately 30-second excerpts; periodicity is not asserted as musical beat",
+  "failed_follow_up": {
+    "tasks": ["10-second window BPM stability", "key stability", "rotation-invariant onset phase"],
+    "reason": "ModuleNotFoundError: No module named 'essentia'"
+  }
+}

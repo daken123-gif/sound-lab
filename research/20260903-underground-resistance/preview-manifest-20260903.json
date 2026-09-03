@@ -1,0 +1,61 @@
+{
+  "retrieved_date": "2026-09-03 UTC",
+  "source": "Apple iTunes Search API public audio previews, discovered through the Shazam/Apple catalog surface",
+  "scope": "unknown-position approximately 30-second excerpts; audio files are not stored in Git",
+  "tracks": [
+    {
+      "track_id": 1607947261,
+      "artist_id": 317940894,
+      "artist": "X-101",
+      "track": "Sonic Destroyer",
+      "collection": "X-101",
+      "duration_s_container": 29.976961,
+      "sha256": "e7556ea6cb7d9ba0752531fe81ee2a03ece750605edf66a4c99ba77f513e3c0a"
+    },
+    {
+      "track_id": 257080622,
+      "artist_id": 202860333,
+      "artist": "Underground Resistance",
+      "track": "Waveform",
+      "collection": "Invisible Show Case, Vol.1, Pt. 2",
+      "duration_s_container": 29.976961,
+      "sha256": "fbd8bd60f0f52eed699df0d7b9454ccfe226f2c546df7da32cef2cbee960fe17"
+    },
+    {
+      "track_id": 1677723768,
+      "artist_id": 202860333,
+      "artist": "Underground Resistance",
+      "track": "Base Camp Alpha 808",
+      "collection": "Get Lost VI Mixed by Totally Enormous Extinct Dinosaurs",
+      "duration_s_container": 29.976961,
+      "sha256": "52821d511cb3f419f9d11896c32864ffe3746039f998d31253fb3a51543476ba"
+    },
+    {
+      "track_id": 317941013,
+      "artist_id": 202860333,
+      "artist": "Underground Resistance",
+      "track": "The Seawolf",
+      "collection": "Nocturbulous Behavior - the Mix",
+      "duration_s_container": 29.976961,
+      "sha256": "7638281042477adfd6513e9d803b91cbebbdc3ff1f62821b87fa6a2a751222d3"
+    },
+    {
+      "track_id": 603658788,
+      "artist_id": 202860333,
+      "artist": "Underground Resistance",
+      "track": "Timeline",
+      "collection": "Straight Up Detroit Shit 2013",
+      "duration_s_container": 29.976961,
+      "sha256": "9198c09492b0b5eb372d1ea2a2db855011b8cb6700f0f3e8e2881fca8f1b49a0"
+    },
+    {
+      "track_id": 269752702,
+      "artist_id": 202860333,
+      "artist": "Underground Resistance",
+      "track": "I Am Ur",
+      "collection": "Electronic Warfare 2.0",
+      "duration_s_container": 29.976961,
+      "sha256": "e1cb41878fd07a0c64dd6ee0dcdad0b3ed36029e5dba6c54d6e6175162fb7503"
+    }
+  ]
+}
