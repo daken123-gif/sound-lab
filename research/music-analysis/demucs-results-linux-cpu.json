@@ -1,0 +1,2810 @@
+{
+  "protocol": "curtis-blind20-v1",
+  "separator": {
+    "architecture": "Hybrid Transformer Demucs",
+    "implementation": "official-demucs",
+    "implementation_version": "4.0.1",
+    "device": "PyTorch CPU",
+    "model": "htdemucs",
+    "shifts": 1,
+    "seed": 0,
+    "overlap": 0.25
+  },
+  "environment": {
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "python": "3.12.13",
+    "essentia": "2.1-beta6-dev"
+  },
+  "task_boundary": "independent separator architecture check; feature extractor and frozen thresholds remain shared",
+  "metric_boundary": "no ground-truth real stems; this tests recurrence of derived onset-spacing categories, not separation SDR",
+  "category_counts": {
+    "stable_intermediate": 14,
+    "rejected": 2,
+    "concentrated_non_triplet_reproduced": 4
+  },
+  "exact_category_agreement_with_mdx": {
+    "count": 15,
+    "total": 20
+  },
+  "tracks": [
+    {
+      "blind_id": "B01",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": true,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 119.95,
+        "beat_confidence": 3.415,
+        "onset_rate_per_s": 6.048,
+        "phase_histogram_12": [
+          3,
+          1,
+          3,
+          18,
+          1,
+          48,
+          8,
+          1,
+          25,
+          14,
+          0,
+          54
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.458,
+          0.708,
+          0.292
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.723,
+        "binary_spacing_score": 0.913,
+        "triplet_spacing_score": 0.295,
+        "usable_onsets": 176
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 120.38,
+          "beat_confidence": 3.714,
+          "onset_rate_per_s": 6.6,
+          "phase_histogram_12": [
+            1,
+            1,
+            1,
+            9,
+            0,
+            11,
+            7,
+            0,
+            4,
+            9,
+            0,
+            17
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.292,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.754,
+          "binary_spacing_score": 0.872,
+          "triplet_spacing_score": 0.442,
+          "usable_onsets": 60
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 120.03,
+          "beat_confidence": 3.743,
+          "onset_rate_per_s": 5.8,
+          "phase_histogram_12": [
+            1,
+            1,
+            1,
+            4,
+            1,
+            14,
+            2,
+            1,
+            6,
+            5,
+            1,
+            16
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.708,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.785,
+          "binary_spacing_score": 0.942,
+          "triplet_spacing_score": 0.354,
+          "usable_onsets": 53
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 119.51,
+          "beat_confidence": 3.508,
+          "onset_rate_per_s": 6.043,
+          "phase_histogram_12": [
+            0,
+            1,
+            1,
+            5,
+            0,
+            16,
+            1,
+            1,
+            7,
+            5,
+            1,
+            16
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.708,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.723,
+          "binary_spacing_score": 0.938,
+          "triplet_spacing_score": 0.333,
+          "usable_onsets": 54
+        }
+      ]
+    },
+    {
+      "blind_id": "B02",
+      "demucs_category": "rejected",
+      "mdx_consensus_category": "rejected",
+      "exact_category_agreement": true,
+      "reasons": [
+        "window_bpm_unstable"
+      ],
+      "full": {
+        "bpm_candidate": 71.01,
+        "beat_confidence": 2.986,
+        "onset_rate_per_s": 3.475,
+        "phase_histogram_12": [
+          5,
+          1,
+          1,
+          5,
+          25,
+          1,
+          2,
+          20,
+          12,
+          0,
+          1,
+          27
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.375,
+          0.625,
+          0.708
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.74,
+        "binary_spacing_score": 0.096,
+        "triplet_spacing_score": 0.647,
+        "usable_onsets": 100
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 70.05,
+          "beat_confidence": 3.475,
+          "onset_rate_per_s": 3.5,
+          "phase_histogram_12": [
+            6,
+            0,
+            0,
+            2,
+            8,
+            0,
+            0,
+            1,
+            9,
+            0,
+            0,
+            5
+          ],
+          "top_phase_centers": [
+            0.708,
+            0.375,
+            0.042,
+            0.958
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.647,
+          "binary_spacing_score": 0.0,
+          "triplet_spacing_score": 0.905,
+          "usable_onsets": 31
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 106.03,
+          "beat_confidence": 3.283,
+          "onset_rate_per_s": 3.7,
+          "phase_histogram_12": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            16,
+            0,
+            0,
+            0,
+            0,
+            0,
+            16
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.208
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.325,
+          "binary_spacing_score": 0.998,
+          "triplet_spacing_score": 0.0,
+          "usable_onsets": 33
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 70.92,
+          "beat_confidence": 3.404,
+          "onset_rate_per_s": 3.525,
+          "phase_histogram_12": [
+            2,
+            0,
+            0,
+            1,
+            9,
+            0,
+            0,
+            5,
+            5,
+            0,
+            0,
+            8
+          ],
+          "top_phase_centers": [
+            0.375,
+            0.958,
+            0.625,
+            0.708
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.646,
+          "binary_spacing_score": 0.0,
+          "triplet_spacing_score": 0.63,
+          "usable_onsets": 30
+        }
+      ]
+    },
+    {
+      "blind_id": "B03",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": true,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 98.18,
+        "beat_confidence": 3.515,
+        "onset_rate_per_s": 3.575,
+        "phase_histogram_12": [
+          0,
+          0,
+          1,
+          3,
+          4,
+          36,
+          6,
+          0,
+          1,
+          6,
+          0,
+          45
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.458,
+          0.542,
+          0.792
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.557,
+        "binary_spacing_score": 0.958,
+        "triplet_spacing_score": 0.106,
+        "usable_onsets": 102
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 97.91,
+          "beat_confidence": 3.736,
+          "onset_rate_per_s": 3.4,
+          "phase_histogram_12": [
+            10,
+            0,
+            0,
+            0,
+            0,
+            3,
+            13,
+            0,
+            0,
+            0,
+            0,
+            4
+          ],
+          "top_phase_centers": [
+            0.542,
+            0.042,
+            0.958,
+            0.458
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.494,
+          "binary_spacing_score": 0.966,
+          "triplet_spacing_score": 0.0,
+          "usable_onsets": 30
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 98.18,
+          "beat_confidence": 4.066,
+          "onset_rate_per_s": 3.7,
+          "phase_histogram_12": [
+            0,
+            0,
+            0,
+            3,
+            1,
+            12,
+            1,
+            0,
+            0,
+            2,
+            0,
+            15
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.292,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.53,
+          "binary_spacing_score": 0.969,
+          "triplet_spacing_score": 0.18,
+          "usable_onsets": 34
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 99.13,
+          "beat_confidence": 3.555,
+          "onset_rate_per_s": 3.726,
+          "phase_histogram_12": [
+            9,
+            2,
+            1,
+            3,
+            0,
+            2,
+            9,
+            1,
+            1,
+            4,
+            1,
+            1
+          ],
+          "top_phase_centers": [
+            0.042,
+            0.542,
+            0.792,
+            0.292
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.814,
+          "binary_spacing_score": 0.98,
+          "triplet_spacing_score": 0.275,
+          "usable_onsets": 34
+        }
+      ]
+    },
+    {
+      "blind_id": "B04",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": true,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 163.11,
+        "beat_confidence": 3.482,
+        "onset_rate_per_s": 5.246,
+        "phase_histogram_12": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          20,
+          54,
+          0,
+          0,
+          23,
+          57
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.625,
+          0.875,
+          0.542
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.517,
+        "binary_spacing_score": 0.0,
+        "triplet_spacing_score": 0.499,
+        "usable_onsets": 154
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 164.1,
+          "beat_confidence": 3.492,
+          "onset_rate_per_s": 5.3,
+          "phase_histogram_12": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            17,
+            5,
+            0,
+            0,
+            25
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.625,
+            0.708,
+            0.542
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.412,
+          "binary_spacing_score": 0.0,
+          "triplet_spacing_score": 0.452,
+          "usable_onsets": 48
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 162.15,
+          "beat_confidence": 3.564,
+          "onset_rate_per_s": 5.3,
+          "phase_histogram_12": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            19,
+            1,
+            0,
+            5,
+            20
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.625,
+            0.875,
+            0.542
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.491,
+          "binary_spacing_score": 0.0,
+          "triplet_spacing_score": 0.496,
+          "usable_onsets": 48
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 163.7,
+          "beat_confidence": 3.376,
+          "onset_rate_per_s": 5.439,
+          "phase_histogram_12": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            11,
+            13,
+            0,
+            0,
+            9,
+            17
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.625,
+            0.542,
+            0.875
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.575,
+          "binary_spacing_score": 0.051,
+          "triplet_spacing_score": 0.484,
+          "usable_onsets": 51
+        }
+      ]
+    },
+    {
+      "blind_id": "B05",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": true,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 92.41,
+        "beat_confidence": 4.01,
+        "onset_rate_per_s": 5.647,
+        "phase_histogram_12": [
+          0,
+          0,
+          39,
+          0,
+          1,
+          45,
+          0,
+          0,
+          35,
+          0,
+          0,
+          45
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.458,
+          0.208,
+          0.708
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.567,
+        "binary_spacing_score": 0.997,
+        "triplet_spacing_score": 0.005,
+        "usable_onsets": 165
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 92.29,
+          "beat_confidence": 2.823,
+          "onset_rate_per_s": 5.6,
+          "phase_histogram_12": [
+            0,
+            0,
+            9,
+            2,
+            1,
+            12,
+            2,
+            0,
+            7,
+            3,
+            0,
+            14
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.208,
+            0.708
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.719,
+          "binary_spacing_score": 0.971,
+          "triplet_spacing_score": 0.182,
+          "usable_onsets": 50
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 92.78,
+          "beat_confidence": 3.712,
+          "onset_rate_per_s": 5.9,
+          "phase_histogram_12": [
+            2,
+            0,
+            9,
+            2,
+            0,
+            14,
+            0,
+            0,
+            5,
+            9,
+            0,
+            12
+          ],
+          "top_phase_centers": [
+            0.458,
+            0.958,
+            0.208,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.708,
+          "binary_spacing_score": 0.864,
+          "triplet_spacing_score": 0.299,
+          "usable_onsets": 53
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 92.18,
+          "beat_confidence": 3.775,
+          "onset_rate_per_s": 5.64,
+          "phase_histogram_12": [
+            0,
+            0,
+            2,
+            9,
+            0,
+            13,
+            1,
+            0,
+            7,
+            5,
+            0,
+            13
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.292,
+            0.708
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.693,
+          "binary_spacing_score": 0.916,
+          "triplet_spacing_score": 0.369,
+          "usable_onsets": 50
+        }
+      ]
+    },
+    {
+      "blind_id": "B06",
+      "demucs_category": "concentrated_non_triplet_reproduced",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": false,
+      "reasons": [
+        "full_and_at_least_two_of_three_windows"
+      ],
+      "full": {
+        "bpm_candidate": 104.75,
+        "beat_confidence": 3.685,
+        "onset_rate_per_s": 3.508,
+        "phase_histogram_12": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          50,
+          0,
+          0,
+          0,
+          1,
+          3,
+          48
+        ],
+        "top_phase_centers": [
+          0.458,
+          0.958,
+          0.875,
+          0.792
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.362,
+        "binary_spacing_score": 0.998,
+        "triplet_spacing_score": 0.01,
+        "usable_onsets": 103
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 104.91,
+          "beat_confidence": 3.72,
+          "onset_rate_per_s": 3.5,
+          "phase_histogram_12": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            15,
+            0,
+            0,
+            0,
+            0,
+            3,
+            13
+          ],
+          "top_phase_centers": [
+            0.458,
+            0.958,
+            0.875,
+            0.375
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.423,
+          "binary_spacing_score": 0.98,
+          "triplet_spacing_score": 0.0,
+          "usable_onsets": 32
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 104.35,
+          "beat_confidence": 3.808,
+          "onset_rate_per_s": 3.6,
+          "phase_histogram_12": [
+            1,
+            1,
+            0,
+            0,
+            1,
+            13,
+            2,
+            0,
+            0,
+            1,
+            1,
+            14
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.542,
+            0.875
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.571,
+          "binary_spacing_score": 0.989,
+          "triplet_spacing_score": 0.08,
+          "usable_onsets": 34
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 104.5,
+          "beat_confidence": 3.959,
+          "onset_rate_per_s": 3.525,
+          "phase_histogram_12": [
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            16,
+            0,
+            0,
+            0,
+            0,
+            8
+          ],
+          "top_phase_centers": [
+            0.542,
+            0.958,
+            0.042
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.418,
+          "binary_spacing_score": 0.667,
+          "triplet_spacing_score": 0.0,
+          "usable_onsets": 32
+        }
+      ]
+    },
+    {
+      "blind_id": "B07",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": true,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 91.1,
+        "beat_confidence": 2.687,
+        "onset_rate_per_s": 4.971,
+        "phase_histogram_12": [
+          3,
+          1,
+          5,
+          21,
+          4,
+          29,
+          12,
+          1,
+          3,
+          26,
+          0,
+          38
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.458,
+          0.792,
+          0.292
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.774,
+        "binary_spacing_score": 0.943,
+        "triplet_spacing_score": 0.488,
+        "usable_onsets": 143
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 90.93,
+          "beat_confidence": 3.994,
+          "onset_rate_per_s": 4.5,
+          "phase_histogram_12": [
+            0,
+            0,
+            0,
+            7,
+            0,
+            13,
+            0,
+            0,
+            2,
+            5,
+            0,
+            12
+          ],
+          "top_phase_centers": [
+            0.458,
+            0.958,
+            0.292,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.585,
+          "binary_spacing_score": 0.977,
+          "triplet_spacing_score": 0.381,
+          "usable_onsets": 39
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 90.13,
+          "beat_confidence": 2.962,
+          "onset_rate_per_s": 5.4,
+          "phase_histogram_12": [
+            1,
+            1,
+            2,
+            6,
+            1,
+            8,
+            4,
+            2,
+            1,
+            9,
+            0,
+            12
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.792,
+            0.458,
+            0.292
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.819,
+          "binary_spacing_score": 0.895,
+          "triplet_spacing_score": 0.589,
+          "usable_onsets": 47
+        },
+        {
+          "seconds": [
+            20,
+            29.976
+          ],
+          "bpm_candidate": 90.55,
+          "beat_confidence": 3.008,
+          "onset_rate_per_s": 5.113,
+          "phase_histogram_12": [
+            2,
+            0,
+            1,
+            8,
+            0,
+            9,
+            4,
+            0,
+            1,
+            6,
+            1,
+            12
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.292,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.755,
+          "binary_spacing_score": 0.948,
+          "triplet_spacing_score": 0.463,
+          "usable_onsets": 44
+        }
+      ]
+    },
+    {
+      "blind_id": "B08",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": true,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 164.49,
+        "beat_confidence": 3.325,
+        "onset_rate_per_s": 3.842,
+        "phase_histogram_12": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          20,
+          10,
+          0,
+          0,
+          13,
+          67
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.542,
+          0.875,
+          0.625
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.473,
+        "binary_spacing_score": 0.078,
+        "triplet_spacing_score": 0.18,
+        "usable_onsets": 113
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 164.34,
+          "beat_confidence": 3.546,
+          "onset_rate_per_s": 4.2,
+          "phase_histogram_12": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            5,
+            8,
+            1,
+            0,
+            1,
+            23
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.625,
+            0.542,
+            0.875
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.511,
+          "binary_spacing_score": 0.09,
+          "triplet_spacing_score": 0.305,
+          "usable_onsets": 40
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 163.24,
+          "beat_confidence": 3.258,
+          "onset_rate_per_s": 3.5,
+          "phase_histogram_12": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            4,
+            0,
+            0,
+            0,
+            24
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.625,
+            0.542,
+            0.042
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.302,
+          "binary_spacing_score": 0.007,
+          "triplet_spacing_score": 0.161,
+          "usable_onsets": 31
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 165.35,
+          "beat_confidence": 3.445,
+          "onset_rate_per_s": 3.928,
+          "phase_histogram_12": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            7,
+            0,
+            0,
+            2,
+            23
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.625,
+            0.542,
+            0.875
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.445,
+          "binary_spacing_score": 0.013,
+          "triplet_spacing_score": 0.282,
+          "usable_onsets": 37
+        }
+      ]
+    },
+    {
+      "blind_id": "B09",
+      "demucs_category": "concentrated_non_triplet_reproduced",
+      "mdx_consensus_category": "concentrated_non_triplet_reproduced",
+      "exact_category_agreement": true,
+      "reasons": [
+        "full_and_at_least_two_of_three_windows"
+      ],
+      "full": {
+        "bpm_candidate": 141.88,
+        "beat_confidence": 3.566,
+        "onset_rate_per_s": 3.269,
+        "phase_histogram_12": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          4,
+          13,
+          1,
+          3,
+          3,
+          0,
+          66
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.542,
+          0.458,
+          0.792
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.459,
+        "binary_spacing_score": 0.132,
+        "triplet_spacing_score": 0.023,
+        "usable_onsets": 96
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 140.78,
+          "beat_confidence": 3.565,
+          "onset_rate_per_s": 3.2,
+          "phase_histogram_12": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            3,
+            2,
+            1,
+            2,
+            0,
+            0,
+            22
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.542,
+            0.708
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.42,
+          "binary_spacing_score": 0.262,
+          "triplet_spacing_score": 0.048,
+          "usable_onsets": 31
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 140.24,
+          "beat_confidence": 3.638,
+          "onset_rate_per_s": 3.7,
+          "phase_histogram_12": [
+            0,
+            0,
+            0,
+            0,
+            3,
+            3,
+            3,
+            0,
+            2,
+            0,
+            0,
+            22
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.375,
+            0.458,
+            0.542
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.44,
+          "binary_spacing_score": 0.256,
+          "triplet_spacing_score": 0.012,
+          "usable_onsets": 33
+        },
+        {
+          "seconds": [
+            20,
+            29.976
+          ],
+          "bpm_candidate": 142.58,
+          "beat_confidence": 3.632,
+          "onset_rate_per_s": 3.308,
+          "phase_histogram_12": [
+            17,
+            2,
+            0,
+            1,
+            1,
+            2,
+            3,
+            3,
+            1,
+            0,
+            0,
+            0
+          ],
+          "top_phase_centers": [
+            0.042,
+            0.625,
+            0.542,
+            0.458
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.597,
+          "binary_spacing_score": 0.358,
+          "triplet_spacing_score": 0.132,
+          "usable_onsets": 30
+        }
+      ]
+    },
+    {
+      "blind_id": "B10",
+      "demucs_category": "concentrated_non_triplet_reproduced",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": false,
+      "reasons": [
+        "full_and_at_least_two_of_three_windows"
+      ],
+      "full": {
+        "bpm_candidate": 105.91,
+        "beat_confidence": 3.697,
+        "onset_rate_per_s": 3.603,
+        "phase_histogram_12": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          41,
+          8,
+          0,
+          1,
+          1,
+          0,
+          50
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.458,
+          0.542,
+          0.792
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.459,
+        "binary_spacing_score": 0.969,
+        "triplet_spacing_score": 0.022,
+        "usable_onsets": 104
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 104.79,
+          "beat_confidence": 3.798,
+          "onset_rate_per_s": 3.7,
+          "phase_histogram_12": [
+            14,
+            0,
+            0,
+            0,
+            0,
+            1,
+            15,
+            0,
+            0,
+            1,
+            0,
+            3
+          ],
+          "top_phase_centers": [
+            0.542,
+            0.042,
+            0.958,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.462,
+          "binary_spacing_score": 0.986,
+          "triplet_spacing_score": 0.002,
+          "usable_onsets": 34
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 105.83,
+          "beat_confidence": 3.846,
+          "onset_rate_per_s": 3.7,
+          "phase_histogram_12": [
+            1,
+            1,
+            0,
+            1,
+            2,
+            12,
+            1,
+            1,
+            1,
+            0,
+            1,
+            13
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.375,
+            0.875
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.655,
+          "binary_spacing_score": 0.988,
+          "triplet_spacing_score": 0.139,
+          "usable_onsets": 34
+        },
+        {
+          "seconds": [
+            20,
+            29.976
+          ],
+          "bpm_candidate": 106.17,
+          "beat_confidence": 3.845,
+          "onset_rate_per_s": 3.609,
+          "phase_histogram_12": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            13,
+            2,
+            0,
+            0,
+            1,
+            0,
+            16
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.542,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.4,
+          "binary_spacing_score": 0.967,
+          "triplet_spacing_score": 0.03,
+          "usable_onsets": 32
+        }
+      ]
+    },
+    {
+      "blind_id": "B11",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": true,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 111.85,
+        "beat_confidence": 3.506,
+        "onset_rate_per_s": 2.573,
+        "phase_histogram_12": [
+          46,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0,
+          18,
+          2,
+          0,
+          5
+        ],
+        "top_phase_centers": [
+          0.042,
+          0.708,
+          0.958,
+          0.792
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.463,
+        "binary_spacing_score": 0.053,
+        "triplet_spacing_score": 0.363,
+        "usable_onsets": 75
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 112.35,
+          "beat_confidence": 3.721,
+          "onset_rate_per_s": 2.5,
+          "phase_histogram_12": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            4,
+            2,
+            0,
+            0,
+            15
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.625,
+            0.708,
+            0.292
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.43,
+          "binary_spacing_score": 0.032,
+          "triplet_spacing_score": 0.32,
+          "usable_onsets": 23
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 112.2,
+          "beat_confidence": 3.81,
+          "onset_rate_per_s": 2.8,
+          "phase_histogram_12": [
+            14,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            5,
+            0,
+            0,
+            2
+          ],
+          "top_phase_centers": [
+            0.042,
+            0.708,
+            0.958,
+            0.375
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.45,
+          "binary_spacing_score": 0.0,
+          "triplet_spacing_score": 0.401,
+          "usable_onsets": 23
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 111.63,
+          "beat_confidence": 3.797,
+          "onset_rate_per_s": 2.518,
+          "phase_histogram_12": [
+            7,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            5,
+            0,
+            0,
+            8
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.042,
+            0.708,
+            0.625
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.518,
+          "binary_spacing_score": 0.0,
+          "triplet_spacing_score": 0.359,
+          "usable_onsets": 22
+        }
+      ]
+    },
+    {
+      "blind_id": "B12",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": true,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 136.5,
+        "beat_confidence": 3.323,
+        "onset_rate_per_s": 4.07,
+        "phase_histogram_12": [
+          34,
+          0,
+          0,
+          0,
+          2,
+          14,
+          39,
+          0,
+          0,
+          1,
+          0,
+          29
+        ],
+        "top_phase_centers": [
+          0.542,
+          0.042,
+          0.958,
+          0.458
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.575,
+        "binary_spacing_score": 0.931,
+        "triplet_spacing_score": 0.022,
+        "usable_onsets": 119
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 137.1,
+          "beat_confidence": 3.588,
+          "onset_rate_per_s": 3.8,
+          "phase_histogram_12": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            16,
+            0,
+            0,
+            0,
+            0,
+            0,
+            18
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.375
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.323,
+          "binary_spacing_score": 0.991,
+          "triplet_spacing_score": 0.0,
+          "usable_onsets": 35
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 136.35,
+          "beat_confidence": 3.861,
+          "onset_rate_per_s": 4.1,
+          "phase_histogram_12": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            2,
+            0,
+            0,
+            0,
+            1,
+            20
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.542,
+            0.875
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.385,
+          "binary_spacing_score": 0.932,
+          "triplet_spacing_score": 0.003,
+          "usable_onsets": 37
+        },
+        {
+          "seconds": [
+            20,
+            29.976
+          ],
+          "bpm_candidate": 134.84,
+          "beat_confidence": 3.388,
+          "onset_rate_per_s": 4.311,
+          "phase_histogram_12": [
+            2,
+            0,
+            1,
+            0,
+            3,
+            8,
+            8,
+            0,
+            0,
+            0,
+            0,
+            18
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.542,
+            0.458,
+            0.375
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.579,
+          "binary_spacing_score": 0.687,
+          "triplet_spacing_score": 0.03,
+          "usable_onsets": 40
+        }
+      ]
+    },
+    {
+      "blind_id": "B13",
+      "demucs_category": "rejected",
+      "mdx_consensus_category": "rejected",
+      "exact_category_agreement": true,
+      "reasons": [
+        "full_excerpt_low_beat_confidence",
+        "window_bpm_unstable"
+      ],
+      "full": {
+        "bpm_candidate": 108.34,
+        "beat_confidence": 0.602,
+        "onset_rate_per_s": 2.539,
+        "phase_histogram_12": [
+          9,
+          4,
+          6,
+          3,
+          8,
+          6,
+          2,
+          4,
+          6,
+          8,
+          5,
+          11
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.042,
+          0.375,
+          0.792
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.964,
+        "binary_spacing_score": 0.787,
+        "triplet_spacing_score": 0.825,
+        "usable_onsets": 72
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 95.22,
+          "beat_confidence": 1.814,
+          "onset_rate_per_s": 2.6,
+          "phase_histogram_12": [
+            4,
+            3,
+            0,
+            0,
+            3,
+            1,
+            0,
+            3,
+            2,
+            4,
+            1,
+            1
+          ],
+          "top_phase_centers": [
+            0.792,
+            0.042,
+            0.625,
+            0.125
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.835,
+          "binary_spacing_score": 0.394,
+          "triplet_spacing_score": 0.727,
+          "usable_onsets": 22
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 120.45,
+          "beat_confidence": 1.82,
+          "onset_rate_per_s": 2.1,
+          "phase_histogram_12": [
+            4,
+            3,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            2,
+            0,
+            0,
+            4
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.042,
+            0.125,
+            0.708
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.719,
+          "binary_spacing_score": 0.208,
+          "triplet_spacing_score": 0.354,
+          "usable_onsets": 16
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 108.86,
+          "beat_confidence": 2.335,
+          "onset_rate_per_s": 2.82,
+          "phase_histogram_12": [
+            4,
+            1,
+            0,
+            4,
+            5,
+            1,
+            2,
+            2,
+            1,
+            3,
+            2,
+            0
+          ],
+          "top_phase_centers": [
+            0.375,
+            0.292,
+            0.042,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.867,
+          "binary_spacing_score": 0.79,
+          "triplet_spacing_score": 0.593,
+          "usable_onsets": 25
+        }
+      ]
+    },
+    {
+      "blind_id": "B14",
+      "demucs_category": "concentrated_non_triplet_reproduced",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": false,
+      "reasons": [
+        "full_and_at_least_two_of_three_windows"
+      ],
+      "full": {
+        "bpm_candidate": 110.31,
+        "beat_confidence": 3.702,
+        "onset_rate_per_s": 3.776,
+        "phase_histogram_12": [
+          42,
+          0,
+          0,
+          1,
+          1,
+          2,
+          51,
+          0,
+          0,
+          0,
+          1,
+          12
+        ],
+        "top_phase_centers": [
+          0.542,
+          0.042,
+          0.958,
+          0.458
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.47,
+        "binary_spacing_score": 0.96,
+        "triplet_spacing_score": 0.023,
+        "usable_onsets": 110
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 111.11,
+          "beat_confidence": 3.961,
+          "onset_rate_per_s": 3.8,
+          "phase_histogram_12": [
+            13,
+            0,
+            0,
+            0,
+            0,
+            2,
+            15,
+            0,
+            0,
+            0,
+            0,
+            4
+          ],
+          "top_phase_centers": [
+            0.542,
+            0.042,
+            0.958,
+            0.458
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.462,
+          "binary_spacing_score": 0.981,
+          "triplet_spacing_score": 0.0,
+          "usable_onsets": 34
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 109.62,
+          "beat_confidence": 3.981,
+          "onset_rate_per_s": 3.9,
+          "phase_histogram_12": [
+            1,
+            0,
+            1,
+            2,
+            0,
+            11,
+            3,
+            1,
+            1,
+            0,
+            1,
+            13
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.542,
+            0.292
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.657,
+          "binary_spacing_score": 0.955,
+          "triplet_spacing_score": 0.159,
+          "usable_onsets": 34
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 109.84,
+          "beat_confidence": 3.671,
+          "onset_rate_per_s": 3.726,
+          "phase_histogram_12": [
+            14,
+            0,
+            0,
+            0,
+            0,
+            1,
+            16,
+            0,
+            0,
+            1,
+            0,
+            3
+          ],
+          "top_phase_centers": [
+            0.542,
+            0.042,
+            0.958,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.458,
+          "binary_spacing_score": 0.981,
+          "triplet_spacing_score": 0.002,
+          "usable_onsets": 35
+        }
+      ]
+    },
+    {
+      "blind_id": "B15",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": true,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 104.74,
+        "beat_confidence": 3.688,
+        "onset_rate_per_s": 4.076,
+        "phase_histogram_12": [
+          38,
+          0,
+          0,
+          5,
+          0,
+          3,
+          38,
+          0,
+          0,
+          18,
+          9,
+          4
+        ],
+        "top_phase_centers": [
+          0.042,
+          0.542,
+          0.792,
+          0.875
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.632,
+        "binary_spacing_score": 0.925,
+        "triplet_spacing_score": 0.124,
+        "usable_onsets": 115
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 100.35,
+          "beat_confidence": 3.278,
+          "onset_rate_per_s": 2.4,
+          "phase_histogram_12": [
+            5,
+            0,
+            0,
+            0,
+            0,
+            1,
+            6,
+            0,
+            0,
+            3,
+            1,
+            2
+          ],
+          "top_phase_centers": [
+            0.542,
+            0.042,
+            0.792,
+            0.958
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.638,
+          "binary_spacing_score": 0.842,
+          "triplet_spacing_score": 0.118,
+          "usable_onsets": 18
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 105.94,
+          "beat_confidence": 3.681,
+          "onset_rate_per_s": 4.7,
+          "phase_histogram_12": [
+            9,
+            0,
+            0,
+            2,
+            1,
+            2,
+            13,
+            0,
+            0,
+            7,
+            2,
+            8
+          ],
+          "top_phase_centers": [
+            0.542,
+            0.042,
+            0.958,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.722,
+          "binary_spacing_score": 0.793,
+          "triplet_spacing_score": 0.173,
+          "usable_onsets": 44
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 106.33,
+          "beat_confidence": 3.766,
+          "onset_rate_per_s": 5.036,
+          "phase_histogram_12": [
+            1,
+            1,
+            0,
+            3,
+            1,
+            11,
+            2,
+            0,
+            2,
+            9,
+            1,
+            13
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.792,
+            0.292
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.74,
+          "binary_spacing_score": 0.883,
+          "triplet_spacing_score": 0.421,
+          "usable_onsets": 44
+        }
+      ]
+    },
+    {
+      "blind_id": "B16",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "rejected",
+      "exact_category_agreement": false,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 103.4,
+        "beat_confidence": 2.511,
+        "onset_rate_per_s": 2.907,
+        "phase_histogram_12": [
+          7,
+          0,
+          0,
+          16,
+          1,
+          19,
+          8,
+          0,
+          2,
+          10,
+          0,
+          20
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.458,
+          0.292,
+          0.792
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.736,
+        "binary_spacing_score": 0.965,
+        "triplet_spacing_score": 0.432,
+        "usable_onsets": 83
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 100.29,
+          "beat_confidence": 1.93,
+          "onset_rate_per_s": 3.0,
+          "phase_histogram_12": [
+            1,
+            2,
+            2,
+            2,
+            1,
+            2,
+            3,
+            1,
+            3,
+            3,
+            1,
+            5
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.792,
+            0.708,
+            0.542
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.948,
+          "binary_spacing_score": 0.778,
+          "triplet_spacing_score": 0.708,
+          "usable_onsets": 26
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 102.92,
+          "beat_confidence": 2.694,
+          "onset_rate_per_s": 3.1,
+          "phase_histogram_12": [
+            9,
+            0,
+            1,
+            5,
+            0,
+            3,
+            8,
+            0,
+            1,
+            2,
+            0,
+            1
+          ],
+          "top_phase_centers": [
+            0.042,
+            0.542,
+            0.292,
+            0.458
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.71,
+          "binary_spacing_score": 0.925,
+          "triplet_spacing_score": 0.151,
+          "usable_onsets": 30
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 103.79,
+          "beat_confidence": 4.035,
+          "onset_rate_per_s": 5.741,
+          "phase_histogram_12": [
+            0,
+            0,
+            8,
+            1,
+            1,
+            14,
+            0,
+            0,
+            7,
+            2,
+            0,
+            15
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.208,
+            0.708
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.642,
+          "binary_spacing_score": 0.993,
+          "triplet_spacing_score": 0.093,
+          "usable_onsets": 48
+        }
+      ]
+    },
+    {
+      "blind_id": "B17",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "rejected",
+      "exact_category_agreement": false,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 91.85,
+        "beat_confidence": 3.765,
+        "onset_rate_per_s": 5.271,
+        "phase_histogram_12": [
+          0,
+          0,
+          31,
+          5,
+          0,
+          43,
+          0,
+          0,
+          27,
+          1,
+          0,
+          44
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.458,
+          0.208,
+          0.708
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.602,
+        "binary_spacing_score": 0.994,
+        "triplet_spacing_score": 0.048,
+        "usable_onsets": 151
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 92.18,
+          "beat_confidence": 3.958,
+          "onset_rate_per_s": 5.7,
+          "phase_histogram_12": [
+            0,
+            0,
+            11,
+            3,
+            0,
+            13,
+            1,
+            0,
+            9,
+            1,
+            0,
+            14
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.208,
+            0.708
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.663,
+          "binary_spacing_score": 0.983,
+          "triplet_spacing_score": 0.114,
+          "usable_onsets": 52
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 91.21,
+          "beat_confidence": 3.569,
+          "onset_rate_per_s": 4.9,
+          "phase_histogram_12": [
+            0,
+            0,
+            7,
+            4,
+            0,
+            12,
+            0,
+            0,
+            8,
+            0,
+            1,
+            13
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.708,
+            0.208
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.647,
+          "binary_spacing_score": 0.957,
+          "triplet_spacing_score": 0.133,
+          "usable_onsets": 45
+        },
+        {
+          "seconds": [
+            20,
+            29.976
+          ],
+          "bpm_candidate": 92.52,
+          "beat_confidence": 3.07,
+          "onset_rate_per_s": 5.413,
+          "phase_histogram_12": [
+            2,
+            0,
+            4,
+            5,
+            0,
+            12,
+            2,
+            0,
+            5,
+            7,
+            0,
+            13
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.792,
+            0.708
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.76,
+          "binary_spacing_score": 0.986,
+          "triplet_spacing_score": 0.383,
+          "usable_onsets": 50
+        }
+      ]
+    },
+    {
+      "blind_id": "B18",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": true,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 143.29,
+        "beat_confidence": 3.477,
+        "onset_rate_per_s": 2.873,
+        "phase_histogram_12": [
+          33,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          4,
+          10,
+          0,
+          0,
+          35
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.042,
+          0.708,
+          0.625
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.497,
+        "binary_spacing_score": 0.008,
+        "triplet_spacing_score": 0.209,
+        "usable_onsets": 84
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 143.78,
+          "beat_confidence": 3.697,
+          "onset_rate_per_s": 2.8,
+          "phase_histogram_12": [
+            3,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            1,
+            0,
+            0,
+            19
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.625,
+            0.042,
+            0.708
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.394,
+          "binary_spacing_score": 0.016,
+          "triplet_spacing_score": 0.157,
+          "usable_onsets": 27
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 143.02,
+          "beat_confidence": 3.637,
+          "onset_rate_per_s": 2.8,
+          "phase_histogram_12": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            2,
+            1,
+            0,
+            0,
+            21
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.625,
+            0.208,
+            0.708
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.3,
+          "binary_spacing_score": 0.004,
+          "triplet_spacing_score": 0.096,
+          "usable_onsets": 26
+        },
+        {
+          "seconds": [
+            20,
+            29.929
+          ],
+          "bpm_candidate": 143.37,
+          "beat_confidence": 3.952,
+          "onset_rate_per_s": 3.021,
+          "phase_histogram_12": [
+            4,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            5,
+            0,
+            0,
+            18
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.708,
+            0.042,
+            0.625
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.445,
+          "binary_spacing_score": 0.027,
+          "triplet_spacing_score": 0.104,
+          "usable_onsets": 29
+        }
+      ]
+    },
+    {
+      "blind_id": "B19",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": true,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 122.05,
+        "beat_confidence": 3.182,
+        "onset_rate_per_s": 2.335,
+        "phase_histogram_12": [
+          5,
+          0,
+          0,
+          0,
+          0,
+          3,
+          9,
+          1,
+          1,
+          1,
+          1,
+          48
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.542,
+          0.042,
+          0.458
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.439,
+        "binary_spacing_score": 0.156,
+        "triplet_spacing_score": 0.027,
+        "usable_onsets": 69
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 120.23,
+          "beat_confidence": 3.854,
+          "onset_rate_per_s": 2.5,
+          "phase_histogram_12": [
+            13,
+            1,
+            0,
+            0,
+            0,
+            0,
+            3,
+            1,
+            0,
+            1,
+            1,
+            3
+          ],
+          "top_phase_centers": [
+            0.042,
+            0.958,
+            0.542,
+            0.875
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.563,
+          "binary_spacing_score": 0.419,
+          "triplet_spacing_score": 0.037,
+          "usable_onsets": 23
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 118.38,
+          "beat_confidence": 3.728,
+          "onset_rate_per_s": 2.3,
+          "phase_histogram_12": [
+            8,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            2,
+            1,
+            0,
+            0,
+            9
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.042,
+            0.625,
+            0.458
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.527,
+          "binary_spacing_score": 0.234,
+          "triplet_spacing_score": 0.169,
+          "usable_onsets": 22
+        },
+        {
+          "seconds": [
+            20,
+            29.976
+          ],
+          "bpm_candidate": 120.68,
+          "beat_confidence": 3.317,
+          "onset_rate_per_s": 2.406,
+          "phase_histogram_12": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            3,
+            1,
+            1,
+            0,
+            14
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.625,
+            0.708,
+            0.792
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.508,
+          "binary_spacing_score": 0.171,
+          "triplet_spacing_score": 0.214,
+          "usable_onsets": 22
+        }
+      ]
+    },
+    {
+      "blind_id": "B20",
+      "demucs_category": "stable_intermediate",
+      "mdx_consensus_category": "stable_intermediate",
+      "exact_category_agreement": true,
+      "reasons": [
+        "passed_reliability_gate_but_did_not_meet_extreme_pattern_rules"
+      ],
+      "full": {
+        "bpm_candidate": 110.19,
+        "beat_confidence": 3.079,
+        "onset_rate_per_s": 3.503,
+        "phase_histogram_12": [
+          1,
+          1,
+          6,
+          2,
+          1,
+          34,
+          1,
+          1,
+          5,
+          0,
+          4,
+          45
+        ],
+        "top_phase_centers": [
+          0.958,
+          0.458,
+          0.208,
+          0.708
+        ],
+        "phase_entropy_0_concentrated_1_diffuse": 0.594,
+        "binary_spacing_score": 0.959,
+        "triplet_spacing_score": 0.066,
+        "usable_onsets": 101
+      },
+      "windows": [
+        {
+          "seconds": [
+            0,
+            10.0
+          ],
+          "bpm_candidate": 110.01,
+          "beat_confidence": 3.744,
+          "onset_rate_per_s": 3.3,
+          "phase_histogram_12": [
+            11,
+            1,
+            1,
+            2,
+            0,
+            0,
+            11,
+            1,
+            0,
+            1,
+            0,
+            2
+          ],
+          "top_phase_centers": [
+            0.042,
+            0.542,
+            0.958,
+            0.292
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.624,
+          "binary_spacing_score": 0.976,
+          "triplet_spacing_score": 0.079,
+          "usable_onsets": 30
+        },
+        {
+          "seconds": [
+            10,
+            20.0
+          ],
+          "bpm_candidate": 109.84,
+          "beat_confidence": 3.936,
+          "onset_rate_per_s": 3.8,
+          "phase_histogram_12": [
+            0,
+            0,
+            2,
+            1,
+            0,
+            12,
+            1,
+            0,
+            2,
+            0,
+            1,
+            16
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.208,
+            0.708
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.546,
+          "binary_spacing_score": 0.954,
+          "triplet_spacing_score": 0.051,
+          "usable_onsets": 35
+        },
+        {
+          "seconds": [
+            20,
+            29.976
+          ],
+          "bpm_candidate": 110.44,
+          "beat_confidence": 3.537,
+          "onset_rate_per_s": 3.609,
+          "phase_histogram_12": [
+            0,
+            0,
+            3,
+            0,
+            2,
+            10,
+            0,
+            0,
+            2,
+            0,
+            0,
+            16
+          ],
+          "top_phase_centers": [
+            0.958,
+            0.458,
+            0.208,
+            0.708
+          ],
+          "phase_entropy_0_concentrated_1_diffuse": 0.511,
+          "binary_spacing_score": 0.89,
+          "triplet_spacing_score": 0.011,
+          "usable_onsets": 33
+        }
+      ]
+    }
+  ]
+}

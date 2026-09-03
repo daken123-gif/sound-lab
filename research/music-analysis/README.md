@@ -143,6 +143,20 @@ Curtis Mayfieldの決定的に選んだ20 Previewで、10秒窓3個を比較し�
 - MLX Audio Separator: https://github.com/ssmall256/mlx-audio-separator — Apple Silicon用。Mac実機候補であり、今回のLinux試験には未使用。
 - Essentia: https://essentia.upf.edu/
 
+## Mac実機の独立分離監査
+
+MDXの共有バイアスを検査するため、固定済みB01〜B20を`demucs-mlx`の`htdemucs`で再分離するMac用ランナーを作成した。Apple Previewの再取得、SHA-256照合、`afconvert`、分離、固定ルールによる再解析までを自動化する。
+
+現時点ではランナー作成、構文検査、20 Previewの再取得・SHA-256一致、既存stemを使った比較器の決定性検査まで完了した。Mac実機の`demucs-mlx`分離と`afconvert`は未実施。実行条件と独立性の範囲は`mac-demucs-protocol.md`に記録する。
+
+## 標準Demucs Linux CPU独立分離監査
+
+Mac接続を待たず、サーバーLinux上でofficial `demucs 4.0.1`の`htdemucs`を使い、固定済みB01〜B20を再分離した。20 Previewは元manifestのSHA-256と全件一致し、20 drum stemを44.1 kHz stereoで生成した。
+
+Python、NumPy、PyTorchのseedを0へ固定した。固定解析は同じstemから二回実行し、JSON SHA-256が二回とも`ea228890815483707d4d56aab359df3b731483595e0f2abbbfea647a920e3387`で一致した。B01の分離も同じseedで再実行し、drum stemのSHA-256が一致した。MDX A/B合意判定との完全一致は15/20。`Billy Jack`は両方式で`concentrated non-triplet reproduced`となった。標準Demucsのみが極端判定した3件と、MDXで棄却・Demucsで安定中間となった2件は不一致として保持する。
+
+この結果はMacの`demucs-mlx`実機試験ではない。分離アーキテクチャの独立性は増したが、特徴抽出器と閾値は共有している。詳細は`linux-demucs-audit-20260902.md`を参照する。
+
 ## ファイル
 
 - `calibrate_analyzer.py` — 合成信号による基礎校正
@@ -159,5 +173,13 @@ Curtis Mayfieldの決定的に選んだ20 Previewで、10秒窓3個を比較し�
 - `blind20_audit.py` / `blind20-results-blinded.json` — 復号前解析
 - `blind20-title-map.json` / `decode_blind20.py` / `blind20-results-decoded.json` — 事後復号
 - `blind20-audit-20260902.md` — 結果、限界、次の検証
+- `download_blind20_previews.py` — Apple Preview再取得とSHA-256照合
+- `run_mac_demucs_audit.sh` — Mac実機の取得・変換・Demucs分離・解析ランナー
+- `demucs_blind20_audit.py` — Demucs結果とMDX合意結果の比較
+- `mac-demucs-protocol.md` — 固定条件、独立性、未実施境界
+- `run_linux_demucs_audit.sh` — Linux CPUでの取得・変換・標準Demucs分離・解析ランナー
+- `demucs_cpuinfo_compat.py` — `/proc/cpuinfo`を参照できない制限容器用wrapper
+- `demucs-results-linux-cpu.json` — 標準Demucsによる全20件の測定結果
+- `linux-demucs-audit-20260902.md` — 実行証拠、MDXとの一致・不一致、解釈境界
 
 音源本体、Preview、モデル、仮想環境、分離WAVはGitへ保存しない。
