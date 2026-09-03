@@ -4,7 +4,7 @@
 - 研究対象: Basic Channel、Maurizio、Rhythm & Sound、Chain Reaction
 - 現在の問い: 固定ループの再生ではなく、反復素材の内部状態をリアルタイム演奏する原理を抽出できるか
 - 版: 初期研究記録
-- 更新日時: 2026-09-02
+- 更新日時: 2026-09-03
 - 実装変更: なし
 - 製品採用状態: 未統合
 
@@ -573,6 +573,111 @@ RMS差をmasteringの音圧差とは断定しない。Previewの開始位置、C
 
 - Preview開始位置の同定
 - 12-inch版と`BCD`版の対応区間整列
-- `Quadrant Dub II`、`Radiance II/III`、`Inversion`への標本拡張
+- ~~`Quadrant Dub II`、`Radiance II/III`、`Inversion`への標本拡張~~（第16節で実施）
 - 原ミックスと推定stemを照合した周期層の分離
 - 30秒を越えるH6／H7の検証
+
+
+## 16. Shazam Preview標本拡張: Quadrant Dub II / Radiance II・III / Inversion
+
+### 16.1 取得対象と版境界
+
+ShazamのApple Music Catalog検索から7件の約30秒Previewを取得した。`BCD`全11曲と`BCD-2`全6曲もalbum単位で取得し、曲名検索の漏れと誤対応を確認した。
+
+| 短縮名 | Apple曲ID | album | 全曲尺 | ISRC | Preview SHA-256 |
+|---|---:|---|---:|---|---|
+| Quadrant II 12 | 276360156 | Quadrant Dub | 1256.257秒 | DEW259400127 | `467189e78db89be63a08345109cffd5e36691e9880a33d9a199cf38a26f25f11` |
+| Radiance II 12 | 276508667 | Radiance | 239.569秒 | DEW259400131 | `418c100a05502eeb361b4fe3b2802d35555ea24e9bf790725af1ea7d07cdc89c` |
+| Radiance II BCD | 47296268 | BCD | 560.533秒 | DEW259500105 | `2c35bda43ed61933793246e8f9989aeec4eae242f3e2211caf62354c3d4c37c3` |
+| Radiance III 12 | 276508701 | Radiance | 808.299秒 | DEW259400132 | `55513f5f091682e6a451ee8fab29d03ee259bbfde8fd7089038cfca810dcb494` |
+| Radiance III BCD | 47297274 | BCD | 227.467秒 | DEW259500111 | `13d3dec6d070d7de84ea15f79cc00b7d75405d11540a17573d875c7ac24aa3cc` |
+| Inversion 12 | 276503136 | Inversion | 1075.750秒 | DEW259400124 | `578ec13fe3f792b946ea1ae336fa87c5551be525abfab27833095bf6b315b80c` |
+| Inversion BCD-2 | 286664899 | BCD-2 | 1065.413秒 | DEW259400124 | `8646f64128035d40a76d1b338c5a515e389926bd55e5713794fd2382b9a7d98b` |
+
+全PreviewはAAC、44.1kHz、stereo、取得ファイル尺29.976961秒、復号後有効音声約29.9291秒だった。Preview本体はGitへ保存しない。
+
+`Quadrant Dub II`は`BCD`にも`BCD-2`にも収録されていないため、今回のCatalog内では版違い対を作れない。`Inversion`の2件は同一ISRCだが、全曲尺は10.337秒、Previewのファイルhashも異なる。したがって「同一ISRC = 同一配信実体」とは扱わない。
+
+### 16.2 校正済み基本測定
+
+第15節と同じGitHub `main/research/music-analysis/`の共通解析器を使用した。合成信号校正は今回も12/12項目で成功した。以下は開始位置不明の約30秒区間の測定で、全曲値ではない。
+
+| Preview | RMS dBFS | spectral centroid | onset/s | 周期候補 |
+|---|---:|---:|---:|---|
+| Quadrant II 12 | -16.47 | 2458.4 Hz | 4.277 | 62.26 / 124.53 / 82.69 |
+| Radiance II 12 | -16.12 | 1280.5 Hz | 5.914 | 68.91 / 54.98 / 92.29 / 71.28 / 137.81 |
+| Radiance II BCD | -28.77 | 670.4 Hz | 6.148 | 65.42 / 206.72 / 94.83 / 80.75ほか |
+| Radiance III 12 | -23.74 | 578.9 Hz | 6.549 | 65.42 / 130.83 / 95.70 / 206.72ほか |
+| Radiance III BCD | -32.85 | 2772.9 Hz | 9.122 | 156.61 / 77.13 |
+| Inversion 12 | -11.53 | 1950.5 Hz | 7.885 | 132.51 / 65.83 / 52.73 / 88.34 |
+| Inversion BCD-2 | -11.53 | 1951.7 Hz | 7.752 | 132.51 / 65.83 / 52.73 / 88.34 |
+
+RMSやspectral centroidの差には、版差だけでなくPreview開始位置差が含まれ得る。特に`Radiance III`の大差をmastering差と断定しない。
+
+### 16.3 10秒×3窓の信頼性監査
+
+`Essentia 2.1b6.dev1389`を用い、第15節と同じ採用規則で監査した。
+
+| Preview | 窓BPM推定 | BPM判定 | 調推定 |
+|---|---|---|---|
+| Quadrant II 12 | 123.77 / 123.89 / 124.17 | 直接安定。ただし全体信頼度1.210 | E minor、3窓一致 |
+| Radiance II 12 | 136.66 / 136.62 / 137.30 | 直接安定 | Bb major候補、1窓はEb major |
+| Radiance II BCD | 130.86 / 129.20 / 131.19 | 直接安定 | F# minor、3窓一致 |
+| Radiance III 12 | 129.22 / 130.50 / 129.87 | 直接安定 | F# minor、3窓一致 |
+| Radiance III BCD | 156.61 / 79.69 / 107.67 | 不安定。単一BPMを棄却 | Eb major、3窓一致 |
+| Inversion 12 | 131.81 / 132.02 / 132.02 | 直接安定 | G major候補、1窓はG minor |
+| Inversion BCD-2 | 132.02 / 132.02 / 132.02 | 直接安定 | G major候補、1窓はC major |
+
+調はPreview局所推定に限る。3窓一致は曲全体の調性や作曲意図を意味しない。
+
+### 16.4 版比較で新しく生じた反証
+
+#### `Radiance II`は「BCD = 短縮版」という前提を壊す
+
+Apple Catalogでは12-inch側が239.569秒、`BCD`側が560.533秒で、後者の方が約2.34倍長い。ISRCも異なる。公式サイトの`Edit`表記とApple Catalogの配信実体を一対一対応させると矛盾するため、少なくとも次の競合仮説を残す。
+
+1. Apple側の曲名・版対応が公式盤面表記と一致していない
+2. 12-inch側の配信ファイルが別編集または誤った実体である
+3. `Edit`という語が常に時間短縮だけを意味しない
+
+現時点ではどれも確定しない。H6を検証する前に、物理盤または信頼できる全長音源とcatalog numberの照合が必要である。
+
+#### `Radiance`は曲番ではなく状態軌道を追う必要がある
+
+`Radiance II BCD`と`Radiance III 12`は、Preview内で約130 BPMの安定推定とF# minorの3窓一致を共有する。一方、同名同士の`Radiance II`比較では局所BPMが約137対約130、`Radiance III`比較では約130対不安定に分かれる。
+
+これは曲同士が同じだという証明ではない。むしろRoman numeralとalbum名だけで版を対応させると、音響上の局所状態の近さを取り逃がす可能性を示す。比較キーを`曲名`だけにせず、`ISRC / 全曲尺 / 局所pulse / 帯域 / onset密度 / Preview位置`の組として持つ必要がある。
+
+#### `Inversion`は媒体差と状態差を分離する対照候補になる
+
+`Inversion`両Previewはhashが異なる一方、RMSは共に-11.53 dBFS、spectral centroidは1950.5／1951.7 Hz、周期候補は同一列、窓BPMも約132で安定した。開始位置が対応しているかは未同定だが、今回の7件中では最も近い局所測定像を示す。
+
+したがって、全長取得後に時間整列できれば、`異なる状態軌道`の比較だけでなく、同一ISRCが異なるalbum／配信尺へ載る際の`媒体・エンコード・境界処理`を分離する対照群として使える。
+
+### 16.5 三層モデルへの更新
+
+今回の結果は、三層モデルに版同定の境界条件を追加する。
+
+```text
+演奏状態層: x(t), theta(t) ── その瞬間のpulse・帯域・event density
+媒体層 M: album / edit / mastering / encode / duration境界
+環境層 E: 再生系・空間・聴取位置
+```
+
+曲名とISRCは、この三層のどれかを直接表す状態変数ではなく、候補実体への索引にすぎない。同名なら演奏状態層が同じ、同一ISRCなら媒体層が同じ、という短絡を置かない。
+
+製品側では、`version`保存時に音声だけでなく次を別々に保持する候補が生じる。
+
+- `trajectory identity`: 元素材、snapshot、操作履歴
+- `render identity`: 書き出し尺、gain、encode、mastering条件
+- `catalog identity`: 表示名、版、外部ID
+
+これにより、演奏の違いを媒体差へ誤帰属すること、逆に媒体差を新しい演奏史として水増しすることを避けられる。
+
+### 16.6 次の未完了工程
+
+- `Radiance II`の公式盤面表記とApple配信実体の矛盾を物理盤／別の一次情報で解く
+- Preview開始位置を同定し、同名版の対応区間かどうかを判定する
+- `Inversion`両版を全長整列し、同一ISRC内の差分が境界・encode・masteringのどこにあるか分離する
+- `Radiance II BCD`と`Radiance III 12`の局所類似が偶然か、素材共有か、版名ずれかを全長で検証する
+- 30秒Previewでは観測できないH7の遅い変数を全長音源で測る
