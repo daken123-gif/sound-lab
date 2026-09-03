@@ -1,0 +1,39 @@
+{
+  "schema_version": "sound-lab.j-dilla.synthetic-time-field/v1",
+  "scope": "synthetic event-domain counterexample; not an audio measurement or style preset",
+  "parameters": {
+    "subdivision_seconds": 0.125,
+    "global_swing_seconds": 0.02
+  },
+  "global_swing": {
+    "kick": [0.0, 0.145, 0.25, 0.395, 0.5, 0.645, 0.75, 0.895],
+    "snare": [0.0, 0.145, 0.25, 0.395, 0.5, 0.645, 0.75, 0.895],
+    "hat": [0.0, 0.145, 0.25, 0.395, 0.5, 0.645, 0.75, 0.895]
+  },
+  "structured_relation": {
+    "kick": [0.0, 0.113, 0.256, 0.371, 0.5, 0.613, 0.756, 0.871],
+    "snare": [0.0, 0.143, 0.254, 0.386, 0.5, 0.643, 0.754, 0.886],
+    "hat": [-0.006, 0.134, 0.247, 0.389, 0.494, 0.634, 0.747, 0.889]
+  },
+  "release_to_floor": {
+    "before": {"active_interventions": {"kick": -0.02, "snare": 0.015, "hat": 0.008}},
+    "released_voice": "snare",
+    "after": {"active_interventions": {"kick": -0.02, "snare": 0.0, "hat": 0.008}}
+  },
+  "recover_from_current_state": {
+    "now": 1.37,
+    "target_phase": 0.1,
+    "period": 0.5,
+    "next_target": 1.6
+  },
+  "claims_supported": [
+    "one global swing amount cannot encode voice-specific offsets at the same subdivision",
+    "release_to_floor can be defined as a local intervention release rather than a global reset",
+    "recovery can advance from the current state without rewinding to a loop origin"
+  ],
+  "claims_not_supported": [
+    "the synthetic offsets reproduce J Dilla",
+    "the synthetic offsets are measured from a recording",
+    "the operations are usable in a product interface"
+  ]
+}
