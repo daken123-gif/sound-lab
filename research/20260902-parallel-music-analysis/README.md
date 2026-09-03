@@ -413,3 +413,32 @@ fail 0
 ### 証拠境界
 
 この検証はNode.js上の決定的イベントシミュレーションである。音源、DSP、聴感、描画、iPhone実機の同時接触、遮蔽、cancel、遅延、発熱は未検証。5接触をデータとして受理できたことは、iPhoneで5本指演奏が実用的である証明ではない。
+
+
+## 13. 2026-09-03追加 — target解決を一回に固定
+
+現行 `ContactGestureFrame` を保持したまま、node / edge / emptyのhit結果を一度だけ解決する `ResolvedContactAdapter` を `simulation-v0/` へ追加した。
+
+採用候補は、入力frameへ未定義fieldを直接追加する方式ではなく、次のenvelopeで包む方式である。
+
+```text
+ContactGestureFrame
+  -> 一回だけhit test
+  -> ResolvedContactEnvelope
+       ├─ 同一objectをaudioへ
+       └─ 同一objectをvisualへ
+```
+
+これにより、edgeを掴んだ指が移動中にnodeを横切っても、接触が終わるまでedge claimを保持する。Hunter型のvoice nodeとMills型のphase edgeが、音響側と描画側で別々の対象へ化ける経路を閉じる。
+
+Node.js標準test runnerで7件を実行し、7件成功・0件失敗を確認した。5接触について確認したのは独立claimの保持であり、実機上の演奏可能性ではない。
+
+未実装:
+
+- edgeのdragをphase / coupling / return条件へ変換する操作文法
+- nodeとedgeの表示上のhit幅
+- iPhone実機での遮蔽、誤接触、cancel
+- haptic、音響、描画
+- 既存bridge schemaへの採用判断
+
+したがって現在状態は `adapter prototype verified in Node.js / research-only` であり、製品実装済みではない。
