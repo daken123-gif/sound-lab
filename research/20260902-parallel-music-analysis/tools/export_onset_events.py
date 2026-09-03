@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export inspectable onset candidates from a PCM WAV file.
+"""Export inspectable energy-rise candidates from a PCM WAV file.
 
 This tool does not assign instrument roles and does not invent a beat origin.
 Clock-relative fields are emitted only when both BPM and beat origin are given.
@@ -16,7 +16,12 @@ from pathlib import Path
 import numpy as np
 
 
-def load_pcm_wav(path: Path) -> tuple[np.ndarray, int]:
+FRAME_SIZE = 1024
+HOP_SIZE = 256
+MIN_SEPARATION_S = 0.05
+
+
+def load_pcm_wav(path: Path) -> tuple[np.ndarray, int, int, int]:
     with wave.open(str(path), "rb") as handle:
         channels = handle.getnchannels()
         sample_rate = handle.getframerate()
@@ -33,8 +38,11 @@ def load_pcm_wav(path: Path) -> tuple[np.ndarray, int]:
         raise ValueError(f"unsupported PCM sample width: {sample_width} bytes")
 
     if channels > 1:
-        audio = audio.reshape(-1, channels).mean(axis=1)
-    return audio, sample_rate
+        channel_audio = audio.reshape(-1, channels)
+        # Waveform averaging can erase anti-phase events. This energy-preserving
+        # collapse is only for candidate detection, not for audio rendering.
+        audio = np.sqrt(np.mean(channel_audio * channel_audio, axis=1))
+    return audio, sample_rate, channels, sample_width
 
 
 def frame_rms(audio: np.ndarray, frame_size: int, hop_size: int) -> np.ndarray:
@@ -52,9 +60,9 @@ def frame_rms(audio: np.ndarray, frame_size: int, hop_size: int) -> np.ndarray:
 def detect_onsets(
     audio: np.ndarray,
     sample_rate: int,
-    frame_size: int = 1024,
-    hop_size: int = 256,
-    min_separation_s: float = 0.05,
+    frame_size: int = FRAME_SIZE,
+    hop_size: int = HOP_SIZE,
+    min_separation_s: float = MIN_SEPARATION_S,
 ) -> list[dict[str, float]]:
     rms = frame_rms(audio, frame_size, hop_size)
     if len(rms) < 2:
@@ -132,25 +140,39 @@ def analyze_wav(
 ) -> dict[str, object]:
     if (bpm is None) != (beat_origin_s is None):
         raise ValueError("bpm and beat_origin_s must be provided together")
-    audio, sample_rate = load_pcm_wav(path)
+    audio, sample_rate, channels, sample_width = load_pcm_wav(path)
     events: list[dict[str, object]] = [dict(row) for row in detect_onsets(audio, sample_rate)]
     attach_clock(events, bpm, beat_origin_s)
     for event in events:
         event.update(
             {
-                "role": "unknown_onset",
+                "role": "unknown_energy_rise",
                 "separation_provenance": None,
                 "original_mix_recheck": False,
+                "annotation_status": "unreviewed_candidate",
             }
         )
     return {
-        "schema": "parallel-onset-events-v1",
+        "schema": "parallel-onset-events-v2",
         "source": {
             "source_id": source_id,
             "file": path.name,
             "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
             "sample_rate": sample_rate,
+            "channels": channels,
+            "sample_width_bytes": sample_width,
             "duration_s": round(len(audio) / sample_rate, 6),
+            "analysis_collapse": (
+                "none" if channels == 1 else "energy_preserving_rms_across_channels"
+            ),
+        },
+        "detector": {
+            "type": "short_time_rms_positive_difference",
+            "frame_size": FRAME_SIZE,
+            "hop_size": HOP_SIZE,
+            "frame_resolution_s": round(HOP_SIZE / sample_rate, 9),
+            "minimum_separation_s": MIN_SEPARATION_S,
+            "evaluation_state": "not_evaluated_against_human_annotations",
         },
         "provided_clock": (
             None
