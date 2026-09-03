@@ -5,7 +5,7 @@
 - 研究区分: `long-term`
 - 研究対象: Autechre（Sean Booth / Rob Brown）の反復、生成過程、ライブシステム、身体操作
 - 現在の問い: 固定ループの垂れ流しを避けながら、ノンミュージシャンがiPhone上でリアルタイムに構造を演奏できる原理として何を抽出できるか
-- 更新日時: 2026-09-02 UTC
+- 更新日時: 2026-09-03 UTC
 - 基点: `sound-lab/main` commit `95030a185aed933bf5595fc694194563399ca5dd`
 
 ## 長期研究指定
@@ -775,25 +775,108 @@ RELATION_STATE_BUNDLE {
 
 `RELATION_STATE_BUNDLE`は製品名でも採用仕様でもない。特に`continuation_hints`を自動transportと決めず、演奏者が現在のgestureを切らずに次の因果領域へ移れるかを調べるための候補に留める。
 
-### 4. 二次資料の技術詳細を保留する
+### 4. channel／slot数は本人証言内でも計算が閉じない
 
-AEPagesの`AE_2022－`解説には、channel／slot数、dynamic loading、cell総数、controller mappingについて具体的な記述がある。しかし今回、そこから参照される公開Max demoの原映像・原発言を主張単位で取得できなかった。
+2022年6月のSean Twitch AMA原文まで戻ると、AEPages二次記述の根拠になった本人回答を取得できた。Seanは当時のrigについて、次を一続きに説明している。
 
-そのため、次はcommunity synthesisとして探索対象には残すが、本人確認済みの実装事実へ昇格させない。
+- 二人とも16 channelずつ動かすようにsetを書いた。
+- 通常channelには「たぶん」6 slotあり、sequencer、synth、4 effectsを置く。
+- それとは別に、synthを持たずsequencerとeffectsを持つ4 bus channelがある。
+- 合計は68 slotである。
 
-- 内部cell総数の具体値。
-- channel、slot、同時load数の具体値。
-- 各controllerがどのparameter層へ割り当てられるか。
-- cell作成時の全保存・発展workflow。
+ただし、記述された個数をそのまま計算すると`16 × 6 + 4 × 5 = 116`となり、本人が述べた68と一致しない。16 channelがbusを含むのか、slotの数え方が異なるのか、transcriptの誤りか、本人の即時回答上の言い違いかは確定できない。
 
-この保留により、公開segment数、推定内部cell数、Max上のchannel数を一つの数へまとめる経路を閉じる。
+したがって、次のように証拠水準を分ける。
 
-## 19. 未検証事項
+| 主張 | 現在の扱い |
+| --- | --- |
+| 二人が16 channelずつ使う | Sean本人の説明として確認済み |
+| sequencer／synth／effectsをslot化する | Sean本人の説明として確認済み |
+| synthなしのbus channelがあり相互routing可能 | Sean本人の説明として確認済み |
+| 一人分が正確に68 slot | 本人発言はあるが、同じ発言内の算術と不整合 |
+| 16通常channelに加えて4 bus channelある | 文言上はそう読めるが、68との関係は未解決 |
+
+公開Max demoの画面は、この矛盾を解く視覚資料候補として引き続き取得対象にする。画面だけから非表示channelや動的構成まで断定しない。
+
+## 19. hot swap、相互通信、操作権限
+
+### 1. dynamic loadingは二重slotによる切替である
+
+2025年のSeanの回答では、各slotに二つの`poly~` objectを置き、次のpatchをbackgroundでpreloadしてから切り替える。切替は実際には非常に速いfadeだと説明されている。coreは主にMaxの標準objectで、近年は`gen~`を多用し、JavaScriptはごく少量としている。
+
+これにより、section 18の`structural_load`は、現在音を出しているmoduleを止めてから次を読む単純なscene recallではないと分かった。
+
+```text
+HOT_SWAP_SLOT {
+  active_poly
+  standby_poly
+  background_preload
+  fast_crossfade
+}
+```
+
+この構造名は本研究の分析語である。すべてのparameter stateがfade可能である、または切替中の内部clockが完全連続であることまでは確認できない。
+
+### 2. cellは部品を閉じ込める容器でもない
+
+2025年の別回答でSeanは、任意のcellからslotとpresetを別slotへcopyする`pattstorage-addressing copy patch`があり、別区間のreverbやfrequency shifterも呼び出せると説明した。
+
+したがってcellを、内部moduleを他所で再利用できない閉じたdocumentとは扱わない。
+
+```text
+CELL_REVISION {
+  saved_configuration
+  copyable_slots
+  copyable_presets
+  inherited_relations
+  local_changes
+}
+```
+
+これは、2025年Q74の制作説明とも整合する。Seanは一つのsectionを保存し、翌日調整し、大きく変える場合も前版を消さず次のcellとして保存すると述べる。setは先に全体構成を置いて埋めるより、判断と保存を反復するversion chainとして成長する。後から過去へ戻って梳き直すこともある。
+
+ここから、`cell = 時間上の一区間`だけでなく、`cell = 直前状態を残した次の判断`という側面を追加する。ただし、すべての隣接cellが必ず直前cellのforkであるとは断定しない。
+
+### 3. 二人は同期するが、相手のrigを直接書き換えない
+
+Robの2025年回答では、Seanのcurrent rigとmusicを受け取り、自分のrigへ不足するmusicを加え、scale、tempo、time signatureなどを同期する。stageではそれぞれが自分の側を変更し、Robは「彼は私のものを変えられず、私も彼のものを変えられない」と説明している。一方でtransition、clock、cell selectionは互いに見え、次の変化をanticipateしてcontrollerでmomentを作る。
+
+Seanは共有可能な情報として、現在位置、一部のpitch情報、tempo、time signature、positionなどを挙げ、UDPでcontrol-rate dataを送り、共有項目を増やしていると回答した。
+
+```text
+COUPLED_DUAL_RIG {
+  shared_control_state {
+    location
+    pitch_aspects
+    tempo
+    time_signature
+    position
+  }
+  visible_transition_state
+  separate_edit_authority
+  realtime_mutual_response
+}
+```
+
+ここで重要なのは、同期と中央集権を同じにしないことだ。共通clockやcell位置を持っても、一台のmasterが両者の音を直接決定する構造とは限らない。
+
+### 4. controller mappingは即席ではなく、演奏前に設計される
+
+Seanはphysical controllerのmappingはすべて事前に設定され、多くのcontrolはある程度globalだと説明する。globalでないcontrolにも大まかな配置論理があるが、patch固有の事情で変わる場合がある。したがってライブ中の自由度を、その場でknobとparameterを結び直す自由とは記述しない。
+
+またmanual gestureの全面記録は行っていない。一部にはcontrol-rate dataのrunning bufferがあり、任意時点で切り替えられ、pitchなどをloopするcontrolもあるが、Sean自身がmanualなものの大半ではないと限定している。
+
+Sound Labへ移せる候補は、mapping editorを演奏面へ常設することではない。**事前に理解可能な作用範囲を設計し、演奏中は関係の変化へ集中すること**、および必要なcontrol-rate層だけを短期bufferへ保持することである。どのgestureをloop可能にするかは未採用・未検証とする。
+
+## 20. 未検証事項
 
 - 各作品の音源を取得した波形・イベント列の分析。
 - `AE_LIVE`複数公演のcommunity segmentation比較は2025年まで進めたが、音声ファイルによるtoolset、境界、公演差、anomalyの直接測定。
 - 2022 Twitch AMAと2025 KEYOSC AMAの全回答を、年代、記憶留保、後続訂正まで含めて監査すること。今回取得した該当回答は上記範囲に限定する。
-- 2022年の公開Max demo原映像を取得し、channel／slot数、dynamic loading、cell総数、controller mappingに関する二次記述を主張単位で照合すること。
+- 2022年の公開Max demo原映像を取得し、本人発言内で一致しない16 channel／4 bus channel／68 slotの数え方を画面上の表示と照合すること。
+- cell総数の具体値と、公演で実際に辿る内部cell番号。質問者が提示した番号やAEPagesの公開segment番号を本人確認済みの内部番号へ昇格させない。
+- `HOT_SWAP_SLOT`切替時のclock、feedback、state continuityと、fade対象の範囲。
+- 二人のUDP共有項目、送受信方向、failure時の挙動、音声そのものを共有する範囲。
 - Max systemの実際のstate、clock、coupling、controller mapping。
 - 3本以上の同時接触を含むMobile Safari / iPhoneのtouch取得安定性。
 - 因果エンジンが演奏者へ理解可能な応答を返すか。
@@ -801,7 +884,7 @@ AEPagesの`AE_2022－`解説には、channel／slot数、dynamic loading、cell�
 - 独立DRUMと4トラック間の同期を、固定BPM以外でどう成立させるか。
 - 低遅延、CPU、電池、発熱、音量安全性。
 
-## 20. 触る実装パス
+## 21. 触る実装パス
 
 今回の研究では製品コードを変更しない。
 
@@ -810,7 +893,7 @@ AEPagesの`AE_2022－`解説には、channel／slot数、dynamic loading、cell�
 - 未変更: `prototype/`
 - 未変更: `integration/`
 
-## 21. 依存する研究・判断
+## 22. 依存する研究・判断
 
 - `RESEARCH_WORKFLOW.md`
 - `integration/DIRECTION.md`
@@ -821,10 +904,12 @@ AEPagesの`AE_2022－`解説には、channel／slot数、dynamic loading、cell�
 - `research/20260902-jeff-mills/` — 持続層、手動破断、事故からの回復。長期研究branch本文を取得。
 - Skulptur研究本文 — Git上では未取得のため、この研究から内容を補完しない。
 
-## 22. 失効した判断
+## 23. 失効した判断
 
 - section 16の可変窓モデルを、入口から出口まで一方向にしか進まない完全モデルとして使う候補は失効。2025年までの共同分析には、同一区間の反復、停止後の再開、過去領域への一時回帰、別公演での古い窓の再選択がある。通常経路としての`preferred_forward_order`は維持し、section 17の`ELASTIC_SPINE`を後継候補とする。
 - cellを、一曲、一つの公開segment、完成parameterを一括recallする固定sceneのいずれかへ等置する候補は失効。2022年の本人説明が示すmodule／settings参照のhard-set層、内部morph、手動semi-linear traversalを分離したsection 18のモデルを後継候補とする。
+- channel／slotの具体値は原Maxデモを見なければ一次資料へ上げられないという判断は一部失効。2022年6月AMAで本人の構成説明を取得した。ただし「16 channel、4 bus channel、各6／5 slot」と「合計68 slot」は算術的に一致しないため、68を確定値として採る判断には移行しない。
+- cell内のmoduleがそのcellだけに閉じているという暗黙の候補は失効。任意cellからslot／presetをcopyし、別区間のeffectを呼び出せるという2025年本人回答をsection 19へ追加した。
 
 今後訂正が生じた場合、古い判断を黙って削除せず、失効理由と後継判断をここへ追記する。
 
@@ -842,25 +927,27 @@ AEPagesの`AE_2022－`解説には、channel／slot数、dynamic loading、cell�
    - setupが方法を規定すること、Quaristiceのlive session、ツアーを独立projectとして扱うこと、hip-hopとの連続性。
 5. [Radio Študent — Autechre interview (2016、aepages保存transcript)](https://aepages.org/wiki/R%C5%A0_INTERVJU_Autechre%2C_Radio_Student_FM89.3%2C_November_2016)
    - 2014/15 setの終了、新setの速度と焦点、旧`AE_LIVE`と`elseq`のsetup共有、Kino Šiškaを新set設計で参照したことについて両名が回答。
-6. [Sean Twitch AMA, July 2022（aepages全文transcript）](https://aepages.org/wiki/Sean_Twitch_AMA,_July_2022)
+6. [Sean Twitch AMA, June 2022（aepages全文transcript）](https://aepages.org/wiki/Sean_Twitch_AMA,_June_2022)
+   - 二人が16 channelずつ使うこと、通常channelのsequencer／synth／effects、bus channel、本人発言上の68 slot、Max版rigの非階層的な相互通信、layerを増やすことで境界を長くbleedさせる考えについてSeanが回答。ただしchannel／slotの内訳と68の算術は一致しない。
+7. [Sean Twitch AMA, July 2022（aepages全文transcript）](https://aepages.org/wiki/Sean_Twitch_AMA,_July_2022)
    - live setの設計量とbounded flexibility、deterministic chaos、specific seed、controllerに加え、global `pattr`によるmodule load／settings参照、module内とJSON settings間のmorph、手動でsemi-linearなset traversal、NTSとlive set cellの関係についてSeanが回答。
-7. [Ask Autechre Anything Again, KEYOSC, April 2025（transcript spreadsheet）](https://docs.google.com/spreadsheets/d/1XAizLmKun4yF6oBVUhIrewYN-ZiY_9ORckmT-hF93Ho/edit?gid=447739750)
-   - iteration保存、`AE_2022－`の累積性、cellが別々のtrackではないこと、preferred cell order、skip／linger／mute／settings flip、solo cell不在、役割交替、roomとsoundcheckについて両名が回答。
+8. [Ask Autechre Anything Again, KEYOSC, April 2025（transcript spreadsheet）](https://docs.google.com/spreadsheets/d/1XAizLmKun4yF6oBVUhIrewYN-ZiY_9ORckmT-hF93Ho/edit?gid=447739750)
+   - iteration保存、`AE_2022－`の累積性、cellが別々のtrackではないこと、preferred cell order、skip／linger／mute／settings flip、solo cell不在、役割交替、roomとsoundcheckに加え、二重`poly~`によるpreload、cell間copy、controller mapping、UDP共有、部分的なcontrol-rate bufferについて両名が回答。
 
 ### 公式公開面
 
-8. [Warp — Autechre artist page](https://warp.net/artists/autechre)
-9. [Autechre official Bandcamp](https://autechre.bandcamp.com/)
-10. [AE_STORE — AE_LIVE 2016/2018](https://autechre.warp.net/release/310992-autechre-aelive-20162018)
+9. [Warp — Autechre artist page](https://warp.net/artists/autechre)
+10. [Autechre official Bandcamp](https://autechre.bandcamp.com/)
+11. [AE_STORE — AE_LIVE 2016/2018](https://autechre.warp.net/release/310992-autechre-aelive-20162018)
    - 7公演の公式tracklist、収録日、尺を確認。
-11. [Autechre official Bandcamp — AE_2022－](https://autechre.bandcamp.com/album/ae-2022)
+12. [Autechre official Bandcamp — AE_2022－](https://autechre.bandcamp.com/album/ae-2022)
    - 2022–2024年の19公演を含む公式bundleとtracklistを確認。
 
 ### 補助資料
 
-12. [VICE — How the Political Warning of Autechre's Anti EP Made it a Warp Records Classic](https://www.vice.com/en/article/warp-25-autechre-anti-ep/)
+13. [VICE — How the Political Warning of Autechre's Anti EP Made it a Warp Records Classic](https://www.vice.com/en/article/warp-25-autechre-anti-ep/)
    - `Anti EP`盤面警告文と`Flutter`の非同一bar設計を確認する補助資料。本人への新規インタビューではないため、盤面一次資料と同格には扱わない。
-13. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
+14. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
    - `AE_LIVE`で毎回異なるnote sequencing、各trackの可能範囲を決めるconditionals、二人のdata共有と即時反応についてSean Boothが説明。
-14. [AEPages — AE_2022－ Analysis](https://aepages.org/wiki/AE_2022%EF%BC%8D#Analysis)
+15. [AEPages — AE_2022－ Analysis](https://aepages.org/wiki/AE_2022%EF%BC%8D#Analysis)
    - 公式soundboardとbootlegを跨いだsegment対応、timestamp、2025年までのperformance anomalyの共同分析。work in progressであり、内部cell名や確定境界とは扱わない。
