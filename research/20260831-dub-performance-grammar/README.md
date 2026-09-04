@@ -524,6 +524,48 @@ Vampires pairではp10の差が-13.62、-10.78、-9.76 dB、p90の差も-1.44、
 
 したがって二組に共通する直接測定は「発音数が常に少ない」ではなく、**preview内の各10秒窓で振幅分布の低い側と中央値が下がる**ことである。これを聴覚上の無音、source mute、空間の深さと同一視するには、時間位置つき聴取がまだ必要である。
 
+## 18.8 official Demucsによるdrums / no-drums二次監査
+
+前節の「振幅分布の静かな側が下がる」という差が、ドラム骨格の弱化なのか、ドラム以外の推定層の減算なのかを分けるため、mainの既存Linux CPU監査手順を同じ4 Previewへ適用した。新しいDub専用分離法は作っていない。
+
+使用した共有権威:
+
+- `main:research/music-analysis/run_linux_demucs_audit.sh`
+  - blob: `2d2af511d136f2ae09d48dd7bb33e1bfe9bb667b`
+- `main:research/music-analysis/demucs_cpuinfo_compat.py`
+  - blob: `a6235124714f3b31ef9c4d0cfefe5ba57ba99480`
+- `main:research/music-analysis/calibrate_analyzer.py`
+  - blob: `314db6380f63c12017b52dcd3dd2dfcaff94a539`
+- `main:research/music-analysis/analyze_previews.py`
+  - blob: `4e36a19c5760cc1f3a7cf4b80ad3e9ad6e3baa47`
+
+分離条件はofficial Demucs 4.0.1、`htdemucs`、PyTorch CPU、`--shifts 1 --overlap 0.25 --two-stems drums`、seed 0。4本の入力SHA-256は18.2の保存値と全一致した。共通解析器の合成校正は再度12/12件成功した。数値全文は[`preview-demucs-audit-standard.json`](./preview-demucs-audit-standard.json)へ保存する。
+
+30秒全体の推定stem:
+
+| pair | stem | RMS Dub−original | p50 Dub−original | onset/s Dub−original |
+| --- | --- | ---: | ---: | ---: |
+| A | drums | +0.95 dB | +2.79 dB | +0.300 |
+| A | no_drums | -1.26 dB | -2.07 dB | -1.303 |
+| B | drums | +0.88 dB | +5.91 dB | +0.334 |
+| B | no_drums | -3.39 dB | -4.80 dB | -2.536 |
+
+10秒窓の方向再現:
+
+| 判定 | Rockers pair | Vampires pair | 合計 |
+| --- | ---: | ---: | ---: |
+| Dub drumsのp50が高い | 3/3 | 3/3 | 6/6 |
+| Dub drumsのonset/sが低くない | 3/3 | 3/3 | 6/6 |
+| Dub no_drumsのp10が低い | 3/3 | 3/3 | 6/6 |
+| Dub no_drumsのp50が低い | 3/3 | 3/3 | 6/6 |
+| Dub no_drumsのonset/sが低い | 3/3 | 3/3 | 6/6 |
+
+推定drumsの周期候補は、6窓すべてで原曲版とDub版が同じ約132–140 BPM族を共有した。half-time候補が首位になる窓はあるため、単独BPMとは呼ばない。
+
+この二次監査では、二組に共通する静かな側の低下は**推定ドラム骨格の弱化には現れず、主に`no_drums`推定層へ現れた**。したがって現段階の解釈は、「周期骨格を維持しながら、声・ギター・鍵盤・残響などを含む非ドラム側の密度と存在量を減らす」である。
+
+ただしDemucs出力は派生推定であり、実multitrackではない。drums + no_drumsの再構成残差は原mix RMS比で0.0456–0.0573あり、分離漏れやartifactを含む。また`no_drums`は声、楽器、returnを区別しない。この結果から`CUT`、`THROW`、source mute、mixing意図を確定しない。時間位置つき聴取が必要という18.6–18.7の境界は維持する。
+
 ## 19. 時間分析の記録形式
 
 ### 19.1 一行を一事件にする
