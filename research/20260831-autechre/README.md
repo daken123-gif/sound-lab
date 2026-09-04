@@ -947,9 +947,69 @@ PULSE_STATE_SPLIT {
 
 演奏者が掴める短い周期を残し、touchでeventの選択、休止、低域比、spectral重心、局所回帰率を別々に偏らせる。この候補はsection 6の`CAUSE_ENGINE`へ、固定patternではなく**周期を持つ関係場**として接続できる。ただし各parameterのtouch mapping、可動域、音量安全性、iPhoneでの可聴結果は未採用・未実装・未検証である。
 
-## 21. 未検証事項
+## 21. 後日のフル音源検証 — previewを消さず、二層で照合する
+
+### ユーザー方針
+
+2026-09-04、ユーザーは、Shazam／Apple Music経路で取得・学習した内容は確保しつつ、可能になった段階でYouTubeなどのフル音源による検証を追加する方針を示した。
+
+これはpreview研究の撤回ではない。section 20の30秒測定は`preview-observed`として保持し、後日の全曲測定を`full-source-observed`として別に追記する。フル音源の結果が異なっても旧値を黙って置換せず、previewが全曲のどの位置・分布を偏って表していたかを差分として残す。
+
+### 取得源の境界
+
+フル音源候補は、次の順で版と公開権限を確認する。
+
+1. AutechreまたはWarpの公式YouTube channel／公式公開動画。
+2. Autechre／Warpの公式store、Bandcamp、Apple Musicなど、全曲を正規に再生・取得できる公開面。
+3. 公式版が取得できない場合の第三者uploadは、出所不明の補助資料として分離し、単独でmasterやrelease版を確定しない。
+
+音源bytesは一時解析にだけ用い、Gitへcommitしない。利用条件上、取得または機械解析が許されない公開面では、再生できることを音源取得済みへ昇格させない。
+
+### 同一版gate
+
+30秒previewとフル音源を比較する前に、少なくとも次を固定する。
+
+```text
+FULL_SOURCE_MANIFEST {
+  artist
+  track
+  release_or_upload_title
+  official_channel_or_rightsholder
+  source_url
+  video_or_catalog_id
+  published_duration
+  access_date
+  stream_or_file_properties
+  sha256_if_bytes_retrieved
+  rights_and_retrieval_boundary
+}
+```
+
+その後、preview波形をフル音源へcross-correlationまたは音響fingerprintで照合し、`full-track offset`、一致長、相関またはconfidenceを記録する。一致しない場合は、別master、速度差、edit、codec差、誤同定を切り分け、同じ版として無理に結合しない。
+
+### `Flutter`で先に反証する問い
+
+フル音源検証の第一対象は、すでにhash固定した`Flutter`とする。
+
+- 30秒previewは597.733秒のどこに位置するか。
+- section 20の0.302／0.604／0.801秒等の局所周期候補は、全曲を通して持続するか、区間固有か。
+- event候補密度、RMS、spectral centroid、200 Hz未満energy ratioの全曲分布に対し、previewは中央値付近か極端値か。
+- beat／bar境界を複数仮説で推定したとき、同一barがないという盤面説明をどの特徴量と許容誤差で検査できるか。
+- 長期self-similarity matrixに、短い周期、局所回帰、section回帰、巨大loopのいずれが現れるか。
+- `periodic_affordance`と`nonidentical_event_selection`の分離が30秒だけの見かけではないか。
+
+bar同一性は、PCMの完全一致だけでは判定しない。音色差を許したrhythm pattern、onset interval列、accent、帯域別event配置を別々に比較し、「同じ」の定義と閾値を先に記録する。
+
+### 後続順序
+
+`Flutter`のpreview／full照合後に、section 3で制作方法の異なる`VI Scose Poise`、`Uviol`、`Draft 7.30`へ進む。これにより、非反復bar、hands-off process、parameter performance、direct compositionを同じ指標で潰さず、共通解析と対象別解析を分けられる。
+
+この検証方針は研究手順であり、YouTube依存の製品機能、Sound Labへの音源取込み、設計候補の採用を意味しない。
+
+## 22. 未検証事項
 
 - `Flutter`全曲と他作品の波形・イベント列の分析。今回完了したのは同曲の位置不明な公式30秒previewだけである。
+- 公式または権利者公開の`Flutter`フル音源の取得可能性、利用条件、previewとの同一版照合。
 - `Flutter`のISRCと、Shazam旧song ID `292743285`が現在の直接ページで別曲へ解決される理由。ID衝突を推測で補わない。
 - `Flutter`全曲のbar境界、event同一性、tempo変化と、盤面の`non-repetitive beats`主張の直接検査。
 - `AE_LIVE`複数公演のcommunity segmentation比較は2025年まで進めたが、音声ファイルによるtoolset、境界、公演差、anomalyの直接測定。
@@ -965,7 +1025,7 @@ PULSE_STATE_SPLIT {
 - 独立DRUMと4トラック間の同期を、固定BPM以外でどう成立させるか。
 - 低遅延、CPU、電池、発熱、音量安全性。
 
-## 22. 触る実装パス
+## 23. 触る実装パス
 
 今回の研究では製品コードを変更しない。
 
@@ -974,7 +1034,7 @@ PULSE_STATE_SPLIT {
 - 未変更: `prototype/`
 - 未変更: `integration/`
 
-## 23. 依存する研究・判断
+## 24. 依存する研究・判断
 
 - `RESEARCH_WORKFLOW.md`
 - `integration/DIRECTION.md`
@@ -985,7 +1045,7 @@ PULSE_STATE_SPLIT {
 - `research/20260902-jeff-mills/` — 持続層、手動破断、事故からの回復。長期研究branch本文を取得。
 - Skulptur研究本文 — Git上では未取得のため、この研究から内容を補完しない。
 
-## 24. 失効した判断
+## 25. 失効した判断
 
 - section 16の可変窓モデルを、入口から出口まで一方向にしか進まない完全モデルとして使う候補は失効。2025年までの共同分析には、同一区間の反復、停止後の再開、過去領域への一時回帰、別公演での古い窓の再選択がある。通常経路としての`preferred_forward_order`は維持し、section 17の`ELASTIC_SPINE`を後継候補とする。
 - cellを、一曲、一つの公開segment、完成parameterを一括recallする固定sceneのいずれかへ等置する候補は失効。2022年の本人説明が示すmodule／settings参照のhard-set層、内部morph、手動semi-linear traversalを分離したsection 18のモデルを後継候補とする。
