@@ -4,7 +4,7 @@
 - 研究対象: Basic Channel、Maurizio、Rhythm & Sound、Chain Reaction
 - 現在の問い: 固定ループの再生ではなく、反復素材の内部状態をリアルタイム演奏する原理を抽出できるか
 - 版: 初期研究記録
-- 更新日時: 2026-09-03
+- 更新日時: 2026-09-04
 - 実装変更: なし
 - 製品採用状態: 未統合
 
@@ -676,8 +676,107 @@ Apple Catalogでは12-inch側が239.569秒、`BCD`側が560.533秒で、後者�
 
 ### 16.6 次の未完了工程
 
-- `Radiance II`の公式盤面表記とApple配信実体の矛盾を物理盤／別の一次情報で解く
+- ~~`Radiance II`の公式盤面表記とApple配信実体の矛盾を音声照合する~~（第17節で交差対応を強く支持。物理盤注記またはレーベル本人による訂正確認は未取得）
 - Preview開始位置を同定し、同名版の対応区間かどうかを判定する
 - `Inversion`両版を全長整列し、同一ISRC内の差分が境界・encode・masteringのどこにあるか分離する
 - `Radiance II BCD`と`Radiance III 12`の局所類似が偶然か、素材共有か、版名ずれかを全長で検証する
 - 30秒Previewでは観測できないH7の遅い変数を全長音源で測る
+
+
+## 17. Radianceの盤面名と実音の交差対応
+
+### 17.1 問題は「Editが長い」ことではなく、曲番号の入替えである
+
+Basic Channel公式カタログは`BCD`を次の順序で表記している。
+
+- 5曲目: `Radiance II Edit`
+- 11曲目: `Radiance III Edit`
+
+一方、BC-08の原版は`Radiance II`が約4分、`Radiance III`が約13分28秒である。Hard Waxの販売カタログでも、`BCD` 5曲目は9:21、11曲目は3:47と記録されている。
+
+参照:
+
+- https://basicchannel.com/item/BCD
+- https://basicchannel.com/item/BC-08
+- https://hardwax.com/?find=basic+channel
+
+さらに複数の盤情報は、`BCD`の印刷／表示名に誤りがあり、実音は次の対応だと明記している。
+
+| BCD位置 | 表示名 | 実音についての外部注記 |
+|---|---|---|
+| track 5、9:21 | Radiance II Edit | Radiance IIIのedit |
+| track 11、3:47 | Radiance III Edit | Radiance IIの全体 |
+
+参照:
+
+- https://www.dmdb.com/songs/basic-channel-bcd
+- https://music.notes-jp.com/2013/07/basic_channel_bcd.php
+
+この外部注記はレーベル本人の訂正文ではない。そこで、名前を信用せずHard Waxが各商品ページで公開している90秒clipを取得し、BC-08版とBCD版を音声測定で照合した。
+
+### 17.2 Hard Wax 90秒clipの取得
+
+| 音源 | 対象 | SHA-256 |
+|---|---|---|
+| BC-08 track 2 | Radiance II | `08fce3a43e02c1f63d4b8c42e697d51a388f7b1aee198f89e6589f21a4dc4878` |
+| BC-08 track 3 | Radiance III | `f6212d5fd436cec5f979f6e5a25104ca6ebaa325bd38b1e445d4272ee0b0c7da` |
+| BCD track 5 | 表示名 Radiance II Edit | `61f41f73f703f5e2d313153be4639f3a13b15f066e5c3b7f04f681608099d48c` |
+| BCD track 11 | 表示名 Radiance III Edit | `5ee327f2cb38156554f1931990debab0c933fa8595dc65c5701ea431d99c4b31` |
+
+全clipはMP3、44.1kHz、stereo、取得ファイル尺90.044082秒、共通解析器での復号後有効音声90.0秒だった。clip本体はGitへ保存しない。
+
+### 17.3 共通解析器による交差照合
+
+第15・16節と同じGitHub `main/research/music-analysis/`の共通解析器だけを使用した。
+
+| 音源 | RMS dBFS | centroid | onset/s | 全区間BPM推定 | 3窓の調推定 |
+|---|---:|---:|---:|---:|---|
+| BC-08 Radiance II | -17.94 | 1328.4 Hz | 5.922 | 137.50 | Eb major一致 |
+| BCD track 11 | -21.23 | 1149.6 Hz | 6.100 | 138.15 | Eb major一致 |
+| BC-08 Radiance III | -24.59 | 547.5 Hz | 6.611 | 130.78 | F# minor一致 |
+| BCD track 5 | -26.78 | 536.2 Hz | 6.589 | 130.93 | F# minor一致 |
+
+`BCD track 5 ↔ BC-08 Radiance III`では、centroid差11.3 Hz、onset rate差0.022/s、全区間BPM差0.15で、周期候補列と3窓の調推定も対応した。`BCD track 11 ↔ BC-08 Radiance II`でも、全区間BPM差0.65、onset rate差0.178/s、調推定Eb majorが対応した。
+
+逆の同名対応では、`BCD track 5 ↔ BC-08 Radiance II`は局所BPM、centroid、調推定が離れ、`BCD track 11 ↔ BC-08 Radiance III`も同様に一致しない。
+
+したがって、今回取得した区間については次の交差対応が強く支持される。
+
+```text
+BCD track 5  "Radiance II Edit"  -> audio family: Radiance III
+BCD track 11 "Radiance III Edit" -> audio family: Radiance II
+```
+
+これは波形全長一致や編集点の同定ではないため、完全な同一音源証明ではない。しかし「`Radiance II Edit`が原版より長い」という前節の奇妙さは、Edit概念の特殊性より、BCDの曲番号表示が実音と交差していることで説明する方が、外部注記と音声測定の両方に合う。
+
+### 17.4 第16節の競合仮説を更新
+
+第16.4節で残した三仮説を次のように更新する。
+
+| 仮説 | 更新後の扱い |
+|---|---|
+| Apple側の曲名・版対応が公式盤面表記と一致していない | 支持。ただしApple固有の誤りではなく、BCDの表示名を継承した可能性が高い |
+| 12-inch側の配信ファイルが別編集または誤った実体 | 今回のHard Wax BC-08 clipとの局所特徴対応により優先度低下 |
+| `Edit`が常に時間短縮だけを意味しない | 一般論としては未決だが、今回の尺逆転の主要説明から外す |
+
+ここで「誤表記」と「誤音源」を分ける。音源配置が誤っているのではなく、BCDのtrack 5／11に付いたRoman numeralが実音と交差している、というのが現在もっとも証拠に合う。
+
+### 17.5 設計への更新: 名前は状態を上書きできない
+
+この事故は、三層モデルへ追加した`catalog identity`を単なるメタデータ欄ではなく、誤り得る観測として扱う必要を示す。
+
+候補identityは、`catalog label`、`duration`、`audio features`、`source position`を独立した証拠として突き合わせて決める。
+
+- 表示名は実音のidentityを確定しない
+- durationだけでも確定しない
+- 同一／類似の局所特徴が複数軸で再現したときに対応候補を強める
+- 表示名と実音が衝突した場合、音を名前へ強制適合させず、矛盾を保持する
+
+楽器側のversion管理でも、ユーザーが付けた名前を尊重しつつ、その名前で操作履歴やrender差分を潰さない。名前は作品の入口だが、状態の証拠そのものではない。
+
+### 17.6 未完了
+
+- BC-08とBCDの全長音源を整列し、track 5がRadiance IIIのどの区間を残したeditか同定する
+- BCD track 11がRadiance II全体と同一か、先頭末尾・gain・masteringを含めて検査する
+- 初版CD、再発CD、配信版のどの版までRoman numeralの交差が継承されているか分離する
+- レーベル本人、盤面付属物、製造資料による明示的な訂正は未取得
