@@ -1,0 +1,7 @@
+track,apple_music_song_id,isrc,tempo_candidate_bpm,pulse_confidence,rms_dbfs,crest_db,stereo_correlation,side_mid_db,spectral_centroid_hz,rms_third_1_dbfs,rms_third_2_dbfs,rms_third_3_dbfs,centroid_third_1_hz,centroid_third_2_hz,centroid_third_3_hz
+24 Track Loop,1526180627,GBTFC1700014,68.0,0.40,-21.2,21.0,0.95,-13.9,1960,-24.3,-23.9,-24.1,1875,1828,1912
+Graphic/Varispeed (45 RPM),1526171592,GBTFC1700032,78.3,0.11,-22.8,12.5,0.99,-23.9,1455,-23.5,-23.0,-22.3,1302,1499,1515
+Health and Efficiency,1526171344,GBTFC1700031,184.6,0.57,-10.8,10.8,0.86,-11.3,2252,-12.2,-12.0,-9.7,2134,2346,2480
+Paper Hats,1526175792,GBTFC1700021,215.3,0.47,-15.8,15.0,0.89,-12.5,2161,-18.6,-16.0,-15.0,2186,2387,2097
+Makeshift Swahili,1526175968,GBTFC1700027,103.4,0.38,-15.0,15.0,0.88,-11.9,1550,-16.4,-14.6,-17.0,1652,1606,1639
+A New Kind of Water,1526175977,GBTFC1700029,41.0,0.65,-16.1,15.8,0.92,-13.6,1493,-17.4,-16.4,-16.1,1572,1529,1872
