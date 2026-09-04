@@ -5,7 +5,7 @@
 - 研究区分: `long-term`
 - 研究対象: Autechre（Sean Booth / Rob Brown）の反復、生成過程、ライブシステム、身体操作
 - 現在の問い: 固定ループの垂れ流しを避けながら、ノンミュージシャンがiPhone上でリアルタイムに構造を演奏できる原理として何を抽出できるか
-- 更新日時: 2026-09-03 UTC
+- 更新日時: 2026-09-04 UTC
 - 基点: `sound-lab/main` commit `95030a185aed933bf5595fc694194563399ca5dd`
 
 ## 長期研究指定
@@ -21,7 +21,7 @@
 
 ## この記録の証拠境界
 
-この研究は、本人インタビュー、公式ディスコグラフィー、および一次資料を引用する記事を中心にした文献研究である。AutechreのMaxパッチ、ライブシステム、マルチトラック素材、内部パラメータは取得していない。曲ごとの波形・イベント列・テンポ・スペクトルの実測もまだ行っていない。
+この研究は、本人インタビュー、公式ディスコグラフィー、および一次資料を引用する記事を中心にした文献研究である。AutechreのMaxパッチ、ライブシステム、マルチトラック素材、内部パラメータは取得していない。2026-09-04に`Flutter`のApple Music公式30秒プレビューを初めて取得し、波形由来のevent候補、音量、帯域、局所周期、遅延自己類似を実測した。ただし全曲597.733秒の約5.02%に限られ、全曲構成、bar同一性、制作内部、他作品を代表しない。
 
 以下を分離する。
 
@@ -868,9 +868,90 @@ Seanはphysical controllerのmappingはすべて事前に設定され、多く�
 
 Sound Labへ移せる候補は、mapping editorを演奏面へ常設することではない。**事前に理解可能な作用範囲を設計し、演奏中は関係の変化へ集中すること**、および必要なcontrol-rate層だけを短期bufferへ保持することである。どのgestureをloop可能にするかは未採用・未検証とする。
 
-## 20. 未検証事項
+## 20. `Flutter`音源実測1 — 周期の足場と非同一な帯域状態
 
-- 各作品の音源を取得した波形・イベント列の分析。
+### 1. 同定と取得manifest
+
+過去会話で確定した共通工程を、`Shazamで作品・版を同定 → Apple Music公式プレビューを取得 → ID・版・URL・取得日・SHA-256を固定 → 共通解析`として適用した。取得できなかったISRCと、現在不安定なShazam deep linkは未解決のままmanifestへ残す。音源本体はGitへ保存しない。
+
+| 項目 | 記録 |
+| --- | --- |
+| artist / track | Autechre / `Flutter` |
+| release / track | `Anti - EP` / track 3 |
+| Shazam locator | song ID `292743285`。検索indexではAutechre／`Flutter`／`Anti - EP`へ対応したが、2026-09-04の直接取得では別曲へ解決されたため、永続的な現行deep linkとは扱わない |
+| Apple Music identity | JP storefront、collection ID `314910095`、track ID `314910098`、release `1994-09-03`、catalog duration `597733 ms` |
+| ISRC | 公開iTunes lookupとApple Music公開ページからは取得できず、未解決。IDを補ったことにしない |
+| 30秒preview | iTunes Search APIの`previewUrl`。AAC、44.1 kHz、stereo、`996146 bytes`、container duration `30.012993 s` |
+| preview URL | `https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f4/48/ed/f448edb9-4712-1866-c30a-f2affbc02a7f/mzaf_13802220145402762989.plus.aac.p.m4a` |
+| SHA-256 | `1ab386168365c5d575bc7607464d33b298198070272950f8e6327dc12324d004` |
+| 90秒照合音源 | Apple Music公開ページのenhanced preview。container duration `90.012993 s`、SHA-256 `9c00803fe64dbced59b7ba55a4f4c28c8191b84d647f7e5eda26ef80317cb8e9` |
+| 90秒preview URL | `https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f4/48/ed/f448edb9-4712-1866-c30a-f2affbc02a7f/mzaf_6898383065126763844.plus.aac.ep.m4a` |
+| 取得日 | `2026-09-04 UTC` |
+| 解析入力 | `ffmpeg 6.1.1`でmono／22,050 Hz／float32へdecode。AAC primingを除くdecoded durationは`29.975510 s` |
+
+Apple Music公開ページは同じtrack IDに90秒のenhanced previewも提示する。両方をdecodeし、20 sampleごとに平均してnormalized cross-correlationを取ると、30秒版は90秒版のpreview-relative `0.000 s`から一致し、相関は丸め誤差内で`1.000`だった。これは**30秒版が90秒版の先頭30秒と同じ音声であること**を示すが、597.733秒の全曲内で何秒から始まるかは公開metadataにないため不明のままとする。
+
+### 2. 共通解析条件
+
+- frame: Hann `2048 sample`、hop `256 sample`（約11.61 ms）。
+- loudness proxy: frame RMSのdBFS。知覚loudnessやmastering評価ではない。
+- timbre proxy: power spectrumのspectral centroid、および200 Hz未満のenergy ratio。
+- event候補: frameごとにL1正規化したmagnitude spectrumのhalf-wave spectral flux。peak条件は`median + 2 MAD`以上、prominence `1 MAD`以上、最小間隔55 ms。
+- 局所周期: onset-flux envelopeの0.10–2.50秒lagに対するoverlap-normalized autocorrelation。
+- 遅延自己類似: 40–11,025 Hzを20本の対数bandへ分け、標準化したband-energy vectorのcosine similarityを0.25–8秒lagで集計。
+
+解析はPython `3.12.13`、NumPy `2.3.5`、SciPy `1.17.0`で行った。event候補数はthreshold依存であり、人間が聴くkick、snare、bar境界の個数ではない。
+
+### 3. 観測結果
+
+| 指標 | 観測値 |
+| --- | --- |
+| RMS dBFS | p10 `-21.15`、median `-17.28`、p90 `-13.81` |
+| spectral centroid | p10 `294.2 Hz`、median `815.3 Hz`、p90 `2126.6 Hz` |
+| 200 Hz未満energy ratio | p10 `0.0103`、median `0.1408`、p90 `0.6820` |
+| event候補 | `207`、`6.906 / s`、interval median `0.104 s`、IQR `0.093–0.197 s` |
+| 10秒ごとのevent候補数 | `69 → 77 → 61` |
+| onset-fluxの強い周期候補 | `0.604 s (r=0.542)`、`1.602 s (0.539)`、`0.801 s (0.527)`、`2.403 s (0.523)`、`0.302 s (0.522)` |
+
+10秒区間ごとのmedianは次のように変わった。
+
+| preview内区間 | RMS dBFS | centroid | 200 Hz未満ratio | event候補 |
+| --- | ---: | ---: | ---: | ---: |
+| 0–10 s | -17.31 | 733.1 Hz | 0.1854 | 69 |
+| 10–20 s | -17.14 | 931.7 Hz | 0.0917 | 77 |
+| 20–29.976 s | -17.40 | 788.8 Hz | 0.1362 | 61 |
+
+20-band profileのcosine similarityは、1秒lagでmedian `0.111`／p90 `0.656`、2秒で`-0.029`／`0.557`、4秒で`0.037`／`0.630`、8秒で`0.071`／`0.640`だった。平均的な帯域状態は長いlagで同じになりにくい一方、上位10%には明瞭な局所回帰が残る。
+
+### 4. 分析 — `non-repetitive beats`は周期消失ではない
+
+この30秒では、onset-fluxに0.302、0.604、0.801、0.998秒などの周期候補が残る。したがって`Flutter`の非反復性を、pulse、subdivision、近似周期が存在しないこととは読めない。むしろ短い時間格子を身体的な足場として残しながら、その上のevent選択と帯域状態を同一barへ閉じない構造と読む候補が強くなった。
+
+同時に、低域ratioはp10からp90まで約66倍、centroidは約7.2倍の幅を持つ。10秒単位では音量medianが約0.26 dBの範囲に収まる一方、event候補数と帯域重心は同じにならない。このpreviewでは**中期的なenergy medianを大きく動かさず、発音と帯域の配分を動かす**という分離が観測できる。
+
+ただし、この結果だけでは盤面の「同じbeatを持つbarがない」という主張を波形から再検証できない。bar境界、tempo、全曲内のpreview位置が未同定で、対象も全曲の約5.02%だからである。Shazam側が表示するBPMやmelodicness等の派生値も今回の測定値へ混ぜていない。
+
+### 5. Sound Labへの設計候補
+
+今回の実測から移す候補は「ランダムにeventを散らすこと」ではない。
+
+```text
+PULSE_STATE_SPLIT {
+  periodic_affordance
+  nonidentical_event_selection
+  moving_band_distribution
+  bounded_energy_window
+  sparse_local_return
+}
+```
+
+演奏者が掴める短い周期を残し、touchでeventの選択、休止、低域比、spectral重心、局所回帰率を別々に偏らせる。この候補はsection 6の`CAUSE_ENGINE`へ、固定patternではなく**周期を持つ関係場**として接続できる。ただし各parameterのtouch mapping、可動域、音量安全性、iPhoneでの可聴結果は未採用・未実装・未検証である。
+
+## 21. 未検証事項
+
+- `Flutter`全曲と他作品の波形・イベント列の分析。今回完了したのは同曲の位置不明な公式30秒previewだけである。
+- `Flutter`のISRCと、Shazam旧song ID `292743285`が現在の直接ページで別曲へ解決される理由。ID衝突を推測で補わない。
+- `Flutter`全曲のbar境界、event同一性、tempo変化と、盤面の`non-repetitive beats`主張の直接検査。
 - `AE_LIVE`複数公演のcommunity segmentation比較は2025年まで進めたが、音声ファイルによるtoolset、境界、公演差、anomalyの直接測定。
 - 2022 Twitch AMAと2025 KEYOSC AMAの全回答を、年代、記憶留保、後続訂正まで含めて監査すること。今回取得した該当回答は上記範囲に限定する。
 - 2022年の公開Max demo原映像を取得し、本人発言内で一致しない16 channel／4 bus channel／68 slotの数え方を画面上の表示と照合すること。
@@ -884,16 +965,16 @@ Sound Labへ移せる候補は、mapping editorを演奏面へ常設すること
 - 独立DRUMと4トラック間の同期を、固定BPM以外でどう成立させるか。
 - 低遅延、CPU、電池、発熱、音量安全性。
 
-## 21. 触る実装パス
+## 22. 触る実装パス
 
 今回の研究では製品コードを変更しない。
 
-- 追加: `research/20260831-autechre/README.md`
+- 更新: `research/20260831-autechre/README.md`
 - 未変更: `field-processor/`
 - 未変更: `prototype/`
 - 未変更: `integration/`
 
-## 22. 依存する研究・判断
+## 23. 依存する研究・判断
 
 - `RESEARCH_WORKFLOW.md`
 - `integration/DIRECTION.md`
@@ -904,12 +985,14 @@ Sound Labへ移せる候補は、mapping editorを演奏面へ常設すること
 - `research/20260902-jeff-mills/` — 持続層、手動破断、事故からの回復。長期研究branch本文を取得。
 - Skulptur研究本文 — Git上では未取得のため、この研究から内容を補完しない。
 
-## 23. 失効した判断
+## 24. 失効した判断
 
 - section 16の可変窓モデルを、入口から出口まで一方向にしか進まない完全モデルとして使う候補は失効。2025年までの共同分析には、同一区間の反復、停止後の再開、過去領域への一時回帰、別公演での古い窓の再選択がある。通常経路としての`preferred_forward_order`は維持し、section 17の`ELASTIC_SPINE`を後継候補とする。
 - cellを、一曲、一つの公開segment、完成parameterを一括recallする固定sceneのいずれかへ等置する候補は失効。2022年の本人説明が示すmodule／settings参照のhard-set層、内部morph、手動semi-linear traversalを分離したsection 18のモデルを後継候補とする。
 - channel／slotの具体値は原Maxデモを見なければ一次資料へ上げられないという判断は一部失効。2022年6月AMAで本人の構成説明を取得した。ただし「16 channel、4 bus channel、各6／5 slot」と「合計68 slot」は算術的に一致しないため、68を確定値として採る判断には移行しない。
 - cell内のmoduleがそのcellだけに閉じているという暗黙の候補は失効。任意cellからslot／presetをcopyし、別区間のeffectを呼び出せるという2025年本人回答をsection 19へ追加した。
+- 曲ごとの波形・event列・spectrum実測が一件もないという記述は一部失効。section 20で`Flutter`公式30秒previewを取得・hash固定・実測した。ただし全曲と他作品の未実測は維持する。
+- `Flutter`の非反復性を「局所周期がないこと」とみなす候補は失効。30秒previewには複数のonset-flux周期候補があり、周期的足場と非同一なevent／帯域状態の分離を後継仮説とする。
 
 今後訂正が生じた場合、古い判断を黙って削除せず、失効理由と後継判断をここへ追記する。
 
@@ -942,12 +1025,20 @@ Sound Labへ移せる候補は、mapping editorを演奏面へ常設すること
    - 7公演の公式tracklist、収録日、尺を確認。
 12. [Autechre official Bandcamp — AE_2022－](https://autechre.bandcamp.com/album/ae-2022)
    - 2022–2024年の19公演を含む公式bundleとtracklistを確認。
+13. [AE_STORE — Anti EP](https://autechre.warp.net/release/249384-autechre-anti-ep?lang=en_GB)
+   - release、catalogue number `WAP54`、track順、`Flutter`の公式尺9:57を確認。
+14. [Apple Music JP — Flutter](https://music.apple.com/jp/album/flutter/314910095?i=314910098)
+   - JP storefrontのcollection／track ID、release、track尺、90秒enhanced previewを確認。
+15. [Apple iTunes Search API](https://performance-partners.apple.com/search-api)
+   - public lookupでtrack metadataと30秒`previewUrl`を取得。preview音源はGitへ保存していない。
+16. [Shazam — Flutter locator](https://www.shazam.com/song/292743285/flutter/music-video)
+   - 検索indexではAutechre／`Flutter`／`Anti - EP`を返したが、2026-09-04の直接取得は別曲へ解決されたため、現行identityの単独根拠にはしない。
 
 ### 補助資料
 
-13. [VICE — How the Political Warning of Autechre's Anti EP Made it a Warp Records Classic](https://www.vice.com/en/article/warp-25-autechre-anti-ep/)
+17. [VICE — How the Political Warning of Autechre's Anti EP Made it a Warp Records Classic](https://www.vice.com/en/article/warp-25-autechre-anti-ep/)
    - `Anti EP`盤面警告文と`Flutter`の非同一bar設計を確認する補助資料。本人への新規インタビューではないため、盤面一次資料と同格には扱わない。
-14. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
+18. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
    - `AE_LIVE`で毎回異なるnote sequencing、各trackの可能範囲を決めるconditionals、二人のdata共有と即時反応についてSean Boothが説明。
-15. [AEPages — AE_2022－ Analysis](https://aepages.org/wiki/AE_2022%EF%BC%8D#Analysis)
+19. [AEPages — AE_2022－ Analysis](https://aepages.org/wiki/AE_2022%EF%BC%8D#Analysis)
    - 公式soundboardとbootlegを跨いだsegment対応、timestamp、2025年までのperformance anomalyの共同分析。work in progressであり、内部cell名や確定境界とは扱わない。
