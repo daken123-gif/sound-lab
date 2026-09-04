@@ -1,0 +1,64 @@
+{
+  "analysis_date_utc": "2026-09-04",
+  "source_previews_sha256": {
+    "stem-long-stem-preview.m4a": "12f10578146558fd2e15d8342314b8f1a155481522ec514e40887c77d00264a7",
+    "stem-cops-robbers-preview.m4a": "317551ae1ad70813f818fbe1ae7c7a4e101cf36c3ef1980e88444f916d3f9b29"
+  },
+  "candidate_selection": {
+    "source": "longest consecutive event-index run at the prior +1.31-second lag candidate",
+    "matching_tolerance_s": 0.05
+  },
+  "candidate": {
+    "album_start_index": 36,
+    "cops_start_index": 15,
+    "length_events": 9,
+    "album_time_range_s": [
+      6.1997,
+      8.8468
+    ],
+    "cops_time_range_s": [
+      7.5,
+      10.1587
+    ],
+    "median_lag_s": 1.3003,
+    "timing_residual_rms_s": 0.020109,
+    "timing_residual_max_abs_s": 0.04644,
+    "ioi_mae_s": 0.015964,
+    "ioi_correlation": 0.9928,
+    "eventwise_descriptor_cosine_median": 0.9219,
+    "descriptor_trajectory_cosine": 0.383,
+    "descriptor_diagonal_advantage": 0.0295
+  },
+  "all_contiguous_subsequence_control": {
+    "comparison_pairs": 8190,
+    "timing_rms_rank_lower_is_better": 1,
+    "timing_rms_percentile_better_than": 99.99,
+    "descriptor_trajectory_rank_higher_is_better": 185,
+    "descriptor_trajectory_percentile_better_than": 97.74,
+    "descriptor_diagonal_advantage_rank_higher_is_better": 190,
+    "descriptor_diagonal_advantage_percentile_better_than": 97.68,
+    "pairs_jointly_dominating_candidate_on_timing_and_trajectory": 0,
+    "timing_rms_distribution_s": {
+      "p01": 0.094002,
+      "p05": 0.150306,
+      "median": 0.37722
+    },
+    "trajectory_cosine_distribution": {
+      "median": -0.0063,
+      "p95": 0.2998,
+      "p99": 0.4705
+    }
+  },
+  "interpretation": {
+    "timing_question": "Can the sequence be explained by similar periodic spacing alone?",
+    "descriptor_question": "Do relative spectral-event changes occur in the same order?",
+    "decision_rule": "Treat as a localized shared-unit candidate only if timing and descriptor trajectory are both unusually strong; do not infer sample identity."
+  },
+  "limits": [
+    "all controls come from the same two approximately 30-second previews",
+    "the candidate was selected from these data, so ranks are descriptive rather than confirmatory p-values",
+    "event descriptors contain only four broad bands, centroid, and RMS",
+    "preview source positions and full-track context are unknown",
+    "no listening judgment or sample identity is claimed"
+  ]
+}
