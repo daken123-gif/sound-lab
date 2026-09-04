@@ -566,6 +566,42 @@ Vampires pairではp10の差が-13.62、-10.78、-9.76 dB、p90の差も-1.44、
 
 ただしDemucs出力は派生推定であり、実multitrackではない。drums + no_drumsの再構成残差は原mix RMS比で0.0456–0.0573あり、分離漏れやartifactを含む。また`no_drums`は声、楽器、returnを区別しない。この結果から`CUT`、`THROW`、source mute、mixing意図を確定しない。時間位置つき聴取が必要という18.6–18.7の境界は維持する。
 
+## 18.9 native 4-stemによる非ドラム層の分解
+
+18.8で`no_drums`へ集まった差をさらに分けるため、同じofficial Demucs 4.0.1／同じ`htdemucs` checkpointからnativeの`drums / bass / vocals / other`を出力した。前回の`--two-stems drums`集約を外した出力範囲の拡張であり、特徴定義は変更していない。
+
+4-stem版の`drums.wav`は4曲とも18.8のdrums出力とSHA-256まで完全一致した。4 stem合計の再構成残差は原mix RMS比0.0182–0.0537。共通解析器の合成校正は12/12件成功した。結果全文は[`preview-demucs-four-stem-audit-standard.json`](./preview-demucs-four-stem-audit-standard.json)へ保存する。
+
+30秒全体のDub−original差:
+
+| pair | stem | RMS | p50 | onset/s |
+| --- | --- | ---: | ---: | ---: |
+| A | drums | +0.95 dB | +2.79 dB | +0.300 |
+| A | bass | +0.11 dB | -0.03 dB | +0.066 |
+| A | vocals | -12.49 dB | -54.10 dB | -4.511 |
+| A | other | -3.31 dB | -13.82 dB | -2.706 |
+| B | drums | +0.88 dB | +5.91 dB | +0.334 |
+| B | bass | -0.24 dB | -1.84 dB | -0.334 |
+| B | vocals | -12.09 dB | -54.18 dB | -4.270 |
+| B | other | -8.12 dB | -28.27 dB | -5.271 |
+
+10秒窓6個でDub版が低い窓数:
+
+| stem | p10 | p50 | p90 | onset/s |
+| --- | ---: | ---: | ---: | ---: |
+| drums | 0/6 | 0/6 | 1/6 | 0/6 |
+| bass | 3/6 | 5/6 | 5/6 | 3/6 |
+| vocals | 6/6 | 6/6 | 6/6 | 5/6 |
+| other | 6/6 | 6/6 | 6/6 | 6/6 |
+
+二組で再現した差の中心は`vocals`と`other`である。bassは全体差が小さく、onset方向も6窓で半分に割れた。drumsは低下していない。したがって18.8の解釈を次へ狭める。
+
+> この4 PreviewでのDub版は、drumsとbassの推定骨格を比較的保ち、vocalおよびother推定層の存在量と発音密度を大きく減らしている。
+
+これはmaster全体を薄くする操作より、sourceを選択して引く操作が中心であるという設計仮説を補強する。ただし`candidate`のままで、製品採用済みにはしない。
+
+`vocals`と`other`はモデル分類であり、実multitrackではない。vocal stemには他楽器の漏れ、other stemにはギター、鍵盤、打楽器、残響returnが混在しうる。極端なp50差は推定stemがほぼ無音になった結果を含む。人間が聴いて確認した事実ではなく、アルゴリズム推定である。特定の`DRY_EXIT`、`SEND_EVENT`、`RETURN_ONLY`の時刻は依然として未確定である。
+
 ## 19. 時間分析の記録形式
 
 ### 19.1 一行を一事件にする
