@@ -1,0 +1,1078 @@
+{
+  "status": "active_secondary_evidence",
+  "acquisition": "Shazam-returned Apple Music previews; exact preview hashes revalidated before separation",
+  "separator": {
+    "architecture": "Hybrid Transformer Demucs",
+    "implementation": "official-demucs",
+    "implementation_version": "4.0.1",
+    "model": "htdemucs",
+    "checkpoint_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+    "device": "PyTorch CPU",
+    "torch": "2.8.0+cpu",
+    "shifts": 1,
+    "overlap": 0.25,
+    "two_stems": "drums",
+    "seed": 0
+  },
+  "shared_method_authority": {
+    "run_linux_demucs_audit_sh_blob": "2d2af511d136f2ae09d48dd7bb33e1bfe9bb667b",
+    "demucs_cpuinfo_compat_py_blob": "a6235124714f3b31ef9c4d0cfefe5ba57ba99480",
+    "calibrate_analyzer_py_blob": "314db6380f63c12017b52dcd3dd2dfcaff94a539",
+    "analyze_previews_py_blob": "4e36a19c5760cc1f3a7cf4b80ad3e9ad6e3baa47"
+  },
+  "calibration": {
+    "passed": 12,
+    "total": 12,
+    "all_passed": true
+  },
+  "environment": {
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+    "python": "3.12.13",
+    "essentia": "2.1b6.dev1389",
+    "scipy": "1.18.1",
+    "warnings": [
+      "restricted container could not parse /proc/cpuinfo",
+      "NNPACK initialization reported out-of-memory; all four separation commands nevertheless exited 0 and emitted paired equal-length stems"
+    ]
+  },
+  "measurement_boundary": "Demucs outputs are derived estimates, not multitracks. Differences may include separator bleed and artifacts. Periodicity candidates are not asserted as beats.",
+  "tracks": [
+    {
+      "id": "jm",
+      "title": "Baby I Love You So",
+      "role": "vocal_original",
+      "pair": "A",
+      "apple_music_id": "1060639199",
+      "preview_sha256": "34252808861763eb2e317491c4c2f7ac075d2072cffc61fbddfd1d58fb61077a",
+      "derived_stems": {
+        "drums": {
+          "duration_s": 29.9291,
+          "rms_dbfs": -21.67,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -48.6,
+            -34.81,
+            -17.4
+          ],
+          "spectral_centroid_hz": 3447.8,
+          "stereo_balance_minus_left_plus_right": -0.0852,
+          "onset_count": 125,
+          "onsets_per_second": 4.177,
+          "onset_interval_median_s": 0.2264,
+          "onset_interval_cv": 0.431,
+          "periodicity_candidates_bpm": [
+            132.51,
+            66.68,
+            89.88,
+            53.28
+          ],
+          "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat",
+          "windows": [
+            {
+              "seconds": [
+                0,
+                10.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -22.81,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -50.78,
+                -36.4,
+                -19.31
+              ],
+              "spectral_centroid_hz": 3689.2,
+              "stereo_balance_minus_left_plus_right": -0.0927,
+              "onset_count": 39,
+              "onsets_per_second": 3.9,
+              "onset_interval_median_s": 0.2264,
+              "onset_interval_cv": 0.399,
+              "periodicity_candidates_bpm": [
+                132.51,
+                65.83,
+                87.59,
+                52.73
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                10,
+                20.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -22.49,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -46.0,
+                -34.05,
+                -17.67
+              ],
+              "spectral_centroid_hz": 3483.2,
+              "stereo_balance_minus_left_plus_right": -0.0867,
+              "onset_count": 44,
+              "onsets_per_second": 4.4,
+              "onset_interval_median_s": 0.2206,
+              "onset_interval_cv": 0.481,
+              "periodicity_candidates_bpm": [
+                136.0,
+                66.26,
+                53.28,
+                89.88
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                20,
+                29.929
+              ],
+              "duration_s": 9.9291,
+              "rms_dbfs": -20.18,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -48.2,
+                -33.97,
+                -15.85
+              ],
+              "spectral_centroid_hz": 3488.9,
+              "stereo_balance_minus_left_plus_right": -0.0795,
+              "onset_count": 44,
+              "onsets_per_second": 4.431,
+              "onset_interval_median_s": 0.2264,
+              "onset_interval_cv": 0.412,
+              "periodicity_candidates_bpm": [
+                134.23,
+                67.56,
+                53.28,
+                89.1
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            }
+          ]
+        },
+        "no_drums": {
+          "duration_s": 29.9291,
+          "rms_dbfs": -12.95,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -19.52,
+            -14.02,
+            -9.7
+          ],
+          "spectral_centroid_hz": 2256.2,
+          "stereo_balance_minus_left_plus_right": 0.0212,
+          "onset_count": 240,
+          "onsets_per_second": 8.019,
+          "onset_interval_median_s": 0.1161,
+          "onset_interval_cv": 0.374,
+          "periodicity_candidates_bpm": [
+            134.23,
+            89.1
+          ],
+          "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat",
+          "windows": [
+            {
+              "seconds": [
+                0,
+                10.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -12.94,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -19.68,
+                -13.93,
+                -9.73
+              ],
+              "spectral_centroid_hz": 1803.1,
+              "stereo_balance_minus_left_plus_right": 0.0305,
+              "onset_count": 80,
+              "onsets_per_second": 8.0,
+              "onset_interval_median_s": 0.1161,
+              "onset_interval_cv": 0.334,
+              "periodicity_candidates_bpm": [
+                130.83
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                10,
+                20.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -12.87,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -19.09,
+                -14.15,
+                -9.55
+              ],
+              "spectral_centroid_hz": 2613.3,
+              "stereo_balance_minus_left_plus_right": 0.0142,
+              "onset_count": 82,
+              "onsets_per_second": 8.2,
+              "onset_interval_median_s": 0.0987,
+              "onset_interval_cv": 0.426,
+              "periodicity_candidates_bpm": [
+                130.83,
+                89.1
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                20,
+                29.929
+              ],
+              "duration_s": 9.9291,
+              "rms_dbfs": -13.03,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -19.7,
+                -13.95,
+                -9.83
+              ],
+              "spectral_centroid_hz": 2186.6,
+              "stereo_balance_minus_left_plus_right": 0.019,
+              "onset_count": 80,
+              "onsets_per_second": 8.057,
+              "onset_interval_median_s": 0.1045,
+              "onset_interval_cv": 0.382,
+              "periodicity_candidates_bpm": [
+                134.23,
+                89.1,
+                66.26,
+                53.55
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            }
+          ]
+        }
+      },
+      "stem_energy_ratio_to_mixture": {
+        "drums": 0.3534,
+        "no_drums": 0.8722
+      },
+      "reconstruction_residual": {
+        "rms": 0.0123994,
+        "ratio_to_mixture_rms": 0.04555327
+      }
+    },
+    {
+      "id": "ap",
+      "title": "King Tubby Meets Rockers Uptown",
+      "role": "dub",
+      "pair": "A",
+      "apple_music_id": "1060639201",
+      "preview_sha256": "e2f9af4ca52f0c75bd4539d507dd9f76ecdce919e07391e127f3e30476cd238d",
+      "derived_stems": {
+        "drums": {
+          "duration_s": 29.9291,
+          "rms_dbfs": -20.72,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -42.44,
+            -32.02,
+            -16.28
+          ],
+          "spectral_centroid_hz": 3378.9,
+          "stereo_balance_minus_left_plus_right": 0.0013,
+          "onset_count": 134,
+          "onsets_per_second": 4.477,
+          "onset_interval_median_s": 0.2206,
+          "onset_interval_cv": 0.42,
+          "periodicity_candidates_bpm": [
+            134.23,
+            67.12,
+            53.28,
+            89.88
+          ],
+          "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat",
+          "windows": [
+            {
+              "seconds": [
+                0,
+                10.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -23.39,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -43.78,
+                -33.78,
+                -21.98
+              ],
+              "spectral_centroid_hz": 3453.8,
+              "stereo_balance_minus_left_plus_right": 0.002,
+              "onset_count": 50,
+              "onsets_per_second": 5.0,
+              "onset_interval_median_s": 0.2206,
+              "onset_interval_cv": 0.35,
+              "periodicity_candidates_bpm": [
+                132.51,
+                66.26,
+                87.59,
+                52.73
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                10,
+                20.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -21.7,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -41.84,
+                -32.6,
+                -17.02
+              ],
+              "spectral_centroid_hz": 3321.8,
+              "stereo_balance_minus_left_plus_right": 0.015,
+              "onset_count": 51,
+              "onsets_per_second": 5.1,
+              "onset_interval_median_s": 0.2148,
+              "onset_interval_cv": 0.371,
+              "periodicity_candidates_bpm": [
+                134.23,
+                66.68,
+                89.88,
+                53.55
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                20,
+                29.929
+              ],
+              "duration_s": 9.9291,
+              "rms_dbfs": -18.5,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -41.14,
+                -28.98,
+                -12.95
+              ],
+              "spectral_centroid_hz": 3575.4,
+              "stereo_balance_minus_left_plus_right": -0.006,
+              "onset_count": 44,
+              "onsets_per_second": 4.431,
+              "onset_interval_median_s": 0.2148,
+              "onset_interval_cv": 0.639,
+              "periodicity_candidates_bpm": [
+                134.23,
+                67.56,
+                53.28,
+                89.88
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            }
+          ]
+        },
+        "no_drums": {
+          "duration_s": 29.9291,
+          "rms_dbfs": -14.21,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -32.23,
+            -16.09,
+            -10.14
+          ],
+          "spectral_centroid_hz": 1654.2,
+          "stereo_balance_minus_left_plus_right": -0.0618,
+          "onset_count": 201,
+          "onsets_per_second": 6.716,
+          "onset_interval_median_s": 0.1103,
+          "onset_interval_cv": 0.889,
+          "periodicity_candidates_bpm": [
+            132.51,
+            88.34
+          ],
+          "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat",
+          "windows": [
+            {
+              "seconds": [
+                0,
+                10.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -13.82,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -30.17,
+                -15.64,
+                -9.71
+              ],
+              "spectral_centroid_hz": 1243.4,
+              "stereo_balance_minus_left_plus_right": -0.0566,
+              "onset_count": 68,
+              "onsets_per_second": 6.8,
+              "onset_interval_median_s": 0.1045,
+              "onset_interval_cv": 0.796,
+              "periodicity_candidates_bpm": [
+                132.51
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                10,
+                20.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -14.16,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -33.93,
+                -16.11,
+                -10.2
+              ],
+              "spectral_centroid_hz": 1199.6,
+              "stereo_balance_minus_left_plus_right": -0.0635,
+              "onset_count": 69,
+              "onsets_per_second": 6.9,
+              "onset_interval_median_s": 0.119,
+              "onset_interval_cv": 0.816,
+              "periodicity_candidates_bpm": [
+                130.83,
+                89.1,
+                66.26
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                20,
+                29.929
+              ],
+              "duration_s": 9.9291,
+              "rms_dbfs": -14.68,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -37.18,
+                -16.57,
+                -10.69
+              ],
+              "spectral_centroid_hz": 3398.2,
+              "stereo_balance_minus_left_plus_right": -0.066,
+              "onset_count": 67,
+              "onsets_per_second": 6.748,
+              "onset_interval_median_s": 0.1074,
+              "onset_interval_cv": 0.977,
+              "periodicity_candidates_bpm": [
+                137.81,
+                134.23,
+                90.67,
+                89.1
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            }
+          ]
+        }
+      },
+      "stem_energy_ratio_to_mixture": {
+        "drums": 0.4177,
+        "no_drums": 0.8371
+      },
+      "reconstruction_residual": {
+        "rms": 0.01299216,
+        "ratio_to_mixture_rms": 0.05419976
+      }
+    },
+    {
+      "id": "mp",
+      "title": "You Are a No Good",
+      "role": "vocal_original",
+      "pair": "B",
+      "apple_music_id": "1101802290",
+      "preview_sha256": "2af34400c4239368afdc5c4ba0b6417bd1f2b9408107932c44c163a11159c849",
+      "derived_stems": {
+        "drums": {
+          "duration_s": 29.9755,
+          "rms_dbfs": -19.1,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -50.12,
+            -32.27,
+            -13.65
+          ],
+          "spectral_centroid_hz": 5509.0,
+          "stereo_balance_minus_left_plus_right": 0.0106,
+          "onset_count": 142,
+          "onsets_per_second": 4.737,
+          "onset_interval_median_s": 0.2148,
+          "onset_interval_cv": 0.407,
+          "periodicity_candidates_bpm": [
+            137.81,
+            68.91,
+            92.29,
+            54.98
+          ],
+          "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat",
+          "windows": [
+            {
+              "seconds": [
+                0,
+                10.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -19.44,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -51.41,
+                -32.32,
+                -14.09
+              ],
+              "spectral_centroid_hz": 5418.2,
+              "stereo_balance_minus_left_plus_right": 0.0108,
+              "onset_count": 48,
+              "onsets_per_second": 4.8,
+              "onset_interval_median_s": 0.2206,
+              "onset_interval_cv": 0.343,
+              "periodicity_candidates_bpm": [
+                137.81,
+                68.91,
+                90.67,
+                54.69
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                10,
+                20.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -19.14,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -49.76,
+                -34.04,
+                -13.45
+              ],
+              "spectral_centroid_hz": 5498.3,
+              "stereo_balance_minus_left_plus_right": 0.0106,
+              "onset_count": 47,
+              "onsets_per_second": 4.7,
+              "onset_interval_median_s": 0.2148,
+              "onset_interval_cv": 0.405,
+              "periodicity_candidates_bpm": [
+                139.67,
+                68.91,
+                92.29,
+                54.69
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                20,
+                29.976
+              ],
+              "duration_s": 9.9755,
+              "rms_dbfs": -18.74,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -48.46,
+                -29.58,
+                -13.46
+              ],
+              "spectral_centroid_hz": 5510.0,
+              "stereo_balance_minus_left_plus_right": 0.0104,
+              "onset_count": 50,
+              "onsets_per_second": 5.012,
+              "onset_interval_median_s": 0.209,
+              "onset_interval_cv": 0.374,
+              "periodicity_candidates_bpm": [
+                137.81,
+                68.91,
+                91.47,
+                54.69
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            }
+          ]
+        },
+        "no_drums": {
+          "duration_s": 29.9755,
+          "rms_dbfs": -13.23,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -20.85,
+            -13.28,
+            -10.55
+          ],
+          "spectral_centroid_hz": 2222.5,
+          "stereo_balance_minus_left_plus_right": 0.0229,
+          "onset_count": 268,
+          "onsets_per_second": 8.941,
+          "onset_interval_median_s": 0.1045,
+          "onset_interval_cv": 0.311,
+          "periodicity_candidates_bpm": [
+            69.37
+          ],
+          "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat",
+          "windows": [
+            {
+              "seconds": [
+                0,
+                10.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -13.05,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -19.33,
+                -13.15,
+                -10.54
+              ],
+              "spectral_centroid_hz": 2107.6,
+              "stereo_balance_minus_left_plus_right": 0.0241,
+              "onset_count": 92,
+              "onsets_per_second": 9.2,
+              "onset_interval_median_s": 0.1045,
+              "onset_interval_cv": 0.278,
+              "periodicity_candidates_bpm": [
+                68.91,
+                137.81
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                10,
+                20.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -13.12,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -20.56,
+                -13.04,
+                -10.63
+              ],
+              "spectral_centroid_hz": 2064.7,
+              "stereo_balance_minus_left_plus_right": 0.0204,
+              "onset_count": 85,
+              "onsets_per_second": 8.5,
+              "onset_interval_median_s": 0.1045,
+              "onset_interval_cv": 0.345,
+              "periodicity_candidates_bpm": [
+                70.31,
+                92.29
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                20,
+                29.976
+              ],
+              "duration_s": 9.9755,
+              "rms_dbfs": -13.53,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -22.05,
+                -13.96,
+                -10.52
+              ],
+              "spectral_centroid_hz": 2189.7,
+              "stereo_balance_minus_left_plus_right": 0.0243,
+              "onset_count": 90,
+              "onsets_per_second": 9.022,
+              "onset_interval_median_s": 0.0987,
+              "onset_interval_cv": 0.328,
+              "periodicity_candidates_bpm": [
+                68.45,
+                134.23
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            }
+          ]
+        }
+      },
+      "stem_energy_ratio_to_mixture": {
+        "drums": 0.4312,
+        "no_drums": 0.8407
+      },
+      "reconstruction_residual": {
+        "rms": 0.01489131,
+        "ratio_to_mixture_rms": 0.05732118
+      }
+    },
+    {
+      "id": "dv",
+      "title": "Dance of the Vampires",
+      "role": "dub",
+      "pair": "B",
+      "apple_music_id": "1101802077",
+      "preview_sha256": "cb2aa36e8d8f102d5db94bc548a7e7652164fe5128229939dff1256b5f8911e1",
+      "derived_stems": {
+        "drums": {
+          "duration_s": 29.9755,
+          "rms_dbfs": -18.22,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -39.44,
+            -26.36,
+            -12.74
+          ],
+          "spectral_centroid_hz": 3712.5,
+          "stereo_balance_minus_left_plus_right": -0.0218,
+          "onset_count": 152,
+          "onsets_per_second": 5.071,
+          "onset_interval_median_s": 0.209,
+          "onset_interval_cv": 0.381,
+          "periodicity_candidates_bpm": [
+            68.45,
+            136.0,
+            91.47,
+            54.4
+          ],
+          "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat",
+          "windows": [
+            {
+              "seconds": [
+                0,
+                10.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -18.51,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -41.8,
+                -28.14,
+                -12.83
+              ],
+              "spectral_centroid_hz": 3667.3,
+              "stereo_balance_minus_left_plus_right": -0.0211,
+              "onset_count": 50,
+              "onsets_per_second": 5.0,
+              "onset_interval_median_s": 0.209,
+              "onset_interval_cv": 0.38,
+              "periodicity_candidates_bpm": [
+                136.0,
+                68.0,
+                89.88,
+                54.4
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                10,
+                20.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -18.41,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -40.69,
+                -27.19,
+                -12.78
+              ],
+              "spectral_centroid_hz": 3755.0,
+              "stereo_balance_minus_left_plus_right": -0.0262,
+              "onset_count": 52,
+              "onsets_per_second": 5.2,
+              "onset_interval_median_s": 0.2032,
+              "onset_interval_cv": 0.326,
+              "periodicity_candidates_bpm": [
+                68.45,
+                139.67,
+                92.29,
+                54.98
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                20,
+                29.976
+              ],
+              "duration_s": 9.9755,
+              "rms_dbfs": -17.77,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -34.56,
+                -24.74,
+                -12.57
+              ],
+              "spectral_centroid_hz": 3611.6,
+              "stereo_balance_minus_left_plus_right": -0.0186,
+              "onset_count": 50,
+              "onsets_per_second": 5.012,
+              "onset_interval_median_s": 0.209,
+              "onset_interval_cv": 0.377,
+              "periodicity_candidates_bpm": [
+                136.0,
+                68.45,
+                91.47,
+                54.4
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            }
+          ]
+        },
+        "no_drums": {
+          "duration_s": 29.9755,
+          "rms_dbfs": -16.62,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -51.85,
+            -18.08,
+            -12.7
+          ],
+          "spectral_centroid_hz": 1570.4,
+          "stereo_balance_minus_left_plus_right": -0.0369,
+          "onset_count": 192,
+          "onsets_per_second": 6.405,
+          "onset_interval_median_s": 0.1045,
+          "onset_interval_cv": 1.376,
+          "periodicity_candidates_bpm": [
+            69.37,
+            132.51,
+            68.0
+          ],
+          "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat",
+          "windows": [
+            {
+              "seconds": [
+                0,
+                10.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -16.51,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -50.94,
+                -17.19,
+                -12.84
+              ],
+              "spectral_centroid_hz": 1386.0,
+              "stereo_balance_minus_left_plus_right": -0.0338,
+              "onset_count": 65,
+              "onsets_per_second": 6.5,
+              "onset_interval_median_s": 0.1074,
+              "onset_interval_cv": 0.774,
+              "periodicity_candidates_bpm": [
+                130.83,
+                134.23,
+                67.12
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                10,
+                20.0
+              ],
+              "duration_s": 10.0,
+              "rms_dbfs": -16.05,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -38.64,
+                -16.68,
+                -12.47
+              ],
+              "spectral_centroid_hz": 1711.8,
+              "stereo_balance_minus_left_plus_right": -0.0342,
+              "onset_count": 74,
+              "onsets_per_second": 7.4,
+              "onset_interval_median_s": 0.1103,
+              "onset_interval_cv": 0.701,
+              "periodicity_candidates_bpm": [],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            },
+            {
+              "seconds": [
+                20,
+                29.976
+              ],
+              "duration_s": 9.9755,
+              "rms_dbfs": -17.4,
+              "frame_rms_dbfs_p10_p50_p90": [
+                -58.04,
+                -28.58,
+                -12.75
+              ],
+              "spectral_centroid_hz": 733.1,
+              "stereo_balance_minus_left_plus_right": -0.0444,
+              "onset_count": 56,
+              "onsets_per_second": 5.614,
+              "onset_interval_median_s": 0.0929,
+              "onset_interval_cv": 1.895,
+              "periodicity_candidates_bpm": [
+                215.33,
+                130.83,
+                202.67,
+                169.44,
+                69.37
+              ],
+              "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+            }
+          ]
+        }
+      },
+      "stem_energy_ratio_to_mixture": {
+        "drums": 0.6227,
+        "no_drums": 0.7221
+      },
+      "reconstruction_residual": {
+        "rms": 0.01004405,
+        "ratio_to_mixture_rms": 0.04900988
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "pair": "A",
+      "original": "jm",
+      "dub": "ap",
+      "window_deltas_dub_minus_original": {
+        "drums": [
+          {
+            "seconds": [
+              0,
+              10.0
+            ],
+            "frame_rms_dbfs_p10_p50_p90": [
+              7.0,
+              2.62,
+              -2.67
+            ],
+            "onsets_per_second": 1.1
+          },
+          {
+            "seconds": [
+              10,
+              20.0
+            ],
+            "frame_rms_dbfs_p10_p50_p90": [
+              4.16,
+              1.45,
+              0.65
+            ],
+            "onsets_per_second": 0.7
+          },
+          {
+            "seconds": [
+              20,
+              29.929
+            ],
+            "frame_rms_dbfs_p10_p50_p90": [
+              7.06,
+              4.99,
+              2.9
+            ],
+            "onsets_per_second": 0.0
+          }
+        ],
+        "no_drums": [
+          {
+            "seconds": [
+              0,
+              10.0
+            ],
+            "frame_rms_dbfs_p10_p50_p90": [
+              -10.49,
+              -1.71,
+              0.02
+            ],
+            "onsets_per_second": -1.2
+          },
+          {
+            "seconds": [
+              10,
+              20.0
+            ],
+            "frame_rms_dbfs_p10_p50_p90": [
+              -14.84,
+              -1.96,
+              -0.65
+            ],
+            "onsets_per_second": -1.3
+          },
+          {
+            "seconds": [
+              20,
+              29.929
+            ],
+            "frame_rms_dbfs_p10_p50_p90": [
+              -17.48,
+              -2.62,
+              -0.86
+            ],
+            "onsets_per_second": -1.309
+          }
+        ]
+      }
+    },
+    {
+      "pair": "B",
+      "original": "mp",
+      "dub": "dv",
+      "window_deltas_dub_minus_original": {
+        "drums": [
+          {
+            "seconds": [
+              0,
+              10.0
+            ],
+            "frame_rms_dbfs_p10_p50_p90": [
+              9.61,
+              4.18,
+              1.26
+            ],
+            "onsets_per_second": 0.2
+          },
+          {
+            "seconds": [
+              10,
+              20.0
+            ],
+            "frame_rms_dbfs_p10_p50_p90": [
+              9.07,
+              6.85,
+              0.67
+            ],
+            "onsets_per_second": 0.5
+          },
+          {
+            "seconds": [
+              20,
+              29.976
+            ],
+            "frame_rms_dbfs_p10_p50_p90": [
+              13.9,
+              4.84,
+              0.89
+            ],
+            "onsets_per_second": 0.0
+          }
+        ],
+        "no_drums": [
+          {
+            "seconds": [
+              0,
+              10.0
+            ],
+            "frame_rms_dbfs_p10_p50_p90": [
+              -31.61,
+              -4.04,
+              -2.3
+            ],
+            "onsets_per_second": -2.7
+          },
+          {
+            "seconds": [
+              10,
+              20.0
+            ],
+            "frame_rms_dbfs_p10_p50_p90": [
+              -18.08,
+              -3.64,
+              -1.84
+            ],
+            "onsets_per_second": -1.1
+          },
+          {
+            "seconds": [
+              20,
+              29.976
+            ],
+            "frame_rms_dbfs_p10_p50_p90": [
+              -35.99,
+              -14.62,
+              -2.23
+            ],
+            "onsets_per_second": -3.408
+          }
+        ]
+      }
+    }
+  ],
+  "six_window_summary": {
+    "drums_dub_p50_higher_windows": 6,
+    "drums_dub_onset_not_lower_windows": 6,
+    "no_drums_dub_p10_lower_windows": 6,
+    "no_drums_dub_p50_lower_windows": 6,
+    "no_drums_dub_onset_lower_windows": 6,
+    "total_windows": 6
+  },
+  "interpretation": "Across both pairs and all six 10-second windows, the dub drum estimate did not show a weaker median or lower onset density, while the dub no-drums estimate showed lower p10, p50, and onset density in every window. This locates the robust quiet-side difference mainly outside the estimated drum stem, subject to separator uncertainty."
+}
