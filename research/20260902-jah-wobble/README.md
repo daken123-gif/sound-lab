@@ -2,7 +2,7 @@
 
 - 状態: `active`
 - research-id: `20260902-jah-wobble`
-- 更新日時: 2026-09-02 UTC
+- 更新日時: 2026-09-04 UTC
 - 研究対象: Jah Wobbleのベース演奏、反復、Dub、即興、録音方法
 - 現在の問い: 録音済みループの同一再生ではなく、少数の音を身体で反復しながら毎周更新する演奏を、Sound Labのマルチタッチ楽器へどう変換できるか
 
@@ -300,6 +300,15 @@ Laswellとの二bass編成から得るのは自動voice allocationではなく�
 5. 既存Dub演奏文法のshared tailへ、生演奏低域を接続する場合の状態図を作る。
 6. 音声を再生しないCYCLE TRACEの小さな試作を研究ディレクトリ内で作る。
 7. ノンミュージシャンが中心音、octave、休符、再attackを即興で操作できるか実機評価する。
+
+## 2026-09-04追加 — `Poptones` Shazam preview測定 v1
+
+- [測定報告](./poptones-preview-analysis-v1.md)
+- Shazam経由でApple Music `gb` storefrontの1979 catalog版を固定した。song IDは`724146777`、ISRCは`GBAAA7900231`、29.976961秒previewのSHA-256は`54c6441a3b93861f479943e5481398f65889954834aa03d8c143ff5f94c368bb`。
+- 低域harmonic featureには`7.3607秒`の回帰候補があった。混合音源のpulse候補と合わせ、約`130–133 BPM`、約16拍で戻る構造を暫定候補とする。
+- 自動pitch追跡ではE、A、B、B♭/A♯、C候補が現れたが、倍音によるoctave誤りと他声部混入を排除できない。採譜、音価、発音回数、調性中心の確定値にはしない。
+- 「A中心」はAだけの反復を意味しない可能性が強まった。一方、毎周の差がWobbleの再発音によるという中心仮説は、bass onsetの人手注釈前なので未検証のまま残す。
+- preview audioそのものはGitへ保存していない。研究記録だけを追加した。
 
 ## 触る実装パス
 
