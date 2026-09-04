@@ -2,7 +2,7 @@
 
 - status: `active`
 - research-id: `20260903-underground-resistance`
-- updated: `2026-09-03 UTC`
+- updated: `2026-09-04 UTC`
 - implementation paths touched: none
 - audio assets stored in Git: none
 
@@ -22,8 +22,8 @@ DetroitのUnderground Resistance（UR）を、単なるテクノ・ユニット�
 
 - **外部資料**: 本人・関係者の発言、UR／Submerge公式作品説明、公式カタログ
 - **取得・同定**: Apple Music／iTunes Search API上のtrack ID、作品名、Preview URL
-- **測定**: 取得した約30秒Previewに対する校正済み基礎解析器の出力
-- **推定**: 測定値から提示する周期候補。BPM確定値ではない
+- **測定**: 取得した約30秒Previewに対する校正済み基礎解析器、Essentia窓別監査、位相解析の出力
+- **推定**: 測定値から提示する局所BPM／調／拍内配置の候補。全曲値や作者の意図ではない
 - **解釈**: 複数の資料・測定から導いた音楽的仮説
 - **不明**: 匿名共同名義の内部クレジット、Preview外の全曲構成など
 
@@ -133,21 +133,59 @@ Apple Music／iTunes Search APIの公開Previewを使用した。ShazamのUR art
 
 完全なJSONは `preview-basic-results-20260903.json` に保存する。
 
+## 10秒窓別BPM／調監査
+
+隔離したPython 3.12環境へ、リポジトリ既定の `essentia==2.1b6.dev1389` を再構築し、`research/music-analysis/reliability_audit.py` を実行した。full previewではmultifeature／degaraの2方式、さらに0–10秒、10–20秒、20–30秒の3窓を比較した。
+
+| track | full BPM候補 | 10秒窓BPM | confidence | BPM判定 | 10秒窓の調 | 調判定 |
+|---|---:|---|---:|---|---|---|
+| Sonic Destroyer | 124.60 | 124.38 / 123.05 / 124.78 | 3.599 | direct stable | C minor / C minor / C minor | **stable: C minor** |
+| Waveform | 123.26 | 123.05 / 123.36 / 122.87 | 2.870 | direct stable | A minor / F# minor / A minor | partial: 不採用 |
+| Base Camp Alpha 808 | 126.91 | 126.88 / 126.93 / 126.90 | 3.693 | direct stable | A major / A major / A major | **stable: A major** |
+| The Seawolf | 136.12 | 136.01 / 136.00 / 136.00 | 2.014 | direct stable | C minor / Ab major / Ab minor | unstable: 不採用 |
+| Timeline | 75.91 | 152.00 / 75.80 / 75.01 | 3.925 | half/double stable | Bb minor / Bb minor / Eb minor | partial: 不採用 |
+| I Am Ur | 136.56 | 136.53 / 136.53 / 136.61 | 3.342 | direct stable | C# minor / C# minor / C# major | partial: 不採用 |
+
+6件すべてでfull-preview confidenceは採用ゲートの1.5以上、multifeatureとdegaraのpulse-family差は3%以内だった。したがって5件のdirect-stable値は、このPreview区間の局所pulse候補として採用する。
+
+`Timeline` は第1窓が152、後半2窓が75–76となった。数理的には同じhalf/double familyとして安定しているが、どちらを聴取上のBPMと呼ぶかは決めない。全曲のdownbeat、編曲上の拍節、Preview外の文脈を確認するまで `75.91/151.82 family` として保持する。
+
+調は3窓が一致した `Sonic Destroyer = C minor` と `Base Camp Alpha 808 = A major` だけを局所候補として採用する。2/3一致を含め、他の4件は曲中変化、打楽器優勢、相対調／平行調、短窓推定誤差を分離できないため採用しない。完全出力は `preview-reliability-results-20260904.json` に保存する。
+
+## 打点位相監査
+
+`research/music-analysis/phase_analysis.py` を用い、推定beat間でonsetが置かれる相対位置を12-bin histogramにした。synthetic clickでstraight eighth、2:1 swing、位相をずらしたstraight eighthを校正してからPreviewへ適用した。
+
+| track | usable onsets | phase entropy | binary spacing | triplet spacing |
+|---|---:|---:|---:|---:|
+| Sonic Destroyer | 137 | 0.439 | 0.980 | 0.010 |
+| Waveform | 182 | 0.768 | 0.772 | 0.255 |
+| Base Camp Alpha 808 | 216 | 0.602 | 0.932 | 0.027 |
+| The Seawolf | 226 | 0.783 | 0.718 | 0.407 |
+| Timeline | 203 | 0.797 | 0.933 | 0.426 |
+| I Am Ur | 134 | 0.614 | 0.945 | 0.123 |
+
+`Sonic Destroyer` は6件中でentropyが最小、binary spacingが最大、triplet spacingが最小である。基礎測定の「高いonset密度と低いinterval CV」に加え、打点が少数の二分系位置へ強く集中する区間だと確認できた。`Base Camp Alpha 808` と `I Am Ur` もbinary spacingが高いが、entropyはより大きく、打点配置は広い。
+
+`The Seawolf` と `Timeline` はentropyとtriplet spacingが相対的に高い。ただしbinary／triplet scoreは排他的な分類確率ではなく、位相histogramの回転自己相関である。特に `Timeline` はhalf-time anchorの曖昧性もある。よって「三連」「swing」「polyrhythm」「syncopation」の証拠にはせず、二分系の骨格に副次的な間隔が共存する可能性までに留める。
+
+この方法はbeatに対して回転不変で、正しいdownbeatや表拍を同定しない。そのため拍のどの位置が強調されたか、裏拍かどうかは判定不能である。完全出力とsynthetic calibrationは `preview-phase-results-20260904.json` に保存する。
+
 ## 測定から言えること
 
 ### 直接比較
 
 - この6 Previewでは `Sonic Destroyer` が最大のonset rateと最小のonset interval CVを持つ。短い打撃が高密度かつ比較的規則的に続く区間である。
 - `Sonic Destroyer` と `Timeline` はspectral centroidが約5kHzで、他の4区間より高域側へ重心がある。
-- `Base Camp Alpha 808` はperiodicity候補が124.53だけ残ったが、窓別安定性を実行できていないためBPMとは呼ばない。
+- `Base Camp Alpha 808` は基礎解析のperiodicity候補124.53に対し、独立したEssentia監査がfull 126.91、3窓126.88–126.93を返した。アルゴリズム差はあるが、約127 BPMの局所pulseは安定している。
 - `I Am Ur` はframe RMSのp10からp90まで約29.33dBあり、6件中で最も大きい局所level spreadを持つ。Preview内部のsection変化、声、breakなど複数の原因候補を残す。
 - integrated RMSはrelease／compilationごとのmastering差を含むため、年代による音圧変化の証拠にしない。
 
 ### 音楽的解釈
 
-初期の戦闘型は単にtempoが速いのではない。`Sonic Destroyer` では高いonset密度と比較的低いinterval CVが同居し、持続する規則性が圧力を作るという仮説を支持する。
+初期の戦闘型は単にtempoが速いのではない。`Sonic Destroyer` の局所pulse候補は約124.6 BPMで、今回の `The Seawolf` と `I Am Ur` の約136 BPMより遅い。それでも高いonset密度、低いinterval CV、集中した二分系位相が同居しており、速度そのものより持続する規則性と細分密度が圧力を作るという仮説を強める。
 
-一方、`Timeline` は上位periodicity familyが152／76付近にありながら、onset interval CVは0.370と大きい。固定pulseの周囲に異なる細分やmelodic attackが動くHi-Tech Jazz型の可能性がある。ただしstem分離とdownbeat anchorなしに、polyrhythmやsyncopationとは断定しない。
+一方、`Timeline` は基礎解析とEssentia監査の双方で152／76付近のfamilyが残りながら、onset interval CVは0.370、phase entropyは0.797と大きい。固定pulseの周囲に異なる細分やmelodic attackが動くHi-Tech Jazz型の可能性がある。ただしstem分離とdownbeat anchorなしに、polyrhythmやsyncopationとは断定しない。
 
 `The Seawolf` は136／68のhalf-double familyを持つ。electroのbreakbeatを示す可能性はあるが、この値だけでは4つ打ちとの区別はできない。
 
@@ -227,13 +265,12 @@ UIに機材名やgenre名を並べるより、触った結果として「駆動�
 
 - `The Final Frontier`原曲、`Hi-Tech Jazz`原曲、`Nation 2 Nation`原曲の取得可能な正規Preview
 - 初期12inchごとの確定credit、使用機材、mix／mastering差
-- 6 Previewの10秒窓別BPM安定性、調、打点位相
 - drum／bass separation後も周期仮説が残るか
 - 原盤とcompilation再収録版のmastering差
 - UR live bandにおける即興、cue、役割交代の実演分析
 - Submergeの現在の運営・若手育成と、初期思想の連続／変化
 
-Essentiaを使う窓別監査と位相解析は、今回の環境にmoduleが存在せず `ModuleNotFoundError` で停止した。基礎測定の成功を、これらの検証成功へ読み替えない。
+Essentiaを使う窓別監査と位相解析は、2026-09-04に隔離環境を再構築して完走した。BPM、調、位相の採否は上記の信頼性ゲートに従い、Preview開始位置が不明という制約は解消していない。
 
 ## 主要資料
 

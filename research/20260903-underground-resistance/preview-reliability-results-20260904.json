@@ -1,0 +1,178 @@
+{
+  "sample_size": 6,
+  "bpm_class_counts": {
+    "direct_stable": 5,
+    "half_double_stable": 1
+  },
+  "key_class_counts": {
+    "stable": 2,
+    "partial": 3,
+    "unstable": 1
+  },
+  "full_bpm_low_confidence_below_1_5": 0,
+  "full_bpm_method_disagreement_over_3_percent": 0,
+  "tracks": [
+    {
+      "file": "1607947261.m4a",
+      "full_bpm_multifeature": 124.6,
+      "full_bpm_degara": 124.42,
+      "multifeature_confidence": 3.599,
+      "method_family_difference": 0.0015,
+      "window_bpms": [
+        124.38,
+        123.05,
+        124.78
+      ],
+      "bpm_class": "direct_stable",
+      "bpm_raw_cv": 0.006,
+      "bpm_family_cv": 0.006,
+      "window_keys": [
+        "C minor",
+        "C minor",
+        "C minor"
+      ],
+      "key_strengths": [
+        0.673,
+        0.675,
+        0.606
+      ],
+      "key_class": "stable",
+      "key_candidate": "C minor"
+    },
+    {
+      "file": "257080622.m4a",
+      "full_bpm_multifeature": 123.26,
+      "full_bpm_degara": 123.26,
+      "multifeature_confidence": 2.87,
+      "method_family_difference": 0.0,
+      "window_bpms": [
+        123.05,
+        123.36,
+        122.87
+      ],
+      "bpm_class": "direct_stable",
+      "bpm_raw_cv": 0.002,
+      "bpm_family_cv": 0.002,
+      "window_keys": [
+        "A minor",
+        "F# minor",
+        "A minor"
+      ],
+      "key_strengths": [
+        0.541,
+        0.392,
+        0.551
+      ],
+      "key_class": "partial",
+      "key_candidate": "A minor"
+    },
+    {
+      "file": "1677723768.m4a",
+      "full_bpm_multifeature": 126.91,
+      "full_bpm_degara": 126.94,
+      "multifeature_confidence": 3.693,
+      "method_family_difference": 0.0003,
+      "window_bpms": [
+        126.88,
+        126.93,
+        126.9
+      ],
+      "bpm_class": "direct_stable",
+      "bpm_raw_cv": 0.0,
+      "bpm_family_cv": 0.0,
+      "window_keys": [
+        "A major",
+        "A major",
+        "A major"
+      ],
+      "key_strengths": [
+        0.78,
+        0.73,
+        0.652
+      ],
+      "key_class": "stable",
+      "key_candidate": "A major"
+    },
+    {
+      "file": "317941013.m4a",
+      "full_bpm_multifeature": 136.12,
+      "full_bpm_degara": 136.12,
+      "multifeature_confidence": 2.014,
+      "method_family_difference": 0.0,
+      "window_bpms": [
+        136.01,
+        136.0,
+        136.0
+      ],
+      "bpm_class": "direct_stable",
+      "bpm_raw_cv": 0.0,
+      "bpm_family_cv": 0.0,
+      "window_keys": [
+        "C minor",
+        "Ab major",
+        "Ab minor"
+      ],
+      "key_strengths": [
+        0.735,
+        0.355,
+        0.452
+      ],
+      "key_class": "unstable",
+      "key_candidate": null
+    },
+    {
+      "file": "603658788.m4a",
+      "full_bpm_multifeature": 75.91,
+      "full_bpm_degara": 75.91,
+      "multifeature_confidence": 3.925,
+      "method_family_difference": 0.0,
+      "window_bpms": [
+        152.0,
+        75.8,
+        75.01
+      ],
+      "bpm_class": "half_double_stable",
+      "bpm_raw_cv": 0.358,
+      "bpm_family_cv": 0.006,
+      "window_keys": [
+        "Bb minor",
+        "Bb minor",
+        "Eb minor"
+      ],
+      "key_strengths": [
+        0.628,
+        0.801,
+        0.702
+      ],
+      "key_class": "partial",
+      "key_candidate": "Bb minor"
+    },
+    {
+      "file": "269752702.m4a",
+      "full_bpm_multifeature": 136.56,
+      "full_bpm_degara": 136.67,
+      "multifeature_confidence": 3.342,
+      "method_family_difference": 0.0008,
+      "window_bpms": [
+        136.53,
+        136.53,
+        136.61
+      ],
+      "bpm_class": "direct_stable",
+      "bpm_raw_cv": 0.0,
+      "bpm_family_cv": 0.0,
+      "window_keys": [
+        "C# minor",
+        "C# minor",
+        "C# major"
+      ],
+      "key_strengths": [
+        0.503,
+        0.812,
+        0.901
+      ],
+      "key_class": "partial",
+      "key_candidate": "C# minor"
+    }
+  ]
+}

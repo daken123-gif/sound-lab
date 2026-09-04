@@ -1,0 +1,277 @@
+{
+  "synthetic_calibration": [
+    {
+      "case": "straight_eighth",
+      "bpm_candidate": 119.94,
+      "beat_confidence": 3.928,
+      "onset_rate_per_s": 3.667,
+      "phase_histogram_12": [
+        0,
+        0,
+        0,
+        0,
+        9,
+        13,
+        0,
+        0,
+        0,
+        0,
+        17,
+        4
+      ],
+      "top_phase_centers": [
+        0.875,
+        0.458,
+        0.375,
+        0.958
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.514,
+      "binary_spacing_score": 0.739,
+      "triplet_spacing_score": 0.0,
+      "usable_onsets": 43
+    },
+    {
+      "case": "swing_2_to_1",
+      "bpm_candidate": 119.94,
+      "beat_confidence": 3.738,
+      "onset_rate_per_s": 3.667,
+      "phase_histogram_12": [
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        18,
+        0,
+        0,
+        15
+      ],
+      "top_phase_centers": [
+        0.708,
+        0.958,
+        0.042,
+        0.625
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.494,
+      "binary_spacing_score": 0.0,
+      "triplet_spacing_score": 0.28,
+      "usable_onsets": 43
+    },
+    {
+      "case": "shifted_straight_eighth",
+      "bpm_candidate": 120.06,
+      "beat_confidence": 3.814,
+      "onset_rate_per_s": 3.667,
+      "phase_histogram_12": [
+        0,
+        0,
+        0,
+        0,
+        5,
+        17,
+        0,
+        0,
+        0,
+        0,
+        17,
+        5
+      ],
+      "top_phase_centers": [
+        0.875,
+        0.458,
+        0.375,
+        0.958
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.495,
+      "binary_spacing_score": 0.541,
+      "triplet_spacing_score": 0.0,
+      "usable_onsets": 44
+    }
+  ],
+  "previews": [
+    {
+      "file": "1607947261.m4a",
+      "bpm_candidate": 124.6,
+      "beat_confidence": 3.599,
+      "onset_rate_per_s": 4.778,
+      "phase_histogram_12": [
+        0,
+        0,
+        2,
+        0,
+        1,
+        59,
+        0,
+        0,
+        14,
+        1,
+        0,
+        60
+      ],
+      "top_phase_centers": [
+        0.958,
+        0.458,
+        0.708,
+        0.208
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.439,
+      "binary_spacing_score": 0.98,
+      "triplet_spacing_score": 0.01,
+      "usable_onsets": 137
+    },
+    {
+      "file": "257080622.m4a",
+      "bpm_candidate": 123.26,
+      "beat_confidence": 2.87,
+      "onset_rate_per_s": 6.315,
+      "phase_histogram_12": [
+        7,
+        0,
+        11,
+        9,
+        0,
+        30,
+        27,
+        1,
+        31,
+        14,
+        0,
+        52
+      ],
+      "top_phase_centers": [
+        0.958,
+        0.708,
+        0.458,
+        0.542
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.768,
+      "binary_spacing_score": 0.772,
+      "triplet_spacing_score": 0.255,
+      "usable_onsets": 182
+    },
+    {
+      "file": "1677723768.m4a",
+      "bpm_candidate": 126.91,
+      "beat_confidence": 3.693,
+      "onset_rate_per_s": 7.384,
+      "phase_histogram_12": [
+        0,
+        0,
+        60,
+        0,
+        4,
+        55,
+        1,
+        1,
+        33,
+        1,
+        0,
+        61
+      ],
+      "top_phase_centers": [
+        0.958,
+        0.208,
+        0.458,
+        0.708
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.602,
+      "binary_spacing_score": 0.932,
+      "triplet_spacing_score": 0.027,
+      "usable_onsets": 216
+    },
+    {
+      "file": "317941013.m4a",
+      "bpm_candidate": 136.12,
+      "beat_confidence": 2.014,
+      "onset_rate_per_s": 7.752,
+      "phase_histogram_12": [
+        10,
+        0,
+        14,
+        33,
+        0,
+        20,
+        40,
+        0,
+        18,
+        34,
+        0,
+        57
+      ],
+      "top_phase_centers": [
+        0.958,
+        0.542,
+        0.792,
+        0.292
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.783,
+      "binary_spacing_score": 0.718,
+      "triplet_spacing_score": 0.407,
+      "usable_onsets": 226
+    },
+    {
+      "file": "603658788.m4a",
+      "bpm_candidate": 75.91,
+      "beat_confidence": 3.925,
+      "onset_rate_per_s": 7.184,
+      "phase_histogram_12": [
+        35,
+        1,
+        35,
+        35,
+        0,
+        2,
+        34,
+        13,
+        24,
+        23,
+        0,
+        1
+      ],
+      "top_phase_centers": [
+        0.042,
+        0.292,
+        0.208,
+        0.542
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.797,
+      "binary_spacing_score": 0.933,
+      "triplet_spacing_score": 0.426,
+      "usable_onsets": 203
+    },
+    {
+      "file": "269752702.m4a",
+      "bpm_candidate": 136.56,
+      "beat_confidence": 3.342,
+      "onset_rate_per_s": 4.644,
+      "phase_histogram_12": [
+        0,
+        0,
+        0,
+        8,
+        11,
+        41,
+        5,
+        0,
+        1,
+        3,
+        9,
+        56
+      ],
+      "top_phase_centers": [
+        0.958,
+        0.458,
+        0.375,
+        0.875
+      ],
+      "phase_entropy_0_concentrated_1_diffuse": 0.614,
+      "binary_spacing_score": 0.945,
+      "triplet_spacing_score": 0.123,
+      "usable_onsets": 134
+    }
+  ],
+  "hard_limit": "rotation-invariant phase spacing cannot identify syncopation without a verified beat/downbeat anchor"
+}
