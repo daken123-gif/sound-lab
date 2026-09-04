@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "dataset": "E-GMD v1.0.0 MIDI-only archive",
+  "selection": {
+    "unit": "unique performance sequence id",
+    "canonical_kit": "Acoustic Kit",
+    "sequences_analyzed": 1059,
+    "excluded_rerecording_rows": 44478,
+    "split_counts": {
+      "test": 123,
+      "train": 819,
+      "validation": 117
+    },
+    "beat_type_counts": {
+      "beat": 432,
+      "fill": 627
+    },
+    "reason": "avoid treating kit rerecordings of one performance as independent symbolic observations"
+  },
+  "s04_tempo_vs_microtiming": {
+    "fixed_tempo_map_sequences": 1059,
+    "fixed_tempo_with_mean_absolute_sixteenth_residual_at_least_2_ticks": 1059,
+    "maximum_tempo_metadata_absolute_bpm_difference": 0.000773335,
+    "mean_absolute_sixteenth_residual_ticks": {
+      "minimum": 2.666667,
+      "p25": 16.055707,
+      "median": 21.705882,
+      "p75": 27.890889,
+      "maximum": 50.75
+    },
+    "criterion": "one distinct MIDI tempo value plus mean absolute distance from nearest sixteenth >= 2 ticks",
+    "interpretation": "a fixed tempo map can coexist with local onset displacement"
+  },
+  "s05_deviation_amount_vs_shape": {
+    "equal_amount_distinct_shape_example": {
+      "sequence_ids": [
+        "drummer1/session1/135",
+        "drummer7/session3/147"
+      ],
+      "mean_absolute_residual_ticks": [
+        11.166667,
+        11.166667
+      ],
+      "amount_gap_ticks": 0.0,
+      "common_profile_slots": 13,
+      "signed_profile_correlation": -0.085863
+    },
+    "groove_quality_ground_truth": null,
+    "interpretation": "scalar deviation amount does not preserve signed timing shape; groove quality is not evaluated"
+  },
+  "s10_velocity_transformation": {
+    "sequences_with_adjacent_quantized_topology_repeat": 47,
+    "sequences_with_velocity_transformation": 46,
+    "transformed_adjacent_measure_pairs": 103,
+    "beat_type_breakdown": {
+      "beat": {
+        "sequences": 432,
+        "with_adjacent_quantized_topology_repeat": 47,
+        "with_velocity_transformation": 46
+      },
+      "fill": {
+        "sequences": 627,
+        "with_adjacent_quantized_topology_repeat": 0,
+        "with_velocity_transformation": 0
+      }
+    },
+    "minimum_mean_absolute_velocity_delta": 1.0,
+    "median_pair_mean_absolute_velocity_delta": 7.0,
+    "maximum_pair_mean_absolute_velocity_delta": 43.416667,
+    "exemplar": {
+      "sequence_id": "drummer1/session3/2",
+      "style": "jazz/swing",
+      "examples": [
+        {
+          "measures_zero_based": [
+            170,
+            171
+          ],
+          "event_count": 12,
+          "mean_absolute_velocity_delta": 43.416667,
+          "maximum_velocity_delta": 83
+        }
+      ]
+    },
+    "interpretation": "equal quantized note/onset topology is not an exact event repeat when velocity changes"
+  },
+  "non_inferences": [
+    "no audio was acquired or analyzed",
+    "MIDI velocity is not calibrated acoustic loudness",
+    "nearest-sixteenth residual is an operational grid, not a universal groove model",
+    "style and beat_type labels are not groove-quality judgments",
+    "quantized topology equality does not imply identical raw timing or sound"
+  ],
+  "parser_cross_check": {
+    "reference_parser": "mido 1.3.3",
+    "selection": "evenly spaced after sorting canonical sequence ids",
+    "samples_checked": 10,
+    "all_event_streams_equal": true,
+    "samples": [
+      {
+        "id": "drummer1/eval_session/1",
+        "note_on_count": 410
+      },
+      {
+        "id": "drummer1/session1/199",
+        "note_on_count": 10
+      },
+      {
+        "id": "drummer1/session1/64",
+        "note_on_count": 7
+      },
+      {
+        "id": "drummer1/session2/172",
+        "note_on_count": 8
+      },
+      {
+        "id": "drummer1/session3/14",
+        "note_on_count": 912
+      },
+      {
+        "id": "drummer4/session1/1",
+        "note_on_count": 417
+      },
+      {
+        "id": "drummer7/session1/37",
+        "note_on_count": 12
+      },
+      {
+        "id": "drummer7/session2/80",
+        "note_on_count": 683
+      },
+      {
+        "id": "drummer7/session3/47",
+        "note_on_count": 708
+      },
+      {
+        "id": "drummer9/session1/9",
+        "note_on_count": 62
+      }
+    ]
+  }
+}

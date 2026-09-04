@@ -1,10 +1,10 @@
 # 第二輪・公開実録音データ受入れ監査
 
-調査日: 2026-09-02
+調査日: 2026-09-02（pilot更新: 2026-09-04）
 
 ## 結論
 
-合成音源S01〜S12を実録音へ移す第二輪の候補として、E-GMD、MAESTRO v3.0.0、RWC v2、MUSDB18を採用する。2026-09-03にE-GMDの公式metadataとMIDI-only archive、RWCの現行注釈repository、RWC-R音声15曲を取得・検査し、RWC-RではS01の20秒excerpt pilotまで実行した。
+合成音源S01〜S12を実演奏資料へ移す第二輪の候補として、E-GMD、MAESTRO v3.0.0、RWC v2、MUSDB18を採用する。2026-09-03にE-GMDの公式metadataとMIDI-only archive、RWCの現行注釈repository、RWC-R音声15曲を取得・検査し、RWC-RではS01の20秒excerpt pilotまで実行した。2026-09-04にはE-GMDの1,059 unique sequenceでS04／S05／S10のsymbolic pilotを実行した。
 
 ただし、E-GMDの90 GB音声本体、RWCのR以外、MAESTRO、MUSDB18は未取得である。RWC-Rの結果を「第二輪全体の評価完了」へ拡張しない。
 
@@ -14,7 +14,7 @@
 
 | データセット | 第二輪で見る証拠 | 対応ケース | 現在状態 |
 | --- | --- | --- | --- |
-| E-GMD 1.0.0 | 人間が演奏したドラムの発音時刻、velocity、kit差 | S04–S07、S10–S11 | metadata＋MIDI schema検証済み、音声未取得 |
+| E-GMD 1.0.0 | 人間が演奏したドラムの発音時刻、velocity、kit差 | S04–S07、S10–S11 | metadata＋MIDI schema検証済み、S04／S05／S10 symbolic pilot済み、音声未取得 |
 | MAESTRO 3.0.0 | 約3 ms整列の音声/MIDI、velocity、pedal、composition split | S04–S05、S08、S10–S11 | 未取得・評価不可 |
 | RWC v2 | 複数ジャンルの実録音と拍・旋律・サビ等の別管理注釈 | S01–S03、S06–S12 | RWC-R 15曲取得・S01 pilot実行、他subset未取得 |
 | MUSDB18 | stereo mixとdrums/bass/vocals/other stem | S07、S09、S12 | 承認・曲別license監査前、評価不可 |
@@ -113,6 +113,17 @@ RWC-R 15曲の各20秒excerptを、合成第一輪と同じenergy-flux autocorre
 
 単一top候補をBPMとして確定すると13曲で参照拍周期を外す一方、候補集合を残すと10曲で直接周期を回収できた。詳細と失敗例は[rwc-period-pilot-results.md](rwc-period-pilot-results.md)に保存した。
 
+## 第二pilot：E-GMDの発音時刻とvelocity
+
+43 kitの再録音行を独立演奏として数えず、各unique sequence IDの`Acoustic Kit`行だけを選び、1,059演奏を解析した。
+
+- 全1,059演奏でtempo mapは固定値一つだったが、16分格子からの平均絶対発音残差は全演奏で2 tick以上、中央値21.705882 tickだった。
+- 平均絶対残差が同じ11.166667 tickでも、符号つきtiming profile相関が-0.085863となる演奏pairがあった。偏差量はtiming shapeを保存しない。
+- 隣接小節の量子化`(slot, note)` topologyが一致する47演奏のうち、46演奏・103 pairで平均絶対velocity差1以上の変形があった。
+- groove品質のground truthは存在せず、MIDI velocityも音響loudnessではないため、品質評価や音響評価へは昇格していない。
+
+parser fixture 6件に加え、等間隔選択した実MIDI 10件を`mido 1.3.3`と照合し、note-on、tempo、time signatureのevent stream一致を確認した。詳細は[egmd-symbolic-pilot-results.md](egmd-symbolic-pilot-results.md)に保存した。
+
 ## 次の実行単位
 
-次はE-GMD MIDIのevent時刻とvelocityを読み、S04／S05／S10のsymbolic pilotを行う。音声照合は90 GB本体の取得を必要とするため別段階に置く。RWCは同じ15曲の別区間で再現性を確認した後、P/J/G/Cの順序と容量を決める。MUSDB18は承認と曲別license監査が済むまで取得済みへ進めない。
+次はE-GMD MIDIを楽器class別に分け、kick／snare／hi-hat等の符号つき残差分布を同じperformance内で比較するS04／S05の第二段階へ進む。kit差の音響照合は90 GB本体の取得を必要とするため別段階に置く。RWCは同じ15曲の別区間で再現性を確認した後、P/J/G/Cの順序と容量を決める。MUSDB18は承認と曲別license監査が済むまで取得済みへ進めない。

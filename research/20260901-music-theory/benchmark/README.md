@@ -143,6 +143,13 @@ python3 public_dataset_probe.py \
 python3 rwc_period_pilot.py \
   --audio-zip /path/to/RWC-R.zip \
   --annotations-root /path/to/rwc-annotations
+
+python3 egmd_symbolic_pilot.py \
+  --metadata /path/to/e-gmd-v1.0.0.csv \
+  --midi-zip /path/to/e-gmd-v1.0.0-midi.zip \
+  --output egmd-symbolic-pilot-results.json
 ```
 
-観測値は`public-data-probe-results.json`、15曲pilotの判断は[rwc-period-pilot-results.md](rwc-period-pilot-results.md)に記録する。外部音源・注釈そのものはGitへ転載しない。
+E-GMD pilotは43 kit再録音を重複標本にせず、1,059 unique sequenceの`Acoustic Kit` MIDIを使う。S04では固定tempoと16分格子からの局所残差、S05では偏差量と符号つきshape、S10では量子化topologyとvelocity変形を分離する。音声やgroove品質は推定しない。
+
+観測値は`public-data-probe-results.json`、RWC-Rの判断は[rwc-period-pilot-results.md](rwc-period-pilot-results.md)、E-GMDの判断は[egmd-symbolic-pilot-results.md](egmd-symbolic-pilot-results.md)に記録する。外部音源・注釈そのものはGitへ転載しない。

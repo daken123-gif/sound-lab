@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-09-03",
+  "updated": "2026-09-04",
   "research_id": "20260901-music-theory",
   "round": "public-recording-round-2",
   "datasets": [
@@ -41,6 +41,13 @@
             "type": "midi_only_archive",
             "sha256": "5e70a6f4d760385a5e5ec986a2f02179d96f61181a920e592876b577a75844d3",
             "midi_files_checked": 45537
+          },
+          {
+            "type": "symbolic_midi_pilot",
+            "unique_sequences_analyzed": 1059,
+            "canonical_kit": "Acoustic Kit",
+            "case_targets": ["S04", "S05", "S10"],
+            "audio_analyzed": false
           }
         ]
       },
