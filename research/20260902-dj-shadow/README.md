@@ -1221,3 +1221,86 @@ edition_relation:
 - `tools/event_correspondence_followup.py` — 再現用解析
 
 次は9イベント列について、イベント間隔列と帯域記述子を個別に比較し、周期だけで説明できる対応と、局所的な音色系列まで一致する対応を分ける。実際の聴取は今回も未実施であり、前景役割とsample同一性は未取得のまま残す。
+
+
+## 32. 9イベント列は周期だけで説明できるか
+
+### 32.1 対照の作り方
+
+前節の+1.31秒整列で得た最長9イベント列を、同じ二つのpreviewに存在する全連続9イベント列と比較した。album版には91開始位置、Cops版には90開始位置があり、対照は`91 × 90 = 8190`組である。
+
+比較量は分離した。
+
+1. 各列のoffsetを中央値で合わせた後の時刻残差
+2. 八つのイベント間隔（IOI）列
+3. 四帯域比、centroid、RMSのイベントごとのcosine
+4. 記述子の絶対値ではなく、9イベント内でどう変化したかを比較するtrajectory cosine
+5. 同じ順番の記述子cosineが、異なる順番の組合せより高いかを見るdiagonal advantage
+
+候補は同じデータから選ばれているため、以下の順位を検定済みp値として扱わない。候補の特異性を記述する内部対照である。
+
+### 32.2 候補列の測定
+
+| 指標 | 結果 |
+| --- | ---: |
+| album範囲 | 6.1997–8.8468秒 |
+| Cops範囲 | 7.5000–10.1587秒 |
+| 最適lag中央値 | +1.3003秒 |
+| 時刻残差RMS | 20.109 ms |
+| 最大時刻残差 | 46.440 ms |
+| IOI平均絶対差 | 15.964 ms |
+| IOI相関 | 0.9928 |
+| eventwise descriptor cosine中央値 | 0.9219 |
+| descriptor trajectory cosine | 0.3830 |
+| descriptor diagonal advantage | 0.0295 |
+
+イベント間隔の形は非常に近い。一方、記述子trajectoryの一致は完全ではない。時間骨格の一致が最も強く、その上に粗い帯域・音量変化の順序一致が付加される。
+
+### 32.3 8190組内の順位
+
+| 比較量 | 候補順位 | 候補より弱い組の割合 |
+| --- | ---: | ---: |
+| 時刻残差RMS（小さいほど強い） | 1 / 8190 | 99.99% |
+| descriptor trajectory（大きいほど強い） | 185 / 8190 | 97.74% |
+| diagonal advantage（大きいほど強い） | 190 / 8190 | 97.68% |
+
+対照群の時刻残差RMSは1 percentileでも94.002 ms、中央値377.220 msだった。候補は20.109 msで、8190組中最小だった。descriptor trajectoryは対照中央値-0.0063、95 percentile 0.2998に対し、候補は0.3830だった。
+
+時刻残差が候補以下かつdescriptor trajectoryが候補以上の別組合せは0だった。この複合条件は事前登録した判定規則ではないため、統計的有意性として報告しない。
+
+### 32.4 判断の更新
+
+「似た周期の別区間が偶然並んだだけ」という説明は弱くなった。理由は、IOI相関0.9928と最小時刻残差だけでなく、相対的なスペクトル・RMS変化の順序も対照の上位2.26%に入ったためである。
+
+ただし、ここから確定できるのは次までである。
+
+> 取得した二つのpreviewには、album版6.20–8.85秒とCops版7.50–10.16秒の間に、時間骨格と粗いイベント特徴の両方が稀に近い約2.65秒の局所単位がある。
+
+確定しないもの:
+
+- 同一sampleまたは同一録音
+- どちらが編集元か
+- pitch、速度、EQ、圧縮などの加工系列
+- previewの原曲内絶対位置
+- `Stem / Long Stem`の題名境界
+- 二版全体の同一性
+
+したがって状態を次へ更新する。
+
+```yaml
+local_event_sequence:
+  timing_specificity: strong_within_preview_control
+  descriptor_trajectory_specificity: elevated
+  shared_unit_hypothesis: strengthened
+  sample_identity: unacquired
+  lineage: unacquired
+```
+
+### 32.5 追加保存と次の工程
+
+追加保存:
+
+- `event-sequence-specificity-20260904.json`
+- `tools/event_sequence_specificity.py`
+
+次はこの候補に対して、広帯域六次元記述子への依存を調べる。周波数帯域の分割数、RMS除外、centroid除外を変えてもtrajectory順位が残るかを測り、特定の特徴設計が作った一致を除外する。実際の聴取とフル尺取得は未実施のまま保持する。
