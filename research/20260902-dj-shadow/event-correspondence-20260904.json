@@ -1,0 +1,193 @@
+{
+  "analysis_date_utc": "2026-09-04",
+  "source_previews_sha256": {
+    "stem-long-stem-preview.m4a": "12f10578146558fd2e15d8342314b8f1a155481522ec514e40887c77d00264a7",
+    "stem-cops-robbers-preview.m4a": "317551ae1ad70813f818fbe1ae7c7a4e101cf36c3ef1980e88444f916d3f9b29"
+  },
+  "event_extractor": {
+    "sample_rate": 22050,
+    "stft_nfft": 2048,
+    "hop_samples": 256,
+    "peak_minimum_distance_s": 0.09,
+    "match_tolerance_s": 0.05,
+    "event_descriptor": "four band-energy ratios plus normalized centroid and RMS"
+  },
+  "event_counts": {
+    "album": 99,
+    "cops": 98
+  },
+  "previous_feature_lag_one_to_one": {
+    "lag_s": 0.7314,
+    "matched_pairs": 51,
+    "album_event_coverage": 0.515,
+    "cops_event_coverage": 0.52,
+    "median_absolute_residual_s": 0.0,
+    "p90_absolute_residual_s": 0.0232,
+    "median_descriptor_cosine": 0.9892,
+    "longest_consecutive_index_run": 3,
+    "longest_consecutive_run_region": {
+      "album_event_time_range_s": [
+        7.709,
+        8.8468
+      ],
+      "cops_event_time_range_s": [
+        8.4405,
+        9.5898
+      ],
+      "album_span_s": 1.1378,
+      "median_absolute_residual_s": 0.0116,
+      "median_descriptor_cosine": 0.9834
+    }
+  },
+  "lag_grid_scan": {
+    "grid_s": [
+      -2.0,
+      2.0,
+      0.01
+    ],
+    "tolerance_s": 0.05,
+    "maximum_matched_pairs": 55,
+    "best_lag_s": 1.31,
+    "equal_maximum_lag_span_s": [
+      0.71,
+      1.32
+    ],
+    "equal_maximum_lags_s": [
+      1.31,
+      1.32,
+      0.71
+    ],
+    "previous_lag_matched_pairs": 51,
+    "previous_lag_count_percentile_across_grid": 95.0,
+    "top_five_lags": [
+      {
+        "lag_s": 1.31,
+        "matched_pairs": 55,
+        "total_absolute_residual_s": 0.776
+      },
+      {
+        "lag_s": 1.32,
+        "matched_pairs": 55,
+        "total_absolute_residual_s": 1.1482
+      },
+      {
+        "lag_s": 0.71,
+        "matched_pairs": 55,
+        "total_absolute_residual_s": 1.4707
+      },
+      {
+        "lag_s": 1.3,
+        "matched_pairs": 53,
+        "total_absolute_residual_s": 0.5414
+      },
+      {
+        "lag_s": 0.74,
+        "matched_pairs": 53,
+        "total_absolute_residual_s": 0.599
+      }
+    ]
+  },
+  "best_grid_lag_one_to_one": {
+    "lag_s": 1.31,
+    "matched_pairs": 55,
+    "album_event_coverage": 0.556,
+    "cops_event_coverage": 0.561,
+    "median_absolute_residual_s": 0.0097,
+    "p90_absolute_residual_s": 0.0298,
+    "median_descriptor_cosine": 0.9922,
+    "longest_consecutive_index_run": 9,
+    "longest_consecutive_run_region": {
+      "album_event_time_range_s": [
+        6.1997,
+        8.8468
+      ],
+      "cops_event_time_range_s": [
+        7.5,
+        10.1587
+      ],
+      "album_span_s": 2.6471,
+      "median_absolute_residual_s": 0.0097,
+      "median_descriptor_cosine": 0.9219
+    }
+  },
+  "five_second_local_lag_scans": [
+    {
+      "album_range_s": [
+        0.0,
+        5.0
+      ],
+      "album_events": 27,
+      "best_lag_s": 0.73,
+      "equal_maximum_lag_span_s": [
+        0.13,
+        1.89
+      ],
+      "maximum_matched_pairs": 10,
+      "coverage_at_best_lag": 0.37
+    },
+    {
+      "album_range_s": [
+        5.0,
+        10.0
+      ],
+      "album_events": 21,
+      "best_lag_s": 1.3,
+      "equal_maximum_lag_span_s": [
+        1.3,
+        1.87
+      ],
+      "maximum_matched_pairs": 13,
+      "coverage_at_best_lag": 0.619
+    },
+    {
+      "album_range_s": [
+        10.0,
+        15.0
+      ],
+      "album_events": 11,
+      "best_lag_s": 0.42,
+      "equal_maximum_lag_span_s": [
+        0.42,
+        0.42
+      ],
+      "maximum_matched_pairs": 9,
+      "coverage_at_best_lag": 0.818
+    },
+    {
+      "album_range_s": [
+        15.0,
+        20.0
+      ],
+      "album_events": 15,
+      "best_lag_s": 1.59,
+      "equal_maximum_lag_span_s": [
+        -1.57,
+        1.6
+      ],
+      "maximum_matched_pairs": 11,
+      "coverage_at_best_lag": 0.733
+    },
+    {
+      "album_range_s": [
+        20.0,
+        25.0
+      ],
+      "album_events": 12,
+      "best_lag_s": -0.94,
+      "equal_maximum_lag_span_s": [
+        -0.94,
+        0.78
+      ],
+      "maximum_matched_pairs": 10,
+      "coverage_at_best_lag": 0.833
+    }
+  ],
+  "limits": [
+    "analysis is limited to two approximately 30-second Apple Music previews",
+    "preview source positions are unknown",
+    "dense or periodic event trains can produce high one-to-one proximity by chance",
+    "descriptor cosine is coarse spectral-event similarity, not sample identity",
+    "the analysis does not establish codec delay, edit lineage, or a semantic scene boundary",
+    "no listening judgment is claimed"
+  ]
+}
