@@ -4,7 +4,7 @@
 - 研究対象: Basic Channel、Maurizio、Rhythm & Sound、Chain Reaction
 - 現在の問い: 固定ループの再生ではなく、反復素材の内部状態をリアルタイム演奏する原理を抽出できるか
 - 版: 初期研究記録
-- 更新日時: 2026-09-04
+- 更新日時: 2026-09-05
 - 実装変更: なし
 - 製品採用状態: 未統合
 
@@ -780,3 +780,119 @@ BCD track 11 "Radiance III Edit" -> audio family: Radiance II
 - BCD track 11がRadiance II全体と同一か、先頭末尾・gain・masteringを含めて検査する
 - 初版CD、再発CD、配信版のどの版までRoman numeralの交差が継承されているか分離する
 - レーベル本人、盤面付属物、製造資料による明示的な訂正は未取得
+
+
+## 18. H6局所検証: editが保持する不変量は曲ごとに違う
+
+### 18.1 対象と取得完全性
+
+Hard Waxの公開90秒clipから、次の原版／BCD版3組を取得した。
+
+| 比較組 | 原版 | BCD版 |
+|---|---|---|
+| Quadrant | BC-06 `Quadrant Dub I` 15:36 | track 4 `Quadrant Dub I Edit` 6:57 |
+| Presence | BC-05 `Presence` 20:40 | track 7 `Presence Edit` 8:17 |
+| Radiance | BC-08 `Radiance I` 13:31 | track 10 `Radiance I` 7:58 |
+
+参照:
+
+- https://hardwax.com/00036/basic-channel/quadrant-dub/
+- https://hardwax.com/00035/cyrus/inversion/
+- https://hardwax.com/00038/basic-channel/radiance/
+- https://hardwax.com/01279/basic-channel/bcd/
+
+初回取得では一部ファイルが通信途中で切れ、MP3 containerは90.044082秒と表示される一方、復号可能尺が61.9〜89.5秒になった。再取得hashも一致しなかったため、この初回測定は棄却した。
+
+配信元の`Content-Length: 1441122`と照合し、不足分を再取得した。以下は全6本が1,441,122 bytesで一致し、`ffmpeg`の全区間復号検査を通過したファイルだけの結果である。
+
+| 音源 | SHA-256 |
+|---|---|
+| Presence 12 | `354ea61f05f1edb3860e54302079ffc7e87ece26964648e78381ad492183ebcd` |
+| Presence BCD | `cbaee8afcfe11b473f8df8c37fc73a90c4b67e3f61fe4249fb34b8bdd7241b03` |
+| Quadrant I 12 | `689503230a7a79a15f797c21ad4fb11a5431fea58e4b4c5cd268dabd9d51fe27` |
+| Quadrant I BCD | `df5730c3e3e9b62f37a0ad2671b87e7aa325b113afb16028f90d0b26025a7c13` |
+| Radiance I 12 | `997c6f1f4eec3335edc38b211571505f90bbba97eca09eca3386d96e8116c9e6` |
+| Radiance I BCD | `203b7f7e05388cbb1d9f315a445f349d369323e78a689839c6a29f3c729cf880` |
+
+全ファイルはMP3、44.1kHz、stereo、復号後有効音声90.0秒。clip本体はGitへ保存しない。
+
+### 18.2 共通解析器
+
+第15〜17節と同じGitHub `main/research/music-analysis/`の共通解析器だけを使用した。合成信号による校正は12/12項目で成功した。窓別監査は`Essentia 2.1b6.dev1389`を使用した。
+
+以下は開始位置不明の90秒clipに対する局所測定であり、全曲値でも全長整列結果でもない。
+
+| Preview | RMS dBFS | centroid | onset/s | 全区間BPM推定 | 窓BPM推定 |
+|---|---:|---:|---:|---:|---|
+| Presence 12 | -24.35 | 1178.3 Hz | 8.544 | 62.67 | 124.63 / 61.95 / 124.06 |
+| Presence BCD | -22.89 | 869.0 Hz | 8.644 | 62.23 | 124.94 / 62.44 / 124.22 |
+| Quadrant I 12 | -13.81 | 1738.5 Hz | 4.189 | 123.96 | 123.45 / 124.15 / 123.40 |
+| Quadrant I BCD | -16.75 | 1204.9 Hz | 6.467 | 123.97 | 123.73 / 123.40 / 123.48 |
+| Radiance I 12 | -18.08 | 3126.5 Hz | 6.156 | 172.27 | 71.81 / 172.27 / 172.27 |
+| Radiance I BCD | -20.75 | 3455.6 Hz | 5.978 | 172.27 | 163.45 / 163.24 / 172.27 |
+
+### 18.3 Presence: pulse族と調性列が版を越える
+
+`Presence`両版は、全区間BPM推定が62.67／62.23、窓BPMが約124→62→124という同じhalf/double族になった。onset rateも8.544／8.644と近い。3窓の調推定列は両方とも`F minor → Ab major → Ab major`だった。
+
+一方、spectral centroidは1178.3／869.0 Hz、RMSは-24.35／-22.89 dBFSで一致しない。
+
+したがって、この局所区間では`pulse family`、`event density`、推定上の調性遷移が保持候補となり、`spectral field`とlevelは可変である。これはH6を局所的に支持するが、両clipの原曲内開始位置が対応するかは未同定である。
+
+### 18.4 Quadrant Dub I: pulseは残り、表面密度は変わる
+
+`Quadrant Dub I`両版の全区間BPM推定は123.96／123.97で、全窓が約124 BPMに安定した。周期候補にも両方で61.89／124.53が現れた。
+
+しかし、onset rateは4.189から6.467/sへ約54%増え、spectral centroidは1738.5から1204.9 Hzへ下がった。3窓の調推定も原版は`F# minor`で一致したのに対し、BCD版は`B minor / B minor / E minor`へ分かれた。
+
+ここでは、同じpulse骨格の上でevent density、帯域、推定調性が別の局所状態を取っている。Editを原版の均等縮小として扱うより、pulseを保持しながら異なる状態占有率を選んだものとして調べる方がよい。
+
+### 18.5 Radiance I: BPM値ではなく曖昧さが共通する
+
+`Radiance I`は両版の周期候補に175.19が現れ、3窓の調推定列も`C# minor → C# major → C# major`で一致した。onset rateも6.156／5.978と近い。
+
+しかし全区間BPM推定のconfidenceは0.327／0.357と低く、別方式との差も4.85%／4.37%だった。原版は窓BPMが71.81／172.27／172.27へ割れ、単一BPMは棄却する。BCD版も数値上の直接安定判定だけを根拠に172.27 BPMを採用しない。
+
+この組で保持される候補は単一tempoではなく、複数の周期層がbeat trackerの支配権を奪い合う`ambiguity signature`である。値を一つに確定すると、版を越えて残った性質を逆に消す。
+
+### 18.6 H6の更新
+
+今回の3組から、`editは状態軌道の節点を残す`というH6を次のように具体化する。
+
+```text
+version identity
+  = retained invariants
+  + changed state occupancy
+  + unresolved source-position relation
+```
+
+保持される不変量は全曲共通ではない。
+
+| 作品 | 局所的に保持された候補 | 変わった候補 |
+|---|---|---|
+| Presence | pulse family、event density、調性推定列 | spectral field、level |
+| Quadrant Dub I | pulse family | event density、spectral field、調性推定 |
+| Radiance I | periodicity候補、調性推定列、ambiguity signature | spectral field、level |
+
+したがって、楽器のversion比較を単一の`similarity score`へ潰さない。`pulse family`、`event density`、`spectral field`、`ambiguity signature`を独立表示し、何を残して何を変えた演奏史なのかを比較できる必要がある。
+
+### 18.7 方法上の更新
+
+音源解析の前に次の取得検証を必須化する。
+
+1. HTTP上の期待byte数を取得する
+2. 実ファイルsizeと一致させる
+3. hashを固定する
+4. decoderで全区間を走査する
+5. container durationではなく復号後の有効尺を測る
+6. どれかが失敗した測定は採用表へ入れない
+
+今回、container durationだけを信用すると、不完全取得を90秒clipとして解析結果へ混入させるところだった。取得完全性は信号解析より前の証拠層である。
+
+### 18.8 未完了
+
+- 3組のclip開始位置を原版／BCD版で同定し、対応区間か別区間か判定する
+- 全長整列により、editで残された状態遷移と除かれた状態遷移を分ける
+- 音量正規化後にspectral field差が残るか再測定する
+- `Radiance I`の周期競合がどの帯域／音響層から生じるか分離する
+- H6は局所支持に留まり、全曲の状態軌道編集を証明していない
