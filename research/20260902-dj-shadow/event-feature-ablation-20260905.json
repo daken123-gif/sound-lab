@@ -1,0 +1,243 @@
+{
+  "analysis_date_utc": "2026-09-05",
+  "source_previews_sha256": {
+    "stem-long-stem-preview.m4a": "12f10578146558fd2e15d8342314b8f1a155481522ec514e40887c77d00264a7",
+    "stem-cops-robbers-preview.m4a": "317551ae1ad70813f818fbe1ae7c7a4e101cf36c3ef1980e88444f916d3f9b29"
+  },
+  "fixed_candidate": {
+    "album_event_indices": [
+      36,
+      44
+    ],
+    "cops_event_indices": [
+      15,
+      23
+    ],
+    "album_time_range_s": [
+      6.1997,
+      8.8468
+    ],
+    "cops_time_range_s": [
+      7.5,
+      10.1587
+    ],
+    "length_events": 9
+  },
+  "feature_configurations": [
+    {
+      "config": "broad4_centroid_rms",
+      "dimensions": 6,
+      "candidate_trajectory_cosine": 0.383,
+      "rank_higher_is_better": 185,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 97.74,
+      "control_distribution": {
+        "median": -0.0063,
+        "p95": 0.2998,
+        "p99": 0.4705
+      }
+    },
+    {
+      "config": "broad4_only",
+      "dimensions": 4,
+      "candidate_trajectory_cosine": 0.1315,
+      "rank_higher_is_better": 1610,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 80.34,
+      "control_distribution": {
+        "median": -0.014,
+        "p95": 0.3072,
+        "p99": 0.4972
+      }
+    },
+    {
+      "config": "broad4_centroid",
+      "dimensions": 5,
+      "candidate_trajectory_cosine": 0.2724,
+      "rank_higher_is_better": 626,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 92.36,
+      "control_distribution": {
+        "median": -0.0011,
+        "p95": 0.3187,
+        "p99": 0.4925
+      }
+    },
+    {
+      "config": "broad4_rms",
+      "dimensions": 5,
+      "candidate_trajectory_cosine": 0.2768,
+      "rank_higher_is_better": 598,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 92.7,
+      "control_distribution": {
+        "median": -0.0072,
+        "p95": 0.3231,
+        "p99": 0.4831
+      }
+    },
+    {
+      "config": "medium8_centroid_rms",
+      "dimensions": 10,
+      "candidate_trajectory_cosine": 0.2106,
+      "rank_higher_is_better": 580,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 92.92,
+      "control_distribution": {
+        "median": -0.0057,
+        "p95": 0.2328,
+        "p99": 0.3624
+      }
+    },
+    {
+      "config": "medium8_only",
+      "dimensions": 8,
+      "candidate_trajectory_cosine": 0.0808,
+      "rank_higher_is_better": 2014,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 75.41,
+      "control_distribution": {
+        "median": -0.0139,
+        "p95": 0.2446,
+        "p99": 0.3673
+      }
+    },
+    {
+      "config": "medium8_centroid",
+      "dimensions": 9,
+      "candidate_trajectory_cosine": 0.1156,
+      "rank_higher_is_better": 1575,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 80.77,
+      "control_distribution": {
+        "median": -0.0104,
+        "p95": 0.2429,
+        "p99": 0.3753
+      }
+    },
+    {
+      "config": "medium8_rms",
+      "dimensions": 9,
+      "candidate_trajectory_cosine": 0.1568,
+      "rank_higher_is_better": 1024,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 87.5,
+      "control_distribution": {
+        "median": -0.0078,
+        "p95": 0.2284,
+        "p99": 0.3473
+      }
+    },
+    {
+      "config": "fine12_centroid_rms",
+      "dimensions": 14,
+      "candidate_trajectory_cosine": 0.1717,
+      "rank_higher_is_better": 591,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 92.78,
+      "control_distribution": {
+        "median": -0.0034,
+        "p95": 0.196,
+        "p99": 0.3294
+      }
+    },
+    {
+      "config": "fine12_only",
+      "dimensions": 12,
+      "candidate_trajectory_cosine": 0.0679,
+      "rank_higher_is_better": 2077,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 74.64,
+      "control_distribution": {
+        "median": -0.008,
+        "p95": 0.1984,
+        "p99": 0.3235
+      }
+    },
+    {
+      "config": "fine12_centroid",
+      "dimensions": 13,
+      "candidate_trajectory_cosine": 0.0827,
+      "rank_higher_is_better": 1849,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 77.42,
+      "control_distribution": {
+        "median": -0.0074,
+        "p95": 0.2,
+        "p99": 0.3227
+      }
+    },
+    {
+      "config": "fine12_rms",
+      "dimensions": 13,
+      "candidate_trajectory_cosine": 0.1337,
+      "rank_higher_is_better": 937,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 88.56,
+      "control_distribution": {
+        "median": -0.0048,
+        "p95": 0.1918,
+        "p99": 0.3202
+      }
+    },
+    {
+      "config": "centroid_rms_only",
+      "dimensions": 2,
+      "candidate_trajectory_cosine": 0.8881,
+      "rank_higher_is_better": 21,
+      "comparison_pairs": 8190,
+      "percentile_better_than": 99.74,
+      "control_distribution": {
+        "median": -0.0188,
+        "p95": 0.6024,
+        "p99": 0.7856
+      }
+    }
+  ],
+  "post_hoc_scalar_diagnostics": {
+    "status": "added after the 13-configuration result showed centroid-plus-RMS dominance",
+    "results": [
+      {
+        "config": "centroid_only",
+        "dimensions": 1,
+        "candidate_trajectory_cosine": 0.862,
+        "rank_higher_is_better": 17,
+        "comparison_pairs": 8190,
+        "percentile_better_than": 99.79,
+        "control_distribution": {
+          "median": -0.0027,
+          "p95": 0.5752,
+          "p99": 0.7654
+        }
+      },
+      {
+        "config": "rms_only",
+        "dimensions": 1,
+        "candidate_trajectory_cosine": 0.7841,
+        "rank_higher_is_better": 157,
+        "comparison_pairs": 8190,
+        "percentile_better_than": 98.08,
+        "control_distribution": {
+          "median": -0.0239,
+          "p95": 0.6825,
+          "p99": 0.8354
+        }
+      }
+    ]
+  },
+  "robustness_summary": {
+    "configurations_tested": 13,
+    "configurations_at_or_above_95th_percentile": 2,
+    "configurations_at_or_above_90th_percentile": 6,
+    "minimum_percentile": 74.64,
+    "maximum_percentile": 99.74
+  },
+  "limits": [
+    "the candidate indices were fixed from the earlier analysis, but the same two previews supply all controls",
+    "the core 13 feature configurations were specified before inspecting their results",
+    "centroid-only and RMS-only diagnostics were added after inspecting the core result and are explicitly post hoc",
+    "broad-band descriptors cannot establish sample identity or production lineage",
+    "ranks are descriptive internal controls, not confirmatory p-values",
+    "no listening judgment or full-track inference is claimed"
+  ]
+}
