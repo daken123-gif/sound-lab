@@ -21,7 +21,7 @@
 
 ## この記録の証拠境界
 
-この研究は、本人インタビュー、公式ディスコグラフィー、および一次資料を引用する記事を中心にした文献研究である。AutechreのMaxパッチ、ライブシステム、マルチトラック素材、内部パラメータは取得していない。2026-09-04に`Flutter`のApple Music公式30秒プレビューを初めて取得し、波形由来のevent候補、音量、帯域、局所周期、遅延自己類似を実測した。ただし全曲597.733秒の約5.02%に限られ、全曲構成、bar同一性、制作内部、他作品を代表しない。
+この研究は、本人インタビュー、公式ディスコグラフィー、および一次資料を引用する記事を中心にした文献研究である。AutechreのMaxパッチ、ライブシステム、マルチトラック素材、内部パラメータは取得していない。2026-09-04に`Flutter`のApple Music公式30秒プレビューを初めて取得し、波形由来のevent候補、音量、帯域、局所周期、遅延自己類似を実測した。ただし全曲597.733秒の約5.02%に限られ、全曲構成、bar同一性、制作内部、他作品を代表しない。2026-09-05にYouTubeの`Autechre - Topic`上で権利表示を伴う全曲候補を同定したが、音声bytesの取得・解析とpreviewとの同一版照合は未実施である。
 
 以下を分離する。
 
@@ -1006,10 +1006,43 @@ bar同一性は、PCMの完全一致だけでは判定しない。音色差を�
 
 この検証方針は研究手順であり、YouTube依存の製品機能、Sound Labへの音源取込み、設計候補の採用を意味しない。
 
-## 22. 未検証事項
+## 22. `Flutter`フル音源候補の一次同定 — YouTube Topic
 
-- `Flutter`全曲と他作品の波形・イベント列の分析。今回完了したのは同曲の位置不明な公式30秒previewだけである。
-- 公式または権利者公開の`Flutter`フル音源の取得可能性、利用条件、previewとの同一版照合。
+2026-09-05、YouTubeの公開ページとoEmbed metadataを照合し、`Autechre - Topic`上の`Flutter`を、後日の全曲検証に使う第一候補として同定した。この段階は`full-source-candidate-identified`であり、`full-source-observed`ではない。
+
+```text
+FULL_SOURCE_MANIFEST {
+  artist: Autechre
+  track: Flutter
+  release_or_upload_title: Flutter / Anti
+  official_channel_or_rightsholder: Autechre - Topic / ℗ Warp Records
+  source_url: https://www.youtube.com/watch?v=mdhtm6qjmhU
+  video_or_catalog_id: mdhtm6qjmhU
+  channel_id: UCBUAlfIrcw1f0c4qGrYn3xA
+  published_duration: 600 seconds
+  release_date_in_description: 1994-09-03
+  access_date: 2026-09-05
+  stream_or_file_properties: not retrieved
+  sha256_if_bytes_retrieved: not available
+  rights_and_retrieval_boundary: public metadata and playback surface confirmed;
+    audio bytes not retrieved, copied, or analyzed
+  evidence_state: full-source-candidate-identified
+}
+```
+
+公開ページのplayer metadataは、title `Flutter`、owner channel `Autechre - Topic`、channel ID `UCBUAlfIrcw1f0c4qGrYn3xA`、尺600秒を返した。descriptionは`Flutter · Autechre`、release `Anti`、`℗ Warp Records`、1994-09-03 release、YouTubeによる自動生成と表示する。これにより、無関係な第三者uploadより優先する権利者配信候補までは固定できる。
+
+一方、公式AE_STOREは9:57、Apple lookupは597.733秒、YouTube metadataは600秒であり、表示丸め、先頭・末尾silence、codec、別masterのどれによる差かは未判定である。従って三者を同一PCM／同一masterとはまだ扱わない。section 20のpreview所見も、この候補の一部として再解釈せず、照合完了まで独立した`preview-observed`として保持する。
+
+比較のために確認した動画ID`EZFmZ0gZNZI`は、oEmbed上の投稿者が`WomanElectroSounds`であり、Autechre／Warpの公式channelではない。このuploadは探索用候補に留め、版確定や全曲分析の一次入力には使わない。
+
+次のgateは、利用条件に反しない方法で正規音源を解析可能な形にし、source propertiesとSHA-256を固定すること、その後にpreviewのoffsetと一致confidenceを測ることである。それまでは、600秒の公開面を確認できたことを「全曲を聴取・実測した」へ昇格させない。
+
+## 23. 未検証事項
+
+- `Flutter`全曲と他作品の波形・イベント列の分析。完了した音響実測は同曲の位置不明な公式30秒previewだけであり、YouTube Topicは全曲候補のmetadata同定までである。
+- 権利者公開の`Flutter`フル音源を規約に適合して解析可能な形で取得できるか、またその版をpreviewと照合できるか。
+- YouTube Topicの600秒、AE_STOREの9:57、Apple lookupの597.733秒という尺差の原因。
 - `Flutter`のISRCと、Shazam旧song ID `292743285`が現在の直接ページで別曲へ解決される理由。ID衝突を推測で補わない。
 - `Flutter`全曲のbar境界、event同一性、tempo変化と、盤面の`non-repetitive beats`主張の直接検査。
 - `AE_LIVE`複数公演のcommunity segmentation比較は2025年まで進めたが、音声ファイルによるtoolset、境界、公演差、anomalyの直接測定。
@@ -1025,7 +1058,7 @@ bar同一性は、PCMの完全一致だけでは判定しない。音色差を�
 - 独立DRUMと4トラック間の同期を、固定BPM以外でどう成立させるか。
 - 低遅延、CPU、電池、発熱、音量安全性。
 
-## 23. 触る実装パス
+## 24. 触る実装パス
 
 今回の研究では製品コードを変更しない。
 
@@ -1034,7 +1067,7 @@ bar同一性は、PCMの完全一致だけでは判定しない。音色差を�
 - 未変更: `prototype/`
 - 未変更: `integration/`
 
-## 24. 依存する研究・判断
+## 25. 依存する研究・判断
 
 - `RESEARCH_WORKFLOW.md`
 - `integration/DIRECTION.md`
@@ -1045,7 +1078,7 @@ bar同一性は、PCMの完全一致だけでは判定しない。音色差を�
 - `research/20260902-jeff-mills/` — 持続層、手動破断、事故からの回復。長期研究branch本文を取得。
 - Skulptur研究本文 — Git上では未取得のため、この研究から内容を補完しない。
 
-## 25. 失効した判断
+## 26. 失効した判断
 
 - section 16の可変窓モデルを、入口から出口まで一方向にしか進まない完全モデルとして使う候補は失効。2025年までの共同分析には、同一区間の反復、停止後の再開、過去領域への一時回帰、別公演での古い窓の再選択がある。通常経路としての`preferred_forward_order`は維持し、section 17の`ELASTIC_SPINE`を後継候補とする。
 - cellを、一曲、一つの公開segment、完成parameterを一括recallする固定sceneのいずれかへ等置する候補は失効。2022年の本人説明が示すmodule／settings参照のhard-set層、内部morph、手動semi-linear traversalを分離したsection 18のモデルを後継候補とする。
@@ -1093,12 +1126,14 @@ bar同一性は、PCMの完全一致だけでは判定しない。音色差を�
    - public lookupでtrack metadataと30秒`previewUrl`を取得。preview音源はGitへ保存していない。
 16. [Shazam — Flutter locator](https://www.shazam.com/song/292743285/flutter/music-video)
    - 検索indexではAutechre／`Flutter`／`Anti - EP`を返したが、2026-09-04の直接取得は別曲へ解決されたため、現行identityの単独根拠にはしない。
+17. [YouTube — Flutter / Autechre - Topic](https://www.youtube.com/watch?v=mdhtm6qjmhU)
+   - 公開player metadataとoEmbedでtitle、Topic channel、channel ID、600秒の尺を確認。descriptionの`℗ Warp Records`と自動生成表示を、権利者配信候補の根拠にした。音声bytesは取得・解析していない。
 
 ### 補助資料
 
-17. [VICE — How the Political Warning of Autechre's Anti EP Made it a Warp Records Classic](https://www.vice.com/en/article/warp-25-autechre-anti-ep/)
+18. [VICE — How the Political Warning of Autechre's Anti EP Made it a Warp Records Classic](https://www.vice.com/en/article/warp-25-autechre-anti-ep/)
    - `Anti EP`盤面警告文と`Flutter`の非同一bar設計を確認する補助資料。本人への新規インタビューではないため、盤面一次資料と同格には扱わない。
-18. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
+19. [Los Angeles Times — Autechre's music is the remix of a song that never existed (2015)](https://www.latimes.com/entertainment/music/la-et-ms-autechre-20151119-story.html)
    - `AE_LIVE`で毎回異なるnote sequencing、各trackの可能範囲を決めるconditionals、二人のdata共有と即時反応についてSean Boothが説明。
-19. [AEPages — AE_2022－ Analysis](https://aepages.org/wiki/AE_2022%EF%BC%8D#Analysis)
+20. [AEPages — AE_2022－ Analysis](https://aepages.org/wiki/AE_2022%EF%BC%8D#Analysis)
    - 公式soundboardとbootlegを跨いだsegment対応、timestamp、2025年までのperformance anomalyの共同分析。work in progressであり、内部cell名や確定境界とは扱わない。
