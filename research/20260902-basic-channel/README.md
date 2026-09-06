@@ -4,7 +4,7 @@
 - 研究対象: Basic Channel、Maurizio、Rhythm & Sound、Chain Reaction
 - 現在の問い: 固定ループの再生ではなく、反復素材の内部状態をリアルタイム演奏する原理を抽出できるか
 - 版: 初期研究記録
-- 更新日時: 2026-09-05
+- 更新日時: 2026-09-06
 - 実装変更: なし
 - 製品採用状態: 未統合
 
@@ -896,3 +896,72 @@ version identity
 - 音量正規化後にspectral field差が残るか再測定する
 - `Radiance I`の周期競合がどの帯域／音響層から生じるか分離する
 - H6は局所支持に留まり、全曲の状態軌道編集を証明していない
+
+
+## 19. H6位相検証: editは拍内配置を一律には変えない
+
+### 19.1 問いと方法
+
+第18節で取得完全性を確認した6本のHard Wax 90秒clipへ、GitHub `main/research/music-analysis/phase_analysis.py`を適用した。新しい専用解析器は作らず、共有パイプラインの12分割beat-phase histogram、正規化entropy、二分／三連間隔scoreを使用した。
+
+この解析器のonset detectorは第18節の比較器と設定が異なる。そのため、ここでの`onset/s`は位相集計の母数確認にだけ使い、第18節のevent densityを置き換えない。
+
+合成校正では次を確認した。
+
+| 合成入力 | phase entropy | binary score | triplet score |
+|---|---:|---:|---:|
+| straight eighth | 0.514 | 0.739 | 0.000 |
+| 2:1 swing | 0.494 | 0.000 | 0.280 |
+| 位相をずらしたstraight eighth | 0.495 | 0.541 | 0.000 |
+
+straight eighthで二分側、2:1 swingで三連側が選択的に立ったため、少なくとも二分／三連間隔の識別方向は妥当である。一方、位相をずらしたstraight eighthのbinary scoreは0.739から0.541へ変化した。したがってscoreを絶対量として過信せず、同じ取得条件の版間比較に限定する。
+
+### 19.2 版間測定
+
+`top phase`は12分割binの中心を拍長0〜1で表す。順番は出現数の多い順である。
+
+| Preview | beat confidence | onset/s | top phase | entropy | binary | triplet |
+|---|---:|---:|---|---:|---:|---:|
+| Presence 12 | 3.030 | 4.111 | .958 / .375 / .208 / .625 | 0.733 | 0.277 | 0.408 |
+| Presence BCD | 3.341 | 4.022 | .958 / .375 / .208 / .625 | 0.741 | 0.312 | 0.395 |
+| Quadrant I 12 | 2.036 | 4.500 | .958 / .542 / .042 / .792 | 0.692 | 0.582 | 0.197 |
+| Quadrant I BCD | 1.465 | 4.556 | .542 / .958 / .042 / .792 | 0.682 | 0.596 | 0.117 |
+| Radiance I 12 | 0.327 | 4.833 | .458 / .875 / .958 / .542 | 0.756 | 0.655 | 0.246 |
+| Radiance I BCD | 0.357 | 4.211 | .042 / .542 / .625 / .708 | 0.895 | 0.810 | 0.543 |
+
+### 19.3 PresenceとQuadrant I: 位相骨格の保持候補
+
+`Presence`は上位4位相の位置と順序が完全に一致した。entropy差は+0.008、binary差は+0.035、triplet差は-0.013に留まる。取得区間の原曲内位置は未同定だが、少なくとも両clipでは拍内event配置の骨格が近い。
+
+`Quadrant Dub I`も上位4位相の集合が一致し、先頭2位の順序だけが入れ替わった。entropy差は-0.010、binary差は+0.014である。triplet scoreは0.197から0.117へ下がるが、合成2:1 swingの0.280より両版とも低い。第18節ではBCD版のevent densityが増えていたが、今回の位相解析では、増えたeventが拍内骨格を全面的に作り替えたとは読めない。
+
+以上の2組は、editが`pulse family`だけでなく、局所的には`phase topology`も保持し得るというH6の追加候補になる。ただし開始位置未同定のclip同士なので、同一素材の保持か、曲全体に反復する配置かはまだ分離できない。
+
+### 19.4 Radiance I: 差は大きいが確定しない
+
+`Radiance I`は、原版からBCD版へentropyが0.756から0.895、binary scoreが0.655から0.810、triplet scoreが0.246から0.543へ変わり、上位位相も一致しない。測定上はBCD版のonset配置がより拡散し、二分／三連の両間隔成分が増えた。
+
+しかしbeat confidenceは0.327／0.357と極端に低い。第18節で確認した周期競合により、beat trackerがどの周期層を拍として採ったか安定していない可能性が高い。したがって、この差を`BCD版がswingした`、`syncopationが増えた`とは判定しない。現段階では、異なる局所状態または異なる拍仮説が観測された、という競合を保持する。
+
+### 19.5 三層モデルへの追加
+
+位相は単一の`swing amount`へ潰さず、少なくとも次の三つへ分ける。
+
+| 層 | 保持するもの | UI／解析上の役割 |
+|---|---|---|
+| pulse hypothesis | BPM候補、half/double関係、confidence | 拍の仮説と曖昧さを表示する |
+| phase topology | 拍内event分布、entropy、間隔score | eventの配置骨格を比較する |
+| state occupancy | その配置を持つ区間の滞在と遷移 | editで残した状態／除いた状態を追う |
+
+これは既存の三層モデルを性愛会話への過去の駄目出しから転用したものではない。今回の音源証拠から必要になった、拍仮説・拍内配置・時間上の占有を混同しないための研究上の分離である。
+
+楽器実装では、beat confidenceが低いときに位相ノブへ偽の確定値を返さない。複数のpulse hypothesisを残したままphase topologyを比較できる状態が必要である。
+
+### 19.6 硬い限界と未完了
+
+- 解析は回転不変の位相間隔を見るため、検証済みdownbeat anchorなしにsyncopationの位置を同定できない
+- scoreは合成校正でも位相ずれにより振幅が変わるため、ジャンル横断の絶対尺度ではない
+- clip開始位置が未同定なので、原版／editの対応区間比較ではない
+- `Radiance I`は帯域別onsetと複数の拍仮説ごとに位相分布を再計算する
+- `Presence`と`Quadrant Dub I`は全長整列後、対応区間でtop phase集合が残るか再検証する
+- downbeatを人手または別解析で検証できるまで、`swing`／`syncopation`という意味ラベルは確定しない
