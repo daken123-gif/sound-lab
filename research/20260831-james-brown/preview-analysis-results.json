@@ -1,0 +1,192 @@
+{
+  "scope": "Shazam/Apple Music catalog preview bytes only; previews are not full recordings",
+  "audio_committed": false,
+  "source_records": {
+    "cold_sweat.m4a": {
+      "apple_music_song_id": "1434917832",
+      "isrc": "USPR36707298",
+      "catalog_name": "コールド・スウェット (1967 Version)",
+      "catalog_album": "Foundations of Funk: A Brand New Bag: 1964-1969",
+      "preview_sha256": "aa96fb17bf8096337b70ef1e34c26cd6becbe083603e09f2b0fdb4aad860a1a3"
+    },
+    "funky_drummer.m4a": {
+      "apple_music_song_id": "1469577135",
+      "isrc": "USF068600080",
+      "catalog_name": "ファンキー・ドラマー (Pt. 1 & 2)",
+      "catalog_album": "In the Jungle Groove",
+      "preview_sha256": "2ceffe6dff808783f27f5858802a2a85d230d40ae3a5326344858210d3e8134f"
+    },
+    "sex_machine.m4a": {
+      "apple_music_song_id": "1469581486",
+      "isrc": "USF067025050",
+      "catalog_name": "Get Up (I Feel Like Being a) Sex Machine, Pt. 1 & 2",
+      "catalog_album": "ジェームス・ブラウン ~ 最高の魂を持つ男 - オリジナル・サウンドトラック",
+      "preview_sha256": "ee8ac5aa59052894fd7d33c6dce811de36e5c338359c76a7e6a2d31f354b39e0"
+    },
+    "doing_it_to_death.m4a": {
+      "apple_music_song_id": "1443215213",
+      "isrc": "USPR37387025",
+      "catalog_name": "Doing It to Death, Pts. 1 & 2",
+      "catalog_album": "Doing It to Death",
+      "preview_sha256": "020a185be4ce16abc2fc0ff64fba143efa60aaba1ac5ed40b8c623347fe5e859"
+    }
+  },
+  "analysis": [
+    {
+      "file": "cold_sweat.wav",
+      "duration_seconds": 29.976,
+      "tempo_estimate_bpm": 114.84,
+      "tempo_candidates_bpm": [
+        114.84,
+        74.9
+      ],
+      "bars_observed": 14,
+      "strong_onsets_per_second": 3.269,
+      "adjacent_bar_similarity": 0.711,
+      "two_bar_lag_similarity": 0.7319,
+      "two_bar_gain": 0.0209,
+      "top4_subdivision_concentration": 0.3191,
+      "mean_16th_template": [
+        0.0536,
+        0.0654,
+        0.0472,
+        0.0612,
+        0.0629,
+        0.062,
+        0.0445,
+        0.0588,
+        0.0727,
+        0.053,
+        0.0435,
+        0.0768,
+        0.0843,
+        0.0609,
+        0.0678,
+        0.0852
+      ],
+      "broad_band_onset_correlations": {
+        "low_mid": 0.4873,
+        "low_high": 0.4903,
+        "mid_high": 0.8483
+      }
+    },
+    {
+      "file": "funky_drummer.wav",
+      "duration_seconds": 29.976,
+      "tempo_estimate_bpm": 95.7,
+      "tempo_candidates_bpm": [
+        77.13,
+        129.2,
+        95.7
+      ],
+      "bars_observed": 11,
+      "strong_onsets_per_second": 3.536,
+      "adjacent_bar_similarity": 0.9606,
+      "two_bar_lag_similarity": 0.9248,
+      "two_bar_gain": -0.0358,
+      "top4_subdivision_concentration": 0.4511,
+      "mean_16th_template": [
+        0.0871,
+        0.0216,
+        0.0446,
+        0.0216,
+        0.1074,
+        0.0846,
+        0.0437,
+        0.1126,
+        0.0621,
+        0.0149,
+        0.0588,
+        0.0223,
+        0.0944,
+        0.0492,
+        0.0384,
+        0.1366
+      ],
+      "broad_band_onset_correlations": {
+        "low_mid": 0.5328,
+        "low_high": 0.558,
+        "mid_high": 0.8385
+      }
+    },
+    {
+      "file": "sex_machine.wav",
+      "duration_seconds": 29.976,
+      "tempo_estimate_bpm": 107.67,
+      "tempo_candidates_bpm": [
+        107.67,
+        71.78,
+        139.67,
+        87.59
+      ],
+      "bars_observed": 13,
+      "strong_onsets_per_second": 4.737,
+      "adjacent_bar_similarity": 0.9062,
+      "two_bar_lag_similarity": 0.8845,
+      "two_bar_gain": -0.0216,
+      "top4_subdivision_concentration": 0.3623,
+      "mean_16th_template": [
+        0.1026,
+        0.0492,
+        0.041,
+        0.0778,
+        0.0601,
+        0.0409,
+        0.0547,
+        0.0939,
+        0.0696,
+        0.0338,
+        0.078,
+        0.0878,
+        0.0452,
+        0.0564,
+        0.0435,
+        0.0655
+      ],
+      "broad_band_onset_correlations": {
+        "low_mid": 0.1521,
+        "low_high": 0.2163,
+        "mid_high": 0.7975
+      }
+    },
+    {
+      "file": "doing_it_to_death.wav",
+      "duration_seconds": 29.929,
+      "tempo_estimate_bpm": 114.84,
+      "tempo_candidates_bpm": [
+        114.84,
+        68,
+        86.13
+      ],
+      "bars_observed": 14,
+      "strong_onsets_per_second": 3.809,
+      "adjacent_bar_similarity": 0.8339,
+      "two_bar_lag_similarity": 0.8209,
+      "two_bar_gain": -0.013,
+      "top4_subdivision_concentration": 0.3862,
+      "mean_16th_template": [
+        0.0605,
+        0.0341,
+        0.0626,
+        0.0975,
+        0.118,
+        0.0342,
+        0.061,
+        0.0733,
+        0.0691,
+        0.0211,
+        0.0498,
+        0.0743,
+        0.0964,
+        0.0438,
+        0.0485,
+        0.0558
+      ],
+      "broad_band_onset_correlations": {
+        "low_mid": 0.5278,
+        "low_high": 0.5291,
+        "mid_high": 0.8505
+      }
+    }
+  ]
+}
