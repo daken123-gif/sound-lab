@@ -1,0 +1,41 @@
+{
+  "channels": 2,
+  "duration_seconds": 4.25,
+  "evidence_boundary": "Blind synthetic tone comparison only; condition names are omitted from this manifest and no Charlie Hunter recording is used.",
+  "gesture_markers_seconds": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "sample_rate": 22050,
+  "sample_width_bytes": 2,
+  "samples": [
+    {
+      "file": "sample-a.wav",
+      "frames": 93712,
+      "peak": 0.445561,
+      "sample_id": "sample-a",
+      "sha256": "8a758010e6185f3664c9b71762d7c026727714d332cc926a82d8e437a17cecf2"
+    },
+    {
+      "file": "sample-b.wav",
+      "frames": 93712,
+      "peak": 0.411172,
+      "sample_id": "sample-b",
+      "sha256": "679e4f4bb0d5dffb8fc46d39f71d4e00da4f89df68f2bab5ad6801ddaa4623ef"
+    },
+    {
+      "file": "sample-c.wav",
+      "frames": 93712,
+      "peak": 0.404743,
+      "sample_id": "sample-c",
+      "sha256": "6f7b12b817c0f959852a4b7380ecf81f35db5e92eafffb02b29b11d2172b808a"
+    }
+  ],
+  "schema_version": "sound-lab.synthetic-hunter-listening/v1",
+  "voice_frequencies_hz": {
+    "bass": 110.0,
+    "chord": 220.0,
+    "melody": 330.0
+  }
+}

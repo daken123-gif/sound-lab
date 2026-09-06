@@ -3,7 +3,7 @@
 - 状態: `active`
 - research-id: `20260902-charlie-hunter`
 - 研究期間: 長期
-- 更新日時: 2026-09-03 UTC
+- 更新日時: 2026-09-06 UTC
 - 対象: Charlie Hunterの演奏、楽器設計、リズム思想、録音方法
 - 現在の問い: ベース、コード、旋律を一人の身体へ拘束することで生じるグルーヴを、珍しい奏法の模倣にせず、演奏可能な構造としてどう記述できるか
 
@@ -795,3 +795,65 @@ CAUSAL_SIGNATURE {
 - iPhoneのマルチタッチ操作として成立すること。
 
 次の反証単位は、同じ無著作権click／tone素材から三条件の短い音響版を作り、条件名を隠して、(a) 原因を追えるか、(b) 役割差を聴き分けられるか、(c) 空白を意図的に作れるかを比較することである。これは次工程であり、今回の保存物には音声、UI、製品実装を含めない。
+
+## 2026-09-06追補 — 条件名を伏せた合成tone聴取刺激 v1
+
+### 今回進めた範囲
+
+前節の三条件を、同じ合成tone素材で聴取できる三つのWAVへ変換した。公開用manifestでは条件名を伏せ、回答後にだけ `answer-key.json` で照合できるよう分離した。
+
+- `sample-a.wav`
+- `sample-b.wav`
+- `sample-c.wav`
+- 4.25秒、stereo、22.05 kHz、16 bit PCM
+- bass 110 Hz、chord 220 Hz、melody 330 Hz
+- 1、2、3秒地点へ全条件共通の小さなgesture markerを配置
+
+素材はすべて生成した正弦toneであり、Charlie Hunterの録音、演奏断片、MIDI、採譜、音色模倣を含まない。
+
+### 保存した検証物
+
+- `tools/render_hunter_coupling_stimuli.py`
+- `tests/test_render_hunter_coupling_stimuli.py`
+- `listening-protocol-v1.md`
+- `data/synthetic-hunter-listening-v1/manifest.json`
+- `data/synthetic-hunter-listening-v1/answer-key.json`
+- `data/synthetic-hunter-listening-v1/sample-a.wav`
+- `data/synthetic-hunter-listening-v1/sample-b.wav`
+- `data/synthetic-hunter-listening-v1/sample-c.wav`
+
+### 生成・形式検証
+
+新しい音響試験5件と既存の因果topology試験7件を同時に実行し、12件すべて成功した。
+
+新規試験で確認したのは次の範囲である。
+
+1. 三つのWAVが相互に異なる。
+2. すべて同じchannel数、sample width、sample rate、frame数を持つ。
+3. 同じfixtureからバイト単位で同じWAVが再生成される。
+4. manifestに条件名が含まれず、各SHA-256が実ファイルと一致する。
+5. answer keyが三条件を一対一に保持し、manifestから分離されている。
+
+| sample | SHA-256 | peak |
+|---|---|---:|
+| A | `8a758010e6185f3664c9b71762d7c026727714d332cc926a82d8e437a17cecf2` | 0.445561 |
+| B | `679e4f4bb0d5dffb8fc46d39f71d4e00da4f89df68f2bab5ad6801ddaa4623ef` | 0.411172 |
+| C | `6f7b12b817c0f959852a4b7380ecf81f35db5e92eafffb02b29b11d2172b808a` | 0.404743 |
+
+### 聴取で問うこと
+
+条件を当てること自体ではなく、次を記録する。
+
+1. gesture markerの直後に、どの声部が変わったと聞こえるか。
+2. 一つの操作が全声へ同じ変化を与えたか、役割別の受け渡しを起こしたか。
+3. chordが消えた後、bassとmelodyの関係が残るか。
+4. 原因追跡、役割差、空白／受け渡しを各1–5で評価できるか。
+5. 変化が明瞭でも、忙しい、作為的、学習不能に聞こえないか。
+
+### 既知の交絡と証拠境界
+
+v1は公平な嗜好比較ではない。固定macro条件では3秒地点の `chord_mute` が三声すべてを消すため、他条件より容易に同定でき、総エネルギーも一致しない。この差は「一括macroと役割別couplingの因果topologyを聴取可能にする」という目的には使えるが、どの条件が音楽的に優れるかの証拠には使えない。
+
+また私は今回、WAVの生成、byte再現性、形式、hash、条件秘匿を検証したが、聴感評価は実施していない。Charlie Hunter本人の演奏との一致、ノンミュージシャンの操作学習、iPhoneスピーカー／イヤホンでの弁別性も未確認である。
+
+次版では、mute後を含む総発音数、RMS、peak、区間別エネルギーを近づけた `energy-matched v2` を作り、因果topologyと単純な音量差を分離する。その後で初めて、条件を伏せた評価を比較する。

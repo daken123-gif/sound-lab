@@ -1,0 +1,10 @@
+{
+  "mapping": {
+    "sample-a": "hunter_coupling",
+    "sample-b": "independent_voice",
+    "sample-c": "fixed_macro"
+  },
+  "schema_version": "sound-lab.synthetic-hunter-listening-key/v1",
+  "source_fixture": "../synthetic-hunter-coupling-v1.json",
+  "use_after_scoring": true
+}
