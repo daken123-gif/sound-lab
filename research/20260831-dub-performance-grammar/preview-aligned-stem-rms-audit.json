@@ -1,0 +1,2781 @@
+{
+  "status": "exploratory_secondary_evidence",
+  "evidence_class": "algorithmic_inference",
+  "input": "same four Shazam-returned Apple Music previews and same official htdemucs four-stem estimates",
+  "alignment": {
+    "mapping": "dub_time = scale * original_time + offset_s",
+    "signal": "Demucs drums estimate, 45-900 Hz band-pass, 2 kHz resampling",
+    "search": "affine scale 0.97-1.03 and offset +/-15 seconds; normalized waveform correlation",
+    "cross_pair_null_correlations": {
+      "jm_to_dv": 0.08329,
+      "mp_to_ap": 0.090328
+    },
+    "decision_boundary": "same-pair scores are far above cross-pair nulls and six local windows remain within 1.5 ms of each affine mapping"
+  },
+  "measurement": {
+    "window_seconds": 1,
+    "value": "shared calibrate_analyzer.rms_dbfs on aligned native stems",
+    "normalization": "compare each stem to simultaneous drums in each version, then subtract original from dub",
+    "static_gain_test": "standard deviation of the relative-delta curve; descriptive only, with no calibrated pass threshold",
+    "no_event_threshold": "No CUT, THROW, REVEAL or presence threshold is applied."
+  },
+  "method_authority": {
+    "calibrate_analyzer_py_blob": "314db6380f63c12017b52dcd3dd2dfcaff94a539",
+    "demucs_cpuinfo_compat_py_blob": "a6235124714f3b31ef9c4d0cfefe5ba57ba99480",
+    "local_audit_script_sha256": "ede266f33385b661f223ccb7046e0a20ebfde1c6ff843f18a0ce83b913d2fa8a"
+  },
+  "environment": {
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+    "python": "3.12.13"
+  },
+  "limits": [
+    "alignment is derived from model-estimated drum stems, not multitracks",
+    "one-second RMS cannot distinguish dry source, effect return, bleed or filtering",
+    "large ratios are unstable when the original estimated stem is near silence; absolute source-to-drums levels are retained",
+    "curve variation rejects a simple constant-gain account but does not identify performance events",
+    "preview positions remain unknown relative to full songs"
+  ],
+  "pairs": [
+    {
+      "pair": "A",
+      "original": "jm",
+      "dub": "ap",
+      "scale": 1.0,
+      "offset_s": -1.5415,
+      "overlap_s": 28.388,
+      "global_drum_correlation": 0.752631,
+      "local_windows": [
+        {
+          "original_center_s": 4.792,
+          "predicted_dub_center_s": 3.25,
+          "residual_lag_s": 0.0005,
+          "correlation": 0.8446
+        },
+        {
+          "original_center_s": 9.219,
+          "predicted_dub_center_s": 7.678,
+          "residual_lag_s": 0.0,
+          "correlation": 0.9099
+        },
+        {
+          "original_center_s": 13.647,
+          "predicted_dub_center_s": 12.105,
+          "residual_lag_s": 0.001,
+          "correlation": 0.8369
+        },
+        {
+          "original_center_s": 18.074,
+          "predicted_dub_center_s": 16.532,
+          "residual_lag_s": 0.0,
+          "correlation": 0.6419
+        },
+        {
+          "original_center_s": 22.502,
+          "predicted_dub_center_s": 20.96,
+          "residual_lag_s": -0.0005,
+          "correlation": 0.9088
+        },
+        {
+          "original_center_s": 26.93,
+          "predicted_dub_center_s": 25.388,
+          "residual_lag_s": 0.0,
+          "correlation": 0.9034
+        }
+      ],
+      "local_max_abs_residual_s": 0.001,
+      "local_median_correlation": 0.874,
+      "aligned_window_count": 27,
+      "summary": {
+        "bass": {
+          "p10": -1.2,
+          "p50": 0.08,
+          "p90": 1.5,
+          "constant_gain_residual_standard_deviation_db": 1.21,
+          "largest_adjacent_change_db": 3.85,
+          "source_to_drums_curve_correlation": 0.993
+        },
+        "vocals": {
+          "p10": -61.42,
+          "p50": -57.69,
+          "p90": -3.19,
+          "constant_gain_residual_standard_deviation_db": 22.74,
+          "largest_adjacent_change_db": 58.75,
+          "source_to_drums_curve_correlation": 0.07
+        },
+        "other": {
+          "p10": -20.07,
+          "p50": -4.54,
+          "p90": 0.18,
+          "constant_gain_residual_standard_deviation_db": 8.29,
+          "largest_adjacent_change_db": 16.87,
+          "source_to_drums_curve_correlation": 0.377
+        }
+      },
+      "windows": [
+        {
+          "original_seconds": [
+            2,
+            3
+          ],
+          "dub_seconds": [
+            0.4585,
+            1.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -29.58,
+              "bass": -16.16,
+              "vocals": -19.25,
+              "other": -21.54
+            },
+            "dub": {
+              "drums": -29.51,
+              "bass": -15.88,
+              "vocals": -80.0,
+              "other": -26.19
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.07,
+            "bass": 0.28,
+            "vocals": -60.75,
+            "other": -4.65
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 13.42,
+              "vocals": 10.33,
+              "other": 8.04
+            },
+            "dub": {
+              "bass": 13.63,
+              "vocals": -50.49,
+              "other": 3.32
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.21,
+            "vocals": -60.82,
+            "other": -4.72
+          }
+        },
+        {
+          "original_seconds": [
+            3,
+            4
+          ],
+          "dub_seconds": [
+            1.4585,
+            2.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -22.62,
+              "bass": -11.39,
+              "vocals": -20.23,
+              "other": -23.3
+            },
+            "dub": {
+              "drums": -22.7,
+              "bass": -11.12,
+              "vocals": -77.56,
+              "other": -25.12
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": -0.08,
+            "bass": 0.27,
+            "vocals": -57.33,
+            "other": -1.82
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 11.23,
+              "vocals": 2.39,
+              "other": -0.68
+            },
+            "dub": {
+              "bass": 11.58,
+              "vocals": -54.86,
+              "other": -2.42
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.35,
+            "vocals": -57.25,
+            "other": -1.74
+          }
+        },
+        {
+          "original_seconds": [
+            4,
+            5
+          ],
+          "dub_seconds": [
+            2.4585,
+            3.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -31.72,
+              "bass": -14.28,
+              "vocals": -18.18,
+              "other": -22.27
+            },
+            "dub": {
+              "drums": -29.71,
+              "bass": -13.85,
+              "vocals": -80.63,
+              "other": -26.37
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 2.01,
+            "bass": 0.43,
+            "vocals": -62.45,
+            "other": -4.1
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 17.44,
+              "vocals": 13.54,
+              "other": 9.45
+            },
+            "dub": {
+              "bass": 15.86,
+              "vocals": -50.92,
+              "other": 3.34
+            }
+          },
+          "relative_delta_db": {
+            "bass": -1.58,
+            "vocals": -64.46,
+            "other": -6.11
+          }
+        },
+        {
+          "original_seconds": [
+            5,
+            6
+          ],
+          "dub_seconds": [
+            3.4585,
+            4.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -21.11,
+              "bass": -18.44,
+              "vocals": -21.42,
+              "other": -21.28
+            },
+            "dub": {
+              "drums": -21.11,
+              "bass": -18.11,
+              "vocals": -80.73,
+              "other": -25.46
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.0,
+            "bass": 0.33,
+            "vocals": -59.31,
+            "other": -4.18
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 2.67,
+              "vocals": -0.31,
+              "other": -0.17
+            },
+            "dub": {
+              "bass": 3.0,
+              "vocals": -59.62,
+              "other": -4.35
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.33,
+            "vocals": -59.31,
+            "other": -4.18
+          }
+        },
+        {
+          "original_seconds": [
+            6,
+            7
+          ],
+          "dub_seconds": [
+            4.4585,
+            5.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -22.0,
+              "bass": -12.36,
+              "vocals": -20.8,
+              "other": -23.67
+            },
+            "dub": {
+              "drums": -22.13,
+              "bass": -12.13,
+              "vocals": -79.6,
+              "other": -23.62
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": -0.13,
+            "bass": 0.23,
+            "vocals": -58.8,
+            "other": 0.05
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 9.64,
+              "vocals": 1.2,
+              "other": -1.67
+            },
+            "dub": {
+              "bass": 10.0,
+              "vocals": -57.47,
+              "other": -1.49
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.36,
+            "vocals": -58.67,
+            "other": 0.18
+          }
+        },
+        {
+          "original_seconds": [
+            7,
+            8
+          ],
+          "dub_seconds": [
+            5.4585,
+            6.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -31.07,
+              "bass": -11.3,
+              "vocals": -21.16,
+              "other": -22.21
+            },
+            "dub": {
+              "drums": -31.93,
+              "bass": -11.24,
+              "vocals": -81.48,
+              "other": -22.95
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": -0.86,
+            "bass": 0.06,
+            "vocals": -60.32,
+            "other": -0.74
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 19.77,
+              "vocals": 9.91,
+              "other": 8.86
+            },
+            "dub": {
+              "bass": 20.69,
+              "vocals": -49.55,
+              "other": 8.98
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.92,
+            "vocals": -59.46,
+            "other": 0.12
+          }
+        },
+        {
+          "original_seconds": [
+            8,
+            9
+          ],
+          "dub_seconds": [
+            6.4585,
+            7.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -21.28,
+              "bass": -17.7,
+              "vocals": -21.33,
+              "other": -20.96
+            },
+            "dub": {
+              "drums": -21.15,
+              "bass": -17.36,
+              "vocals": -82.27,
+              "other": -27.07
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.13,
+            "bass": 0.34,
+            "vocals": -60.94,
+            "other": -6.11
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 3.58,
+              "vocals": -0.05,
+              "other": 0.32
+            },
+            "dub": {
+              "bass": 3.79,
+              "vocals": -61.12,
+              "other": -5.92
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.21,
+            "vocals": -61.07,
+            "other": -6.24
+          }
+        },
+        {
+          "original_seconds": [
+            9,
+            10
+          ],
+          "dub_seconds": [
+            7.4585,
+            8.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -27.2,
+              "bass": -18.45,
+              "vocals": -22.73,
+              "other": -19.6
+            },
+            "dub": {
+              "drums": -25.74,
+              "bass": -18.66,
+              "vocals": -78.71,
+              "other": -22.67
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 1.46,
+            "bass": -0.21,
+            "vocals": -55.98,
+            "other": -3.07
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 8.75,
+              "vocals": 4.47,
+              "other": 7.6
+            },
+            "dub": {
+              "bass": 7.08,
+              "vocals": -52.97,
+              "other": 3.07
+            }
+          },
+          "relative_delta_db": {
+            "bass": -1.67,
+            "vocals": -57.44,
+            "other": -4.53
+          }
+        },
+        {
+          "original_seconds": [
+            10,
+            11
+          ],
+          "dub_seconds": [
+            8.4585,
+            9.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -21.71,
+              "bass": -11.15,
+              "vocals": -22.08,
+              "other": -22.41
+            },
+            "dub": {
+              "drums": -21.55,
+              "bass": -11.08,
+              "vocals": -77.54,
+              "other": -22.84
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.16,
+            "bass": 0.07,
+            "vocals": -55.46,
+            "other": -0.43
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 10.56,
+              "vocals": -0.37,
+              "other": -0.7
+            },
+            "dub": {
+              "bass": 10.47,
+              "vocals": -55.99,
+              "other": -1.29
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.09,
+            "vocals": -55.62,
+            "other": -0.59
+          }
+        },
+        {
+          "original_seconds": [
+            11,
+            12
+          ],
+          "dub_seconds": [
+            9.4585,
+            10.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -26.35,
+              "bass": -14.02,
+              "vocals": -18.31,
+              "other": -21.17
+            },
+            "dub": {
+              "drums": -25.13,
+              "bass": -13.74,
+              "vocals": -78.34,
+              "other": -22.07
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 1.22,
+            "bass": 0.28,
+            "vocals": -60.03,
+            "other": -0.9
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 12.33,
+              "vocals": 8.04,
+              "other": 5.18
+            },
+            "dub": {
+              "bass": 11.39,
+              "vocals": -53.21,
+              "other": 3.06
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.94,
+            "vocals": -61.25,
+            "other": -2.12
+          }
+        },
+        {
+          "original_seconds": [
+            12,
+            13
+          ],
+          "dub_seconds": [
+            10.4585,
+            11.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -26.05,
+              "bass": -36.84,
+              "vocals": -18.89,
+              "other": -20.45
+            },
+            "dub": {
+              "drums": -25.06,
+              "bass": -33.47,
+              "vocals": -77.02,
+              "other": -19.27
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.99,
+            "bass": 3.37,
+            "vocals": -58.13,
+            "other": 1.18
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -10.79,
+              "vocals": 7.16,
+              "other": 5.6
+            },
+            "dub": {
+              "bass": -8.41,
+              "vocals": -51.96,
+              "other": 5.79
+            }
+          },
+          "relative_delta_db": {
+            "bass": 2.38,
+            "vocals": -59.12,
+            "other": 0.19
+          }
+        },
+        {
+          "original_seconds": [
+            13,
+            14
+          ],
+          "dub_seconds": [
+            11.4585,
+            12.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -21.15,
+              "bass": -12.68,
+              "vocals": -28.63,
+              "other": -23.11
+            },
+            "dub": {
+              "drums": -20.59,
+              "bass": -12.4,
+              "vocals": -78.72,
+              "other": -29.88
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.56,
+            "bass": 0.28,
+            "vocals": -50.09,
+            "other": -6.77
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 8.47,
+              "vocals": -7.48,
+              "other": -1.96
+            },
+            "dub": {
+              "bass": 8.19,
+              "vocals": -58.13,
+              "other": -9.29
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.28,
+            "vocals": -50.65,
+            "other": -7.33
+          }
+        },
+        {
+          "original_seconds": [
+            14,
+            15
+          ],
+          "dub_seconds": [
+            12.4585,
+            13.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -24.74,
+              "bass": -11.85,
+              "vocals": -20.63,
+              "other": -22.84
+            },
+            "dub": {
+              "drums": -23.97,
+              "bass": -11.58,
+              "vocals": -81.2,
+              "other": -26.6
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.77,
+            "bass": 0.27,
+            "vocals": -60.57,
+            "other": -3.76
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 12.89,
+              "vocals": 4.11,
+              "other": 1.9
+            },
+            "dub": {
+              "bass": 12.39,
+              "vocals": -57.23,
+              "other": -2.63
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.5,
+            "vocals": -61.34,
+            "other": -4.53
+          }
+        },
+        {
+          "original_seconds": [
+            15,
+            16
+          ],
+          "dub_seconds": [
+            13.4585,
+            14.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -19.57,
+              "bass": -16.21,
+              "vocals": -18.1,
+              "other": -22.85
+            },
+            "dub": {
+              "drums": -19.05,
+              "bass": -15.66,
+              "vocals": -79.18,
+              "other": -33.02
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.52,
+            "bass": 0.55,
+            "vocals": -61.08,
+            "other": -10.17
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 3.36,
+              "vocals": 1.47,
+              "other": -3.28
+            },
+            "dub": {
+              "bass": 3.39,
+              "vocals": -60.13,
+              "other": -13.97
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.03,
+            "vocals": -61.6,
+            "other": -10.69
+          }
+        },
+        {
+          "original_seconds": [
+            16,
+            17
+          ],
+          "dub_seconds": [
+            14.4585,
+            15.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -25.37,
+              "bass": -22.49,
+              "vocals": -22.72,
+              "other": -20.06
+            },
+            "dub": {
+              "drums": -24.69,
+              "bass": -22.49,
+              "vocals": -79.73,
+              "other": -23.92
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.68,
+            "bass": 0.0,
+            "vocals": -57.01,
+            "other": -3.86
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 2.88,
+              "vocals": 2.65,
+              "other": 5.31
+            },
+            "dub": {
+              "bass": 2.2,
+              "vocals": -55.04,
+              "other": 0.77
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.68,
+            "vocals": -57.69,
+            "other": -4.54
+          }
+        },
+        {
+          "original_seconds": [
+            17,
+            18
+          ],
+          "dub_seconds": [
+            15.4585,
+            16.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -23.38,
+              "bass": -11.76,
+              "vocals": -59.44,
+              "other": -23.14
+            },
+            "dub": {
+              "drums": -23.09,
+              "bass": -11.74,
+              "vocals": -80.5,
+              "other": -39.14
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.29,
+            "bass": 0.02,
+            "vocals": -21.06,
+            "other": -16.0
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 11.62,
+              "vocals": -36.06,
+              "other": 0.24
+            },
+            "dub": {
+              "bass": 11.35,
+              "vocals": -57.41,
+              "other": -16.05
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.27,
+            "vocals": -21.35,
+            "other": -16.29
+          }
+        },
+        {
+          "original_seconds": [
+            18,
+            19
+          ],
+          "dub_seconds": [
+            16.4585,
+            17.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -21.74,
+              "bass": -12.55,
+              "vocals": -74.06,
+              "other": -22.61
+            },
+            "dub": {
+              "drums": -21.7,
+              "bass": -12.61,
+              "vocals": -70.99,
+              "other": -21.99
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.04,
+            "bass": -0.06,
+            "vocals": 3.07,
+            "other": 0.62
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 9.19,
+              "vocals": -52.32,
+              "other": -0.87
+            },
+            "dub": {
+              "bass": 9.09,
+              "vocals": -49.29,
+              "other": -0.29
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.1,
+            "vocals": 3.03,
+            "other": 0.58
+          }
+        },
+        {
+          "original_seconds": [
+            19,
+            20
+          ],
+          "dub_seconds": [
+            17.4585,
+            18.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -20.68,
+              "bass": -22.47,
+              "vocals": -17.98,
+              "other": -20.61
+            },
+            "dub": {
+              "drums": -20.14,
+              "bass": -21.75,
+              "vocals": -73.16,
+              "other": -22.47
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.54,
+            "bass": 0.72,
+            "vocals": -55.18,
+            "other": -1.86
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -1.79,
+              "vocals": 2.7,
+              "other": 0.07
+            },
+            "dub": {
+              "bass": -1.61,
+              "vocals": -53.02,
+              "other": -2.33
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.18,
+            "vocals": -55.72,
+            "other": -2.4
+          }
+        },
+        {
+          "original_seconds": [
+            20,
+            21
+          ],
+          "dub_seconds": [
+            18.4585,
+            19.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -21.49,
+              "bass": -14.31,
+              "vocals": -25.61,
+              "other": -22.41
+            },
+            "dub": {
+              "drums": -21.94,
+              "bass": -14.33,
+              "vocals": -78.94,
+              "other": -24.36
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": -0.45,
+            "bass": -0.02,
+            "vocals": -53.33,
+            "other": -1.95
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 7.18,
+              "vocals": -4.12,
+              "other": -0.92
+            },
+            "dub": {
+              "bass": 7.61,
+              "vocals": -57.0,
+              "other": -2.42
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.43,
+            "vocals": -52.88,
+            "other": -1.5
+          }
+        },
+        {
+          "original_seconds": [
+            21,
+            22
+          ],
+          "dub_seconds": [
+            19.4585,
+            20.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -21.74,
+              "bass": -11.25,
+              "vocals": -67.38,
+              "other": -22.89
+            },
+            "dub": {
+              "drums": -22.38,
+              "bass": -11.3,
+              "vocals": -80.1,
+              "other": -36.15
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": -0.64,
+            "bass": -0.05,
+            "vocals": -12.72,
+            "other": -13.26
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 10.49,
+              "vocals": -45.64,
+              "other": -1.15
+            },
+            "dub": {
+              "bass": 11.08,
+              "vocals": -57.72,
+              "other": -13.77
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.59,
+            "vocals": -12.08,
+            "other": -12.62
+          }
+        },
+        {
+          "original_seconds": [
+            22,
+            23
+          ],
+          "dub_seconds": [
+            20.4585,
+            21.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -21.89,
+              "bass": -15.2,
+              "vocals": -19.32,
+              "other": -22.0
+            },
+            "dub": {
+              "drums": -21.41,
+              "bass": -15.07,
+              "vocals": -80.39,
+              "other": -31.28
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.48,
+            "bass": 0.13,
+            "vocals": -61.07,
+            "other": -9.28
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 6.69,
+              "vocals": 2.57,
+              "other": -0.11
+            },
+            "dub": {
+              "bass": 6.34,
+              "vocals": -58.98,
+              "other": -9.87
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.35,
+            "vocals": -61.55,
+            "other": -9.76
+          }
+        },
+        {
+          "original_seconds": [
+            23,
+            24
+          ],
+          "dub_seconds": [
+            21.4585,
+            22.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -20.32,
+              "bass": -38.17,
+              "vocals": -17.07,
+              "other": -20.82
+            },
+            "dub": {
+              "drums": -19.94,
+              "bass": -34.29,
+              "vocals": -75.96,
+              "other": -17.37
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.38,
+            "bass": 3.88,
+            "vocals": -58.89,
+            "other": 3.45
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -17.85,
+              "vocals": 3.25,
+              "other": -0.5
+            },
+            "dub": {
+              "bass": -14.35,
+              "vocals": -56.02,
+              "other": 2.57
+            }
+          },
+          "relative_delta_db": {
+            "bass": 3.5,
+            "vocals": -59.27,
+            "other": 3.07
+          }
+        },
+        {
+          "original_seconds": [
+            24,
+            25
+          ],
+          "dub_seconds": [
+            22.4585,
+            23.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -19.56,
+              "bass": -14.27,
+              "vocals": -20.2,
+              "other": -25.38
+            },
+            "dub": {
+              "drums": -21.41,
+              "bass": -13.44,
+              "vocals": -80.82,
+              "other": -32.34
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": -1.85,
+            "bass": 0.83,
+            "vocals": -60.62,
+            "other": -6.96
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 5.29,
+              "vocals": -0.64,
+              "other": -5.82
+            },
+            "dub": {
+              "bass": 7.97,
+              "vocals": -59.41,
+              "other": -10.93
+            }
+          },
+          "relative_delta_db": {
+            "bass": 2.68,
+            "vocals": -58.77,
+            "other": -5.11
+          }
+        },
+        {
+          "original_seconds": [
+            25,
+            26
+          ],
+          "dub_seconds": [
+            23.4585,
+            24.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -32.08,
+              "bass": -11.91,
+              "vocals": -33.71,
+              "other": -22.71
+            },
+            "dub": {
+              "drums": -31.85,
+              "bass": -11.6,
+              "vocals": -83.69,
+              "other": -35.81
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.23,
+            "bass": 0.31,
+            "vocals": -49.98,
+            "other": -13.1
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 20.17,
+              "vocals": -1.63,
+              "other": 9.37
+            },
+            "dub": {
+              "bass": 20.25,
+              "vocals": -51.84,
+              "other": -3.96
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.08,
+            "vocals": -50.21,
+            "other": -13.33
+          }
+        },
+        {
+          "original_seconds": [
+            26,
+            27
+          ],
+          "dub_seconds": [
+            24.4585,
+            25.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -22.01,
+              "bass": -18.39,
+              "vocals": -18.37,
+              "other": -20.11
+            },
+            "dub": {
+              "drums": -22.36,
+              "bass": -17.87,
+              "vocals": -18.98,
+              "other": -47.83
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": -0.35,
+            "bass": 0.52,
+            "vocals": -0.61,
+            "other": -27.72
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 3.62,
+              "vocals": 3.64,
+              "other": 1.9
+            },
+            "dub": {
+              "bass": 4.49,
+              "vocals": 3.38,
+              "other": -25.47
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.87,
+            "vocals": -0.26,
+            "other": -27.37
+          }
+        },
+        {
+          "original_seconds": [
+            27,
+            28
+          ],
+          "dub_seconds": [
+            25.4585,
+            26.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -32.73,
+              "bass": -14.82,
+              "vocals": -25.99,
+              "other": -20.01
+            },
+            "dub": {
+              "drums": -30.36,
+              "bass": -14.72,
+              "vocals": -28.76,
+              "other": -43.37
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 2.37,
+            "bass": 0.1,
+            "vocals": -2.77,
+            "other": -23.36
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 17.91,
+              "vocals": 6.74,
+              "other": 12.72
+            },
+            "dub": {
+              "bass": 15.64,
+              "vocals": 1.6,
+              "other": -13.01
+            }
+          },
+          "relative_delta_db": {
+            "bass": -2.27,
+            "vocals": -5.14,
+            "other": -25.73
+          }
+        },
+        {
+          "original_seconds": [
+            28,
+            29
+          ],
+          "dub_seconds": [
+            26.4585,
+            27.4585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -21.26,
+              "bass": -11.42,
+              "vocals": -66.27,
+              "other": -21.74
+            },
+            "dub": {
+              "drums": -21.24,
+              "bass": -11.37,
+              "vocals": -61.17,
+              "other": -49.18
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.02,
+            "bass": 0.05,
+            "vocals": 5.1,
+            "other": -27.44
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 9.84,
+              "vocals": -45.01,
+              "other": -0.48
+            },
+            "dub": {
+              "bass": 9.87,
+              "vocals": -39.93,
+              "other": -27.94
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.03,
+            "vocals": 5.08,
+            "other": -27.46
+          }
+        }
+      ]
+    },
+    {
+      "pair": "B",
+      "original": "mp",
+      "dub": "dv",
+      "scale": 1.007,
+      "offset_s": 1.6395,
+      "overlap_s": 28.337,
+      "global_drum_correlation": 0.590585,
+      "local_windows": [
+        {
+          "original_center_s": 2.979,
+          "predicted_dub_center_s": 4.639,
+          "residual_lag_s": 0.001,
+          "correlation": 0.6746
+        },
+        {
+          "original_center_s": 7.365,
+          "predicted_dub_center_s": 9.056,
+          "residual_lag_s": -0.0005,
+          "correlation": 0.757
+        },
+        {
+          "original_center_s": 11.752,
+          "predicted_dub_center_s": 13.474,
+          "residual_lag_s": -0.001,
+          "correlation": 0.7273
+        },
+        {
+          "original_center_s": 16.139,
+          "predicted_dub_center_s": 17.891,
+          "residual_lag_s": -0.0015,
+          "correlation": 0.7792
+        },
+        {
+          "original_center_s": 20.525,
+          "predicted_dub_center_s": 22.308,
+          "residual_lag_s": -0.001,
+          "correlation": 0.7176
+        },
+        {
+          "original_center_s": 24.912,
+          "predicted_dub_center_s": 26.726,
+          "residual_lag_s": 0.001,
+          "correlation": 0.7297
+        }
+      ],
+      "local_max_abs_residual_s": 0.0015,
+      "local_median_correlation": 0.7285,
+      "aligned_window_count": 28,
+      "summary": {
+        "bass": {
+          "p10": -1.99,
+          "p50": -0.32,
+          "p90": 0.42,
+          "constant_gain_residual_standard_deviation_db": 2.24,
+          "largest_adjacent_change_db": 8.85,
+          "source_to_drums_curve_correlation": 0.997
+        },
+        "vocals": {
+          "p10": -56.43,
+          "p50": -28.9,
+          "p90": -4.51,
+          "constant_gain_residual_standard_deviation_db": 21.12,
+          "largest_adjacent_change_db": 45.02,
+          "source_to_drums_curve_correlation": 0.222
+        },
+        "other": {
+          "p10": -29.96,
+          "p50": -20.5,
+          "p90": -7.46,
+          "constant_gain_residual_standard_deviation_db": 9.75,
+          "largest_adjacent_change_db": 17.55,
+          "source_to_drums_curve_correlation": 0.299
+        }
+      },
+      "windows": [
+        {
+          "original_seconds": [
+            0,
+            1
+          ],
+          "dub_seconds": [
+            1.6395,
+            2.6465
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -17.58,
+              "bass": -17.04,
+              "vocals": -69.29,
+              "other": -21.77
+            },
+            "dub": {
+              "drums": -17.85,
+              "bass": -16.91,
+              "vocals": -81.75,
+              "other": -51.3
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": -0.27,
+            "bass": 0.13,
+            "vocals": -12.46,
+            "other": -29.53
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 0.54,
+              "vocals": -51.71,
+              "other": -4.19
+            },
+            "dub": {
+              "bass": 0.94,
+              "vocals": -63.9,
+              "other": -33.45
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.4,
+            "vocals": -12.19,
+            "other": -29.26
+          }
+        },
+        {
+          "original_seconds": [
+            1,
+            2
+          ],
+          "dub_seconds": [
+            2.6465,
+            3.6535
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -19.83,
+              "bass": -14.4,
+              "vocals": -17.8,
+              "other": -25.33
+            },
+            "dub": {
+              "drums": -18.47,
+              "bass": -14.9,
+              "vocals": -73.65,
+              "other": -46.42
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 1.36,
+            "bass": -0.5,
+            "vocals": -55.85,
+            "other": -21.09
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 5.43,
+              "vocals": 2.03,
+              "other": -5.5
+            },
+            "dub": {
+              "bass": 3.57,
+              "vocals": -55.18,
+              "other": -27.95
+            }
+          },
+          "relative_delta_db": {
+            "bass": -1.86,
+            "vocals": -57.21,
+            "other": -22.45
+          }
+        },
+        {
+          "original_seconds": [
+            2,
+            3
+          ],
+          "dub_seconds": [
+            3.6535,
+            4.6605
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -19.55,
+              "bass": -22.1,
+              "vocals": -13.24,
+              "other": -23.44
+            },
+            "dub": {
+              "drums": -18.68,
+              "bass": -21.12,
+              "vocals": -80.45,
+              "other": -50.57
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.87,
+            "bass": 0.98,
+            "vocals": -67.21,
+            "other": -27.13
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -2.55,
+              "vocals": 6.31,
+              "other": -3.89
+            },
+            "dub": {
+              "bass": -2.44,
+              "vocals": -61.77,
+              "other": -31.89
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.11,
+            "vocals": -68.08,
+            "other": -28.0
+          }
+        },
+        {
+          "original_seconds": [
+            3,
+            4
+          ],
+          "dub_seconds": [
+            4.6605,
+            5.6675
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -18.12,
+              "bass": -18.75,
+              "vocals": -15.27,
+              "other": -23.73
+            },
+            "dub": {
+              "drums": -17.16,
+              "bass": -17.96,
+              "vocals": -39.77,
+              "other": -36.87
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.96,
+            "bass": 0.79,
+            "vocals": -24.5,
+            "other": -13.14
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -0.63,
+              "vocals": 2.85,
+              "other": -5.61
+            },
+            "dub": {
+              "bass": -0.8,
+              "vocals": -22.61,
+              "other": -19.71
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.17,
+            "vocals": -25.46,
+            "other": -14.1
+          }
+        },
+        {
+          "original_seconds": [
+            4,
+            5
+          ],
+          "dub_seconds": [
+            5.6675,
+            6.6745
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -18.18,
+              "bass": -14.42,
+              "vocals": -14.26,
+              "other": -25.08
+            },
+            "dub": {
+              "drums": -17.86,
+              "bass": -13.96,
+              "vocals": -35.23,
+              "other": -37.45
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.32,
+            "bass": 0.46,
+            "vocals": -20.97,
+            "other": -12.37
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 3.76,
+              "vocals": 3.92,
+              "other": -6.9
+            },
+            "dub": {
+              "bass": 3.9,
+              "vocals": -17.37,
+              "other": -19.59
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.14,
+            "vocals": -21.29,
+            "other": -12.69
+          }
+        },
+        {
+          "original_seconds": [
+            5,
+            6
+          ],
+          "dub_seconds": [
+            6.6745,
+            7.6815
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -20.7,
+              "bass": -18.37,
+              "vocals": -14.73,
+              "other": -20.56
+            },
+            "dub": {
+              "drums": -20.66,
+              "bass": -18.1,
+              "vocals": -44.04,
+              "other": -21.54
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.04,
+            "bass": 0.27,
+            "vocals": -29.31,
+            "other": -0.98
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 2.33,
+              "vocals": 5.97,
+              "other": 0.14
+            },
+            "dub": {
+              "bass": 2.56,
+              "vocals": -23.38,
+              "other": -0.88
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.23,
+            "vocals": -29.35,
+            "other": -1.02
+          }
+        },
+        {
+          "original_seconds": [
+            6,
+            7
+          ],
+          "dub_seconds": [
+            7.6815,
+            8.6885
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -20.32,
+              "bass": -18.43,
+              "vocals": -18.16,
+              "other": -21.06
+            },
+            "dub": {
+              "drums": -19.62,
+              "bass": -18.67,
+              "vocals": -53.94,
+              "other": -19.23
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.7,
+            "bass": -0.24,
+            "vocals": -35.78,
+            "other": 1.83
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 1.89,
+              "vocals": 2.16,
+              "other": -0.74
+            },
+            "dub": {
+              "bass": 0.95,
+              "vocals": -34.32,
+              "other": 0.39
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.94,
+            "vocals": -36.48,
+            "other": 1.13
+          }
+        },
+        {
+          "original_seconds": [
+            7,
+            8
+          ],
+          "dub_seconds": [
+            8.6885,
+            9.6955
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -17.18,
+              "bass": -15.87,
+              "vocals": -26.73,
+              "other": -22.56
+            },
+            "dub": {
+              "drums": -17.61,
+              "bass": -16.11,
+              "vocals": -70.16,
+              "other": -26.52
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": -0.43,
+            "bass": -0.24,
+            "vocals": -43.43,
+            "other": -3.96
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 1.31,
+              "vocals": -9.55,
+              "other": -5.38
+            },
+            "dub": {
+              "bass": 1.5,
+              "vocals": -52.55,
+              "other": -8.91
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.19,
+            "vocals": -43.0,
+            "other": -3.53
+          }
+        },
+        {
+          "original_seconds": [
+            8,
+            9
+          ],
+          "dub_seconds": [
+            9.6955,
+            10.7025
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -21.97,
+              "bass": -14.75,
+              "vocals": -16.26,
+              "other": -23.77
+            },
+            "dub": {
+              "drums": -20.12,
+              "bass": -14.71,
+              "vocals": -52.2,
+              "other": -31.06
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 1.85,
+            "bass": 0.04,
+            "vocals": -35.94,
+            "other": -7.29
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 7.22,
+              "vocals": 5.71,
+              "other": -1.8
+            },
+            "dub": {
+              "bass": 5.41,
+              "vocals": -32.08,
+              "other": -10.94
+            }
+          },
+          "relative_delta_db": {
+            "bass": -1.81,
+            "vocals": -37.79,
+            "other": -9.14
+          }
+        },
+        {
+          "original_seconds": [
+            9,
+            10
+          ],
+          "dub_seconds": [
+            10.7025,
+            11.7095
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -18.8,
+              "bass": -22.06,
+              "vocals": -16.23,
+              "other": -22.5
+            },
+            "dub": {
+              "drums": -18.74,
+              "bass": -21.22,
+              "vocals": -76.91,
+              "other": -39.08
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.06,
+            "bass": 0.84,
+            "vocals": -60.68,
+            "other": -16.58
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -3.26,
+              "vocals": 2.57,
+              "other": -3.7
+            },
+            "dub": {
+              "bass": -2.48,
+              "vocals": -58.17,
+              "other": -20.34
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.78,
+            "vocals": -60.74,
+            "other": -16.64
+          }
+        },
+        {
+          "original_seconds": [
+            10,
+            11
+          ],
+          "dub_seconds": [
+            11.7095,
+            12.7165
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -16.99,
+              "bass": -18.66,
+              "vocals": -16.25,
+              "other": -23.43
+            },
+            "dub": {
+              "drums": -16.2,
+              "bass": -18.25,
+              "vocals": -38.12,
+              "other": -34.13
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.79,
+            "bass": 0.41,
+            "vocals": -21.87,
+            "other": -10.7
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -1.67,
+              "vocals": 0.74,
+              "other": -6.44
+            },
+            "dub": {
+              "bass": -2.05,
+              "vocals": -21.92,
+              "other": -17.93
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.38,
+            "vocals": -22.66,
+            "other": -11.49
+          }
+        },
+        {
+          "original_seconds": [
+            11,
+            12
+          ],
+          "dub_seconds": [
+            12.7165,
+            13.7235
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -19.14,
+              "bass": -13.91,
+              "vocals": -15.98,
+              "other": -28.75
+            },
+            "dub": {
+              "drums": -18.41,
+              "bass": -13.74,
+              "vocals": -28.4,
+              "other": -37.77
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.73,
+            "bass": 0.17,
+            "vocals": -12.42,
+            "other": -9.02
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 5.23,
+              "vocals": 3.16,
+              "other": -9.61
+            },
+            "dub": {
+              "bass": 4.67,
+              "vocals": -9.99,
+              "other": -19.36
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.56,
+            "vocals": -13.15,
+            "other": -9.75
+          }
+        },
+        {
+          "original_seconds": [
+            12,
+            13
+          ],
+          "dub_seconds": [
+            13.7235,
+            14.7305
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -20.76,
+              "bass": -17.99,
+              "vocals": -18.43,
+              "other": -23.84
+            },
+            "dub": {
+              "drums": -20.75,
+              "bass": -18.27,
+              "vocals": -21.92,
+              "other": -50.03
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.01,
+            "bass": -0.28,
+            "vocals": -3.49,
+            "other": -26.19
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 2.77,
+              "vocals": 2.33,
+              "other": -3.08
+            },
+            "dub": {
+              "bass": 2.48,
+              "vocals": -1.17,
+              "other": -29.28
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.29,
+            "vocals": -3.5,
+            "other": -26.2
+          }
+        },
+        {
+          "original_seconds": [
+            13,
+            14
+          ],
+          "dub_seconds": [
+            14.7305,
+            15.7375
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -18.52,
+              "bass": -17.37,
+              "vocals": -28.26,
+              "other": -19.64
+            },
+            "dub": {
+              "drums": -18.35,
+              "bass": -18.12,
+              "vocals": -20.19,
+              "other": -38.02
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.17,
+            "bass": -0.75,
+            "vocals": 8.07,
+            "other": -18.38
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 1.15,
+              "vocals": -9.74,
+              "other": -1.12
+            },
+            "dub": {
+              "bass": 0.23,
+              "vocals": -1.84,
+              "other": -19.67
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.92,
+            "vocals": 7.9,
+            "other": -18.55
+          }
+        },
+        {
+          "original_seconds": [
+            14,
+            15
+          ],
+          "dub_seconds": [
+            15.7375,
+            16.7445
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -17.85,
+              "bass": -15.76,
+              "vocals": -48.97,
+              "other": -22.96
+            },
+            "dub": {
+              "drums": -18.62,
+              "bass": -16.08,
+              "vocals": -20.12,
+              "other": -54.12
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": -0.77,
+            "bass": -0.32,
+            "vocals": 28.85,
+            "other": -31.16
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 2.09,
+              "vocals": -31.12,
+              "other": -5.11
+            },
+            "dub": {
+              "bass": 2.54,
+              "vocals": -1.5,
+              "other": -35.5
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.45,
+            "vocals": 29.62,
+            "other": -30.39
+          }
+        },
+        {
+          "original_seconds": [
+            15,
+            16
+          ],
+          "dub_seconds": [
+            16.7445,
+            17.7515
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -21.06,
+              "bass": -14.57,
+              "vocals": -17.38,
+              "other": -20.48
+            },
+            "dub": {
+              "drums": -19.4,
+              "bass": -15.19,
+              "vocals": -20.66,
+              "other": -31.89
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 1.66,
+            "bass": -0.62,
+            "vocals": -3.28,
+            "other": -11.41
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 6.49,
+              "vocals": 3.68,
+              "other": 0.58
+            },
+            "dub": {
+              "bass": 4.21,
+              "vocals": -1.26,
+              "other": -12.49
+            }
+          },
+          "relative_delta_db": {
+            "bass": -2.28,
+            "vocals": -4.94,
+            "other": -13.07
+          }
+        },
+        {
+          "original_seconds": [
+            16,
+            17
+          ],
+          "dub_seconds": [
+            17.7515,
+            18.7585
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -19.07,
+              "bass": -21.75,
+              "vocals": -15.33,
+              "other": -23.36
+            },
+            "dub": {
+              "drums": -18.87,
+              "bass": -20.5,
+              "vocals": -31.69,
+              "other": -51.24
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.2,
+            "bass": 1.25,
+            "vocals": -16.36,
+            "other": -27.88
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -2.68,
+              "vocals": 3.74,
+              "other": -4.29
+            },
+            "dub": {
+              "bass": -1.63,
+              "vocals": -12.82,
+              "other": -32.37
+            }
+          },
+          "relative_delta_db": {
+            "bass": 1.05,
+            "vocals": -16.56,
+            "other": -28.08
+          }
+        },
+        {
+          "original_seconds": [
+            17,
+            18
+          ],
+          "dub_seconds": [
+            18.7585,
+            19.7655
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -16.63,
+              "bass": -19.0,
+              "vocals": -14.81,
+              "other": -22.71
+            },
+            "dub": {
+              "drums": -15.85,
+              "bass": -18.42,
+              "vocals": -38.45,
+              "other": -46.47
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.78,
+            "bass": 0.58,
+            "vocals": -23.64,
+            "other": -23.76
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -2.37,
+              "vocals": 1.82,
+              "other": -6.08
+            },
+            "dub": {
+              "bass": -2.57,
+              "vocals": -22.6,
+              "other": -30.62
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.2,
+            "vocals": -24.42,
+            "other": -24.54
+          }
+        },
+        {
+          "original_seconds": [
+            18,
+            19
+          ],
+          "dub_seconds": [
+            19.7655,
+            20.7725
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -18.7,
+              "bass": -14.42,
+              "vocals": -15.04,
+              "other": -24.77
+            },
+            "dub": {
+              "drums": -18.19,
+              "bass": -14.2,
+              "vocals": -60.1,
+              "other": -55.87
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.51,
+            "bass": 0.22,
+            "vocals": -45.06,
+            "other": -31.1
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 4.28,
+              "vocals": 3.66,
+              "other": -6.07
+            },
+            "dub": {
+              "bass": 3.99,
+              "vocals": -41.91,
+              "other": -37.68
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.29,
+            "vocals": -45.57,
+            "other": -31.61
+          }
+        },
+        {
+          "original_seconds": [
+            19,
+            20
+          ],
+          "dub_seconds": [
+            20.7725,
+            21.7795
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -21.01,
+              "bass": -19.82,
+              "vocals": -15.4,
+              "other": -21.19
+            },
+            "dub": {
+              "drums": -19.96,
+              "bass": -19.95,
+              "vocals": -48.12,
+              "other": -49.6
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 1.05,
+            "bass": -0.13,
+            "vocals": -32.72,
+            "other": -28.41
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 1.19,
+              "vocals": 5.61,
+              "other": -0.18
+            },
+            "dub": {
+              "bass": 0.01,
+              "vocals": -28.16,
+              "other": -29.64
+            }
+          },
+          "relative_delta_db": {
+            "bass": -1.18,
+            "vocals": -33.77,
+            "other": -29.46
+          }
+        },
+        {
+          "original_seconds": [
+            20,
+            21
+          ],
+          "dub_seconds": [
+            21.7795,
+            22.7865
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -18.15,
+              "bass": -60.57,
+              "vocals": -18.18,
+              "other": -19.79
+            },
+            "dub": {
+              "drums": -15.74,
+              "bass": -67.27,
+              "vocals": -54.1,
+              "other": -47.16
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 2.41,
+            "bass": -6.7,
+            "vocals": -35.92,
+            "other": -27.37
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -42.42,
+              "vocals": -0.03,
+              "other": -1.64
+            },
+            "dub": {
+              "bass": -51.53,
+              "vocals": -38.36,
+              "other": -31.42
+            }
+          },
+          "relative_delta_db": {
+            "bass": -9.11,
+            "vocals": -38.33,
+            "other": -29.78
+          }
+        },
+        {
+          "original_seconds": [
+            21,
+            22
+          ],
+          "dub_seconds": [
+            22.7865,
+            23.7935
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -18.44,
+              "bass": -15.52,
+              "vocals": -20.48,
+              "other": -23.52
+            },
+            "dub": {
+              "drums": -18.22,
+              "bass": -15.56,
+              "vocals": -56.76,
+              "other": -55.28
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.22,
+            "bass": -0.04,
+            "vocals": -36.28,
+            "other": -31.76
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 2.92,
+              "vocals": -2.04,
+              "other": -5.08
+            },
+            "dub": {
+              "bass": 2.66,
+              "vocals": -38.54,
+              "other": -37.06
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.26,
+            "vocals": -36.5,
+            "other": -31.98
+          }
+        },
+        {
+          "original_seconds": [
+            22,
+            23
+          ],
+          "dub_seconds": [
+            23.7935,
+            24.8005
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -19.88,
+              "bass": -15.25,
+              "vocals": -14.94,
+              "other": -23.63
+            },
+            "dub": {
+              "drums": -18.82,
+              "bass": -15.16,
+              "vocals": -46.92,
+              "other": -37.0
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 1.06,
+            "bass": 0.09,
+            "vocals": -31.98,
+            "other": -13.37
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 4.63,
+              "vocals": 4.94,
+              "other": -3.75
+            },
+            "dub": {
+              "bass": 3.66,
+              "vocals": -28.1,
+              "other": -18.18
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.97,
+            "vocals": -33.04,
+            "other": -14.43
+          }
+        },
+        {
+          "original_seconds": [
+            23,
+            24
+          ],
+          "dub_seconds": [
+            24.8005,
+            25.8075
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -19.4,
+              "bass": -21.36,
+              "vocals": -14.84,
+              "other": -22.94
+            },
+            "dub": {
+              "drums": -18.69,
+              "bass": -20.52,
+              "vocals": -69.5,
+              "other": -33.52
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.71,
+            "bass": 0.84,
+            "vocals": -54.66,
+            "other": -10.58
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -1.96,
+              "vocals": 4.56,
+              "other": -3.54
+            },
+            "dub": {
+              "bass": -1.83,
+              "vocals": -50.81,
+              "other": -14.83
+            }
+          },
+          "relative_delta_db": {
+            "bass": 0.13,
+            "vocals": -55.37,
+            "other": -11.29
+          }
+        },
+        {
+          "original_seconds": [
+            24,
+            25
+          ],
+          "dub_seconds": [
+            25.8075,
+            26.8145
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -16.15,
+              "bass": -17.37,
+              "vocals": -17.89,
+              "other": -25.23
+            },
+            "dub": {
+              "drums": -15.77,
+              "bass": -17.47,
+              "vocals": -45.96,
+              "other": -34.92
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.38,
+            "bass": -0.1,
+            "vocals": -28.07,
+            "other": -9.69
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -1.22,
+              "vocals": -1.74,
+              "other": -9.08
+            },
+            "dub": {
+              "bass": -1.7,
+              "vocals": -30.19,
+              "other": -19.15
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.48,
+            "vocals": -28.45,
+            "other": -10.07
+          }
+        },
+        {
+          "original_seconds": [
+            25,
+            26
+          ],
+          "dub_seconds": [
+            26.8145,
+            27.8215
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -18.59,
+              "bass": -13.4,
+              "vocals": -16.16,
+              "other": -26.81
+            },
+            "dub": {
+              "drums": -18.3,
+              "bass": -13.45,
+              "vocals": -71.96,
+              "other": -52.34
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.29,
+            "bass": -0.05,
+            "vocals": -55.8,
+            "other": -25.53
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 5.19,
+              "vocals": 2.43,
+              "other": -8.22
+            },
+            "dub": {
+              "bass": 4.85,
+              "vocals": -53.66,
+              "other": -34.04
+            }
+          },
+          "relative_delta_db": {
+            "bass": -0.34,
+            "vocals": -56.09,
+            "other": -25.82
+          }
+        },
+        {
+          "original_seconds": [
+            26,
+            27
+          ],
+          "dub_seconds": [
+            27.8215,
+            28.8285
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -20.34,
+              "bass": -19.75,
+              "vocals": -19.73,
+              "other": -20.25
+            },
+            "dub": {
+              "drums": -19.22,
+              "bass": -19.71,
+              "vocals": -39.26,
+              "other": -46.58
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 1.12,
+            "bass": 0.04,
+            "vocals": -19.53,
+            "other": -26.33
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": 0.59,
+              "vocals": 0.61,
+              "other": 0.09
+            },
+            "dub": {
+              "bass": -0.49,
+              "vocals": -20.04,
+              "other": -27.36
+            }
+          },
+          "relative_delta_db": {
+            "bass": -1.08,
+            "vocals": -20.65,
+            "other": -27.45
+          }
+        },
+        {
+          "original_seconds": [
+            27,
+            28
+          ],
+          "dub_seconds": [
+            28.8285,
+            29.8355
+          ],
+          "stem_rms_dbfs": {
+            "original": {
+              "drums": -16.11,
+              "bass": -62.59,
+              "vocals": -50.78,
+              "other": -19.65
+            },
+            "dub": {
+              "drums": -16.05,
+              "bass": -70.54,
+              "vocals": -75.35,
+              "other": -43.68
+            }
+          },
+          "stem_delta_db_dub_minus_original": {
+            "drums": 0.06,
+            "bass": -7.95,
+            "vocals": -24.57,
+            "other": -24.03
+          },
+          "stem_relative_to_drums_db": {
+            "original": {
+              "bass": -46.48,
+              "vocals": -34.67,
+              "other": -3.54
+            },
+            "dub": {
+              "bass": -54.49,
+              "vocals": -59.3,
+              "other": -27.63
+            }
+          },
+          "relative_delta_db": {
+            "bass": -8.01,
+            "vocals": -24.63,
+            "other": -24.09
+          }
+        }
+      ]
+    }
+  ]
+}
