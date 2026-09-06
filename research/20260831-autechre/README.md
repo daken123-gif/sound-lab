@@ -5,7 +5,7 @@
 - 研究区分: `long-term`
 - 研究対象: Autechre（Sean Booth / Rob Brown）の反復、生成過程、ライブシステム、身体操作
 - 現在の問い: 固定ループの垂れ流しを避けながら、ノンミュージシャンがiPhone上でリアルタイムに構造を演奏できる原理として何を抽出できるか
-- 更新日時: 2026-09-04 UTC
+- 更新日時: 2026-09-06 UTC
 - 基点: `sound-lab/main` commit `95030a185aed933bf5595fc694194563399ca5dd`
 
 ## 長期研究指定
@@ -21,7 +21,7 @@
 
 ## この記録の証拠境界
 
-この研究は、本人インタビュー、公式ディスコグラフィー、および一次資料を引用する記事を中心にした文献研究である。AutechreのMaxパッチ、ライブシステム、マルチトラック素材、内部パラメータは取得していない。2026-09-04に`Flutter`のApple Music公式30秒プレビューを初めて取得し、波形由来のevent候補、音量、帯域、局所周期、遅延自己類似を実測した。ただし全曲597.733秒の約5.02%に限られ、全曲構成、bar同一性、制作内部、他作品を代表しない。2026-09-05にYouTubeの`Autechre - Topic`上で権利表示を伴う全曲候補を同定したが、音声bytesの取得・解析とpreviewとの同一版照合は未実施である。
+この研究は、本人インタビュー、公式ディスコグラフィー、および一次資料を引用する記事を中心にした文献研究である。AutechreのMaxパッチ、ライブシステム、マルチトラック素材、内部パラメータは取得していない。2026-09-04に`Flutter`のApple Music公式30秒previewを初めて取得・実測し、2026-09-06には同じtrack IDの公式90秒enhanced previewへ解析を拡張した。90秒版は全曲597.733秒の約15.05%であり、全曲構成、bar同一性、制作内部、他作品を代表しない。2026-09-05にYouTubeの`Autechre - Topic`上で権利表示を伴う全曲候補を同定したが、音声bytesの取得・解析とpreviewとの同一版照合は未実施である。
 
 以下を分離する。
 
@@ -1038,9 +1038,72 @@ FULL_SOURCE_MANIFEST {
 
 次のgateは、利用条件に反しない方法で正規音源を解析可能な形にし、source propertiesとSHA-256を固定すること、その後にpreviewのoffsetと一致confidenceを測ることである。それまでは、600秒の公開面を確認できたことを「全曲を聴取・実測した」へ昇格させない。
 
-## 23. 未検証事項
+## 23. `Flutter`音源実測2 — 90秒で見える複数尺度の回帰
 
-- `Flutter`全曲と他作品の波形・イベント列の分析。完了した音響実測は同曲の位置不明な公式30秒previewだけであり、YouTube Topicは全曲候補のmetadata同定までである。
+2026-09-06、section 20で取得済みのApple Music公式90秒enhanced previewを、同じmono／22,050 Hz／float32 PCMと共通解析条件で実測した。音源はsection 20のmanifestに記録したSHA-256 `9c00803fe64dbced59b7ba55a4f4c28c8191b84d647f7e5eda26ef80317cb8e9`と同じであり、Gitへ保存していない。
+
+### 1. 回帰確認と解析範囲
+
+90秒版の先頭から、30秒版と同じdecoded範囲を再解析すると、section 20のRMS、spectral centroid、200 Hz未満energy ratio、event候補数、局所周期が表示桁で一致した。従って途中で解析定義を変えず、同じ工程を90秒へ拡張できている。
+
+90秒版のdecoded durationは`89.975873 s`、全曲597.733秒に対する比率は約`15.053%`である。これは30秒版の約5.02%より広いが、full-track offsetは引き続き不明である。「冒頭90秒」や特定sectionとは呼ばない。
+
+### 2. 90秒全体の観測値
+
+| 指標 | 90秒previewの観測値 |
+| --- | --- |
+| RMS dBFS | p10 `-21.15`、median `-17.31`、p90 `-13.74` |
+| spectral centroid | p10 `318.3 Hz`、median `828.9 Hz`、p90 `2093.3 Hz` |
+| 200 Hz未満energy ratio | p10 `0.0089`、median `0.1193`、p90 `0.6468` |
+| event候補 | `594`、`6.602 / s`、interval median `0.104 s`、IQR `0.093–0.197 s` |
+
+90秒全体で固定したevent thresholdを使い、30秒ごとに比較すると次のようになった。この表のevent数はsection 20の各範囲内thresholdによる`207`と定義が異なるため、旧値を置換しない。
+
+| preview内区間 | RMS median | centroid median | 200 Hz未満ratio median | event候補 |
+| --- | ---: | ---: | ---: | ---: |
+| 0–30 s | -17.29 dBFS | 814.3 Hz | 0.1403 | 199 |
+| 30–60 s | -16.86 dBFS | 895.9 Hz | 0.1277 | 210 |
+| 60–89.976 s | -17.82 dBFS | 779.6 Hz | 0.0909 | 185 |
+
+音量medianは三つの窓で約0.96 dBの範囲に留まる一方、最後の窓ではevent候補と低域比がともに下がる。30秒実測で得た「energy medianを大きく動かさず、発音と帯域配分を動かす」という候補は90秒でも残るが、局所状態が均一に続くわけではない。
+
+### 3. onset周期は90秒でも残る
+
+90秒全体のonset-flux autocorrelationで強い局所最大は、`1.602 s (r=0.601)`、`0.801 s (0.598)`、`0.604 s (0.590)`、`0.302 s (0.578)`、`1.800 s (0.570)`、`0.197 s (0.565)`だった。section 20の30秒にあった0.302／0.604／0.801／1.602秒付近の候補が、90秒へ範囲を広げても上位に残った。
+
+これは同一beatを持つbarの存在を示さない。onsetの時間格子またはその近似的な倍数関係が持続しながら、各eventの選択、accent、帯域配置が非同一でありうることを示す。
+
+### 4. 帯域状態には約6.4秒間隔の回帰候補がある
+
+20-band log-energy profileのcosine similarityを、90秒全体でbandごとに標準化して測った。
+
+| lag | similarity median | p90 |
+| ---: | ---: | ---: |
+| 1 s | 0.144 | 0.678 |
+| 2 s | -0.013 | 0.573 |
+| 4 s | 0.054 | 0.598 |
+| 8 s | 0.080 | 0.646 |
+| 16 s | 0.058 | 0.607 |
+| 32 s | 0.426 | 0.821 |
+
+0.25秒刻みで40秒まで走査したmedian similarityの局所最大は、`6.50 s (0.299)`、`12.75 s (0.390)`、`19.25 s (0.311)`、`25.50 s (0.295)`、`32.00 s (0.426)`、`38.50 s (0.207)`に並んだ。約6.25–6.50秒ずつ離れた回帰系列に見えるが、bar境界、tempo、全曲位置がないため、これをbar、phrase、loopのいずれかへ確定しない。
+
+現時点の強い候補は、`Flutter`が周期を単純に除去したのではなく、少なくとも二つの尺度を分離しているという読みである。
+
+```text
+MULTISCALE_RETURN_CANDIDATE {
+  onset_grid: approximately 0.20–1.60 seconds
+  band_state_return: approximately 6.4-second spacing and multiples
+  event_identity: not established as repeating
+  bar_identity: untested
+}
+```
+
+Sound Labへ移すなら、短いevent発生の足場と、中期的な帯域状態の回帰を別parameterとして歪められる候補になる。ただしこれは研究上の設計候補であり、製品採用、touch mapping、可聴性、iPhone動作は未決定・未検証である。
+
+## 24. 未検証事項
+
+- `Flutter`全曲と他作品の波形・イベント列の分析。完了した音響実測は同曲の位置不明な公式90秒enhanced previewまでであり、YouTube Topicは全曲候補のmetadata同定までである。
 - 権利者公開の`Flutter`フル音源を規約に適合して解析可能な形で取得できるか、またその版をpreviewと照合できるか。
 - YouTube Topicの600秒、AE_STOREの9:57、Apple lookupの597.733秒という尺差の原因。
 - `Flutter`のISRCと、Shazam旧song ID `292743285`が現在の直接ページで別曲へ解決される理由。ID衝突を推測で補わない。
@@ -1058,7 +1121,7 @@ FULL_SOURCE_MANIFEST {
 - 独立DRUMと4トラック間の同期を、固定BPM以外でどう成立させるか。
 - 低遅延、CPU、電池、発熱、音量安全性。
 
-## 24. 触る実装パス
+## 25. 触る実装パス
 
 今回の研究では製品コードを変更しない。
 
@@ -1067,7 +1130,7 @@ FULL_SOURCE_MANIFEST {
 - 未変更: `prototype/`
 - 未変更: `integration/`
 
-## 25. 依存する研究・判断
+## 26. 依存する研究・判断
 
 - `RESEARCH_WORKFLOW.md`
 - `integration/DIRECTION.md`
@@ -1078,14 +1141,15 @@ FULL_SOURCE_MANIFEST {
 - `research/20260902-jeff-mills/` — 持続層、手動破断、事故からの回復。長期研究branch本文を取得。
 - Skulptur研究本文 — Git上では未取得のため、この研究から内容を補完しない。
 
-## 26. 失効した判断
+## 27. 失効した判断
 
 - section 16の可変窓モデルを、入口から出口まで一方向にしか進まない完全モデルとして使う候補は失効。2025年までの共同分析には、同一区間の反復、停止後の再開、過去領域への一時回帰、別公演での古い窓の再選択がある。通常経路としての`preferred_forward_order`は維持し、section 17の`ELASTIC_SPINE`を後継候補とする。
 - cellを、一曲、一つの公開segment、完成parameterを一括recallする固定sceneのいずれかへ等置する候補は失効。2022年の本人説明が示すmodule／settings参照のhard-set層、内部morph、手動semi-linear traversalを分離したsection 18のモデルを後継候補とする。
 - channel／slotの具体値は原Maxデモを見なければ一次資料へ上げられないという判断は一部失効。2022年6月AMAで本人の構成説明を取得した。ただし「16 channel、4 bus channel、各6／5 slot」と「合計68 slot」は算術的に一致しないため、68を確定値として採る判断には移行しない。
 - cell内のmoduleがそのcellだけに閉じているという暗黙の候補は失効。任意cellからslot／presetをcopyし、別区間のeffectを呼び出せるという2025年本人回答をsection 19へ追加した。
-- 曲ごとの波形・event列・spectrum実測が一件もないという記述は一部失効。section 20で`Flutter`公式30秒previewを取得・hash固定・実測した。ただし全曲と他作品の未実測は維持する。
+- 曲ごとの波形・event列・spectrum実測が一件もないという記述は一部失効。section 20で`Flutter`公式30秒previewを取得・hash固定・実測し、section 23で同一track IDの90秒enhanced previewへ拡張した。ただし全曲と他作品の未実測は維持する。
 - `Flutter`の非反復性を「局所周期がないこと」とみなす候補は失効。30秒previewには複数のonset-flux周期候補があり、周期的足場と非同一なevent／帯域状態の分離を後継仮説とする。
+- 30秒previewの局所状態が、そのまま均一に続くという候補は失効。90秒previewの60–89.976秒窓では、前二窓よりevent候補と低域比が下がった。短いonset周期の持続と、中期的な状態変化・回帰を併存させるモデルを後継候補とする。
 
 今後訂正が生じた場合、古い判断を黙って削除せず、失効理由と後継判断をここへ追記する。
 
