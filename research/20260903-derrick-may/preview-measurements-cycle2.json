@@ -1,0 +1,61 @@
+{
+  "research_id": "20260903-derrick-may",
+  "measured_at_utc": "2026-09-06",
+  "source": {
+    "catalog": "Shazam connector / Apple Music Catalog",
+    "storefront": "jp",
+    "album_id": "1804523507",
+    "album": "Innovator",
+    "record_label": "Transmat",
+    "catalog_release_date": "2013-10-20",
+    "preview_position": "unknown",
+    "preview_audio_committed": false
+  },
+  "method": {
+    "analyzer": "research/music-analysis/analyze_previews.py",
+    "calibration": {"passed": 12, "total": 12, "all_passed": true},
+    "sample_rate_hz": 44100,
+    "windowing": "whole preview plus 0-10s, 10-20s, 20-29.8s",
+    "boundary": "periodicity candidates are not asserted as musical beat or whole-track BPM"
+  },
+  "tracks": [
+    {
+      "catalog_name": "Daymares, It Is What It Is",
+      "analysis_name": "Daymares / It Is What It Is",
+      "apple_song_id": "1804523634",
+      "isrc": "BEZ350800085",
+      "duration_ms": 397613,
+      "title_boundary": "unknown within compound catalog title",
+      "whole": {"duration_s": 29.9755, "rms_dbfs": -12.98, "spectral_centroid_hz": 5014.9, "onsets_per_second": 7.606, "onset_interval_median_s": 0.1219, "onset_interval_cv": 0.309, "periodicity_candidates_bpm": [127.6, 63.41, 166.71, 84.72, 50.92, 101.33, 56.48, 72.79]},
+      "windows": [
+        {"range_s": "0-10", "rms_dbfs": -12.96, "spectral_centroid_hz": 4841.6, "onsets_per_second": 7.619, "periodicity_candidates_bpm": [127.6, 63.41, 166.71, 84.72, 50.92, 102.34, 72.79, 56.48]},
+        {"range_s": "10-20", "rms_dbfs": -12.61, "spectral_centroid_hz": 5058.7, "onsets_per_second": 7.5, "periodicity_candidates_bpm": [127.6, 63.8, 166.71, 102.34, 50.92, 84.72, 56.79, 72.79]},
+        {"range_s": "20-29.8", "rms_dbfs": -13.47, "spectral_centroid_hz": 5465.4, "onsets_per_second": 7.551, "periodicity_candidates_bpm": [169.44, 84.72, 127.6, 50.92, 63.8, 72.79, 56.48, 101.33]}
+      ]
+    },
+    {
+      "catalog_name": "Icon (Montage Mix)",
+      "apple_song_id": "1804523643",
+      "isrc": "BEZ350800094",
+      "duration_ms": 349813,
+      "whole": {"duration_s": 29.9755, "rms_dbfs": -14.14, "spectral_centroid_hz": 5170.7, "onsets_per_second": 7.173, "onset_interval_median_s": 0.1161, "onset_interval_cv": 0.617, "periodicity_candidates_bpm": [65.42, 104.4, 175.19, 86.86, 52.2, 130.83, 58.07, 74.36]},
+      "windows": [
+        {"range_s": "0-10", "rms_dbfs": -16.24, "spectral_centroid_hz": 1708.2, "onsets_per_second": 9.023, "periodicity_candidates_bpm": []},
+        {"range_s": "10-20", "rms_dbfs": -14.41, "spectral_centroid_hz": 5410.5, "onsets_per_second": 6.8, "periodicity_candidates_bpm": [65.42, 104.4, 175.19, 86.86, 130.83, 52.2, 58.07, 74.9]},
+        {"range_s": "20-29.8", "rms_dbfs": -12.56, "spectral_centroid_hz": 5468.7, "onsets_per_second": 8.469, "periodicity_candidates_bpm": [65.42, 104.4, 175.19, 86.86, 52.2, 130.83, 58.07, 74.36]}
+      ]
+    },
+    {
+      "catalog_name": "The Beginning",
+      "apple_song_id": "1804523650",
+      "isrc": "BEZ350800100",
+      "duration_ms": 328787,
+      "whole": {"duration_s": 29.9755, "rms_dbfs": -15.63, "spectral_centroid_hz": 4725.5, "onsets_per_second": 7.406, "onset_interval_median_s": 0.1277, "onset_interval_cv": 0.368, "periodicity_candidates_bpm": [129.2, 64.6, 86.13, 51.94]},
+      "windows": [
+        {"range_s": "0-10", "rms_dbfs": -16.46, "spectral_centroid_hz": 4776.0, "onsets_per_second": 8.221, "periodicity_candidates_bpm": [129.2, 65.01, 86.13, 51.94]},
+        {"range_s": "10-20", "rms_dbfs": -15.81, "spectral_centroid_hz": 4814.8, "onsets_per_second": 7.8, "periodicity_candidates_bpm": [129.2, 64.6, 86.13, 51.94, 72.28]},
+        {"range_s": "20-29.8", "rms_dbfs": -14.8, "spectral_centroid_hz": 4667.2, "onsets_per_second": 7.245, "periodicity_candidates_bpm": [129.2, 86.13, 51.94, 65.01, 164.06, 72.28, 58.73]}
+      ]
+    }
+  ]
+}
