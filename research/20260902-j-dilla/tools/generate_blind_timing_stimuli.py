@@ -16,6 +16,7 @@ import math
 import random
 import struct
 import wave
+import zipfile
 from pathlib import Path
 from typing import Any
 
@@ -129,6 +130,50 @@ def pcm_rms(audio: list[float]) -> float:
     return math.sqrt(sum(sample * sample for sample in audio) / len(audio))
 
 
+def response_template() -> dict[str, Any]:
+    empty_ratings = {
+        "continuity": None,
+        "forward_motion": None,
+        "instability": None,
+        "human_intention": None,
+        "preference": None,
+    }
+    return {
+        "schema_version": "sound-lab.j-dilla.blind-listener-response/v1",
+        "listener_id": None,
+        "presentation_order": ["stimulus-A", "stimulus-B"],
+        "ratings": {
+            "stimulus-A": dict(empty_ratings),
+            "stimulus-B": dict(empty_ratings),
+        },
+        "free_response": {
+            "most_noticeable_timing_location": None,
+            "voice_that_led_or_resisted": None,
+            "what_remained_stable": None,
+        },
+        "response_locked": False,
+        "condition_key_opened": False,
+    }
+
+
+def response_sheet_markdown() -> str:
+    return """# 匿名タイミング聴取
+
+1. AとBを同じ端末音量で、各1回以上最後まで聴く。
+2. 条件keyは回答を固定するまで開かない。
+3. 各項目を1〜7で評価する。Dillaらしさは評価しない。
+
+| 刺激 | continuity | forward motion | instability | human intention | preference |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| A |  |  |  |  |  |
+| B |  |  |  |  |  |
+
+- タイミング関係が最も目立った位置：
+- 先導または抵抗して聞こえた声部：
+- 安定して残ったもの：
+"""
+
+
 def generate_pack(output: Path, seed: int = 20260903) -> tuple[dict[str, Any], dict[str, Any]]:
     output.mkdir(parents=True, exist_ok=True)
     conditions = ["global_swing", "structured_relation"]
@@ -187,6 +232,19 @@ def generate_pack(output: Path, seed: int = 20260903) -> tuple[dict[str, Any], d
     (output / "condition-key.json").write_text(
         json.dumps(key, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+    (output / "listener-response-template.json").write_text(
+        json.dumps(response_template(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    (output / "response-sheet.md").write_text(response_sheet_markdown(), encoding="utf-8")
+    with zipfile.ZipFile(output / "j-dilla-blind-listening-pack.zip", "w", zipfile.ZIP_DEFLATED) as archive:
+        for filename in (
+            "stimulus-A.wav",
+            "stimulus-B.wav",
+            "blind-manifest.json",
+            "listener-response-template.json",
+            "response-sheet.md",
+        ):
+            archive.write(output / filename, filename)
     return manifest, key
 
 
