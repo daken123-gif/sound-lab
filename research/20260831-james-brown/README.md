@@ -543,3 +543,128 @@ type ObservationFrame = {
 - 最小シミュレーターを実装し、上記ログを実際に採取する。
 - iPhone 実機の conductor layer は、シミュレーターが成立した後に検証する。
 
+
+
+## 23. Shazamプレビュー実測
+
+前節までの研究は、演奏者証言・研究文献・公開トランスクリプトを根拠にしており、音源を直接取得した分析ではなかった。今回は正式な研究経路である Shazam の Apple Music カタログ検索から4曲を同定し、各曲に付属する約30秒のAACプレビューを取得した。
+
+### 同定した録音
+
+| 曲 | Apple Music song ID | ISRC | カタログ上の版 | プレビュー尺 |
+|---|---:|---|---|---:|
+| `Cold Sweat` | `1434917832` | `USPR36707298` | 1967 Version / `Foundations of Funk` | 29.976秒 |
+| `Funky Drummer` | `1469577135` | `USF068600080` | Pt. 1 & 2 / `In the Jungle Groove` | 29.976秒 |
+| `Sex Machine` | `1469581486` | `USF067025050` | Pt. 1 & 2 | 29.976秒 |
+| `Doing It to Death` | `1443215213` | `USPR37387025` | Pts. 1 & 2 / album version | 29.929秒 |
+
+同名の single edit、alternate take、live version、bonus beat reprise は混ぜていない。カタログ上の曲ID・ISRC・プレビュー実体のSHA-256は [`preview-analysis-results.json`](./preview-analysis-results.json) に固定した。
+
+### 境界
+
+- 取得したのはフル音源ではなく、カタログが返した約30秒のプレビューである。
+- プレビュー開始位置はメタデータから取得できなかった。
+- したがって、曲全体の形式、既知のdrum breakの時刻、cueからcut/returnまでの全系列は未検証。
+- 波形から分離音源を復元していない。low / mid / high は周波数帯であり、bass / guitar / drums の奏者別stemではない。
+- プレビュー音声そのものは著作物なのでGitへ保存していない。保存したのは同定情報、ハッシュ、解析コード、数値結果のみ。
+
+## 24. 共通解析手順
+
+[`analyze_jb_previews.py`](./analyze_jb_previews.py) は、各プレビューをmono 22.05 kHz PCMへ復号した後、同一条件で次を測る。
+
+1. 2048 sample窓、256 sample hopのSTFT。
+2. 対数振幅スペクトルの正方向差分からonset envelopeを作る。
+3. 自己相関から複数のtempo候補を出す。
+4. 16分や長周期をbeatと誤認しないよう、4拍barとしての再現性を併用して候補を選ぶ。
+5. 各barを16 subdivisionへ畳み、隣接barと2-bar lagのcosine similarityを測る。
+6. low（250 Hz未満）、mid（250–2500 Hz）、high（2500 Hz以上）のonset envelope相関を測る。
+
+### 方法上の事故と修正
+
+`Funky Drummer` では、自己相関の最大値だけを使う初版が129.20 BPMを選んだ。しかし候補には95.70 BPMもあり、後者では4拍barの隣接再現性が `0.9606` となった。前者は細かな反復を拍と誤認していた可能性が高い。
+
+そこで「最大自己相関＝tempo」を棄却し、4拍barの再現性を主指標にした。さらに `Cold Sweat` では74.90 BPMの長周期候補を選びかけたため、今回の選択器には85–140 BPM外への小さなpenaltyを入れた。この範囲は普遍的な真理ではなく、今回の4曲用の明示的priorである。将来、異なるtempoの研究へそのまま流用しない。
+
+## 25. プレビュー区間の測定結果
+
+| 曲 | 推定BPM | 強onset/秒 | 隣接bar類似度 | 2-bar類似度 | 2-bar優位 | 上位4 subdivision集中度 |
+|---|---:|---:|---:|---:|---:|---:|
+| `Cold Sweat` | 114.84 | 3.269 | 0.7110 | 0.7319 | +0.0209 | 0.3191 |
+| `Funky Drummer` | 95.70 | 3.536 | 0.9606 | 0.9248 | −0.0358 | 0.4511 |
+| `Sex Machine` | 107.67 | 4.737 | 0.9062 | 0.8845 | −0.0216 | 0.3623 |
+| `Doing It to Death` | 114.84 | 3.809 | 0.8339 | 0.8209 | −0.0130 | 0.3862 |
+
+数値はこのプレビュー区間と今回の検出器にだけ属する。特にBPMは参照値ではなく推定結果であり、小数点以下の精度を演奏史上の事実として扱わない。
+
+### 観測1 — `Cold Sweat` だけが弱い2-bar優位を示した
+
+4曲中、2-bar lagの類似度が隣接barを上回ったのは `Cold Sweat` だけだった。ただし差は `+0.0209` と小さい。これは先行研究が示す二小節の周期形と整合するが、この30秒だけで二小節構造を証明したとは言えない。
+
+重要なのは、1-barの完全コピーより2-bar後の関係がわずかに戻りやすい可能性である。エンジン側では `MICROFORM` の周期を1 barへ固定しない根拠になる。
+
+### 観測2 — `Funky Drummer` は、この区間では1-bar再現性が最も高い
+
+隣接bar類似度は `0.9606` で4曲中最大だった。2-bar優位は出ていない。したがって、「`Funky Drummer` は有名な二小節breakだから、どの区間も二小節変形している」と一般化してはならない。
+
+この区間が示すのは、barの骨格を強く維持しながら演奏できることだ。JBエンジンへ移すべきなのは、patternを毎回変えることではなく、**骨格の反復とevent実現の変動を分離すること**である。
+
+### 観測3 — `Sex Machine` はonset密度が最大だが、low帯域は他帯域と一緒に動かない
+
+強onset密度は `4.737/秒` で最大。一方、band onset相関は次のようになった。
+
+| 曲 | low–mid | low–high | mid–high |
+|---|---:|---:|---:|
+| `Cold Sweat` | 0.4873 | 0.4903 | 0.8483 |
+| `Funky Drummer` | 0.5328 | 0.5580 | 0.8385 |
+| `Sex Machine` | **0.1521** | **0.2163** | 0.7975 |
+| `Doing It to Death` | 0.5278 | 0.5291 | 0.8505 |
+
+`Sex Machine` のlow帯域はmid/highとの相関が際立って低い。これは、低域のonsetが全帯域の一斉打点へ従属せず、別の隙間を担当しているという仮説を支持する。ただしfull mixの帯域分析なので、Bootsyのbassだけを測った結果とは呼ばない。
+
+この観測は、The Oneを「全voice同時発音」にしない設計判断を補強する。共有されるのは発音時刻そのものではなく、各voiceが発音または休符によって参加する収束関係である。
+
+### 観測4 — 安定した反復とloop playbackは同義ではない
+
+`Funky Drummer` と `Sex Machine` は高いbar類似度を示した。ここで「反復が安定しているからloopでよい」と結論すると、今回の研究目的を逆流させる。
+
+測定した類似度は、barごとの16-bin onset分布が近いことを示すだけで、同一audio bufferの再生を示さない。生演奏の反復は、同じ骨格へ何度も到達している。ループ再生は、同じ実体を戻している。この二つをデータ構造でも分ける。
+
+```ts
+type GrooveSkeleton = {
+  phaseExpectations: number[];
+  restExpectations: number[];
+  convergenceCandidates: number[];
+};
+
+type EventRealization = {
+  onsetOffset: number;
+  duration: number;
+  attack: number;
+  spectralRole: "low" | "mid" | "high";
+  relationResponse: number;
+};
+```
+
+`GrooveSkeleton` は反復してよい。`EventRealization` は演奏中のtouch、他voice、cue、memoryから毎回生成する。audio bufferを周回させる必要はない。
+
+## 26. 前回モデルへの反映
+
+今回の実測により、次を更新する。
+
+- `MICROFORM`：1-bar固定ではなく、1-barと2-bar以上の recurrence hypothesisを持つ。
+- `PULSE_AUTHORITY`：tempo一値ではなく、複数候補とbar再現性を保持する。
+- `MEMORY`：過去audioではなく、`GrooveSkeleton` の位相期待と休符期待を保持する。
+- `viable convergence`：同時発音数ではなく、帯域・voiceごとの役割適合で評価する。
+- `Sex Machine` 型：low voiceがmid/highと低相関でも、全体の周期へ参加できる。
+- `Funky Drummer` 型：高い骨格安定性を、buffer loopではなく再生成で成立させる。
+
+## 27. 次の音源検証
+
+Shazamプレビューで実施できたのは、曲同定、30秒音源取得、混合波形の反復・帯域関係の測定までである。次に必要なのは以下。
+
+- 各プレビューが曲中のどの区間かを、フル音源と照合して時刻固定する。
+- `Funky Drummer` のcue発行、count、cut、returnを含む連続区間を測る。
+- source separationを使う場合は、分離誤差をstem事実と混同しない評価系を先に作る。
+- 各barの16-bin templateだけでなく、event単位のonset offsetとvelocity代理量を保存する。
+- 同じISRCの別カタログ項目でプレビュー区間が同一か比較する。
+
