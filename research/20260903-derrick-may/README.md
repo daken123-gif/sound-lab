@@ -3,7 +3,7 @@
 - status: `active`
 - research-id: `20260903-derrick-may`
 - started: `2026-09-03 UTC`
-- last-updated: `2026-09-03 UTC`
+- last-updated: `2026-09-06 UTC`
 - scope: Derrick May / Rhythim Is Rhythim / Maydayの録音、DJ由来の編集、作者関係、Sound Labへの転用候補
 - authority: 研究記録。`integration/` の採用判断を変更しない
 - change-boundary: 本ディレクトリのみ。製品コードと統合判断は変更しない
@@ -40,7 +40,7 @@ Shazamは周囲で鳴る音を認識したのではなく、Apple Music Catalog�
 - 各曲のPreview開始時刻
 - マルチトラック、MIDI、ミキサー操作ログ
 - Derrick MayのDJセット音源を用いた時刻付き独自分析
-- `It Is What It Is`、`The Beginning`、`Icon`、`Illusion`の解析可能なPreview
+- `Illusion`の解析可能なPreview
 - Michael James、Thomas Barnett、Jay Dixonの全証言と契約・裁判資料
 - 性暴力申告について事実認定した司法判断
 
@@ -93,6 +93,44 @@ Network RecordsのBandcamp表示では `Hand Over Hand` が13:04とされ、Appl
 | Hand Over Hand | 第一窓のonset/s 5.497から第二・第三窓8.288 / 8.560へ増加。周期候補順位も変化 | Preview内に大きい密度差 |
 
 `Strings Of Life`では第一・第二窓が約-16 dBFS台、第三窓が-10.22 dBFSへ上昇した。スペクトル重心も4091.0 / 4205.2 Hzから5292.1 Hzへ上がり、onset/sは8.395 / 8.688から6.216へ下がった。これは「音数が増えた」という意味ではない。より少ない検出オンセットで、強く明るい層が前へ出た可能性を支持する。
+
+## 第二サイクル：Transmat版の未取得曲
+
+2026-09-06、単曲名によるApple Music検索では対象外の同名曲が多数返り、対象を固定できなかった。そこでTransmat版 `Innovator`（album ID `1804523507`）の全29曲を取得し、収録関係から3曲を固定した。
+
+| カタログ表記 | Apple曲ID | ISRC | 尺 | Preview |
+|---|---:|---|---:|---|
+| Daymares, It Is What It Is | `1804523634` | `BEZ350800085` | 6:37.613 | 取得・測定済み |
+| Icon (Montage Mix) | `1804523643` | `BEZ350800094` | 5:49.813 | 取得・測定済み |
+| The Beginning | `1804523650` | `BEZ350800100` | 5:28.787 | 取得・測定済み |
+
+`Daymares, It Is What It Is` はカタログ上で二つの題名を連結した表記である。取得Previewが曲中のどちら側に位置するかは不明なので、以下では便宜的に `Daymares / It Is What It Is` とし、`It Is What It Is` 単独断片とは断定しない。`Illusion` はこの29曲版に存在せず、カタログ検索でも対象版を固定できなかった。
+
+校正は12項目すべてpass。測定値は `preview-measurements-cycle2.json` に保存した。
+
+| 曲 | 全断片 RMS | 重心 | onset/s | 三窓の主要観測 |
+|---|---:|---:|---:|---|
+| Daymares / It Is What It Is | -12.98 dBFS | 5014.9 Hz | 7.606 | 第一・第二窓は127.60が第一周期候補。第三窓は169.44が第一へ交代し、重心は4841.6 → 5058.7 → 5465.4 Hz |
+| Icon (Montage Mix) | -14.14 dBFS | 5170.7 Hz | 7.173 | 第一窓は周期候補なし・重心1708.2 Hz。第二・第三窓は65.42等が現れ、重心5410.5 / 5468.7 Hz、RMSも-16.24 → -14.41 → -12.56 dBFS |
+| The Beginning | -15.63 dBFS | 4725.5 Hz | 7.406 | 129.20が三窓すべて第一候補。RMSは-16.46 → -15.81 → -14.80 dBFS、onset/sは8.221 → 7.800 → 7.245 |
+
+### 中心仮説への作用
+
+`The Beginning` は、前回の `Beyond The Dance` や `Wiggin` と同様に、Preview内で周期床が強く保たれる側の例になった。対して `Icon (Montage Mix)` は、第一窓から第二窓で重心が約3.2倍になり、周期候補も「検出なし」から複数出現へ変わった。これは、同じ30秒内でも前景の帯域と周期の読め方が切り替わるという `IGNITION` 候補を強める。
+
+ただし、`Icon` の変化をMay本人の手動操作、Montage Mix固有の編集、またはPreview位置の偶然のどれかへ確定する資料はない。今回強まったのは「周期床の安定だけでは3曲を説明できない」という観測であり、制作意図の断定ではない。
+
+`Daymares / It Is What It Is` はRMSとonset密度をほぼ保ったまま、第三窓で最上位周期候補と高域重心が動く。したがって `IGNITION` を単純な音量上昇と同一視できない。前景交代は、音量、帯域、周期候補、onset密度のうち一つ以上が別々に動く多変量の事件として扱う必要がある。
+
+## DJセット資料の同定監査
+
+DJセットの時刻分析へ入る前に、広く `Derrick May @ Music Institute, Detroit 1988` と流通してきた音源の由来を照合した。MixesDBは現在、この音源を「おそらく誤帰属」とし、マスター提供者の説明に基づいて `1990-05 - Unknown Gig, Miami` を正しい候補としている。流通版には78:25、79:11、92:35など複数の長さがあり、同一マスターから派生したと整理されている。
+
+この訂正により、当該音源を「Music Institute 1988の演奏慣行」の証拠として使う経路は停止する。Derrick Mayの演奏内容の候補資料ではありうるが、場所と年を固定した歴史資料としては扱わない。
+
+現行tracklistには `French Kiss` の再登場と、`Music Takes U Away` のVibrant / Serious Instrumental / Alternativeの三version連続が記録されている。ここから観測できるのは選曲順とversion反復だけであり、blend時間、cut、mute、entry phase、事故回復は音源の時刻測定前には断定できない。
+
+一方、Sony Music Japanの公式 `Mix-Up Vol.5` tracklistは32項目を確認でき、Chicago house、Detroit techno、Jeff Mills作品、Basement Jaxx等を一つの公式mix作品内に並べている。この資料も曲順は固定できるが、transition技法の実測を代替しない。
 
 ## 外部資料から確認できた制作関係
 
@@ -244,9 +282,9 @@ May研究から得るものを「Detroit strings」「Strings of Lifeコード�
 
 ## 次の研究サイクル
 
-1. `It Is What It Is`、`The Beginning`、`Icon`、`Illusion`の正規版をカタログ固定する。
-2. original single版とNetwork remaster版を同曲で取得できる場合、Previewの一致箇所とmaster差を調べる。
-3. DJセットを一つ固定し、曲名表より先にentry / mute / overlap / recoveryを時刻記録する。
+1. `Illusion`の正規版を、題名一致だけでなくartist・release・ISRCまで固定する。
+2. `Daymares, It Is What It Is` 内で二作品が連結されているのか、単一曲の別表記なのかを一次release資料で確認する。
+3. Miami 1990候補音源または由来の確かな別セットを一つ固定し、entry / mute / overlap / recoveryを時刻記録する。
 4. Jeff Mills研究の持続／破断／回復記法と同じ表へ載せ、共通点と非共通点を反証する。
 5. 製品採用とは別に、`FLOOR / IGNITION / CHOREOGRAPHY`の最小演奏実験案を作る。
 
@@ -259,6 +297,8 @@ May研究から得るものを「Detroit strings」「Strings of Lifeコード�
 - Bill Brewster / Frank Broughton interview with Derrick May, published by RBMA Daily: https://daily.redbullmusicacademy.com/2017/05/interview-derrick-may/
 - Network Records, `Innovator - Soundtrack For The Tenth Planet`: https://networkrecords.bandcamp.com/album/innovator-soundtrack-for-the-tenth-planet
 - Apple Music Japan catalog album `1678920647`: https://music.apple.com/jp/album/innovator-soundtrack-for-the-tenth-planet/1678920647
+- Apple Music Japan catalog album `1804523507`: https://music.apple.com/jp/album/innovator/1804523507
+- Sony Music Japan, `Mix-Up Vol.5`: https://www.sonymusic.co.jp/Music/Info/SonyTechno/catalog/product/8250.html
 
 ### 寄与関係の補助資料
 
@@ -269,6 +309,10 @@ May研究から得るものを「Detroit strings」「Strings of Lifeコード�
 - DJ Mag investigation, 2020-11-12: https://djmag.com/longreads/multiple-women-report-sexual-assault-and-harassment-derrick-may
 - Resident Advisor investigation, 2021-01-29: https://ra.co/features/3828
 - The Guardian report including May's denial, 2020-11-12: https://www.theguardian.com/music/2020/nov/12/techno-dj-derrick-may-accused-of-sexual-assault-by-four-women
+
+### DJ資料と由来監査
+
+- MixesDB, circulated `Music Institute 1988` attribution and Miami 1990 correction: https://www.mixesdb.com/w/1988_-_Derrick_May_@_Music_Institute
 
 ## 触る実装パス
 
@@ -289,3 +333,11 @@ May研究から得るものを「Detroit strings」「Strings of Lifeコード�
 - 7 Previewの音声バイトを取得し、全断片と三窓を測定
 - 作者寄与の衝突、中心仮説、反証条件、Sound Lab転用候補を記録
 - 製品コードと統合判断は変更していない
+
+### 2026-09-06
+
+- Transmat版 `Innovator` 全29曲を再取得し、未取得だった3曲の版を固定
+- 3 Previewを取得し、全断片と三窓を校正済み測定器で解析
+- `Illusion` は未取得のまま保持
+- `Music Institute 1988` と流通したsetのMiami 1990誤帰属候補を記録
+- DJ技法は音源時刻分析前なので未検証のまま保持
