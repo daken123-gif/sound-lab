@@ -1198,3 +1198,508 @@
         -14.01,
         -10.54
       ],
+      "spectral_centroid_hz": 3078,
+      "stereo_balance_minus_left_plus_right": -0.0542,
+      "onset_count": 92,
+      "onsets_per_second": 9.193,
+      "onset_interval_median_s": 0.1045,
+      "onset_interval_cv": 0.237,
+      "periodicity_candidates_bpm": [
+        147.66,
+        73.3
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "06-1860112734-w01.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -12.85,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -17.06,
+        -13.66,
+        -10.04
+      ],
+      "spectral_centroid_hz": 3058.9,
+      "stereo_balance_minus_left_plus_right": -0.0815,
+      "onset_count": 99,
+      "onsets_per_second": 9.892,
+      "onset_interval_median_s": 0.0929,
+      "onset_interval_cv": 0.222,
+      "periodicity_candidates_bpm": [
+        73.3,
+        147.66,
+        187.93,
+        52.73,
+        82.69,
+        65.83
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "06-1860112734-w02.m4a",
+      "duration_s": 9.9846,
+      "rms_dbfs": -13.06,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -18.56,
+        -14.1,
+        -9.78
+      ],
+      "spectral_centroid_hz": 3004.6,
+      "stereo_balance_minus_left_plus_right": -0.0906,
+      "onset_count": 90,
+      "onsets_per_second": 9.014,
+      "onset_interval_median_s": 0.0987,
+      "onset_interval_cv": 0.279,
+      "periodicity_candidates_bpm": [
+        147.66,
+        73.3,
+        53,
+        120.19,
+        187.93,
+        83.35
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "07-1860112735-w00.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -12.42,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -16.84,
+        -13.5,
+        -9.24
+      ],
+      "spectral_centroid_hz": 2657.9,
+      "stereo_balance_minus_left_plus_right": -0.1465,
+      "onset_count": 93,
+      "onsets_per_second": 9.293,
+      "onset_interval_median_s": 0.0987,
+      "onset_interval_cv": 0.255,
+      "periodicity_candidates_bpm": [
+        147.66,
+        73.83,
+        120.19,
+        82.69,
+        187.93
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "07-1860112735-w01.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -13.07,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -17.66,
+        -13.99,
+        -10.12
+      ],
+      "spectral_centroid_hz": 3008.5,
+      "stereo_balance_minus_left_plus_right": -0.1252,
+      "onset_count": 98,
+      "onsets_per_second": 9.792,
+      "onset_interval_median_s": 0.0987,
+      "onset_interval_cv": 0.21,
+      "periodicity_candidates_bpm": [
+        149.8,
+        73.3
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "07-1860112735-w02.m4a",
+      "duration_s": 9.9846,
+      "rms_dbfs": -13.2,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -18.25,
+        -14.2,
+        -10.14
+      ],
+      "spectral_centroid_hz": 3346.3,
+      "stereo_balance_minus_left_plus_right": -0.0788,
+      "onset_count": 97,
+      "onsets_per_second": 9.715,
+      "onset_interval_median_s": 0.1016,
+      "onset_interval_cv": 0.203,
+      "periodicity_candidates_bpm": [
+        147.66,
+        72.79,
+        121.6,
+        66.68
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "08-1860112736-w00.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -14.41,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -21.45,
+        -17.74,
+        -10.15
+      ],
+      "spectral_centroid_hz": 3079.7,
+      "stereo_balance_minus_left_plus_right": -0.0865,
+      "onset_count": 88,
+      "onsets_per_second": 8.793,
+      "onset_interval_median_s": 0.1103,
+      "onset_interval_cv": 0.313,
+      "periodicity_candidates_bpm": [
+        143.55,
+        71.78
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "08-1860112736-w01.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -13.66,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -20.68,
+        -16.95,
+        -9.38
+      ],
+      "spectral_centroid_hz": 3280.9,
+      "stereo_balance_minus_left_plus_right": -0.109,
+      "onset_count": 89,
+      "onsets_per_second": 8.893,
+      "onset_interval_median_s": 0.1045,
+      "onset_interval_cv": 0.266,
+      "periodicity_candidates_bpm": [
+        143.55,
+        71.28,
+        127.6,
+        164.06,
+        76.56,
+        67.56
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "08-1860112736-w02.m4a",
+      "duration_s": 9.9846,
+      "rms_dbfs": -13.39,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -20.14,
+        -16.21,
+        -9.29
+      ],
+      "spectral_centroid_hz": 3520.6,
+      "stereo_balance_minus_left_plus_right": -0.1271,
+      "onset_count": 94,
+      "onsets_per_second": 9.415,
+      "onset_interval_median_s": 0.1045,
+      "onset_interval_cv": 0.197,
+      "periodicity_candidates_bpm": [
+        71.28,
+        143.55,
+        126.05,
+        67.56,
+        164.06,
+        76.56,
+        95.7
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "12-1860112740-w00.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -13.7,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -17.97,
+        -14.49,
+        -11.13
+      ],
+      "spectral_centroid_hz": 4854.5,
+      "stereo_balance_minus_left_plus_right": -0.0389,
+      "onset_count": 96,
+      "onsets_per_second": 9.593,
+      "onset_interval_median_s": 0.1045,
+      "onset_interval_cv": 0.214,
+      "periodicity_candidates_bpm": [
+        72.28,
+        143.55,
+        68,
+        75.44,
+        77.13
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "12-1860112740-w01.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -13.84,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -17.34,
+        -14.55,
+        -11.37
+      ],
+      "spectral_centroid_hz": 5906.9,
+      "stereo_balance_minus_left_plus_right": -0.0348,
+      "onset_count": 93,
+      "onsets_per_second": 9.293,
+      "onset_interval_median_s": 0.0987,
+      "onset_interval_cv": 0.245,
+      "periodicity_candidates_bpm": [
+        72.28,
+        143.55,
+        76.56,
+        161.5,
+        68
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "12-1860112740-w02.m4a",
+      "duration_s": 9.9846,
+      "rms_dbfs": -13.65,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -18.28,
+        -14.28,
+        -10.95
+      ],
+      "spectral_centroid_hz": 5021.4,
+      "stereo_balance_minus_left_plus_right": -0.0652,
+      "onset_count": 95,
+      "onsets_per_second": 9.515,
+      "onset_interval_median_s": 0.0987,
+      "onset_interval_cv": 0.247,
+      "periodicity_candidates_bpm": [
+        72.28,
+        143.55,
+        76,
+        132.51,
+        68,
+        77.13,
+        159.01
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "13-1860112741-w00.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -17.59,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -22.07,
+        -18.41,
+        -14.94
+      ],
+      "spectral_centroid_hz": 3939.8,
+      "stereo_balance_minus_left_plus_right": 0.0408,
+      "onset_count": 86,
+      "onsets_per_second": 8.593,
+      "onset_interval_median_s": 0.1045,
+      "onset_interval_cv": 0.312,
+      "periodicity_candidates_bpm": [
+        147.66,
+        73.83,
+        191.41,
+        65.83,
+        83.35,
+        120.19,
+        53,
+        98.44
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "13-1860112741-w01.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -17.38,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -22.33,
+        -18.74,
+        -14.28
+      ],
+      "spectral_centroid_hz": 3824.9,
+      "stereo_balance_minus_left_plus_right": 0.056,
+      "onset_count": 85,
+      "onsets_per_second": 8.493,
+      "onset_interval_median_s": 0.1045,
+      "onset_interval_cv": 0.348,
+      "periodicity_candidates_bpm": [
+        147.66,
+        73.83,
+        195.02,
+        66.26,
+        82.69,
+        53,
+        98.44,
+        120.19
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "13-1860112741-w02.m4a",
+      "duration_s": 9.9846,
+      "rms_dbfs": -16.96,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -23.49,
+        -17.99,
+        -13.79
+      ],
+      "spectral_centroid_hz": 3884.9,
+      "stereo_balance_minus_left_plus_right": 0.0246,
+      "onset_count": 90,
+      "onsets_per_second": 9.014,
+      "onset_interval_median_s": 0.0987,
+      "onset_interval_cv": 0.328,
+      "periodicity_candidates_bpm": [
+        147.66,
+        73.83,
+        187.93,
+        82.69,
+        66.26,
+        120.19,
+        53
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "35-1860112763-w00.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -12.68,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -20.38,
+        -13.48,
+        -9.4
+      ],
+      "spectral_centroid_hz": 3711.1,
+      "stereo_balance_minus_left_plus_right": -0.0151,
+      "onset_count": 81,
+      "onsets_per_second": 8.094,
+      "onset_interval_median_s": 0.1103,
+      "onset_interval_cv": 0.417,
+      "periodicity_candidates_bpm": [
+        70.79,
+        137.81,
+        77.71
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "35-1860112763-w01.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -12.98,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -23.36,
+        -13.99,
+        -9.39
+      ],
+      "spectral_centroid_hz": 3747.7,
+      "stereo_balance_minus_left_plus_right": -0.0176,
+      "onset_count": 77,
+      "onsets_per_second": 7.694,
+      "onset_interval_median_s": 0.1219,
+      "onset_interval_cv": 0.409,
+      "periodicity_candidates_bpm": [
+        70.79,
+        141.59,
+        77.71,
+        65.42,
+        169.44,
+        123.05
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "35-1860112763-w02.m4a",
+      "duration_s": 9.9846,
+      "rms_dbfs": -12.97,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -19.77,
+        -13.9,
+        -9.76
+      ],
+      "spectral_centroid_hz": 3461.8,
+      "stereo_balance_minus_left_plus_right": -0.0224,
+      "onset_count": 87,
+      "onsets_per_second": 8.713,
+      "onset_interval_median_s": 0.1045,
+      "onset_interval_cv": 0.328,
+      "periodicity_candidates_bpm": [
+        70.79,
+        139.67,
+        175.19,
+        120.19,
+        65.42,
+        77.13
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "36-1860112764-w00.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -12.63,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -16.51,
+        -13.18,
+        -10.21
+      ],
+      "spectral_centroid_hz": 2202.1,
+      "stereo_balance_minus_left_plus_right": -0.0097,
+      "onset_count": 93,
+      "onsets_per_second": 9.293,
+      "onset_interval_median_s": 0.1045,
+      "onset_interval_cv": 0.239,
+      "periodicity_candidates_bpm": [
+        143.55,
+        72.28,
+        82.03,
+        64.6,
+        195.02
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "36-1860112764-w01.m4a",
+      "duration_s": 10.0078,
+      "rms_dbfs": -11.75,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -15.38,
+        -12.33,
+        -9.2
+      ],
+      "spectral_centroid_hz": 3275.3,
+      "stereo_balance_minus_left_plus_right": -0.0163,
+      "onset_count": 91,
+      "onsets_per_second": 9.093,
+      "onset_interval_median_s": 0.1045,
+      "onset_interval_cv": 0.26,
+      "periodicity_candidates_bpm": [
+        145.58,
+        71.78,
+        63.8,
+        195.02,
+        81.39
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    },
+    {
+      "file": "36-1860112764-w02.m4a",
+      "duration_s": 9.9846,
+      "rms_dbfs": -12,
+      "frame_rms_dbfs_p10_p50_p90": [
+        -15.52,
+        -12.66,
+        -9.64
+      ],
+      "spectral_centroid_hz": 3628.7,
+      "stereo_balance_minus_left_plus_right": -0.0091,
+      "onset_count": 90,
+      "onsets_per_second": 9.014,
+      "onset_interval_median_s": 0.1045,
+      "onset_interval_cv": 0.243,
+      "periodicity_candidates_bpm": [
+        72.28,
+        143.55,
+        52.47,
+        195.02,
+        113.58,
+        63.8,
+        82.69,
+        95.7
+      ],
+      "scope": "unknown-position 30-second excerpt; periodicity is not asserted as musical beat"
+    }
+  ]
+}
