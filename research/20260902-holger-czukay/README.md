@@ -525,3 +525,140 @@ CZUKAY:  live relation -> stereo composite -> time is recomposed
 - live relation、stereo capture、post mix、temporal recompositionを分離。
 - Dubのstem再構成とCzukayのstereo composite時間編集の境界を追加。
 - 資料研究のみ更新。音源解析、製品実装、main変更、PR、mergeは行っていない。
+
+## 2026-09-06訂正・接続 — Jah Wobble正本の再取得と二種類の記憶
+
+### 訂正：取得不能という観測の失効
+
+2026-09-03時点では、GitHub上の `research/20260902-jah-wobble` branch とそのREADMEを取得できず、本研究には「未検証／取得不能」と記録した。この記録は、その時点の検索・取得結果としては保持するが、現在の正本状態を表す主張としては失効する。
+
+2026-09-06 UTCに再取得し、次をPRIMARY_ARTIFACTとして確認した。
+
+- branch: `research/20260902-jah-wobble`
+- file: `research/20260902-jah-wobble/README.md`
+- README blob SHA: `4c1321911a50407cc30419752ecd89f08cd47277`
+- file: `research/20260902-jah-wobble/poptones-preview-analysis-v1.md`
+- Poptones report blob SHA: `d7d8f6258cbb38adfb2e3bc4a03f08f1ea667ea7`
+
+一方、会話記憶に現れた短縮commit SHA `b66776e` は、commit取得・commit検索のどちらでも確認できなかった。したがって、**branch/fileの実在確認**と**特定commitの確認**を分離する。前者は確認済み、後者は未確認である。
+
+### Wobble正本からHolger研究へ接続できる事実
+
+Jah Wobble研究は、固定録音の反復と、人間が周期ごとに弾き直す反復を区別している。候補操作 `CYCLE TRACE` は、過去イベントの痕跡を表示するが、音声そのものは再生しない。身体は痕跡を参照しながら、次の周期を毎回つくり直す。
+
+これに対しCzukayの `Radio Wave Surfer` 型工程は、live relationを単一ステレオ複合体として捕捉し、その録音時間を後から再構成する。ここでは記憶は「次の演奏を要求する痕跡」ではなく、「それ自体が編集可能な新しい身体」になる。
+
+したがって、Sound Labで両者を同じloop architectureへ畳み込んではならない。
+
+| 時間記憶 | 保存するもの | 次の人間行為 | 禁止する短絡 |
+|---|---|---|---|
+| `CYCLE TRACE` | 音符イベントの関係的な痕跡 | 次周期を再演する | 痕跡を録音loopへ置換する |
+| `STEREO GENERATION` | 実際の共演を含むstereo composite | 録音時間を選択・切断・再配列する | compositeを分離stemの代用品とみなす |
+
+これは「loopか、no loopか」という二択ではない。区別すべきなのは、**身体に再演を要求する記憶**と、**編集される新しい身体になる記憶**である。
+
+### LIVE GRAVITYからEDITED GRAVITYへ
+
+Wobble研究の `CENTER HOLD` / `LIVE GRAVITY` は、低音の中心を現在の演奏として成立させる。Czukayのbass編集、とりわけ `EDGE CUT` は、その演奏が録音された後で音符の輪郭を彫り直す。
+
+暫定的な二段階モデル：
+
+[
+	ext{LIVE GRAVITY}
+ightarrow
+	ext{CAPTURED EDGE}
+ightarrow
+	ext{EDITED GRAVITY}
+]
+
+- `LIVE GRAVITY`: bassistとdrummerの相互拘束から、その場の重心が生まれる。
+- `CAPTURED EDGE`: room、bleed、attack、releaseを含む出来事が媒体へ固定される。
+- `EDITED GRAVITY`: 音符単位の切断、欠落、並べ替えにより、重心の時間形状が変わる。
+
+ここで編集は演奏の代替ではない。先に人間が作った重心があり、その輪郭へ後から責任を引き受けて介入する。
+
+### Jaki Liebezeit：拍の責任は分散している
+
+Wobble正本では、Jaki Liebezeitとの関係は「bassが固定metronomeへ乗る」モデルではなく、同じcycle内でbassとdrumsが互いの選択肢を狭め、互いを動かす関係として扱われている。
+
+これはCzukay側のstereo captureに重要である。単一ステレオ収録が保存するのは単なる音場ではなく、同時進行した相互拘束の証拠でもある。Czukayが後に時間編集できるのは、まずその関係全体が一つの複合体として捕捉されたからである。
+
+### Full Circleのbleedを再定義する
+
+Wobble正本が整理した `Full Circle` のroom bleed / texture / vibeを、単なる録音上の欠点やreverb成分として扱わない。
+
+同じroomの漏れには、少なくとも次が含まれうる。
+
+- 演奏者が互いを聴いて反応した因果関係
+- 音の立ち上がりが他楽器へ回り込む時間差
+- 個別楽器へ還元できない共同の圧力
+- 後編集でも完全には分解できない関係の痕跡
+
+stem-perfect separationは便利だが、分離の精度を上げるほど、相互作用の証拠を消す場合がある。したがって `same room` は空間effectのpresetではなく、**因果的couplingを保存するcapture condition**として扱う。
+
+### Poptones preview解析から移植するもの／しないもの
+
+Wobble branchの `poptones-preview-analysis-v1.md` は、ShazamからApple Music GB storefrontの固定previewへ到達し、Song ID、ISRC、preview SHA-256を保存したうえで、約30秒のmixed previewを測定している。そこで得られた約130–133 BPM、約16 beat周期、pitch candidate群は `Poptones` 固有の暫定結果であり、Czukayや `Full Circle` へ転用しない。
+
+Holger研究へ移植するのは数値ではなく、次の検証規律である。
+
+1. catalog recording/masterを先に同定する。
+2. Song ID、ISRC、storefront、preview hashを保存する。
+3. mixed previewとbass stemを混同しない。
+4. recurrenceを検出しても、演奏者や編集操作へ即時帰属しない。
+5. 自動測定、聴取注釈、資料記述を別claimとして管理する。
+
+### 次の音源検証：Full Circle Shazam route
+
+現時点ではこのbranch上で `Full Circle` の音源解析は行っていない。次の実行可能な手順を固定する。
+
+1. **録音同定**
+   - Shazamで各曲の候補を解決する。
+   - 原盤／再発／remasterを分ける。
+   - Apple Music Song ID、ISRC、storefront、preview URL、audio SHA-256を記録する。
+2. **曲別取得可能性**
+   - `How Much Are They?`
+   - `Where's the Money?`
+   - `Trench Warfare`
+   - `Twilight World`
+   - `Mystery R.P.S. (No. 8)`
+   - `Full Circle R.P.S. (No. 7)`
+   - previewがない曲は「欠測」とし、別masterで穴埋めしない。
+3. **low-band recurrence**
+   - bass中心の低域envelopeから周期候補を出す。
+   - 周期ごとのonset、duration、休符、drum onsetとの差を保持する。
+   - recurrenceの存在だけでprepared loopとは判定しない。
+4. **human annotation**
+   - bass noteのattack、swell、releaseを周期ごとに注釈する。
+   - drumとの前後関係、register移動、音価の揺れを記録する。
+   - Wobbleの再演差と、録音・mastering由来の差を分ける。
+5. **EDGE CUT仮説**
+   - 不自然に急なrelease、極短silence、波形包絡の非連続を候補化する。
+   - performance mute、tape splice、mix muteを競合仮説として残す。
+   - `EVENT HOLE` と `SEQUENCE SPLICE` を同一視しない。
+6. **比較**
+   - `How Much Are They?`、`Trench Warfare`、`Twilight World` を優先比較する。
+   - bass/drumsの相互拘束が強い箇所と、編集責任が前景化する箇所を分ける。
+
+### 現時点の結論
+
+WobbleとCzukayは、反復の反対陣営ではない。二人は異なる場所で人間の責任を保持している。
+
+- Wobble：周期を録音へ委ねず、身体が毎回その重力を作り直す。
+- Czukay：起きた関係を媒体へ委ねた後、選択・切断・再配置の責任を人間が取り戻す。
+
+Sound Labへの示唆は、単一のloop engineではなく、少なくとも `CYCLE TRACE` と `STEREO GENERATION` を分け、必要なら `LIVE GRAVITY -> CAPTURED EDGE -> EDITED GRAVITY` の遷移として接続することにある。
+
+これは研究仮説であり、製品採用・仕様確定・実装承認ではない。
+
+### 変更履歴追補（2026-09-06）
+
+- Jah Wobble branch/fileの現存を再確認し、過去の取得不能記録を現時点の主張として失効。
+- branch/file verificationとshort commit SHA verificationを分離。
+- `CYCLE TRACE` と `STEREO GENERATION` を二種類の時間記憶として接続。
+- `LIVE GRAVITY -> CAPTURED EDGE -> EDITED GRAVITY` 仮説を追加。
+- same-room bleedを因果的couplingの保存条件として再定義。
+- Poptones解析の数値ではなくSOURCE/EVENT検証規律を移植。
+- Full CircleのShazam/audio analysis手順を固定。
+- 音源解析、製品実装、main変更、PR、mergeは行っていない。
+
