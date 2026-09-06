@@ -602,6 +602,47 @@ Vampires pairではp10の差が-13.62、-10.78、-9.76 dB、p90の差も-1.44、
 
 `vocals`と`other`はモデル分類であり、実multitrackではない。vocal stemには他楽器の漏れ、other stemにはギター、鍵盤、打楽器、残響returnが混在しうる。極端なp50差は推定stemがほぼ無音になった結果を含む。人間が聴いて確認した事実ではなく、アルゴリズム推定である。特定の`DRY_EXIT`、`SEND_EVENT`、`RETURN_ONLY`の時刻は依然として未確定である。
 
+## 18.10 drum骨格による時間対応とsource曲線
+
+18.9までは原曲版とDub版のPreviewを同じ0–10／10–20／20–30秒で比較していた。しかしShazam previewの開始位置は版ごとに異なりうるため、同じ秒を同じ演奏時刻と仮定できない。そこで推定drums波形から時間対応そのものを先に検証した。
+
+手順:
+
+1. 同じShazam IDから4 Previewを再取得し、18.2のSHA-256と全一致することを確認した。
+2. 同じofficial Demucs 4.0.1／`htdemucs`から4 stemを再生成した。
+3. drums推定を45–900 Hzへ制限し、2 kHzへresampleした。
+4. `Dub時刻 = scale × original時刻 + offset`として、scale 0.97–1.03、offset ±15秒を探索した。
+5. 対応後の1秒窓へ、共通`calibrate_analyzer.rms_dbfs`を適用した。
+6. 各stemのDub−original差から同時刻のdrums差を引き、master水準に対するsource相対曲線を作った。
+
+### 時間対応
+
+| pair | scale | offset | 全体drum相関 | 局所6窓の相関中央値 | 最大局所残差 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| A | 1.000 | -1.5415秒 | 0.753 | 0.874 | 1.0 ms |
+| B | 1.007 | +1.6395秒 | 0.591 | 0.729 | 1.5 ms |
+
+無関係な交差pairの最大相関は0.090だった。同pairはこれを大きく上回り、局所6窓でもaffine対応が1.5 ms以内に保たれた。したがって、Aはoriginal側を1.5415秒進め、Bは0.7%の速度差と1.6395秒のoffsetを補正すれば、Preview内の演奏時刻を比較できる。
+
+### source対drums曲線
+
+| pair | stem | 曲線相関 | 相対差p50 | 一定gain残差の標準偏差 |
+| --- | --- | ---: | ---: | ---: |
+| A | bass | 0.993 | +0.08 dB | 1.21 dB |
+| A | vocals | 0.070 | -57.69 dB | 22.74 dB |
+| A | other | 0.377 | -4.54 dB | 8.29 dB |
+| B | bass | 0.997 | -0.32 dB | 2.24 dB |
+| B | vocals | 0.222 | -28.90 dB | 21.12 dB |
+| B | other | 0.299 | -20.50 dB | 9.75 dB |
+
+bassはdrumsに対する時間曲線が原曲版とDub版でほぼ同形だった。これに対しvocalsとotherは曲線相関が低く、相対差の時間変動も大きい。よって、この2 pairを「同じmixを一定量だけ薄くしたもの」と説明することはできない。**drums / bassの時間骨格を保持した上で、vocals / otherの時間曲線そのものを組み替えている**という解釈が強まる。
+
+これは、単一master macroよりsourceごとの存在／不在を独立に演奏できる必要があるという候補を補強する。ただしbass常時固定を製品規則にはしない。この標本でbassが保持されたことと、楽器側でbassを消せなくすることは別である。
+
+監査スクリプトは[`aligned_stem_rms_audit.py`](./aligned_stem_rms_audit.py)、全1秒窓は[`preview-aligned-stem-rms-audit.json`](./preview-aligned-stem-rms-audit.json)へ保存した。同じ入力から二回実行し、JSONは完全一致した。共通解析器の合成校正も12/12件成功した。
+
+この時間対応と曲線比較は探索的なアルゴリズム推定である。人間の聴取ではない。vocals stemにmelodica等が漏れる可能性、原曲側stemがほぼ無音の窓で比が不安定になる可能性を残す。そのため1秒窓の極値を`DRY_EXIT`、`REVEAL`、`SEND_EVENT`へ自動変換しない。事件語彙の確定には時間位置つき聴取が必要である。
+
 ## 19. 時間分析の記録形式
 
 ### 19.1 一行を一事件にする
