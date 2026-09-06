@@ -2,7 +2,7 @@
 
 - 状態: `active`
 - research-id: `20260902-dangelo`
-- 更新日時: 2026-09-03 UTC
+- 更新日時: 2026-09-06 UTC
 - 対象: D'Angeloの作曲、演奏、録音、グルーヴ設計
 - 現在の中心曲: 「Spanish Joint」
 - 現在の問い: サンプラー以後の時間感覚を、生演奏者どうしの関係と多層録音によってどう成立させたか
@@ -185,42 +185,63 @@ Sony Music Japanの公式解説は、2015年のライブ音源で「Betray My He
 
 コード断片としてF minor 6等が言及されるが、全進行は原盤の採譜で確認する。
 
-## Preview取得試行 2026-09-03
+## Apple Music Preview実測 2026-09-06
 
-### 同定できた対象
+### 対象同定と取得固定
 
-Apple Musicの公開ページで、D'Angelo名義、アルバム`Voodoo`、曲名`Spanish Joint`、track ID `1443830824`を原盤Previewの取得候補として固定した。ページはPreviewの存在を表示する。
+Apple iTunes Search APIの `https://itunes.apple.com/lookup?id=1443830824&country=US` を取得し、次を同一応答内で照合した。
 
-検索結果には別releaseのtrack ID `1440841910`、DJ Mix収録の`Spanish Joint (Mixed)`も現れた。今回の対象はDJ Mix版ではなく、`Voodoo`収録の`1443830824`である。同名曲やmix版を代用しない。
+- artist: `D'Angelo`
+- album: `Voodoo`（collection ID `1443829916`）
+- track: `Spanish Joint`（track ID `1443830824`、13曲中9曲目）
+- 公開上の曲長: 346,600 ms
+- Preview: Apple配信の30秒AAC
 
-### 取得できなかったもの
+取得したPreview原bytesをGitには格納せず、再現性情報のみを残す。
 
-2026-09-03 UTC時点で実行環境が`unavailable`となり、Appleのlookup APIと公開ページのブラウザ取得はいずれも完了しなかった。
+| 項目 | 値 |
+|---|---|
+| SHA-256 | `5391be841ec3735483e0595024773ef7ebf8d272136b67ac07c5bf7f36a430f0` |
+| container / codec | M4A / AAC |
+| sample rate | 44,100 Hz |
+| channels | stereo |
+| container duration | 30.000998 s |
+| byte size | 1,132,042 bytes |
+| nominal bitrate | 301,867 bit/s |
 
-したがって次は未取得である。
+lookup応答はPreviewの全曲内開始位置を返さない。そのため、この30秒が曲のどのセクションかは未確定である。
 
-- `previewUrl`
-- 音声bytes
-- SHA-256
-- Previewの実時間位置
-- codec、sample rate、channel数
-- 非無音検査
-- 波形、RMS、spectrum、onset
-- BPM候補、窓安定性、位相特徴
-- 音源分離stem
+### 解析器の校正
 
-曲IDの同定を音声取得とみなさない。Preview表示を聴取・測定・分析の証拠にしない。
+Sound LabのRMS-onset autocorrelation解析器を、実音源へ適用する前に合成信号で再校正した。440 Hz周波数、spectral centroid、RMS、無音onset、120 BPM規則パルス、2:1 swing、100→140 BPM drift、120/180 BPMポリリズム、左右balanceの全12検査が通過した（12/12）。
 
-### 再開時の固定手順
+この解析器は周期候補を返すが、それを拍、downbeat、曲テンポとは自動的に同一視しない。位相特徴を直接測る処理は今回の解析器に含まれない。
 
-1. `https://itunes.apple.com/lookup?id=1443830824&country=US`を取得する。
-2. 応答のtrack ID、artist、track name、collectionを再照合する。
-3. 応答内の`previewUrl`から一度だけ取得する。
-4. 元bytesのSHA-256、容量、codec、duration、sample rate、channels、非無音を記録する。
-5. 30秒を10秒窓三つへ分け、全ミックスのBPM候補、onset、RMS、spectral centroid、位相間隔を測る。
-6. 複数窓で安定しないBPM／調は棄却する。
-7. 分離は二次証拠としてdrums、bass等を測り、必ず元ミックスへ戻って照合する。
-8. Preview開始位置が不明な限り、全曲構成やセクション境界を断定しない。
+### 30秒全体と三つの10秒窓
+
+ffmpegで44.1 kHz stereo PCMへ復号し、全体および三窓を同じ条件で測った。全体の解析有効長29.9755秒とcontainer durationとの差はframe化による。
+
+| 窓 | RMS dBFS | frame RMS p10 / p50 / p90 dBFS | centroid Hz | stereo balance | onset/s | onset interval median s | interval CV | autocorrelation周期候補 BPM |
+|---|---:|---:|---:|---:|---:|---:|---:|---|
+| 全体 0–30 s | -13.00 | -24.48 / -16.27 / -9.13 | 2929.3 | +0.0420 | 6.205 | 0.1451 | 0.431 | 55.27 / 89.88 / 145.58 / 210.94 |
+| A 0–10 s | -13.17 | -25.80 / -16.33 / -9.25 | 3188.6 | +0.0533 | 6.100 | 0.1393 | 0.450 | 55.27 / 89.88 / 145.58 / 215.33 |
+| B 10–20 s | -12.82 | -24.38 / -16.51 / -8.27 | 2966.0 | +0.0349 | 6.200 | 0.1393 | 0.491 | 55.27 / 143.55 / 89.10 / 74.90 / 156.61 / 206.72 |
+| C 20–30 s | -13.01 | -22.72 / -16.00 / -9.60 | 2643.1 | +0.0386 | 6.516 | 0.1393 | 0.413 | 55.57 / 89.10 / 147.66 / 111.14 |
+
+`stereo balance`は -1が左のみ、+1が右のみである。
+
+### このPreviewから言えること
+
+- 窓平均RMSは-13.17〜-12.82 dBFSの0.35 dB幅に収まる一方、各窓のframe RMS p10–p90は約13〜17.5 dB開く。区間全体の平均量感を保ちながら、内部の強弱は平坦ではない。
+- onset密度は6.10〜6.52回/秒、median intervalは三窓とも0.1393秒で近い。ただしinterval CVは0.413〜0.491であり、均一間隔の単純パルスではない。
+- 約55 BPM、約89 BPM、約144〜148 BPMの周期候補が三窓をまたいで併存する。これは異なる細分／周期の安定を示すが、どれか一つを曲テンポと断定できない。
+- 補助資料の約112 BPMに近い候補はC窓の111.14 BPMにだけ現れる。Preview測定だけでは約112 BPMを安定値として検証できず、逆に否定もできない。
+- spectral centroidはA→B→Cで3188.6→2966.0→2643.1 Hzと下降する。音色または編成密度の変化候補だが、未知位置の30秒だけで全曲のセクション遷移には結びつけない。
+- stereo balanceは全窓で+0.035〜+0.053の軽い右寄りだが、個別楽器の定位はstemまたは帯域別検査なしには帰属しない。
+
+### 未実施の境界
+
+位相間隔、beat/downbeat確定、調性推定、stem分離、楽器別onset、奏者間lagは未実施である。Preview開始位置も不明なので、三状態モデル、終盤上昇、全曲テンポ曲線の検証には使用しない。
 
 ## 現在の分析
 
@@ -311,29 +332,29 @@ D'Angeloの合図に対し、全員が同時サンプル精度で切り替わる
 
 ## 未検証事項
 
-1. 許諾された音源または正規プレビューからの波形取得。
+1. Previewの全曲内開始位置。
 2. 「Spanish Joint」の正式な小節境界と三セクションの長さ。
-3. テンポ曲線と、約112 BPMという補助値の検証。
+3. 全曲テンポ曲線と、約112 BPMという補助値の検証。
 4. ベース、ギター、キック、スネア、コンガ、鍵盤、声、ホーンのonset抽出。
 5. 奏者間lag、声部内lag、複数小節後の再整列の相関測定。
-6. 終盤の半音上行と正確な調性／コード進行。
-7. 特定clave、ブラジル系ギター周期、コンガ・パターンの関係。
-8. D'Angeloのライブ合図が原盤音声または映像でどこまで確認できるか。
-9. Hunter証言の「最初または二番目」とElevado証言の「第一」の差。
-10. 基礎テイクと後続オーバーダブの正確な境界。
-11. デモ版と完成版の構成、テンポ、声部差。
-12. 「The Root」「Greatdayndamornin'」等との同一時間モデルの比較。
-13. Brown SugarからBlack Messiahまでの制作方法の連続と断絶。
-14. 原盤ブックレットにおけるRussell Elevado／Steve Mandelの正確な役職表記。
-15. D'Angelo、Roy Hargrove、Angela Stoneの著作権クレジット差と持分。
-16. Hargroveが担当した具体的な旋律、和声、ホーン配置、セクション設計。
-17. 2015年「Betray My Heart」接続版と原盤の構成差。
-18. Apple Music track ID `1443830824`のPreview bytes、SHA-256、区間位置。
-19. 同Previewの三窓測定と、全曲仮説へ使える範囲。
+6. beat/downbeatに対する位相間隔。
+7. 終盤の半音上行と正確な調性／コード進行。
+8. 特定clave、ブラジル系ギター周期、コンガ・パターンの関係。
+9. D'Angeloのライブ合図が原盤音声または映像でどこまで確認できるか。
+10. Hunter証言の「最初または二番目」とElevado証言の「第一」の差。
+11. 基礎テイクと後続オーバーダブの正確な境界。
+12. デモ版と完成版の構成、テンポ、声部差。
+13. 「The Root」「Greatdayndamornin'」等との同一時間モデルの比較。
+14. Brown SugarからBlack Messiahまでの制作方法の連続と断絶。
+15. 原盤ブックレットにおけるRussell Elevado／Steve Mandelの正確な役職表記。
+16. D'Angelo、Roy Hargrove、Angela Stoneの著作権クレジット差と持分。
+17. Hargroveが担当した具体的な旋律、和声、ホーン配置、セクション設計。
+18. 2015年「Betray My Heart」接続版と原盤の構成差。
+19. source separation後の二次測定と元ミックスへの照合。
 
 ## 次の研究工程
 
-1. 正規にアクセスできる「Spanish Joint」音源を研究対象として固定する。
+1. 正規Previewの開始位置を別手段で照合し、可能なら許諾された全曲音源を研究対象として固定する。
 2. セクション境界を聴取、採譜、スペクトル変化の三方法で照合する。
 3. 音源分離は仮説生成に限定し、原盤との照合なしに分離結果を事実化しない。
 4. 各パートのonset、音価、アクセントを抽出する。
@@ -350,10 +371,10 @@ D'Angeloの合図に対し、全員が同時サンプル精度で切り替わる
 
 ## 証拠境界
 
-- この会話では原盤の直接波形解析、stem解析、onset測定を実施していない。
+- Apple配信の30秒Previewについて、全ミックスの直接波形解析、RMS、spectral centroid、onset、autocorrelation周期候補を測定した。全曲原盤とstemは解析していない。
 - 「観測できた事実」は参加者／制作者証言および取得資料で確認できた範囲に限定する。
 - 補助分析のコード名、調性、セクション数、テンポは再検証対象である。
 - 公開メタデータ間で録音担当と共作者の表記が一致していない。原盤／権利者データの直接取得までは確定しない。
-- 聴感上の説明を測定済み事実として扱わない。
+- Preview測定値を聴感上の楽器帰属、beat/downbeat、全曲構成へ拡張しない。
 - ユーザーの好みと製品判断はユーザーが権威を持つ。ここでの設計候補は決定ではない。
 - このブランチ保存はPR作成、mainへの統合、merge、製品採用を意味しない。
