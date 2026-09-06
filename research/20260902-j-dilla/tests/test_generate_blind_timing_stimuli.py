@@ -4,6 +4,7 @@ import sys
 import tempfile
 import unittest
 import wave
+import zipfile
 from pathlib import Path
 
 
@@ -71,6 +72,33 @@ class BlindTimingStimuliTests(unittest.TestCase):
         )
         self.assertEqual(protocol["response_lock"], "required_before_condition_key")
         self.assertNotIn("dilla_likeness", protocol["rating_dimensions"])
+
+    def test_response_material_does_not_reveal_conditions(self):
+        for filename in ("listener-response-template.json", "response-sheet.md"):
+            text = (self.output / filename).read_text(encoding="utf-8")
+            self.assertNotIn("global_swing", text)
+            self.assertNotIn("structured_relation", text)
+        response = json.loads(
+            (self.output / "listener-response-template.json").read_text(encoding="utf-8")
+        )
+        self.assertFalse(response["response_locked"])
+        self.assertFalse(response["condition_key_opened"])
+
+    def test_participant_zip_excludes_condition_key(self):
+        archive_path = self.output / "j-dilla-blind-listening-pack.zip"
+        with zipfile.ZipFile(archive_path) as archive:
+            names = set(archive.namelist())
+        self.assertEqual(
+            names,
+            {
+                "stimulus-A.wav",
+                "stimulus-B.wav",
+                "blind-manifest.json",
+                "listener-response-template.json",
+                "response-sheet.md",
+            },
+        )
+        self.assertNotIn("condition-key.json", names)
 
 
 if __name__ == "__main__":
