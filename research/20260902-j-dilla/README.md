@@ -889,3 +889,29 @@ v2構造に対する5件と、直前の合成時間場に対する6件、合計1
 | stimulus-B.wav | `d6c23f9e1217e6db55239a8ea547c2363da6f4a8137d02e9a073d282ba9658dd` |
 
 WAVと条件keyはGitへcommitしていない。generatorとprotocolだけを研究ブランチへ保存し、刺激は聴取試験ごとに生成する。現段階では人間の回答取得、統計解析、Dilla実音源との照合、製品実装はいずれも未実施である。
+
+
+## 2026-09-06追補 — 参加者用聴取パック
+
+匿名刺激生成器を、実際の参加者へ渡せるパックまで拡張した。
+
+生成物:
+
+- `stimulus-A.wav`
+- `stimulus-B.wav`
+- `blind-manifest.json`
+- `listener-response-template.json`
+- `response-sheet.md`
+- 上記5ファイルだけを含む`j-dilla-blind-listening-pack.zip`
+
+`condition-key.json`は同時に生成するが、参加者用ZIPから除外する。回答固定前にA/Bの条件対応が漏れないことを自動試験で確認する。
+
+回答シートはA/Bについてcontinuity、forward motion、instability、human intention、preferenceを各1〜7で記録し、自由記述として次を尋ねる。
+
+1. タイミング関係が最も目立った位置
+2. 先導または抵抗して聞こえた声部
+3. 安定して残ったもの
+
+追加後の8件の単体試験はすべて成功した。WAV形式・長さ、条件間のRMS一致、異なる音声hash、公開manifestの匿名性、hash照合、固定seedでのbyte再生成、回答資料の匿名性、ZIPからのkey除外を検証した。
+
+このパックは合成規則の知覚差を調べるものであり、J Dillaの音源分析、Dillaらしさの判定、歴史的演奏の再現ではない。参加者の回答はまだ取得していない。生成したWAV、参加者ZIP、条件key、個人回答はGitへcommitせず、generator、protocol、testだけを正本とする。
