@@ -1,0 +1,5 @@
+comparison,catalog_duration_ratio_to_reference,expected_duration_ratio_from_label,implied_speed_ratio_from_duration,expected_speed_ratio_from_label,estimated_frequency_ratio,log_spectrum_correlation,shift_bins
+16_vs_45,2.664499,2.812500,0.375305,0.355556,0.380025,0.837643,-67
+33_vs_45,1.346083,1.363636,0.742896,0.733333,0.738413,0.934360,-21
+78_vs_45,0.581170,0.576923,1.720666,1.733333,1.681793,0.836236,36
+repeat_vs_24_track_loop,3.420687,,,,1.000000,0.821401,0
