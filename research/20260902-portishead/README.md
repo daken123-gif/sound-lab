@@ -2,7 +2,7 @@
 
 - 状態: `active`
 - research-id: `20260902-portishead`
-- 更新日時: 2026-09-03 UTC
+- 更新日時: 2026-09-06 UTC
 - 対象: Portisheadの作曲、演奏、サンプリング、録音、ミックス、ライブ再構成
 - 現在の問い: 演奏を一度「過去の録音物」へ変えてから再演奏する構造と、成功した自己様式を禁止した『Third』の更新を、表面的なローファイ模倣にせず記述できるか
 
@@ -498,6 +498,125 @@ Portisheadの時間設計を一つの「ローファイ量」へ畳まない。�
 
 今回の実測は、このうちPortisheadを録音世代だけへ限定できないことを示した。`Machine Gun`の圧力応答と`Strangers`の消失／再侵入はDubおよびJeff Millsとの境界に触れる。ただし同一機能へ統合せず、Portisheadでは録音物の時間的距離と身体の現在性が同時に変わる点を残す。
 
+## 2026-09-06 並行研究本文の直接比較
+
+### 取得実体
+
+2026-09-03の「Git横断研究からの責務分離」は、Massive Attack研究本文に記録された比較を入口にしていた。今回は各研究の現行ブランチ本文を直接取得し、後続の訂正を含めて比較した。
+
+| 研究 | 取得ref | README blob SHA | 取得時の重要な後続状態 |
+| --- | --- | --- | --- |
+| DJ Shadow | `research/20260902-dj-shadow` | `0a49c088a0a3820b6510f0c9eb4a230d43b6e70b` | 9イベント列について、時間骨格・centroid・RMSの近さは残るが、詳細な帯域比系列の一致は支持されないと訂正済み |
+| Dub | `research/20260831-dub-performance-grammar` | `8bfd95e088b901fed947a8908db8e2287be2eb65` | CUT／THROW等は候補であり、設計採用ゲートを通過済みの機能はまだない |
+| This Heat | `research/20260903-this-heat` | `f80bde2fe35ef0bd9643b125cfc6d297d4b994e5` | `MUTABLE_GROUND`を中心に、録音・選択・再投入・再変形を循環として記述 |
+| This Heat別版 | `research/20260906-this-heat-versions` | `b5d34a1b3379d6ee3f835c95a4d334705f9bf1a2` | 速度変更を補正でなく、退出方法とgeneration parentを持つ保存可能な作品状態として更新 |
+| Autechre | `research/20260831-autechre` | `0035718ceb6f90ada53f5c5d988f7126770a8bb4` | `Flutter` 90秒previewで短期onset足場と約6.4秒間隔の帯域状態回帰候補を分離。event／bar同一性は未確定 |
+
+blob SHAは取得本文の同一性を示すだけで、各仮説の真実、Sound Labへの採用、main統合を意味しない。
+
+### 「戻る」を一種類にしない
+
+五研究には反復、消失、再出現が共通して見える。しかし戻る対象と、戻りを決定する主体が異なる。
+
+| 研究 | 戻る対象 | 戻ったとき変わるもの | 主な決定主体 |
+| --- | --- | --- | --- |
+| Portishead | 媒体化・摩耗・切断された録音、背景、声の残響 | 録音世代、現在の身体との距離、圧力 | 制作工程に固定された編集・ミックス関係。ライブでは再配分される |
+| DJ Shadow | 以前のfragmentまたは録音世界 | `PULSE / FRAME / BODY / VOICE / RUPTURE`という役割とscene内の意味 | 長尺構成を作る作者の判断。完成録音では固定される |
+| Dub | THROWされたtail、消したdry source、原曲identity | 現前／不在、遠近、因果、編成 | mixer／演奏者が現在時刻でCUT、THROW、REVEAL、CHOKEする |
+| This Heat | 集団自身の過去の録音、変異したground | 現在の演奏との関係、速度、粒度、次世代の素材 | 集団演奏、選択、テープ操作、再採取の循環 |
+| Autechre | eventの足場、relation、band state、transition可能性 | 次に起こり得るeventとperformance trajectory | condition、履歴、相互dataと二人の操作 |
+
+したがって`Absence / Re-entry`を単独の共通マクロにすると、少なくとも四つを混同する。
+
+1. dry sourceを消しtailを残すDubの因果分離。
+2. 同じfragmentを別の役割で戻すDJ Shadowの意味変更。
+3. 自己録音を次の演奏の地面へ戻すThis Heatの世代循環。
+4. 背景包絡や録音物を、現在の声との距離を変えて戻すPortisheadの時間化。
+
+### PortisheadとDJ Shadow
+
+両者とも`source identity`と曲中の役割を分け、異なる録音時間を同じ作品内へ置く。ただし主たる変換点が違う。
+
+- DJ Shadowでは、fragmentが何者であるかより、現在`PULSE`、`FRAME`、`RUPTURE`等のどの役割を担うかが変わる。
+- Portisheadでは、自作演奏を一度「過去の録音物」に変え、Beth Gibbonsの現在の身体と対置する。役割変更以前に、音源の録音世代と存在論的距離を作り替える。
+
+`Strangers`の断絶と再侵入をShadowの`RUPTURE`と同一視しない。Shadowでは断片がscene transitionの役割を担う。今回取得した`Strangers` previewでは、ミックス全体の存在状態が切断・再開している可能性がある。曲中位置と全曲構造が未取得なので、現段階ではこの差を仮説として保持する。
+
+DJ Shadow研究の後続訂正も取り込む。時間骨格、明るさ、強度包絡の近さから、詳細な音色系列の共有や同一sample identityへ進まない。この境界はPortisheadのpreview比較にも適用する。
+
+### PortisheadとDub
+
+もっとも近いのは、音を足すより消失と帰還を作曲する点である。しかし二つの圧力操作を分ける必要がある。
+
+- Dubの`CUT / THROW / TAIL CHOKE`は、sourceとreturnを別の時計・別の因果として扱い、演奏者が発生と終了を引き受ける離散的事件である。
+- Portisheadの`Breathing Compression / Pressure Response`は、低域イベントと背景包絡が連続的に結合し、録音内へ固定された圧力場として働きうる。
+
+よってSound Labでは、`EVENT ROUTING`と`ENVELOPE COUPLING`を別責務にする。前者は何をいつ時間系へ投げ、tailをいつ終えるか。後者は低域等の検出イベントに対し、他層がどれだけ退き、どの時間で戻るかである。
+
+Dub本文では七つの演奏文法はまだcandidateであり、人物横断コーパスの採用ゲートを通っていない。Portisheadの30秒測定を根拠にDub候補を採用済みへ昇格させない。
+
+### PortisheadとThis Heat
+
+ここが今回もっとも深く接続した。
+
+共通する循環:
+
+`演奏 → 録音 → 選択 → 変形 → 現在へ再投入 → その関係を再演奏`
+
+差は、過去の録音が現在へ戻った後の開放性にある。
+
+- This Heatの`MUTABLE_GROUND`は、過去の集団演奏を現在へ異物として戻し、再び変形・退出・再採取できる。録音は「時間差を持つメンバー」として働く。
+- Portisheadは、自作演奏を架空の旧録音へ変え、反復する記憶と現在の声の対立を作品として固定する方向が強い。
+
+This Heat別版研究は、Portisheadの`Generation Age`も一つの古さノブにしない理由を追加する。速度を変えるとpitch、duration、bandwidth、event density、gestureを差し込める時間が同時に変わる。したがって世代状態には、処理値だけでなく次を持たせる候補が生じる。
+
+```yaml
+generation_state:
+  parent:
+  playback_rate:
+  pitch_coupling:
+  duration:
+  bandwidth:
+  boundary:
+  exit_behavior:
+  recapture_allowed:
+```
+
+ただしPortisheadがThis Heatと同じgeneration lineageを制作時に管理した証拠ではない。これは二研究を接続して得たSound Lab上の設計候補である。
+
+### PortisheadとAutechre
+
+『Third』の不安定な機械や機能不足を、Autechre型の生成システムへ短絡しない。
+
+- Portisheadでは機械の不足が、演奏・録音・編集の選択肢を狭め、最終的に固定された作品関係を作る。
+- Autechreではrelation、condition、履歴、相互dataが、次のeventの可能範囲と公演ごとのtrajectoryを変える。
+
+一方、Autechreの`Flutter` 90秒解析はPortisheadの測定方法を改善する。単一BPMや一小節ループを探すだけでなく、短期eventの足場と中期的な帯域・空間状態の回帰を分ける必要がある。
+
+Portisheadの次の信号解析では、次を独立に測る。
+
+- `EVENT_GRID`: onset候補の短期周期。
+- `PRESSURE_CYCLE`: 打点後に背景が退き、戻る包絡周期。
+- `STATE_RETURN`: 帯域・空間・ノイズ床が似た状態へ戻る中期周期。
+- `MATERIAL_RETURN`: 同じ録音断片が再来したか。
+- `ROLE_RETURN`: 異なる断片が同じ機能を引き受けたか。
+
+### Sound Lab候補の責務再編
+
+9月3日の三軸を破棄せず、責務境界を追加して再編する。
+
+| 責務 | 操作対象 | 主な研究源 | 混同しない対象 |
+| --- | --- | --- | --- |
+| `GENERATION_STATE` | 録音世代、速度、帯域、親子関係、退出 | Portishead／This Heat | 単なるvinyl効果、undo履歴 |
+| `ENVELOPE_COUPLING` | 検出イベントと他層の後退・回復 | Portishead | Dubのsend／return事件 |
+| `EVENT_ROUTING` | dry、send、tail、chokeの因果 | Dub | 自動sidechain |
+| `ROLE_REASSIGNMENT` | fragmentが担う音楽的役割 | DJ Shadow | source fileの差替え |
+| `MUTABLE_GROUND` | 過去の演奏を現在へ戻し、再変形・再採取 | This Heat | 完成ループの再生 |
+| `STATE_TRANSITION` | 次eventの可能範囲、履歴、relation | Autechre | 他の五責務の自動化 |
+| `ABSENCE_REENTRY` | 全体または層の存在状態と再侵入強度 | Portishead／Dub | 単なるvolume fade |
+
+七責務の同時実装を意味しない。今回確定したのは、同じ一つのcontrolへ畳まない境界である。第一の反証実験候補は、`ENVELOPE_COUPLING`と`EVENT_ROUTING`だけを並べ、同じ低域打点に対して自動的に背景が戻る挙動と、奏者がtailを投げて切る挙動が演奏上どう異なるかを比べることである。
+
 ## バイアス点検
 
 ### ジャンル名による回収
@@ -554,7 +673,7 @@ Gibbonsの声を「壊れやすい女性」「幽霊的な女声」といった�
 3. `Roads`はstudio／Roselandの同一構成区間を揃え、空間とダイナミクスの差を再測定する。
 4. `The Rip`は前半・移行・後半を、音色ではなく周期と音価の継承として測る。
 5. 第二作の制作資料を追加取得し、自作原盤方式を曲単位で確定する。
-6. DJ Shadow、Dub、This Heat、AutechreのGit本文を直接取得し、Massive Attack本文経由の比較を孫引きのまま固定しない。
+6. DJ Shadow、Dub、This Heat、This Heat別版、AutechreのGit本文を直接取得し、戻る対象・変化する責務・決定主体を分離した。次は各研究の後続訂正時に接続表の失効を再確認する。
 7. Sound Lab既存コードを読み、候補機能と既存のSkulptur／Dedalus／1176／ループ設計の重複を調べる。
 8. 実装へ移る場合は、研究候補から一機能だけを別工程で提示し、採用許可を得る。
 
