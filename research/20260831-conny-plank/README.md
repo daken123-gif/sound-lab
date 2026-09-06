@@ -396,3 +396,101 @@ REJOINが重要である。指を離した瞬間にdelayを0へ設定すると�
 
 - なし。
 
+
+
+## 2026-09-06横断接続 — `Zero Set`、Jeff Mills、Autechre、生ドラム
+
+この節は、別研究の名称から内容を補わず、Git上の各研究本文を取得して接続した。比較対象は、機材、ジャンル、音色の類似ではなく、反復中の時間責任がどこにあり、ずれた後に誰が関係を戻すかである。
+
+### 取得した研究実体
+
+| 研究 | 取得元 | この比較で使う確定範囲 |
+| --- | --- | --- |
+| Autechre | [research/20260831-autechre](https://github.com/daken123-gif/sound-lab/blob/research/20260831-autechre/research/20260831-autechre/README.md) | 固定音列ではなく関係と変化条件を演奏すること、局所clock / phase、履歴を持つevent rule |
+| Jeff Mills | [research/20260902-jeff-mills](https://github.com/daken123-gif/sound-lab/blob/research/20260902-jeff-mills/research/20260902-jeff-mills/README.md) | 持続床と手動破断層、複数素材の挿入・撤去・再同期、事故後の回復 |
+| Charlie Hunter | [research/20260902-charlie-hunter](https://github.com/daken123-gif/sound-lab/blob/research/20260902-charlie-hunter/research/20260902-charlie-hunter/README.md) | 共有時間と局所差、複数役割を一つの身体で保持する責任、random humanizeとの区別 |
+| Battles | [research/20260903-battles](https://github.com/daken123-gif/sound-lab/blob/research/20260903-battles/research/20260903-battles/README.md) | 生ドラムが現在時刻を押し、ループが過去を戻す役割分離、reset / chokeによる再接続 |
+
+外部資料として、Bureau BのDieter Moebius公式ページで`Zero Set`の再発を確認した。Mani Neumeierは2020年のインタビューで、精密な基盤へ後からアコースティックドラムを重ねる経験について問われ、`Zero Set`ですでに行ったと答えている。FriezeはConny Plank、Dieter Moebius、Mani NeumeierがPlankのスタジオにいる1982年の写真を掲載し、同じ記事でPlankが卓をライブ楽器として扱った証言を記録している。
+
+- [Bureau B — Dieter Moebius / Discography](https://www.bureau-b.com/artists/dieter-moebius)
+- [Mani Neumeier & Zeus B Held Interview — Electricity Club](https://www.electricityclub.co.uk/mani-neumeier-zeus-b-held-interview/)
+- [Music — Frieze](https://www.frieze.com/article/music-18)
+
+### 証拠境界と年代差
+
+この追加でも`Zero Set`の音源ファイル、配信プレビュー、波形は取得していない。したがって、特定曲のmicrotiming、正確な同期方法、どのパートが基準clockだったか、各操作を誰が行ったかは未検証である。
+
+年代表記にも差がある。Neumeierの回想は`Zero Set`を1981年とする一方、Friezeのスタジオ写真は1982年、Bureau Bの現行ページは2009年再発日を示し、一般に流通する初出年は1983年とされる。本研究では、録音年と初出年を一次資料で確定するまで一つの年へ丸めない。
+
+また、Neumeierの回答は、シーケンス等の精密な基盤へ後から生ドラムを置く経験が`Zero Set`ですでにあったことを支持するが、全曲が同じ順序・同じ同期方法で作られたことまでは証明しない。
+
+### 比較結果 — 四種類の時間責任
+
+| 対象 | 持続するもの | 人間が現在行うこと | ずれの扱い | 混同しない点 |
+| --- | --- | --- | --- | --- |
+| `Zero Set` / Plank | 電子的な反復基盤とスタジオ内の信号循環 | 生ドラムを重ね、卓・処理・編集で両者の関係を成立させる候補 | 差を消去せず、機械列と身体の併存として保持する | 音源未取得のため、具体的な揺れ方はまだ断定しない |
+| Jeff Mills | 床を保つ反復層 | 素材を短い窓で挿入・撤去し、自分で位相を戻す | 事故を隠すだけでなく、次の入口へ再構成する | デッキ数をトラック数へ対応させない |
+| Autechre | 音色族、密度域、因果関係 | 状態と条件を押し、システムの予想外へ応答する | 履歴を次のevent条件へ残す | randomizeや自動作曲へ還元しない |
+| Battles / 生ドラム | 短いloopの局所周期 | ドラムが現在を押し、read stateを切替え、必要時にresetする | loop境界へ自動吸着せず、人間が再接続する | 生ドラムをクリックやhumanize係にしない |
+| Charlie Hunter | 一つの身体が保持する共有ポケット | 声部ごとの音価、ミュート、局所前後差を同時に引き受ける | 差をランダム化せず、身体内の関係として維持する | 出力分離を声部独立と同一視しない |
+
+ここから見える共通項は「少しずらす」ことではない。**複数の時間層が完全には同一化されず、それでも演奏者が連続性と再接続の責任を手放さないこと**である。
+
+Plank固有の位置は、演奏者またはアルゴリズムの片側に時間責任を集中させず、録音・卓・処理を介して、機械列と身体の関係そのものを演奏可能にすることにある。これは資料から導く分析であり、`Zero Set`の全制作工程を復元した事実ではない。
+
+### 新しい中心仮説 — phase sovereignty
+
+各層をmaster gridへ常時服従させるのでなく、限定された**位相主権（phase sovereignty）**を持たせる。
+
+- 共有clockは速度の目安を渡すが、全eventを同じstepへ固定しない。
+- 生ドラム／独立DRUMは、機械層の誤差補正器ではなく、別の現在を提示する。
+- 素材層は局所phaseと履歴を保持し、接触操作で一時的に共有clockから離れられる。
+- 離れた層をいつ戻すかは自動quantizeではなく演奏行為にする。
+- 戻らない選択も許すが、床が失われたことをUIと音で判別できるようにする。
+- random humanizeは使わない。差は身体操作、局所状態、過去eventとの因果から生じる。
+
+この仮説は、Plankの手動フェイジングで得た「速度差を作り、再結合まで演奏する」という時間軸を、`Zero Set`の人間／機械関係へ拡張したものである。
+
+### 状態機械候補
+
+| 状態 | 時間関係 | 演奏責任 |
+| --- | --- | --- |
+| `COHERE` | 層は共有clockの近傍にいる | 現在の床を保つ |
+| `DIVERGE` | 選択層が局所phaseを蓄積する | 離す方向と速度を作る |
+| `CONTEST` | 二つ以上の層が異なる現在を強く主張する | どちらを床と聴くか選ぶ |
+| `CATCH_UP` | 一層が他層へ追いつく | 復帰速度と入口を演奏する |
+| `REJOIN` | 位相関係が新しい安定域へ入る | 以前と同じ位置へ戻す必要はない |
+| `RESET` | 蓄積した関係を明示的に切る | 高コスト操作で新しい現在を作る |
+
+`REJOIN`を単なるsnap-to-gridにしない。旧位相へ戻る、次の周期へ追いつく、別層を新しい床にする、という複数の回復が必要になる。
+
+### 最小比較試験
+
+実装前の比較条件を三つに固定する。
+
+| 条件 | 処理 | 反証する対象 |
+| --- | --- | --- |
+| A: hard quantize | 全層を共有stepへ吸着 | 正確さだけで即興性が生まれるという仮説 |
+| B: random humanize | timingへ確率揺れを加える | 人間らしさを乱数で代用できるという仮説 |
+| C: performed sovereignty | 奏者が局所phaseを離し、保持し、再接続する | 時間責任を演奏に残す本仮説 |
+
+同一素材・同一ラウドネスで、次を操作ログと音声へ同時記録する。
+
+- 床が保持・弱化・破断・再構築された時刻
+- phase差とその滞在時間
+- 奏者が再接続を意図した時刻
+- 実際に再接続が知覚された時刻
+- resetを使った回数
+- 操作停止後に完成loopが自動で支配し続けた時間
+- 奏者が「自分で戻した」と識別できたか
+
+成功条件は「人間っぽく聞こえる」ことではない。Cでのみ、ずれの発生、保持、回復が同じ奏者の意図として聴き分けられ、Aより硬直せず、Bより因果を説明できることである。
+
+### 現在の判断
+
+- `Zero Set`の横断接続は、**機械グリッド対生ドラム**ではなく、**複数の時間主権をスタジオで媒介する問題**として継続する。
+- Jeff Millsの再同期、Autechreの履歴状態、Battlesのreset、Charlie Hunterの身体内共有時間は、同じ機能ではない。phase sovereigntyの異なる検証器として使う。
+- 本節は研究仮説の追加であり、`integration/DECISIONS.md`への採用、UI仕様、DSP実装を意味しない。
+- 次の実証は、`Zero Set`の合法的な試聴音源取得と、A/B/C最小試作を別々に行う。音源観測と設計試験を同じ証拠にしない。
+
