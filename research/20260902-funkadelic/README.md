@@ -3,7 +3,7 @@
 - research-id: `20260902-funkadelic`
 - status: `active`
 - branch: `research/20260902-funkadelic`
-- updated: `2026-09-03`
+- updated: `2026-09-06`
 
 ## 研究対象と現在の問い
 
@@ -59,6 +59,22 @@ Funkadelicを「サイケデリック・ロックとファンクの融合」と�
 - CD、LP、全曲ファイル、分離stemは取得していない。`Maggot Brain`原版とfull-band alternate mixも未取得である。
 - 以下の「観測できた事実」は当事者証言・取得資料から確認できた範囲を指す。previewの秒単位測定は後段の「Apple Music preview実測」に分離する。
 - 聴覚的な記述は分析仮説として隔離し、既知の曲名から期待した特徴を測定したことにしない。
+
+## 統一取得工程への整合監査（2026-09-06）
+
+現在の統一工程を、`Shazamで作品・版を同定 → Apple Music公式previewを取得 → ID・版・URL・取得日・SHA-256を固定 → 共通解析`とする。今回、既存previewを再取得せず、欠けていたShazam同定層を追補した。追補結果の機械可読記録は[`acquisition-manifest.json`](./acquisition-manifest.json)に保存する。
+
+| 層 | `Wars of Armageddon` | `Cosmic Slop` | 判定 |
+| --- | --- | --- | --- |
+| Shazam作品・版同定 | Shazam song ID `1595227753`、Funkadelic、`Maggot Brain`、1971年、Westbound Records | Shazam song ID `1595220197`、Funkadelic、`Cosmic Slop`、1973年、Westbound Records | `VERIFIED 2026-09-06` |
+| Apple Music identity | track ID `1595227753`、collection ID `1595227414` | track ID `1595220197`、collection ID `1595220191` | Shazam song IDとApple track IDが一致 |
+| preview bytes | container SHA-256 `340440a6…26396` | container SHA-256 `e1afd601…d4bd4` | `VERIFIED 2026-09-03`。今回は再取得していない |
+| 共通解析 | 30秒、10秒窓、2.5秒窓 | 30秒、10秒窓、2.5秒窓 | `VERIFIED`。結果は後段とJSON/CSVに固定 |
+| full source | 未取得 | 未取得 | `NOT_OBTAINED` |
+
+重要な来歴上の境界は、2026-09-02のpreview取得がiTunes Search APIからの直接取得だったことである。当時の処理を遡って「Shazam経由だった」とは書き換えない。今回、公開Shazam曲ページで同じ作品・版を同定し、既存Apple Music track IDとの一致を後から確認した。この二段階を合わせて統一工程へ整合させた。
+
+`Cosmic Slop`ではShazamページ上の`Open in Apple Music`がcollection ID `1595220191`、track ID `1595220197`へ遷移することまで直接確認した。`Wars of Armageddon`はShazam公開検索indexとApple Music公開ページを別々に照合したため、ShazamからApple Musicへのリンク遷移そのものは未確認として残す。ID一致は版同定を強めるが、previewの全曲内位置を与えない。
 
 ## 観測できた事実
 
@@ -269,6 +285,35 @@ preview音源自体は再配布せず、取得物はGitへ含めない。
 
 ## 他研究との接続
 
+以下はブランチ名だけの連想ではなく、各Git本文を指定commitで読んだ比較である。数値は解析器と取得状態が揃う場合だけ比較し、揃わない研究とは構造概念の差として接続する。
+
+| 研究（読取commit） | その研究で保持されるもの | 主に変わるもの | Funkadelicとの差／接続 | 比較境界 |
+| --- | --- | --- | --- | --- |
+| James Brown `483706f` | pulse、次に収束できる関係 | `MICROFORM / MEMORY / LEADERSHIP / CUE`、権限、onset/rest | JBのcueは関係を更新し、次の収束可能点で実行される。Funkadelicのeventはgroundを奪わず異物を侵入させ、foregroundの所有者を替える。どちらも固定loop頭への切替ではない | JB本文は証言・研究照合が中心で、今回のFunkadelic preview数値とは比較しない |
+| Dub `ead4920` | 周期候補の族、推定drum骨格 | 非drum側の存在量、静かな側の振幅、欠落とreturn | Dubは減算によって不在と残響を前景化する。Funkadelic previewはほぼ同じonset密度の内部で帯域・前景が変わる。`消す`と`入れ替わる`を同じdensity操作にしない | 共通解析器由来の指標だけ参照し、Demucs推定を実multitrackと扱わない |
+| Autechre `d0836a7` | 短い周期的affordance | event選択、帯域状態、局所回帰 | 周期を残して上部状態を非同一化する点は共通する。Autechreは規則・event選択、Funkadelicは声・音色・物質・社会的役割の可聴所有を中心に問う | Autechreのspectral-flux定義は別系統なので数値比較しない |
+| D'Angelo `ae7df4b` | 全員が共有する身体的な大時間 | 演奏者内の声部差、part固有位置、合図への反応 | 同じpocket上で誰がいつ前へ出るかを、独立trackでなく関係束として扱う点を共有する。Funkadelic側ではその関係が前景の受渡しとevent侵入まで広がる | `Spanish Joint`はpreview bytes未取得。証言から作った時間モデルとの概念比較だけ |
+
+### 横断して得た独立状態変数
+
+これは四研究を一つの万能理論へ畳むための階層ではない。演奏中に別々に変えられるべき状態変数の候補である。
+
+| 変数 | 問い | 主な接続元 | Funkadelicでの意味 |
+| --- | --- | --- | --- |
+| `GROUND` | 何が次の動作を可能にする時間を保つか | JB、Dub、Autechre、D'Angelo | eventや前景が替わっても壊さない周期的足場 |
+| `RELATION` | 誰の判断が誰のonset/rest/遷移へ効くか | JB、D'Angelo | call/response、役割交換、共有時間への参加関係 |
+| `FOREGROUND` | 同じ密度の中で、誰／何が現在を所有するか | Funkadelic | 音色、声、帯域、左右位置、寿命による可聴所有の受渡し |
+| `ABSENCE_EVENT` | 何を消し、何を侵入させ、どの記憶を残すか | Dub、JB、Funkadelic | mute、残像、短命event、退場を一つの音量ノブにしない |
+
+この分離から、Sound Labの操作は少なくとも次を許す必要がある。
+
+1. 同じ発音密度を保ったまま`FOREGROUND`だけを移譲する。
+2. cueは`RELATION`を更新するが、`GROUND`の位相を即時に奪わない。
+3. eventは`GROUND`を書き換えず侵入でき、寿命を終えれば退場できる。
+4. muteは単なる無音化でなく、復帰候補と残響の記憶を`ABSENCE_EVENT`へ残せる。
+
+したがって、`density`、`foreground`、`cue`、`mute/event`を単一の「展開量」へ束ねる設計は棄却する。この結論は設計候補であり、UI採用や実装完了を意味しない。
+
 ### 取得できたブランチ
 
 - `research/20260902-charlie-hunter`
@@ -325,7 +370,7 @@ preview音源自体は再配布せず、取得物はGitへ含めない。
 
 ## 次の研究工程
 
-音源を正規に取得できる経路が成立した時点で、三曲を同じ指標で比較する。
+`Wars of Armageddon`と`Cosmic Slop`は統一取得工程のidentity／preview層が成立した。次は`Maggot Brain`の対象版をShazamで同定し、同じ取得・固定条件で三曲比較を完成させる。全曲音源を正規に取得できる経路が成立した場合は、preview結果を消さず`full-source-observed`層として追加する。
 
 - 100–250 ms窓：onsetと短い応答
 - 1–4小節窓：groundの周期と欠落

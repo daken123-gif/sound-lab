@@ -1,0 +1,76 @@
+{
+  "research_id": "20260902-funkadelic",
+  "manifest_version": 1,
+  "updated_utc_date": "2026-09-06",
+  "workflow": [
+    "identify work and version with Shazam",
+    "retrieve official Apple Music preview",
+    "fix IDs, version, URL, retrieval date, and SHA-256",
+    "run the shared analysis path"
+  ],
+  "tracks": [
+    {
+      "artist": "Funkadelic",
+      "title": "Wars of Armageddon",
+      "release": "Maggot Brain",
+      "shazam": {
+        "status": "verified_via_public_search_index",
+        "song_id": 1595227753,
+        "url": "https://www.shazam.com/song/1595227753/wars-of-armageddon",
+        "label": "Westbound Records",
+        "release_date": "1971-07-12",
+        "verified_utc_date": "2026-09-06",
+        "apple_music_link_transition": "not_verified_client_challenge"
+      },
+      "apple_music": {
+        "track_id": 1595227753,
+        "collection_id": 1595227414,
+        "public_url": "https://music.apple.com/us/song/wars-of-armageddon/1595227753",
+        "preview_acquisition": "iTunes Search API direct; predates Shazam verification",
+        "container_sha256": "340440a6b40999ed5dbfbd9e0fe05ed5f67adb1cbbd8fe6fda6d8b8a54326396",
+        "decoded_pcm_f32le_stereo_44100_sha256": "11ff49b7e786aff8c67d00ed2072a99f51c6d848e2b91a07c3331fd225994197",
+        "reverified_utc_date": "2026-09-03"
+      },
+      "identity_relation": "Shazam song ID equals Apple Music track ID",
+      "preview_position": "unknown",
+      "full_source": "not_obtained"
+    },
+    {
+      "artist": "Funkadelic",
+      "title": "Cosmic Slop",
+      "release": "Cosmic Slop",
+      "shazam": {
+        "status": "verified_public_page_and_apple_music_transition",
+        "song_id": 1595220197,
+        "url": "https://www.shazam.com/song/1595220197/cosmic-slop",
+        "label": "Westbound Records",
+        "release_date": "1973-07-09",
+        "verified_utc_date": "2026-09-06",
+        "apple_music_target_collection_id": 1595220191,
+        "apple_music_target_track_id": 1595220197
+      },
+      "apple_music": {
+        "track_id": 1595220197,
+        "collection_id": 1595220191,
+        "public_url": "https://music.apple.com/us/album/cosmic-slop/1595220191?i=1595220197",
+        "preview_acquisition": "iTunes Search API direct; predates Shazam verification",
+        "container_sha256": "e1afd601afb686926f4de54c4b28689ed87c01da1a6e8342cf0c5f90ec6d4bd4",
+        "decoded_pcm_f32le_stereo_44100_sha256": "f93496a53b0f3bc9c38f06806ed633e12b603fbc5c9dae57ca262039ffc0822e",
+        "reverified_utc_date": "2026-09-03"
+      },
+      "identity_relation": "Shazam song ID and Shazam Apple Music target track ID equal the measured Apple Music track ID",
+      "preview_position": "unknown",
+      "full_source": "not_obtained"
+    }
+  ],
+  "analysis_artifacts": [
+    "excerpt-window-results.json",
+    "foreground-window-results.csv"
+  ],
+  "hard_limits": [
+    "The previews were acquired directly from the iTunes Search API before Shazam identity verification; provenance is not rewritten retroactively.",
+    "A matching catalog ID does not reveal the preview's position in the full track.",
+    "The Wars of Armageddon Shazam-to-Apple link transition was not directly verified because the public page returned a client challenge.",
+    "No full-length source was obtained."
+  ]
+}
