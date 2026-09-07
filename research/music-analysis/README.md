@@ -6,6 +6,8 @@
 
 以下の2026-09-03までの校正・観測記録は保持する。
 
+YouTubeのMCP接続・取得・解析用実装は [YouTube音源研究コネクタ](youtube-connector/README.md) を参照する。MCP通信と共通解析への接続は検証済みだが、YouTube音声本体はCDN接続timeoutで未取得。ChatGPTへの登録・別hostへの配備も未実施として区別する。
+
 最終更新: 2026-09-03 UTC
 
 ## 目的
