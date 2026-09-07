@@ -783,3 +783,24 @@ Scientistのいうsurpriseを、effect数やランダム性へ置換しないた
 - 次に必要な箇所だけ波形、spectrogram、loudness、band energyで観測を補助する。
 - 自動解析結果を聴取事実へ置き換えない。
 - Corpus AとBで語彙が安定した後、Lee Perryの別系統を追加する。
+
+## 23. Bandcamp公開試聴音源の追加（2026-09-07）
+
+ユーザー指示によりShazamに加えてBandcampを取得対象とする。既存Shazam 4 Previewと測定結果は維持し、Spotifyは使用しない。
+
+Pressure Soundsの公式配信『The Sound Doctor』から2曲の公開プレイヤーMP3を実際に取得した。
+
+| 曲 | Bandcamp track ID | decoded尺 | SHA-256 |
+| --- | --- | ---: | --- |
+| Smiling Faces | 386584386 | 218.346667秒 | `864d23e09c2edc639e25280fbf8a17bbd87a12860156a2661aad6e7b0ad3d1ba` |
+| Smiling version | 4115294261 | 215.026667秒 | `033159b25bf856390e08a26507b0c212037dad9f6c8087f58d7717c29f3d8383` |
+
+出典: https://pressuresounds.bandcamp.com/album/the-sound-doctor
+
+公開ページのプレイヤー情報に含まれるmp3-128を使用。購入版FLACではない。取得尺はページ内metadataの218.347／215.027秒と丸め範囲で一致した。音声バイナリはGitへ再配布しない。
+
+共通解析器の合成校正12/12件成功後、曲頭から30秒刻み（各7完全窓＋末尾部分窓、計16窓）でRMS、frame RMS百分位、onset候補密度を測定した。全測定値、ffprobe、hash、共通コードblob、再実行コードは[bandcamp-stream-audit.json](./bandcamp-stream-audit.json)に保存した。再実行にはページと対応する公開音源を同名のローカルファイルへ取得し、記載blobの共有Pythonコードを配置する必要がある。一時的な配信URLは永続識別子にしない。
+
+この2曲は曲名に基づく比較候補であり、同一演奏の原曲／Dub pairとしては未検証。時間合わせ前に同じ秒の窓を対応するphraseとして比較しない。末尾は部分窓であり、fadeや無音余白の影響を区別する。これは信号測定で、聴取・stem分離・CUT/THROW事件判定ではない。
+
+次の工程はこの2曲の低域／drums時間対応を確認し、対応できる区間だけ既存pairと同じ比較へ進めること。
