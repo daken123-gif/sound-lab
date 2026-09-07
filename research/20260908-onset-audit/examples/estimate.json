@@ -1,0 +1,1 @@
+{"schema_version":1,"source_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","scope_seconds":[0,4],"reference_kind":"candidate","provenance":"デモ用。5ms遅れ、1打の見逃し、重複検出と余計な打点を含む。","onsets_seconds":[0.505,1,1,2,2.5]}
