@@ -1,0 +1,473 @@
+{
+  "date_utc": "2026-09-07",
+  "source_page": "https://pressuresounds.bandcamp.com/album/the-sound-doctor",
+  "page_sha256": "0d90d151767bb80b207e2b32ba1aeb0b7b8212fd984721cf478a9475af7d5764",
+  "scope": "Shazam retained; Bandcamp added; Spotify not used",
+  "audio_class": "public player mp3-128, not purchased lossless masters",
+  "pair_status": "title-based candidate; shared performance and time alignment unverified",
+  "calibration": {
+    "sample_rate": 44100,
+    "checks": [
+      {
+        "name": "dominant_frequency_hz",
+        "expected": 440,
+        "observed": 440,
+        "tolerance": 0.5,
+        "passed": true
+      },
+      {
+        "name": "spectral_centroid_hz",
+        "expected": 440,
+        "observed": 440.0000014988699,
+        "tolerance": 5,
+        "passed": true
+      },
+      {
+        "name": "tone_frequency_confidence_db_min",
+        "expected": 40,
+        "observed": 302.46061090687255,
+        "tolerance": ">=",
+        "passed": true
+      },
+      {
+        "name": "sine_rms_dbfs",
+        "expected": -9.0309,
+        "observed": -9.030899869919436,
+        "tolerance": 0.02,
+        "passed": true
+      },
+      {
+        "name": "noise_frequency_confidence_db_max",
+        "expected": 20,
+        "observed": 12.375715120946323,
+        "tolerance": "<",
+        "passed": true
+      },
+      {
+        "name": "silence_onset_count",
+        "expected": 0,
+        "observed": 0,
+        "tolerance": 0,
+        "passed": true
+      },
+      {
+        "name": "regular_tempo_bpm",
+        "expected": 120,
+        "observed": 120.18531976744178,
+        "tolerance": 1,
+        "passed": true
+      },
+      {
+        "name": "swing_long_short_ratio",
+        "expected": 2,
+        "observed": 1.9827586206896615,
+        "tolerance": 0.12,
+        "passed": true
+      },
+      {
+        "name": "tempo_drift_bpm",
+        "expected": [
+          100,
+          140
+        ],
+        "observed": [
+          102.33601485148515,
+          135.9991776315789
+        ],
+        "tolerance": [
+          4,
+          5
+        ],
+        "passed": true
+      },
+      {
+        "name": "polyrhythm_periodicities_bpm",
+        "expected": [
+          120,
+          180
+        ],
+        "observed": [
+          60.09265988372093,
+          89.87771739130434,
+          181.33223684210526,
+          120.18531976744185,
+          51.422574626865675,
+          71.77734375
+        ],
+        "tolerance": [
+          3,
+          4
+        ],
+        "passed": true
+      },
+      {
+        "name": "left_balance",
+        "expected": -1,
+        "observed": -1,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "name": "right_balance",
+        "expected": 1,
+        "observed": 1,
+        "tolerance": 0.01,
+        "passed": true
+      }
+    ],
+    "passed": 12,
+    "total": 12,
+    "all_passed": true,
+    "method_limits": [
+      "periodicity candidates are not equivalent to a human musical beat",
+      "polyrhythm produces valid subharmonic and multiple-tempo candidates",
+      "frequency estimates require confidence-based rejection",
+      "local tempo must be retained when tempo changes over time"
+    ]
+  },
+  "shared_analyzer_blobs": {
+    "calibrate_analyzer.py": "314db6380f63c12017b52dcd3dd2dfcaff94a539",
+    "analyze_previews.py": "4e36a19c5760cc1f3a7cf4b80ad3e9ad6e3baa47"
+  },
+  "limits": [
+    "Signal measurements, not listening.",
+    "No stem separation or CUT/THROW attribution.",
+    "Thirty-second windows are independent and unaligned across tracks.",
+    "RMS uses stereo arithmetic mean, so phase cancellation can affect values.",
+    "Partial final windows and fades must not be treated as matched musical sections.",
+    "Synthetic calibration does not validate musical interpretation."
+  ],
+  "tracks": [
+    {
+      "title": "Smiling Faces",
+      "track_id": 386584386,
+      "source_url": "https://pressuresounds.bandcamp.com/track/smiling-faces",
+      "player_metadata_duration_s": 218.347,
+      "decoded_duration_s": 218.34666666666666,
+      "sha256": "864d23e09c2edc639e25280fbf8a17bbd87a12860156a2661aad6e7b0ad3d1ba",
+      "bytes": 3494555,
+      "ffprobe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 353600,
+            "start_time": "0.025057",
+            "duration_ts": 3081830400,
+            "duration": "218.383673",
+            "bit_rate": "128000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "encoder": "LAME3.99r"
+            },
+            "side_data_list": [
+              {
+                "side_data_type": "Replay Gain"
+              }
+            ]
+          }
+        ],
+        "format": {
+          "filename": "386584386.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.025057",
+          "duration": "218.383673",
+          "size": "3494555",
+          "bit_rate": "128015",
+          "probe_score": 51
+        }
+      },
+      "windows": [
+        {
+          "start_s": 0,
+          "end_s": 30,
+          "rms_dbfs": -16.558699112385682,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -29.2142237416127,
+            -18.846070618540296,
+            -11.9834487055633
+          ],
+          "onsets_per_second": 7.766666666666667
+        },
+        {
+          "start_s": 30,
+          "end_s": 60,
+          "rms_dbfs": -15.52845560642249,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -28.803466283004678,
+            -18.368331423672856,
+            -11.013117916612002
+          ],
+          "onsets_per_second": 7.8
+        },
+        {
+          "start_s": 60,
+          "end_s": 90,
+          "rms_dbfs": -16.5399272385092,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -31.65550379068719,
+            -19.71000096577022,
+            -11.652280044599642
+          ],
+          "onsets_per_second": 7.6
+        },
+        {
+          "start_s": 90,
+          "end_s": 120,
+          "rms_dbfs": -15.297953946525125,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -29.581615821941153,
+            -19.34751142474745,
+            -10.280110539946719
+          ],
+          "onsets_per_second": 7.133333333333334
+        },
+        {
+          "start_s": 120,
+          "end_s": 150,
+          "rms_dbfs": -15.825556315406866,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -27.304472748987497,
+            -19.213430736103618,
+            -11.101869196561779
+          ],
+          "onsets_per_second": 7.633333333333334
+        },
+        {
+          "start_s": 150,
+          "end_s": 180,
+          "rms_dbfs": -15.839263896108434,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -28.548879288899144,
+            -19.28586735320723,
+            -10.971576498011764
+          ],
+          "onsets_per_second": 7.633333333333334
+        },
+        {
+          "start_s": 180,
+          "end_s": 210,
+          "rms_dbfs": -15.634691226019408,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -29.770531130015407,
+            -18.94307351477296,
+            -11.19457483445187
+          ],
+          "onsets_per_second": 7.633333333333334
+        },
+        {
+          "start_s": 210,
+          "end_s": 218.34666666666666,
+          "rms_dbfs": -20.668589825080627,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -150,
+            -33.5582698495822,
+            -17.0358419568169
+          ],
+          "onsets_per_second": 4.193290734824282
+        }
+      ]
+    },
+    {
+      "title": "Smiling version",
+      "track_id": 4115294261,
+      "source_url": "https://pressuresounds.bandcamp.com/track/smiling-version",
+      "player_metadata_duration_s": 215.027,
+      "decoded_duration_s": 215.02666666666667,
+      "sha256": "033159b25bf856390e08a26507b0c212037dad9f6c8087f58d7717c29f3d8383",
+      "bytes": 3441474,
+      "ffprobe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 353600,
+            "start_time": "0.025057",
+            "duration_ts": 3035013120,
+            "duration": "215.066122",
+            "bit_rate": "128000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "encoder": "LAME3.99r"
+            },
+            "side_data_list": [
+              {
+                "side_data_type": "Replay Gain"
+              }
+            ]
+          }
+        ],
+        "format": {
+          "filename": "4115294261.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.025057",
+          "duration": "215.066122",
+          "size": "3441474",
+          "bit_rate": "128015",
+          "probe_score": 51
+        }
+      },
+      "windows": [
+        {
+          "start_s": 0,
+          "end_s": 30,
+          "rms_dbfs": -15.455413216247202,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -29.377370719129228,
+            -17.25103754191762,
+            -11.886177710520984
+          ],
+          "onsets_per_second": 7.4
+        },
+        {
+          "start_s": 30,
+          "end_s": 60,
+          "rms_dbfs": -17.2913583206683,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -32.65438139299721,
+            -18.669287879986705,
+            -13.49120136701029
+          ],
+          "onsets_per_second": 7.266666666666667
+        },
+        {
+          "start_s": 60,
+          "end_s": 90,
+          "rms_dbfs": -18.187973434504656,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -33.960898399824195,
+            -19.815285883474544,
+            -14.331782702008743
+          ],
+          "onsets_per_second": 7.2
+        },
+        {
+          "start_s": 90,
+          "end_s": 120,
+          "rms_dbfs": -19.16410426522192,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -33.16919707484562,
+            -20.54215024414799,
+            -15.516534496331463
+          ],
+          "onsets_per_second": 7
+        },
+        {
+          "start_s": 120,
+          "end_s": 150,
+          "rms_dbfs": -18.708964259782867,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -31.100834585472864,
+            -20.164575985158365,
+            -14.931880536429347
+          ],
+          "onsets_per_second": 7.433333333333334
+        },
+        {
+          "start_s": 150,
+          "end_s": 180,
+          "rms_dbfs": -17.80990871990862,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -31.75482093519656,
+            -19.64707469754081,
+            -13.762606080416754
+          ],
+          "onsets_per_second": 6.9
+        },
+        {
+          "start_s": 180,
+          "end_s": 210,
+          "rms_dbfs": -18.819218722301915,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -33.400242770416845,
+            -20.724769862406482,
+            -15.032930575977153
+          ],
+          "onsets_per_second": 7.4
+        },
+        {
+          "start_s": 210,
+          "end_s": 215.02666666666667,
+          "rms_dbfs": -42.31360616376229,
+          "frame_rms_dbfs_p10_p50_p90": [
+            -150,
+            -94.78832928048011,
+            -38.58326348534306
+          ],
+          "onsets_per_second": 2.586206896551724
+        }
+      ]
+    }
+  ],
+  "reproduction_source": "\"\"\"Audit two public Bandcamp streams; no listening or event attribution.\"\"\"\nimport hashlib, html, json, pathlib, re, subprocess\nimport numpy as np\nfrom analyze_previews import decode\nfrom calibrate_analyzer import SR, frame_rms, onset_times, rms_dbfs\n\npage = pathlib.Path('bandcamp-page.html')\ndata = json.loads(html.unescape(re.search(r'data-tralbum=\"([^\"]+)', page.read_text())[1]))\ncalibration = json.loads(subprocess.check_output(['python', 'calibrate_analyzer.py']))\nassert calibration['all_passed']\nreport = {\n    'date_utc': '2026-09-07',\n    'source_page': 'https://pressuresounds.bandcamp.com/album/the-sound-doctor',\n    'page_sha256': hashlib.sha256(page.read_bytes()).hexdigest(),\n    'scope': 'Shazam retained; Bandcamp added; Spotify not used',\n    'audio_class': 'public player mp3-128, not purchased lossless masters',\n    'pair_status': 'title-based candidate; shared performance and time alignment unverified',\n    'calibration': calibration,\n    'shared_analyzer_blobs': {'calibrate_analyzer.py': '314db6380f63c12017b52dcd3dd2dfcaff94a539', 'analyze_previews.py': '4e36a19c5760cc1f3a7cf4b80ad3e9ad6e3baa47'},\n    'limits': ['Signal measurements, not listening.', 'No stem separation or CUT/THROW attribution.', 'Thirty-second windows are independent and unaligned across tracks.', 'RMS uses stereo arithmetic mean, so phase cancellation can affect values.', 'Partial final windows and fades must not be treated as matched musical sections.', 'Synthetic calibration does not validate musical interpretation.'],\n    'tracks': [],\n}\nfor track in data['trackinfo']:\n    if track['title'] not in ('Smiling Faces', 'Smiling version'):\n        continue\n    path = pathlib.Path(str(track['track_id']) + '.mp3')\n    audio = decode(path)\n    probe = json.loads(subprocess.check_output(['ffprobe', '-v', 'error', '-show_format', '-show_streams', '-of', 'json', str(path)]))\n    windows = []\n    for start in range(0, len(audio), 30 * SR):\n        clip = audio[start:start + 30 * SR]\n        levels = 20 * np.log10(np.maximum(frame_rms(clip), 1e-15))\n        windows.append({'start_s': start / SR, 'end_s': (start + len(clip)) / SR, 'rms_dbfs': rms_dbfs(clip), 'frame_rms_dbfs_p10_p50_p90': np.percentile(levels, [10, 50, 90]).tolist(), 'onsets_per_second': len(onset_times(clip, SR)) / (len(clip) / SR)})\n    report['tracks'].append({'title': track['title'], 'track_id': track['track_id'], 'source_url': 'https://pressuresounds.bandcamp.com' + track['title_link'], 'player_metadata_duration_s': track['duration'], 'decoded_duration_s': len(audio) / SR, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'bytes': path.stat().st_size, 'ffprobe': probe, 'windows': windows})\nreport['reproduction_source'] = pathlib.Path(__file__).read_text()\npathlib.Path('bandcamp-stream-audit.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\\n')\nprint(json.dumps({t['title']: {'duration': t['decoded_duration_s'], 'windows': len(t['windows']), 'sha256': t['sha256']} for t in report['tracks']}, indent=2))\n"
+}
