@@ -1,0 +1,961 @@
+{
+  "date": "2026-09-07",
+  "policy_commit": "a739839e2bafa95c39cfdcc99fd4b53de1a0be9d",
+  "official_source_evidence": [
+    "https://axisrecords.bandcamp.com/artists",
+    "https://tomorrowcomestheharvest.bandcamp.com/album/evolution"
+  ],
+  "manifest": {
+    "artist": "Jeff Mills, Jean-Phi Dary, Prabhu Edouard",
+    "audio_bytes": 19183071,
+    "audio_file": "428aaaf9341b3d453b977800c1aa65ef92979118483b84c8df0ce1d89e3078a2.mp3",
+    "channels": 2,
+    "codec": "mp3",
+    "decode": "ffmpeg -xerror, mono s16le 16000 Hz, complete stream",
+    "decoded_duration_s": 1198.8761875,
+    "ffmpeg_version": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+    "master_identity_vs_preview": "unverified",
+    "musical_analysis": "not_performed_by_this_acquirer",
+    "page_duration_s": 1198.88,
+    "provider": "bandcamp",
+    "release": "EVOLUTION",
+    "representation": "public mp3-128 stream; not purchased lossless",
+    "retrieved_at": "2026-09-07T22:54:28.237812+00:00",
+    "sample_rate": 44100,
+    "schema_version": 1,
+    "sha256": "428aaaf9341b3d453b977800c1aa65ef92979118483b84c8df0ce1d89e3078a2",
+    "source_page": "https://tomorrowcomestheharvest.bandcamp.com/album/evolution",
+    "state": "full-source-decoded",
+    "stream_host": "t4.bcbits.com",
+    "stream_url_sha256": "c021887a775981422861a9fde0f6caf6c757c4690a878ad71e4365685bb97ff4",
+    "title": "Metamorphoses",
+    "track_id": 4270880549
+  },
+  "analysis": {
+    "code_sha256": {
+      "analyze_previews.py": "edd43dd38288a6ca425f796cd8c50cb22324fc31725ee840f017520b3010f824",
+      "analyze_source_windows.py": "0623a1f74f8a5e50012681ff7891fef0773ec2512b5ffdf1debbdb48fe8eca3d",
+      "calibrate_analyzer.py": "4c779281be198346acc64aea3f9b40a9468afce01b8621fd4913110839c8176f"
+    },
+    "duration_s": 1198.8761678004535,
+    "limitations": "Onsets are threshold-dependent event candidates; periodicity candidates are not verified beats. Encoding and window boundaries affect features. No preview alignment or performer/intent inference.",
+    "numpy_version": "2.3.5",
+    "sample_rate": 44100,
+    "scipy_version": "1.17.0",
+    "scope": "complete decoded asset; absolute offsets within this asset, not asserted as another master",
+    "source_page": "https://tomorrowcomestheharvest.bandcamp.com/album/evolution",
+    "source_sha256": "428aaaf9341b3d453b977800c1aa65ef92979118483b84c8df0ce1d89e3078a2",
+    "window_seconds": 30,
+    "windows": [
+      {
+        "duration_s": 30,
+        "end_s": 30,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -54.2,
+          -46.64,
+          -31.3
+        ],
+        "onset_count": 103,
+        "onset_interval_cv": 1.705,
+        "onset_interval_median_s": 0.1045,
+        "onsets_per_second": 3.433,
+        "periodicity_candidates_bpm": [
+          215.33
+        ],
+        "rms_dbfs": -34.87,
+        "spectral_centroid_hz": 2396.9,
+        "start_s": 0,
+        "stereo_balance_minus_left_plus_right": -0.0143
+      },
+      {
+        "duration_s": 30,
+        "end_s": 60,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -51.76,
+          -42.18,
+          -30.83
+        ],
+        "onset_count": 93,
+        "onset_interval_cv": 1.405,
+        "onset_interval_median_s": 0.1306,
+        "onsets_per_second": 3.1,
+        "periodicity_candidates_bpm": [
+          161.5
+        ],
+        "rms_dbfs": -33.17,
+        "spectral_centroid_hz": 3441.6,
+        "start_s": 30,
+        "stereo_balance_minus_left_plus_right": 0.0153
+      },
+      {
+        "duration_s": 30,
+        "end_s": 90,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -47.37,
+          -38.13,
+          -30.35
+        ],
+        "onset_count": 162,
+        "onset_interval_cv": 0.941,
+        "onset_interval_median_s": 0.1277,
+        "onsets_per_second": 5.4,
+        "periodicity_candidates_bpm": [
+          166.71,
+          71.28,
+          84.03
+        ],
+        "rms_dbfs": -34.37,
+        "spectral_centroid_hz": 3701.7,
+        "start_s": 60,
+        "stereo_balance_minus_left_plus_right": -0.0256
+      },
+      {
+        "duration_s": 30,
+        "end_s": 120,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -34.94,
+          -24.4,
+          -16.62
+        ],
+        "onset_count": 191,
+        "onset_interval_cv": 0.6,
+        "onset_interval_median_s": 0.1248,
+        "onsets_per_second": 6.367,
+        "periodicity_candidates_bpm": [
+          58.07,
+          117.45,
+          78.3,
+          169.44
+        ],
+        "rms_dbfs": -20.82,
+        "spectral_centroid_hz": 3593.6,
+        "start_s": 90,
+        "stereo_balance_minus_left_plus_right": 0.0426
+      },
+      {
+        "duration_s": 30,
+        "end_s": 150,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -28.75,
+          -20.82,
+          -9.54
+        ],
+        "onset_count": 156,
+        "onset_interval_cv": 0.541,
+        "onset_interval_median_s": 0.1625,
+        "onsets_per_second": 5.2,
+        "periodicity_candidates_bpm": [
+          78.3,
+          58.73,
+          117.45
+        ],
+        "rms_dbfs": -14.95,
+        "spectral_centroid_hz": 1915.4,
+        "start_s": 120,
+        "stereo_balance_minus_left_plus_right": 0.01
+      },
+      {
+        "duration_s": 30,
+        "end_s": 180,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -25.76,
+          -18.39,
+          -9.06
+        ],
+        "onset_count": 171,
+        "onset_interval_cv": 0.519,
+        "onset_interval_median_s": 0.1567,
+        "onsets_per_second": 5.7,
+        "periodicity_candidates_bpm": [
+          78.3,
+          117.45,
+          58.73
+        ],
+        "rms_dbfs": -14.06,
+        "spectral_centroid_hz": 3474.8,
+        "start_s": 150,
+        "stereo_balance_minus_left_plus_right": 0.0038
+      },
+      {
+        "duration_s": 30,
+        "end_s": 210,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -25.29,
+          -18.58,
+          -9.19
+        ],
+        "onset_count": 166,
+        "onset_interval_cv": 0.494,
+        "onset_interval_median_s": 0.1625,
+        "onsets_per_second": 5.533,
+        "periodicity_candidates_bpm": [
+          78.3,
+          117.45,
+          58.73
+        ],
+        "rms_dbfs": -14.23,
+        "spectral_centroid_hz": 3066.6,
+        "start_s": 180,
+        "stereo_balance_minus_left_plus_right": 0.0126
+      },
+      {
+        "duration_s": 30,
+        "end_s": 240,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -24.12,
+          -17.23,
+          -9.16
+        ],
+        "onset_count": 193,
+        "onset_interval_cv": 0.396,
+        "onset_interval_median_s": 0.1393,
+        "onsets_per_second": 6.433,
+        "periodicity_candidates_bpm": [
+          117.45,
+          78.3,
+          58.4
+        ],
+        "rms_dbfs": -13.81,
+        "spectral_centroid_hz": 3493,
+        "start_s": 210,
+        "stereo_balance_minus_left_plus_right": 0.0105
+      },
+      {
+        "duration_s": 30,
+        "end_s": 270,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -19.86,
+          -14.28,
+          -8.22
+        ],
+        "onset_count": 224,
+        "onset_interval_cv": 0.377,
+        "onset_interval_median_s": 0.1277,
+        "onsets_per_second": 7.467,
+        "periodicity_candidates_bpm": [
+          78.3,
+          117.45,
+          58.4
+        ],
+        "rms_dbfs": -12.26,
+        "spectral_centroid_hz": 3408.1,
+        "start_s": 240,
+        "stereo_balance_minus_left_plus_right": 0.0162
+      },
+      {
+        "duration_s": 30,
+        "end_s": 300,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -21.37,
+          -15.01,
+          -7.7
+        ],
+        "onset_count": 204,
+        "onset_interval_cv": 0.416,
+        "onset_interval_median_s": 0.1335,
+        "onsets_per_second": 6.8,
+        "periodicity_candidates_bpm": [
+          78.3,
+          117.45,
+          58.4
+        ],
+        "rms_dbfs": -12.27,
+        "spectral_centroid_hz": 3633.1,
+        "start_s": 270,
+        "stereo_balance_minus_left_plus_right": 0.0088
+      },
+      {
+        "duration_s": 30,
+        "end_s": 330,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -22.39,
+          -16.02,
+          -7.96
+        ],
+        "onset_count": 201,
+        "onset_interval_cv": 0.397,
+        "onset_interval_median_s": 0.1277,
+        "onsets_per_second": 6.7,
+        "periodicity_candidates_bpm": [
+          117.45,
+          78.3,
+          58.4
+        ],
+        "rms_dbfs": -12.75,
+        "spectral_centroid_hz": 3656.1,
+        "start_s": 300,
+        "stereo_balance_minus_left_plus_right": 0.026
+      },
+      {
+        "duration_s": 30,
+        "end_s": 360,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -19.22,
+          -14.21,
+          -7.69
+        ],
+        "onset_count": 228,
+        "onset_interval_cv": 0.342,
+        "onset_interval_median_s": 0.1277,
+        "onsets_per_second": 7.6,
+        "periodicity_candidates_bpm": [
+          117.45,
+          78.3,
+          58.4
+        ],
+        "rms_dbfs": -12.02,
+        "spectral_centroid_hz": 4258.1,
+        "start_s": 330,
+        "stereo_balance_minus_left_plus_right": 0.0346
+      },
+      {
+        "duration_s": 30,
+        "end_s": 390,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -20.33,
+          -14.42,
+          -7.35
+        ],
+        "onset_count": 216,
+        "onset_interval_cv": 0.39,
+        "onset_interval_median_s": 0.1277,
+        "onsets_per_second": 7.2,
+        "periodicity_candidates_bpm": [
+          117.45,
+          78.3,
+          58.73
+        ],
+        "rms_dbfs": -11.79,
+        "spectral_centroid_hz": 3349.9,
+        "start_s": 360,
+        "stereo_balance_minus_left_plus_right": 0.0248
+      },
+      {
+        "duration_s": 30,
+        "end_s": 420,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -19.47,
+          -14.06,
+          -7.55
+        ],
+        "onset_count": 231,
+        "onset_interval_cv": 0.293,
+        "onset_interval_median_s": 0.1277,
+        "onsets_per_second": 7.7,
+        "periodicity_candidates_bpm": [
+          117.45,
+          78.3,
+          58.4
+        ],
+        "rms_dbfs": -11.79,
+        "spectral_centroid_hz": 3647.6,
+        "start_s": 390,
+        "stereo_balance_minus_left_plus_right": 0.0336
+      },
+      {
+        "duration_s": 30,
+        "end_s": 450,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -21.42,
+          -13.39,
+          -7.68
+        ],
+        "onset_count": 225,
+        "onset_interval_cv": 0.783,
+        "onset_interval_median_s": 0.1277,
+        "onsets_per_second": 7.5,
+        "periodicity_candidates_bpm": [
+          117.45,
+          58.73,
+          78.3,
+          67.12,
+          156.61,
+          93.96,
+          52.2
+        ],
+        "rms_dbfs": -11.76,
+        "spectral_centroid_hz": 3659.3,
+        "start_s": 420,
+        "stereo_balance_minus_left_plus_right": 0.0262
+      },
+      {
+        "duration_s": 30,
+        "end_s": 480,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -18.76,
+          -12.76,
+          -6.7
+        ],
+        "onset_count": 237,
+        "onset_interval_cv": 0.338,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 7.9,
+        "periodicity_candidates_bpm": [
+          117.45,
+          58.73,
+          78.3
+        ],
+        "rms_dbfs": -10.78,
+        "spectral_centroid_hz": 3583.1,
+        "start_s": 450,
+        "stereo_balance_minus_left_plus_right": 0.0318
+      },
+      {
+        "duration_s": 30,
+        "end_s": 510,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -18.83,
+          -12.52,
+          -6.27
+        ],
+        "onset_count": 234,
+        "onset_interval_cv": 0.307,
+        "onset_interval_median_s": 0.1277,
+        "onsets_per_second": 7.8,
+        "periodicity_candidates_bpm": [
+          117.45,
+          58.73,
+          78.3
+        ],
+        "rms_dbfs": -10.42,
+        "spectral_centroid_hz": 2986.1,
+        "start_s": 480,
+        "stereo_balance_minus_left_plus_right": 0.0408
+      },
+      {
+        "duration_s": 30,
+        "end_s": 540,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -19.57,
+          -12.88,
+          -6.27
+        ],
+        "onset_count": 244,
+        "onset_interval_cv": 0.324,
+        "onset_interval_median_s": 0.1161,
+        "onsets_per_second": 8.133,
+        "periodicity_candidates_bpm": [
+          117.45,
+          58.73,
+          78.3
+        ],
+        "rms_dbfs": -10.61,
+        "spectral_centroid_hz": 2733.5,
+        "start_s": 510,
+        "stereo_balance_minus_left_plus_right": 0.0207
+      },
+      {
+        "duration_s": 30,
+        "end_s": 570,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -17.64,
+          -12.34,
+          -6.33
+        ],
+        "onset_count": 241,
+        "onset_interval_cv": 0.299,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 8.033,
+        "periodicity_candidates_bpm": [
+          117.45,
+          78.3,
+          58.73
+        ],
+        "rms_dbfs": -10.34,
+        "spectral_centroid_hz": 2868.8,
+        "start_s": 540,
+        "stereo_balance_minus_left_plus_right": 0.0459
+      },
+      {
+        "duration_s": 30,
+        "end_s": 600,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -16.63,
+          -12.09,
+          -8.39
+        ],
+        "onset_count": 253,
+        "onset_interval_cv": 0.259,
+        "onset_interval_median_s": 0.1161,
+        "onsets_per_second": 8.433,
+        "periodicity_candidates_bpm": [
+          117.45,
+          78.3,
+          58.73
+        ],
+        "rms_dbfs": -11.2,
+        "spectral_centroid_hz": 1865.3,
+        "start_s": 570,
+        "stereo_balance_minus_left_plus_right": 0.093
+      },
+      {
+        "duration_s": 30,
+        "end_s": 630,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -24.86,
+          -17.08,
+          -14
+        ],
+        "onset_count": 251,
+        "onset_interval_cv": 0.29,
+        "onset_interval_median_s": 0.1161,
+        "onsets_per_second": 8.367,
+        "periodicity_candidates_bpm": [
+          93.12,
+          65.83,
+          51.42,
+          159.01
+        ],
+        "rms_dbfs": -16.53,
+        "spectral_centroid_hz": 2933.6,
+        "start_s": 600,
+        "stereo_balance_minus_left_plus_right": 0.1464
+      },
+      {
+        "duration_s": 30,
+        "end_s": 660,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -15.6,
+          -12.55,
+          -7.75
+        ],
+        "onset_count": 253,
+        "onset_interval_cv": 0.347,
+        "onset_interval_median_s": 0.1045,
+        "onsets_per_second": 8.433,
+        "periodicity_candidates_bpm": [
+          121.6,
+          60.8
+        ],
+        "rms_dbfs": -11.05,
+        "spectral_centroid_hz": 1829.9,
+        "start_s": 630,
+        "stereo_balance_minus_left_plus_right": 0.036
+      },
+      {
+        "duration_s": 30,
+        "end_s": 690,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -21.77,
+          -12.96,
+          -7.52
+        ],
+        "onset_count": 208,
+        "onset_interval_cv": 0.521,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 6.933,
+        "periodicity_candidates_bpm": [
+          118.8,
+          78.9,
+          59.06
+        ],
+        "rms_dbfs": -11.46,
+        "spectral_centroid_hz": 2305.1,
+        "start_s": 660,
+        "stereo_balance_minus_left_plus_right": 0.0391
+      },
+      {
+        "duration_s": 30,
+        "end_s": 720,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -22.52,
+          -14.94,
+          -7.55
+        ],
+        "onset_count": 210,
+        "onset_interval_cv": 0.352,
+        "onset_interval_median_s": 0.1277,
+        "onsets_per_second": 7,
+        "periodicity_candidates_bpm": [
+          59.06,
+          118.8,
+          78.9
+        ],
+        "rms_dbfs": -11.99,
+        "spectral_centroid_hz": 3495,
+        "start_s": 690,
+        "stereo_balance_minus_left_plus_right": 0.0149
+      },
+      {
+        "duration_s": 30,
+        "end_s": 750,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -21.76,
+          -12.15,
+          -6.74
+        ],
+        "onset_count": 219,
+        "onset_interval_cv": 0.399,
+        "onset_interval_median_s": 0.1277,
+        "onsets_per_second": 7.3,
+        "periodicity_candidates_bpm": [
+          118.8,
+          78.9,
+          59.06
+        ],
+        "rms_dbfs": -10.57,
+        "spectral_centroid_hz": 2747.4,
+        "start_s": 720,
+        "stereo_balance_minus_left_plus_right": 0.0052
+      },
+      {
+        "duration_s": 30,
+        "end_s": 780,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -21.23,
+          -11.35,
+          -6.6
+        ],
+        "onset_count": 218,
+        "onset_interval_cv": 0.405,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 7.267,
+        "periodicity_candidates_bpm": [
+          118.8,
+          78.9,
+          59.06
+        ],
+        "rms_dbfs": -10.3,
+        "spectral_centroid_hz": 2813.8,
+        "start_s": 750,
+        "stereo_balance_minus_left_plus_right": 0.0026
+      },
+      {
+        "duration_s": 30,
+        "end_s": 810,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -19.21,
+          -11.32,
+          -6.36
+        ],
+        "onset_count": 237,
+        "onset_interval_cv": 0.318,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 7.9,
+        "periodicity_candidates_bpm": [
+          118.8,
+          59.06,
+          78.9
+        ],
+        "rms_dbfs": -10.03,
+        "spectral_centroid_hz": 2644.7,
+        "start_s": 780,
+        "stereo_balance_minus_left_plus_right": 0.017
+      },
+      {
+        "duration_s": 30,
+        "end_s": 840,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -22.17,
+          -10.46,
+          -6.2
+        ],
+        "onset_count": 235,
+        "onset_interval_cv": 0.385,
+        "onset_interval_median_s": 0.1161,
+        "onsets_per_second": 7.833,
+        "periodicity_candidates_bpm": [
+          79.51,
+          117.45,
+          59.75
+        ],
+        "rms_dbfs": -9.75,
+        "spectral_centroid_hz": 1749.5,
+        "start_s": 810,
+        "stereo_balance_minus_left_plus_right": 0.0326
+      },
+      {
+        "duration_s": 30,
+        "end_s": 870,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -25.95,
+          -16.71,
+          -7.64
+        ],
+        "onset_count": 219,
+        "onset_interval_cv": 0.395,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 7.3,
+        "periodicity_candidates_bpm": [
+          81.39,
+          61.16
+        ],
+        "rms_dbfs": -12.33,
+        "spectral_centroid_hz": 1788.3,
+        "start_s": 840,
+        "stereo_balance_minus_left_plus_right": 0.046
+      },
+      {
+        "duration_s": 30,
+        "end_s": 900,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -20.99,
+          -14.79,
+          -6.38
+        ],
+        "onset_count": 213,
+        "onset_interval_cv": 0.529,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 7.1,
+        "periodicity_candidates_bpm": [
+          120.19,
+          80.75,
+          60.09
+        ],
+        "rms_dbfs": -10.98,
+        "spectral_centroid_hz": 2499.3,
+        "start_s": 870,
+        "stereo_balance_minus_left_plus_right": 0.037
+      },
+      {
+        "duration_s": 30,
+        "end_s": 930,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -21.27,
+          -17.87,
+          -10.09
+        ],
+        "onset_count": 209,
+        "onset_interval_cv": 0.435,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 6.967,
+        "periodicity_candidates_bpm": [
+          59.06,
+          78.3,
+          117.45,
+          156.61
+        ],
+        "rms_dbfs": -14.35,
+        "spectral_centroid_hz": 3298.3,
+        "start_s": 900,
+        "stereo_balance_minus_left_plus_right": 0.0124
+      },
+      {
+        "duration_s": 30,
+        "end_s": 960,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -16.51,
+          -13.27,
+          -7.87
+        ],
+        "onset_count": 241,
+        "onset_interval_cv": 0.271,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 8.033,
+        "periodicity_candidates_bpm": [
+          59.75,
+          118.8,
+          79.51
+        ],
+        "rms_dbfs": -11.38,
+        "spectral_centroid_hz": 3142.1,
+        "start_s": 930,
+        "stereo_balance_minus_left_plus_right": -0.0006
+      },
+      {
+        "duration_s": 30,
+        "end_s": 990,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -17.21,
+          -13.89,
+          -8.78
+        ],
+        "onset_count": 241,
+        "onset_interval_cv": 0.249,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 8.033,
+        "periodicity_candidates_bpm": [
+          60.44,
+          121.6,
+          80.75,
+          96.6,
+          161.5,
+          53.55,
+          68.91
+        ],
+        "rms_dbfs": -12.11,
+        "spectral_centroid_hz": 3244.7,
+        "start_s": 960,
+        "stereo_balance_minus_left_plus_right": 0.0134
+      },
+      {
+        "duration_s": 30,
+        "end_s": 1020,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -17.54,
+          -13.89,
+          -8.42
+        ],
+        "onset_count": 227,
+        "onset_interval_cv": 0.28,
+        "onset_interval_median_s": 0.1277,
+        "onsets_per_second": 7.567,
+        "periodicity_candidates_bpm": [
+          60.44,
+          120.19,
+          80.75,
+          53.83
+        ],
+        "rms_dbfs": -12,
+        "spectral_centroid_hz": 3500.4,
+        "start_s": 990,
+        "stereo_balance_minus_left_plus_right": 0.0321
+      },
+      {
+        "duration_s": 30,
+        "end_s": 1050,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -18.51,
+          -16.16,
+          -12.42
+        ],
+        "onset_count": 253,
+        "onset_interval_cv": 0.293,
+        "onset_interval_median_s": 0.1161,
+        "onsets_per_second": 8.433,
+        "periodicity_candidates_bpm": [
+          80.12,
+          120.19,
+          60.44,
+          53.55,
+          68.91
+        ],
+        "rms_dbfs": -14.92,
+        "spectral_centroid_hz": 3325.8,
+        "start_s": 1020,
+        "stereo_balance_minus_left_plus_right": 0.0148
+      },
+      {
+        "duration_s": 30,
+        "end_s": 1080,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -19.8,
+          -15.9,
+          -11.84
+        ],
+        "onset_count": 241,
+        "onset_interval_cv": 0.273,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 8.033,
+        "periodicity_candidates_bpm": [
+          120.19,
+          80.12,
+          60.44,
+          68.91,
+          161.5,
+          53.55,
+          96.6
+        ],
+        "rms_dbfs": -14.73,
+        "spectral_centroid_hz": 3710.5,
+        "start_s": 1050,
+        "stereo_balance_minus_left_plus_right": 0.0387
+      },
+      {
+        "duration_s": 30,
+        "end_s": 1110,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -18.68,
+          -15.1,
+          -10.52
+        ],
+        "onset_count": 241,
+        "onset_interval_cv": 0.093,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 8.033,
+        "periodicity_candidates_bpm": [
+          120.19,
+          80.12,
+          60.44,
+          96.6,
+          68.91,
+          161.5,
+          53.55
+        ],
+        "rms_dbfs": -13.78,
+        "spectral_centroid_hz": 4847.7,
+        "start_s": 1080,
+        "stereo_balance_minus_left_plus_right": 0.0792
+      },
+      {
+        "duration_s": 30,
+        "end_s": 1140,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -17.83,
+          -12.89,
+          -8.78
+        ],
+        "onset_count": 247,
+        "onset_interval_cv": 0.177,
+        "onset_interval_median_s": 0.1219,
+        "onsets_per_second": 8.233,
+        "periodicity_candidates_bpm": [
+          120.19,
+          60.44,
+          68.91,
+          161.5,
+          80.12,
+          53.55,
+          96.6
+        ],
+        "rms_dbfs": -11.87,
+        "spectral_centroid_hz": 4250.9,
+        "start_s": 1110,
+        "stereo_balance_minus_left_plus_right": 0.0918
+      },
+      {
+        "duration_s": 30,
+        "end_s": 1170,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -23.83,
+          -17.92,
+          -9.25
+        ],
+        "onset_count": 243,
+        "onset_interval_cv": 0.478,
+        "onset_interval_median_s": 0.1161,
+        "onsets_per_second": 8.1,
+        "periodicity_candidates_bpm": [
+          121.6,
+          60.44,
+          68.91,
+          80.75,
+          96.6,
+          53.28,
+          159.01
+        ],
+        "rms_dbfs": -14.1,
+        "spectral_centroid_hz": 2927.8,
+        "start_s": 1140,
+        "stereo_balance_minus_left_plus_right": 0.0918
+      },
+      {
+        "duration_s": 28.876167800453516,
+        "end_s": 1198.8761678004535,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -47.84,
+          -24.69,
+          -16.27
+        ],
+        "onset_count": 185,
+        "onset_interval_cv": 2.728,
+        "onset_interval_median_s": 0.1045,
+        "onsets_per_second": 6.407,
+        "periodicity_candidates_bpm": [
+          191.41,
+          124.53,
+          166.71,
+          74.9,
+          90.67,
+          108.8,
+          57.1,
+          60.44
+        ],
+        "rms_dbfs": -20.74,
+        "spectral_centroid_hz": 2767.4,
+        "start_s": 1170,
+        "stereo_balance_minus_left_plus_right": 0.0847
+      }
+    ]
+  }
+}
