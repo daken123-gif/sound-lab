@@ -1,0 +1,1473 @@
+{
+  "transition.json": {
+    "source_sha256": "428aaaf9341b3d453b977800c1aa65ef92979118483b84c8df0ce1d89e3078a2",
+    "method": "Stereo energy, 4th-order Butterworth forward-backward bandpass, 5-second bins; 5-second context at analysis ends. Not mono RMS from prior reports; values not directly interchangeable. Bands are not stems.",
+    "bands_hz": {
+      "low": [
+        30,
+        180
+      ],
+      "mid": [
+        180,
+        1500
+      ],
+      "high": [
+        1500,
+        12000
+      ]
+    },
+    "rows": [
+      {
+        "start_s": 570,
+        "end_s": 575,
+        "full_stereo_rms_dbfs": -9.830840205428437,
+        "low_stereo_rms_dbfs": -11.797546582360797,
+        "mid_stereo_rms_dbfs": -15.439097995583428,
+        "high_stereo_rms_dbfs": -23.667076355953593
+      },
+      {
+        "start_s": 575,
+        "end_s": 580,
+        "full_stereo_rms_dbfs": -9.539240240995202,
+        "low_stereo_rms_dbfs": -11.944644786307311,
+        "mid_stereo_rms_dbfs": -14.042913047257752,
+        "high_stereo_rms_dbfs": -25.084568840605115
+      },
+      {
+        "start_s": 580,
+        "end_s": 585,
+        "full_stereo_rms_dbfs": -10.439207184735679,
+        "low_stereo_rms_dbfs": -17.38573762065635,
+        "mid_stereo_rms_dbfs": -11.59132864108681,
+        "high_stereo_rms_dbfs": -29.833251327436688
+      },
+      {
+        "start_s": 585,
+        "end_s": 590,
+        "full_stereo_rms_dbfs": -10.620542241155945,
+        "low_stereo_rms_dbfs": -16.53777072016013,
+        "mid_stereo_rms_dbfs": -12.19769445027433,
+        "high_stereo_rms_dbfs": -29.454382919463523
+      },
+      {
+        "start_s": 590,
+        "end_s": 595,
+        "full_stereo_rms_dbfs": -10.466206372894115,
+        "low_stereo_rms_dbfs": -16.932310061406714,
+        "mid_stereo_rms_dbfs": -11.811209050193357,
+        "high_stereo_rms_dbfs": -29.02826259821453
+      },
+      {
+        "start_s": 595,
+        "end_s": 600,
+        "full_stereo_rms_dbfs": -12.64541544545462,
+        "low_stereo_rms_dbfs": -15.89760505410453,
+        "mid_stereo_rms_dbfs": -16.373271683289463,
+        "high_stereo_rms_dbfs": -27.07994839481545
+      },
+      {
+        "start_s": 600,
+        "end_s": 605,
+        "full_stereo_rms_dbfs": -14.973438568552556,
+        "low_stereo_rms_dbfs": -16.811374201595847,
+        "mid_stereo_rms_dbfs": -22.077103000420493,
+        "high_stereo_rms_dbfs": -28.71482918960897
+      },
+      {
+        "start_s": 605,
+        "end_s": 610,
+        "full_stereo_rms_dbfs": -17.17354891028743,
+        "low_stereo_rms_dbfs": -18.735229557894606,
+        "mid_stereo_rms_dbfs": -24.58474941290579,
+        "high_stereo_rms_dbfs": -30.108521717161164
+      },
+      {
+        "start_s": 610,
+        "end_s": 615,
+        "full_stereo_rms_dbfs": -17.503550883536537,
+        "low_stereo_rms_dbfs": -19.536196066678233,
+        "mid_stereo_rms_dbfs": -23.514520472665662,
+        "high_stereo_rms_dbfs": -28.703831801119442
+      },
+      {
+        "start_s": 615,
+        "end_s": 620,
+        "full_stereo_rms_dbfs": -15.253016844026044,
+        "low_stereo_rms_dbfs": -22.82220528835324,
+        "mid_stereo_rms_dbfs": -16.51094671425448,
+        "high_stereo_rms_dbfs": -32.47935654147825
+      },
+      {
+        "start_s": 620,
+        "end_s": 625,
+        "full_stereo_rms_dbfs": -15.12252819103413,
+        "low_stereo_rms_dbfs": -22.735777109903825,
+        "mid_stereo_rms_dbfs": -16.473460903675736,
+        "high_stereo_rms_dbfs": -36.759380763142
+      },
+      {
+        "start_s": 625,
+        "end_s": 630,
+        "full_stereo_rms_dbfs": -14.595138665714833,
+        "low_stereo_rms_dbfs": -22.460499297413953,
+        "mid_stereo_rms_dbfs": -15.78566776224511,
+        "high_stereo_rms_dbfs": -38.40923483536821
+      },
+      {
+        "start_s": 630,
+        "end_s": 635,
+        "full_stereo_rms_dbfs": -11.584090080448021,
+        "low_stereo_rms_dbfs": -14.568202015415132,
+        "mid_stereo_rms_dbfs": -15.164596398738297,
+        "high_stereo_rms_dbfs": -34.8217280617271
+      },
+      {
+        "start_s": 635,
+        "end_s": 640,
+        "full_stereo_rms_dbfs": -10.50158899882544,
+        "low_stereo_rms_dbfs": -14.064757934567197,
+        "mid_stereo_rms_dbfs": -13.433912685793361,
+        "high_stereo_rms_dbfs": -33.75138636828929
+      },
+      {
+        "start_s": 640,
+        "end_s": 645,
+        "full_stereo_rms_dbfs": -10.347941896967992,
+        "low_stereo_rms_dbfs": -14.326471172016076,
+        "mid_stereo_rms_dbfs": -12.987074245255986,
+        "high_stereo_rms_dbfs": -31.71046189607715
+      },
+      {
+        "start_s": 645,
+        "end_s": 650,
+        "full_stereo_rms_dbfs": -10.471599227836188,
+        "low_stereo_rms_dbfs": -14.635212252240287,
+        "mid_stereo_rms_dbfs": -12.960836323034412,
+        "high_stereo_rms_dbfs": -32.1818606574903
+      },
+      {
+        "start_s": 650,
+        "end_s": 655,
+        "full_stereo_rms_dbfs": -9.738061754795712,
+        "low_stereo_rms_dbfs": -13.566201538993436,
+        "mid_stereo_rms_dbfs": -12.458184594515263,
+        "high_stereo_rms_dbfs": -31.094136670303307
+      },
+      {
+        "start_s": 655,
+        "end_s": 660,
+        "full_stereo_rms_dbfs": -10.154415175642743,
+        "low_stereo_rms_dbfs": -13.972133854704413,
+        "mid_stereo_rms_dbfs": -12.885710307958558,
+        "high_stereo_rms_dbfs": -30.58141930453074
+      }
+    ]
+  },
+  "music-structure.json": {
+    "source_sha256": "428aaaf9341b3d453b977800c1aa65ef92979118483b84c8df0ce1d89e3078a2",
+    "essentia_version": "2.1-beta6-dev",
+    "rhythm_windows": [
+      {
+        "start_s": 540,
+        "end_s": 570,
+        "rhythm": {
+          "bpm": 117.41,
+          "confidence": 3.569,
+          "beat_count": 58,
+          "estimate_p10_p50_p90": [
+            117.45,
+            117.45,
+            117.45
+          ],
+          "first_estimates": [
+            120.19,
+            117.45,
+            117.45,
+            114.84,
+            114.84,
+            117.45,
+            117.45,
+            117.45
+          ],
+          "interval_cv": 0.011
+        }
+      },
+      {
+        "start_s": 570,
+        "end_s": 600,
+        "rhythm": {
+          "bpm": 117.16,
+          "confidence": 1.493,
+          "beat_count": 57,
+          "estimate_p10_p50_p90": [
+            114.84,
+            117.45,
+            120.19
+          ],
+          "first_estimates": [
+            114.84,
+            117.45,
+            117.45,
+            117.45,
+            117.45,
+            117.45,
+            117.45,
+            117.45
+          ],
+          "interval_cv": 0.037
+        }
+      },
+      {
+        "start_s": 600,
+        "end_s": 630,
+        "rhythm": {
+          "bpm": 115.44,
+          "confidence": 2.275,
+          "beat_count": 57,
+          "estimate_p10_p50_p90": [
+            113.35,
+            114.84,
+            117.45
+          ],
+          "first_estimates": [
+            112.35,
+            114.84,
+            114.84,
+            114.84,
+            114.84,
+            114.84,
+            117.45,
+            117.45
+          ],
+          "interval_cv": 0.026
+        }
+      },
+      {
+        "start_s": 630,
+        "end_s": 660,
+        "rhythm": {
+          "bpm": 121.93,
+          "confidence": 3.168,
+          "beat_count": 60,
+          "estimate_p10_p50_p90": [
+            120.19,
+            123.05,
+            123.05
+          ],
+          "first_estimates": [
+            120.19,
+            120.19,
+            120.19,
+            120.19,
+            120.19,
+            120.19,
+            120.19,
+            120.19
+          ],
+          "interval_cv": 0.018
+        }
+      }
+    ],
+    "pitch_method": "PredominantPitchMelodia defaults after EqualLoudness; only contiguous rounded-pitch runs >=100ms; not polyphonic transcription",
+    "pitch_scope": [
+      600,
+      640
+    ],
+    "pitch_frame_hop": 128,
+    "pitch_candidates": [
+      {
+        "start_s": 606.132970521542,
+        "end_s": 606.2345578231293,
+        "midi_candidate": 43,
+        "median_frequency_hz": 96.87357330322266,
+        "median_confidence": 0.09705392271280289
+      },
+      {
+        "start_s": 615.2787301587301,
+        "end_s": 616.1697959183673,
+        "midi_candidate": 65,
+        "median_frequency_hz": 349.2320556640625,
+        "median_confidence": 0.10650991648435593
+      },
+      {
+        "start_s": 616.6748299319728,
+        "end_s": 617.8532426303855,
+        "midi_candidate": 65,
+        "median_frequency_hz": 349.2320556640625,
+        "median_confidence": 0.09333772957324982
+      },
+      {
+        "start_s": 618.007074829932,
+        "end_s": 619.1854875283447,
+        "midi_candidate": 65,
+        "median_frequency_hz": 349.2320556640625,
+        "median_confidence": 0.09811753034591675
+      },
+      {
+        "start_s": 619.2609523809524,
+        "end_s": 619.5831292517007,
+        "midi_candidate": 46,
+        "median_frequency_hz": 117.21658325195312,
+        "median_confidence": 0.08855858445167542
+      },
+      {
+        "start_s": 619.9314285714286,
+        "end_s": 620.5409523809524,
+        "midi_candidate": 53,
+        "median_frequency_hz": 174.6153106689453,
+        "median_confidence": 0.1086679995059967
+      },
+      {
+        "start_s": 620.5931972789116,
+        "end_s": 620.790566893424,
+        "midi_candidate": 46,
+        "median_frequency_hz": 115.20285034179688,
+        "median_confidence": 0.0661979615688324
+      },
+      {
+        "start_s": 620.9153741496599,
+        "end_s": 621.098231292517,
+        "midi_candidate": 45,
+        "median_frequency_hz": 109.36688995361328,
+        "median_confidence": 0.0661979615688324
+      },
+      {
+        "start_s": 621.4175056689343,
+        "end_s": 622.1663492063492,
+        "midi_candidate": 65,
+        "median_frequency_hz": 349.2320556640625,
+        "median_confidence": 0.10055188089609146
+      },
+      {
+        "start_s": 622.8107029478458,
+        "end_s": 622.9326077097505,
+        "midi_candidate": 57,
+        "median_frequency_hz": 220.00181579589844,
+        "median_confidence": 0.08892013877630234
+      },
+      {
+        "start_s": 622.9384126984127,
+        "end_s": 623.4695691609977,
+        "midi_candidate": 55,
+        "median_frequency_hz": 195.9991912841797,
+        "median_confidence": 0.08892013877630234
+      },
+      {
+        "start_s": 623.4695691609977,
+        "end_s": 623.658231292517,
+        "midi_candidate": 53,
+        "median_frequency_hz": 174.6153106689453,
+        "median_confidence": 0.09222286939620972
+      },
+      {
+        "start_s": 624.4854421768707,
+        "end_s": 625.202358276644,
+        "midi_candidate": 55,
+        "median_frequency_hz": 194.8703155517578,
+        "median_confidence": 0.09889804571866989
+      },
+      {
+        "start_s": 625.2720181405896,
+        "end_s": 625.8844444444444,
+        "midi_candidate": 57,
+        "median_frequency_hz": 218.73468017578125,
+        "median_confidence": 0.09889804571866989
+      },
+      {
+        "start_s": 625.994739229025,
+        "end_s": 626.5868480725624,
+        "midi_candidate": 57,
+        "median_frequency_hz": 220.00181579589844,
+        "median_confidence": 0.0955573320388794
+      },
+      {
+        "start_s": 626.7058503401361,
+        "end_s": 626.8074376417234,
+        "midi_candidate": 50,
+        "median_frequency_hz": 147.683837890625,
+        "median_confidence": 0.07707926630973816
+      },
+      {
+        "start_s": 626.8074376417234,
+        "end_s": 627.0338321995465,
+        "midi_candidate": 51,
+        "median_frequency_hz": 153.7776336669922,
+        "median_confidence": 0.07707926630973816
+      },
+      {
+        "start_s": 627.2282993197279,
+        "end_s": 628.1861224489796,
+        "midi_candidate": 55,
+        "median_frequency_hz": 195.9991912841797,
+        "median_confidence": 0.09177368879318237
+      },
+      {
+        "start_s": 628.1861224489796,
+        "end_s": 628.3167346938776,
+        "midi_candidate": 65,
+        "median_frequency_hz": 349.2320556640625,
+        "median_confidence": 0.10266783088445663
+      },
+      {
+        "start_s": 628.3167346938776,
+        "end_s": 628.4415419501133,
+        "midi_candidate": 55,
+        "median_frequency_hz": 194.8703155517578,
+        "median_confidence": 0.094075046479702
+      },
+      {
+        "start_s": 628.5286167800454,
+        "end_s": 629.0336507936508,
+        "midi_candidate": 57,
+        "median_frequency_hz": 218.73468017578125,
+        "median_confidence": 0.094075046479702
+      },
+      {
+        "start_s": 629.1236281179139,
+        "end_s": 629.9769614512471,
+        "midi_candidate": 53,
+        "median_frequency_hz": 174.6153106689453,
+        "median_confidence": 0.09182828664779663
+      },
+      {
+        "start_s": 630.6648526077098,
+        "end_s": 631.0624943310657,
+        "midi_candidate": 53,
+        "median_frequency_hz": 174.6153106689453,
+        "median_confidence": 0.10940743237733841
+      },
+      {
+        "start_s": 631.1437641723356,
+        "end_s": 631.2859863945578,
+        "midi_candidate": 48,
+        "median_frequency_hz": 130.81344604492188,
+        "median_confidence": 0.15848122537136078
+      },
+      {
+        "start_s": 631.335328798186,
+        "end_s": 631.558820861678,
+        "midi_candidate": 56,
+        "median_frequency_hz": 206.45797729492188,
+        "median_confidence": 0.12631343305110931
+      },
+      {
+        "start_s": 631.738775510204,
+        "end_s": 631.8839002267574,
+        "midi_candidate": 47,
+        "median_frequency_hz": 123.4714126586914,
+        "median_confidence": 0.13090243935585022
+      },
+      {
+        "start_s": 632.2147845804989,
+        "end_s": 632.5659863945579,
+        "midi_candidate": 65,
+        "median_frequency_hz": 349.2320556640625,
+        "median_confidence": 0.1289166659116745
+      },
+      {
+        "start_s": 632.5921088435374,
+        "end_s": 632.751746031746,
+        "midi_candidate": 48,
+        "median_frequency_hz": 130.81344604492188,
+        "median_confidence": 0.15991811454296112
+      },
+      {
+        "start_s": 632.751746031746,
+        "end_s": 632.8620408163265,
+        "midi_candidate": 65,
+        "median_frequency_hz": 349.2320556640625,
+        "median_confidence": 0.10316108912229538
+      },
+      {
+        "start_s": 633.146485260771,
+        "end_s": 633.2538775510204,
+        "midi_candidate": 48,
+        "median_frequency_hz": 130.0600128173828,
+        "median_confidence": 0.17396406829357147
+      },
+      {
+        "start_s": 633.4396371882086,
+        "end_s": 633.5557369614512,
+        "midi_candidate": 51,
+        "median_frequency_hz": 153.33477783203125,
+        "median_confidence": 0.09192410111427307
+      },
+      {
+        "start_s": 633.677641723356,
+        "end_s": 634.0694784580498,
+        "midi_candidate": 65,
+        "median_frequency_hz": 349.2320556640625,
+        "median_confidence": 0.09554936736822128
+      },
+      {
+        "start_s": 634.1797732426304,
+        "end_s": 634.3423129251701,
+        "midi_candidate": 65,
+        "median_frequency_hz": 347.2206115722656,
+        "median_confidence": 0.08180773258209229
+      },
+      {
+        "start_s": 635.1463038548753,
+        "end_s": 635.2827210884353,
+        "midi_candidate": 48,
+        "median_frequency_hz": 130.81344604492188,
+        "median_confidence": 0.13333557546138763
+      },
+      {
+        "start_s": 635.3959183673469,
+        "end_s": 635.5526530612245,
+        "midi_candidate": 44,
+        "median_frequency_hz": 103.82656860351562,
+        "median_confidence": 0.09339217841625214
+      },
+      {
+        "start_s": 635.7151927437642,
+        "end_s": 635.8487074829932,
+        "midi_candidate": 63,
+        "median_frequency_hz": 311.13018798828125,
+        "median_confidence": 0.12152495235204697
+      },
+      {
+        "start_s": 636.1418594104308,
+        "end_s": 636.3972789115646,
+        "midi_candidate": 48,
+        "median_frequency_hz": 130.81344604492188,
+        "median_confidence": 0.1396583616733551
+      },
+      {
+        "start_s": 636.3972789115646,
+        "end_s": 636.5395011337869,
+        "midi_candidate": 57,
+        "median_frequency_hz": 218.73468017578125,
+        "median_confidence": 0.09062785655260086
+      },
+      {
+        "start_s": 636.6672108843537,
+        "end_s": 636.8181405895691,
+        "midi_candidate": 55,
+        "median_frequency_hz": 195.9991912841797,
+        "median_confidence": 0.12311383336782455
+      },
+      {
+        "start_s": 636.8239455782312,
+        "end_s": 637.0474376417234,
+        "midi_candidate": 55,
+        "median_frequency_hz": 194.8703155517578,
+        "median_confidence": 0.12311383336782455
+      },
+      {
+        "start_s": 637.0822675736962,
+        "end_s": 637.1925623582766,
+        "midi_candidate": 48,
+        "median_frequency_hz": 130.81344604492188,
+        "median_confidence": 0.17029830813407898
+      },
+      {
+        "start_s": 637.2883446712018,
+        "end_s": 637.5321541950113,
+        "midi_candidate": 53,
+        "median_frequency_hz": 174.6153106689453,
+        "median_confidence": 0.11594639718532562
+      },
+      {
+        "start_s": 638.1329705215419,
+        "end_s": 638.8731065759637,
+        "midi_candidate": 65,
+        "median_frequency_hz": 349.2320556640625,
+        "median_confidence": 0.1495380997657776
+      },
+      {
+        "start_s": 638.8731065759637,
+        "end_s": 639.4826303854875,
+        "midi_candidate": 50,
+        "median_frequency_hz": 146.83323669433594,
+        "median_confidence": 0.14858654141426086
+      },
+      {
+        "start_s": 639.6248526077097,
+        "end_s": 639.9296145124716,
+        "midi_candidate": 48,
+        "median_frequency_hz": 130.81344604492188,
+        "median_confidence": 0.17323395609855652
+      }
+    ],
+    "voiced_fraction": 0.5782485670753827
+  },
+  "pitch-check.json": [
+    {
+      "start_s": 615.4,
+      "end_s": 616.1,
+      "peaks_hz_relative_db": [
+        [
+          348.5,
+          0.0
+        ],
+        [
+          195.25,
+          -5.667301790506035
+        ],
+        [
+          782.25,
+          -10.498983922244683
+        ],
+        [
+          260.75,
+          -16.816551519656823
+        ],
+        [
+          87.5,
+          -19.688355371819036
+        ],
+        [
+          157.0,
+          -22.99770231504635
+        ],
+        [
+          294.25,
+          -23.270568177023925
+        ],
+        [
+          525.25,
+          -23.47394130879019
+        ],
+        [
+          95.5,
+          -25.805954956814755
+        ],
+        [
+          163.0,
+          -27.706639106356718
+        ],
+        [
+          307.75,
+          -28.457204942511922
+        ],
+        [
+          585.75,
+          -29.013113929170782
+        ]
+      ]
+    },
+    {
+      "start_s": 616.8,
+      "end_s": 617.5,
+      "peaks_hz_relative_db": [
+        [
+          348.5,
+          0.0
+        ],
+        [
+          195.0,
+          -6.3621151054387735
+        ],
+        [
+          391.25,
+          -11.002643387697134
+        ],
+        [
+          523.5,
+          -11.071748008045594
+        ],
+        [
+          119.5,
+          -15.17300567368299
+        ],
+        [
+          260.25,
+          -15.69955916081889
+        ],
+        [
+          292.25,
+          -18.97855971228206
+        ],
+        [
+          131.5,
+          -20.685485713749348
+        ],
+        [
+          584.75,
+          -20.713569612156768
+        ],
+        [
+          298.5,
+          -21.240181710505126
+        ],
+        [
+          439.75,
+          -24.940935137771977
+        ],
+        [
+          200.25,
+          -25.41543809630285
+        ]
+      ]
+    },
+    {
+      "start_s": 618.1,
+      "end_s": 618.8,
+      "peaks_hz_relative_db": [
+        [
+          348.0,
+          0.0
+        ],
+        [
+          781.5,
+          -4.480656455185226
+        ],
+        [
+          155.5,
+          -10.687397190677796
+        ],
+        [
+          195.75,
+          -10.78998400896646
+        ],
+        [
+          116.0,
+          -10.971294723366395
+        ],
+        [
+          220.0,
+          -14.663294251855437
+        ],
+        [
+          260.0,
+          -17.580410599521066
+        ],
+        [
+          522.25,
+          -18.174426432829367
+        ],
+        [
+          99.25,
+          -18.703416857642424
+        ],
+        [
+          131.75,
+          -20.721497545256007
+        ],
+        [
+          292.25,
+          -21.39124840427215
+        ],
+        [
+          319.5,
+          -22.411003176609967
+        ]
+      ]
+    },
+    {
+      "start_s": 620,
+      "end_s": 620.5,
+      "peaks_hz_relative_db": [
+        [
+          348.5,
+          0.0
+        ],
+        [
+          195.25,
+          -7.446784367362787
+        ],
+        [
+          116.5,
+          -8.337631583544354
+        ],
+        [
+          391.0,
+          -10.412192481382029
+        ],
+        [
+          523.25,
+          -12.885001183320588
+        ],
+        [
+          586.0,
+          -18.517110795397784
+        ],
+        [
+          260.75,
+          -19.833247329011805
+        ],
+        [
+          302.25,
+          -20.760346898666498
+        ],
+        [
+          124.5,
+          -21.57380068283528
+        ],
+        [
+          108.0,
+          -24.323108162782532
+        ],
+        [
+          218.0,
+          -24.366154860899755
+        ],
+        [
+          440.0,
+          -24.751385680320812
+        ]
+      ]
+    },
+    {
+      "start_s": 621.5,
+      "end_s": 622.1,
+      "peaks_hz_relative_db": [
+        [
+          348.5,
+          0.0
+        ],
+        [
+          195.25,
+          -5.476901625181156
+        ],
+        [
+          782.0,
+          -6.8897398324529515
+        ],
+        [
+          110.75,
+          -14.080924804061631
+        ],
+        [
+          261.25,
+          -19.388269611491836
+        ],
+        [
+          102.0,
+          -20.3863049012096
+        ],
+        [
+          295.0,
+          -21.147860835052725
+        ],
+        [
+          301.5,
+          -23.757148098135797
+        ],
+        [
+          94.5,
+          -23.842606015087977
+        ],
+        [
+          122.5,
+          -24.631704025961586
+        ],
+        [
+          343.5,
+          -25.172153390526418
+        ],
+        [
+          157.5,
+          -25.322913444024383
+        ]
+      ]
+    },
+    {
+      "start_s": 624.55,
+      "end_s": 625.1,
+      "peaks_hz_relative_db": [
+        [
+          348.25,
+          0.0
+        ],
+        [
+          195.0,
+          -0.16625094966977466
+        ],
+        [
+          585.25,
+          -4.686915031375738
+        ],
+        [
+          93.0,
+          -5.031433684613617
+        ],
+        [
+          782.0,
+          -8.778723981293753
+        ],
+        [
+          293.25,
+          -14.909713549488234
+        ],
+        [
+          260.5,
+          -16.25051702269496
+        ],
+        [
+          300.25,
+          -17.702784369026816
+        ],
+        [
+          219.5,
+          -19.29785454861139
+        ],
+        [
+          84.75,
+          -19.53151766542955
+        ],
+        [
+          776.5,
+          -20.09922005247196
+        ],
+        [
+          101.25,
+          -21.131168180947377
+        ]
+      ]
+    },
+    {
+      "start_s": 625.35,
+      "end_s": 625.8,
+      "peaks_hz_relative_db": [
+        [
+          219.5,
+          0.0
+        ],
+        [
+          391.25,
+          -3.8935487348634856
+        ],
+        [
+          293.75,
+          -4.868938238002701
+        ],
+        [
+          88.25,
+          -6.26739217433045
+        ],
+        [
+          523.25,
+          -6.288419626354175
+        ],
+        [
+          348.5,
+          -8.281590087544586
+        ],
+        [
+          586.5,
+          -11.965504511071948
+        ],
+        [
+          779.75,
+          -12.282238347234122
+        ],
+        [
+          438.75,
+          -12.76651007080961
+        ],
+        [
+          97.75,
+          -18.2554538555566
+        ],
+        [
+          198.75,
+          -20.608036688990016
+        ],
+        [
+          170.5,
+          -22.743479973863302
+        ]
+      ]
+    },
+    {
+      "start_s": 627.3,
+      "end_s": 628.1,
+      "peaks_hz_relative_db": [
+        [
+          348.5,
+          0.0
+        ],
+        [
+          585.25,
+          -4.065886479434971
+        ],
+        [
+          195.0,
+          -5.751295053397117
+        ],
+        [
+          781.75,
+          -7.0525140996728455
+        ],
+        [
+          303.25,
+          -11.345505871626074
+        ],
+        [
+          292.5,
+          -12.636448760458833
+        ],
+        [
+          260.75,
+          -13.087095023055378
+        ],
+        [
+          83.75,
+          -13.160376390664041
+        ],
+        [
+          200.25,
+          -15.425545659699356
+        ],
+        [
+          156.0,
+          -15.938101385495125
+        ],
+        [
+          391.0,
+          -17.622707160324516
+        ],
+        [
+          786.75,
+          -18.427921041144767
+        ]
+      ]
+    },
+    {
+      "start_s": 628.6,
+      "end_s": 629,
+      "peaks_hz_relative_db": [
+        [
+          219.5,
+          0.0
+        ],
+        [
+          439.0,
+          -1.589850286050386
+        ],
+        [
+          293.5,
+          -3.268987210967114
+        ],
+        [
+          348.75,
+          -3.299495694994605
+        ],
+        [
+          391.5,
+          -4.064668610845825
+        ],
+        [
+          585.25,
+          -5.31695250462501
+        ],
+        [
+          82.75,
+          -8.792649787579938
+        ],
+        [
+          92.0,
+          -8.966367778963807
+        ],
+        [
+          194.5,
+          -12.045020186695702
+        ],
+        [
+          106.75,
+          -17.304062093543887
+        ],
+        [
+          122.75,
+          -17.38378319751555
+        ],
+        [
+          778.75,
+          -17.430085565639033
+        ]
+      ]
+    },
+    {
+      "start_s": 629.2,
+      "end_s": 629.8,
+      "peaks_hz_relative_db": [
+        [
+          348.25,
+          0.0
+        ],
+        [
+          391.25,
+          -4.160314637958173
+        ],
+        [
+          523.25,
+          -8.00818962797755
+        ],
+        [
+          195.5,
+          -10.753962498727939
+        ],
+        [
+          81.5,
+          -14.22000197227729
+        ],
+        [
+          260.75,
+          -14.486937836626145
+        ],
+        [
+          440.0,
+          -15.323411337186375
+        ],
+        [
+          94.0,
+          -15.828702100219632
+        ],
+        [
+          292.5,
+          -18.412873809502944
+        ],
+        [
+          218.75,
+          -19.804835789753586
+        ],
+        [
+          303.75,
+          -20.869530376896762
+        ],
+        [
+          108.0,
+          -21.00520396638547
+        ]
+      ]
+    }
+  ],
+  "polyphonic-results.json": {
+    "source_sha256": "428aaaf9341b3d453b977800c1aa65ef92979118483b84c8df0ce1d89e3078a2",
+    "essentia_version": "2.1-beta6-dev",
+    "decode_range_s": [
+      610,
+      635
+    ],
+    "evaluation_range_s": [
+      615,
+      630
+    ],
+    "hop_samples": 128,
+    "sample_rate": 44100,
+    "fixture": {
+      "klapuri": {
+        "frame_note_precision": 0.5534779356768885,
+        "frame_note_recall": 0.6223717409587889,
+        "frames": 669
+      },
+      "multimelodia": {
+        "frame_note_precision": 1.0,
+        "frame_note_recall": 0.5245901639344263,
+        "frames": 759
+      }
+    },
+    "consensus_notes": [
+      {
+        "midi_pitch": 65,
+        "start_s": 615.3173696145125,
+        "end_s": 615.5350566893424
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 615.5524716553288,
+        "end_s": 616.0778231292517
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 617.1372335600907,
+        "end_s": 617.5813151927438
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 618.4375510204081,
+        "end_s": 619.1138321995464
+      },
+      {
+        "midi_pitch": 46,
+        "start_s": 619.3953741496599,
+        "end_s": 619.5840362811791
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 621.4648526077098,
+        "end_s": 621.9321541950113
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 621.9379591836735,
+        "end_s": 622.1701587301587
+      },
+      {
+        "midi_pitch": 55,
+        "start_s": 624.5066666666667,
+        "end_s": 625.180045351474
+      },
+      {
+        "midi_pitch": 57,
+        "start_s": 625.3570975056689,
+        "end_s": 625.6734693877551
+      },
+      {
+        "midi_pitch": 55,
+        "start_s": 625.9521088435374,
+        "end_s": 626.1436734693877
+      },
+      {
+        "midi_pitch": 57,
+        "start_s": 626.195918367347,
+        "end_s": 626.6835374149659
+      },
+      {
+        "midi_pitch": 51,
+        "start_s": 627.1189115646258,
+        "end_s": 627.2814512471655
+      },
+      {
+        "midi_pitch": 55,
+        "start_s": 627.9345124716554,
+        "end_s": 628.1492970521542
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 628.1492970521542,
+        "end_s": 628.3118367346939
+      },
+      {
+        "midi_pitch": 57,
+        "start_s": 628.6398185941043,
+        "end_s": 628.9126530612245
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 629.3509297052154,
+        "end_s": 629.5599092970522
+      }
+    ],
+    "limits": "Method agreement is not ground truth. Shared Essentia spectral front end; no instrument attribution; 150ms contiguous runs omit short notes; no gap filling.",
+    "frame_count_by_method": {
+      "klapuri": 8615,
+      "multimelodia": 8615
+    },
+    "raw_output_sha256": "220b7d15a15b4004e3feb955006e8954e8fa950c69335e3afaea81f3c77863d9"
+  },
+  "resynthesis-results.json": {
+    "source_sha256": "428aaaf9341b3d453b977800c1aa65ef92979118483b84c8df0ce1d89e3078a2",
+    "scope_s": [
+      615,
+      630
+    ],
+    "notes": [
+      {
+        "midi_pitch": 65,
+        "start_s": 615.3173696145125,
+        "end_s": 615.5350566893424
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 615.5524716553288,
+        "end_s": 616.0778231292517
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 617.1372335600907,
+        "end_s": 617.5813151927438
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 618.4375510204081,
+        "end_s": 619.1138321995464
+      },
+      {
+        "midi_pitch": 46,
+        "start_s": 619.3953741496599,
+        "end_s": 619.5840362811791
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 621.4648526077098,
+        "end_s": 621.9321541950113
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 621.9379591836735,
+        "end_s": 622.1701587301587
+      },
+      {
+        "midi_pitch": 55,
+        "start_s": 624.5066666666667,
+        "end_s": 625.180045351474
+      },
+      {
+        "midi_pitch": 57,
+        "start_s": 625.3570975056689,
+        "end_s": 625.6734693877551
+      },
+      {
+        "midi_pitch": 55,
+        "start_s": 625.9521088435374,
+        "end_s": 626.1436734693877
+      },
+      {
+        "midi_pitch": 57,
+        "start_s": 626.195918367347,
+        "end_s": 626.6835374149659
+      },
+      {
+        "midi_pitch": 51,
+        "start_s": 627.1189115646258,
+        "end_s": 627.2814512471655
+      },
+      {
+        "midi_pitch": 55,
+        "start_s": 627.9345124716554,
+        "end_s": 628.1492970521542
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 628.1492970521542,
+        "end_s": 628.3118367346939
+      },
+      {
+        "midi_pitch": 57,
+        "start_s": 628.6398185941043,
+        "end_s": 628.9126530612245
+      },
+      {
+        "midi_pitch": 65,
+        "start_s": 629.3509297052154,
+        "end_s": 629.5599092970522
+      }
+    ],
+    "n_notes": 16,
+    "synthesis": "4 additive harmonics 1/h, 5ms edge ramps, constant note strength, no source samples",
+    "comparison": "Magnitude STFT cosine 80\u20131760Hz, average includes silent synthesis frames; two preselected resolutions, no fitted timbre",
+    "variants": {
+      "candidate": [
+        0,
+        0
+      ],
+      "semitone_up": [
+        1,
+        0
+      ],
+      "semitone_down": [
+        -1,
+        0
+      ],
+      "octave_down": [
+        -12,
+        0
+      ],
+      "early_100ms": [
+        0,
+        -0.1
+      ],
+      "late_100ms": [
+        0,
+        0.1
+      ],
+      "early_250ms": [
+        0,
+        -0.25
+      ],
+      "late_250ms": [
+        0,
+        0.25
+      ]
+    },
+    "results": {
+      "candidate": {
+        "2048": {
+          "mean_spectral_cosine_all_frames": 0.2715845457703492,
+          "active_synthesis_fraction": 0.40386847195357833
+        },
+        "8192": {
+          "mean_spectral_cosine_all_frames": 0.30679923320046587,
+          "active_synthesis_fraction": 0.5152804642166344
+        }
+      },
+      "semitone_up": {
+        "2048": {
+          "mean_spectral_cosine_all_frames": 0.2144898736501934,
+          "active_synthesis_fraction": 0.40386847195357833
+        },
+        "8192": {
+          "mean_spectral_cosine_all_frames": 0.1020286277633499,
+          "active_synthesis_fraction": 0.5152804642166344
+        }
+      },
+      "semitone_down": {
+        "2048": {
+          "mean_spectral_cosine_all_frames": 0.23911684090544835,
+          "active_synthesis_fraction": 0.40386847195357833
+        },
+        "8192": {
+          "mean_spectral_cosine_all_frames": 0.11415019447487716,
+          "active_synthesis_fraction": 0.5152804642166344
+        }
+      },
+      "octave_down": {
+        "2048": {
+          "mean_spectral_cosine_all_frames": 0.23304225245305613,
+          "active_synthesis_fraction": 0.40386847195357833
+        },
+        "8192": {
+          "mean_spectral_cosine_all_frames": 0.21851091134458214,
+          "active_synthesis_fraction": 0.5148936170212766
+        }
+      },
+      "early_100ms": {
+        "2048": {
+          "mean_spectral_cosine_all_frames": 0.25979398583844143,
+          "active_synthesis_fraction": 0.404642166344294
+        },
+        "8192": {
+          "mean_spectral_cosine_all_frames": 0.2942795232288966,
+          "active_synthesis_fraction": 0.5141199226305609
+        }
+      },
+      "late_100ms": {
+        "2048": {
+          "mean_spectral_cosine_all_frames": 0.2605897389202254,
+          "active_synthesis_fraction": 0.40386847195357833
+        },
+        "8192": {
+          "mean_spectral_cosine_all_frames": 0.2912220794229383,
+          "active_synthesis_fraction": 0.5137330754352031
+        }
+      },
+      "early_250ms": {
+        "2048": {
+          "mean_spectral_cosine_all_frames": 0.2376656620403728,
+          "active_synthesis_fraction": 0.40386847195357833
+        },
+        "8192": {
+          "mean_spectral_cosine_all_frames": 0.26462534284369593,
+          "active_synthesis_fraction": 0.5129593810444875
+        }
+      },
+      "late_250ms": {
+        "2048": {
+          "mean_spectral_cosine_all_frames": 0.2403209561393234,
+          "active_synthesis_fraction": 0.40386847195357833
+        },
+        "8192": {
+          "mean_spectral_cosine_all_frames": 0.264285285574688,
+          "active_synthesis_fraction": 0.5152804642166344
+        }
+      }
+    },
+    "claim_boundary": "Error sensitivity only. Candidate pitches selected from original, so this is not independent transcription accuracy. No real stem ground truth or listening validation. No timbre, drum or instrument reconstruction."
+  },
+  "scripts_sha256": {
+    "pitch_check.py": "aeafceae35f9021f500889300142ab54751ed1bcb343095d86a9ab03522cabf6",
+    "resynthesis_test.py": "5fcf8873ca4ff8fd745d945c6e87998479714ac4cc5dee1a86d138e3f6beb1d9",
+    "music_structure.py": "7cc2073a6134636371ef3e24dd5392c994259836ad08cbf8d34ce4d94ec7ca15",
+    "polyphonic_verify.py": "5487b4b7b121dd21aa7fb16d00683ed93b1e6534a7a37b01d6f06ebbf97b4bd0",
+    "transition.py": "1a82c5c9efe0bc053a7c57b6d8e5d3481d00ea1a047ae5b00a2659a88c6763a2"
+  },
+  "artifact_sha256": {
+    "candidate.mid": "e81700acdd40324f2635d5a4ba886e1d914684c89f90921e99b6c8be48b6d96f",
+    "candidate-notes.csv": "471daeb4fe2acc05f7224b9e7ec04de30e98766ebee04c78c55f7b1d67e0a03e",
+    "candidate.wav": "41b16516fbace2221d35123e3372fc8775f546e35a03d28c116853fc1509d22a"
+  }
+}
