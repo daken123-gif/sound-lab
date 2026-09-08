@@ -1,0 +1,1602 @@
+{
+  "source_sha256": "428aaaf9341b3d453b977800c1aa65ef92979118483b84c8df0ce1d89e3078a2",
+  "bands_hz": {
+    "low": [
+      30,
+      180
+    ],
+    "mid": [
+      180,
+      1500
+    ],
+    "high": [
+      1500,
+      10000
+    ]
+  },
+  "method": "Fourth-order Butterworth bandpass, forward-backward filtering; per-channel mean square in fixed adjacent pre/post spans of 10,20,40ms around original RMS frame center. No peak search or optimization of anchor.",
+  "criterion": "Exploratory >3dB growth in both channels at all three spans; not calibrated physical-attack classification.",
+  "limitations": [
+    "Zero-phase filtering smears transients, especially low frequencies.",
+    "Same source and selected RMS candidates; not independent ground truth.",
+    "Growth can be modulation/interference; does not identify instrument, player, or exact onset."
+  ],
+  "events": [
+    {
+      "original_frame_start_s": 620.2496145124717,
+      "frame_center_anchor_s": 620.261224489796,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": -2.031040424134659,
+            "right_growth_db": -1.5283052988180041,
+            "stereo_growth_db": -1.7473090724481068
+          },
+          "20": {
+            "left_growth_db": -1.4495097165578887,
+            "right_growth_db": -1.280182200481471,
+            "stereo_growth_db": -1.3547524551114332
+          },
+          "40": {
+            "left_growth_db": -2.590386365994486,
+            "right_growth_db": -2.4029156511400593,
+            "stereo_growth_db": -2.4824195711321075
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 0.3298190112575627,
+            "right_growth_db": -1.3990436805021458,
+            "stereo_growth_db": -0.8494784872080064
+          },
+          "20": {
+            "left_growth_db": 0.04397523675358624,
+            "right_growth_db": 0.7702679937842603,
+            "stereo_growth_db": 0.5235451198792253
+          },
+          "40": {
+            "left_growth_db": 0.01632060115922615,
+            "right_growth_db": 0.4508478806339601,
+            "stereo_growth_db": 0.30728071722267386
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": 0.3408175545847158,
+            "right_growth_db": -0.9169943309413453,
+            "stereo_growth_db": -0.2063436978324867
+          },
+          "20": {
+            "left_growth_db": -0.7313975465446144,
+            "right_growth_db": -1.8368588650628679,
+            "stereo_growth_db": -1.264093730180858
+          },
+          "40": {
+            "left_growth_db": 0.6173708948133297,
+            "right_growth_db": -0.5557262121731483,
+            "stereo_growth_db": 0.031598310124412776
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 620.534058956916,
+      "frame_center_anchor_s": 620.5456689342403,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 2.9405797125781747,
+            "right_growth_db": 0.5463619384184439,
+            "stereo_growth_db": 1.4324083609971225
+          },
+          "20": {
+            "left_growth_db": 1.4293924259553776,
+            "right_growth_db": 1.2072302056751292,
+            "stereo_growth_db": 1.2927800682844295
+          },
+          "40": {
+            "left_growth_db": 0.9215130308052526,
+            "right_growth_db": 0.37335811567486005,
+            "stereo_growth_db": 0.5532563873492123
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 2.782581661045262,
+            "right_growth_db": 2.7823070202419347,
+            "stereo_growth_db": 2.782384735082659
+          },
+          "20": {
+            "left_growth_db": 0.27259251264684803,
+            "right_growth_db": -0.290700059419624,
+            "stereo_growth_db": -0.1560407398352046
+          },
+          "40": {
+            "left_growth_db": -0.9100802687866307,
+            "right_growth_db": -1.151778941406082,
+            "stereo_growth_db": -1.092399645120992
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": 1.8993524123237606,
+            "right_growth_db": 2.155420620337742,
+            "stereo_growth_db": 2.021094739760084
+          },
+          "20": {
+            "left_growth_db": 2.527379251186664,
+            "right_growth_db": 2.4820345542517583,
+            "stereo_growth_db": 2.5058030610338777
+          },
+          "40": {
+            "left_growth_db": 0.7842382024503075,
+            "right_growth_db": 1.06591181457134,
+            "stereo_growth_db": 0.9120863955866108
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 620.8185034013605,
+      "frame_center_anchor_s": 620.8301133786848,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 1.4114202286477338,
+            "right_growth_db": 9.47677971853442,
+            "stereo_growth_db": 2.5443418746966535
+          },
+          "20": {
+            "left_growth_db": -0.31167720166498225,
+            "right_growth_db": 1.9632850728126436,
+            "stereo_growth_db": 0.1460326450250728
+          },
+          "40": {
+            "left_growth_db": -0.20127653822251773,
+            "right_growth_db": 1.2511544862829103,
+            "stereo_growth_db": 0.08422735456903578
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 0.424874718311964,
+            "right_growth_db": -1.684825456240167,
+            "stereo_growth_db": -0.5740369286528006
+          },
+          "20": {
+            "left_growth_db": 1.3054522890878428,
+            "right_growth_db": 0.3797032031851593,
+            "stereo_growth_db": 0.8450841434216736
+          },
+          "40": {
+            "left_growth_db": -0.4366081287770421,
+            "right_growth_db": -0.8091359887057057,
+            "stereo_growth_db": -0.6253969898278343
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -0.12071409722017556,
+            "right_growth_db": 0.3022881038905843,
+            "stereo_growth_db": 0.10602152842170082
+          },
+          "20": {
+            "left_growth_db": 0.25927438377775747,
+            "right_growth_db": -0.3005612229095276,
+            "stereo_growth_db": -0.013675806637528766
+          },
+          "40": {
+            "left_growth_db": -4.151051182228066,
+            "right_growth_db": -4.736476616975097,
+            "stereo_growth_db": -4.440269873428083
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 621.4744671201814,
+      "frame_center_anchor_s": 621.4860770975057,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": -2.1627890003167187,
+            "right_growth_db": -0.8382503405697843,
+            "stereo_growth_db": -1.0137884906035077
+          },
+          "20": {
+            "left_growth_db": -0.800262295872055,
+            "right_growth_db": -0.4517463444872617,
+            "stereo_growth_db": -0.5033726597438263
+          },
+          "40": {
+            "left_growth_db": -1.683201972473989,
+            "right_growth_db": -2.062712898914265,
+            "stereo_growth_db": -1.9930518716945573
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -1.0341866923652185,
+            "right_growth_db": 2.1508617959020437,
+            "stereo_growth_db": 0.8918524524212462
+          },
+          "20": {
+            "left_growth_db": -1.0543757663639126,
+            "right_growth_db": 0.382588870292505,
+            "stereo_growth_db": -0.15459877662095609
+          },
+          "40": {
+            "left_growth_db": -1.4519331177945352,
+            "right_growth_db": 0.38354492517674044,
+            "stereo_growth_db": -0.321458968362851
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -0.09214576838538882,
+            "right_growth_db": 0.618326984294025,
+            "stereo_growth_db": 0.2525018699771524
+          },
+          "20": {
+            "left_growth_db": 0.8604083724799987,
+            "right_growth_db": 0.5369265663639782,
+            "stereo_growth_db": 0.7152944434651505
+          },
+          "40": {
+            "left_growth_db": 0.16199003642909796,
+            "right_growth_db": -0.38206142076204896,
+            "stereo_growth_db": -0.0943275482664281
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 621.5499319727891,
+      "frame_center_anchor_s": 621.5615419501133,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": -0.866489209163157,
+            "right_growth_db": -3.1498884682683768,
+            "stereo_growth_db": -1.8977288120871774
+          },
+          "20": {
+            "left_growth_db": 0.6474067663648992,
+            "right_growth_db": -0.865480961006526,
+            "stereo_growth_db": -0.16272195466859452
+          },
+          "40": {
+            "left_growth_db": -0.7251520594270746,
+            "right_growth_db": -2.6370528712642303,
+            "stereo_growth_db": -1.8527249069816514
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -1.6873466986130647,
+            "right_growth_db": -1.2162273141097333,
+            "stereo_growth_db": -1.3731844211636743
+          },
+          "20": {
+            "left_growth_db": -0.3121867250563292,
+            "right_growth_db": -0.38766137313767257,
+            "stereo_growth_db": -0.36291671866377634
+          },
+          "40": {
+            "left_growth_db": -0.3226352463367005,
+            "right_growth_db": -0.33874979089656027,
+            "stereo_growth_db": -0.3335295018686532
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": 1.179729359193438,
+            "right_growth_db": 0.8599233927182244,
+            "stereo_growth_db": 1.0277013942745665
+          },
+          "20": {
+            "left_growth_db": 0.4690327717656146,
+            "right_growth_db": 0.6860169530938075,
+            "stereo_growth_db": 0.5767581546017444
+          },
+          "40": {
+            "left_growth_db": 1.0212525057195596,
+            "right_growth_db": 0.9030415969194995,
+            "stereo_growth_db": 0.9652887820909374
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 621.6602267573696,
+      "frame_center_anchor_s": 621.6718367346939,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": -0.592810840456557,
+            "right_growth_db": 5.97371807924597,
+            "stereo_growth_db": 4.559016923088351
+          },
+          "20": {
+            "left_growth_db": 0.10373518506275617,
+            "right_growth_db": 6.766076797542256,
+            "stereo_growth_db": 5.347551177743465
+          },
+          "40": {
+            "left_growth_db": 0.37962609671995406,
+            "right_growth_db": 7.6602045257658515,
+            "stereo_growth_db": 5.874625235247436
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 0.3551820226744621,
+            "right_growth_db": 0.7238638003727389,
+            "stereo_growth_db": 0.6046432580249701
+          },
+          "20": {
+            "left_growth_db": -0.09866109587308124,
+            "right_growth_db": 0.8578460355060219,
+            "stereo_growth_db": 0.5641664048596896
+          },
+          "40": {
+            "left_growth_db": -0.8641324662757184,
+            "right_growth_db": 0.07535274975156991,
+            "stereo_growth_db": -0.2388775345700556
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -0.27151538840164274,
+            "right_growth_db": -1.7452274327338198,
+            "stereo_growth_db": -0.9878933974042572
+          },
+          "20": {
+            "left_growth_db": 0.16551876771275748,
+            "right_growth_db": -0.6505013143464511,
+            "stereo_growth_db": -0.20955927942546043
+          },
+          "40": {
+            "left_growth_db": -0.5116076960045404,
+            "right_growth_db": -0.2085064895170841,
+            "stereo_growth_db": -0.3779753618572035
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 621.7937414965986,
+      "frame_center_anchor_s": 621.8053514739229,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 2.9758796488219383,
+            "right_growth_db": 1.4677952213327317,
+            "stereo_growth_db": 1.9404604316297953
+          },
+          "20": {
+            "left_growth_db": -0.09496038841237245,
+            "right_growth_db": 1.0196231779267915,
+            "stereo_growth_db": 0.5893366793881966
+          },
+          "40": {
+            "left_growth_db": 1.06234274340916,
+            "right_growth_db": -1.4451776527991675,
+            "stereo_growth_db": -0.6486278154390726
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 0.2139868337370626,
+            "right_growth_db": 0.8868887897031162,
+            "stereo_growth_db": 0.6864565622533021
+          },
+          "20": {
+            "left_growth_db": 0.8945864264205685,
+            "right_growth_db": 0.49618662095742844,
+            "stereo_growth_db": 0.6284349966520839
+          },
+          "40": {
+            "left_growth_db": 0.010248244637568564,
+            "right_growth_db": 0.011625497818910896,
+            "stereo_growth_db": 0.011195806385536085
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -0.12348709581807235,
+            "right_growth_db": -0.19487592581162103,
+            "stereo_growth_db": -0.14472973414194443
+          },
+          "20": {
+            "left_growth_db": 1.1686370049641635,
+            "right_growth_db": 2.1243198364412486,
+            "stereo_growth_db": 1.4971160339278808
+          },
+          "40": {
+            "left_growth_db": 1.916693329497328,
+            "right_growth_db": 1.8645592589473179,
+            "stereo_growth_db": 1.89740041778059
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 621.8866213151928,
+      "frame_center_anchor_s": 621.898231292517,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": -2.9488527257676838,
+            "right_growth_db": 2.4026569623551426,
+            "stereo_growth_db": 0.5055225865796702
+          },
+          "20": {
+            "left_growth_db": -0.4321954126876204,
+            "right_growth_db": 1.4599074247034494,
+            "stereo_growth_db": 0.6957880449174348
+          },
+          "40": {
+            "left_growth_db": 3.848143830962805,
+            "right_growth_db": 10.849973077809665,
+            "stereo_growth_db": 8.85146167313582
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 0.1630845931772566,
+            "right_growth_db": 1.8396105581329198,
+            "stereo_growth_db": 1.3762492736831358
+          },
+          "20": {
+            "left_growth_db": 1.029889905336187,
+            "right_growth_db": 0.6061879561344908,
+            "stereo_growth_db": 0.7287743913509472
+          },
+          "40": {
+            "left_growth_db": 0.17174370876847173,
+            "right_growth_db": 0.10116051852698578,
+            "stereo_growth_db": 0.1208911541424172
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": 7.881872855396313,
+            "right_growth_db": 8.846000029582203,
+            "stereo_growth_db": 8.287074769231875
+          },
+          "20": {
+            "left_growth_db": 6.360005021040653,
+            "right_growth_db": 7.231514725956604,
+            "stereo_growth_db": 6.727040602033204
+          },
+          "40": {
+            "left_growth_db": 5.231280095019965,
+            "right_growth_db": 5.096128865567496,
+            "stereo_growth_db": 5.176077814464916
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": [
+        "high"
+      ]
+    },
+    {
+      "original_frame_start_s": 622.0433560090703,
+      "frame_center_anchor_s": 622.0549659863946,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": -7.116093122394736,
+            "right_growth_db": -2.8907312667004126,
+            "stereo_growth_db": -4.768035900646719
+          },
+          "20": {
+            "left_growth_db": -5.419064432011858,
+            "right_growth_db": -3.7548825856936356,
+            "stereo_growth_db": -4.388326915251904
+          },
+          "40": {
+            "left_growth_db": -5.129231614006915,
+            "right_growth_db": -7.012846816243485,
+            "stereo_growth_db": -6.3528423397610005
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -2.4836073031622155,
+            "right_growth_db": -0.13410401486805754,
+            "stereo_growth_db": -0.753709344158583
+          },
+          "20": {
+            "left_growth_db": -0.9092200706273773,
+            "right_growth_db": -0.12935378506383907,
+            "stereo_growth_db": -0.34053881939853914
+          },
+          "40": {
+            "left_growth_db": -1.2681982116489712,
+            "right_growth_db": -0.2612505061356317,
+            "stereo_growth_db": -0.5319684883025024
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -0.4693369298089355,
+            "right_growth_db": -0.6039657044863251,
+            "stereo_growth_db": -0.5407662067108946
+          },
+          "20": {
+            "left_growth_db": 0.6038978874177408,
+            "right_growth_db": 0.5059995367015219,
+            "stereo_growth_db": 0.5579038592908889
+          },
+          "40": {
+            "left_growth_db": 1.58154260111633,
+            "right_growth_db": 0.7128676892614842,
+            "stereo_growth_db": 1.2310157896480853
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 622.2581405895692,
+      "frame_center_anchor_s": 622.2697505668934,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 0.9047236624164129,
+            "right_growth_db": 1.0271782776090066,
+            "stereo_growth_db": 1.0145228437264326
+          },
+          "20": {
+            "left_growth_db": -3.133125721827954,
+            "right_growth_db": -2.3279865393526546,
+            "stereo_growth_db": -2.434007876428264
+          },
+          "40": {
+            "left_growth_db": -4.692277064406819,
+            "right_growth_db": -4.136334424309867,
+            "stereo_growth_db": -4.2486544725089646
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -1.3541620159533398,
+            "right_growth_db": 0.8415123209824517,
+            "stereo_growth_db": -0.10691178484574237
+          },
+          "20": {
+            "left_growth_db": -0.30451302318922824,
+            "right_growth_db": -0.7783708196460261,
+            "stereo_growth_db": -0.576384322045894
+          },
+          "40": {
+            "left_growth_db": 0.45774396334126055,
+            "right_growth_db": -0.2993686584270199,
+            "stereo_growth_db": 0.0030364805238027506
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": 1.254460016838081,
+            "right_growth_db": 0.45920220508720144,
+            "stereo_growth_db": 0.8844732585425535
+          },
+          "20": {
+            "left_growth_db": -0.46780189910673575,
+            "right_growth_db": -0.7661696821072606,
+            "stereo_growth_db": -0.6068666632553052
+          },
+          "40": {
+            "left_growth_db": -1.6307188268922883,
+            "right_growth_db": -0.8558202745970327,
+            "stereo_growth_db": -1.2602295490847484
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 622.5251700680273,
+      "frame_center_anchor_s": 622.5367800453515,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 4.806605009109329,
+            "right_growth_db": 2.664243667388826,
+            "stereo_growth_db": 2.964364632891623
+          },
+          "20": {
+            "left_growth_db": 3.6578543752884576,
+            "right_growth_db": -0.4273854941025702,
+            "stereo_growth_db": 0.15437212057349267
+          },
+          "40": {
+            "left_growth_db": 0.5295543556741422,
+            "right_growth_db": -2.9317762532624996,
+            "stereo_growth_db": -2.3634088937214943
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 1.9983724513143297,
+            "right_growth_db": -2.458432331948835,
+            "stereo_growth_db": -0.6256035648331535
+          },
+          "20": {
+            "left_growth_db": -0.0851426628916381,
+            "right_growth_db": 0.5947668753314487,
+            "stereo_growth_db": 0.3211625707747605
+          },
+          "40": {
+            "left_growth_db": -0.2378506012154956,
+            "right_growth_db": -0.6902302794607071,
+            "stereo_growth_db": -0.5015919875809413
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -3.671992104366843,
+            "right_growth_db": -2.081684030179885,
+            "stereo_growth_db": -2.99498186617483
+          },
+          "20": {
+            "left_growth_db": -2.659889674839557,
+            "right_growth_db": -2.3612671480965535,
+            "stereo_growth_db": -2.5365284821005845
+          },
+          "40": {
+            "left_growth_db": 0.6752382268597503,
+            "right_growth_db": 0.5899232146205303,
+            "stereo_growth_db": 0.6378467888436987
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 623.4249433106576,
+      "frame_center_anchor_s": 623.4365532879818,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 0.3629095144356578,
+            "right_growth_db": -1.1196472769364267,
+            "stereo_growth_db": -0.6420982189383697
+          },
+          "20": {
+            "left_growth_db": 1.2919959124627582,
+            "right_growth_db": 3.456750896479204,
+            "stereo_growth_db": 2.951792693696411
+          },
+          "40": {
+            "left_growth_db": 3.743188997601074,
+            "right_growth_db": 9.638880193839734,
+            "stereo_growth_db": 8.307457296913048
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 5.540750660727847,
+            "right_growth_db": 0.3986106435174437,
+            "stereo_growth_db": 1.9759172701033334
+          },
+          "20": {
+            "left_growth_db": 0.8505171407599637,
+            "right_growth_db": 0.62651317430181,
+            "stereo_growth_db": 0.7045369195601087
+          },
+          "40": {
+            "left_growth_db": 0.8698437130335752,
+            "right_growth_db": 0.6998233428007932,
+            "stereo_growth_db": 0.7584487424824184
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": 16.25309561156685,
+            "right_growth_db": 16.228577583689628,
+            "stereo_growth_db": 16.240534911930173
+          },
+          "20": {
+            "left_growth_db": 13.320872091877733,
+            "right_growth_db": 14.098445183315322,
+            "stereo_growth_db": 13.695938006043718
+          },
+          "40": {
+            "left_growth_db": 11.231712308144639,
+            "right_growth_db": 11.725586346002363,
+            "stereo_growth_db": 11.473134238789617
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": [
+        "high"
+      ]
+    },
+    {
+      "original_frame_start_s": 623.529433106576,
+      "frame_center_anchor_s": 623.5410430839003,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 1.055884313538065,
+            "right_growth_db": -0.6090734920074109,
+            "stereo_growth_db": -0.05562430132436916
+          },
+          "20": {
+            "left_growth_db": 3.2142316359359953,
+            "right_growth_db": -0.28349553620741386,
+            "stereo_growth_db": 0.6739206112610852
+          },
+          "40": {
+            "left_growth_db": 0.3767328239165965,
+            "right_growth_db": -3.5959351391514573,
+            "stereo_growth_db": -2.584881045818974
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -1.9183979816574694,
+            "right_growth_db": 1.6517121588076324,
+            "stereo_growth_db": 0.5859989030741828
+          },
+          "20": {
+            "left_growth_db": -0.3020519062861821,
+            "right_growth_db": -0.349859329395645,
+            "stereo_growth_db": -0.3355310951283446
+          },
+          "40": {
+            "left_growth_db": -0.9380938332519851,
+            "right_growth_db": -0.27887573691674616,
+            "stereo_growth_db": -0.4707986495989525
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": 0.6779348682320425,
+            "right_growth_db": 0.18234868771021384,
+            "stereo_growth_db": 0.4592880673767903
+          },
+          "20": {
+            "left_growth_db": 0.00019916496642165352,
+            "right_growth_db": 0.6573491921714532,
+            "stereo_growth_db": 0.28762679780231004
+          },
+          "40": {
+            "left_growth_db": -0.8650044137031712,
+            "right_growth_db": -0.5331551242666476,
+            "stereo_growth_db": -0.715720273778439
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 624.1157369614513,
+      "frame_center_anchor_s": 624.1273469387755,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 0.7814343959005345,
+            "right_growth_db": -3.099335999799756,
+            "stereo_growth_db": 0.4318988735105473
+          },
+          "20": {
+            "left_growth_db": 1.4882171797843633,
+            "right_growth_db": -1.420421007115984,
+            "stereo_growth_db": 1.10239624222486
+          },
+          "40": {
+            "left_growth_db": 0.17393527609215045,
+            "right_growth_db": -4.2515953958446095,
+            "stereo_growth_db": -0.5506936010273976
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -2.9356085593705448,
+            "right_growth_db": -5.176198044120868,
+            "stereo_growth_db": -4.129427576349894
+          },
+          "20": {
+            "left_growth_db": -1.5562821341302089,
+            "right_growth_db": -1.3752870451988923,
+            "stereo_growth_db": -1.4539017362822892
+          },
+          "40": {
+            "left_growth_db": -1.96737568311762,
+            "right_growth_db": -1.2283644484533525,
+            "stereo_growth_db": -1.5875513717638796
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -2.795129764287335,
+            "right_growth_db": -3.17050504274453,
+            "stereo_growth_db": -2.9876837326516488
+          },
+          "20": {
+            "left_growth_db": -4.764074310054369,
+            "right_growth_db": -4.007493076733405,
+            "stereo_growth_db": -4.376894338845775
+          },
+          "40": {
+            "left_growth_db": -3.4048726984582456,
+            "right_growth_db": -2.8750927776649213,
+            "stereo_growth_db": -3.1276363987167812
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 624.3943764172336,
+      "frame_center_anchor_s": 624.4059863945579,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 2.544500276158326,
+            "right_growth_db": -9.486381334329444,
+            "stereo_growth_db": -0.9173423228243632
+          },
+          "20": {
+            "left_growth_db": 0.642390380306913,
+            "right_growth_db": -2.193723160258281,
+            "stereo_growth_db": -0.290377795111885
+          },
+          "40": {
+            "left_growth_db": 0.4351869782628929,
+            "right_growth_db": -4.168161668233118,
+            "stereo_growth_db": -0.8790030777460269
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -3.532128068412426,
+            "right_growth_db": 3.0724789539187296,
+            "stereo_growth_db": 0.014379326337634077
+          },
+          "20": {
+            "left_growth_db": -0.7392918151721984,
+            "right_growth_db": 2.262317854951708,
+            "stereo_growth_db": 0.7955012328341199
+          },
+          "40": {
+            "left_growth_db": -0.8863885584461966,
+            "right_growth_db": 0.638288417472828,
+            "stereo_growth_db": -0.07617971045919991
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -0.3741612858717383,
+            "right_growth_db": -0.9906974404240247,
+            "stereo_growth_db": -0.7250095421769698
+          },
+          "20": {
+            "left_growth_db": -2.9240504758009105,
+            "right_growth_db": -2.3809581672325413,
+            "stereo_growth_db": -2.650626612364921
+          },
+          "40": {
+            "left_growth_db": -3.3388097077797143,
+            "right_growth_db": -2.5283716997139,
+            "stereo_growth_db": -2.932606425398662
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 624.5801360544218,
+      "frame_center_anchor_s": 624.5917460317461,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": -1.176095506199025,
+            "right_growth_db": -1.9164804807366935,
+            "stereo_growth_db": -1.6730357432464518
+          },
+          "20": {
+            "left_growth_db": -0.649915337465258,
+            "right_growth_db": -2.5669547593407382,
+            "stereo_growth_db": -1.9691809463917211
+          },
+          "40": {
+            "left_growth_db": -2.140363346286608,
+            "right_growth_db": -4.162838110065065,
+            "stereo_growth_db": -3.529999767991117
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -0.6711153911203329,
+            "right_growth_db": -1.136159197261881,
+            "stereo_growth_db": -1.0075934849875197
+          },
+          "20": {
+            "left_growth_db": 0.9420389560616543,
+            "right_growth_db": -0.2982090345528422,
+            "stereo_growth_db": 0.08577955008619846
+          },
+          "40": {
+            "left_growth_db": 0.11157583326251831,
+            "right_growth_db": -0.19903550704379405,
+            "stereo_growth_db": -0.10092685113756736
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -0.7615622887887068,
+            "right_growth_db": 0.21687507348109872,
+            "stereo_growth_db": -0.27452839184793987
+          },
+          "20": {
+            "left_growth_db": -1.0671501347212904,
+            "right_growth_db": -0.23749406346219223,
+            "stereo_growth_db": -0.6914375154052788
+          },
+          "40": {
+            "left_growth_db": 1.9971689336305603,
+            "right_growth_db": 2.1961007657249447,
+            "stereo_growth_db": 2.0884423531249787
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 625.1374149659864,
+      "frame_center_anchor_s": 625.1490249433107,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 1.2752603892826195,
+            "right_growth_db": -0.22083796507806042,
+            "stereo_growth_db": 0.3124884708140442
+          },
+          "20": {
+            "left_growth_db": 1.7082381902521329,
+            "right_growth_db": -3.059525544837535,
+            "stereo_growth_db": -1.3543704600902164
+          },
+          "40": {
+            "left_growth_db": -1.1647339820464677,
+            "right_growth_db": -4.309529980529202,
+            "stereo_growth_db": -3.159695051598375
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -1.7771101000306146,
+            "right_growth_db": -1.4381129487599358,
+            "stereo_growth_db": -1.5558066852813996
+          },
+          "20": {
+            "left_growth_db": 0.28528972827844895,
+            "right_growth_db": -0.2882887823833774,
+            "stereo_growth_db": -0.10904202828103035
+          },
+          "40": {
+            "left_growth_db": -1.7198363121289315,
+            "right_growth_db": -1.72503891772238,
+            "stereo_growth_db": -1.7234737393347077
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -3.625122455970496,
+            "right_growth_db": -2.992293312108578,
+            "stereo_growth_db": -3.303543088317375
+          },
+          "20": {
+            "left_growth_db": -9.895004293814921,
+            "right_growth_db": -8.61966601843349,
+            "stereo_growth_db": -9.26856728279285
+          },
+          "40": {
+            "left_growth_db": -7.384230249621806,
+            "right_growth_db": -5.986868295550913,
+            "stereo_growth_db": -6.683618606369816
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 625.6656689342403,
+      "frame_center_anchor_s": 625.6772789115646,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": -0.15333954831080487,
+            "right_growth_db": -3.320834009229618,
+            "stereo_growth_db": -2.344169454399003
+          },
+          "20": {
+            "left_growth_db": -0.8806410154127514,
+            "right_growth_db": -1.6065986040212155,
+            "stereo_growth_db": -1.3586464318241898
+          },
+          "40": {
+            "left_growth_db": -2.260549930230715,
+            "right_growth_db": -2.6983661156588696,
+            "stereo_growth_db": -2.551323275076876
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 0.7902901176323084,
+            "right_growth_db": -2.5430412116668437,
+            "stereo_growth_db": -0.407814717159456
+          },
+          "20": {
+            "left_growth_db": -0.4217643725936527,
+            "right_growth_db": -0.16445356108837322,
+            "stereo_growth_db": -0.32383438609000864
+          },
+          "40": {
+            "left_growth_db": -0.05318377809549832,
+            "right_growth_db": -0.21715465409382154,
+            "stereo_growth_db": -0.11478117678007564
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -6.501080346671192,
+            "right_growth_db": -6.039258202735359,
+            "stereo_growth_db": -6.267498236007273
+          },
+          "20": {
+            "left_growth_db": -4.872234680186963,
+            "right_growth_db": -4.544534902564124,
+            "stereo_growth_db": -4.708537444494446
+          },
+          "40": {
+            "left_growth_db": -3.8352143601475728,
+            "right_growth_db": -3.4889832775585035,
+            "stereo_growth_db": -3.660692737094822
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 625.7585487528345,
+      "frame_center_anchor_s": 625.7701587301588,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 4.951664002050943,
+            "right_growth_db": 4.182115915707162,
+            "stereo_growth_db": 4.307732776905634
+          },
+          "20": {
+            "left_growth_db": 6.935196633010094,
+            "right_growth_db": 6.653548986070639,
+            "stereo_growth_db": 6.703622315000921
+          },
+          "40": {
+            "left_growth_db": 7.514603871822441,
+            "right_growth_db": 7.377504441809673,
+            "stereo_growth_db": 7.404766665942004
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -0.36206143036884475,
+            "right_growth_db": -2.618663465657733,
+            "stereo_growth_db": -1.181058014273657
+          },
+          "20": {
+            "left_growth_db": -0.05129578011999883,
+            "right_growth_db": -0.2945357491674207,
+            "stereo_growth_db": -0.1459285391483656
+          },
+          "40": {
+            "left_growth_db": 0.3644868838994542,
+            "right_growth_db": -0.35641576146317966,
+            "stereo_growth_db": 0.0803647807449564
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -1.4460724476842246,
+            "right_growth_db": -2.2003335095502337,
+            "stereo_growth_db": -1.879026801072388
+          },
+          "20": {
+            "left_growth_db": -4.818756367065783,
+            "right_growth_db": -4.45803549261061,
+            "stereo_growth_db": -4.624964961720486
+          },
+          "40": {
+            "left_growth_db": -4.794935253576821,
+            "right_growth_db": -3.8366576646218746,
+            "stereo_growth_db": -4.294353207045365
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": [
+        "low"
+      ]
+    },
+    {
+      "original_frame_start_s": 625.8514285714285,
+      "frame_center_anchor_s": 625.8630385487528,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": -0.6833270228968134,
+            "right_growth_db": -1.7048417144196053,
+            "stereo_growth_db": -1.417029783791225
+          },
+          "20": {
+            "left_growth_db": 0.7540340494999792,
+            "right_growth_db": -0.02257890713852319,
+            "stereo_growth_db": 0.16933255378138445
+          },
+          "40": {
+            "left_growth_db": 1.388046319048812,
+            "right_growth_db": -0.41892644585288474,
+            "stereo_growth_db": 0.03912415345940537
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -0.6753749855461315,
+            "right_growth_db": -0.7052097901907212,
+            "stereo_growth_db": -0.6886927400914953
+          },
+          "20": {
+            "left_growth_db": -0.649368070497539,
+            "right_growth_db": 0.008448833145865942,
+            "stereo_growth_db": -0.3457085113336075
+          },
+          "40": {
+            "left_growth_db": 0.05286970866339556,
+            "right_growth_db": -0.6929005811569766,
+            "stereo_growth_db": -0.2692103230950371
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -5.9678585321054385,
+            "right_growth_db": -6.3633924612464385,
+            "stereo_growth_db": -6.162658243093361
+          },
+          "20": {
+            "left_growth_db": -9.732881788095385,
+            "right_growth_db": -9.40861501582866,
+            "stereo_growth_db": -9.57710799885908
+          },
+          "40": {
+            "left_growth_db": -8.546292115378245,
+            "right_growth_db": -7.912901021730211,
+            "stereo_growth_db": -8.234630156806293
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 626.1648979591837,
+      "frame_center_anchor_s": 626.176507936508,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 1.8268504186282029,
+            "right_growth_db": 3.7250621857397115,
+            "stereo_growth_db": 2.1895395596357727
+          },
+          "20": {
+            "left_growth_db": 0.4978467762616169,
+            "right_growth_db": -0.6588658938429723,
+            "stereo_growth_db": 0.24157747067561228
+          },
+          "40": {
+            "left_growth_db": 0.9100247530700362,
+            "right_growth_db": -0.9572329800183982,
+            "stereo_growth_db": 0.5334618230329813
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 1.1647602983731355,
+            "right_growth_db": 0.02660418906402177,
+            "stereo_growth_db": 0.5070059121824284
+          },
+          "20": {
+            "left_growth_db": 1.61062947183571,
+            "right_growth_db": 0.187527617696571,
+            "stereo_growth_db": 0.8576511308390844
+          },
+          "40": {
+            "left_growth_db": -0.15358037671818492,
+            "right_growth_db": -0.6648992144881195,
+            "stereo_growth_db": -0.41837694023476196
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": 13.615773672793171,
+            "right_growth_db": 12.73914138367356,
+            "stereo_growth_db": 13.196771351400752
+          },
+          "20": {
+            "left_growth_db": 12.400457497406654,
+            "right_growth_db": 11.899498294404964,
+            "stereo_growth_db": 12.152678920849402
+          },
+          "40": {
+            "left_growth_db": 10.578354025386066,
+            "right_growth_db": 9.668820907090437,
+            "stereo_growth_db": 10.110358162384031
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": [
+        "high"
+      ]
+    },
+    {
+      "original_frame_start_s": 627.4419954648527,
+      "frame_center_anchor_s": 627.4536054421769,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 0.15954546279331797,
+            "right_growth_db": -1.124707983013749,
+            "stereo_growth_db": -0.15439293438409832
+          },
+          "20": {
+            "left_growth_db": 1.1542909477998515,
+            "right_growth_db": -0.05573562953644118,
+            "stereo_growth_db": 0.9504032213209983
+          },
+          "40": {
+            "left_growth_db": 0.9188963471770296,
+            "right_growth_db": -0.04459044892153429,
+            "stereo_growth_db": 0.7414270337805652
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 1.5278734957853164,
+            "right_growth_db": 0.15104116580203333,
+            "stereo_growth_db": 0.781923141359941
+          },
+          "20": {
+            "left_growth_db": -0.8782103132421746,
+            "right_growth_db": -0.5006325200653099,
+            "stereo_growth_db": -0.6957939636659181
+          },
+          "40": {
+            "left_growth_db": -2.197519371244826,
+            "right_growth_db": -0.2190077559580736,
+            "stereo_growth_db": -1.1854891797558778
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -4.748557149194629,
+            "right_growth_db": -4.827809845420854,
+            "stereo_growth_db": -4.793630611992336
+          },
+          "20": {
+            "left_growth_db": -7.88448822855954,
+            "right_growth_db": -7.429020118410914,
+            "stereo_growth_db": -7.641423052836385
+          },
+          "40": {
+            "left_growth_db": -13.349608387689354,
+            "right_growth_db": -11.677313170419797,
+            "stereo_growth_db": -12.469604075821195
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 627.7438548752834,
+      "frame_center_anchor_s": 627.7554648526077,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 6.040717030073113,
+            "right_growth_db": 1.3830503152435345,
+            "stereo_growth_db": 3.499614956839154
+          },
+          "20": {
+            "left_growth_db": 3.342957782127965,
+            "right_growth_db": 4.615435820413878,
+            "stereo_growth_db": 4.060853690889691
+          },
+          "40": {
+            "left_growth_db": 5.004742762504212,
+            "right_growth_db": 8.55147361261677,
+            "stereo_growth_db": 7.532981398903219
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -1.523666085378064,
+            "right_growth_db": 0.062443322046536805,
+            "stereo_growth_db": -0.36933262790441557
+          },
+          "20": {
+            "left_growth_db": -0.0032040570463039274,
+            "right_growth_db": -0.05465912136467092,
+            "stereo_growth_db": -0.04056080000726139
+          },
+          "40": {
+            "left_growth_db": -0.8190046856874755,
+            "right_growth_db": -0.05642441948485781,
+            "stereo_growth_db": -0.24571551327365176
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": 6.508891175599802,
+            "right_growth_db": 7.821643471132058,
+            "stereo_growth_db": 7.162267835506642
+          },
+          "20": {
+            "left_growth_db": 4.860097226556164,
+            "right_growth_db": 5.610428586425417,
+            "stereo_growth_db": 5.234766248584492
+          },
+          "40": {
+            "left_growth_db": 3.288090845928327,
+            "right_growth_db": 3.5842325542375653,
+            "stereo_growth_db": 3.438327312602549
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": [
+        "high"
+      ]
+    },
+    {
+      "original_frame_start_s": 628.7132879818594,
+      "frame_center_anchor_s": 628.7248979591836,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 2.2780531764890117,
+            "right_growth_db": 0.47077818381845987,
+            "stereo_growth_db": 0.8852212503407073
+          },
+          "20": {
+            "left_growth_db": 0.11255390538619071,
+            "right_growth_db": 1.2769410426138093,
+            "stereo_growth_db": 0.9620627308918248
+          },
+          "40": {
+            "left_growth_db": -4.398864047754463,
+            "right_growth_db": -3.6939502886236557,
+            "stereo_growth_db": -3.922874805909431
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -2.7924029303710443,
+            "right_growth_db": 0.7833522900831964,
+            "stereo_growth_db": -1.0283843215023376
+          },
+          "20": {
+            "left_growth_db": -0.8208544778207217,
+            "right_growth_db": -0.08444608495148233,
+            "stereo_growth_db": -0.4001708448577012
+          },
+          "40": {
+            "left_growth_db": -0.14006604628842545,
+            "right_growth_db": -0.2717406061599149,
+            "stereo_growth_db": -0.21225950211046424
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -0.21816851067948811,
+            "right_growth_db": -0.5205758107625759,
+            "stereo_growth_db": -0.3758822699158457
+          },
+          "20": {
+            "left_growth_db": -0.6086146985026273,
+            "right_growth_db": -0.07911693318360083,
+            "stereo_growth_db": -0.33575308593617226
+          },
+          "40": {
+            "left_growth_db": -2.752567702691764,
+            "right_growth_db": -2.215969280336249,
+            "stereo_growth_db": -2.479321803187215
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 629.3924716553288,
+      "frame_center_anchor_s": 629.4040816326531,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": -0.24245317519374476,
+            "right_growth_db": 0.9908084122134914,
+            "stereo_growth_db": 0.8775773892604559
+          },
+          "20": {
+            "left_growth_db": 3.7167938423515814,
+            "right_growth_db": 2.4761861141911097,
+            "stereo_growth_db": 2.619422230370077
+          },
+          "40": {
+            "left_growth_db": 2.5009368779064376,
+            "right_growth_db": 1.7986844774605169,
+            "stereo_growth_db": 1.890420200751455
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 1.5025720671603182,
+            "right_growth_db": 1.0730890601567522,
+            "stereo_growth_db": 1.278374863449305
+          },
+          "20": {
+            "left_growth_db": -0.08448097938805611,
+            "right_growth_db": -0.45820680135624486,
+            "stereo_growth_db": -0.30490395778274565
+          },
+          "40": {
+            "left_growth_db": 0.2198044932905918,
+            "right_growth_db": -0.9159847415339708,
+            "stereo_growth_db": -0.4608196774076911
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -1.1346505143920278,
+            "right_growth_db": -2.4293634576126597,
+            "stereo_growth_db": -1.7834631574897941
+          },
+          "20": {
+            "left_growth_db": -3.0072353068324027,
+            "right_growth_db": -3.636524052377361,
+            "stereo_growth_db": -3.3354426052203214
+          },
+          "40": {
+            "left_growth_db": -9.34531884697311,
+            "right_growth_db": -8.755255438224586,
+            "stereo_growth_db": -9.043950689014311
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 629.537596371882,
+      "frame_center_anchor_s": 629.5492063492063,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 2.772615966534822,
+            "right_growth_db": 9.771173107230753,
+            "stereo_growth_db": 7.638928371028221
+          },
+          "20": {
+            "left_growth_db": 5.284192616006714,
+            "right_growth_db": 12.720021520862781,
+            "stereo_growth_db": 10.306044353129346
+          },
+          "40": {
+            "left_growth_db": 7.935310337833467,
+            "right_growth_db": 13.215891984802958,
+            "stereo_growth_db": 11.647978954358784
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": 3.1871096929249454,
+            "right_growth_db": 7.090838762020859,
+            "stereo_growth_db": 4.991787821665524
+          },
+          "20": {
+            "left_growth_db": 2.122704264035459,
+            "right_growth_db": 1.576341611019034,
+            "stereo_growth_db": 1.8291228354397293
+          },
+          "40": {
+            "left_growth_db": 0.39967885905301526,
+            "right_growth_db": 0.6813843457603144,
+            "stereo_growth_db": 0.5536303945503365
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -8.706745903897367,
+            "right_growth_db": -8.654926795846098,
+            "stereo_growth_db": -8.678762582152292
+          },
+          "20": {
+            "left_growth_db": -9.412193872086242,
+            "right_growth_db": -9.482520117038117,
+            "stereo_growth_db": -9.450641991689961
+          },
+          "40": {
+            "left_growth_db": -8.859875217943237,
+            "right_growth_db": -8.838686055958455,
+            "stereo_growth_db": -8.848254208075568
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    },
+    {
+      "original_frame_start_s": 629.6362811791383,
+      "frame_center_anchor_s": 629.6478911564626,
+      "measurements": {
+        "low": {
+          "10": {
+            "left_growth_db": 6.33696345965821,
+            "right_growth_db": 5.0383048756544575,
+            "stereo_growth_db": 5.230451003640459
+          },
+          "20": {
+            "left_growth_db": 1.585062971013721,
+            "right_growth_db": 0.553652366776951,
+            "stereo_growth_db": 0.7024657495477407
+          },
+          "40": {
+            "left_growth_db": 0.4173514178266853,
+            "right_growth_db": 0.86827103396925,
+            "stereo_growth_db": 0.8104278412302219
+          }
+        },
+        "mid": {
+          "10": {
+            "left_growth_db": -4.118188948583285,
+            "right_growth_db": -1.3113844776330839,
+            "stereo_growth_db": -2.646979797348428
+          },
+          "20": {
+            "left_growth_db": -0.4197023118502183,
+            "right_growth_db": 0.04755179441711097,
+            "stereo_growth_db": -0.20708409289366983
+          },
+          "40": {
+            "left_growth_db": -1.4022634772896416,
+            "right_growth_db": -0.9886783453019865,
+            "stereo_growth_db": -1.2130570318067153
+          }
+        },
+        "high": {
+          "10": {
+            "left_growth_db": -1.9386757254715195,
+            "right_growth_db": -2.8679585157910696,
+            "stereo_growth_db": -2.4500970009094
+          },
+          "20": {
+            "left_growth_db": -8.530141035974193,
+            "right_growth_db": -8.29064481832808,
+            "stereo_growth_db": -8.405445008854228
+          },
+          "40": {
+            "left_growth_db": -6.690289691953009,
+            "right_growth_db": -6.058002041210852,
+            "stereo_growth_db": -6.353236321981008
+          }
+        }
+      },
+      "bands_above_3db_both_channels_all_three_spans": []
+    }
+  ]
+}
