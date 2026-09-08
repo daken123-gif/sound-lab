@@ -1,6 +1,8 @@
 import json
 import subprocess
 import time
+import threading
+from http.cookiejar import Cookie
 from pathlib import Path
 
 import pytest
@@ -8,7 +10,7 @@ import numpy as np
 from scipy.io import wavfile
 
 from backend import Backend
-from worker import canonical, clean_error, verify_audio, execute
+from worker import canonical, clean_error, verify_audio, execute, GuestYoutubeDL, options
 
 VIDEO = "mdhtm6qjmhU"
 CHANNEL = "UCBUAlfIrcw1f0c4qGrYn3xA"
@@ -157,7 +159,165 @@ def test_source_mismatch_stops_before_download(tmp_path, monkeypatch, changed, e
         def process_info(self, info):
             raise AssertionError("must not download the wrong source")
 
-    monkeypatch.setattr("worker.yt_dlp.YoutubeDL", FakePlayer)
+    monkeypatch.setattr("worker.GuestYoutubeDL", FakePlayer)
     result = execute({"action": "acquire", "job_dir": str(tmp_path), "video_id": VIDEO,
                       "expected_channel_id": CHANNEL})
     assert result["error"] == error
+
+
+def test_local_decode_timeout_is_not_network_timeout():
+    assert clean_error(subprocess.TimeoutExpired(["ffmpeg"], 120)) == "decode_or_analysis_timeout"
+    assert clean_error(Exception("Sign in to confirm you’re not a bot")) == "guest_playback_denied"
+    assert clean_error(Exception("HTTP Error 403: Forbidden")) == "http_forbidden"
+    assert clean_error(Exception("HTTP Error 429: Too Many Requests")) == "rate_limited"
+
+
+def test_guest_worker_rejects_account_inputs_before_request(monkeypatch):
+    for setting in ({"cookiefile": "never-read.txt"}, {"cookiesfrombrowser": ("chrome",)},
+                    {"usenetrc": True}, {"username": "fixture"},
+                    {"http_headers": {"Authorization": "fixture"}},
+                    {"http_headers": {"Cookie": "SID=fixture"}}):
+        with pytest.raises(ValueError, match="account_authentication_disabled"):
+            GuestYoutubeDL({**options(), **setting})
+
+    # Exercise the real cookie jar; replace transport only, so no request leaves.
+    from yt_dlp.networking import Request
+    calls = []
+    monkeypatch.setattr("yt_dlp.YoutubeDL.urlopen", lambda self, req: calls.append(req))
+    with GuestYoutubeDL(options()) as ydl:
+        ydl.params["http_headers"]["Authorization"] = "fixture"
+        with pytest.raises(ValueError, match="account_authentication_disabled"):
+            ydl.urlopen(Request("https://www.youtube.com/"))
+        del ydl.params["http_headers"]["Authorization"]
+        with pytest.raises(ValueError, match="account_authentication_disabled"):
+            ydl.urlopen(Request("https://www.youtube.com/", headers={"Authorization": "fixture"}))
+        ydl.cookiejar.set_cookie(Cookie(0, "SID", "fixture", None, False, ".youtube.com", True, True,
+                                       "/", True, True, None, True, None, None, {}))
+        with pytest.raises(ValueError, match="account_authentication_disabled"):
+            ydl.urlopen(Request("https://www.youtube.com/"))
+    assert calls == []
+
+
+def test_ambient_plugins_are_disabled():
+    from yt_dlp.globals import plugin_dirs
+    import os
+    assert plugin_dirs.value == []
+    assert os.environ["YTDLP_NO_PLUGINS"] == "1"
+
+
+def test_login_demand_ends_guest_attempt_without_download(tmp_path, monkeypatch):
+    calls = []
+
+    class Denied:
+        def __init__(self, settings):
+            assert settings["cookiefile"] is None
+            assert settings["cookiesfrombrowser"] is None
+            assert settings["retries"] == 0
+        def __enter__(self):
+            return self
+        def __exit__(self, *args):
+            pass
+        def extract_info(self, *args, **kwargs):
+            calls.append("resolve")
+            raise RuntimeError("Sign in to confirm you’re not a bot")
+        def process_info(self, info):
+            raise AssertionError("download must not start")
+
+    monkeypatch.setattr("worker.GuestYoutubeDL", Denied)
+    result = execute({"action": "acquire", "job_dir": str(tmp_path), "video_id": VIDEO,
+                      "expected_channel_id": CHANNEL})
+    assert result["error"] == "guest_playback_denied"
+    assert result["audio_retrieved"] is False
+    assert calls == ["resolve"]
+
+
+def test_unknown_length_download_stops_at_byte_limit(tmp_path, monkeypatch):
+    import functools
+    from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+
+    # No Content-Length: yt-dlp's declared filesize guard cannot help here.
+    source_dir = tmp_path / "http"
+    source_dir.mkdir()
+    (source_dir / "large.bin").write_bytes(b"x" * 65536)
+    class Handler(SimpleHTTPRequestHandler):
+        def send_header(self, name, value):
+            if name.lower() != "content-length":
+                super().send_header(name, value)
+        def log_message(self, *args):
+            pass
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(Handler, directory=str(source_dir)))
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    root = tmp_path / "job"
+    root.mkdir()
+    original = GuestYoutubeDL
+    class FixtureTransfer(original):
+        def extract_info(self, *args, **kwargs):
+            return {"id": VIDEO, "title": "HTTP fixture", "channel_id": CHANNEL,
+                    "duration": 2, "url": f"http://127.0.0.1:{server.server_port}/large.bin",
+                    "format_id": "fixture", "ext": "bin", "protocol": "http"}
+
+    monkeypatch.setattr("worker.GuestYoutubeDL", FixtureTransfer)
+    monkeypatch.setattr("worker.MAX_AUDIO_BYTES", 1024)
+    try:
+        result = execute({"action": "acquire", "job_dir": str(root), "video_id": VIDEO,
+                          "expected_channel_id": CHANNEL})
+        assert result["error"] == "audio_size_limit_exceeded"
+        assert result["audio_retrieved"] is False
+        assert not (root / "manifest.json").exists()
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join()
+
+
+def test_analysis_rechecks_source_before_running(tmp_path):
+    calls = []
+    def runner(payload, timeout):
+        calls.append(payload["action"])
+        root = Path(payload["job_dir"])
+        audio = root / "fixture.wav"
+        wavfile.write(audio, 16000, np.zeros(32000, dtype=np.int16))
+        manifest = verify_audio(audio, {"id": VIDEO, "channel_id": CHANNEL, "duration": 2})
+        (root / "manifest.json").write_text(json.dumps(manifest))
+        return {"stage": "decoded", "manifest": manifest, "audio_filename": audio.name}
+
+    b = Backend(tmp_path, runner=runner)
+    try:
+        source = wait(b, b.submit("acquire", "first", video_id=VIDEO, expected_channel_id=CHANNEL))
+        assert source["status"] == "succeeded"
+        (tmp_path / source["job_id"] / source["audio_filename"]).write_bytes(b"changed")
+        result = wait(b, b.submit("analyze", "changed", source_job_id=source["job_id"]))
+        assert result["error"] == "source_audio_changed"
+        assert calls == ["acquire"]
+    finally:
+        b.close()
+
+
+def test_direct_requests_share_worker_limit(tmp_path):
+    b = Backend(tmp_path, runner=lambda *_: {"unexpected": True})
+    try:
+        assert b.execution_slots.acquire(blocking=False)
+        assert b.execution_slots.acquire(blocking=False)
+        assert b.direct("fetch", video_id=VIDEO) == {"error": "worker_busy"}
+        b.execution_slots.release()
+        b.execution_slots.release()
+    finally:
+        b.close()
+
+
+def test_storage_failure_terminates_job(tmp_path, monkeypatch):
+    b = Backend(tmp_path, runner=lambda *_: {"unexpected": True})
+    original_mkdir = Path.mkdir
+    def full_disk(path, *args, **kwargs):
+        if path.parent == tmp_path:
+            raise OSError("synthetic storage failure")
+        return original_mkdir(path, *args, **kwargs)
+    monkeypatch.setattr(Path, "mkdir", full_disk)
+    try:
+        result = wait(b, b.submit("acquire", "storage", video_id=VIDEO, expected_channel_id=CHANNEL))
+        assert result["status"] == "failed"
+        assert result["error"] == "job_storage_failed"
+    finally:
+        b.close()
