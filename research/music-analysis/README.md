@@ -1,5 +1,13 @@
 # 音源取得・解析方式の校正記録
 
+## 現行の共通音源方針（2026-09-07追加）
+
+[SOURCE_POLICY.md](SOURCE_POLICY.md) を全研究共通の取得・解析方針とする。ユーザー指示によりBandcampを正式経路へ追加した。Shazam／Apple previewの既存観測は保持し、公式全曲音源を取得できた対象から版照合・全曲検証を追加する。取得再現用の `acquire_bandcamp.py` は全体デコードとmanifest作成までを行う。
+
+以下の2026-09-03までの校正・観測記録は保持する。
+
+YouTubeのMCP接続・取得・解析用実装は [YouTube音源研究コネクタ](youtube-connector/README.md) を参照する。MCP通信と共通解析への接続は検証済みだが、YouTube音声本体はCDN接続timeoutで未取得。ChatGPTへの登録・別hostへの配備も未実施として区別する。
+
 最終更新: 2026-09-03 UTC
 
 ## 目的
