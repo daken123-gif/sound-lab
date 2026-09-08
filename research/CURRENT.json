@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "canonical_repository": "daken123-gif/sound-lab",
+  "canonical_ref": "main",
+  "purpose": "Cross-conversation entrypoint for active research. Fetch this file and every referenced path from the same resolved main commit SHA.",
+  "active_research": [
+    {
+      "research_id": "20260902-aphex-twin",
+      "aliases": [
+        "Apex Twin",
+        "Aphex Twin",
+        "Richard D. James"
+      ],
+      "record_path": "research/20260902-aphex-twin/README.md",
+      "record_version": "0.2",
+      "record_updated": "2026-09-08",
+      "status": "active",
+      "current_cycle": "R02",
+      "completed_boundary": [
+        "official Bandcamp version identification for A03, A05 and A07",
+        "initial RMS, spectral-flux and band-change measurements"
+      ],
+      "next_work": [
+        "human-audited listening notes for the nine signal-change candidates",
+        "onset, pause and accent-group measurements for A05 and A07",
+        "sustained-component analysis for A03"
+      ],
+      "supporting_paths": [
+        "research/20260902-aphex-twin/analysis/r02-sources.json",
+        "research/20260902-aphex-twin/analysis/r02-metrics.json",
+        "research/20260902-aphex-twin/analysis/r02_metrics.py"
+      ],
+      "record_content_commit": "9b6b8e0b22c7e9bfc29659a596c8a91ed56c6ddf"
+    }
+  ]
+}
