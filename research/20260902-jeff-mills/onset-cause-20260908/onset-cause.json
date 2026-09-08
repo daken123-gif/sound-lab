@@ -1,0 +1,293 @@
+{
+  "source_sha256": "428aaaf9341b3d453b977800c1aa65ef92979118483b84c8df0ce1d89e3078a2",
+  "scope_seconds": [
+    620.1,
+    629.9
+  ],
+  "experiment": "Same decoded source. Replace only 99th percentile normalization in short window with long-window value; leave peak parameters and audio unchanged.",
+  "short_scale": 0.02840185275666643,
+  "long_scale": 0.1035876514464084,
+  "scale_ratio": 3.647214579059266,
+  "shared_raw_novelty_max_absolute_difference": 0.0,
+  "short_count": 93,
+  "long_count": 66,
+  "short_with_long_scale_count": 66,
+  "swap_exactly_matches_long_indices": true,
+  "lost_events": [
+    {
+      "time_s": 620.2496145124717,
+      "rise": 0.010732159851908812,
+      "normalized_height": 0.3778683011934769,
+      "normalized_prominence": 0.3778683011934769,
+      "height_with_long_scale": 0.10360462566777229,
+      "prominence_with_long_scale": 0.10360462566777229,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 620.534058956916,
+      "rise": 0.007843412723512161,
+      "normalized_height": 0.27615848834619316,
+      "normalized_prominence": 0.27615848834619316,
+      "height_with_long_scale": 0.07571764215129437,
+      "prominence_with_long_scale": 0.07571764215129437,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    },
+    {
+      "time_s": 620.8185034013605,
+      "rise": 0.010115737974539657,
+      "normalized_height": 0.35616472140766625,
+      "normalized_prominence": 0.35616472140766625,
+      "height_with_long_scale": 0.09765389825227465,
+      "prominence_with_long_scale": 0.09765389825227465,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 621.4744671201814,
+      "rise": 0.009188744830538137,
+      "normalized_height": 0.3235262470115219,
+      "normalized_prominence": 0.3235262470115219,
+      "height_with_long_scale": 0.08870502132478582,
+      "prominence_with_long_scale": 0.08870502132478582,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 621.5499319727891,
+      "rise": 0.004363930268160954,
+      "normalized_height": 0.15364949271264214,
+      "normalized_prominence": 0.15364949271264214,
+      "height_with_long_scale": 0.04212790045171219,
+      "prominence_with_long_scale": 0.04212790045171219,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    },
+    {
+      "time_s": 621.6602267573696,
+      "rise": 0.008567665657702783,
+      "normalized_height": 0.30165868864635237,
+      "normalized_prominence": 0.30165868864635237,
+      "height_with_long_scale": 0.08270933396086606,
+      "prominence_with_long_scale": 0.08270933396086606,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 621.7937414965986,
+      "rise": 0.010936194570485724,
+      "normalized_height": 0.38505215361060563,
+      "normalized_prominence": 0.38505215361060563,
+      "height_with_long_scale": 0.10557430753359266,
+      "prominence_with_long_scale": 0.10557430753359266,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 621.8866213151928,
+      "rise": 0.009378846907986294,
+      "normalized_height": 0.33021954547612775,
+      "normalized_prominence": 0.33021954547612775,
+      "height_with_long_scale": 0.09054020220584388,
+      "prominence_with_long_scale": 0.09054020220584388,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 622.0433560090703,
+      "rise": 0.0045869330890842275,
+      "normalized_height": 0.16150119248849323,
+      "normalized_prominence": 0.16150119248849323,
+      "height_with_long_scale": 0.04428069393442423,
+      "prominence_with_long_scale": 0.04428069393442423,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    },
+    {
+      "time_s": 622.2581405895692,
+      "rise": 0.004743377832204104,
+      "normalized_height": 0.16700945085671384,
+      "normalized_prominence": 0.16700945085671384,
+      "height_with_long_scale": 0.04579095834273369,
+      "prominence_with_long_scale": 0.04579095834273369,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    },
+    {
+      "time_s": 622.5251700680273,
+      "rise": 0.005165956444041081,
+      "normalized_height": 0.1818880087964873,
+      "normalized_prominence": 0.1818880087964873,
+      "height_with_long_scale": 0.04987038871823168,
+      "prominence_with_long_scale": 0.04987038871823168,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    },
+    {
+      "time_s": 623.4249433106576,
+      "rise": 0.009472402335183566,
+      "normalized_height": 0.3335135357660856,
+      "normalized_prominence": 0.3335135357660856,
+      "height_with_long_scale": 0.0914433545207284,
+      "prominence_with_long_scale": 0.0914433545207284,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 623.529433106576,
+      "rise": 0.004729235782187535,
+      "normalized_height": 0.16651152383280693,
+      "normalized_prominence": 0.16651152383280693,
+      "height_with_long_scale": 0.04565443579570128,
+      "prominence_with_long_scale": 0.04565443579570128,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    },
+    {
+      "time_s": 624.1157369614513,
+      "rise": 0.011231400499120414,
+      "normalized_height": 0.3954460504864142,
+      "normalized_prominence": 0.3954460504864142,
+      "height_with_long_scale": 0.10842412529191317,
+      "prominence_with_long_scale": 0.10842412529191317,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 624.3943764172336,
+      "rise": 0.007475187006377879,
+      "normalized_height": 0.2631936398805292,
+      "normalized_prominence": 0.2631936398805292,
+      "height_with_long_scale": 0.07216291615844969,
+      "prominence_with_long_scale": 0.07216291615844969,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    },
+    {
+      "time_s": 624.5801360544218,
+      "rise": 0.012260765009468905,
+      "normalized_height": 0.4316889153152546,
+      "normalized_prominence": 0.4316889153152546,
+      "height_with_long_scale": 0.11836126061620457,
+      "prominence_with_long_scale": 0.11836126061620457,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 625.1374149659864,
+      "rise": 0.007783737437022931,
+      "normalized_height": 0.27405738293590537,
+      "normalized_prominence": 0.27405738293590537,
+      "height_with_long_scale": 0.07514155720626495,
+      "prominence_with_long_scale": 0.07514155720626496,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    },
+    {
+      "time_s": 625.6656689342403,
+      "rise": 0.0041794874134376825,
+      "normalized_height": 0.14715544965483568,
+      "normalized_prominence": 0.14715544965483568,
+      "height_with_long_scale": 0.040347351784492974,
+      "prominence_with_long_scale": 0.040347351784492974,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    },
+    {
+      "time_s": 625.7585487528345,
+      "rise": 0.011624647140286853,
+      "normalized_height": 0.4092918599318609,
+      "normalized_prominence": 0.4092918599318609,
+      "height_with_long_scale": 0.11222039478615774,
+      "prominence_with_long_scale": 0.11222039478615774,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 625.8514285714285,
+      "rise": 0.007930659342156754,
+      "normalized_height": 0.2792303519810089,
+      "normalized_prominence": 0.2792303519810089,
+      "height_with_long_scale": 0.07655989137141236,
+      "prominence_with_long_scale": 0.07655989137141236,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    },
+    {
+      "time_s": 626.1648979591837,
+      "rise": 0.00599710054500599,
+      "normalized_height": 0.21115173704991347,
+      "normalized_prominence": 0.21115173704991347,
+      "height_with_long_scale": 0.057893971542627556,
+      "prominence_with_long_scale": 0.057893971542627556,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    },
+    {
+      "time_s": 627.4419954648527,
+      "rise": 0.004228922114477798,
+      "normalized_height": 0.14889599459264832,
+      "normalized_prominence": 0.14889599459264832,
+      "height_with_long_scale": 0.040824577596159255,
+      "prominence_with_long_scale": 0.040824577596159255,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    },
+    {
+      "time_s": 627.7438548752834,
+      "rise": 0.012013581503292542,
+      "normalized_height": 0.42298583850212856,
+      "normalized_prominence": 0.42298583850212856,
+      "height_with_long_scale": 0.11597503501185014,
+      "prominence_with_long_scale": 0.11597503501185014,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 628.7132879818594,
+      "rise": 0.011940463510016819,
+      "normalized_height": 0.420411429223193,
+      "normalized_prominence": 0.420411429223193,
+      "height_with_long_scale": 0.11526917874177578,
+      "prominence_with_long_scale": 0.11526917874177578,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 629.3924716553288,
+      "rise": 0.012052482463900005,
+      "normalized_height": 0.4243555012822559,
+      "normalized_prominence": 0.4243555012822559,
+      "height_with_long_scale": 0.11635057167152224,
+      "prominence_with_long_scale": 0.11635057167152224,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 629.537596371882,
+      "rise": 0.011696086852327092,
+      "normalized_height": 0.4118071786560406,
+      "normalized_prominence": 0.4118071786560406,
+      "height_with_long_scale": 0.11291004949926993,
+      "prominence_with_long_scale": 0.11291004949926993,
+      "fails_long_height": true,
+      "fails_long_prominence": false
+    },
+    {
+      "time_s": 629.6362811791383,
+      "rise": 0.004159077735755107,
+      "normalized_height": 0.1464368459124166,
+      "normalized_prominence": 0.1464368459124166,
+      "height_with_long_scale": 0.04015032368898552,
+      "prominence_with_long_scale": 0.04015032368898552,
+      "fails_long_height": true,
+      "fails_long_prominence": true
+    }
+  ],
+  "limitations": [
+    "Causal test of detector window sensitivity, not proof of physical attacks or their absence.",
+    "Frame-start timestamps retain previous extractor timing convention.",
+    "No attribution to instrument or performer."
+  ]
+}
