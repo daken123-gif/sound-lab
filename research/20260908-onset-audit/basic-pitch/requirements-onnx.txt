@@ -1,0 +1,13 @@
+onnxruntime==1.29.0
+librosa==0.11.0
+mir_eval==0.8.2
+pretty_midi==0.2.11
+resampy==0.4.2
+numpy==2.3.5
+scipy==1.17.0
+scikit-learn==1.8.0
+setuptools==80.9.0
+soundfile==0.14.0
+numba==0.67.0
+llvmlite==0.49.0
+typing_extensions==4.16.0
