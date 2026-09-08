@@ -1,0 +1,554 @@
+{
+  "date": "2026-09-08",
+  "input_sha256": [
+    "864d23e09c2edc639e25280fbf8a17bbd87a12860156a2661aad6e7b0ad3d1ba",
+    "033159b25bf856390e08a26507b0c212037dad9f6c8087f58d7717c29f3d8383"
+  ],
+  "method": {
+    "signal": "all-mix stereo mean, resampled 2kHz, order-3 zero-phase Butterworth 45–900Hz",
+    "window_original_seconds": 8,
+    "search_version_start_radius_seconds": 20,
+    "scale_grid": [
+      0.98,
+      1.02,
+      0.0005
+    ],
+    "score": "signed normalized zero-mean waveform correlation; maximize absolute value",
+    "equation": "version_time = scale * original_time + offset",
+    "control": "same template reversed in time, identical search; only three controls"
+  },
+  "fit": {
+    "scale": 0.9998904166666668,
+    "offset_s": -0.14987499999997622
+  },
+  "training": [
+    {
+      "original_start_s": 20,
+      "version_start_s": 19.8435,
+      "scale": 0.9994999999999978,
+      "correlation": 0.5459121656589105,
+      "affine_residual_s": -0.0044333333333597125
+    },
+    {
+      "original_start_s": 40,
+      "version_start_s": 39.84,
+      "scale": 1.0004999999999977,
+      "correlation": 0.5641233598185029,
+      "affine_residual_s": -0.005741666666693845
+    },
+    {
+      "original_start_s": 60,
+      "version_start_s": 59.8425,
+      "scale": 1.0004999999999977,
+      "correlation": 0.39690783366053195,
+      "affine_residual_s": -0.0010500000000348564
+    },
+    {
+      "original_start_s": 80,
+      "version_start_s": 79.85,
+      "scale": 0.9994999999999978,
+      "correlation": 0.5243325175094974,
+      "affine_residual_s": 0.008641666666633796
+    },
+    {
+      "original_start_s": 100,
+      "version_start_s": 99.84649999999999,
+      "scale": 0.9994999999999978,
+      "correlation": 0.3961442562531996,
+      "affine_residual_s": 0.007333333333292558
+    },
+    {
+      "original_start_s": 120,
+      "version_start_s": 119.842,
+      "scale": 0.9994999999999978,
+      "correlation": 0.5061017963510375,
+      "affine_residual_s": 0.005024999999960755
+    },
+    {
+      "original_start_s": 140,
+      "version_start_s": 139.83350000000002,
+      "scale": 0.9994999999999978,
+      "correlation": 0.4491349343829704,
+      "affine_residual_s": -0.0012833333333617247
+    },
+    {
+      "original_start_s": 160,
+      "version_start_s": 159.8295,
+      "scale": 0.9994999999999978,
+      "correlation": 0.44213279110209025,
+      "affine_residual_s": -0.0030916666667053505
+    },
+    {
+      "original_start_s": 180,
+      "version_start_s": 179.825,
+      "scale": 0.9994999999999978,
+      "correlation": 0.4383061907991195,
+      "affine_residual_s": -0.005400000000065575
+    }
+  ],
+  "validation": [
+    {
+      "original_start_s": 30,
+      "version_start_s": 29.8445,
+      "scale": 0.9994999999999978,
+      "correlation": 0.5256311314344071,
+      "affine_residual_s": -0.002337500000027859
+    },
+    {
+      "original_start_s": 70,
+      "version_start_s": 69.84649999999999,
+      "scale": 0.9999999999999978,
+      "correlation": 0.7463950558013677,
+      "affine_residual_s": 0.004045833333293558
+    },
+    {
+      "original_start_s": 110,
+      "version_start_s": 109.8425,
+      "scale": 0.9999999999999978,
+      "correlation": 0.3853043721499526,
+      "affine_residual_s": 0.004429166666639617
+    },
+    {
+      "original_start_s": 150,
+      "version_start_s": 149.831,
+      "scale": 0.9999999999999978,
+      "correlation": 0.3503712003444109,
+      "affine_residual_s": -0.002687500000035925
+    },
+    {
+      "original_start_s": 190,
+      "version_start_s": 189.8225,
+      "scale": 0.9999999999999978,
+      "correlation": 0.44847414061189844,
+      "affine_residual_s": -0.006804166666711353
+    }
+  ],
+  "reversed_controls": [
+    {
+      "original_start_s": 40,
+      "version_start_s": 43.1015,
+      "scale": 1.0004999999999977,
+      "correlation": 0.1729577340367194
+    },
+    {
+      "original_start_s": 100,
+      "version_start_s": 119.9725,
+      "scale": 0.998499999999998,
+      "correlation": -0.12073536396667514
+    },
+    {
+      "original_start_s": 160,
+      "version_start_s": 145.2935,
+      "scale": 0.9929999999999986,
+      "correlation": -0.19271434875885418
+    }
+  ],
+  "limits": [
+    "All-mix filtered waveform, not separated drums.",
+    "Exploratory matching, not a calibrated same-recording classifier.",
+    "Reversed controls do not establish a population false-positive rate.",
+    "No listening, source identification, or CUT/THROW event inference.",
+    "Frequency bands are not instrument stems; bass-band energy does not identify bass guitar.",
+    "Fourteen selected 8s windows do not cover the whole track.",
+    "End trimming reduces but does not eliminate filtering boundary effects."
+  ],
+  "matched_levels": [
+    {
+      "original_start_s": 20,
+      "version_start_s": 19.8435,
+      "levels": {
+        "full": {
+          "original_dbfs": -15.332799315646726,
+          "version_dbfs": -16.47049064507899,
+          "delta_db": -1.137691329432263
+        },
+        "45_180_Hz": {
+          "original_dbfs": -22.667207544962306,
+          "version_dbfs": -19.56103589588067,
+          "delta_db": 3.1061716490816345
+        },
+        "180_900_Hz": {
+          "original_dbfs": -20.696417897109377,
+          "version_dbfs": -23.99130468388769,
+          "delta_db": -3.2948867867783136
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -19.104576012019557,
+          "version_dbfs": -22.832774955799394,
+          "delta_db": -3.7281989437798373
+        }
+      }
+    },
+    {
+      "original_start_s": 30,
+      "version_start_s": 29.8445,
+      "levels": {
+        "full": {
+          "original_dbfs": -16.338705084743445,
+          "version_dbfs": -17.200985327433365,
+          "delta_db": -0.8622802426899199
+        },
+        "45_180_Hz": {
+          "original_dbfs": -22.076733146476965,
+          "version_dbfs": -18.840836761934533,
+          "delta_db": 3.235896384542432
+        },
+        "180_900_Hz": {
+          "original_dbfs": -20.712478132161163,
+          "version_dbfs": -27.204410650439222,
+          "delta_db": -6.491932518278059
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -22.33853720422477,
+          "version_dbfs": -27.53535563446185,
+          "delta_db": -5.19681843023708
+        }
+      }
+    },
+    {
+      "original_start_s": 40,
+      "version_start_s": 39.84,
+      "levels": {
+        "full": {
+          "original_dbfs": -15.113043525873346,
+          "version_dbfs": -17.175587041705754,
+          "delta_db": -2.0625435158324077
+        },
+        "45_180_Hz": {
+          "original_dbfs": -22.16114167097922,
+          "version_dbfs": -18.80841818588635,
+          "delta_db": 3.35272348509287
+        },
+        "180_900_Hz": {
+          "original_dbfs": -20.61091330374304,
+          "version_dbfs": -26.575654842602468,
+          "delta_db": -5.964741538859428
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -18.876490607407884,
+          "version_dbfs": -27.478639195711164,
+          "delta_db": -8.60214858830328
+        }
+      }
+    },
+    {
+      "original_start_s": 60,
+      "version_start_s": 59.8425,
+      "levels": {
+        "full": {
+          "original_dbfs": -13.80601330780456,
+          "version_dbfs": -17.994596757936264,
+          "delta_db": -4.188583450131704
+        },
+        "45_180_Hz": {
+          "original_dbfs": -22.9073602415053,
+          "version_dbfs": -19.679237664277803,
+          "delta_db": 3.2281225772274986
+        },
+        "180_900_Hz": {
+          "original_dbfs": -18.204705481202158,
+          "version_dbfs": -27.534295701515113,
+          "delta_db": -9.329590220312955
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -17.704952037765853,
+          "version_dbfs": -28.54472387319875,
+          "delta_db": -10.839771835432895
+        }
+      }
+    },
+    {
+      "original_start_s": 70,
+      "version_start_s": 69.84649999999999,
+      "levels": {
+        "full": {
+          "original_dbfs": -21.160031409979645,
+          "version_dbfs": -18.633819516923566,
+          "delta_db": 2.526211893056079
+        },
+        "45_180_Hz": {
+          "original_dbfs": -23.19432764524744,
+          "version_dbfs": -20.18201187637729,
+          "delta_db": 3.012315768870149
+        },
+        "180_900_Hz": {
+          "original_dbfs": -30.780327229461474,
+          "version_dbfs": -28.468514379375073,
+          "delta_db": 2.311812850086401
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -30.01140484537458,
+          "version_dbfs": -28.740537925448205,
+          "delta_db": 1.2708669199263767
+        }
+      }
+    },
+    {
+      "original_start_s": 80,
+      "version_start_s": 79.85,
+      "levels": {
+        "full": {
+          "original_dbfs": -16.430411356032554,
+          "version_dbfs": -18.63922806641351,
+          "delta_db": -2.2088167103809546
+        },
+        "45_180_Hz": {
+          "original_dbfs": -23.42613119673109,
+          "version_dbfs": -20.28176445986809,
+          "delta_db": 3.1443667368630024
+        },
+        "180_900_Hz": {
+          "original_dbfs": -20.715147194027487,
+          "version_dbfs": -28.399922871301833,
+          "delta_db": -7.684775677274345
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -22.442918308465497,
+          "version_dbfs": -29.33288249605706,
+          "delta_db": -6.889964187591563
+        }
+      }
+    },
+    {
+      "original_start_s": 100,
+      "version_start_s": 99.84649999999999,
+      "levels": {
+        "full": {
+          "original_dbfs": -15.896359661644862,
+          "version_dbfs": -18.338987754215786,
+          "delta_db": -2.4426280925709243
+        },
+        "45_180_Hz": {
+          "original_dbfs": -23.974081107112077,
+          "version_dbfs": -20.69809077674243,
+          "delta_db": 3.2759903303696483
+        },
+        "180_900_Hz": {
+          "original_dbfs": -19.95482989728672,
+          "version_dbfs": -25.710767105529456,
+          "delta_db": -5.7559372082427345
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -20.585527145958626,
+          "version_dbfs": -27.528968247967555,
+          "delta_db": -6.943441102008929
+        }
+      }
+    },
+    {
+      "original_start_s": 110,
+      "version_start_s": 109.8425,
+      "levels": {
+        "full": {
+          "original_dbfs": -16.822887425323337,
+          "version_dbfs": -20.379136680427404,
+          "delta_db": -3.556249255104067
+        },
+        "45_180_Hz": {
+          "original_dbfs": -25.344357174671547,
+          "version_dbfs": -22.417743230832933,
+          "delta_db": 2.926613943838614
+        },
+        "180_900_Hz": {
+          "original_dbfs": -21.30320539244519,
+          "version_dbfs": -28.368566567179062,
+          "delta_db": -7.065361174733873
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -20.875399808893658,
+          "version_dbfs": -29.469933314449,
+          "delta_db": -8.594533505555344
+        }
+      }
+    },
+    {
+      "original_start_s": 120,
+      "version_start_s": 119.842,
+      "levels": {
+        "full": {
+          "original_dbfs": -16.51148430682594,
+          "version_dbfs": -18.673497318954876,
+          "delta_db": -2.162013012128938
+        },
+        "45_180_Hz": {
+          "original_dbfs": -23.603406184937157,
+          "version_dbfs": -20.400217075335792,
+          "delta_db": 3.2031891096013645
+        },
+        "180_900_Hz": {
+          "original_dbfs": -20.80838604866573,
+          "version_dbfs": -29.40936472111025,
+          "delta_db": -8.60097867244452
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -21.906255000832033,
+          "version_dbfs": -28.411120855793868,
+          "delta_db": -6.504865854961835
+        }
+      }
+    },
+    {
+      "original_start_s": 140,
+      "version_start_s": 139.83350000000002,
+      "levels": {
+        "full": {
+          "original_dbfs": -16.137471773142064,
+          "version_dbfs": -18.693678774602457,
+          "delta_db": -2.5562070014603933
+        },
+        "45_180_Hz": {
+          "original_dbfs": -23.981827702022628,
+          "version_dbfs": -20.55587847650053,
+          "delta_db": 3.4259492255220962
+        },
+        "180_900_Hz": {
+          "original_dbfs": -20.81478048157548,
+          "version_dbfs": -28.5641764900555,
+          "delta_db": -7.749396008480023
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -20.17810757108596,
+          "version_dbfs": -27.803522365264467,
+          "delta_db": -7.625414794178507
+        }
+      }
+    },
+    {
+      "original_start_s": 150,
+      "version_start_s": 149.831,
+      "levels": {
+        "full": {
+          "original_dbfs": -15.540727387087303,
+          "version_dbfs": -17.167502337301563,
+          "delta_db": -1.6267749502142603
+        },
+        "45_180_Hz": {
+          "original_dbfs": -23.770891020245255,
+          "version_dbfs": -20.53085273867008,
+          "delta_db": 3.240038281575174
+        },
+        "180_900_Hz": {
+          "original_dbfs": -19.90072704223182,
+          "version_dbfs": -23.642626454528358,
+          "delta_db": -3.7418994122965366
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -20.157317850606127,
+          "version_dbfs": -23.792305369907403,
+          "delta_db": -3.6349875193012764
+        }
+      }
+    },
+    {
+      "original_start_s": 160,
+      "version_start_s": 159.8295,
+      "levels": {
+        "full": {
+          "original_dbfs": -17.065991001296712,
+          "version_dbfs": -17.70361732020881,
+          "delta_db": -0.6376263189120976
+        },
+        "45_180_Hz": {
+          "original_dbfs": -22.97973699486127,
+          "version_dbfs": -19.87435366576945,
+          "delta_db": 3.1053833290918185
+        },
+        "180_900_Hz": {
+          "original_dbfs": -22.030143602219276,
+          "version_dbfs": -25.43659169614578,
+          "delta_db": -3.406448093926503
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -21.591372488988164,
+          "version_dbfs": -26.461151082986238,
+          "delta_db": -4.869778593998074
+        }
+      }
+    },
+    {
+      "original_start_s": 180,
+      "version_start_s": 179.825,
+      "levels": {
+        "full": {
+          "original_dbfs": -16.175309008667455,
+          "version_dbfs": -18.407719006944493,
+          "delta_db": -2.2324099982770385
+        },
+        "45_180_Hz": {
+          "original_dbfs": -23.12401863469413,
+          "version_dbfs": -20.120873099455107,
+          "delta_db": 3.0031455352390246
+        },
+        "180_900_Hz": {
+          "original_dbfs": -20.973990756596116,
+          "version_dbfs": -27.62207701341063,
+          "delta_db": -6.648086256814516
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -20.418426689448978,
+          "version_dbfs": -27.969650098045268,
+          "delta_db": -7.5512234085962895
+        }
+      }
+    },
+    {
+      "original_start_s": 190,
+      "version_start_s": 189.8225,
+      "levels": {
+        "full": {
+          "original_dbfs": -17.93188231621843,
+          "version_dbfs": -18.595032858976452,
+          "delta_db": -0.6631505427580215
+        },
+        "45_180_Hz": {
+          "original_dbfs": -23.379588274166654,
+          "version_dbfs": -20.314458524491332,
+          "delta_db": 3.0651297496753216
+        },
+        "180_900_Hz": {
+          "original_dbfs": -21.882520195063584,
+          "version_dbfs": -27.398173797964766,
+          "delta_db": -5.515653602901182
+        },
+        "900_8000_Hz": {
+          "original_dbfs": -24.466112959654204,
+          "version_dbfs": -28.491748006923604,
+          "delta_db": -4.0256350472694
+        }
+      }
+    }
+  ],
+  "level_method": "Order-3 zero-phase bandpass at 44100 Hz; shared rms_dbfs; matched 8s local intervals; trim 0.1s at each end. No loudness normalization.",
+  "level_summary": {
+    "full": {
+      "median_delta_db": -2.1122782639806728,
+      "negative_windows": 13,
+      "windows": 14
+    },
+    "45_180_Hz": {
+      "median_delta_db": 3.1737779232321834,
+      "negative_windows": 0,
+      "windows": 14
+    },
+    "180_900_Hz": {
+      "median_delta_db": -6.228337028568744,
+      "negative_windows": 13,
+      "windows": 14
+    },
+    "900_8000_Hz": {
+      "median_delta_db": -6.697415021276699,
+      "negative_windows": 13,
+      "windows": 14
+    }
+  },
+  "synthetic_alignment_check": {
+    "original_start_s": 20,
+    "version_start_s": 20.47,
+    "scale": 1.0049999999999972,
+    "correlation": 0.9999999999999984,
+    "expected_version_start_s": 20.47,
+    "expected_scale": 1.005,
+    "passed": true
+  },
+  "reproduction_source": "\"\"\"Exploratory local waveform matching; no musical-event attribution.\"\"\"\nimport hashlib, json, pathlib\nimport numpy as np\nfrom scipy.signal import butter, sosfiltfilt, resample_poly, correlate\nfrom analyze_previews import decode\nfrom calibrate_analyzer import SR, rms_dbfs\n\nRATE=2000\npaths=[pathlib.Path('386584386.mp3'),pathlib.Path('4115294261.mp3')]\nprior=json.loads(pathlib.Path('bandcamp-stream-audit.json').read_text())\nfor p,t in zip(paths,prior['tracks']):\n    assert hashlib.sha256(p.read_bytes()).hexdigest()==t['sha256']\naudio=[decode(p) for p in paths]\nfiltered=[sosfiltfilt(butter(3,[45,900],btype='bandpass',fs=RATE,output='sos'),resample_poly(a.mean(axis=1),20,441)) for a in audio]\nx,y=filtered\n\ndef match(t,reverse=False):\n    best=None\n    lo=max(0,t-20); hi=min(len(y)/RATE,t+30)\n    region=y[round(lo*RATE):round(hi*RATE)]\n    for scale in np.arange(.98,1.02001,.0005):\n        u=np.arange(round(8*scale*RATE))/RATE\n        template=np.interp((t+u/scale)*RATE,np.arange(len(x)),x)\n        if reverse: template=template[::-1]\n        n=len(template)\n        sums=np.r_[0.,np.cumsum(region)]\n        sq=np.r_[0.,np.cumsum(region*region)]\n        energy=sq[n:]-sq[:-n]-(sums[n:]-sums[:-n])**2/n\n        template=template-template.mean()\n        scores=correlate(region,template,mode='valid',method='fft')/np.sqrt(np.maximum(energy*np.dot(template,template),1e-30))\n        k=int(np.argmax(np.abs(scores)))\n        row={'original_start_s':t,'version_start_s':lo+k/RATE,'scale':float(scale),'correlation':float(scores[k])}\n        if best is None or abs(row['correlation'])>abs(best['correlation']): best=row\n    return best\n\ntrain=[match(t) for t in range(20,181,20)]\ncontrols=[match(t,True) for t in (40,100,160)]\nfit=np.polyfit([r['original_start_s'] for r in train],[r['version_start_s'] for r in train],1)\nfor r in train:r['affine_residual_s']=r['version_start_s']-float(np.polyval(fit,r['original_start_s']))\nvalidation=[match(t) for t in (30,70,110,150,190)]\nfor r in validation:r['affine_residual_s']=r['version_start_s']-float(np.polyval(fit,r['original_start_s']))\nreport={'date':'2026-09-08','input_sha256':[t['sha256'] for t in prior['tracks']], 'method':{'signal':'all-mix stereo mean, resampled 2kHz, order-3 zero-phase Butterworth 45–900Hz','window_original_seconds':8,'search_version_start_radius_seconds':20,'scale_grid':[.98,1.02,.0005],'score':'signed normalized zero-mean waveform correlation; maximize absolute value','equation':'version_time = scale * original_time + offset','control':'same template reversed in time, identical search; only three controls'},'fit':{'scale':float(fit[0]),'offset_s':float(fit[1])},'training':train,'validation':validation,'reversed_controls':controls,'limits':['All-mix filtered waveform, not separated drums.','Exploratory matching, not a calibrated same-recording classifier.','Reversed controls do not establish a population false-positive rate.','No listening, source identification, or CUT/THROW event inference.']}\nreport['matched_levels']=[]\nfor r in sorted(train+validation,key=lambda r:r['original_start_s']):\n    start=r['original_start_s']; vstart=r['version_start_s']; scale=r['scale']\n    # Boundaries follow each independently matched local affine map.\n    a=audio[0][round(start*SR):round((start+8)*SR)]\n    b=audio[1][round(vstart*SR):round((vstart+8*scale)*SR)]\n    levels={}\n    for name,band in [('full',None),('45_180_Hz',[45,180]),('180_900_Hz',[180,900]),('900_8000_Hz',[900,8000])]:\n        clips=[a,b]\n        if band:\n            sos=butter(3,band,btype='bandpass',fs=SR,output='sos')\n            clips=[sosfiltfilt(sos,c,axis=0) for c in clips]\n        # Discard 0.1 seconds at each end to reduce filter boundary effects.\n        values=[rms_dbfs(c[4410:-4410]) for c in clips]\n        levels[name]={'original_dbfs':values[0],'version_dbfs':values[1],'delta_db':values[1]-values[0]}\n    report['matched_levels'].append({'original_start_s':start,'version_start_s':vstart,'levels':levels})\nreport['level_method']='Order-3 zero-phase bandpass at 44100 Hz; shared rms_dbfs; matched 8s local intervals; trim 0.1s at each end. No loudness normalization.'\nreport['level_summary']={name:{'median_delta_db':float(np.median([r['levels'][name]['delta_db'] for r in report['matched_levels']])),'negative_windows':sum(r['levels'][name]['delta_db']<0 for r in report['matched_levels']),'windows':14} for name in ['full','45_180_Hz','180_900_Hz','900_8000_Hz']}\nreport['limits']+=['Frequency bands are not instrument stems; bass-band energy does not identify bass guitar.','Fourteen selected 8s windows do not cover the whole track.','End trimming reduces but does not eliminate filtering boundary effects.']\nsaved_x,saved_y=x,y\nrng=np.random.default_rng(20260908)\nx=sosfiltfilt(butter(3,[45,900],btype='bandpass',fs=RATE,output='sos'),rng.normal(size=60*RATE))\nknown_scale,known_offset=1.005,0.37\ny=np.interp((np.arange(60*RATE)/RATE-known_offset)/known_scale*RATE,np.arange(len(x)),x,left=0,right=0)\ncheck=match(20)\ncheck['expected_version_start_s']=20*known_scale+known_offset\ncheck['expected_scale']=known_scale\ncheck['passed']=bool(abs(check['version_start_s']-check['expected_version_start_s'])<=1/RATE and abs(check['scale']-known_scale)<.00001)\nassert check['passed'],check\nx,y=saved_x,saved_y\nreport['synthetic_alignment_check']=check\nreport['reproduction_source']=pathlib.Path(__file__).read_text()\npathlib.Path('bandcamp-alignment-audit.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\\n')\nprint(json.dumps({'fit':report['fit'],'level_summary':report['level_summary']},indent=2))\n"
+}
