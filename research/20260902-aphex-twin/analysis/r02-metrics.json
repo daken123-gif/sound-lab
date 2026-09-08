@@ -1,0 +1,95 @@
+[
+  {
+    "id": "A03",
+    "sample_rate": 44100,
+    "channels": 2,
+    "decoded_seconds": 464.29333333333335,
+    "pcm_sha256": "bc65a9ff8405a7db18d94c35341efd2f7695d907388d25e4d8956a1526a608bd",
+    "rms_100ms_dbfs": {
+      "p10": -20.771114887997012,
+      "p50": -12.621483396041995,
+      "p90": -9.189363894627524
+    },
+    "rms_p90_minus_p10_db": 11.581750993369488,
+    "normalised_positive_spectral_flux": {
+      "p50": 0.1065562540714827,
+      "p90": 0.16185182842187235
+    },
+    "spectral_change_candidates": [
+      {
+        "time_s": 44,
+        "hellinger_distance": 0.4370190631437232
+      },
+      {
+        "time_s": 323,
+        "hellinger_distance": 0.43439742962076333
+      },
+      {
+        "time_s": 361,
+        "hellinger_distance": 0.5522852747524889
+      }
+    ]
+  },
+  {
+    "id": "A05",
+    "sample_rate": 44100,
+    "channels": 2,
+    "decoded_seconds": 217.13333333333333,
+    "pcm_sha256": "e4f3db00ab53b2a4ac31bb2bc48c767dde708e189ba72a51d8af992ba85d8fbc",
+    "rms_100ms_dbfs": {
+      "p10": -20.148502771606267,
+      "p50": -13.082880305348898,
+      "p90": -10.238425765947577
+    },
+    "rms_p90_minus_p10_db": 9.91007700565869,
+    "normalised_positive_spectral_flux": {
+      "p50": 0.15204219754345272,
+      "p90": 0.23502214862379064
+    },
+    "spectral_change_candidates": [
+      {
+        "time_s": 124,
+        "hellinger_distance": 0.36631094834531364
+      },
+      {
+        "time_s": 173,
+        "hellinger_distance": 0.3383132913965033
+      },
+      {
+        "time_s": 185,
+        "hellinger_distance": 0.3454924083274714
+      }
+    ]
+  },
+  {
+    "id": "A07",
+    "sample_rate": 44100,
+    "channels": 2,
+    "decoded_seconds": 291.38666666666666,
+    "pcm_sha256": "c96fb5922f9ade5ace9c74e64ecc30dae713953cd248356117cb64d161230a64",
+    "rms_100ms_dbfs": {
+      "p10": -23.425066022422325,
+      "p50": -14.06086581712935,
+      "p90": -10.495616398140603
+    },
+    "rms_p90_minus_p10_db": 12.929449624281721,
+    "normalised_positive_spectral_flux": {
+      "p50": 0.19267440319761786,
+      "p90": 0.2838962434512427
+    },
+    "spectral_change_candidates": [
+      {
+        "time_s": 79,
+        "hellinger_distance": 0.4303920040670828
+      },
+      {
+        "time_s": 243,
+        "hellinger_distance": 0.43709144352601476
+      },
+      {
+        "time_s": 260,
+        "hellinger_distance": 0.4659369461815704
+      }
+    ]
+  }
+]
