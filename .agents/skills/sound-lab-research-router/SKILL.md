@@ -7,6 +7,20 @@ description: Route research, design, implementation, integration, and status wor
 
 Keep Sound Lab work connected across conversations without turning this skill into a second project canon. Git holds the research and project state; this skill defines how to retrieve, distinguish, and update that state.
 
+## Cross-conversation resume gate
+
+For every Sound Lab request that refers to ongoing work, a named research subject, or a short continuation such as "continue", synchronize from Git before continuing the task:
+
+1. Resolve the current default-branch head of `daken123-gif/sound-lab` and retain the exact commit SHA.
+2. Fetch `research/CURRENT.json` at that exact SHA. Match the request and conversation context against each entry's `research_id` and `aliases`.
+3. When an entry matches, fetch its `record_path` and `supporting_paths` at the same SHA. Check that the record's version, status, and current cycle agree with the pointer.
+4. Treat the Git snapshot as the current research state. Use conversation memory only for user intent or information that has not yet been saved. Do not let an older conversation summary overwrite newer Git evidence.
+5. If the pointer and record disagree, search the current default-branch research directory, report the mismatch, and repair the pointer only within an authorized save operation.
+
+If Git or the pointer cannot be read, say that synchronization was not verified and continue only from evidence actually available. Do not ask the user to copy research between clients. This gate makes the state retrievable across clients; it does not prove that another client fetched it, that the Plugin updated, or that a Skill was invoked there.
+
+When an active research record is merged into the default branch, add or update its `research/CURRENT.json` entry in the same pull request. Keep the pointer small: identity, aliases, record location, version, status, current cycle, completed boundary, next work, and supporting paths. Do not copy the research prose into the pointer.
+
 ## Authority and repository roles
 
 - Treat the user's current words as authoritative for their intent, corrections, evaluations, and decisions.

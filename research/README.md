@@ -6,6 +6,8 @@
 
 新しい研究は `research/YYYYMMDD-slug/README.md` を起点にする。同名テーマでも問いが異なる場合は別の `research-id` を使う。研究の開始・更新・統合規則は [RESEARCH_WORKFLOW.md](../RESEARCH_WORKFLOW.md) を参照する。
 
+進行中研究を別の会話・端末から再開する場合は、最初に [CURRENT.json](CURRENT.json) を読み、そこから同じGit commit上の研究本文へ進む。会話内の古い要約はGitの新しい版を上書きしない。
+
 ## 状態
 
 各READMEの冒頭に次のいずれかを置く。

@@ -1,18 +1,18 @@
 {
   "name": "sound-lab-research",
-  "version": "0.1.0",
-  "description": "Route Sound Lab music-app research and project work through current Git evidence with bias and governance checks.",
+  "version": "0.2.0",
+  "description": "Synchronize Sound Lab work across clients from the current Git snapshot, then route research and project work with evidence and governance checks.",
   "author": {
     "name": "daken123-gif"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "Sound Lab Research",
-    "shortDescription": "Sound Lab研究をGit正本へ接続します。",
-    "longDescription": "Sound Labの研究・設計・実装・統合を現在のGit証拠へ接続し、バイアス、ガバナンス、採用状態、検証状態を分離して扱います。",
+    "shortDescription": "端末間で最新Git研究へ同期し、Sound Lab研究を接続します。",
+    "longDescription": "Sound Labの研究・設計・実装・統合を開始するたび、GitHubの最新mainと進行中研究ポインターを同一commitから取得し、会話や端末をまたいで現在地を復元します。証拠、採用状態、検証状態は分離して扱います。",
     "developerName": "daken123-gif",
     "category": "Productivity",
     "capabilities": [],
-    "defaultPrompt": "Sound Labの現在のGit証拠を読み、バイアスチェックとガバナンスチェックを行ってから、この作業を続けてください。"
+    "defaultPrompt": "GitHubのsound-lab最新main SHAを取得し、research/CURRENT.jsonと該当研究を同じSHAから読んで現在地を同期してから作業を続けてください。"
   }
 }
