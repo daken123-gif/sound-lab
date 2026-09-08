@@ -1,0 +1,41 @@
+[
+  {
+    "id": "A05",
+    "requested_title": "4",
+    "album_url": "https://aphextwin.bandcamp.com/album/richard-d-james-album",
+    "status": "downloaded",
+    "album": "Richard D. James Album",
+    "album_id": 3912122318,
+    "track_id": 2416534574,
+    "duration_metadata": 217.133,
+    "track_url": "https://aphextwin.bandcamp.com/track/4-1",
+    "bytes": 3475329,
+    "sha256": "1c702899ebccedc6f7120623187ae2fcdd7657222d668d534f548ee7885103f7"
+  },
+  {
+    "id": "A07",
+    "requested_title": "Vordhosbn",
+    "album_url": "https://aphextwin.bandcamp.com/album/drukqs",
+    "status": "downloaded",
+    "album": "Drukqs",
+    "album_id": 1308944319,
+    "track_id": 3857887101,
+    "duration_metadata": 291.387,
+    "track_url": "https://aphextwin.bandcamp.com/track/vordhosbn",
+    "bytes": 4663169,
+    "sha256": "d1c28ec6731b337e6e5c9eed9ce38329b0fd6cb9b66b96fbe87addc10652625c"
+  },
+  {
+    "id": "A03",
+    "requested_title": "#3",
+    "album_url": "https://aphextwin.bandcamp.com/album/selected-ambient-works-volume-ii-expanded-edition",
+    "status": "downloaded",
+    "album": "Selected Ambient Works Volume II (Expanded Edition)",
+    "album_id": 964967358,
+    "track_id": 2156376676,
+    "duration_metadata": 464.293,
+    "track_url": "https://aphextwin.bandcamp.com/track/3-2",
+    "bytes": 7429641,
+    "sha256": "c74f32f6e1fb9ab11d0ac1086441df508e6f149cde6d99a4e14583b6235f110f"
+  }
+]
