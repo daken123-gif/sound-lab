@@ -19,6 +19,8 @@
 - `catalog/guest-commissioned-catalog.md`: 客演、提供詞、委託制作、近年の発見候補
 - `catalog/freestyle-battle-catalog.md`: 固定詞と分離した公開即興・バトル記録
 - `analysis/lyric-mechanisms.md`: 現在までのリリック機構分析
+- `analysis/100-percent-rap-and-doping.md`: 初期ソロ／DOPING BAND期の曲別注釈
+- `analysis/recent-works.md`: 近年作品の曲別注釈
 - `sources/SOURCES.md`: 実際に参照したページと権威・用途
 - `OPEN_QUESTIONS.md`: 未回収、帰属未確定、版未分離
 
