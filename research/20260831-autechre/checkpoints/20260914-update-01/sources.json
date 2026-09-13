@@ -1,0 +1,141 @@
+{
+  "observed_date": "2026-09-14 JST / 2026-09-13 UTC",
+  "identity_method": "Shazam connector / Apple Music Catalog getsong; not microphone fingerprint recognition",
+  "catalog": [
+    {
+      "id": "292743285",
+      "href": "/v1/catalog/gb/songs/292743285",
+      "name": "Flutter",
+      "artistName": "Autechre",
+      "albumName": "Anti - EP",
+      "isrc": "GBBPW9400118",
+      "durationInMillis": 597733,
+      "releaseDate": "1994-09-03",
+      "trackNumber": 3,
+      "url": "https://music.apple.com/gb/album/flutter/292743188?i=292743285",
+      "previews": [
+        {
+          "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5c/50/d4/5c50d4e2-fa84-89eb-561e-ecebef06020c/mzaf_3777654608730353511.plus.aac.p.m4a"
+        }
+      ]
+    },
+    {
+      "id": "420210312",
+      "href": "/v1/catalog/gb/songs/420210312",
+      "name": "Flutter",
+      "artistName": "Autechre",
+      "albumName": "EPs 1991 - 2002",
+      "isrc": "GBBPW9400118",
+      "durationInMillis": 599680,
+      "releaseDate": "2011-02-15",
+      "trackNumber": 9,
+      "url": "https://music.apple.com/gb/album/flutter/420210242?i=420210312",
+      "previews": [
+        {
+          "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/39/76/71/39767108-ea57-c4a2-b8cf-a3dc0d605e99/mzaf_14897457753820961134.plus.aac.p.m4a"
+        }
+      ]
+    },
+    {
+      "id": "314910098",
+      "href": "/v1/catalog/jp/songs/314910098",
+      "name": "Flutter",
+      "artistName": "Autechre",
+      "albumName": "Anti - EP",
+      "isrc": "GBBPW9400118",
+      "durationInMillis": 597733,
+      "releaseDate": "1994-09-03",
+      "trackNumber": 3,
+      "url": "https://music.apple.com/jp/album/flutter/314910095?i=314910098",
+      "previews": [
+        {
+          "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f4/48/ed/f448edb9-4712-1866-c30a-f2affbc02a7f/mzaf_13802220145402762989.plus.aac.p.m4a"
+        }
+      ]
+    }
+  ],
+  "parallel_git": [
+    {
+      "branch": "research/20260902-jeff-mills",
+      "commit": "df63ad47bc2d5928c4d7d316664f4ad1c3bd9142",
+      "path": "research/20260902-jeff-mills/README.md",
+      "blob": "dd9c58c51f547a6395ea65d04ccd7695880cfdad"
+    },
+    {
+      "branch": "research/20260902-charlie-hunter",
+      "commit": "2ca44ba3111b06c5f489535940d1ad16844ab5fb",
+      "path": "research/20260902-charlie-hunter/README.md",
+      "blob": "9e308b70fb32e6cfa3658fe9f7498f1b53ea0e2a"
+    },
+    {
+      "branch": "research/20260902-j-dilla",
+      "commit": "164ad01ae1e06d4838da17661ee9ce9bf0e36c7a",
+      "path": "research/20260902-j-dilla/README.md",
+      "blob": "1cf4c210c56b13da1aaba8bc7d346543a07220b7"
+    },
+    {
+      "branch": "research/20260902-aphex-twin",
+      "commit": "a439860d9fd3e3b96e966c94ec77346e213e8bd9",
+      "path": "research/20260902-aphex-twin/README.md",
+      "blob": "75d6fec71f12be55159b73b97510658df022a7fc"
+    },
+    {
+      "branch": "repair/live-canvas-independent-drums",
+      "commit": "2f9f7917f046b98f809806c80f1f0296e5ffe859",
+      "path": "field-processor/drum-engine.js",
+      "blob": "5a869016cf2ef00442c9f848165dedb83990a66b"
+    },
+    {
+      "branch": "research/20260908-youtube-acquisition",
+      "commit": "0e10051483bc800a8d7b77ab3284a8fb6c36477f",
+      "path": "research/music-analysis/youtube-connector/worker.py",
+      "blob": "1e3ae01aeac74e24291e87a1fa68a77195a1d733"
+    }
+  ],
+  "web": [
+    {
+      "url": "https://www.musicradar.com/artists/there-isnt-one-thing-about-the-gear-that-were-using-now-that-we-dont-understand-autechre-on-their-diligent-tech-learning-ethos-and-very-first-workflow",
+      "publication": "2026-08-24",
+      "event_year": 1994,
+      "status": "read; archival resurfacing, not new interview"
+    },
+    {
+      "url": "https://www.musicradar.com/news/autechre-classic-interview",
+      "publication": "2021-08-11",
+      "event_year": 1994,
+      "status": "read; original publisher's interview republication"
+    },
+    {
+      "url": "https://autechre.bandcamp.com/album/ae-2022",
+      "status": "official catalog metadata read; 19 tracks; audio not acquired",
+      "page_release_date": "2024-12-03"
+    },
+    {
+      "url": "https://autechre.bandcamp.com/album/anti",
+      "status": "official catalog read; Flutter 09:57; streaming + purchase; all rights reserved; no full audio acquisition"
+    },
+    {
+      "url": "https://autechre.warp.net/elseq",
+      "status": "direct read failed; search index still says 2026-10-02 estimated release; no new release confirmation"
+    },
+    {
+      "url": "https://ra.co/features/2756",
+      "status": "title and date obtained; interview body unavailable; not used for new claims"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=mdhtm6qjmhU",
+      "status": "current web read failed; no current audio transfer test",
+      "prior_test": {
+        "source_commit": "0e10051483bc800a8d7b77ab3284a8fb6c36477f",
+        "date": "2026-09-08 UTC",
+        "received_bytes": 0,
+        "stage": "stream_url_resolved",
+        "error": "network_timeout",
+        "full_audio_sha256": null,
+        "preview_full_track_offset": null,
+        "match_confidence": null
+      }
+    }
+  ]
+}
+

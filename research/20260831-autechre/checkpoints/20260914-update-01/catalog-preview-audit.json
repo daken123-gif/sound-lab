@@ -1,0 +1,152 @@
+{
+  "catalog": [
+    {
+      "displayed_duration": "01:06:56",
+      "name": "AE_MILAN_010722",
+      "passes_duration_only": false,
+      "seconds": 4016
+    },
+    {
+      "displayed_duration": "01:20:03",
+      "name": "AE_ATHENS_050722",
+      "passes_duration_only": false,
+      "seconds": 4803
+    },
+    {
+      "displayed_duration": "01:11:07",
+      "name": "AE_HELSINKI_110922",
+      "passes_duration_only": false,
+      "seconds": 4267
+    },
+    {
+      "displayed_duration": "59:48",
+      "name": "AE_LONDON_071022_A",
+      "passes_duration_only": true,
+      "seconds": 3588
+    },
+    {
+      "displayed_duration": "59:33",
+      "name": "AE_LONDON_071022_B",
+      "passes_duration_only": true,
+      "seconds": 3573
+    },
+    {
+      "displayed_duration": "01:07:59",
+      "name": "AE_BERGEN_021122",
+      "passes_duration_only": false,
+      "seconds": 4079
+    },
+    {
+      "displayed_duration": "01:00:45",
+      "name": "AE_TURIN_041122",
+      "passes_duration_only": false,
+      "seconds": 3645
+    },
+    {
+      "displayed_duration": "01:00:36",
+      "name": "AE_MELBOURNE_250823",
+      "passes_duration_only": false,
+      "seconds": 3636
+    },
+    {
+      "displayed_duration": "01:12:08",
+      "name": "AE_SYDNEY_270823",
+      "passes_duration_only": false,
+      "seconds": 4328
+    },
+    {
+      "displayed_duration": "01:09:30",
+      "name": "AE_VENICE_261023",
+      "passes_duration_only": false,
+      "seconds": 4170
+    },
+    {
+      "displayed_duration": "01:20:18",
+      "name": "AE_DUBLIN_291023",
+      "passes_duration_only": false,
+      "seconds": 4818
+    },
+    {
+      "displayed_duration": "01:15:01",
+      "name": "AE_BRUSSELS_040424",
+      "passes_duration_only": false,
+      "seconds": 4501
+    },
+    {
+      "displayed_duration": "01:27:08",
+      "name": "AE_PARIS_060424",
+      "passes_duration_only": false,
+      "seconds": 5228
+    },
+    {
+      "displayed_duration": "01:05:26",
+      "name": "AE_RENNES_070424",
+      "passes_duration_only": false,
+      "seconds": 3926
+    },
+    {
+      "displayed_duration": "01:19:11",
+      "name": "AE_BARCELONA_090424",
+      "passes_duration_only": false,
+      "seconds": 4751
+    },
+    {
+      "displayed_duration": "01:26:27",
+      "name": "AE_MADRID_100424",
+      "passes_duration_only": false,
+      "seconds": 5187
+    },
+    {
+      "displayed_duration": "01:02:42",
+      "name": "AE_LISBON_120424_B",
+      "passes_duration_only": false,
+      "seconds": 3762
+    },
+    {
+      "displayed_duration": "01:15:40",
+      "name": "AE_KREMS_270424",
+      "passes_duration_only": false,
+      "seconds": 4540
+    },
+    {
+      "displayed_duration": "01:27:44",
+      "name": "AE_LYON_070524",
+      "passes_duration_only": false,
+      "seconds": 5264
+    }
+  ],
+  "catalog_count": 19,
+  "coverage_test": "static catalog duration comparison, not YouTube acquisition",
+  "duration_guard_seconds": 3600,
+  "over_limit": 17,
+  "previews": [
+    {
+      "bytes": 3122487,
+      "channels": 2,
+      "codec": "aac",
+      "container_duration": "89.977324",
+      "file": "flutter-gb-anti-90.m4a",
+      "full_preview_decode_passed": true,
+      "full_track_offset": null,
+      "new_musical_metrics_computed": false,
+      "prior_hash_matches": true,
+      "sample_rate": "44100",
+      "sha256": "4132908b22a6407d5d30b42c3618ecafa8817beeb7dc65b4609354d5aeb5cc89"
+    },
+    {
+      "bytes": 3117352,
+      "channels": 2,
+      "codec": "aac",
+      "container_duration": "89.977324",
+      "file": "flutter-gb-eps-90.m4a",
+      "full_preview_decode_passed": true,
+      "full_track_offset": null,
+      "new_musical_metrics_computed": false,
+      "prior_hash_matches": true,
+      "sample_rate": "44100",
+      "sha256": "ab5d3f767f96e3d62e4abd494654e75974f2579542e113ae8fc0a20d59ebc751"
+    }
+  ],
+  "within_limit": 2
+}
+

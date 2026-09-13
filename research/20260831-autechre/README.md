@@ -1319,3 +1319,17 @@ section 23と同じ解析条件を二つのGB 90秒previewへ適用した。
    - 2026-10-02予定、5CD box set、21 clips、first physical formatの表示を確認。clipsの音響解析は未実施。
 28. [Autechre official Bandcamp — shows](https://autechre.bandcamp.com/)
    - 2026-09-24から2026-10-24までの公演日程を確認。新set、録音、公開の証拠には用いない。
+
+## 29. 2026-09-14追補 — ISRC・入力再取得・長尺被覆
+
+詳細と取得証拠: [研究追補](checkpoints/20260914-update-01/REPORT.md)、[source manifest](checkpoints/20260914-update-01/sources.json)、[検査結果](checkpoints/20260914-update-01/catalog-preview-audit.json)。確認日は2026-09-14 JST（2026-09-13 UTC）。
+
+- Shazam接続のApple Music CatalogでJP／GB AntiとGB EPs版FlutterのISRCを `GBBPW9400118` と確認。section 20・25のISRC未取得は、この三catalogに限って失効。旧ウェブdeep linkの誤解決原因と版間1.947秒の尺差は未解明。
+- GBの90秒preview 2本を再取得。旧SHA-256と一致し、全previewのdecode成功。旧音響測定と約195.050839秒の相対鎖は保持。全曲内offsetと全曲解析は未取得。
+- 現行YouTube workerの3600秒制限と公式AE_2022－19公演の表示尺を突合し、17公演が範囲外と判明。これはコード・catalogの静的検査であり、実取得試験ではない。取得可能な短い公演だけを代表群にしない。
+- 2026-08-24記事から1994年の本人インタビュー再掲を取得。初期からの素材／同期／操作の関係を追加し、section 12の歴史モデルを「関係が後から初めて出現した直線史」として使わない。
+- 並行4研究と独立DRUMの現在head・本文／コードを再取得。Aphex Twinは3曲のhash付き信号測定記録へ進んでおり、section 24.6の「初版以降の音源実測更新なし」は失効。他研究の取得実績をAutechreの取得・解析許可へ転用しない。
+- YouTubeの前回0 bytes・解析未達をGit検証記録で確認。今回の全曲取得・解析は未実施。製品コード、integration、main、他研究は変更していない。
+
+上記は追補時点の更新。過去本文の日時・値・未取得記録は履歴として残す。
+

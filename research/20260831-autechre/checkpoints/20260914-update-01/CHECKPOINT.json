@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "destination": "research/20260831-autechre/checkpoints/20260914-update-01",
+  "task": "Autechre長期研究更新：ISRC・preview再取得・AE_LIVE取得被覆・並行研究本文",
+  "next_action": "許容される全曲取得経路を確認し、長尺制限は別工程で評価してpreviewとの全曲内照合を進める",
+  "pending": [
+    "Flutter full source/hash/absolute offset not obtained",
+    "AE_LIVE audio comparison not performed",
+    "No product or integration changes"
+  ],
+  "file_count": 3,
+  "total_bytes": 19123,
+  "files": [
+    {
+      "path": "REPORT.md",
+      "bytes": 10035,
+      "sha256": "69e087da5ae46f55043b5930c09fef1c60d5de62ac8958c1e4fd70d143cb82de"
+    },
+    {
+      "path": "catalog-preview-audit.json",
+      "bytes": 3854,
+      "sha256": "94bff2ccc70d69d8fd15a7db04afd12856b9cd7e714817d121d367f608f5434a"
+    },
+    {
+      "path": "sources.json",
+      "bytes": 5234,
+      "sha256": "3b7c1c1be05ce48a65ec8166511cb384d0ead042bcd70ddcf44f85469e90589b"
+    }
+  ]
+}
