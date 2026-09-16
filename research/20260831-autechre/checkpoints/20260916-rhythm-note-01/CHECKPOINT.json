@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "destination": "research/20260831-autechre/checkpoints/20260916-rhythm-note-01",
+  "task": "Autechre研究：発音時刻・持続・音高と反復",
+  "next_action": "元のFlutter測定証拠を再取得し、打点・持続・音高を分けた対照を検証する",
+  "pending": [
+    "新規音源実測",
+    "知覚比較",
+    "全小節非同一性"
+  ],
+  "file_count": 1,
+  "total_bytes": 6451,
+  "files": [
+    {
+      "path": "REPORT.md",
+      "bytes": 6451,
+      "sha256": "bfe0e97379469ed269242aaec8bbcbc24135420744361b3891dccb3bb204586b"
+    }
+  ]
+}
