@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "destination": "research/20260831-autechre/checkpoints/20260920-duration-pitch-control-01",
+  "task": "Autechre研究：発音時刻・長さ・音高の合成対照実験",
+  "next_action": "Flutterの既存入力・測定コードを回収し、この対照音を実際の帯域別分析に通して限定区間と照合する。",
+  "pending": "Flutter再測定・聴取比較・位相や音色を変えた一般性検証は未実施。製品未採用。",
+  "file_count": 3,
+  "total_bytes": 14323,
+  "files": [
+    {
+      "path": "duration_pitch_control.py",
+      "bytes": 3784,
+      "sha256": "f4de4cd830559fe26532644939cd422ee7c20024c825ec73d6ca40c51e8a7e79"
+    },
+    {
+      "path": "results.json",
+      "bytes": 4275,
+      "sha256": "5a20f5899faf7030926221f7e93042e041e03d8cfa298013fa6734f18fa35d4a"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 6264,
+      "sha256": "889cd0770b81fb838e77f8a34096ab43c933b9a40018c41dde2f897425dc5506"
+    }
+  ]
+}
