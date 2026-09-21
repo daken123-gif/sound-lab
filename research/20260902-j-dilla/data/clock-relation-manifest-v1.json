@@ -1,0 +1,290 @@
+{
+  "schema_version": "sound-lab.j-dilla.clock-relation/v1",
+  "research_id": "20260902-j-dilla",
+  "created_utc": "2026-09-02",
+  "evidence_boundary": "Catalog identity ledger only; no full-length audio was acquired or measured by this artifact.",
+  "minimum_region_bars": 16,
+  "required_voices": ["kick", "snare", "hat", "bass", "sample", "other"],
+  "transforms": [
+    "original",
+    "quantize_all",
+    "quantize_kick",
+    "quantize_snare",
+    "unify_hat_swing",
+    "align_bass_to_grid",
+    "exchange_voice_offsets",
+    "invert_offset_signs",
+    "shuffle_positions_keep_magnitudes",
+    "random_humanize_same_distribution"
+  ],
+  "recordings": [
+    {
+      "recording_id": "runnin-analysis-master",
+      "artist": "The Pharcyde",
+      "title": "Runnin'",
+      "version_label": "original-album catalog candidate",
+      "identity_status": "resolved_candidate",
+      "catalog_candidates": [
+        {
+          "release_title": "Labcabincalifornia",
+          "release_year": 1995,
+          "track_number": null,
+          "catalog_duration_seconds": null,
+          "locator": "https://music.apple.com/us/song/runnin/1440915343",
+          "authority": "Apple Music distributor catalog",
+          "identity_note": "Original-album entry. Do not substitute Deluxe, 30th Anniversary, 2025 remaster, instrumental, or remix without hash/alignment comparison."
+        }
+      ],
+      "excluded_versions": ["Labcabincalifornia (Deluxe Edition)", "Labcabincalifornia (30th Anniversary Edition)", "2025 remaster", "instrumental", "remix"],
+      "reference_intervals": [
+        {
+          "start_seconds": 272.0,
+          "end_seconds": 277.0,
+          "reference": "Sean Peterson dissertation, Figures 14-15",
+          "purpose": "Published kick-location example; not the protocol's future 16-bar analysis region."
+        }
+      ],
+      "source_status": "unobtained",
+      "source_kind": null,
+      "source_locator": null,
+      "rights_basis": null,
+      "local_filename": null,
+      "sha256": null,
+      "duration_seconds": null,
+      "sample_rate_hz": null,
+      "channels": null,
+      "file_size_bytes": null,
+      "codec": null,
+      "analysis_status": "blocked_source_unobtained",
+      "regions": []
+    },
+    {
+      "recording_id": "players-analysis-master",
+      "artist": "Slum Village",
+      "title": "Players",
+      "version_label": "Fantastic Vol. 2 recording family; delivery master unresolved",
+      "identity_status": "release_family_resolved_master_ambiguous",
+      "catalog_candidates": [
+        {
+          "release_title": "Fan-Tas-Tic, Vol. 2",
+          "release_year": 2000,
+          "track_number": 14,
+          "catalog_duration_seconds": 146,
+          "locator": "https://www.shazam.com/song/1159993676/players",
+          "authority": "Shazam / Apple Music distributor catalog",
+          "identity_note": "2:26 delivery. Shazam places this song ID on Fan-Tas-Tic, Vol. 2; Peterson independently names Fantastic, Vol. 2 as the album family."
+        },
+        {
+          "release_title": "Fantastic, Vol. 2.10",
+          "release_year": 2000,
+          "track_number": null,
+          "catalog_duration_seconds": 183,
+          "locator": "https://www.shazam.com/song/1159912751/players",
+          "authority": "Shazam / Apple Music distributor catalog",
+          "identity_note": "3:03 delivery with a separate song ID. Peterson's 2:13-2:19 window also fits, so timing alone does not distinguish it from the 2:26 delivery."
+        }
+      ],
+      "excluded_versions": ["Fan-Tas-Tic, Vol. 1", "Players (Instrumental)", "Players (Mixed)", "2023 remaster"],
+      "reference_intervals": [
+        {
+          "start_seconds": 133.0,
+          "end_seconds": 139.0,
+          "reference": "Sean Peterson dissertation, Figure 16",
+          "purpose": "Published four-measure kick-loop example. The album family is resolved; compare audio content to determine which current delivery master carries the analyzed waveform."
+        }
+      ],
+      "source_status": "unobtained",
+      "source_kind": null,
+      "source_locator": null,
+      "rights_basis": null,
+      "local_filename": null,
+      "sha256": null,
+      "duration_seconds": null,
+      "sample_rate_hz": null,
+      "channels": null,
+      "file_size_bytes": null,
+      "codec": null,
+      "analysis_status": "blocked_master_ambiguous",
+      "regions": []
+    },
+    {
+      "recording_id": "keep-it-on-this-beat-analysis-master",
+      "artist": "Slum Village",
+      "title": "Keep It On (This Beat)",
+      "version_label": "Fan-Tas-Tic Vol. 1 track 2 catalog candidate",
+      "identity_status": "resolved_candidate",
+      "catalog_candidates": [
+        {
+          "release_title": "Fan-Tas-Tic Vol. 1",
+          "release_year": 2005,
+          "track_number": 2,
+          "catalog_duration_seconds": 189,
+          "locator": "https://open.spotify.com/album/78xn7eWk5Q5MiEqtetsNer",
+          "authority": "Spotify distributor catalog plus Ne'Astra retail track lists",
+          "identity_note": "Target is track 2 'Keep It On (This Beat)', not the separate track 14 'Keep It On' or remix entry."
+        }
+      ],
+      "excluded_versions": ["Fan-Tas-Tic Vol. 1 track 14 Keep It On", "Keep It On (Remix)"],
+      "reference_intervals": [
+        {
+          "start_seconds": 57.0,
+          "end_seconds": 61.0,
+          "reference": "Sean Peterson dissertation, Figure 17",
+          "purpose": "Published snare/kick/hi-hat alignment example; not the protocol's future 16-bar analysis region."
+        }
+      ],
+      "source_status": "unobtained",
+      "source_kind": null,
+      "source_locator": null,
+      "rights_basis": null,
+      "local_filename": null,
+      "sha256": null,
+      "duration_seconds": null,
+      "sample_rate_hz": null,
+      "channels": null,
+      "file_size_bytes": null,
+      "codec": null,
+      "analysis_status": "blocked_source_unobtained",
+      "regions": []
+    },
+    {
+      "recording_id": "come-get-it-album",
+      "artist": "J Dilla",
+      "title": "Come Get It",
+      "version_label": "20th Anniversary Edition track 5",
+      "identity_status": "resolved_candidate",
+      "catalog_candidates": [
+        {
+          "release_title": "Welcome 2 Detroit - The 20th Anniversary Edition",
+          "release_year": 2021,
+          "track_number": 5,
+          "catalog_duration_seconds": 302,
+          "locator": "https://jdilla.bandcamp.com/album/welcome-2-detroit-the-20th-anniversary-edition",
+          "authority": "Official J Dilla Bandcamp / BBE Music",
+          "identity_note": "Named album-version candidate in the same official 46-track collection as the three comparison variants; not asserted bit-identical to a 2001 master."
+        }
+      ],
+      "excluded_versions": [],
+      "reference_intervals": [
+        {
+          "start_seconds": 8.0,
+          "end_seconds": 18.0,
+          "reference": "Sean Peterson dissertation, Figures 20-21",
+          "purpose": "Published kick/hi-hat subdivision example for the 2001 track; verify alignment against the 2021 catalog candidate."
+        }
+      ],
+      "source_status": "unobtained",
+      "source_kind": null,
+      "source_locator": null,
+      "rights_basis": null,
+      "local_filename": null,
+      "sha256": null,
+      "duration_seconds": null,
+      "sample_rate_hz": null,
+      "channels": null,
+      "file_size_bytes": null,
+      "codec": null,
+      "analysis_status": "blocked_source_unobtained",
+      "regions": []
+    },
+    {
+      "recording_id": "come-get-it-instrumental",
+      "artist": "J Dilla",
+      "title": "Come Get It",
+      "version_label": "instrumental, 20th Anniversary Edition track 21",
+      "identity_status": "resolved_candidate",
+      "catalog_candidates": [
+        {
+          "release_title": "Welcome 2 Detroit - The 20th Anniversary Edition",
+          "release_year": 2021,
+          "track_number": 21,
+          "catalog_duration_seconds": 265,
+          "locator": "https://jdilla.bandcamp.com/track/come-get-it-instrumental-2",
+          "authority": "Official J Dilla Bandcamp / BBE Music",
+          "identity_note": "Explicitly titled instrumental in the official anniversary collection."
+        }
+      ],
+      "excluded_versions": [],
+      "reference_intervals": [],
+      "source_status": "unobtained",
+      "source_kind": null,
+      "source_locator": null,
+      "rights_basis": null,
+      "local_filename": null,
+      "sha256": null,
+      "duration_seconds": null,
+      "sample_rate_hz": null,
+      "channels": null,
+      "file_size_bytes": null,
+      "codec": null,
+      "analysis_status": "blocked_source_unobtained",
+      "regions": []
+    },
+    {
+      "recording_id": "come-get-it-cassette-demo",
+      "artist": "J Dilla",
+      "title": "Come Get It",
+      "version_label": "cassette demo, 20th Anniversary Edition track 44",
+      "identity_status": "resolved_candidate",
+      "catalog_candidates": [
+        {
+          "release_title": "Welcome 2 Detroit - The 20th Anniversary Edition",
+          "release_year": 2021,
+          "track_number": 44,
+          "catalog_duration_seconds": 245,
+          "locator": "https://jdilla.bandcamp.com/track/come-get-it-cassette-demo",
+          "authority": "Official J Dilla Bandcamp / BBE Music",
+          "identity_note": "Explicitly titled cassette demo in the official anniversary collection."
+        }
+      ],
+      "excluded_versions": [],
+      "reference_intervals": [],
+      "source_status": "unobtained",
+      "source_kind": null,
+      "source_locator": null,
+      "rights_basis": null,
+      "local_filename": null,
+      "sha256": null,
+      "duration_seconds": null,
+      "sample_rate_hz": null,
+      "channels": null,
+      "file_size_bytes": null,
+      "codec": null,
+      "analysis_status": "blocked_source_unobtained",
+      "regions": []
+    },
+    {
+      "recording_id": "come-get-it-alt-beat",
+      "artist": "J Dilla",
+      "title": "Come Get It",
+      "version_label": "alt beat, 20th Anniversary Edition track 45",
+      "identity_status": "resolved_candidate",
+      "catalog_candidates": [
+        {
+          "release_title": "Welcome 2 Detroit - The 20th Anniversary Edition",
+          "release_year": 2021,
+          "track_number": 45,
+          "catalog_duration_seconds": 86,
+          "locator": "https://jdilla.bandcamp.com/album/welcome-2-detroit-the-20th-anniversary-edition",
+          "authority": "Official J Dilla Bandcamp / BBE Music",
+          "identity_note": "Explicitly titled alt beat in the official anniversary collection. Duration does not prove that a common 16-bar homologous region exists."
+        }
+      ],
+      "excluded_versions": [],
+      "reference_intervals": [],
+      "source_status": "unobtained",
+      "source_kind": null,
+      "source_locator": null,
+      "rights_basis": null,
+      "local_filename": null,
+      "sha256": null,
+      "duration_seconds": null,
+      "sample_rate_hz": null,
+      "channels": null,
+      "file_size_bytes": null,
+      "codec": null,
+      "analysis_status": "blocked_source_unobtained",
+      "regions": []
+    }
+  ]
+}
