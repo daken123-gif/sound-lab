@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-09-21T00:08:45.008117+00:00",
+  "synthetic_control_replay": {
+    "source": "../20260920-duration-pitch-control-01/duration_pitch_control.py",
+    "comparison": "environment version strings removed before equality check",
+    "scientific_payload_exact_match": true,
+    "tracked_manifest_match": true,
+    "script_sha256": "f4de4cd830559fe26532644939cd422ee7c20024c825ec73d6ca40c51e8a7e79",
+    "results_sha256": "5a20f5899faf7030926221f7e93042e041e03d8cfa298013fa6734f18fa35d4a",
+    "report_sha256": "889cd0770b81fb838e77f8a34096ab43c933b9a40018c41dde2f897425dc5506"
+  },
+  "youtube_live_smoke": {
+    "source_commit": "0e10051483bc800a8d7b77ab3284a8fb6c36477f",
+    "started_at": "2026-09-21T00:07:44.716410+00:00",
+    "finished_at": "2026-09-21T00:08:45.008117+00:00",
+    "job_id": "0387d3b31a3d4c3196d2f8e13d25f1de",
+    "cli_exit_code": 1,
+    "mcp_initialize": "passed",
+    "invalid_id_rejected": true,
+    "video_id": "mdhtm6qjmhU",
+    "channel_id": "UCBUAlfIrcw1f0c4qGrYn3xA",
+    "title": "Flutter",
+    "channel": "Autechre - Topic",
+    "duration_s": 600,
+    "authentication_mode": "guest",
+    "selected_format": {
+      "format_id": "251",
+      "ext": "webm",
+      "acodec": "opus",
+      "protocol": "https",
+      "reported_filesize": 10224074
+    },
+    "stage": "stream_url_resolved",
+    "status": "failed",
+    "error": "network_timeout",
+    "received_bytes": 0,
+    "audio_retrieved": false,
+    "decode_status": "not_reached",
+    "audio_sha256": null,
+    "source_manifest": null,
+    "analysis_status": "not_requested",
+    "preview_full_track_offset": null,
+    "preview_full_track_match": null,
+    "retained_in_git": "sanitized result only; no audio, signed URL, cookie, database, or runtime data directory"
+  },
+  "scope_guards": {
+    "preview_results_overwritten": false,
+    "audio_committed": false,
+    "product_code_changed": false,
+    "integration_changed": false,
+    "main_changed": false,
+    "parallel_branches_changed": false
+  }
+}

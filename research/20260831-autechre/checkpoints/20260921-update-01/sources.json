@@ -1,0 +1,106 @@
+{
+  "observed_at": "2026-09-21T00:04:00Z and later in the same run",
+  "autechre_base": {
+    "branch": "research/20260831-autechre",
+    "commit": "024d36c32a25fa57e42a7ee37bbc826a2822272b",
+    "readme_path": "research/20260831-autechre/README.md",
+    "readme_blob": "df0bb0689efa8eb2d92602b6e7475b53b3e21e5a",
+    "readme_lines": 1335,
+    "readme_bytes": 99940
+  },
+  "parallel_git": [
+    {
+      "branch": "research/20260902-jeff-mills",
+      "commit": "df63ad47bc2d5928c4d7d316664f4ad1c3bd9142",
+      "path": "research/20260902-jeff-mills/README.md",
+      "blob": "dd9c58c51f547a6395ea65d04ccd7695880cfdad",
+      "lines": 603,
+      "bytes": 42335,
+      "changed_since_20260914_checkpoint": false
+    },
+    {
+      "branch": "research/20260902-charlie-hunter",
+      "commit": "2ca44ba3111b06c5f489535940d1ad16844ab5fb",
+      "path": "research/20260902-charlie-hunter/README.md",
+      "blob": "9e308b70fb32e6cfa3658fe9f7498f1b53ea0e2a",
+      "lines": 859,
+      "bytes": 56936,
+      "changed_since_20260914_checkpoint": false
+    },
+    {
+      "branch": "research/20260902-j-dilla",
+      "commit": "164ad01ae1e06d4838da17661ee9ce9bf0e36c7a",
+      "path": "research/20260902-j-dilla/README.md",
+      "blob": "1cf4c210c56b13da1aaba8bc7d346543a07220b7",
+      "lines": 917,
+      "bytes": 51074,
+      "changed_since_20260914_checkpoint": false
+    },
+    {
+      "branch": "research/20260902-aphex-twin",
+      "commit": "a439860d9fd3e3b96e966c94ec77346e213e8bd9",
+      "path": "research/20260902-aphex-twin/README.md",
+      "blob": "75d6fec71f12be55159b73b97510658df022a7fc",
+      "lines": 356,
+      "bytes": 31478,
+      "changed_since_20260914_checkpoint": false
+    },
+    {
+      "branch": "repair/live-canvas-independent-drums",
+      "commit": "2f9f7917f046b98f809806c80f1f0296e5ffe859",
+      "path": "field-processor/drum-engine.js",
+      "blob": "5a869016cf2ef00442c9f848165dedb83990a66b",
+      "lines": 342,
+      "bytes": 13894,
+      "changed_since_20260914_checkpoint": false
+    }
+  ],
+  "youtube_connector": {
+    "branch": "research/20260908-youtube-acquisition",
+    "commit": "0e10051483bc800a8d7b77ab3284a8fb6c36477f",
+    "validation_path": "research/music-analysis/youtube-connector/VALIDATION.md",
+    "validation_blob": "502f086497f34b45d4ba4ab027ef3e8347092284",
+    "changed_since_20260914_checkpoint": false
+  },
+  "web": [
+    {
+      "url": "https://www.independent.co.uk/life-style/jospeh-gallivan-on-pop-1414727.html",
+      "publication_date": "1994-07-19",
+      "observed": "article body and Sean Booth statement read",
+      "authority": "contemporaneous interview quotation",
+      "audio_acquired": false
+    },
+    {
+      "url": "https://www.musicradar.com/news/autechre-classic-interview",
+      "publication_date": "2021-08-11",
+      "interview_year": 1994,
+      "observed": "full republication read",
+      "authority": "original publisher republication of interview",
+      "audio_acquired": false
+    },
+    {
+      "url": "https://www.musicradar.com/artists/there-isnt-one-thing-about-the-gear-that-were-using-now-that-we-dont-understand-autechre-on-their-diligent-tech-learning-ethos-and-very-first-workflow",
+      "publication_date": "2026-08-24",
+      "interview_year": 1994,
+      "observed": "new article date, archival interview content",
+      "authority": "publisher resurfacing; not a new 2026 interview",
+      "audio_acquired": false
+    },
+    {
+      "url": "https://autechre.bandcamp.com/album/ae-2022",
+      "observed": "official page read; 19 performances; 17 longer than 1 hour; release 2024-12-03; all rights reserved",
+      "audio_acquired": false
+    },
+    {
+      "url": "https://autechre.warp.net/elseq",
+      "observed": "403 on direct read",
+      "status": "not refreshed; prior checkpoint retained",
+      "audio_acquired": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=mdhtm6qjmhU",
+      "observed": "watch HTML reachable; connector metadata and stream URL resolved; audio transfer timed out",
+      "audio_acquired": false
+    }
+  ]
+}

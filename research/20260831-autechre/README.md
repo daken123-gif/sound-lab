@@ -1333,3 +1333,59 @@ section 23と同じ解析条件を二つのGB 90秒previewへ適用した。
 
 上記は追補時点の更新。過去本文の日時・値・未取得記録は履歴として残す。
 
+## 30. 2026-09-21追補 — 反復の三軸化と全曲取得再試験
+
+詳細と取得証拠: [研究更新](checkpoints/20260921-update-01/REPORT.md)、[source manifest](checkpoints/20260921-update-01/sources.json)、[検査結果](checkpoints/20260921-update-01/validation.json)。確認日は2026-09-21 JST。
+
+### 30.1 発音時刻だけでは反復を判定できない
+
+2026-09-16の本人発言再検討と、2026-09-20の合成対照実験を本線へ統合した。The Independentの1994年記事でSean Boothは、`Flutter`の変化するbeatに対して反復するmelodyが位置の手掛かりになると説明している。MusicRadarが2021年に全文再掲した1994年取材では、soundがrhythmを導くこと、noteを異なる長さ・音高で鳴らすsoundとしてrhythm内で扱うことが本人たちから説明されている。MusicRadarの2026-08-24記事は同じ1994年取材の再紹介であり、新しい2026年インタビューではない。
+
+同一の250 ms発音列へ50 ms／300 msの音価を与えた合成実験では、短音が占有20%・重複0%、長音が占有100%・重複20%になった。一方、220／440 Hz交互条件の正のスペクトルフラックス相関は`0.9988477088`だった。短音の固定音高／交互音高も`0.9998724523`だった。保存済みスクリプトを再実行し、環境version文字列を除く科学ペイロードが保存済みJSONと完全一致することを確認した。
+
+従って、以前のFlutter previewのonset-flux／band-energy測定は保持するが、一つの相関値から「音楽的反復が同じ」とは判定しない。今後は少なくとも次を分ける。
+
+```text
+REPETITION_VECTOR {
+  onset_axis       // 発音時刻・局所周期
+  occupancy_axis   // 音価、空白、重なり、残響
+  frequency_axis   // 周波数分布とその遷移
+}
+```
+
+これは`Flutter`実音源の三軸測定を終えた結果ではない。反復するmelody、全barの非同一性、bar境界、生成上の因果方向は未検証である。
+
+### 30.2 状態遷移は「何が変わったか」だけでなく「何が残ったか」を持つ
+
+状態遷移の研究候補には、source／destinationだけでなく、保持された軸、変わった軸、介入、証拠窓を記録する。
+
+```text
+TRANSITION_CANDIDATE {
+  invariant_axes
+  changed_axes
+  source_state
+  destination_state
+  trigger_or_intervention
+  evidence_window
+}
+```
+
+この形式は設計候補であり、独立DRUM、製品コード、`integration/`へ採用していない。`AE_LIVE`にも適用可能だが、19公演を同条件で音響比較しておらず、1時間以内のLondon A／Bだけを代表群にしない。
+
+### 30.3 並行研究の現在差
+
+Jeff Mills、Charlie Hunter、J Dilla、Aphex Twin、独立DRUMのremote headと本文／code blobを再取得した。2026-09-14 checkpointからhead・blobの変更はなかった。
+
+- Millsの36章preview地図は床と密度の関係候補を持つが、非連続previewでありentry／exit／overlapは未測定。
+- Hunterの合成couplingは役割別の因果topologyを検査するが、Hunter録音の測定・奏法再現・聴感評価ではない。
+- Dillaの合成time-field／blind packは声部別関係を検査するが、Dilla実音源のonset測定と参加者回答は未取得。
+- Aphex Twinの公式Bandcamp三曲はhash付き信号測定済みだが、その取得実績をAutechreの取得・解析許可へ転用しない。
+- 独立DRUMはvoice別局所長、決定的chance、手動recordingを持つが、global tickを共有する。履歴state、voice間因果、可動域遷移は未実装。
+
+### 30.4 YouTube公式Topicの全曲取得は再び未達
+
+2026-09-21 UTC、取得branch `0e10051483bc800a8d7b77ab3284a8fb6c36477f`をその固定依存で再実行した。作品metadata、Autechre - Topicのchannel ID、600秒、format 251／WebM／Opusまでは解決したが、転送は`network_timeout`、実受信量は0 bytesだった。個人account、browser cookie、netrc、proxy、外部serviceは使用していない。
+
+音声ファイル、decode、全曲hash、source manifest、previewの全曲内offsetと一致度は得ていない。従って証拠状態は引き続き`metadata_observed / full_audio_not_acquired`であり、Apple Music previewのhash、約195.05秒の相対鎖、限定区間の分析を黙って置換しない。
+
+公式Bandcampの`AE_2022－`は2026-09-21にも19公演、`all rights reserved`と表示された。再生・購入表示を取得・機械解析許可へ拡張せず、音源本体は取得していない。製品コード、integration、main、並行研究branchは変更していない。

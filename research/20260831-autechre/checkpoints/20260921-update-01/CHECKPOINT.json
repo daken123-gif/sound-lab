@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "destination": "research/20260831-autechre/checkpoints/20260921-update-01",
+  "task": "Autechre研究：反復の三軸化、並行研究読戻し、公式Topic全曲取得境界の再検証",
+  "next_action": "Flutterの既存測定コードと入力を回収し、合成対照を同じ帯域別分析へ通してから、取得許可と版を固定できる全曲sourceが得られた場合のみ絶対offsetと一致度を測る。",
+  "pending": "Flutter全曲、preview絶対offset、三軸実測、AE_LIVE複数公演の同条件比較、YouTube 0-byte停止の根本原因は未解決。製品未採用。",
+  "file_count": 3,
+  "total_bytes": 14549,
+  "files": [
+    {
+      "path": "REPORT.md",
+      "bytes": 8454,
+      "sha256": "b3dc4541d1dce842fd9c0012effd15922e69b42ccbeb1ecab0c1974b0aa23a20"
+    },
+    {
+      "path": "sources.json",
+      "bytes": 4062,
+      "sha256": "ab585128302aba19941473f3bbacfeb742e83b78c60be24e7581aa6a06bbc142"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 2033,
+      "sha256": "5adcd3cf634cd5d44a22a9c7b36126469de7a09a5bd43f92a56d9672f5ef64f3"
+    }
+  ]
+}
