@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-09-27T23:20:59Z and later in the same run",
+  "decode": {
+    "tool": "ffmpeg",
+    "channels": 1,
+    "sample_rate_hz": 22050,
+    "sample_format": "float32 little-endian",
+    "complete_decode_required": true
+  },
+  "assets": [
+    {
+      "id": "gb-anti-current-30",
+      "catalog_role": "current default preview",
+      "retrieval_count": 2,
+      "repeat_byte_identical": true,
+      "bytes": 1028853,
+      "container_duration_s": 30.0,
+      "codec": "aac",
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "sha256": "96f0c35012443d6eb55648ebd8d01dd037d3f8615b03b96284bb7c9de2cf9d7f",
+      "decoded_samples": 660960,
+      "decoded_duration_s": 29.975510204081633,
+      "decoded_pcm_f32le_sha256": "10d5ebbda9137c020bdd46c80c4369cf995e21bdc3cfff84ddaa131861c51ee6"
+    },
+    {
+      "id": "gb-anti-old-30",
+      "catalog_role": "previously fixed default preview",
+      "bytes": 1125118,
+      "container_duration_s": 29.976961,
+      "codec": "aac",
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "sha256": "7bd4c736c5649cbd25c15712643391427d9bd9f43df398599438a12c1fe448ab",
+      "prior_hash_matches": true,
+      "decoded_samples": 659936,
+      "decoded_duration_s": 29.92907029478458,
+      "decoded_pcm_f32le_sha256": "d0d701731043aa8ef5356094d51690018fd02c43242d9b13e842a91b610be84a"
+    },
+    {
+      "id": "gb-anti-old-90",
+      "catalog_role": "previously fixed enhanced preview",
+      "bytes": 3122487,
+      "container_duration_s": 89.977324,
+      "codec": "aac",
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "sha256": "4132908b22a6407d5d30b42c3618ecafa8817beeb7dc65b4609354d5aeb5cc89",
+      "prior_hash_matches": true,
+      "decoded_samples": 1982944,
+      "decoded_duration_s": 89.92943310657597,
+      "decoded_pcm_f32le_sha256": "cac44da04ee7b7fd6a90c8d8a73f352e430d4601ee2649aba15843084b7f2d62"
+    },
+    {
+      "id": "gb-eps-current-30",
+      "catalog_role": "current default preview",
+      "bytes": 1097746,
+      "container_duration_s": 29.976961,
+      "codec": "aac",
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "sha256": "b2f6727ed9efe09da82dbc468570d2fc0663addcbc0eb24fafd8263c9c5ca9b0",
+      "prior_hash_matches": true,
+      "decoded_samples": 659936,
+      "decoded_duration_s": 29.92907029478458,
+      "decoded_pcm_f32le_sha256": "02e8414374657901609dff57c7841e38d09318115f6f78e437ca7577e6ee36f2"
+    },
+    {
+      "id": "jp-anti-current-30",
+      "catalog_role": "current default preview",
+      "bytes": 996146,
+      "container_duration_s": 30.012993,
+      "codec": "aac",
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "sha256": "1ab386168365c5d575bc7607464d33b298198070272950f8e6327dc12324d004",
+      "prior_hash_matches": true,
+      "decoded_samples": 660960,
+      "decoded_duration_s": 29.975510204081633,
+      "decoded_pcm_f32le_sha256": "57a41664d25f20ec11f032e6470f76cb1f5d9f4bfc2f35a634b5ddc0852acb1d"
+    }
+  ],
+  "comparisons": [
+    {
+      "reference": "gb-anti-old-30",
+      "query": "gb-anti-current-30",
+      "compared_samples": 659936,
+      "best_offset_samples": 0,
+      "best_offset_s": 0.0,
+      "pearson": 0.9999680947560817,
+      "normalized_correlation": 0.9999681115150452,
+      "mean_absolute_error": 0.0001737263664836064
+    },
+    {
+      "reference": "gb-anti-old-90",
+      "query": "gb-anti-current-30",
+      "compared_samples": 660960,
+      "best_offset_samples": 0,
+      "best_offset_s": 0.0,
+      "pearson": 0.9999681324251521,
+      "normalized_correlation": 0.9999678134918213,
+      "mean_absolute_error": 0.0001734363759169355
+    }
+  ],
+  "delivery_change": {
+    "old_bytes": 1125118,
+    "new_bytes": 1028853,
+    "byte_difference": -96265,
+    "percent_difference": -8.55599146045126,
+    "decoded_sample_difference": 1024,
+    "decoded_duration_difference_s": 0.046439909297052155,
+    "container_sha_changed": true,
+    "decoded_pcm_sha_changed": true,
+    "catalog_identity_changed": false,
+    "content_start_changed": false,
+    "interpretation": "Same preview-relative content at offset 0 with a new delivery asset and approximately 46 ms more decoded tail; re-encoding or repackaging is the most consistent explanation, not a byte-identical source."
+  },
+  "full_track": {
+    "audio_acquired": false,
+    "audio_sha256": null,
+    "decoded": false,
+    "preview_absolute_offset": null,
+    "preview_full_match": null
+  },
+  "scope_guards": {
+    "prior_preview_results_overwritten": false,
+    "audio_committed": false,
+    "product_code_changed": false,
+    "integration_changed": false,
+    "main_changed": false,
+    "parallel_branches_changed": false
+  }
+}

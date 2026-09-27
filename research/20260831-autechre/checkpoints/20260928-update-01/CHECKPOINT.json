@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "destination": "research/20260831-autechre/checkpoints/20260928-update-01",
+  "task": "Autechre研究：Flutter公式preview配信資産の時点差監査、公開面更新、並行研究本文読戻し",
+  "next_action": "取得許可と版を固定できるFlutter全曲sourceが得られた場合のみ、現旧previewの全曲内絶対offsetと一致度を測る。全曲未取得の間は既存の約195.05秒相対鎖を限定結果として維持する。",
+  "pending": "Flutter全曲、preview絶対offset、反復三軸の実音源測定、bar境界、生成因果、AE_LIVE複数公演の同条件比較は未取得。製品未採用。",
+  "file_count": 3,
+  "total_bytes": 18621,
+  "files": [
+    {
+      "path": "REPORT.md",
+      "bytes": 8387,
+      "sha256": "94c69a70e3dae2e28ac509de80edec7cf52f6b38f60ca2601ec6d7a20ac74dfc"
+    },
+    {
+      "path": "sources.json",
+      "bytes": 5540,
+      "sha256": "5e17c30a8ade3216647add2795f8814134d3aeef90e6006be3cd042b723d4465"
+    },
+    {
+      "path": "preview-delivery-audit.json",
+      "bytes": 4694,
+      "sha256": "07382b52fa3efb655550f9f483e99aa4e3f3f44019b1a8b50ed977b2f55f977a"
+    }
+  ]
+}

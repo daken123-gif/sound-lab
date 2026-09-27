@@ -1389,3 +1389,33 @@ Jeff Mills、Charlie Hunter、J Dilla、Aphex Twin、独立DRUMのremote headと
 音声ファイル、decode、全曲hash、source manifest、previewの全曲内offsetと一致度は得ていない。従って証拠状態は引き続き`metadata_observed / full_audio_not_acquired`であり、Apple Music previewのhash、約195.05秒の相対鎖、限定区間の分析を黙って置換しない。
 
 公式Bandcampの`AE_2022－`は2026-09-21にも19公演、`all rights reserved`と表示された。再生・購入表示を取得・機械解析許可へ拡張せず、音源本体は取得していない。製品コード、integration、main、並行研究branchは変更していない。
+
+## 31. 2026-09-28追補 — preview配信資産の交代と内容同一性
+
+詳細と取得証拠: [研究更新](checkpoints/20260928-update-01/REPORT.md)、[source manifest](checkpoints/20260928-update-01/sources.json)、[preview配信監査](checkpoints/20260928-update-01/preview-delivery-audit.json)。確認日は2026-09-28 JST。
+
+### 31.1 GB Antiのdefault preview assetが交代した
+
+Shazam接続内のApple Music Catalogで`Flutter`三catalogを再取得した。曲名、artist、album、song ID、ISRC `GBBPW9400118`、catalog durationは前回から維持された。一方、GB `Anti - EP`のdefault 30秒preview URLは`AudioPreview125`から`AudioPreview221`へ変わり、現行資産のSHA-256は`96f0c35012443d6eb55648ebd8d01dd037d3f8615b03b96284bb7c9de2cf9d7f`、`1028853 bytes`となった。二回の取得はbyte単位で一致した。
+
+旧GB Anti 30秒、旧90秒、現行GB EPs 30秒、現行JP Anti 30秒も再取得し、既存hashとの一致を確認した。従って旧hashを削除せず、取得時点のdelivery asset証拠として保持する。2026-09-14の「GB Anti 30秒の旧hashが現行default取得と一致」という時点記述だけを失効扱いとする。
+
+### 31.2 hash差を音楽内容の差へ短絡しない
+
+現行GB Anti 30秒をmono／22,050 Hz／float32へ全区間decodeすると`660960 sample`だった。旧30秒は`659936 sample`で、現行版が`1024 sample`、約`46.44 ms`長い。
+
+- 現行30秒 ↔ 旧30秒: offset `0.000 s`、Pearson `0.999968095`
+- 現行30秒 ↔ 旧90秒先頭: offset `0.000 s`、Pearson `0.999968132`
+
+container hashもdecoded PCM hashも一致しないが、現行30秒は旧90秒の先頭と同じ内容を約46 ms長く含む。現時点では、新しい音楽区間への差替えより、同一区間の再エンコード／再包装が最も整合的である。既存のpreview音響測定と約195.05秒相対鎖は保持するが、現旧assetを同一byte列とは呼ばない。
+
+以後のpreview manifestでは、`catalog identity`、`delivery URL/hash/取得時刻`、`decoded signal`、`content alignment`を別層で持つ候補とする。これは研究記録の設計候補であり、製品採用ではない。
+
+### 31.3 公開面・並行研究・全曲境界
+
+- AE_STOREの検索面では`elseq 1-5`を2026-10-02予定、21 clips、5CDとして確認したが、直接本文はHTTP 403で未取得。Apple Music GBの検索は2016年の`elseq 1`一件を返し、新しいcatalog identityや音源を確認できなかった。
+- 公式Bandcampの`AE_2022－`は19公演、2024-12-03 release、`all rights reserved`を維持。upcoming showsの更新を新set・録音・音源公開の証拠へ使わない。
+- Mills、Hunter、Dilla、Aphex Twin、独立DRUMのheadと本文／code blobを再取得し、2026-09-21から変更なし。非連続preview、合成対照、他作家の合法的full stream、実装codeを互いの不足証拠へ代用しない。
+- YouTube Topic全曲音声は今回も取得済みにしていない。全曲hash、decode、絶対offset、preview／full一致度、AE_LIVE同条件比較は未取得のままである。
+
+音源本体はGitへ含めず、製品コード、`integration/`、`main`、並行研究branchは変更していない。

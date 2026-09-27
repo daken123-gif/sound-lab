@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-09-27T23:20:59Z and later in the same run",
+  "autechre_base": {
+    "branch": "research/20260831-autechre",
+    "commit": "75341b7c638d552a951a33b402a4707fb1836a55",
+    "readme_path": "research/20260831-autechre/README.md",
+    "readme_blob": "aac2a069e03ac89fd770162ed8a735989c1abe7c"
+  },
+  "apple_music_catalog": [
+    {
+      "storefront": "gb",
+      "song_id": "292743285",
+      "name": "Flutter",
+      "artist": "Autechre",
+      "album": "Anti - EP",
+      "isrc": "GBBPW9400118",
+      "duration_ms": 597733,
+      "release_date": "1994-09-03",
+      "track_number": 3,
+      "url": "https://music.apple.com/gb/album/flutter/292743188?i=292743285",
+      "default_preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0e/69/05/0e6905ab-a335-1bb3-2550-6ee7d0580cff/mzaf_1987220487659465521.plus.aac.p.m4a",
+      "changed_since_20260914": true
+    },
+    {
+      "storefront": "gb",
+      "song_id": "420210312",
+      "name": "Flutter",
+      "artist": "Autechre",
+      "album": "EPs 1991 - 2002",
+      "isrc": "GBBPW9400118",
+      "duration_ms": 599680,
+      "release_date": "2011-02-15",
+      "track_number": 9,
+      "url": "https://music.apple.com/gb/album/flutter/420210242?i=420210312",
+      "default_preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/39/76/71/39767108-ea57-c4a2-b8cf-a3dc0d605e99/mzaf_14897457753820961134.plus.aac.p.m4a",
+      "changed_since_20260914": false
+    },
+    {
+      "storefront": "jp",
+      "song_id": "314910098",
+      "name": "Flutter",
+      "artist": "Autechre",
+      "album": "Anti - EP",
+      "isrc": "GBBPW9400118",
+      "duration_ms": 597733,
+      "release_date": "1994-09-03",
+      "track_number": 3,
+      "url": "https://music.apple.com/jp/album/flutter/314910095?i=314910098",
+      "default_preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f4/48/ed/f448edb9-4712-1866-c30a-f2affbc02a7f/mzaf_13802220145402762989.plus.aac.p.m4a",
+      "changed_since_20260914": false
+    }
+  ],
+  "apple_music_search": {
+    "storefront": "gb",
+    "term": "Autechre elseq 1-5",
+    "types": "albums",
+    "limit": 10,
+    "result_count": 1,
+    "returned_album": {
+      "id": "1154464837",
+      "name": "elseq 1",
+      "release_date": "2016-05-20",
+      "track_count": 5,
+      "url": "https://music.apple.com/gb/album/elseq-1/1154464837"
+    },
+    "boundary": "This query result does not prove absence from every storefront or future catalog state."
+  },
+  "preview_acquisition": {
+    "authorization_boundary": "Public Apple Music preview URLs returned by the catalog or retained as previously fixed preview URLs; preview-only acquisition, no account or full-track extraction.",
+    "audio_committed_to_git": false,
+    "decoded_pcm_committed_to_git": false,
+    "full_track_acquired": false,
+    "details_in": "preview-delivery-audit.json"
+  },
+  "official_web": [
+    {
+      "url": "https://autechre.bandcamp.com/album/ae-2022",
+      "authority": "official Autechre Bandcamp",
+      "observed": "19-track AE_2022－ bundle, released 2024-12-03, all rights reserved; upcoming show surface begins at 2026-09-28 Wrocław in this read",
+      "audio_acquired": false
+    },
+    {
+      "url": "https://autechre.warp.net/elseq",
+      "authority": "official AE_STORE",
+      "observed": "search/index surface lists elseq 1-5 preorder, release 2026-10-02, 21 clips, 5xCD; direct body returned HTTP 403",
+      "body_read": false,
+      "audio_acquired": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=mdhtm6qjmhU",
+      "authority": "Autechre - Topic candidate fixed in prior checkpoints",
+      "observed": "direct web read unavailable in this run; no new acquisition route established",
+      "audio_acquired": false
+    }
+  ],
+  "parallel_git": [
+    {
+      "branch": "research/20260902-jeff-mills",
+      "commit": "df63ad47bc2d5928c4d7d316664f4ad1c3bd9142",
+      "path": "research/20260902-jeff-mills/README.md",
+      "blob": "dd9c58c51f547a6395ea65d04ccd7695880cfdad",
+      "body_read": true,
+      "changed_since_20260921": false
+    },
+    {
+      "branch": "research/20260902-charlie-hunter",
+      "commit": "2ca44ba3111b06c5f489535940d1ad16844ab5fb",
+      "path": "research/20260902-charlie-hunter/README.md",
+      "blob": "9e308b70fb32e6cfa3658fe9f7498f1b53ea0e2a",
+      "body_read": true,
+      "changed_since_20260921": false
+    },
+    {
+      "branch": "research/20260902-j-dilla",
+      "commit": "164ad01ae1e06c5f489535940d1ad16844ab5fb",
+      "path": "research/20260902-j-dilla/README.md",
+      "blob": "1cf4c210c56b13da1aaba8bc7d346543a07220b7",
+      "body_read": true,
+      "changed_since_20260921": false
+    },
+    {
+      "branch": "research/20260902-aphex-twin",
+      "commit": "a439860d9fd3e3b96e966c94ec77346e213e8bd9",
+      "path": "research/20260902-aphex-twin/README.md",
+      "blob": "75d6fec71f12be55159b73b97510658df022a7fc",
+      "source_manifest_path": "research/20260902-aphex-twin/analysis/r02-sources.json",
+      "source_manifest_blob": "7cdebdfbc07d1dc6b684bbbe3834865b292220dc",
+      "body_read": true,
+      "changed_since_20260921": false
+    },
+    {
+      "branch": "repair/live-canvas-independent-drums",
+      "commit": "2f9f7917f046b98f809806c80f1f0296e5ffe859",
+      "path": "field-processor/drum-engine.js",
+      "blob": "5a869016cf2ef00442c9f848165dedb83990a66b",
+      "body_read": true,
+      "changed_since_20260921": false
+    }
+  ]
+}
