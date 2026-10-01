@@ -3,7 +3,7 @@
 - 状態: `active`
 - research-id: `20260902-charlie-hunter`
 - 研究期間: 長期
-- 更新日時: 2026-09-06 UTC
+- 更新日時: 2026-10-01 UTC
 - 対象: Charlie Hunterの演奏、楽器設計、リズム思想、録音方法
 - 現在の問い: ベース、コード、旋律を一人の身体へ拘束することで生じるグルーヴを、珍しい奏法の模倣にせず、演奏可能な構造としてどう記述できるか
 
@@ -857,3 +857,59 @@ v1は公平な嗜好比較ではない。固定macro条件では3秒地点の `c
 また私は今回、WAVの生成、byte再現性、形式、hash、条件秘匿を検証したが、聴感評価は実施していない。Charlie Hunter本人の演奏との一致、ノンミュージシャンの操作学習、iPhoneスピーカー／イヤホンでの弁別性も未確認である。
 
 次版では、mute後を含む総発音数、RMS、peak、区間別エネルギーを近づけた `energy-matched v2` を作り、因果topologyと単純な音量差を分離する。その後で初めて、条件を伏せた評価を比較する。
+
+## 2026-10-01追補 — energy-matched 合成tone聴取刺激 v2
+
+### 一次資料との接続
+
+Charlie Hunterは2010年の本人インタビューで、grooveを最上位に置き、低音と上声のcounterpoint、time、phrasingを一つの楽器上で扱うと説明している。2025年のCharlie Hunter／Ella Feingold本人インタビューでは、Big 6をbassとguitarのcounterpointを持つdrum setに近い楽器として説明し、二人の録音も各パートの単純な同一化ではなく、異なる役割の会話として述べられている。
+
+この一次資料が直接支えるのは、Hunterの中心が「多くの音を同時に鳴らすこと」ではなく、time、pocket、counterpoint、役割間の応答にあることまでである。以下の三条件と数値は、その観測から作った研究用の合成反例であり、Hunter本人の演奏測定ではない。
+
+### v1の交絡を除いた方法
+
+v1では固定macro条件だけ3秒地点で全声が消え、条件名を音量差だけで推測できた。v2では次を同時に固定した。
+
+- 三条件とも9発音、全発音active。
+- 各gestureの総音価を `g1 = 1.86秒`、`g2 = 1.86秒`、`g3 = 1.80秒` に統一。
+- constant-power panningを使用し、声部の左右位置で総エネルギーが変わらないようにした。
+- 各刺激へ全体で一つだけRMS正規化係数を適用した。区間ごとの音量追従は行っていない。
+- 0.25秒地点に全条件共通の独立calibration pulseを置き、peakを同一にした。
+- fixed macroの全声消音を廃止し、3秒地点では三声の音価を同量だけ短縮した。
+- 条件差は、同じ総音価をどの声部のonset／durationへ配分するかに限定した。
+
+### 保存した検証物
+
+- `data/synthetic-hunter-coupling-v2.json`
+- `tools/render_hunter_coupling_stimuli_v2.py`
+- `tests/test_render_hunter_coupling_stimuli_v2.py`
+- `listening-protocol-v2.md`
+- `data/synthetic-hunter-listening-v2/manifest.json`
+- `data/synthetic-hunter-listening-v2/answer-key.json`
+- `data/synthetic-hunter-listening-v2/sample-a.wav`
+- `data/synthetic-hunter-listening-v2/sample-b.wav`
+- `data/synthetic-hunter-listening-v2/sample-c.wav`
+
+### 実測した合成刺激の一致度
+
+| sample | 発音数 | global RMS | peak | g1 RMS | g2 RMS | g3 RMS |
+|---|---:|---:|---:|---:|---:|---:|
+| A | 9 | -20.859648 dBFS | 0.549993 | -19.437298 | -19.437298 | -20.381020 |
+| B | 9 | -20.859648 dBFS | 0.549993 | -19.437016 | -19.436243 | -20.382405 |
+| C | 9 | -20.859648 dBFS | 0.549993 | -19.438082 | -19.435944 | -20.381610 |
+
+三条件のglobal RMS差は表示精度上0、peak差も0である。区間別RMS差の最大はg2の0.002138 dBで、v1の総エネルギー差による同定経路を実用上除いた。WAVは4.25秒、stereo、22.05 kHz、16 bit PCMで、三本は相互に異なる。
+
+新規5試験と既存12試験を同時実行し、17件すべて成功した。確認範囲は、生成、形式、byte再現性、hash、条件秘匿、発音数、音価予算、RMS、peak、区間別エネルギー、全声消音の不在である。
+
+### 現在の判断と未解決
+
+v2により、因果topologyの差と単純な発音数・総音価・音量差を分離した比較刺激を作れた。まだ確認していないのは次である。
+
+- 私自身または人間評価者が、条件名を伏せて三条件を聴き分けられるか。
+- Hunter型couplingが原因追跡、役割差、空白／受け渡しで高く評価されるか。
+- 条件差が音楽的に有効か、単に時間配置の違いとして聞こえるだけか。
+- Charlie Hunter本人の実演、録音、onset、音価、声部間偏差との一致。
+- iPhoneスピーカー、イヤホン、外部スピーカーで弁別性が保たれるか。
+
+したがってv2も、Charlie Hunter本人の演奏を実測した成果、Hunter風プリセット、Sound Labへの製品採用にはしない。次工程は、`listening-protocol-v2.md`を使った条件秘匿評価と、回答前後の記録分離である。

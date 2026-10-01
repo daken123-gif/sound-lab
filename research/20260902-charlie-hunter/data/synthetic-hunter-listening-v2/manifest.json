@@ -1,0 +1,77 @@
+{
+  "calibration_pulse_seconds": 0.25,
+  "channels": 2,
+  "duration_seconds": 4.25,
+  "evidence_boundary": "Energy-matched synthetic topology comparison; no Charlie Hunter recording or performance measurement is used.",
+  "gesture_markers_seconds": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "matching_method": "Equal active-note count and per-gesture duration sums, constant-power panning, then one global RMS scalar per complete tone stimulus. An identical isolated pulse fixes peak.",
+  "sample_rate": 22050,
+  "sample_width_bytes": 2,
+  "samples": [
+    {
+      "active_note_count": 9,
+      "duration_sum_seconds": {
+        "g1": 1.86,
+        "g2": 1.86,
+        "g3": 1.8
+      },
+      "file": "sample-a.wav",
+      "frames": 93712,
+      "global_rms_dbfs": -20.859648,
+      "interval_rms_dbfs": {
+        "g1": -19.437298,
+        "g2": -19.437298,
+        "g3": -20.38102
+      },
+      "normalization_scale": 0.161057399,
+      "peak": 0.549993,
+      "sample_id": "sample-a",
+      "sha256": "e2e32e0e5f9cf22dc98cc9c3ad7d0e98ceff0109ccce65dd779d282c0a2c5ff3"
+    },
+    {
+      "active_note_count": 9,
+      "duration_sum_seconds": {
+        "g1": 1.86,
+        "g2": 1.86,
+        "g3": 1.8
+      },
+      "file": "sample-b.wav",
+      "frames": 93712,
+      "global_rms_dbfs": -20.859648,
+      "interval_rms_dbfs": {
+        "g1": -19.437016,
+        "g2": -19.436243,
+        "g3": -20.382405
+      },
+      "normalization_scale": 0.161025828,
+      "peak": 0.549993,
+      "sample_id": "sample-b",
+      "sha256": "9884dc3b3fad9b95df27e90fb8f3ab8122605f392a82c44f2bd677c059325d5e"
+    },
+    {
+      "active_note_count": 9,
+      "duration_sum_seconds": {
+        "g1": 1.86,
+        "g2": 1.86,
+        "g3": 1.8
+      },
+      "file": "sample-c.wav",
+      "frames": 93712,
+      "global_rms_dbfs": -20.859648,
+      "interval_rms_dbfs": {
+        "g1": -19.438082,
+        "g2": -19.435944,
+        "g3": -20.38161
+      },
+      "normalization_scale": 0.16104673,
+      "peak": 0.549993,
+      "sample_id": "sample-c",
+      "sha256": "08907b97d35566dae0d837da7eebb5a573c4fd231f76d8779e159a8056104cf1"
+    }
+  ],
+  "schema_version": "sound-lab.synthetic-hunter-listening/v2"
+}

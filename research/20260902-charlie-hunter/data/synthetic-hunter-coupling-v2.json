@@ -1,0 +1,52 @@
+{
+  "schema_version": "sound-lab.synthetic-hunter-coupling/v2",
+  "evidence_boundary": "Synthetic topology contrast only. No Charlie Hunter audio, MIDI, transcription, timing measurement, or artist-style preset is included.",
+  "design_goal": "Keep all three conditions at nine active notes and equal per-gesture summed note duration, while changing only the distribution of timing and duration across voices.",
+  "conditions": {
+    "independent_voice": {
+      "slots": [
+        {"gesture_id": "g1", "voice": "bass", "onset": 0.90, "duration": 0.62, "active": true},
+        {"gesture_id": "g1", "voice": "chord", "onset": 1.00, "duration": 0.62, "active": true},
+        {"gesture_id": "g1", "voice": "melody", "onset": 1.00, "duration": 0.62, "active": true},
+        {"gesture_id": "g2", "voice": "bass", "onset": 2.00, "duration": 0.62, "active": true},
+        {"gesture_id": "g2", "voice": "chord", "onset": 2.00, "duration": 0.62, "active": true},
+        {"gesture_id": "g2", "voice": "melody", "onset": 2.12, "duration": 0.62, "active": true},
+        {"gesture_id": "g3", "voice": "bass", "onset": 3.00, "duration": 0.70, "active": true},
+        {"gesture_id": "g3", "voice": "chord", "onset": 3.00, "duration": 0.40, "active": true},
+        {"gesture_id": "g3", "voice": "melody", "onset": 3.00, "duration": 0.70, "active": true}
+      ]
+    },
+    "fixed_macro": {
+      "slots": [
+        {"gesture_id": "g1", "voice": "bass", "onset": 0.966667, "duration": 0.62, "active": true},
+        {"gesture_id": "g1", "voice": "chord", "onset": 0.966667, "duration": 0.62, "active": true},
+        {"gesture_id": "g1", "voice": "melody", "onset": 0.966667, "duration": 0.62, "active": true},
+        {"gesture_id": "g2", "voice": "bass", "onset": 2.04, "duration": 0.62, "active": true},
+        {"gesture_id": "g2", "voice": "chord", "onset": 2.04, "duration": 0.62, "active": true},
+        {"gesture_id": "g2", "voice": "melody", "onset": 2.04, "duration": 0.62, "active": true},
+        {"gesture_id": "g3", "voice": "bass", "onset": 3.00, "duration": 0.60, "active": true},
+        {"gesture_id": "g3", "voice": "chord", "onset": 3.00, "duration": 0.60, "active": true},
+        {"gesture_id": "g3", "voice": "melody", "onset": 3.00, "duration": 0.60, "active": true}
+      ]
+    },
+    "hunter_coupling": {
+      "slots": [
+        {"gesture_id": "g1", "voice": "bass", "onset": 0.90, "duration": 0.62, "active": true},
+        {"gesture_id": "g1", "voice": "chord", "onset": 0.96, "duration": 0.62, "active": true},
+        {"gesture_id": "g1", "voice": "melody", "onset": 1.04, "duration": 0.62, "active": true},
+        {"gesture_id": "g2", "voice": "bass", "onset": 1.98, "duration": 0.62, "active": true},
+        {"gesture_id": "g2", "voice": "chord", "onset": 2.02, "duration": 0.62, "active": true},
+        {"gesture_id": "g2", "voice": "melody", "onset": 2.12, "duration": 0.62, "active": true},
+        {"gesture_id": "g3", "voice": "bass", "onset": 3.00, "duration": 0.50, "active": true},
+        {"gesture_id": "g3", "voice": "chord", "onset": 3.00, "duration": 0.40, "active": true},
+        {"gesture_id": "g3", "voice": "melody", "onset": 3.04, "duration": 0.90, "active": true}
+      ]
+    }
+  },
+  "balance_contract": {
+    "active_note_count_each_condition": 9,
+    "summed_duration_seconds_each_gesture": {"g1": 1.86, "g2": 1.86, "g3": 1.80},
+    "global_rms_normalization": "one scalar per complete stimulus before the identical calibration pulse is added",
+    "prohibited_shortcut": "No condition may identify itself by muting all voices."
+  }
+}
