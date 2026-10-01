@@ -1,0 +1,39 @@
+{
+  "evidence_boundary": "Audio-only structural recovery; evaluator definitions were known during development. This is not a blind human listening result and not a Charlie Hunter performance measurement.",
+  "samples": [
+    {
+      "duration_spread": {"g1": 0.0, "g2": 0.0, "g3": 0.0},
+      "estimated_condition": "fixed_macro",
+      "file": "sample-a.wav",
+      "gestures": {
+        "g1": {"bass": {"duration": 0.609, "onset": 0.968}, "chord": {"duration": 0.609, "onset": 0.968}, "melody": {"duration": 0.609, "onset": 0.968}},
+        "g2": {"bass": {"duration": 0.609, "onset": 2.04}, "chord": {"duration": 0.609, "onset": 2.04}, "melody": {"duration": 0.609, "onset": 2.04}},
+        "g3": {"bass": {"duration": 0.594, "onset": 2.998}, "chord": {"duration": 0.594, "onset": 2.998}, "melody": {"duration": 0.594, "onset": 2.998}}
+      },
+      "onset_spread": {"g1": 0.0, "g2": 0.0, "g3": 0.0}
+    },
+    {
+      "duration_spread": {"g1": 0.0, "g2": 0.005, "g3": 0.499},
+      "estimated_condition": "hunter_coupling",
+      "file": "sample-b.wav",
+      "gestures": {
+        "g1": {"bass": {"duration": 0.614, "onset": 0.898}, "chord": {"duration": 0.614, "onset": 0.958}, "melody": {"duration": 0.614, "onset": 1.038}},
+        "g2": {"bass": {"duration": 0.614, "onset": 1.981}, "chord": {"duration": 0.614, "onset": 2.015}, "melody": {"duration": 0.609, "onset": 2.12}},
+        "g3": {"bass": {"duration": 0.494, "onset": 2.998}, "chord": {"duration": 0.394, "onset": 2.998}, "melody": {"duration": 0.893, "onset": 3.038}}
+      },
+      "onset_spread": {"g1": 0.14, "g2": 0.139, "g3": 0.04}
+    },
+    {
+      "duration_spread": {"g1": 0.0, "g2": 0.005, "g3": 0.299},
+      "estimated_condition": "independent_voice",
+      "file": "sample-c.wav",
+      "gestures": {
+        "g1": {"bass": {"duration": 0.614, "onset": 0.898}, "chord": {"duration": 0.614, "onset": 0.998}, "melody": {"duration": 0.614, "onset": 0.998}},
+        "g2": {"bass": {"duration": 0.609, "onset": 2.0}, "chord": {"duration": 0.614, "onset": 2.0}, "melody": {"duration": 0.614, "onset": 2.115}},
+        "g3": {"bass": {"duration": 0.693, "onset": 2.998}, "chord": {"duration": 0.394, "onset": 2.998}, "melody": {"duration": 0.693, "onset": 2.998}}
+      },
+      "onset_spread": {"g1": 0.1, "g2": 0.115, "g3": 0.0}
+    }
+  ],
+  "schema_version": "sound-lab.synthetic-hunter-audio-recovery/v1"
+}
