@@ -77,7 +77,14 @@ class AudioRecoveryTests(unittest.TestCase):
                 path = Path(directory) / f"{condition}.wav"
                 render(path, condition)
                 self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), EXPECTED[condition])
-                self.assertEqual(analyzer.analyze(path)["estimated_condition"], condition)
+                result = analyzer.analyze(path)
+                self.assertEqual(result["estimated_condition"], condition)
+                for index, (expected_onset, expected_duration) in enumerate(SLOTS[condition]):
+                    gesture = f"g{index // 3 + 1}"
+                    voice = VOICES[index]
+                    recovered = result["gestures"][gesture][voice]
+                    self.assertLessEqual(abs(recovered["onset"] - expected_onset), 0.015)
+                    self.assertLessEqual(abs(recovered["duration"] - expected_duration), 0.015)
 
     def test_classification_survives_global_gain_change(self):
         with tempfile.TemporaryDirectory() as directory:
