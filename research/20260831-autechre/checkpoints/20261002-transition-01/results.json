@@ -1,0 +1,55 @@
+{
+  "source_sha256": "ab5d3f767f96e3d62e4abd494654e75974f2579542e113ae8fc0a20d59ebc751",
+  "bytes": 3117352,
+  "decoded_seconds": 89.92943310657597,
+  "source_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/39/76/71/39767108-ea57-c4a2-b8cf-a3dc0d605e99/mzaf_9828120821841368842.plus.aac.ep.m4a",
+  "catalog_id": "420210312",
+  "isrc_from_prior_catalog": "GBBPW9400118",
+  "full_track_offset": null,
+  "method": {
+    "sample_rate": 22050,
+    "frame": 2048,
+    "hop": 256,
+    "centroid": "power weighted",
+    "flux": "positive L1-normalized magnitude difference",
+    "peaks": "median + 2 MAD, prominence MAD, distance >=55ms",
+    "local_threshold": "recomputed separately inside each 30s window; boundary prominence differs"
+  },
+  "versions": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers"
+  },
+  "windows": [
+    {
+      "start_s": 0,
+      "end_s": 30,
+      "rms_median_dbfs": -14.551527325710364,
+      "centroid_median_hz": 854.1528515188343,
+      "normalized_flux_median": 0.1287040828714361,
+      "normalized_flux_p90": 0.17569034805178502,
+      "global_threshold_events": 275,
+      "local_threshold_events": 195
+    },
+    {
+      "start_s": 30,
+      "end_s": 60,
+      "rms_median_dbfs": -20.190064723419432,
+      "centroid_median_hz": 411.5210946176564,
+      "normalized_flux_median": 0.08562670692761747,
+      "normalized_flux_p90": 0.10866021989946538,
+      "global_threshold_events": 47,
+      "local_threshold_events": 102
+    },
+    {
+      "start_s": 60,
+      "end_s": 89.92943310657597,
+      "rms_median_dbfs": -24.193530298070506,
+      "centroid_median_hz": 342.04441186586774,
+      "normalized_flux_median": 0.07769880606127083,
+      "normalized_flux_p90": 0.09914365667585537,
+      "global_threshold_events": 18,
+      "local_threshold_events": 93
+    }
+  ]
+}

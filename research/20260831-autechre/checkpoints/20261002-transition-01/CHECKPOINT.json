@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "destination": "research/20260831-autechre/checkpoints/20261002-transition-01",
+  "task": "Flutterの打点減少を条件比較し図示",
+  "next_action": "preview内25–30秒周辺で帯域別に変化を切り分ける",
+  "pending": "声部同定、全曲、絶対offset、因果未検証",
+  "file_count": 4,
+  "total_bytes": 198767,
+  "files": [
+    {
+      "path": "REPORT.md",
+      "bytes": 4035,
+      "sha256": "893f1dab88f7c3b5662cc83da40bc8d89df56dd92e650eb13697cee8355a383a"
+    },
+    {
+      "path": "analyze.py",
+      "bytes": 3583,
+      "sha256": "a510d0630f36bb28e3fe2ee71a7336e3eea72de0a6a9303d994826ee1457952d"
+    },
+    {
+      "path": "results.json",
+      "bytes": 1920,
+      "sha256": "084c2768e0df9e5f72140a61dfd40efdc16532b7ea31ec61db91533fbb2e06fb"
+    },
+    {
+      "path": "transition.png",
+      "bytes": 189229,
+      "sha256": "6aea42476232bdd9963ca5b36683800c63f4fd60810241b62059f1e30ba38900"
+    }
+  ]
+}
