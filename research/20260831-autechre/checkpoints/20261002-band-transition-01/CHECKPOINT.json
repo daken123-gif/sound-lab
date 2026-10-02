@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "destination": "research/20260831-autechre/checkpoints/20261002-band-transition-01",
+  "task": "Flutter preview内25〜30秒の帯域別変化を実測",
+  "next_action": "25〜30秒を聴取可能な短い時系列記述と照合し、高域後退・低域突出・中域優勢が知覚上も成立するか確認する。",
+  "pending": "発音源・声部・因果・全曲内offset・全曲解析・聴取評価・製品採用は未確認。",
+  "file_count": 4,
+  "total_bytes": 229071,
+  "files": [
+    {
+      "path": "REPORT.md",
+      "bytes": 5306,
+      "sha256": "1c2e1f6a867b9c8e95031fdc255a0cefd690173538c5b81c0de3ec982e7753f2"
+    },
+    {
+      "path": "analyze_bands.py",
+      "bytes": 5161,
+      "sha256": "f469bd2c3bb5a59e7f75a6b71d21f2dc6df1de6d4d37be7f5b4387b894528673"
+    },
+    {
+      "path": "results.json",
+      "bytes": 13904,
+      "sha256": "6212732dc1bdbcb3677de499dbb173f7f4813ab8a13aba2bbf55bd9c1896fa4d"
+    },
+    {
+      "path": "band-transition.png",
+      "bytes": 204700,
+      "sha256": "feb3ed175296d99c11d2fd89b0f01ff5a3a23f9f13c5bae5ff21ca946d7a111c"
+    }
+  ]
+}

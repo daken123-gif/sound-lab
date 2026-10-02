@@ -1,0 +1,395 @@
+{
+  "kind": "fixed_flutter_preview_bandwise_transition_audit",
+  "source_sha256": "ab5d3f767f96e3d62e4abd494654e75974f2579542e113ae8fc0a20d59ebc751",
+  "decoded_seconds": 89.92943310657597,
+  "method": {
+    "sample_rate": 22050,
+    "frame": 2048,
+    "hop": 256,
+    "bands_hz_half_open": {
+      "low_40_200": [
+        40,
+        200
+      ],
+      "mid_200_2000": [
+        200,
+        2000
+      ],
+      "high_2000_10000": [
+        2000,
+        10000
+      ]
+    },
+    "power": "Hann-windowed STFT band power; dB relative to each band's preview-wide maximum",
+    "power_share": "band power / total 0..Nyquist power per frame",
+    "flux": "positive change of globally L1-normalized magnitude, summed inside band; band contributions are additive"
+  },
+  "bands": {
+    "low_40_200": {
+      "aggregate_5s": [
+        {
+          "start_s": 20,
+          "end_s": 25,
+          "power_db_rel_band_peak_median": -13.519219554196722,
+          "power_share_median": 0.10841704085500734,
+          "positive_global_normalized_flux_median": 0.004805686625572211,
+          "positive_global_normalized_flux_p90": 0.03706627408580337
+        },
+        {
+          "start_s": 25,
+          "end_s": 30,
+          "power_db_rel_band_peak_median": -19.33602514470431,
+          "power_share_median": 0.05592174275888051,
+          "positive_global_normalized_flux_median": 0.005925830018227543,
+          "positive_global_normalized_flux_p90": 0.023096197708803928
+        },
+        {
+          "start_s": 30,
+          "end_s": 35,
+          "power_db_rel_band_peak_median": -17.807099584761563,
+          "power_share_median": 0.09878519239410762,
+          "positive_global_normalized_flux_median": 0.004481249438522828,
+          "positive_global_normalized_flux_p90": 0.015586188192682511
+        }
+      ],
+      "one_second_medians": [
+        {
+          "start_s": 20,
+          "power_db_rel_band_peak": -11.384563772075003,
+          "power_share": 0.18288002751315352,
+          "positive_global_normalized_flux": 0.0065813438405653716
+        },
+        {
+          "start_s": 21,
+          "power_db_rel_band_peak": -12.627359852920458,
+          "power_share": 0.1492851232450546,
+          "positive_global_normalized_flux": 0.008008138908253621
+        },
+        {
+          "start_s": 22,
+          "power_db_rel_band_peak": -20.744275574765393,
+          "power_share": 0.02172478904995666,
+          "positive_global_normalized_flux": 0.0031357500469717625
+        },
+        {
+          "start_s": 23,
+          "power_db_rel_band_peak": -15.040581267810417,
+          "power_share": 0.09614588189182287,
+          "positive_global_normalized_flux": 0.004379805385862501
+        },
+        {
+          "start_s": 24,
+          "power_db_rel_band_peak": -14.768907050113445,
+          "power_share": 0.10365654698909477,
+          "positive_global_normalized_flux": 0.004279276846888662
+        },
+        {
+          "start_s": 25,
+          "power_db_rel_band_peak": -19.80637024732814,
+          "power_share": 0.030214503402595877,
+          "positive_global_normalized_flux": 0.0034080811138853385
+        },
+        {
+          "start_s": 26,
+          "power_db_rel_band_peak": -13.386424717961933,
+          "power_share": 0.10083310585349614,
+          "positive_global_normalized_flux": 0.008414529945441234
+        },
+        {
+          "start_s": 27,
+          "power_db_rel_band_peak": -9.634821991583358,
+          "power_share": 0.3425775041456173,
+          "positive_global_normalized_flux": 0.012348913720065288
+        },
+        {
+          "start_s": 28,
+          "power_db_rel_band_peak": -22.74417162311436,
+          "power_share": 0.01927040702181898,
+          "positive_global_normalized_flux": 0.004751840595444776
+        },
+        {
+          "start_s": 29,
+          "power_db_rel_band_peak": -27.233792538926256,
+          "power_share": 0.017588705377115287,
+          "positive_global_normalized_flux": 0.003905497896163983
+        },
+        {
+          "start_s": 30,
+          "power_db_rel_band_peak": -16.268686273764473,
+          "power_share": 0.121127793148937,
+          "positive_global_normalized_flux": 0.0035968487522485947
+        },
+        {
+          "start_s": 31,
+          "power_db_rel_band_peak": -19.24726442160531,
+          "power_share": 0.06775015997450021,
+          "positive_global_normalized_flux": 0.0027116481522826523
+        },
+        {
+          "start_s": 32,
+          "power_db_rel_band_peak": -24.96343918355419,
+          "power_share": 0.013213560066828486,
+          "positive_global_normalized_flux": 0.002848293896135755
+        },
+        {
+          "start_s": 33,
+          "power_db_rel_band_peak": -10.20962577660761,
+          "power_share": 0.2715229592219691,
+          "positive_global_normalized_flux": 0.010977804914786208
+        },
+        {
+          "start_s": 34,
+          "power_db_rel_band_peak": -12.932113725072394,
+          "power_share": 0.27560805059287,
+          "positive_global_normalized_flux": 0.008358078121588302
+        }
+      ]
+    },
+    "mid_200_2000": {
+      "aggregate_5s": [
+        {
+          "start_s": 20,
+          "end_s": 25,
+          "power_db_rel_band_peak_median": -6.433030488029704,
+          "power_share_median": 0.5545839273349412,
+          "positive_global_normalized_flux_median": 0.047149252969456545,
+          "positive_global_normalized_flux_p90": 0.0773801206783622
+        },
+        {
+          "start_s": 25,
+          "end_s": 30,
+          "power_db_rel_band_peak_median": -7.155668382757271,
+          "power_share_median": 0.7521473421713796,
+          "positive_global_normalized_flux_median": 0.04214331375192684,
+          "positive_global_normalized_flux_p90": 0.07093023306725899
+        },
+        {
+          "start_s": 30,
+          "end_s": 35,
+          "power_db_rel_band_peak_median": -8.06543115541851,
+          "power_share_median": 0.8669274369363473,
+          "positive_global_normalized_flux_median": 0.03733468085392805,
+          "positive_global_normalized_flux_p90": 0.057266879402088744
+        }
+      ],
+      "one_second_medians": [
+        {
+          "start_s": 20,
+          "power_db_rel_band_peak": -5.544839224683651,
+          "power_share": 0.5221849845303117,
+          "positive_global_normalized_flux": 0.04549596664015031
+        },
+        {
+          "start_s": 21,
+          "power_db_rel_band_peak": -6.730664889521854,
+          "power_share": 0.5445189024910455,
+          "positive_global_normalized_flux": 0.046851991148776695
+        },
+        {
+          "start_s": 22,
+          "power_db_rel_band_peak": -5.711309287404166,
+          "power_share": 0.6132371870672756,
+          "positive_global_normalized_flux": 0.04807990014754262
+        },
+        {
+          "start_s": 23,
+          "power_db_rel_band_peak": -7.103102483617889,
+          "power_share": 0.5631118823494478,
+          "positive_global_normalized_flux": 0.050780598701645696
+        },
+        {
+          "start_s": 24,
+          "power_db_rel_band_peak": -7.024444325267823,
+          "power_share": 0.5594278255133991,
+          "positive_global_normalized_flux": 0.046575115389316295
+        },
+        {
+          "start_s": 25,
+          "power_db_rel_band_peak": -6.279665917060175,
+          "power_share": 0.6212422372009986,
+          "positive_global_normalized_flux": 0.05026071328208963
+        },
+        {
+          "start_s": 26,
+          "power_db_rel_band_peak": -5.696884211204172,
+          "power_share": 0.677139237241229,
+          "positive_global_normalized_flux": 0.05122147162053263
+        },
+        {
+          "start_s": 27,
+          "power_db_rel_band_peak": -8.356488208570582,
+          "power_share": 0.571078552959124,
+          "positive_global_normalized_flux": 0.04253615322940331
+        },
+        {
+          "start_s": 28,
+          "power_db_rel_band_peak": -6.8524474617961655,
+          "power_share": 0.953470058834804,
+          "positive_global_normalized_flux": 0.03434860970634253
+        },
+        {
+          "start_s": 29,
+          "power_db_rel_band_peak": -9.596720979632437,
+          "power_share": 0.9246528939754268,
+          "positive_global_normalized_flux": 0.03888773462454273
+        },
+        {
+          "start_s": 30,
+          "power_db_rel_band_peak": -8.301801950885807,
+          "power_share": 0.8435078487990906,
+          "positive_global_normalized_flux": 0.03268880708055482
+        },
+        {
+          "start_s": 31,
+          "power_db_rel_band_peak": -8.987225596507457,
+          "power_share": 0.8905468188366304,
+          "positive_global_normalized_flux": 0.03597344912029132
+        },
+        {
+          "start_s": 32,
+          "power_db_rel_band_peak": -6.801072915034991,
+          "power_share": 0.9634194288852851,
+          "positive_global_normalized_flux": 0.03349116667287675
+        },
+        {
+          "start_s": 33,
+          "power_db_rel_band_peak": -6.736715310492879,
+          "power_share": 0.6452861446813567,
+          "positive_global_normalized_flux": 0.040322659322039246
+        },
+        {
+          "start_s": 34,
+          "power_db_rel_band_peak": -8.169154283789041,
+          "power_share": 0.6574209270478883,
+          "positive_global_normalized_flux": 0.0408539036052261
+        }
+      ]
+    },
+    "high_2000_10000": {
+      "aggregate_5s": [
+        {
+          "start_s": 20,
+          "end_s": 25,
+          "power_db_rel_band_peak_median": -10.609151255815854,
+          "power_share_median": 0.20217413000536738,
+          "positive_global_normalized_flux_median": 0.06596526733031763,
+          "positive_global_normalized_flux_p90": 0.11616093500264514
+        },
+        {
+          "start_s": 25,
+          "end_s": 30,
+          "power_db_rel_band_peak_median": -19.76905577753069,
+          "power_share_median": 0.04017567993971163,
+          "positive_global_normalized_flux_median": 0.04581734113797412,
+          "positive_global_normalized_flux_p90": 0.07716166643284104
+        },
+        {
+          "start_s": 30,
+          "end_s": 35,
+          "power_db_rel_band_peak_median": -22.10984177556028,
+          "power_share_median": 0.026443459250901892,
+          "positive_global_normalized_flux_median": 0.04075743529631712,
+          "positive_global_normalized_flux_p90": 0.05956333573193178
+        }
+      ],
+      "one_second_medians": [
+        {
+          "start_s": 20,
+          "power_db_rel_band_peak": -10.178946711263889,
+          "power_share": 0.20419230255482435,
+          "positive_global_normalized_flux": 0.06174403105682218
+        },
+        {
+          "start_s": 21,
+          "power_db_rel_band_peak": -10.140880081105127,
+          "power_share": 0.21789937123837333,
+          "positive_global_normalized_flux": 0.06173677372441755
+        },
+        {
+          "start_s": 22,
+          "power_db_rel_band_peak": -10.425154503581464,
+          "power_share": 0.1961245314493511,
+          "positive_global_normalized_flux": 0.06828440028594414
+        },
+        {
+          "start_s": 23,
+          "power_db_rel_band_peak": -10.938905493650534,
+          "power_share": 0.21970580196962697,
+          "positive_global_normalized_flux": 0.07118487954356048
+        },
+        {
+          "start_s": 24,
+          "power_db_rel_band_peak": -11.373656943028102,
+          "power_share": 0.15893423332110238,
+          "positive_global_normalized_flux": 0.06842829673081802
+        },
+        {
+          "start_s": 25,
+          "power_db_rel_band_peak": -11.379441653459043,
+          "power_share": 0.1851487967728359,
+          "positive_global_normalized_flux": 0.06587552890271475
+        },
+        {
+          "start_s": 26,
+          "power_db_rel_band_peak": -14.049999896043689,
+          "power_share": 0.06377607990413503,
+          "positive_global_normalized_flux": 0.04726130332598132
+        },
+        {
+          "start_s": 27,
+          "power_db_rel_band_peak": -20.97433265568712,
+          "power_share": 0.02208484761443294,
+          "positive_global_normalized_flux": 0.03506214049353096
+        },
+        {
+          "start_s": 28,
+          "power_db_rel_band_peak": -21.654978277172624,
+          "power_share": 0.02079066175203951,
+          "positive_global_normalized_flux": 0.03739222744913235
+        },
+        {
+          "start_s": 29,
+          "power_db_rel_band_peak": -23.437953257024336,
+          "power_share": 0.04293324523757494,
+          "positive_global_normalized_flux": 0.05184225110856573
+        },
+        {
+          "start_s": 30,
+          "power_db_rel_band_peak": -22.28677779010283,
+          "power_share": 0.029916380719530733,
+          "positive_global_normalized_flux": 0.04885955112933759
+        },
+        {
+          "start_s": 31,
+          "power_db_rel_band_peak": -23.005752448968664,
+          "power_share": 0.030618149109629365,
+          "positive_global_normalized_flux": 0.04608712473536507
+        },
+        {
+          "start_s": 32,
+          "power_db_rel_band_peak": -22.21135225508747,
+          "power_share": 0.023283952815944788,
+          "positive_global_normalized_flux": 0.04331737664741982
+        },
+        {
+          "start_s": 33,
+          "power_db_rel_band_peak": -19.696029223471342,
+          "power_share": 0.029699660795142198,
+          "positive_global_normalized_flux": 0.03613607042712186
+        },
+        {
+          "start_s": 34,
+          "power_db_rel_band_peak": -22.15305350814075,
+          "power_share": 0.019632563459159653,
+          "positive_global_normalized_flux": 0.03143055510567382
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Preview time is not full-track time.",
+    "Band activity does not identify an instrument or compositional cause.",
+    "Medians can hide short events; p90 is included for 5-second spans.",
+    "Bins above 10 kHz are excluded from named bands."
+  ]
+}
