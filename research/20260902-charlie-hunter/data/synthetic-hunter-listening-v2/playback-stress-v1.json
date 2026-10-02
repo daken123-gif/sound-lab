@@ -1,0 +1,225 @@
+{
+  "evidence_boundary": "Synthetic playback degradations only; not a measurement of an iPhone, speaker, codec, room, or human listener.",
+  "results": [
+    {
+      "case": "baseline",
+      "estimated_condition": "fixed_macro",
+      "sample_id": "sample-a",
+      "status": "recovered"
+    },
+    {
+      "case": "baseline",
+      "estimated_condition": "hunter_coupling",
+      "sample_id": "sample-b",
+      "status": "recovered"
+    },
+    {
+      "case": "baseline",
+      "estimated_condition": "independent_voice",
+      "sample_id": "sample-c",
+      "status": "recovered"
+    },
+    {
+      "case": "mono",
+      "estimated_condition": "fixed_macro",
+      "sample_id": "sample-a",
+      "status": "recovered"
+    },
+    {
+      "case": "mono",
+      "estimated_condition": "hunter_coupling",
+      "sample_id": "sample-b",
+      "status": "recovered"
+    },
+    {
+      "case": "mono",
+      "estimated_condition": "independent_voice",
+      "sample_id": "sample-c",
+      "status": "recovered"
+    },
+    {
+      "case": "quantized_8bit",
+      "estimated_condition": "fixed_macro",
+      "sample_id": "sample-a",
+      "status": "recovered"
+    },
+    {
+      "case": "quantized_8bit",
+      "estimated_condition": "hunter_coupling",
+      "sample_id": "sample-b",
+      "status": "recovered"
+    },
+    {
+      "case": "quantized_8bit",
+      "estimated_condition": "independent_voice",
+      "sample_id": "sample-c",
+      "status": "recovered"
+    },
+    {
+      "case": "quantized_4bit",
+      "estimated_condition": "fixed_macro",
+      "sample_id": "sample-a",
+      "status": "recovered"
+    },
+    {
+      "case": "quantized_4bit",
+      "estimated_condition": "hunter_coupling",
+      "sample_id": "sample-b",
+      "status": "recovered"
+    },
+    {
+      "case": "quantized_4bit",
+      "estimated_condition": "independent_voice",
+      "sample_id": "sample-c",
+      "status": "recovered"
+    },
+    {
+      "case": "noise_30db",
+      "estimated_condition": "fixed_macro",
+      "sample_id": "sample-a",
+      "status": "recovered"
+    },
+    {
+      "case": "noise_30db",
+      "estimated_condition": "hunter_coupling",
+      "sample_id": "sample-b",
+      "status": "recovered"
+    },
+    {
+      "case": "noise_30db",
+      "estimated_condition": "independent_voice",
+      "sample_id": "sample-c",
+      "status": "recovered"
+    },
+    {
+      "case": "noise_20db",
+      "estimated_condition": "fixed_macro",
+      "sample_id": "sample-a",
+      "status": "recovered"
+    },
+    {
+      "case": "noise_20db",
+      "estimated_condition": "hunter_coupling",
+      "sample_id": "sample-b",
+      "status": "recovered"
+    },
+    {
+      "case": "noise_20db",
+      "estimated_condition": "independent_voice",
+      "sample_id": "sample-c",
+      "status": "recovered"
+    },
+    {
+      "case": "noise_10db",
+      "estimated_condition": "fixed_macro",
+      "sample_id": "sample-a",
+      "status": "recovered"
+    },
+    {
+      "case": "noise_10db",
+      "estimated_condition": "hunter_coupling",
+      "sample_id": "sample-b",
+      "status": "recovered"
+    },
+    {
+      "case": "noise_10db",
+      "estimated_condition": "independent_voice",
+      "sample_id": "sample-c",
+      "status": "recovered"
+    },
+    {
+      "case": "noise_0db",
+      "estimated_condition": "fixed_macro",
+      "sample_id": "sample-a",
+      "status": "recovered"
+    },
+    {
+      "case": "noise_0db",
+      "estimated_condition": "hunter_coupling",
+      "sample_id": "sample-b",
+      "status": "recovered"
+    },
+    {
+      "case": "noise_0db",
+      "estimated_condition": "independent_voice",
+      "sample_id": "sample-c",
+      "status": "recovered"
+    },
+    {
+      "case": "mono_highpass_180_2",
+      "estimated_condition": "fixed_macro",
+      "sample_id": "sample-a",
+      "status": "recovered"
+    },
+    {
+      "case": "mono_highpass_180_2",
+      "estimated_condition": "hunter_coupling",
+      "sample_id": "sample-b",
+      "status": "recovered"
+    },
+    {
+      "case": "mono_highpass_180_2",
+      "estimated_condition": "independent_voice",
+      "sample_id": "sample-c",
+      "status": "recovered"
+    },
+    {
+      "case": "mono_highpass_260_4",
+      "estimated_condition": "fixed_macro",
+      "sample_id": "sample-a",
+      "status": "recovered"
+    },
+    {
+      "case": "mono_highpass_260_4",
+      "estimated_condition": "hunter_coupling",
+      "sample_id": "sample-b",
+      "status": "recovered"
+    },
+    {
+      "case": "mono_highpass_260_4",
+      "estimated_condition": "independent_voice",
+      "sample_id": "sample-c",
+      "status": "recovered"
+    },
+    {
+      "case": "mono_highpass_400_6",
+      "estimated_condition": null,
+      "reason": "voice_activity_below_threshold",
+      "sample_id": "sample-a",
+      "status": "unresolved"
+    },
+    {
+      "case": "mono_highpass_400_6",
+      "estimated_condition": null,
+      "reason": "voice_activity_below_threshold",
+      "sample_id": "sample-b",
+      "status": "unresolved"
+    },
+    {
+      "case": "mono_highpass_400_6",
+      "estimated_condition": null,
+      "reason": "voice_activity_below_threshold",
+      "sample_id": "sample-c",
+      "status": "unresolved"
+    },
+    {
+      "case": "mobile_stress",
+      "estimated_condition": "fixed_macro",
+      "sample_id": "sample-a",
+      "status": "recovered"
+    },
+    {
+      "case": "mobile_stress",
+      "estimated_condition": "hunter_coupling",
+      "sample_id": "sample-b",
+      "status": "recovered"
+    },
+    {
+      "case": "mobile_stress",
+      "estimated_condition": "independent_voice",
+      "sample_id": "sample-c",
+      "status": "recovered"
+    }
+  ],
+  "schema_version": "sound-lab.synthetic-hunter-playback-stress/v1"
+}
