@@ -1,0 +1,23 @@
+{
+  "catalog": "Apple Music",
+  "catalog_song_id": "1440841910",
+  "storefront": "jp",
+  "track_name": "Spanish Joint",
+  "artist_name": "D'Angelo",
+  "album_name": "Voodoo",
+  "isrc": "USVI29900226",
+  "catalog_duration_milliseconds": 347291,
+  "release_date": "2000-01-25",
+  "track_number": 9,
+  "catalog_url": "https://music.apple.com/jp/album/spanish-joint/1440841365?i=1440841910",
+  "preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/97/f6/f4/97f6f41e-dd3d-64fd-d921-5ce1af2d2aba/mzaf_5545997961472080851.plus.aac.p.m4a",
+  "preview_duration_seconds": 30.000998,
+  "preview_codec": "AAC",
+  "preview_sample_rate": 44100,
+  "preview_channels": 2,
+  "preview_file_size_bytes": 1001669,
+  "preview_sha256": "b64649d4c2d94aecfb51c3da7e5ac87334321250caa9e3e67fff9fb5f8dd515c",
+  "retrieved_utc_date": "2026-10-03",
+  "storage_boundary": "The copyrighted preview audio is not stored in this repository. Only source metadata, hashes, derived measurements, and reproducible analysis code are stored.",
+  "source_position_in_full_track": "unknown"
+}
