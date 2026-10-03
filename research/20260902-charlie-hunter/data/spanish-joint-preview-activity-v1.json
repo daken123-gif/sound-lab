@@ -1,0 +1,303 @@
+{
+  "audio": {
+    "analyzed_duration_seconds": 29.931,
+    "sample_rate": 44100,
+    "source_sha256": "b64649d4c2d94aecfb51c3da7e5ac87334321250caa9e3e67fff9fb5f8dd515c",
+    "wav_sha256": "c19960dc7089f285269dad56477d6284c98678547a3972960dc6ba242ada5e73"
+  },
+  "bands": {
+    "high_3000_12000_hz": {
+      "activity_episodes": {
+        "count": 69,
+        "longest_ms": 1097.1,
+        "median_ms": 98.7,
+        "q25_ms": 63.9,
+        "q75_ms": 168.3,
+        "share": 0.351,
+        "total_seconds": 10.507
+      },
+      "inactivity_gaps": {
+        "count": 70,
+        "longest_ms": 505.0,
+        "median_ms": 240.9,
+        "q25_ms": 133.5,
+        "q75_ms": 449.9,
+        "share": 0.649,
+        "total_seconds": 19.423
+      },
+      "relative_db_percentiles": {
+        "25": -22.64,
+        "5": -33.243,
+        "50": -15.687,
+        "75": -8.12,
+        "95": -0.988
+      }
+    },
+    "low_45_180_hz": {
+      "activity_episodes": {
+        "count": 62,
+        "longest_ms": 1085.5,
+        "median_ms": 171.2,
+        "q25_ms": 140.8,
+        "q75_ms": 359.9,
+        "share": 0.6119,
+        "total_seconds": 18.315
+      },
+      "inactivity_gaps": {
+        "count": 62,
+        "longest_ms": 1091.3,
+        "median_ms": 133.5,
+        "q25_ms": 110.3,
+        "q75_ms": 166.9,
+        "share": 0.3881,
+        "total_seconds": 11.616
+      },
+      "relative_db_percentiles": {
+        "25": -17.455,
+        "5": -27.878,
+        "50": -10.582,
+        "75": -7.01,
+        "95": -1.165
+      }
+    },
+    "low_mid_180_800_hz": {
+      "activity_episodes": {
+        "count": 61,
+        "longest_ms": 2995.4,
+        "median_ms": 197.4,
+        "q25_ms": 98.7,
+        "q75_ms": 447.0,
+        "share": 0.7335,
+        "total_seconds": 21.954
+      },
+      "inactivity_gaps": {
+        "count": 60,
+        "longest_ms": 365.7,
+        "median_ms": 101.6,
+        "q25_ms": 81.3,
+        "q75_ms": 168.3,
+        "share": 0.2665,
+        "total_seconds": 7.976
+      },
+      "relative_db_percentiles": {
+        "25": -12.862,
+        "5": -22.371,
+        "50": -7.946,
+        "75": -4.289,
+        "95": -0.479
+      }
+    },
+    "presence_800_3000_hz": {
+      "activity_episodes": {
+        "count": 55,
+        "longest_ms": 1242.3,
+        "median_ms": 110.3,
+        "q25_ms": 72.6,
+        "q75_ms": 209.0,
+        "share": 0.3289,
+        "total_seconds": 9.845
+      },
+      "inactivity_gaps": {
+        "count": 56,
+        "longest_ms": 1004.3,
+        "median_ms": 249.6,
+        "q25_ms": 116.1,
+        "q75_ms": 586.3,
+        "share": 0.6711,
+        "total_seconds": 20.085
+      },
+      "relative_db_percentiles": {
+        "25": -23.459,
+        "5": -32.999,
+        "50": -16.266,
+        "75": -9.656,
+        "95": -1.341
+      }
+    }
+  },
+  "evidence_boundary": "Thirty-second Apple Music catalog preview; mastered-mix band-activity proxies only. No source separation, note-duration transcription, or attribution to Charlie Hunter, Questlove, D'Angelo, horns, percussion, or any individual instrument.",
+  "low_vs_low_mid": {
+    "compressed_transition_counts": {
+      "both__to__low_mid_only": 37,
+      "both__to__low_only": 39,
+      "both__to__neither": 2,
+      "low_mid_only__to__both": 52,
+      "low_mid_only__to__neither": 19,
+      "low_only__to__both": 23,
+      "low_only__to__neither": 22,
+      "neither__to__both": 4,
+      "neither__to__low_mid_only": 33,
+      "neither__to__low_only": 6
+    },
+    "frame_shares": {
+      "both": 0.4736,
+      "low_mid_only": 0.2599,
+      "low_only": 0.1383,
+      "neither": 0.1282
+    },
+    "windows": [
+      {
+        "both": 0.4978,
+        "end_seconds": 4.0,
+        "low_mid_only": 0.1147,
+        "low_only": 0.2496,
+        "neither": 0.1379,
+        "start_seconds": 0.0
+      },
+      {
+        "both": 0.4383,
+        "end_seconds": 6.002,
+        "low_mid_only": 0.119,
+        "low_only": 0.2569,
+        "neither": 0.1858,
+        "start_seconds": 2.003
+      },
+      {
+        "both": 0.2685,
+        "end_seconds": 8.005,
+        "low_mid_only": 0.3556,
+        "low_only": 0.1335,
+        "neither": 0.2424,
+        "start_seconds": 4.005
+      },
+      {
+        "both": 0.373,
+        "end_seconds": 10.008,
+        "low_mid_only": 0.4311,
+        "low_only": 0.0624,
+        "neither": 0.1335,
+        "start_seconds": 6.008
+      },
+      {
+        "both": 0.5472,
+        "end_seconds": 12.011,
+        "low_mid_only": 0.1916,
+        "low_only": 0.1553,
+        "neither": 0.106,
+        "start_seconds": 8.011
+      },
+      {
+        "both": 0.6081,
+        "end_seconds": 14.013,
+        "low_mid_only": 0.1495,
+        "low_only": 0.1132,
+        "neither": 0.1292,
+        "start_seconds": 10.014
+      },
+      {
+        "both": 0.6023,
+        "end_seconds": 16.016,
+        "low_mid_only": 0.1945,
+        "low_only": 0.1161,
+        "neither": 0.0871,
+        "start_seconds": 12.016
+      },
+      {
+        "both": 0.5573,
+        "end_seconds": 18.019,
+        "low_mid_only": 0.1829,
+        "low_only": 0.1422,
+        "neither": 0.1176,
+        "start_seconds": 14.019
+      },
+      {
+        "both": 0.5239,
+        "end_seconds": 20.021,
+        "low_mid_only": 0.2583,
+        "low_only": 0.0784,
+        "neither": 0.1393,
+        "start_seconds": 16.022
+      },
+      {
+        "both": 0.4644,
+        "end_seconds": 22.024,
+        "low_mid_only": 0.344,
+        "low_only": 0.0958,
+        "neither": 0.0958,
+        "start_seconds": 18.024
+      },
+      {
+        "both": 0.3614,
+        "end_seconds": 24.027,
+        "low_mid_only": 0.3019,
+        "low_only": 0.1814,
+        "neither": 0.1553,
+        "start_seconds": 20.027
+      },
+      {
+        "both": 0.2772,
+        "end_seconds": 26.03,
+        "low_mid_only": 0.4586,
+        "low_only": 0.1205,
+        "neither": 0.1437,
+        "start_seconds": 22.03
+      },
+      {
+        "both": 0.4993,
+        "end_seconds": 28.032,
+        "low_mid_only": 0.4194,
+        "low_only": 0.0493,
+        "neither": 0.0319,
+        "start_seconds": 24.033
+      }
+    ]
+  },
+  "method": {
+    "activity_threshold_db_relative_to_band_p95": -12.0,
+    "fill_gaps_at_most_ms": 50.0,
+    "frame_size": 2048,
+    "frame_step_ms": 5.805,
+    "gaussian_sigma_frames": 2.0,
+    "hop": 256,
+    "median_filter_frames": 5,
+    "reject_activity_shorter_than_ms": 40.0
+  },
+  "schema_version": "sound-lab.spanish-joint-preview-activity/v1",
+  "threshold_sensitivity": [
+    {
+      "band_activity_shares": {
+        "high_3000_12000_hz": 0.2647,
+        "low_45_180_hz": 0.3811,
+        "low_mid_180_800_hz": 0.5851,
+        "presence_800_3000_hz": 0.2378
+      },
+      "low_vs_low_mid_frame_shares": {
+        "both": 0.2516,
+        "low_mid_only": 0.3336,
+        "low_only": 0.1296,
+        "neither": 0.2853
+      },
+      "threshold_db": -9.0
+    },
+    {
+      "band_activity_shares": {
+        "high_3000_12000_hz": 0.351,
+        "low_45_180_hz": 0.6119,
+        "low_mid_180_800_hz": 0.7335,
+        "presence_800_3000_hz": 0.3289
+      },
+      "low_vs_low_mid_frame_shares": {
+        "both": 0.4736,
+        "low_mid_only": 0.2599,
+        "low_only": 0.1383,
+        "neither": 0.1282
+      },
+      "threshold_db": -12.0
+    },
+    {
+      "band_activity_shares": {
+        "high_3000_12000_hz": 0.4835,
+        "low_45_180_hz": 0.7058,
+        "low_mid_180_800_hz": 0.8377,
+        "presence_800_3000_hz": 0.4525
+      },
+      "low_vs_low_mid_frame_shares": {
+        "both": 0.6232,
+        "low_mid_only": 0.2145,
+        "low_only": 0.0826,
+        "neither": 0.0797
+      },
+      "threshold_db": -15.0
+    }
+  ]
+}
