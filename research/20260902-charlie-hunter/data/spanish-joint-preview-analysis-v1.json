@@ -1,0 +1,317 @@
+{
+  "audio": {
+    "duration_seconds": 29.931,
+    "sample_rate": 44100,
+    "source_sha256": "b64649d4c2d94aecfb51c3da7e5ac87334321250caa9e3e67fff9fb5f8dd515c",
+    "wav_sha256": "c19960dc7089f285269dad56477d6284c98678547a3972960dc6ba242ada5e73"
+  },
+  "evidence_boundary": "Thirty-second Apple Music catalog preview; mastered mix analysis only. No source separation and no event attribution to individual performers.",
+  "peak_counts": {
+    "high_3000_12000_hz": 105,
+    "low_45_180_hz": 157,
+    "low_mid_180_800_hz": 160,
+    "presence_800_3000_hz": 143
+  },
+  "relations": {
+    "low_45_180_hz__to__high_3000_12000_hz": {
+      "global_best_lag_ms": 0.0,
+      "global_correlation": 0.1318,
+      "nearest_peak_offsets": {
+        "count": 85,
+        "max_ms": 116.1,
+        "median_ms": 0.0,
+        "min_ms": -116.1,
+        "q25_ms": -23.22,
+        "q75_ms": 11.61
+      },
+      "window_lag_median_ms": 0.0,
+      "window_lag_q25_ms": 0.0,
+      "window_lag_q75_ms": 98.685,
+      "windows": [
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.1259,
+          "end_seconds": 4.0,
+          "start_seconds": 0.0
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.1272,
+          "end_seconds": 6.002,
+          "start_seconds": 2.003
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.1818,
+          "end_seconds": 8.005,
+          "start_seconds": 4.005
+        },
+        {
+          "best_lag_ms": 121.905,
+          "correlation": 0.2091,
+          "end_seconds": 10.008,
+          "start_seconds": 6.008
+        },
+        {
+          "best_lag_ms": 98.685,
+          "correlation": 0.0902,
+          "end_seconds": 12.011,
+          "start_seconds": 8.011
+        },
+        {
+          "best_lag_ms": 98.685,
+          "correlation": 0.1247,
+          "end_seconds": 14.013,
+          "start_seconds": 10.014
+        },
+        {
+          "best_lag_ms": 98.685,
+          "correlation": 0.0981,
+          "end_seconds": 16.016,
+          "start_seconds": 12.016
+        },
+        {
+          "best_lag_ms": 116.1,
+          "correlation": 0.0713,
+          "end_seconds": 18.019,
+          "start_seconds": 14.019
+        },
+        {
+          "best_lag_ms": 121.905,
+          "correlation": 0.1024,
+          "end_seconds": 20.021,
+          "start_seconds": 16.022
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.1638,
+          "end_seconds": 22.024,
+          "start_seconds": 18.024
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.2297,
+          "end_seconds": 24.027,
+          "start_seconds": 20.027
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.3251,
+          "end_seconds": 26.03,
+          "start_seconds": 22.03
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.2756,
+          "end_seconds": 28.032,
+          "start_seconds": 24.033
+        }
+      ]
+    },
+    "low_45_180_hz__to__low_mid_180_800_hz": {
+      "global_best_lag_ms": -5.805,
+      "global_correlation": 0.5011,
+      "nearest_peak_offsets": {
+        "count": 150,
+        "max_ms": 116.1,
+        "median_ms": -5.805,
+        "min_ms": -104.49,
+        "q25_ms": -17.415,
+        "q75_ms": 0.0
+      },
+      "window_lag_median_ms": -5.805,
+      "window_lag_q25_ms": -5.805,
+      "window_lag_q75_ms": -5.805,
+      "windows": [
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.5284,
+          "end_seconds": 4.0,
+          "start_seconds": 0.0
+        },
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.5247,
+          "end_seconds": 6.002,
+          "start_seconds": 2.003
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.528,
+          "end_seconds": 8.005,
+          "start_seconds": 4.005
+        },
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.5568,
+          "end_seconds": 10.008,
+          "start_seconds": 6.008
+        },
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.4956,
+          "end_seconds": 12.011,
+          "start_seconds": 8.011
+        },
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.5081,
+          "end_seconds": 14.013,
+          "start_seconds": 10.014
+        },
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.4754,
+          "end_seconds": 16.016,
+          "start_seconds": 12.016
+        },
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.4625,
+          "end_seconds": 18.019,
+          "start_seconds": 14.019
+        },
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.4852,
+          "end_seconds": 20.021,
+          "start_seconds": 16.022
+        },
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.5063,
+          "end_seconds": 22.024,
+          "start_seconds": 18.024
+        },
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.5498,
+          "end_seconds": 24.027,
+          "start_seconds": 20.027
+        },
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.5317,
+          "end_seconds": 26.03,
+          "start_seconds": 22.03
+        },
+        {
+          "best_lag_ms": -5.805,
+          "correlation": 0.5924,
+          "end_seconds": 28.032,
+          "start_seconds": 24.033
+        }
+      ]
+    },
+    "low_mid_180_800_hz__to__high_3000_12000_hz": {
+      "global_best_lag_ms": 0.0,
+      "global_correlation": 0.5783,
+      "nearest_peak_offsets": {
+        "count": 102,
+        "max_ms": 104.49,
+        "median_ms": 0.0,
+        "min_ms": -116.1,
+        "q25_ms": 0.0,
+        "q75_ms": 11.61
+      },
+      "window_lag_median_ms": 0.0,
+      "window_lag_q25_ms": 0.0,
+      "window_lag_q75_ms": 5.805,
+      "windows": [
+        {
+          "best_lag_ms": 5.805,
+          "correlation": 0.6017,
+          "end_seconds": 4.0,
+          "start_seconds": 0.0
+        },
+        {
+          "best_lag_ms": 5.805,
+          "correlation": 0.6561,
+          "end_seconds": 6.002,
+          "start_seconds": 2.003
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.6181,
+          "end_seconds": 8.005,
+          "start_seconds": 4.005
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.5387,
+          "end_seconds": 10.008,
+          "start_seconds": 6.008
+        },
+        {
+          "best_lag_ms": 5.805,
+          "correlation": 0.5451,
+          "end_seconds": 12.011,
+          "start_seconds": 8.011
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.5786,
+          "end_seconds": 14.013,
+          "start_seconds": 10.014
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.6031,
+          "end_seconds": 16.016,
+          "start_seconds": 12.016
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.6007,
+          "end_seconds": 18.019,
+          "start_seconds": 14.019
+        },
+        {
+          "best_lag_ms": 5.805,
+          "correlation": 0.5412,
+          "end_seconds": 20.021,
+          "start_seconds": 16.022
+        },
+        {
+          "best_lag_ms": 5.805,
+          "correlation": 0.538,
+          "end_seconds": 22.024,
+          "start_seconds": 18.024
+        },
+        {
+          "best_lag_ms": 5.805,
+          "correlation": 0.571,
+          "end_seconds": 24.027,
+          "start_seconds": 20.027
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.6772,
+          "end_seconds": 26.03,
+          "start_seconds": 22.03
+        },
+        {
+          "best_lag_ms": 0.0,
+          "correlation": 0.6246,
+          "end_seconds": 28.032,
+          "start_seconds": 24.033
+        }
+      ]
+    }
+  },
+  "schema_version": "sound-lab.spanish-joint-preview-analysis/v1",
+  "tempo_candidates": [
+    {
+      "bpm": 89.4,
+      "relative_score": 1.0
+    },
+    {
+      "bpm": 111.7,
+      "relative_score": 0.67
+    },
+    {
+      "bpm": 75.1,
+      "relative_score": 0.6518
+    }
+  ]
+}
