@@ -1,6 +1,6 @@
 ---
 name: sound-lab-research-router
-description: Route research, design, implementation, integration, and status work for the user's Sound Lab music-app project through current Git evidence across sound-lab and its linked non-Canon research records. Use for Sound Lab, Field Looper, the four-track instrument, its named equipment studies, or requests to connect music-project work across islands. Do not use for unrelated music questions or generic music recommendations.
+description: Route research, design, implementation, integration, status, and Git save-destination work for the user's Sound Lab music-app project through current Git evidence across sound-lab and its linked non-Canon research records. Use for Sound Lab, Field Looper, the four-track instrument, its named equipment studies, Sound Lab Git/save/repository decisions, or requests to connect music-project work across islands. Do not use for unrelated music questions or generic music recommendations.
 ---
 
 # Sound Lab Research Router
@@ -23,6 +23,13 @@ When an active research record is merged into the default branch, add or update 
 
 ## Authority and repository roles
 
+### Sound Lab repository exception
+
+- Do not apply the general `daken123-gif/sympathia` save default to Sound Lab project state. For a Sound Lab request, resolve `daken123-gif/sound-lab` first.
+- Save Sound Lab product direction, integration decisions, current-research pointers, repo-local Skill/Plugin maintenance, and public Web implementations used as externally reachable HTTPS runtime surfaces to `daken123-gif/sound-lab`.
+- Keep an exact Sound Lab-related Draft or non-Canon research body in `daken123-gif/sympathia` when that repository is already authoritative for the body. Its location does not prove Sound Lab adoption, implementation, runtime validation, or deployment.
+- The public visibility of `daken123-gif/sound-lab` supports its existing public HTTPS execution surface; it is not a rule that every research project or research document must be public. Do not create or select another repository by analogy.
+- A workspace, `/workspace`, local checkout, empty or read-only `.git` placeholder, temporary directory, or artifact folder is a working path, not the Sound Lab Git destination or authority.
 - Treat the user's current words as authoritative for their intent, corrections, evaluations, and decisions.
 - Treat `daken123-gif/sound-lab` `integration/` on the current default branch as the authoritative Git record of project direction, decision history, and observed status.
 - Treat each `sound-lab/research/<research-id>/` record as authority only for that research's evidence and hypotheses.
