@@ -1,0 +1,59 @@
+{
+  "closed_loop_seam_jump": 0.0,
+  "closure_full_record_error_rms": 0.052593342822756385,
+  "closure_modified_fraction_percent": 2.5,
+  "closure_window_ms": 120.0,
+  "control_hz": 200,
+  "drift": {
+    "0.00": {
+      "composite_to_gesture_correlation": 1.0,
+      "drift_rms": 0.0,
+      "mean_adjacent_drift_cycle_correlation": 0.0,
+      "output_max": 0.8460742245086731,
+      "output_min": 0.18,
+      "stored_gesture_mutation_rms": 0.0
+    },
+    "0.25": {
+      "composite_to_gesture_correlation": 0.9997694223336063,
+      "drift_rms": 0.003524508986190778,
+      "mean_adjacent_drift_cycle_correlation": -0.03909757814420048,
+      "output_max": 0.8511064672572578,
+      "output_min": 0.1723042499625061,
+      "stored_gesture_mutation_rms": 0.0
+    },
+    "0.75": {
+      "composite_to_gesture_correlation": 0.9950658670088128,
+      "drift_rms": 0.01640848101133521,
+      "mean_adjacent_drift_cycle_correlation": -0.039097578144200375,
+      "output_max": 0.8695020154174499,
+      "output_min": 0.14417215309906836,
+      "stored_gesture_mutation_rms": 0.0
+    }
+  },
+  "gesture_duration_s": 4.8,
+  "model": "Gesture loop/tempo/DRIFT separation hypothesis",
+  "not_hardware_emulation": true,
+  "raw_loop_seam_jump": 0.5418148213999667,
+  "tempo": {
+    "0.5": {
+      "cycle_duration_s": 9.6,
+      "shape_correlation": 1.0,
+      "shape_error_rms": 2.7315354331648993e-16
+    },
+    "1.0": {
+      "cycle_duration_s": 4.8,
+      "shape_correlation": 1.0,
+      "shape_error_rms": 2.6807336667413676e-16
+    },
+    "2.0": {
+      "cycle_duration_s": 2.4,
+      "shape_correlation": 0.9999996501287384,
+      "shape_error_rms": 0.00013843945712713806
+    },
+    "4.0": {
+      "cycle_duration_s": 1.2,
+      "shape_correlation": 0.9999907344064761,
+      "shape_error_rms": 0.0007149802508385716
+    }
+  }
+}
