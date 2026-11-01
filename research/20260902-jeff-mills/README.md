@@ -3,7 +3,7 @@
 - research-id: `20260902-jeff-mills`
 - status: `researching / long-term`
 - started: `2026-09-02 UTC`
-- last-updated: `2026-09-06 UTC`
+- last-updated: `2026-11-01 JST`
 - scope: Jeff Mills の作品そのもの、DJ／ライヴ演奏、時間設計、Sound Lab への転用候補
 - authority: 本文は研究記録であり、`integration/` の採用判断を上書きしない
 
@@ -601,3 +601,61 @@ Apple Musicの章分割は演奏の連続時間を名前付き素材へ割り当
 全36章JSONの最初のGitHub保存 `ca71133787e7feec72b431ef7e55a658f0b3b301` は、ローカル1705行のうち1200行だけを取得して書き込んだため途中切断された。保存直後の読戻しでJSON parse errorを検出し、この版を有効な測定成果として扱わない。
 
 完全な47,277バイトで置換した修正commitは `450889b337b7e29add94cce2f028e73cb9a50910`。GitHubから再取得後、JSON parse成功、全36章、重点24窓、最終窓 `36-1860112764-w02.m4a`まで存在することを確認した。
+
+
+## 2026-11-01追補 — 長期研究巡回、`Casa`番号体系、正規Preview再取得
+
+### 巡回対象と選択
+
+Git本文で `long-term` が明示された4研究のbranch先端を同時に確認した。
+
+| 研究 | 巡回前branch head | head日時 |
+|---|---|---|
+| Autechre | `e7576645e3591d08757aa7b1f18595c29d3b1141` | 2026-10-02 UTC |
+| Aphex Twin | `a439860d9fd3e3b96e966c94ec77346e213e8bd9` | 2026-09-08 UTC |
+| Charlie Hunter | `ba87fb8042a0baedf723d40f4ccfb4dfce8b5127` | 2026-10-03 UTC |
+| Jeff Mills | `df63ad47bc2d5928c4d7d316664f4ad1c3bd9142` | 2026-09-08 UTC |
+
+今回はbranch headが最古のJeff Millsを進めた。個別の定期タスク、PR、merge、main統合、製品採用は行っていない。
+
+### 一次資料で確定した番号体系
+
+Axis Records公式商品ページで、`AX011 Purpose Maker` のA1が `Casa` であることを確認した。
+
+- https://www.axisrecords.com/product/purpose-maker/
+
+Axis Records公式の `Live at Liquid Room` 再発ページは、物理トラックを38項目で掲示し、終盤を次の順で記録している。
+
+- 36: `Casa`
+- 37: `Life Cycle`
+- 38: `Step To Enchantment (Stringent)`
+
+- https://www.axisrecords.com/product/jeff-mills-live-at-liquid-room-cd-pre-order/
+
+一方、Apple Music Catalogの現行デジタル版（album `1860112728`）は36章で、末尾を次のように区切る。
+
+- digital chapter 35: `Casa (Mixed)`, song `1860112763`, ISRC `US23A8217434`
+- digital chapter 36: `Life Cycle / Step To Enchantment (Srtringent) [Mixed]`, song `1860112764`, ISRC `US23A8217435`
+
+したがって、旧本文の「章35 `Casa`」はAppleのデジタル章番号としては有効だが、Axis公式CDの物理トラック番号としては使えない。以後は `digital chapter 35` と `physical track 36` を分ける。旧本文の「章34→35→36」はAppleデジタル章の系列であり、Axisの38項目表を意味しない。
+
+### 正規Previewの再取得と再現
+
+Shazam接続のApple Music Catalogから現行Preview URLを取得し、AAC本体を再取得した。音源本体はGitへ保存しない。
+
+| digital chapter | bytes | SHA-256 | decoded duration |
+|---:|---:|---|---:|
+| 35 `Casa (Mixed)` | 1,128,088 | `188d53b80f2fd0fbbd60579df3d3201127617eb6aca13850075c3d450d7e48a6` | 29.9755 s |
+| 36 `Life Cycle / Step...` | 1,105,865 | `e02cada4e0a9a666b6b114662e500f9da5bb320dc08aefd95278ae553ea1e6aa` | 29.9755 s |
+
+既存 `research/music-analysis/analyze_previews.py` を再実行し、`liquid-room-full-catalog-results-20260906.json` の保存値と比較した。持続時間、RMS、frame RMSのp10／p50／p90、スペクトル重心、ステレオ偏り、onset数、onset密度、onset間隔中央値、onset間隔CV、周期候補の10項目が2章とも完全一致した。
+
+これは現行Previewから保存済み測定が再現できることを示す。Preview URLが全曲のどこを切り出すか、章境界の連続性、物理CDトラック境界の重なり、DJ操作は示さない。
+
+### 原版比較の未達
+
+US／GB／JPのApple Music Catalogで `Jeff Mills Casa` を検索したが、得られたのはLiquid Room版と2023年DJ Mix版の `Casa (Mixed)` であり、`AX011`原版の正規Previewは取得できなかった。よって原版とLiquid Room版の速度・音色差は未測定のまま維持する。Axis公式の曲目同定を、音響比較の完了へ読み替えない。
+
+次工程は、権利者または正規販売面から `AX011`原版の解析可能Previewを取得できた場合だけ同一解析器で比較すること。取得できない間は、現行digital chapter 35／36の再現結果と物理番号の訂正を保持し、原版のBPM、音色、EQ、ピッチ、DJ操作を推定しない。
+
+詳細な取得hash、再現比較、巡回時branch head、未解決事項は `long-term-round-20261101.json` に保存した。

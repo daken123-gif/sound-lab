@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "recorded_at_jst": "2026-11-01T09:16:45+09:00",
+  "canonical_repository": "daken123-gif/sound-lab",
+  "branch": "research/20260902-jeff-mills",
+  "pre_commit": "df63ad47bc2d5928c4d7d316664f4ad1c3bd9142",
+  "long_term_targets": [
+    {
+      "research_id": "20260831-autechre",
+      "head": "e7576645e3591d08757aa7b1f18595c29d3b1141",
+      "head_date_utc": "2026-10-02T00:44:37Z"
+    },
+    {
+      "research_id": "20260902-aphex-twin",
+      "head": "a439860d9fd3e3b96e966c94ec77346e213e8bd9",
+      "head_date_utc": "2026-09-08T07:27:41Z"
+    },
+    {
+      "research_id": "20260902-charlie-hunter",
+      "head": "ba87fb8042a0baedf723d40f4ccfb4dfce8b5127",
+      "head_date_utc": "2026-10-03T13:31:39Z"
+    },
+    {
+      "research_id": "20260902-jeff-mills",
+      "head": "df63ad47bc2d5928c4d7d316664f4ad1c3bd9142",
+      "head_date_utc": "2026-09-08T01:21:26Z"
+    }
+  ],
+  "selected_research": "20260902-jeff-mills",
+  "selection_reason": "Oldest branch-head timestamp among the four Git records explicitly marked long-term.",
+  "primary_sources": [
+    {
+      "authority": "Axis Records",
+      "title": "Purpose Maker",
+      "url": "https://www.axisrecords.com/product/purpose-maker/",
+      "observed": "AX011; A1 Casa; A2 In the Bush; B1 Reverting; B2 Black is the Number"
+    },
+    {
+      "authority": "Axis Records",
+      "title": "Jeff Mills – Live at Liquid Room (CD)",
+      "url": "https://www.axisrecords.com/product/jeff-mills-live-at-liquid-room-cd-pre-order/",
+      "observed": "38 physical track entries; 36 Casa, 37 Life Cycle, 38 Step To Enchantment (Stringent); recorded 1995-10-28; compiled and DJ mixed by Jeff Mills"
+    },
+    {
+      "authority": "Apple Music Catalog via Shazam connector",
+      "album_id": "1860112728",
+      "track_count": 36,
+      "observed": "digital chapter 35 is Casa (Mixed); digital chapter 36 combines Life Cycle / Step To Enchantment"
+    }
+  ],
+  "audio_sources": [
+    {
+      "digital_chapter": 35,
+      "song_id": "1860112763",
+      "isrc": "US23A8217434",
+      "name": "Casa (Mixed)",
+      "preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/6f/06/60/6f0660dc-f9c3-2b9c-4728-0eb060a53ea7/mzaf_81804280209569056.plus.aac.p.m4a",
+      "bytes": 1128088,
+      "sha256": "188d53b80f2fd0fbbd60579df3d3201127617eb6aca13850075c3d450d7e48a6",
+      "container_duration_s": 30.000998,
+      "decoded_duration_s": 29.9755
+    },
+    {
+      "digital_chapter": 36,
+      "song_id": "1860112764",
+      "isrc": "US23A8217435",
+      "name": "Life Cycle / Step To Enchantment (Srtringent) [Mixed]",
+      "preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/34/fa/f6/34faf6cc-ab9f-fd20-5c2c-439e32df2728/mzaf_7678382352187680128.plus.aac.p.m4a",
+      "bytes": 1105865,
+      "sha256": "e02cada4e0a9a666b6b114662e500f9da5bb320dc08aefd95278ae553ea1e6aa",
+      "container_duration_s": 30.000998,
+      "decoded_duration_s": 29.9755
+    }
+  ],
+  "reproduction": {
+    "analyzer_path": "research/music-analysis/analyze_previews.py",
+    "saved_results_path": "research/20260902-jeff-mills/liquid-room-full-catalog-results-20260906.json",
+    "saved_results_blob": "f693cfbcd29fb1d179bd247fbfaf6d975d180354",
+    "compared_fields": [
+      "duration_s",
+      "rms_dbfs",
+      "frame_rms_dbfs_p10_p50_p90",
+      "spectral_centroid_hz",
+      "stereo_balance_minus_left_plus_right",
+      "onset_count",
+      "onsets_per_second",
+      "onset_interval_median_s",
+      "onset_interval_cv",
+      "periodicity_candidates_bpm"
+    ],
+    "all_fields_match": true,
+    "current_measurements": [
+      {
+        "song_id": "1860112763",
+        "duration_s": 29.9755,
+        "rms_dbfs": -12.87,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -20.66,
+          -13.83,
+          -9.46
+        ],
+        "spectral_centroid_hz": 3658.3,
+        "stereo_balance_minus_left_plus_right": -0.0182,
+        "onset_count": 249,
+        "onsets_per_second": 8.307,
+        "onset_interval_median_s": 0.1045,
+        "onset_interval_cv": 0.386,
+        "periodicity_candidates_bpm": [
+          70.79,
+          139.67,
+          77.71,
+          65.42,
+          172.27,
+          120.19
+        ]
+      },
+      {
+        "song_id": "1860112764",
+        "duration_s": 29.9755,
+        "rms_dbfs": -12.1,
+        "frame_rms_dbfs_p10_p50_p90": [
+          -15.77,
+          -12.75,
+          -9.66
+        ],
+        "spectral_centroid_hz": 3283.8,
+        "stereo_balance_minus_left_plus_right": -0.0119,
+        "onset_count": 283,
+        "onsets_per_second": 9.441,
+        "onset_interval_median_s": 0.1045,
+        "onset_interval_cv": 0.229,
+        "periodicity_candidates_bpm": [
+          143.55,
+          72.28,
+          82.03,
+          64.2,
+          52.47,
+          191.41,
+          113.58
+        ]
+      }
+    ]
+  },
+  "correction": {
+    "prior_statement": "chapter 35 = Casa",
+    "retained_scope": "Valid for Apple Music digital chapter numbering.",
+    "invalid_scope": "Not the Axis official physical CD track number.",
+    "current_mapping": {
+      "apple_digital_chapter_35": "Casa",
+      "axis_physical_track_36": "Casa",
+      "apple_digital_chapter_36": "Life Cycle / Step To Enchantment combined",
+      "axis_physical_tracks_37_38": [
+        "Life Cycle",
+        "Step To Enchantment (Stringent)"
+      ]
+    }
+  },
+  "unresolved": [
+    "No authorized AX011 original-version preview was obtained from Apple Music Catalog searches in US, GB, or JP.",
+    "Original-versus-Liquid-Room tempo, timbre, EQ, pitch, and DJ operation remain unmeasured.",
+    "Apple preview excerpts do not provide continuous chapter-boundary audio or physical CD boundary timing.",
+    "Periodicity candidates are not asserted as musical beat or exact playback tempo."
+  ],
+  "audio_committed": false,
+  "product_adoption": false,
+  "pull_request_created": false,
+  "merged": false,
+  "main_changed": false
+}
