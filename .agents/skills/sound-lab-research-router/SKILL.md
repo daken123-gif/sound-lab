@@ -11,10 +11,10 @@ Keep Sound Lab work connected across conversations without turning this skill in
 
 For every Sound Lab request that refers to ongoing work, a named research subject, or a short continuation such as "continue", synchronize from Git before continuing the task:
 
-1. Resolve the current default-branch head of `daken123-gif/sound-lab` and retain the exact commit SHA.
-2. Fetch `research/CURRENT.json` at that exact SHA. Match the request and conversation context against each entry's `research_id` and `aliases`.
+1. Resolve the current default-branch head of `daken123-gif/sympathia`, retain the exact commit SHA, and read `GOVERNANCE.md` plus the applicable research/project index at that SHA.
+2. Only after the Sympathia authority record is fixed, resolve the current default-branch head of `daken123-gif/sound-lab` as a downstream implementation snapshot. Fetch `research/CURRENT.json` at that Sound Lab SHA only as a locator for linked artifacts, not as the authority for current research or product direction.
 3. When an entry matches, fetch its `record_path` and `supporting_paths` at the same SHA. Check that the record's version, status, and current cycle agree with the pointer.
-4. Treat the Git snapshot as the current research state. Use conversation memory only for user intent or information that has not yet been saved. Do not let an older conversation summary overwrite newer Git evidence.
+4. Treat the fixed Sympathia snapshot as the current research and decision authority. Treat the Sound Lab snapshot as implementation, deployment, and runtime evidence only. Use conversation memory only for current user intent or information that has not yet been saved.
 5. If the pointer and record disagree, search the current default-branch research directory, report the mismatch, and repair the pointer only within an authorized save operation.
 
 If Git or the pointer cannot be read, say that synchronization was not verified and continue only from evidence actually available. Do not ask the user to copy research between clients. This gate makes the state retrievable across clients; it does not prove that another client fetched it, that the Plugin updated, or that a Skill was invoked there.
@@ -23,16 +23,15 @@ When an active research record is merged into the default branch, add or update 
 
 ## Authority and repository roles
 
-### Sound Lab repository exception
+### Sympathia authority and Sound Lab downstream role
 
-- Do not apply the general `daken123-gif/sympathia` save default to Sound Lab project state. For a Sound Lab request, resolve `daken123-gif/sound-lab` first.
-- Save Sound Lab product direction, integration decisions, current-research pointers, repo-local Skill/Plugin maintenance, and public Web implementations used as externally reachable HTTPS runtime surfaces to `daken123-gif/sound-lab`.
-- Keep an exact Sound Lab-related Draft or non-Canon research body in `daken123-gif/sympathia` when that repository is already authoritative for the body. Its location does not prove Sound Lab adoption, implementation, runtime validation, or deployment.
-- The public visibility of `daken123-gif/sound-lab` supports its existing public HTTPS execution surface; it is not a rule that every research project or research document must be public. Do not create or select another repository by analogy.
+- Apply the common `daken123-gif/sympathia` authority and save destination to Sound Lab work. Resolve Sympathia first for project direction, integration decisions, current research, checkpoints, and saved state.
+- Use `daken123-gif/sound-lab` only as a downstream repository for implementation, deployment, and externally reachable HTTPS runtime evidence. Its public visibility and repo-local files do not make it the project authority.
+- Save Sound Lab research, product direction, integration decisions, and checkpoint records to `daken123-gif/sympathia`. A downstream code change may also be saved to `daken123-gif/sound-lab`, but it does not replace the Sympathia record.
+- Do not create or select another repository by analogy.
 - A workspace, `/workspace`, local checkout, empty or read-only `.git` placeholder, temporary directory, or artifact folder is a working path, not the Sound Lab Git destination or authority.
 - Treat the user's current words as authoritative for their intent, corrections, evaluations, and decisions.
-- Treat `daken123-gif/sound-lab` `integration/` on the current default branch as the authoritative Git record of project direction, decision history, and observed status.
-- Treat each `sound-lab/research/<research-id>/` record as authority only for that research's evidence and hypotheses.
+- Treat `daken123-gif/sound-lab` `integration/` and `research/` files as downstream historical evidence and locators. Resolve their current meaning from the applicable Sympathia record and the user's current correction.
 - Some Sound Lab research bodies are stored in `daken123-gif/sympathia` Draft pull requests or non-Canon branches. Treat a retrieved file there as primary evidence for its own research, implementation, and test claims only. It is not authority for Sound Lab adoption, direction, merge state, runtime, or deployment.
 - Treat implementation, tests, pull requests, and device observations as separate evidence types. One does not prove another.
 - Use conversation summaries and cross-island search results only as locators. Retrieve the underlying Git record, original conversation, artifact, or source before relying on the claim.
@@ -44,12 +43,11 @@ When an active research record is merged into the default branch, add or update 
 For project direction, integration, implementation, or status work, read in this order:
 
 1. The user's current request and any correction in the current conversation.
-2. `sound-lab/integration/DIRECTION.md`.
-3. The latest applicable entries in `sound-lab/integration/DECISIONS.md`, including `superseded-by` links.
-4. The relevant rows and audit boundary in `sound-lab/integration/STATUS.md`.
-5. The relevant `sound-lab` research README, experiments, tests, and implementation files.
-6. Exact `sympathia` research files identified by the integration record, a branch, or a pull request when the body is absent from `sound-lab`.
-7. Affected branches, open and closed pull requests, and active repair locks when the task may change shared paths.
+2. `sympathia/GOVERNANCE.md` and the applicable Sympathia research/project entrypoint at the same fixed commit.
+3. Exact Sympathia research, decision, and checkpoint files for the request.
+4. `sound-lab/integration/DIRECTION.md`, `DECISIONS.md`, and `STATUS.md` as downstream historical records, checking them against Sympathia rather than treating them as authority.
+5. The relevant `sound-lab` research README, experiments, tests, and implementation files as artifact evidence.
+6. Affected branches, open and closed pull requests, and active repair locks when the task may change shared paths.
 
 Before treating `integration/STATUS.md` as current, compare its recorded observation time and commit with the current `sound-lab` default-branch head. Refresh only the affected facts when they differ. Do not silently extend an old full-repository audit to new work.
 
@@ -121,7 +119,7 @@ Before changing project state:
 
 - Present the evidence and unresolved conflict before recording a decision.
 - Do not decide a materially new product specification on the user's behalf.
-- Once the user decides, append or supersede an entry in `sound-lab/integration/DECISIONS.md` and update only the affected parts of `DIRECTION.md` and `STATUS.md`.
+- Once the user decides, record the decision and checkpoint in `daken123-gif/sympathia`. Update Sound Lab integration files only when needed to drive or document downstream implementation, without making them a second authority.
 
 ### Implementation
 
