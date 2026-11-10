@@ -47,7 +47,7 @@ YYYYMMDD-短い英数字名
 1. クライアントは最初にGitHub上のdefault branch headを取得する。
 2. `CURRENT.json` と対象READMEを、ブランチ名ではなく同じhead SHAから取得する。
 3. 対象は `research_id` と `aliases` で照合し、READMEの版・状態・現在工程と一致することを確認する。
-4. Gitの記録を研究状態の正本とし、古い会話要約で上書きしない。ユーザーの現在の指示・訂正は引き続き最優先とする。
+4. 研究状態の正本は、同じ時点で固定取得した `daken123-gif/sympathia` の研究・Decision・checkpoint記録とする。このリポジトリの `CURRENT.json` は下流成果物のlocatorであり、古い会話要約やSound Lab側の記録でSympathiaを上書きしない。ユーザーの現在の指示・訂正は引き続き最優先とする。
 5. 進行中研究をdefault branchへ統合するPRでは、READMEと`CURRENT.json`を同時に更新する。完了・停止・失効時も同じPRで状態を変える。
 
 `CURRENT.json` は研究本文や製品判断の代替ではない。別クライアントでの取得、Skillの起動、Pluginの更新は、それぞれ実際に確認するまで完了と主張しない。
@@ -74,7 +74,7 @@ YYYYMMDD-短い英数字名
 
 ## 統合
 
-- 全体の方向、採否、現在位置は `integration/` を正本とする。
+- 全体の方向、採否、現在位置の正本は `daken123-gif/sympathia` とする。このリポジトリの `integration/` は下流実装へ反映するための記録であり、第二の正本にしない。
 - 各研究は統合島に記録されるまで製品採用済みと扱わない。
 - 統合判断では `.github/pull_request_template/integration.md` を使う。
 - 研究PRは `main` の最新状態へ追従してから統合する。
