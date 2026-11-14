@@ -31,8 +31,9 @@ def cosine(a: np.ndarray, b: np.ndarray) -> float:
 
 def si_sdr(estimate: np.ndarray, target: np.ndarray) -> float:
     estimate, target = align(estimate, target)
-    estimate -= estimate.mean()
-    target -= target.mean()
+    # Center temporary arrays; later metrics must retain the original inputs.
+    estimate = estimate - estimate.mean()
+    target = target - target.mean()
     alpha = np.dot(estimate, target) / (np.dot(target, target) + 1e-18)
     projected = alpha * target
     noise = estimate - projected
