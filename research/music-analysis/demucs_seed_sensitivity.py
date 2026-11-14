@@ -34,6 +34,8 @@ def main() -> None:
     parser.add_argument("--ids", nargs="+", default=list(DEFAULT_IDS))
     parser.add_argument("--seeds", nargs="+", type=int, default=list(range(5)))
     args = parser.parse_args()
+    if len(args.seeds) != len(set(args.seeds)):
+        parser.error("--seeds must contain unique values; duplicate seeds repeat the same stem")
 
     manifest = json.loads((ROOT / "blind20-manifest.json").read_text())
     mdx = json.loads((ROOT / "blind20-results-blinded.json").read_text())
