@@ -2,7 +2,7 @@ const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/st
 const source=fs.readFileSync(process.argv[2],'utf8');
 const code=source.split('\n').find(l=>l.startsWith('lanes.forEach(l=>{l.el.addEventListener'));
 assert(code);
-function fixture(){let serial=0;const timers=new Map(),handlers={},calls=[];const button={addEventListener:(n,f)=>handlers[n]=f,setPointerCapture:()=>{},hasPointerCapture:()=>true,releasePointerCapture:()=>{}};
+function fixture(sync=false){let serial=0;const timers=new Map(),handlers={},calls=[];const button={addEventListener:(n,f)=>handlers[n]=f,setPointerCapture:()=>{},hasPointerCapture:()=>true,releasePointerCapture:id=>{if(sync)handlers.lostpointercapture?.({type:"lostpointercapture",pointerId:id})}};
 const lane={el:{addEventListener:()=>{}},stopButton:button,buffer:{fixture:true}};
 vm.runInNewContext(code,{lanes:[lane],trackTap:()=>{},setTimeout:f=>{timers.set(++serial,f);return serial},clearTimeout:id=>timers.delete(id),clearLane:l=>{l.buffer=null;calls.push('clear')},stopLane:()=>calls.push('stop')});
 return {timers,calls,lane,event:(type,id)=>handlers[type]?.({type,pointerId:id}),flush:()=>{for(const [id,f] of [...timers]){timers.delete(id);f()}}};}
@@ -15,4 +15,9 @@ f=fixture();f.event('pointerdown',1);f.event('pointerup',1);f.flush();assert.dee
 f=fixture();f.event('pointerdown',1);f.flush();f.event('pointerup',1);assert.deepEqual(f.calls,['clear']);cases.push('single_hold_clear_once');
 f=fixture();f.event('pointerdown',1);f.event('pointerdown',2);f.event('pointerup',2);f.flush();assert.deepEqual(f.calls,['clear']);f.event('pointerup',1);cases.push('second_pointer_cannot_release_owner');
 f=fixture();f.event('pointerdown',1);f.event('pointercancel',1);f.event('pointerdown',2);f.event('pointerup',2);f.flush();assert.deepEqual(f.calls,['stop']);cases.push('cancel_then_new_pointer');
+f=fixture(true);f.event('pointerdown',1);f.event('pointerup',1);f.flush();assert.deepEqual(f.calls,['stop']);cases.push('synchronous_lost_capture_no_double_stop');
+f=fixture();f.event('pointerdown',1);const stale=[...f.timers.values()][0];f.event('pointercancel',1);stale();assert.deepEqual(f.calls,[]);cases.push('cancel_stale_callback_no_owner');
+f=fixture();f.event('pointerdown',1);const reused=[...f.timers.values()][0];f.event('pointercancel',1);f.event('pointerdown',1);reused();
+if(process.argv.includes('--candidate1')){assert.deepEqual(f.calls,['clear']);console.log(JSON.stringify({same_id_stale_callback_clears:true,existing_cases:cases.length}));process.exit();}
+assert.deepEqual(f.calls,[]);f.event('pointerup',1);f.flush();assert.deepEqual(f.calls,['stop']);cases.push('same_pointer_id_new_session_rejects_stale_callback');
 console.log(JSON.stringify({cases,passed:cases.length,audio:false,real_data_touched:false}));
