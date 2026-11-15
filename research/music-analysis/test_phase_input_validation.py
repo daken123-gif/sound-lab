@@ -1,82 +1,88 @@
-"""Run with python -m unittest test_phase_input_validation (no audio imports)."""
+"""Non-audio regression: python -m unittest test_phase_input_validation."""
 import ast
-import math
+from decimal import Decimal
+from fractions import Fraction
 from pathlib import Path
 import unittest
 import numpy as np
-from phase_input_validation import validate_phase_inputs
-
+from phase_input_validation import phase_input_views
 ROOT = Path(__file__).parent
 
 def functions(name, names, namespace):
     tree = ast.parse((ROOT / name).read_text())
-    selected = [node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name in names]
+    selected = [n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name in names]
     exec(compile(ast.Module(body=selected, type_ignores=[]), name, 'exec'), namespace)
     return namespace
 
 class ValidationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        ns = {'np': np, 'validate_phase_inputs': validate_phase_inputs}
-        functions('reliability_audit.py', ['pulse_family', 'classify_bpm'], ns)
-        a = functions('blind20_audit.py', ['bpm_family_distance', 'classify'], dict(ns))
-        b = functions('demucs_blind20_audit.py', ['classify'], dict(ns))
-        cls.blind = staticmethod(a['classify']); cls.demucs = staticmethod(b['classify'])
-
+        ns = {'np': np, 'phase_input_views': phase_input_views}
+        functions('reliability_audit.py', ['pulse_family','classify_bpm'], ns)
+        cls.blind = staticmethod(functions('blind20_audit.py',['bpm_family_distance','classify'],dict(ns))['classify'])
+        cls.demucs = staticmethod(functions('demucs_blind20_audit.py',['classify'],dict(ns))['classify'])
     def inputs(self):
-        full = {'bpm_candidate':100.,'beat_confidence':2.,'triplet_spacing_score':.3,'binary_spacing_score':.4,'phase_entropy_0_concentrated_1_diffuse':.6}
-        return full, [dict(full) for _ in range(3)]
-
-    def test_normal_contract(self):
-        f, w = self.inputs()
-        for result in [self.blind(f,f,w,w), self.demucs(f,w)]:
-            self.assertEqual(result, ('stable_intermediate',['passed_reliability_gate_but_did_not_meet_extreme_pattern_rules']))
-
-    def test_nonfinite_all_consumed_fields(self):
-        for location in ['full','window']:
+        f = dict(bpm_candidate=100., beat_confidence=2., triplet_spacing_score=.8,
+                 binary_spacing_score=.1, phase_entropy_0_concentrated_1_diffuse=.2)
+        return f,[dict(f) for _ in range(3)]
+    def test_numeric_types(self):
+        for convert in [float,int,str,np.float32,np.float64,Decimal,Fraction]:
             f,w=self.inputs()
-            fields = list(f) if location=='full' else [k for k in f if not k.startswith('phase_entropy')]
-            for field in fields:
-                for value in [float('nan'),float('inf'),-float('inf')]:
-                    with self.subTest(location=location,field=field,value=value):
-                        f,w=self.inputs();(f if location=='full' else w[0])[field]=value
-                        with self.assertRaises(ValueError):self.blind(f,f,w,w)
-                        if not (location=='full' and field=='bpm_candidate'):
-                            with self.assertRaises(ValueError):self.demucs(f,w)
-
-    def test_nonpositive_bpm(self):
-        for value in [0,-1]:
+            # Integers use equivalent integer-valued feature fixture.
+            f.update(triplet_spacing_score=1,binary_spacing_score=0,phase_entropy_0_concentrated_1_diffuse=0)
+            f={k:convert(v) for k,v in f.items()};w=[dict(f) for _ in w]
+            self.assertEqual(self.demucs(f,w)[0],'triplet_spacing_reproduced')
+            self.assertEqual(self.blind(f,f,w,w)[0],'triplet_spacing_reproduced')
+    def test_short_circuit_unread_values(self):
+        f,w=self.inputs();f['beat_confidence']=.1
+        del f['phase_entropy_0_concentrated_1_diffuse'];f['triplet_spacing_score']=float('nan')
+        for row in w:del row['binary_spacing_score']
+        self.assertEqual(self.demucs(f,w)[0],'rejected')
+        self.assertEqual(self.blind(f,f,w,w)[0],'rejected')
+    def test_bad_bpm_before_folding(self):
+        for value in [0,-1,float('nan'),float('inf'),-float('inf'),True,np.bool_(True),None,'bad']:
             f,w=self.inputs();w[0]['bpm_candidate']=value
-            with self.assertRaises(ValueError):self.blind(f,f,w,w)
-            with self.assertRaises(ValueError):self.demucs(f,w)
-            f,w=self.inputs();f['bpm_candidate']=value
-            with self.assertRaises(ValueError):self.blind(f,f,w,w)
+            for fn,args in [(self.demucs,(f,w)),(self.blind,(f,f,w,w))]:
+                with self.subTest(value=value,fn=fn),self.assertRaises(ValueError):fn(*args)
+    def test_all_positions_and_causes(self):
+        for model in ['A','B']:
+            for i in [None,0,1,2]:
+                f,w=self.inputs();g,z=self.inputs()
+                row=(f if model=='A' else g) if i is None else (w if model=='A' else z)[i]
+                del row['beat_confidence']
+                with self.assertRaises(ValueError) as cm:self.blind(f,g,w,z)
+                loc=model+'.'+('full' if i is None else f'window[{i}]')
+                self.assertTrue(str(cm.exception).startswith(loc+'.beat_confidence'))
+                self.assertIsInstance(cm.exception.__cause__,KeyError)
+    def test_generator_not_cached(self):
+        f,w=self.inputs()
+        self.assertEqual(self.demucs(f,iter(w))[0],'stable_intermediate')
+        self.assertEqual(self.blind(f,f,iter(w),iter(w))[0],'stable_intermediate')
+    def test_iterator_exception_order(self):
+        f,w=self.inputs();del w[0]['bpm_candidate'];events=[]
+        def rows():
+            events.append('first');yield w[0]
+            events.append('second');raise RuntimeError('later failure')
+        with self.assertRaises(ValueError) as cm:self.demucs(f,rows())
+        self.assertEqual(events,['first']);self.assertIsInstance(cm.exception.__cause__,KeyError)
+    def test_conversion_count_and_runtime_error(self):
+        class Number:
+            def __init__(self,value):self.value=value;self.calls=0
+            def __float__(self):self.calls+=1;return self.value
+        f,w=self.inputs();n=Number(100.);w[0]['bpm_candidate']=n
+        self.demucs(f,w);self.assertEqual(n.calls,1)
+        class Bad:
+            def __float__(self):raise RuntimeError('custom')
+        w[0]['bpm_candidate']=Bad()
+        with self.assertRaisesRegex(RuntimeError,'custom'):self.demucs(f,w)
+    def test_list_iteration_not_eager(self):
+        class Rows(list):
+            def __iter__(self):
+                self.count+=1
+                if self.count==2:raise RuntimeError('second pass')
+                return super().__iter__()
+        f,w=self.inputs();r=Rows(w);r.count=0
+        with self.assertRaisesRegex(RuntimeError,'second pass'):self.demucs(f,r)
+        self.assertEqual(r.count,2)
 
-    def test_unused_fields(self):
-        f,w=self.inputs();del f['bpm_candidate']
-        for row in w:del row['phase_entropy_0_concentrated_1_diffuse']
-        self.assertEqual(self.demucs(f,w)[0],'stable_intermediate')
-        f['bpm_candidate']=100
-        self.assertEqual(self.blind(f,f,w,w)[0],'stable_intermediate')
-
-    def test_bad_and_missing_values(self):
-        for value in [None,True,{},'not a number']:
-            f,w=self.inputs();f['beat_confidence']=value
-            with self.assertRaises(ValueError):self.blind(f,f,w,w)
-            with self.assertRaises(ValueError):self.demucs(f,w)
-        f,w=self.inputs();del w[0]['bpm_candidate']
-        with self.assertRaises(ValueError):self.demucs(f,w)
-
-    def test_numeric_string_compatibility(self):
-        f,w=self.inputs();f={k:str(v) for k,v in f.items()};w=[{k:str(v) for k,v in row.items()} for row in w]
-        self.assertEqual(self.blind(f,f,w,w)[0],'stable_intermediate')
-        self.assertEqual(self.demucs(f,w)[0],'stable_intermediate')
-
-    def test_validation_precedes_bpm_call(self):
-        def bomb(_):raise AssertionError('BPM executed before validation')
-        ns={'validate_phase_inputs':validate_phase_inputs,'classify_bpm':bomb}
-        functions('demucs_blind20_audit.py',['classify'],ns)
-        f,w=self.inputs();w[0]['bpm_candidate']=0
-        with self.assertRaises(ValueError):ns['classify'](f,w)
-
-if __name__=='__main__': unittest.main()
+if __name__=='__main__':unittest.main()

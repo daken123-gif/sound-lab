@@ -13,7 +13,7 @@ import numpy as np
 from cross_model_audit import cosine, si_sdr
 from essentia_compare import SR
 from phase_analysis import phase_features
-from phase_input_validation import validate_phase_inputs
+from phase_input_validation import phase_input_views
 from reliability_audit import classify_bpm, pulse_family
 
 
@@ -39,8 +39,8 @@ def bpm_family_distance(a: float, b: float) -> float:
 
 
 def classify(a_full: dict, b_full: dict, a_windows: list[dict], b_windows: list[dict]) -> tuple[str, list[str]]:
-    validate_phase_inputs(a_full, a_windows, full_bpm=True)
-    validate_phase_inputs(b_full, b_windows, full_bpm=True)
+    a_full, a_windows = phase_input_views(a_full, a_windows, model="A")
+    b_full, b_windows = phase_input_views(b_full, b_windows, model="B")
     reasons = []
     a_bpms = [float(row["bpm_candidate"]) for row in a_windows]
     b_bpms = [float(row["bpm_candidate"]) for row in b_windows]
@@ -132,4 +132,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 

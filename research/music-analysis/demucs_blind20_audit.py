@@ -15,7 +15,7 @@ import numpy as np
 
 from essentia_compare import SR
 from phase_analysis import phase_features
-from phase_input_validation import validate_phase_inputs
+from phase_input_validation import phase_input_views
 from reliability_audit import classify_bpm
 
 
@@ -36,7 +36,7 @@ def windows(audio: np.ndarray) -> list[dict[str, object]]:
 
 
 def classify(full: dict, window_rows: list[dict]) -> tuple[str, list[str]]:
-    validate_phase_inputs(full, window_rows, full_bpm=False)
+    full, window_rows = phase_input_views(full, window_rows)
     reasons = []
     stability = classify_bpm([float(row["bpm_candidate"]) for row in window_rows])[0]
     if float(full["beat_confidence"]) < 1.5:
@@ -140,4 +140,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 

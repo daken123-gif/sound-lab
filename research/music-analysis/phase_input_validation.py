@@ -1,31 +1,51 @@
-"""Fail before numeric classification; do not invent an invalid-result category."""
+"""Validate accessed numeric features without changing classifier short circuits.
+
+Unused fields are deliberately not inspected, even if missing or nonfinite.
+These internal views neither cache nor pre-consume window iterables. The public
+callers supply lists; a one-shot iterator retains its historical consumption.
+"""
 import math
+import numpy as np
 
 
-def validate_phase_inputs(full: dict, windows: list[dict], *, full_bpm: bool) -> None:
-    """Check consumed numeric fields only; preserve the caller's output contract.
+class _NumericRow:
+    def __init__(self, row, location):
+        self.row = row
+        self.location = location
 
-    Numeric strings remain accepted, as with the classifiers' existing float()
-    conversions. Unused window entropy and Demucs full BPM are not required.
-    This does not change BPM folding, score thresholds, or window-count policy.
+    def __getitem__(self, field):
+        try:
+            raw = self.row[field]
+            if isinstance(raw, (bool, np.bool_)):
+                raise ValueError("boolean is not a feature value")
+            value = float(raw)
+        except (KeyError, TypeError, ValueError, OverflowError) as exc:
+            raise ValueError(f"{self.location}.{field}: expected a finite number") from exc
+        if not math.isfinite(value):
+            raise ValueError(f"{self.location}.{field}: expected a finite number")
+        if field == "bpm_candidate" and value <= 0:
+            raise ValueError(f"{self.location}.{field}: BPM must be positive")
+        return value
+
+
+class _NumericWindows:
+    def __init__(self, rows, location):
+        self.rows = rows
+        self.location = location
+
+    def __iter__(self):
+        return (_NumericRow(row, f"{self.location}[{i}]")
+                for i, row in enumerate(self.rows))
+
+
+def phase_input_views(full, windows, *, model=""):
+    """Return lazy private views; validation occurs only at numeric access.
+
+    Missing/nonconvertible accessed fields raise ValueError with their original
+    cause. Python/NumPy booleans, nonfinite values and nonpositive BPM are
+    rejected. Other user exceptions propagate. No field completeness, score
+    range, window count or validity of unreferenced values is promised.
     """
-    shared = ("beat_confidence", "triplet_spacing_score", "binary_spacing_score")
-    full_fields = shared + ("phase_entropy_0_concentrated_1_diffuse",)
-    if full_bpm:
-        full_fields += ("bpm_candidate",)
-    rows = [("full", full, full_fields)]
-    rows.extend((f"window[{i}]", row, shared + ("bpm_candidate",))
-                for i, row in enumerate(windows))
-    for location, row, fields in rows:
-        for field in fields:
-            try:
-                raw = row[field]
-                if isinstance(raw, bool):
-                    raise ValueError("boolean is not a feature value")
-                value = float(raw)
-            except (KeyError, TypeError, ValueError, OverflowError) as exc:
-                raise ValueError(f"{location}.{field}: expected a finite number") from exc
-            if not math.isfinite(value):
-                raise ValueError(f"{location}.{field}: expected a finite number")
-            if field == "bpm_candidate" and value <= 0:
-                raise ValueError(f"{location}.{field}: BPM must be positive")
+    prefix = f"{model}." if model else ""
+    return (_NumericRow(full, prefix + "full"),
+            _NumericWindows(windows, prefix + "window"))
