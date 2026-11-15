@@ -2,5 +2,7 @@
 .venv/
 __pycache__/
 .pytest_cache/
+.pytest-work/
+.pytest-smoke-work/
 smoke-*/
 pytest-of-*/
