@@ -1,0 +1,70 @@
+{
+  "cases": {
+    "long_2400ms": {
+      "adaptive_boundary": {
+        "median_ordinary_step": 0.0032667441305732625,
+        "seam_jump": 0.0005486424392623229,
+        "seam_to_median_step_ratio": 0.1679477845012235
+      },
+      "adaptive_overlap_ms": 10.0,
+      "adaptive_seam_high_band_fraction": 1.1630110477930887e-10,
+      "fixed_120ms_overlap_fraction_percent": 5.0,
+      "fixed_120ms_valid_under_half_capture": true,
+      "hard_boundary": {
+        "median_ordinary_step": 0.0032592709088159755,
+        "seam_jump": 0.14539331188859728,
+        "seam_to_median_step_ratio": 44.6091521558639
+      },
+      "hard_seam_high_band_fraction": 0.0005630825537272028,
+      "overlap_fraction_percent": 0.4166666666666667,
+      "processed_loop_duration_s": 2.39,
+      "raw_duration_s": 2.4,
+      "seam_jump_reduction_db": 48.4651006146348
+    },
+    "medium_650ms": {
+      "adaptive_boundary": {
+        "median_ordinary_step": 0.004722873299671693,
+        "seam_jump": 0.003537261262292757,
+        "seam_to_median_step_ratio": 0.7489638272824084
+      },
+      "adaptive_overlap_ms": 30.0,
+      "adaptive_seam_high_band_fraction": 1.5276300270174202e-12,
+      "fixed_120ms_overlap_fraction_percent": 18.46153846153846,
+      "fixed_120ms_valid_under_half_capture": true,
+      "hard_boundary": {
+        "median_ordinary_step": 0.004644768664471666,
+        "seam_jump": 0.19314175285876858,
+        "seam_to_median_step_ratio": 41.58264206699658
+      },
+      "hard_seam_high_band_fraction": 0.0008825778026217066,
+      "overlap_fraction_percent": 4.615384615384615,
+      "processed_loop_duration_s": 0.62,
+      "raw_duration_s": 0.65,
+      "seam_jump_reduction_db": 34.744180610338454
+    },
+    "short_180ms": {
+      "adaptive_boundary": {
+        "median_ordinary_step": 0.0068786312263389715,
+        "seam_jump": 0.007206199763059196,
+        "seam_to_median_step_ratio": 1.0476211801360833
+      },
+      "adaptive_overlap_ms": 45.0,
+      "adaptive_seam_high_band_fraction": 4.304226762909314e-11,
+      "fixed_120ms_overlap_fraction_percent": 66.66666666666667,
+      "fixed_120ms_valid_under_half_capture": false,
+      "hard_boundary": {
+        "median_ordinary_step": 0.006668967719518415,
+        "seam_jump": 0.14424836317668097,
+        "seam_to_median_step_ratio": 21.629788783424477
+      },
+      "hard_seam_high_band_fraction": 0.00045484015745000754,
+      "overlap_fraction_percent": 25.0,
+      "processed_loop_duration_s": 0.135,
+      "raw_duration_s": 0.18,
+      "seam_jump_reduction_db": 26.028091935477487
+    }
+  },
+  "model": "duration-adaptive Capture boundary hypothesis",
+  "not_hardware_emulation": true,
+  "sample_rate": 48000
+}

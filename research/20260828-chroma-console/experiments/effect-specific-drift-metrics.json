@@ -1,0 +1,108 @@
+{
+  "comparisons": {
+    "collage_occupancy_high_minus_low_percentage_points": 4.033333333333334,
+    "reels_repeat_loss_high_to_low": 3.904199552229726,
+    "vibrato_random_rms_high_to_low": 18.633944868304386,
+    "vibrato_stereo_difference_high_to_low": 14.828947166132235
+  },
+  "control_hz": 100,
+  "duration_s": 60,
+  "levels": {
+    "0.2": {
+      "collage": {
+        "double_speed_events": 1,
+        "event_count": 1,
+        "event_occupancy_percent": 0.7833333333333333,
+        "half_speed_events": 0,
+        "mean_event_duration_s": 0.47,
+        "minimum_start_gap_s": null,
+        "target_event_rate_hz": 0.0071600000000000006
+      },
+      "generic_lfo": {
+        "control_rms": 0.08117414768714146,
+        "discrete_speed_event_count": 0,
+        "has_discrete_state": false,
+        "left_right_correlation": 1.0,
+        "repeat_indexed_degradation_db_per_cycle": 0.0
+      },
+      "reels": {
+        "amplitude_after_12_repeats_db": -4.4840745874463215,
+        "brightness_after_12_repeats_db": -5.712589993212955,
+        "brightness_loss_db_per_cycle": 0.47604916610107956,
+        "repeat_loss_db_per_cycle": 0.3736728822871935,
+        "wow_rms_cents": 0.39398947992853467
+      },
+      "vibrato": {
+        "depth_cents": 6.4,
+        "left_right_correlation": 0.9997069914404745,
+        "left_right_difference_rms_cents": 0.09826845009183853,
+        "random_component_rms_cents": 0.1928007207899882
+      }
+    },
+    "0.5": {
+      "collage": {
+        "double_speed_events": 3,
+        "event_count": 3,
+        "event_occupancy_percent": 1.9333333333333333,
+        "half_speed_events": 0,
+        "mean_event_duration_s": 0.3866666666666667,
+        "minimum_start_gap_s": 5.0,
+        "target_event_rate_hz": 0.024125
+      },
+      "generic_lfo": {
+        "control_rms": 0.19672755265588654,
+        "discrete_speed_event_count": 0,
+        "has_discrete_state": false,
+        "left_right_correlation": 1.0,
+        "repeat_indexed_degradation_db_per_cycle": 0.0
+      },
+      "reels": {
+        "amplitude_after_12_repeats_db": -10.580780914609303,
+        "brightness_after_12_repeats_db": -14.399511927189309,
+        "brightness_loss_db_per_cycle": 1.1999593272657758,
+        "repeat_loss_db_per_cycle": 0.8817317428841086,
+        "wow_rms_cents": 0.8326426481494952
+      },
+      "vibrato": {
+        "depth_cents": 11.5,
+        "left_right_correlation": 0.9948692732102908,
+        "left_right_difference_rms_cents": 0.5301487264363719,
+        "random_component_rms_cents": 1.2163160508884079
+      }
+    },
+    "0.8": {
+      "collage": {
+        "double_speed_events": 4,
+        "event_count": 5,
+        "event_occupancy_percent": 4.816666666666667,
+        "half_speed_events": 1,
+        "mean_event_duration_s": 0.578,
+        "minimum_start_gap_s": 2.46,
+        "target_event_rate_hz": 0.08024000000000002
+      },
+      "generic_lfo": {
+        "control_rms": 0.31779860919912545,
+        "discrete_speed_event_count": 0,
+        "has_discrete_state": false,
+        "left_right_correlation": 1.0,
+        "repeat_indexed_degradation_db_per_cycle": 0.0
+      },
+      "reels": {
+        "amplitude_after_12_repeats_db": -17.50672199647262,
+        "brightness_after_12_repeats_db": -25.24479788206724,
+        "brightness_loss_db_per_cycle": 2.1037331568389366,
+        "repeat_loss_db_per_cycle": 1.4588934997060519,
+        "wow_rms_cents": 1.339811648222178
+      },
+      "vibrato": {
+        "depth_cents": 16.6,
+        "left_right_correlation": 0.9549063012411737,
+        "left_right_difference_rms_cents": 1.4572176545095759,
+        "random_component_rms_cents": 3.5926380017699873
+      }
+    }
+  },
+  "model": "effect-specific DRIFT control-domain hypothesis",
+  "not_hardware_emulation": true,
+  "seed": 20260828
+}
