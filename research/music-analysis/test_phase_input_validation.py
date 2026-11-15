@@ -54,6 +54,37 @@ class ValidationTests(unittest.TestCase):
                 loc=model+'.'+('full' if i is None else f'window[{i}]')
                 self.assertTrue(str(cm.exception).startswith(loc+'.beat_confidence'))
                 self.assertIsInstance(cm.exception.__cause__,KeyError)
+    def test_accessed_non_bpm_invalid_values(self):
+        # Explicit fields, not a self-derived oracle: entropy is read only
+        # on the concentrated non-triplet branch; window entropy is unused.
+        cases = [('beat_confidence', .8), ('triplet_spacing_score', .8),
+                 ('binary_spacing_score', .8),
+                 ('phase_entropy_0_concentrated_1_diffuse', 0.)]
+        for field, score in cases:
+            positions = [None] if field.startswith('phase_entropy') else [None, 0, 1, 2]
+            for model in ['single', 'A', 'B']:
+                for index in positions:
+                    for bad in [float('nan'), float('inf'), -float('inf'),
+                                True, np.bool_(False), None, 'bad']:
+                        f,w=self.inputs();g,z=self.inputs()
+                        for row in [f,g,*w,*z]:row['triplet_spacing_score']=score
+                        full,rows=(g,z) if model=='B' else (f,w)
+                        row=full if index is None else rows[index]
+                        row[field]=bad
+                        fn,args=(self.demucs,(f,w)) if model=='single' else (self.blind,(f,g,w,z))
+                        prefix='' if model=='single' else model+'.'
+                        loc=prefix+('full' if index is None else f'window[{index}]')
+                        with self.subTest(field=field,model=model,index=index,bad=bad):
+                            with self.assertRaises(ValueError) as cm:fn(*args)
+                            self.assertTrue(str(cm.exception).startswith(loc+'.'+field+':'))
+    def test_unused_nonfinite_fields_remain_unread(self):
+        f,w=self.inputs()
+        f['bpm_candidate']=float('nan')  # Demucs never reads full BPM.
+        f['phase_entropy_0_concentrated_1_diffuse']=float('nan')
+        for row in w:row['phase_entropy_0_concentrated_1_diffuse']=float('nan')
+        self.assertEqual(self.demucs(f,w)[0],'triplet_spacing_reproduced')
+        f['bpm_candidate']=100.
+        self.assertEqual(self.blind(f,f,w,w)[0],'triplet_spacing_reproduced')
     def test_generator_not_cached(self):
         f,w=self.inputs()
         self.assertEqual(self.demucs(f,iter(w))[0],'stable_intermediate')
@@ -86,3 +117,4 @@ class ValidationTests(unittest.TestCase):
         self.assertEqual(r.count,2)
 
 if __name__=='__main__':unittest.main()
+
