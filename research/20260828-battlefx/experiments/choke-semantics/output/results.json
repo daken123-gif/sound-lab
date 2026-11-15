@@ -1,0 +1,99 @@
+{
+  "schema": "battlefx-choke-semantics-offline/v1",
+  "boundary": "Independent delay-network models; not a BattleFX implementation or device observation.",
+  "config": {
+    "sampleRate": 48000,
+    "durationSeconds": 3,
+    "delayFrames": 4800,
+    "feedback": 0.83,
+    "chokeStart": 0.957,
+    "chokeEnd": 1.557,
+    "probeTime": 1.17,
+    "rampMs": 5
+  },
+  "modes": {
+    "output-gate": {
+      "duringChokeRms": 0,
+      "oldTailAfterReleaseRms": 0.00519856,
+      "probeAcceptanceRms": 0.0250652,
+      "lateTailRms": 0.00147498,
+      "onsetEventStepProxy": 0.08097242,
+      "releaseEventStepProxy": 0.02977213,
+      "peak": 0.67127285,
+      "tailOnlyWav": "output-gate-tail-only.wav",
+      "tailOnlyWavBytes": 288044,
+      "tailOnlyWavSha256": "6df1c0421469f14f84d5cf3c241d43ef348c5aeeb1ddacb883362dd551014412",
+      "wav": "output-gate.wav",
+      "wavBytes": 288044,
+      "wavSha256": "928acfd359521bc9809775afdf6c63f9678b8852b692fc50e435ed5b7e4c70d7"
+    },
+    "feedback-cut": {
+      "duringChokeRms": 0.00543581,
+      "oldTailAfterReleaseRms": 0,
+      "probeAcceptanceRms": 0.02777796,
+      "lateTailRms": 0,
+      "onsetEventStepProxy": 0,
+      "releaseEventStepProxy": 0.03573299,
+      "peak": 0.67127285,
+      "tailOnlyWav": "feedback-cut-tail-only.wav",
+      "tailOnlyWavBytes": 288044,
+      "tailOnlyWavSha256": "0de996faa676647f82a43350211f961e6417daf3f075c3907921d834c4041615",
+      "wav": "feedback-cut.wav",
+      "wavBytes": 288044,
+      "wavSha256": "f119a7b89d5c5aa690ccda6de0e1c151cb98a8c2457979b966a515407d77de1f"
+    },
+    "buffer-clear": {
+      "duringChokeRms": 0,
+      "oldTailAfterReleaseRms": 0,
+      "probeAcceptanceRms": 0.04793371,
+      "lateTailRms": 0,
+      "onsetEventStepProxy": 0.10929513,
+      "releaseEventStepProxy": 0.03573299,
+      "peak": 0.67127285,
+      "tailOnlyWav": "buffer-clear-tail-only.wav",
+      "tailOnlyWavBytes": 288044,
+      "tailOnlyWavSha256": "ca19628dada04c88c99b5c02dab8864575c0fc85c436812b3c52807e66653259",
+      "wav": "buffer-clear.wav",
+      "wavBytes": 288044,
+      "wavSha256": "12d974ccca7c6d79acfc0d8ba11307d46a1c8ee50a3607e58e011ce639fabaa8"
+    },
+    "input-choke": {
+      "duringChokeRms": 0.01353112,
+      "oldTailAfterReleaseRms": 0.00519856,
+      "probeAcceptanceRms": 0,
+      "lateTailRms": 0.00147498,
+      "onsetEventStepProxy": 0,
+      "releaseEventStepProxy": 0,
+      "peak": 0.67127285,
+      "tailOnlyWav": "input-choke-tail-only.wav",
+      "tailOnlyWavBytes": 288044,
+      "tailOnlyWavSha256": "563f2a2c353d661dfcdf97d8a3e3c0274e11a19dee585ca6090a7ea3b6b4667b",
+      "wav": "input-choke.wav",
+      "wavBytes": 288044,
+      "wavSha256": "563f2a2c353d661dfcdf97d8a3e3c0274e11a19dee585ca6090a7ea3b6b4667b"
+    }
+  },
+  "assertions": [
+    {
+      "id": "output-gate-resurrects-tail",
+      "pass": true
+    },
+    {
+      "id": "input-choke-rejects-probe",
+      "pass": true
+    },
+    {
+      "id": "input-choke-preserves-existing-tail",
+      "pass": true
+    },
+    {
+      "id": "buffer-clear-removes-old-tail",
+      "pass": true
+    },
+    {
+      "id": "feedback-cut-removes-recurrence",
+      "pass": true
+    }
+  ],
+  "allAssertionsPassed": true
+}

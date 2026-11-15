@@ -1,0 +1,126 @@
+{
+  "schema": "battlefx-choke-classifier-self-test/v1",
+  "cases": [
+    {
+      "mode": "output-gate",
+      "expected": "OUTPUT_GATE",
+      "actual": "OUTPUT_GATE",
+      "pass": true,
+      "metrics": {
+        "noiseRms": 0,
+        "preTailRms": 0.03531632,
+        "threshold": 0.00105949,
+        "duringTailRms": 0,
+        "oldTailAfterReleaseRms": 0.00519861,
+        "probeAcceptanceRms": 0.02506481,
+        "lateTailRms": 0.00147487
+      },
+      "signature": {
+        "tailAudibleDuringChoke": false,
+        "oldTailReturnsAfterRelease": true,
+        "probeAcceptedDuringChoke": true,
+        "recurrenceSurvivesLate": true
+      }
+    },
+    {
+      "mode": "feedback-cut",
+      "expected": "FEEDBACK_CUT",
+      "actual": "FEEDBACK_CUT",
+      "pass": true,
+      "metrics": {
+        "noiseRms": 0,
+        "preTailRms": 0.03531632,
+        "threshold": 0.00105949,
+        "duringTailRms": 0.00543574,
+        "oldTailAfterReleaseRms": 0,
+        "probeAcceptanceRms": 0.02777749,
+        "lateTailRms": 0
+      },
+      "signature": {
+        "tailAudibleDuringChoke": true,
+        "oldTailReturnsAfterRelease": false,
+        "probeAcceptedDuringChoke": true,
+        "recurrenceSurvivesLate": false
+      }
+    },
+    {
+      "mode": "buffer-clear",
+      "expected": "BUFFER_CLEAR",
+      "actual": "BUFFER_CLEAR",
+      "pass": true,
+      "metrics": {
+        "noiseRms": 0,
+        "preTailRms": 0.03531632,
+        "threshold": 0.00105949,
+        "duringTailRms": 0,
+        "oldTailAfterReleaseRms": 0,
+        "probeAcceptanceRms": 0.04793297,
+        "lateTailRms": 0
+      },
+      "signature": {
+        "tailAudibleDuringChoke": false,
+        "oldTailReturnsAfterRelease": false,
+        "probeAcceptedDuringChoke": true,
+        "recurrenceSurvivesLate": false
+      }
+    },
+    {
+      "mode": "input-choke",
+      "expected": "INPUT_CHOKE",
+      "actual": "INPUT_CHOKE",
+      "pass": true,
+      "metrics": {
+        "noiseRms": 0,
+        "preTailRms": 0.03531632,
+        "threshold": 0.00105949,
+        "duringTailRms": 0.01353093,
+        "oldTailAfterReleaseRms": 0.00519861,
+        "probeAcceptanceRms": 0,
+        "lateTailRms": 0.00147487
+      },
+      "signature": {
+        "tailAudibleDuringChoke": true,
+        "oldTailReturnsAfterRelease": true,
+        "probeAcceptedDuringChoke": false,
+        "recurrenceSurvivesLate": true
+      }
+    },
+    {
+      "mode": "missing-probe-control",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "pass": true,
+      "metrics": {
+        "noiseRms": 0,
+        "preTailRms": 0.03531632,
+        "threshold": 0.00105949,
+        "duringTailRms": 0,
+        "oldTailAfterReleaseRms": 0.00519861,
+        "probeAcceptanceRms": 0,
+        "lateTailRms": 0.00147487
+      },
+      "signature": {
+        "tailAudibleDuringChoke": false,
+        "oldTailReturnsAfterRelease": true,
+        "probeAcceptedDuringChoke": false,
+        "recurrenceSurvivesLate": true
+      }
+    },
+    {
+      "mode": "sample-rate-mismatch",
+      "expected": "ERROR",
+      "actual": "ERROR",
+      "pass": true,
+      "message": "二つのWAVのsample rateが一致しません"
+    },
+    {
+      "mode": "recording-too-short",
+      "expected": "ERROR",
+      "actual": "ERROR",
+      "pass": true,
+      "message": "録音が短すぎます。最低2.707秒必要です"
+    }
+  ],
+  "passed": 7,
+  "total": 7
+}
