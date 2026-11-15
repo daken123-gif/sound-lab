@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "analysis_scope": "short-preview baseline",
+  "copyright_boundary": "audio is not embedded or redistributed",
+  "results": [
+    {
+      "input": {
+        "filename": "conant_album_preview.wav",
+        "sha256": "14d79128f5e8d90209cf3f6bdbf416fe4bd4fc8e35e685b08ec79813ce398b5c",
+        "sample_rate_hz": 22050,
+        "sample_count": 660960,
+        "duration_seconds": 29.975510204
+      },
+      "method": {
+        "name": "spectral-flux-autocorrelation-v1",
+        "frame_length": 2048,
+        "hop_length": 256,
+        "bpm_range": [
+          70.0,
+          130.0
+        ],
+        "onset_feature": "positive spectral flux of log-magnitude STFT",
+        "periodicity": "unbiased autocorrelation with parabolic peak interpolation"
+      },
+      "candidates": [
+        {
+          "bpm": 94.040944,
+          "period_seconds": 0.63801997,
+          "autocorrelation_score": 0.62525332
+        },
+        {
+          "bpm": 118.349527,
+          "period_seconds": 0.506972873,
+          "autocorrelation_score": 0.101586838
+        },
+        {
+          "bpm": 78.322855,
+          "period_seconds": 0.766059918,
+          "autocorrelation_score": 0.098817663
+        }
+      ],
+      "scope": "coarse periodicity only; not beat tracking or microtiming"
+    },
+    {
+      "input": {
+        "filename": "conant_instrumental_preview.wav",
+        "sha256": "582eeda8be9e17ad827ca85146f943bfe0f0a0fdb9da64bd4a13f4cae625fc42",
+        "sample_rate_hz": 22050,
+        "sample_count": 659936,
+        "duration_seconds": 29.929070295
+      },
+      "method": {
+        "name": "spectral-flux-autocorrelation-v1",
+        "frame_length": 2048,
+        "hop_length": 256,
+        "bpm_range": [
+          70.0,
+          130.0
+        ],
+        "onset_feature": "positive spectral flux of log-magnitude STFT",
+        "periodicity": "unbiased autocorrelation with parabolic peak interpolation"
+      },
+      "candidates": [
+        {
+          "bpm": 94.006832,
+          "period_seconds": 0.638251484,
+          "autocorrelation_score": 0.717589574
+        },
+        {
+          "bpm": 120.264194,
+          "period_seconds": 0.49890161,
+          "autocorrelation_score": 0.129053226
+        },
+        {
+          "bpm": 77.25296,
+          "period_seconds": 0.776669268,
+          "autocorrelation_score": 0.122897898
+        }
+      ],
+      "scope": "coarse periodicity only; not beat tracking or microtiming"
+    },
+    {
+      "input": {
+        "filename": "climax_album_preview.wav",
+        "sha256": "b786129f5246534c5cdfa9cf397fdd93e7deb607ca00d9ba0d43cb699fc30adb",
+        "sample_rate_hz": 22050,
+        "sample_count": 660960,
+        "duration_seconds": 29.975510204
+      },
+      "method": {
+        "name": "spectral-flux-autocorrelation-v1",
+        "frame_length": 2048,
+        "hop_length": 256,
+        "bpm_range": [
+          70.0,
+          130.0
+        ],
+        "onset_feature": "positive spectral flux of log-magnitude STFT",
+        "periodicity": "unbiased autocorrelation with parabolic peak interpolation"
+      },
+      "candidates": [
+        {
+          "bpm": 95.336879,
+          "period_seconds": 0.629347222,
+          "autocorrelation_score": 0.279008254
+        },
+        {
+          "bpm": 76.546485,
+          "period_seconds": 0.783837425,
+          "autocorrelation_score": -0.012516643
+        },
+        {
+          "bpm": 128.464444,
+          "period_seconds": 0.467055303,
+          "autocorrelation_score": -0.039738017
+        },
+        {
+          "bpm": 115.045323,
+          "period_seconds": 0.521533586,
+          "autocorrelation_score": -0.067980817
+        }
+      ],
+      "scope": "coarse periodicity only; not beat tracking or microtiming"
+    },
+    {
+      "input": {
+        "filename": "climax_instrumental_preview.wav",
+        "sha256": "9ef50045c4aeb012103043fae9e5aa6a01bdf089f105bac98774e5e8e10fff6e",
+        "sample_rate_hz": 22050,
+        "sample_count": 659936,
+        "duration_seconds": 29.929070295
+      },
+      "method": {
+        "name": "spectral-flux-autocorrelation-v1",
+        "frame_length": 2048,
+        "hop_length": 256,
+        "bpm_range": [
+          70.0,
+          130.0
+        ],
+        "onset_feature": "positive spectral flux of log-magnitude STFT",
+        "periodicity": "unbiased autocorrelation with parabolic peak interpolation"
+      },
+      "candidates": [
+        {
+          "bpm": 95.414627,
+          "period_seconds": 0.628834403,
+          "autocorrelation_score": 0.303531726
+        },
+        {
+          "bpm": 76.087797,
+          "period_seconds": 0.788562715,
+          "autocorrelation_score": -0.021968967
+        },
+        {
+          "bpm": 128.871407,
+          "period_seconds": 0.46558039,
+          "autocorrelation_score": -0.024919397
+        }
+      ],
+      "scope": "coarse periodicity only; not beat tracking or microtiming"
+    },
+    {
+      "input": {
+        "filename": "raise_album_preview.wav",
+        "sha256": "ce8e380a330c3b34e6918143c81e68646832f153d7e86f148c34f43a2819b427",
+        "sample_rate_hz": 22050,
+        "sample_count": 660960,
+        "duration_seconds": 29.975510204
+      },
+      "method": {
+        "name": "spectral-flux-autocorrelation-v1",
+        "frame_length": 2048,
+        "hop_length": 256,
+        "bpm_range": [
+          70.0,
+          130.0
+        ],
+        "onset_feature": "positive spectral flux of log-magnitude STFT",
+        "periodicity": "unbiased autocorrelation with parabolic peak interpolation"
+      },
+      "candidates": [
+        {
+          "bpm": 95.012745,
+          "period_seconds": 0.631494228,
+          "autocorrelation_score": 0.411676113
+        },
+        {
+          "bpm": 85.049973,
+          "period_seconds": 0.705467598,
+          "autocorrelation_score": -0.034274679
+        },
+        {
+          "bpm": 106.615762,
+          "period_seconds": 0.562768573,
+          "autocorrelation_score": -0.037038697
+        }
+      ],
+      "scope": "coarse periodicity only; not beat tracking or microtiming"
+    },
+    {
+      "input": {
+        "filename": "raise_it_up_instrumental_preview.wav",
+        "sha256": "a1b6cd29d2b6d635edf010d445c7d728f5e533bc95479a66af4e6febea514884",
+        "sample_rate_hz": 22050,
+        "sample_count": 659936,
+        "duration_seconds": 29.929070295
+      },
+      "method": {
+        "name": "spectral-flux-autocorrelation-v1",
+        "frame_length": 2048,
+        "hop_length": 256,
+        "bpm_range": [
+          70.0,
+          130.0
+        ],
+        "onset_feature": "positive spectral flux of log-magnitude STFT",
+        "periodicity": "unbiased autocorrelation with parabolic peak interpolation"
+      },
+      "candidates": [
+        {
+          "bpm": 94.88035,
+          "period_seconds": 0.63237541,
+          "autocorrelation_score": 0.751612873
+        }
+      ],
+      "scope": "coarse periodicity only; not beat tracking or microtiming"
+    },
+    {
+      "input": {
+        "filename": "hold_tight_album_preview.wav",
+        "sha256": "57dda49b2807fb724c8316cf6424b3aee8042228ca51a0528b7c16deb5950b09",
+        "sample_rate_hz": 22050,
+        "sample_count": 660960,
+        "duration_seconds": 29.975510204
+      },
+      "method": {
+        "name": "spectral-flux-autocorrelation-v1",
+        "frame_length": 2048,
+        "hop_length": 256,
+        "bpm_range": [
+          70.0,
+          130.0
+        ],
+        "onset_feature": "positive spectral flux of log-magnitude STFT",
+        "periodicity": "unbiased autocorrelation with parabolic peak interpolation"
+      },
+      "candidates": [
+        {
+          "bpm": 96.871095,
+          "period_seconds": 0.619379808,
+          "autocorrelation_score": 0.288504862
+        },
+        {
+          "bpm": 81.516058,
+          "period_seconds": 0.736051291,
+          "autocorrelation_score": -0.055199452
+        },
+        {
+          "bpm": 120.015455,
+          "period_seconds": 0.499935612,
+          "autocorrelation_score": -0.062966498
+        },
+        {
+          "bpm": 73.505617,
+          "period_seconds": 0.816264148,
+          "autocorrelation_score": -0.068905309
+        }
+      ],
+      "scope": "coarse periodicity only; not beat tracking or microtiming"
+    },
+    {
+      "input": {
+        "filename": "hold_tight_instrumental_preview.wav",
+        "sha256": "48fe712366ca4b32978d10ff714b4177a4b48350651f3d9d2d621482688d2813",
+        "sample_rate_hz": 22050,
+        "sample_count": 660960,
+        "duration_seconds": 29.975510204
+      },
+      "method": {
+        "name": "spectral-flux-autocorrelation-v1",
+        "frame_length": 2048,
+        "hop_length": 256,
+        "bpm_range": [
+          70.0,
+          130.0
+        ],
+        "onset_feature": "positive spectral flux of log-magnitude STFT",
+        "periodicity": "unbiased autocorrelation with parabolic peak interpolation"
+      },
+      "candidates": [
+        {
+          "bpm": 97.064079,
+          "period_seconds": 0.618148344,
+          "autocorrelation_score": 0.70637275
+        },
+        {
+          "bpm": 120.702621,
+          "period_seconds": 0.497089456,
+          "autocorrelation_score": 0.0557528
+        },
+        {
+          "bpm": 81.135198,
+          "period_seconds": 0.739506423,
+          "autocorrelation_score": 0.037217198
+        }
+      ],
+      "scope": "coarse periodicity only; not beat tracking or microtiming"
+    },
+    {
+      "input": {
+        "filename": "hold_tight_vinyl_instrumental_preview.wav",
+        "sha256": "81cf179f915ef59ec5504489ae998dfbfb936d43c2e35dd8500a0d918e1355d1",
+        "sample_rate_hz": 22050,
+        "sample_count": 659936,
+        "duration_seconds": 29.929070295
+      },
+      "method": {
+        "name": "spectral-flux-autocorrelation-v1",
+        "frame_length": 2048,
+        "hop_length": 256,
+        "bpm_range": [
+          70.0,
+          130.0
+        ],
+        "onset_feature": "positive spectral flux of log-magnitude STFT",
+        "periodicity": "unbiased autocorrelation with parabolic peak interpolation"
+      },
+      "candidates": [
+        {
+          "bpm": 102.211309,
+          "period_seconds": 0.587019191,
+          "autocorrelation_score": 0.663319555
+        },
+        {
+          "bpm": 70.717912,
+          "period_seconds": 0.848441338,
+          "autocorrelation_score": 0.007666568
+        }
+      ],
+      "scope": "coarse periodicity only; not beat tracking or microtiming"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "sound-lab.j-dilla.synthetic-blind-listening-protocol/v1",
+  "research_id": "20260902-j-dilla",
+  "status": "protocol_ready_stimuli_generated_on_demand",
+  "stimulus_generator": "tools/generate_blind_timing_stimuli.py",
+  "conditions": 2,
+  "presentation": {
+    "filenames": ["stimulus-A.wav", "stimulus-B.wav"],
+    "order": "counterbalanced_between_listeners",
+    "same_device_volume": true,
+    "headphones_required": false,
+    "minimum_complete_listens_per_file": 1
+  },
+  "rating_dimensions": {
+    "continuity": {"scale": [1, 7]},
+    "forward_motion": {"scale": [1, 7]},
+    "instability": {"scale": [1, 7]},
+    "human_intention": {"scale": [1, 7]},
+    "preference": {"scale": [1, 7]}
+  },
+  "free_response": [
+    "where did the timing relationship become most noticeable",
+    "which voice seemed to lead or resist",
+    "what, if anything, remained stable"
+  ],
+  "response_lock": "required_before_condition_key",
+  "condition_key_storage": "separate file generated beside stimuli; do not commit listener-specific keys or responses",
+  "exclusions": [
+    "Dilla likeness is not a rating dimension",
+    "synthetic offsets are not measurements from a recording",
+    "preference does not prove historical or stylistic accuracy"
+  ],
+  "interpretation_boundary": "this protocol can test perceptual differentiation between two synthetic timing rules only"
+}
