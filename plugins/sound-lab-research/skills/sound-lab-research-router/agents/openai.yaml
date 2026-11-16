@@ -1,7 +1,7 @@
 interface:
   display_name: "Sound Lab研究ルーター"
   short_description: "音楽アプリ研究をGit正本へ接続し、証拠と採否を分離する"
-  default_prompt: "Use $sound-lab-research-router to resolve the latest sound-lab main SHA, read research/CURRENT.json and the matching record at that SHA, then continue this task from current Git evidence."
+  default_prompt: "Use $sound-lab-research-router to resolve the current daken123-gif/sympathia default-branch SHA first, read GOVERNANCE.md and the applicable research/project records at that SHA, then resolve daken123-gif/sound-lab as a downstream implementation snapshot. Use its research/CURRENT.json only as an artifact locator, not as research or decision authority."
 
 policy:
   allow_implicit_invocation: true
