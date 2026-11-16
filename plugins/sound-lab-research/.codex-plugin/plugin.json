@@ -9,10 +9,10 @@
   "interface": {
     "displayName": "Sound Lab Research",
     "shortDescription": "端末間で最新Git研究へ同期し、Sound Lab研究を接続します。",
-    "longDescription": "Sound Labの研究・設計・実装・統合を開始するたび、GitHubの最新mainと進行中研究ポインターを同一commitから取得し、会話や端末をまたいで現在地を復元します。証拠、採用状態、検証状態は分離して扱います。",
+    "longDescription": "Sound Labの研究・設計・実装・統合では、まずSympathiaの固定commitからGovernanceと対象研究・Decision・checkpointを取得します。Sound Labは下流の実装・配備・公開HTTPS検証面として参照し、そのCURRENT.jsonを第二の正本にはしません。Git保存、採用、検証、配備、有効化は分離します。",
     "developerName": "daken123-gif",
     "category": "Productivity",
     "capabilities": [],
-    "defaultPrompt": "GitHubのsound-lab最新main SHAを取得し、research/CURRENT.jsonと該当研究を同じSHAから読んで現在地を同期してから作業を続けてください。"
+    "defaultPrompt": "最初にdaken123-gif/sympathiaのdefault branch headを固定し、同じcommitのGOVERNANCE.mdと対象研究・Decision・checkpointを読んでください。その後sound-labのheadを下流実装として固定し、research/CURRENT.jsonは成果物locatorとしてのみ参照してください。"
   }
 }
