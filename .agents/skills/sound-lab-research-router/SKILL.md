@@ -19,7 +19,7 @@ For every Sound Lab request that refers to ongoing work, a named research subjec
 
 If Git or the pointer cannot be read, say that synchronization was not verified and continue only from evidence actually available. Do not ask the user to copy research between clients. This gate makes the state retrievable across clients; it does not prove that another client fetched it, that the Plugin updated, or that a Skill was invoked there.
 
-When an active research record is merged into the default branch, add or update its `research/CURRENT.json` entry in the same pull request. Keep the pointer small: identity, aliases, record location, version, status, current cycle, completed boundary, next work, and supporting paths. Do not copy the research prose into the pointer.
+When an authorized downstream artifact or its locator record is integrated into the `daken123-gif/sound-lab` default branch, add or update the applicable `sound-lab/research/CURRENT.json` locator in the same pull request, following `sound-lab/RESEARCH_WORKFLOW.md`. This pointer records downstream artifact state only; keep the research, decision, and checkpoint authority in the applicable `daken123-gif/sympathia` records and follow their existing index/manifest rules. Do not treat a Sympathia research merge alone as downstream implementation or adoption. Keep the downstream pointer small: identity, aliases, record location, version, status, current cycle, completed boundary, next work, and supporting paths. Do not copy the research prose into the pointer.
 
 ## Authority and repository roles
 
@@ -69,7 +69,7 @@ Keep these states distinct and report the highest evidenced state only:
 - `researching`: research is in progress.
 - `cross-repo-draft`: the body was retrieved from `sympathia`, but no Sound Lab adoption follows from that location.
 - `candidate`: a structure may be useful but is not adopted.
-- `adopted`: the Sound Lab decision record adopts it.
+- `adopted`: the applicable decision record in `daken123-gif/sympathia` explicitly records the user's adoption for this scope. A Sound Lab-local label or retrieved research body alone does not establish adoption.
 - `integrating`: implementation connection is in progress.
 - `implemented-unverified`: code exists, but required runtime or device evidence is missing.
 - `validated`: the named browser, device, audio, or usability check passed.
